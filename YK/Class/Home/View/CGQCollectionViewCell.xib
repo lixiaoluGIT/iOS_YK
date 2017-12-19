@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CGQCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="242" height="361"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="242" height="361"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg.jpg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VsE-Au-0OE">
+                        <rect key="frame" x="0.0" y="0.0" width="242" height="252.5"/>
+                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maxmating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBc-Nl-XRj">
+                        <rect key="frame" x="0.0" y="270.5" width="242" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="短款套头连帽卫衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6F-GH-N2m">
+                        <rect key="frame" x="72" y="292.5" width="98.5" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="VsE-Au-0OE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="B9U-yO-GQs"/>
+                <constraint firstItem="VsE-Au-0OE" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.7" id="GnP-JR-ecp"/>
+                <constraint firstItem="P6F-GH-N2m" firstAttribute="centerX" secondItem="mBc-Nl-XRj" secondAttribute="centerX" id="Jk9-Dm-h5e"/>
+                <constraint firstAttribute="trailing" secondItem="VsE-Au-0OE" secondAttribute="trailing" id="M2d-My-ZEj"/>
+                <constraint firstAttribute="trailing" secondItem="mBc-Nl-XRj" secondAttribute="trailing" id="T0y-ga-CYo"/>
+                <constraint firstItem="P6F-GH-N2m" firstAttribute="top" secondItem="mBc-Nl-XRj" secondAttribute="bottom" constant="5" id="TOn-5w-iBZ"/>
+                <constraint firstItem="VsE-Au-0OE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Vbc-Wr-oyP"/>
+                <constraint firstItem="mBc-Nl-XRj" firstAttribute="top" secondItem="VsE-Au-0OE" secondAttribute="bottom" constant="18" id="hSO-fS-MO5"/>
+                <constraint firstItem="mBc-Nl-XRj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hrl-dp-GtO"/>
+            </constraints>
+            <size key="customSize" width="242" height="361"/>
+            <connections>
+                <outlet property="detailLabel" destination="P6F-GH-N2m" id="gvF-ta-iVq"/>
+                <outlet property="imageView" destination="VsE-Au-0OE" id="0lg-4d-ous"/>
+                <outlet property="lable" destination="mBc-Nl-XRj" id="HGF-NA-7oZ"/>
+            </connections>
+            <point key="canvasLocation" x="-4" y="207.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="timg.jpg" width="925" height="992"/>
+    </resources>
+</document>

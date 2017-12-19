@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>YK.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>1462A8364B3B456523642491F53453EFCB2E53D7</string>
+				<key>dateExpires</key>
+				<string>2018/9/27</string>
+				<key>type</key>
+				<string>iOS Development</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>WBB3ME55KM.com.quchuxing.quchuxingapp</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>WBB3ME55KM</string>
+				<key>get-task-allow</key>
+				<true/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>WBB3ME55KM.com.quchuxing.quchuxingapp</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>YK.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>3c7f3c71-f758-4641-8b5f-66927d99d551</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: com.quchuxing.quchuxingapp</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>WBB3ME55KM</string>
+				<key>name</key>
+				<string>Dongdong zhang</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
