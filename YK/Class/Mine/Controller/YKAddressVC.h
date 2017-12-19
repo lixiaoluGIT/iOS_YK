@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKAddressVC : YKBaseVC
+@interface YKAddressVC : UIViewController
 
 @property (nonatomic,copy)void (^selectAddressBlock)(YKAddress *address);
 @end

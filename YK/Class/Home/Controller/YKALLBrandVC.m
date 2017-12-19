@@ -97,20 +97,6 @@
     NSLog(@"%ld", index);
 }
 
-- (NSArray *)imagesArr {
-    if (!_imagesArr) {
-        NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";
-        NSString * url2 = @"http://img.mp.itc.cn/upload/20160328/f512a3a808c44b1ab9b18a96a04f46cc_th.jpg";
-        NSString * url3 = @"http://p1.ifengimg.com/cmpp/2016/10/10/08/f2016fa9-f1ea-4da5-a0f5-ba388de46a96_size80_w550_h354.JPG";
-        NSString * url4 = @"http://image.xinmin.cn/2016/10/11/6150190064053734729.jpg";
-        NSString * url5 = @"http://imgtu.lishiquwen.com/20160919/63e053727778a18993545741f4028c67.jpg";
-        NSString * url6 = @"http://imgtu.lishiquwen.com/20160919/590346287e6e45faf1070a07159314b7.jpg";
-//        _imagesArr = [NSArray arrayWithObjects: url1, url2, url3, url4, url5, url6, nil];
-        
-        _imagesArr = [NSArray arrayWithObjects:@"pp5.jpg",@"pp1.jpg",@"pp2.jpg",@"pp3.jpg",@"pp4.jpg",nil];
-    }
-    return _imagesArr;
-}
 - (void)group:(NSArray *)array{
 
     for (NSDictionary *blacker in self.blackLists) {
@@ -240,12 +226,7 @@
     title.layer.cornerRadius = 10;
     return head;
 }
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    if (section<_searchBtnArr.count) {
-//        return _searchBtnArr[section];
-//    }
-//    return nil;
-//}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YKALLBrandCell *brandCell = (YKALLBrandCell *)[self.tableView cellForRowAtIndexPath:indexPath];

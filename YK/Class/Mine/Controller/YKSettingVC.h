@@ -6,7 +6,7 @@
 //  Copyright © 2017年 YK. All rights reserved.
 //
 
-#import "YKBaseVC.h"
+#import <UIKit/UIKit.h>
 
 @interface YKSettingVC : UIViewController
 
