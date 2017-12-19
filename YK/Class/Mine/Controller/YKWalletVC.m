@@ -176,6 +176,8 @@
     };
     if (depositStatus != 4) {//未开通
         [self.view addSubview:buttom];
+        
+        //测试提交
     }
     
 }
