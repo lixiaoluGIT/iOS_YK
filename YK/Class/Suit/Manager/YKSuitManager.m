@@ -32,17 +32,13 @@
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
 
         if ([dic[@"status"] integerValue] == 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.8];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:2];
             if (onResponse) {
                 onResponse(dic);
             }
         }else {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
         }
-        
-       
-        
-        
         
     }];
 }
@@ -63,14 +59,14 @@
     }];
 }
 
-- (void)deleteFromShoppingCartwithclothingId:(NSString *)clothingId
-                                  OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)deleteFromShoppingCartwithShoppingCartId:(NSString *)shoppingCartId OnResponse:(void (^)(NSDictionary *dic))onResponse{
 
 
-    NSString *url = [NSString stringWithFormat:@"%@?clothingId=%@",DeleteFromShoppingCart_Url,clothingId];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@?shoppingCartId=%@",DeleteFromShoppingCart_Url,shoppingCartId];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
-        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
         if ([dic[@"status"] integerValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
@@ -109,9 +105,8 @@
 
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [smartHUD  Hide];
-                
+ 
+            
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     
                     if (onResponse) {
@@ -131,4 +126,5 @@
     }
     return _suitArray;
 }
+
 @end

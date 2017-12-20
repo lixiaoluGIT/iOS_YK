@@ -139,7 +139,7 @@
 #import "LBProgressHUD.h"
 #import "DDStringHelper.h"
 #import "YKHttpClient.h"
-//#import "YKBaseVC.h"
+#import "YKAleartView.h"
 #import "YKNoDataView.h"
 //manager
 #import "YKHomeManager.h"

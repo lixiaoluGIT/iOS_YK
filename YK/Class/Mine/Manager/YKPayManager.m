@@ -191,4 +191,17 @@
     }];
 }
 
+//押金退还
+- (void)returnDepositOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [YKHttpClient Method:@"GET" apiName:returnDeposit_Url Params:nil Completion:^(NSDictionary *dic) {
+        
+        if ([dic[@"status"] integerValue] == 200) {
+            
+            if (onResponse) {
+                onResponse(dic[@"data"]);
+            }
+            
+        }
+    }];
+}
 @end

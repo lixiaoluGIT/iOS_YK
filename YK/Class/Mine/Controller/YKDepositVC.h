@@ -10,4 +10,5 @@
 
 @interface YKDepositVC : UIViewController
 
+@property (nonatomic,assign)NSInteger validityStatus;//押金状态
 @end

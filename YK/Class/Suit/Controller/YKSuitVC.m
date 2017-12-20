@@ -99,6 +99,7 @@
     NoDataView.frame = CGRectMake(0, 98+64, WIDHT,HEIGHT-162);
     self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
     [self.view addSubview:NoDataView];
+    NoDataView.hidden = YES;
 
 }
 
@@ -166,16 +167,14 @@
         }else{
             [_mulitSelectArray addObject:selectRow];
         }
-        
+        NSLog(@"选中的行_mulitSelectArray = %@",_mulitSelectArray);
         if (status==0) {
             _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
         }else {
             _btn.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
             
         }
-        
-        NSLog(@"选中array:%@",_mulitSelectArray);
-//        [self save];
+
     };
     //字符串
     NSString* selectRow = [NSString stringWithFormat:@"%ld",indexPath.row];
@@ -183,8 +182,6 @@
     //数组中包含当前行号，设置对号
         [mycell setSelectBtnStatus:[_mulitSelectArray  containsObject:selectRow]];
    
-    
-    
     return mycell;
 }
 
@@ -211,15 +208,15 @@
     NSString*  selectRow  = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 
-        [[YKSuitManager sharedManager]deleteFromShoppingCartwithclothingId:ce.suit.clothingId OnResponse:^(NSDictionary *dic) {
+        [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:ce.suit.shoppingCartId OnResponse:^(NSDictionary *dic) {
 
             if ([_mulitSelectArray containsObject:selectRow]) {
                 [_mulitSelectArray removeObject:selectRow];
-                
                 [[YKSuitManager sharedManager]cancelSelectCurrentPruduct:ce.suit];
-                
+                [YKSuitManager sharedManager].suitAccount--;
+            }
+            
                 //TODO:需重新分配数据,选中状态的保存,此处有BUG
-                
                 for (NSString *row in _mulitSelectArray) {
                   
                     int rowInter = [row intValue];
@@ -227,14 +224,14 @@
                     int seleRowInter = [selectRow intValue];
                   
                     if (rowInter >= seleRowInter) {
-                        rowInter = rowInter-1;
+                        rowInter--;
                         [_mulitSelectArray removeObject:row];
                         [_mulitSelectArray addObject:@(rowInter)];
                     }
                 }
                 
-                [YKSuitManager sharedManager].suitAccount--;
-            }
+//                [YKSuitManager sharedManager].suitAccount--;
+//            }
             
                 
                 if ([YKSuitManager sharedManager].suitAccount==0) {
@@ -250,7 +247,17 @@
             
              NSLog(@"选中array:%@",_mulitSelectArray);
             
-            [self getShoppingList];
+//            [self getShoppingList];
+            if (self.dataArray.count==0) {
+                self.tableView.hidden = YES;
+                NoDataView.hidden = NO;
+                _btn.hidden = YES;
+            }else {
+                self.tableView.hidden = NO;
+                _btn.hidden = NO;
+                NoDataView.hidden = YES;
+//                [self.tableView reloadData];
+            }
         }];
     }
          

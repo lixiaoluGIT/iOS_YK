@@ -214,6 +214,7 @@
 		C52D04741FE8EA9000633550 /* YyxCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04701FE8EA8F00633550 /* YyxCircleView.m */; };
 		C52D04781FE8EB5D00633550 /* YKNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C52D04751FE8EB5B00633550 /* YKNoDataView.xib */; };
 		C52D04791FE8EB5D00633550 /* YKNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04771FE8EB5D00633550 /* YKNoDataView.m */; };
+		C52D047C1FE8F8A400633550 /* YKAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D047B1FE8F8A400633550 /* YKAleartView.m */; };
 		C52D0F9B1FC6C27900B50258 /* gapl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C52D0F991FC6C27800B50258 /* gapl.jpg */; };
 		C52D0F9C1FC6C27900B50258 /* gaps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C52D0F9A1FC6C27900B50258 /* gaps.jpg */; };
 		C52D0F9E1FC6C43D00B50258 /* liutao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C52D0F9D1FC6C43D00B50258 /* liutao.jpg */; };
@@ -757,6 +758,8 @@
 		C52D04751FE8EB5B00633550 /* YKNoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YKNoDataView.xib; sourceTree = "<group>"; };
 		C52D04761FE8EB5C00633550 /* YKNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKNoDataView.h; sourceTree = "<group>"; };
 		C52D04771FE8EB5D00633550 /* YKNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKNoDataView.m; sourceTree = "<group>"; };
+		C52D047A1FE8F8A400633550 /* YKAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAleartView.h; sourceTree = "<group>"; };
+		C52D047B1FE8F8A400633550 /* YKAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAleartView.m; sourceTree = "<group>"; };
 		C52D0F991FC6C27800B50258 /* gapl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gapl.jpg; sourceTree = "<group>"; };
 		C52D0F9A1FC6C27900B50258 /* gaps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gaps.jpg; sourceTree = "<group>"; };
 		C52D0F9D1FC6C43D00B50258 /* liutao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = liutao.jpg; sourceTree = "<group>"; };
@@ -1624,6 +1627,8 @@
 				C525DDD41FBAB40D002802AE /* YKMainVC.h */,
 				C525DDD51FBAB40D002802AE /* YKMainVC.m */,
 				C525DE871FBD2813002802AE /* YKprefixheader.pch */,
+				C52D047A1FE8F8A400633550 /* YKAleartView.h */,
+				C52D047B1FE8F8A400633550 /* YKAleartView.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2640,6 +2645,7 @@
 				C525DE021FBABBD1002802AE /* YKSuitVC.m in Sources */,
 				C525DDA31FBAB2A9002802AE /* NSAttributedString+MLLabel.m in Sources */,
 				C525DEC11FBEAE21002802AE /* YQAlertTableViewController.m in Sources */,
+				C52D047C1FE8F8A400633550 /* YKAleartView.m in Sources */,
 				C525DDBF1FBAB2A9002802AE /* UIImageView+HighlightedWebCache.m in Sources */,
 				C525DE091FBABE69002802AE /* CGQCollectionViewCell.m in Sources */,
 				C525DDA21FBAB2A9002802AE /* NSString+MLLabel.m in Sources */,

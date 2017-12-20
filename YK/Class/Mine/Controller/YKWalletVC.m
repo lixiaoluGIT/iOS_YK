@@ -17,7 +17,7 @@
 {
     NSInteger validityStatus;//押金状态
     NSInteger depositStatus;//会员卡状态
-    NSInteger depositType;//会员卡类型
+    NSInteger cardType;//会员卡类型
     NSInteger  effectiveDay;//VIP剩余天数
     
     YKNoDataView *NoDataView;
@@ -58,7 +58,7 @@
     [[YKPayManager sharedManager]getWalletPageOnResponse:^(NSDictionary *dic) {
         validityStatus = [dic[@"depositEffective"] integerValue];//押金:0>未交,不是VIP,1>有效,2>退还中,3>无效
         depositStatus = [dic[@"effective"] integerValue];//1>使用中,2>已过期,3>无押金,4>未开通
-        depositType = [dic[@"depositType"] integerValue];//会员卡类型
+        cardType = [dic[@"cardType"] integerValue];//会员卡类型
         effectiveDay = [dic[@"validity"] integerValue];//会员卡剩余天数
          [self setUI];
     }];
@@ -106,15 +106,15 @@
     if (depositStatus == 1) {//使用中
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         //判断卡类型
-        if (depositType==1) {//季卡
+        if (cardType==0) {//季卡
             image.image = [UIImage imageNamed:@"jika"];
             
         }
-        if (depositType==2) {//月卡
+        if (cardType==1) {//月卡
             image.image = [UIImage imageNamed:@"yueka"];
             
         }
-        if (depositType==3) {//年卡
+        if (cardType==2) {//年卡
             image.image = [UIImage imageNamed:@"nianka"];
            
         }
@@ -124,13 +124,13 @@
         
         image.image = [UIImage imageNamed:@"zanting-1"];
         //判断卡类型
-        if (depositType==0) {//季卡
+        if (cardType==0) {//季卡
             des.text = @"季卡剩余有效期";
         }
-        if (depositType==2) {//月卡
+        if (cardType==2) {//月卡
             des.text = @"月卡剩余有效期";
         }
-        if (depositType==3) {//年卡
+        if (cardType==3) {//年卡
             des.text = @"年卡剩余有效期";
         }
     }
@@ -172,6 +172,7 @@
     [buttom setTitle:validityStatus];
     buttom.scanBlock = ^(NSInteger tag){
         YKDepositVC *deposit = [[YKDepositVC alloc]initWithNibName:@"YKDepositVC" bundle:[NSBundle mainBundle]];
+        deposit.validityStatus = validityStatus;
         [self.navigationController pushViewController:deposit animated:YES];
     };
     if (depositStatus != 4) {//未开通
