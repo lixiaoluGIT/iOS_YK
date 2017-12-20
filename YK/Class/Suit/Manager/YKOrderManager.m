@@ -135,7 +135,32 @@
                 NSMutableArray *listArray;
                 //TODO:数据结构需变动
                 if (dic[@"data"]) {
+                    //待签收,待归还
+                    
+                    //已归还
+                    if (status==5) {
+                        
+                        NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
+                        NSMutableArray *totalArray = [NSMutableArray array];
+                        
+                        for (int index=0; index<array.count; index++) {
+                            
+                            if (listArray.count==0) {
+                                listArray = array[0][@"orderDetailsVoList"];
+                                totalArray = listArray;
+                            }else {
+                                NSArray *a = [NSArray arrayWithArray:array[index][@"orderDetailsVoList"]];
+                                for (int index=0; index<a.count; index++) {
+                                    [totalArray addObject:array[index][@"orderDetailsVoList"][index]];
+                                }
+                                
+                            }
+                        }
+                        listArray = [NSMutableArray arrayWithArray:totalArray];
+                    }else {
                         listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
+                    }
+                    
                     }else {
                         listArray = [NSMutableArray array];
                     }
@@ -162,24 +187,44 @@
     NSMutableArray *hadBackList = [NSMutableArray array];//存储已归还
     
     for (NSDictionary *model in currentArray) {
+       if ([model[@"orderStatus"] intValue] == 2){
+            //            [receiveList addObject:model[@"orderDetailsVoList"]];
+            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
+        }
         if ([model[@"orderStatus"] intValue] == 3) {//待归还
             [backList addObject:model[@"orderDetailsVoList"]];
         }else if([model[@"orderStatus"] intValue] == 5) {//已归还
-            [hadBackList addObject:model[@"orderDetailsVoList"]];
-        }else{//其它全部为待签收
-            [receiveList addObject:model[@"orderDetailsVoList"]];
+            
+            if (hadBackList.count > 0 ) {
+                [totlaList removeObject:hadBackList];
+                NSMutableArray *totalArray = [NSMutableArray arrayWithArray:hadBackList[0]];
+                
+                NSArray *array = [NSArray arrayWithArray:model[@"orderDetailsVoList"]];
+                for (int index=0; index<array.count; index++) {
+                    [totalArray addObject:array[index]];
+                }
+                hadBackList = [NSMutableArray arrayWithArray:totalArray];
+            }else {
+                [hadBackList addObject:model[@"orderDetailsVoList"]];
+            }
         }
+//        }else{//其它全部为待签收
+////            [receiveList addObject:model[@"orderDetailsVoList"]];
+//            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
+//        }
         
         //分数组添加到总数组里
         if (receiveList.count>0&&![totlaList containsObject:receiveList]) {
-            [totlaList addObject:receiveList];
+//            [totlaList addObject:receiveList];
+            [totlaList insertObject:receiveList atIndex:0];
             if (![self.sectionArray containsObject:receiveSection]) {
                 [self.sectionArray addObject:receiveSection];
             }
         }
         
         if (backList.count>0&&![totlaList containsObject:backList]) {
-            [totlaList addObject:backList];
+            [totlaList insertObject:receiveList atIndex:0];
+//            [totlaList addObject:backList];
             if (![self.sectionArray containsObject:backSection]) {
                 [self.sectionArray addObject:backSection];
             }
@@ -192,6 +237,15 @@
             }
         }
     }
+    
+        NSArray *resultArray = [self.sectionArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+
+            return [obj1 compare:obj2]; //升序
+        
+        }];
+    
+        self.sectionArray = [NSMutableArray arrayWithArray:resultArray];
+    
         self.totalOrderList = totlaList;
     
         if (groupDoneBlock) {//分组完毕

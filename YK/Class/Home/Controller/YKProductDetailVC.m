@@ -185,7 +185,7 @@
         return;
     }
     if (_sizeNum==0) {
-        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:0.8];
+        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
         return ;
     }
     [[YKSuitManager sharedManager]addToShoppingCartwithclothingId:self.productId clothingStckType:_sizeNum OnResponse:^(NSDictionary *dic) {

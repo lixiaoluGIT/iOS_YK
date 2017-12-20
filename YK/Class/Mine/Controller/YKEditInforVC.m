@@ -148,6 +148,37 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     self.headImage.image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [self uploadImg:[info objectForKey:UIImagePickerControllerEditedImage]];
+}
+
+-(void)uploadImg:(UIImage *)image{
+ 
+    NSData *data = UIImageJPEGRepresentation(image, .3);
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+//    hud.labelText = @"正在上传...";
+    
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,UploadImage_Url];
+    [YKHttpClient uploadPicUrl:url token:Token pic:data success:^(NSDictionary *dict) {
+        
+        
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"上传成功!";
+        hud.margin = 20.f;
+        hud.removeFromSuperViewOnHide = YES;
+        [hud hide:YES afterDelay:1.5];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.headImage.image = image;
+        });
+    } failure:^(NSError *error) {
+        hud.labelText = @"上传失败";
+        [hud hide:YES afterDelay:1.5];
+    }];
 }
 
 - (void)changenickName{

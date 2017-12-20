@@ -51,7 +51,8 @@
 #define GetUserInfor_Url @"/user/getUserInfo"
 //更新用户信息
 #define UpdateUserInfor_Url @"/user/updateInfo"
-
+//上传图片地址
+#define  UploadImage_Url @"/user/upload"
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页

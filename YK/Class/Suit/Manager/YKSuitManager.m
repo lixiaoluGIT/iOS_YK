@@ -32,12 +32,12 @@
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
 
         if ([dic[@"status"] integerValue] == 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:0.8];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.2];
             if (onResponse) {
                 onResponse(dic);
             }
         }else {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:0.8];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
         }
         
     }];

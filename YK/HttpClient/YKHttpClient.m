@@ -236,19 +236,19 @@
 +(void)uploadPicUrl:(NSString *)url token:(NSString *)token pic:(NSData *)pic success:(void(^)(NSDictionary *dict))success failure:(void(^)(NSError *error))failure {
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    //    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:Token forHTTPHeaderField:@"X-Auth-Token"];
     
     [manager.securityPolicy setAllowInvalidCertificates:YES];
-    [manager setSecurityPolicy:[self customSecurityPolicy]];
-    [manager POST:url parameters:@{@"token":token} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+
+    [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         //上传文件参数
-        [formData appendPartWithFileData:pic name:@"picture" fileName:@"default.jpg" mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:pic name:@"file" fileName:@"file" mimeType:@"image/jpeg"];
         
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {

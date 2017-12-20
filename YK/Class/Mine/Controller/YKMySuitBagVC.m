@@ -255,6 +255,7 @@
     if (_bagStatus==totalBag) {
        
         return [YKOrderManager sharedManager].totalOrderList.count;
+//        return [YKOrderManager sharedManager].sectionArray.count;
     }
     return 1;
 }
@@ -302,7 +303,8 @@
         }
         YKSuit *suit = [[YKSuit alloc]init];
          NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[indexPath.section]];//数据源
-        [suit initWithDictionary:array[indexPath.row][0]];
+     
+        [suit initWithDictionary:array[indexPath.row]];
         mycell.suit = suit;
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
