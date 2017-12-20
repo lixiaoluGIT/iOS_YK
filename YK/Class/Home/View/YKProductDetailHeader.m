@@ -41,7 +41,7 @@
     [_brandImage setContentMode:UIViewContentModeScaleAspectFit];
     NSString *des =  [product objectForKey:@"clothingName"];
     _productDes.text = des;
-    _productPrice.text = [NSString stringWithFormat:@"%@",product[@"clothingPrice"]];
+    _productPrice.text = [NSString stringWithFormat:@"参考价:¥%@",product[@"clothingPrice"]];
     
     _brandName.text = [NSString stringWithFormat:@"%@",product[@"brandName"]];
     

@@ -56,7 +56,7 @@
 - (void)initWithDictionary:(NSDictionary *)dic{
     self.brandId = [NSString stringWithFormat:@"%@",dic[@"brandId"]];
     self.headurl = [NSString stringWithFormat:@"%@",dic[@"brandLogo"]];
-    [self.imgHead sd_setImageWithURL:[NSURL URLWithString:self.headurl] placeholderImage:[UIImage imageNamed:@"pp6.jpg"]];
+    [self.imgHead sd_setImageWithURL:[NSURL URLWithString:self.headurl] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
     
     self.labName.text = [NSString stringWithFormat:@"%@",dic[@"brandName"]];
 }

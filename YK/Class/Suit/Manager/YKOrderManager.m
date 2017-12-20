@@ -91,7 +91,7 @@
             status=0;//全部衣袋
             break;
         case 101:
-            status=1;//待签收
+            status=2;//待签收
             break;
         case 102:
             status=3;//待归还

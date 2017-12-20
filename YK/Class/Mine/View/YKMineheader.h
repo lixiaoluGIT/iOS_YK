@@ -10,7 +10,7 @@
 
 @interface YKMineheader : UITableViewCell
 
-@property (nonatomic,copy)void (^VIPClickBlock)(void);
+@property (nonatomic,copy)void (^VIPClickBlock)(NSInteger VIPStatus);
 @property (nonatomic,strong)YKUser *user;
 @property (nonatomic,copy)void (^viewClickBlock)(void);
 

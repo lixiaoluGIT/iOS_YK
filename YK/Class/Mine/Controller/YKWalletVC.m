@@ -58,7 +58,7 @@
     [[YKPayManager sharedManager]getWalletPageOnResponse:^(NSDictionary *dic) {
         validityStatus = [dic[@"depositEffective"] integerValue];//押金:0>未交,不是VIP,1>有效,2>退还中,3>无效
         depositStatus = [dic[@"effective"] integerValue];//1>使用中,2>已过期,3>无押金,4>未开通
-        cardType = [dic[@"cardType"] integerValue];//会员卡类型
+        cardType = [dic[@"cardType"] integerValue];//会员卡类型 0季卡 1月卡 2年卡
         effectiveDay = [dic[@"validity"] integerValue];//会员卡剩余天数
          [self setUI];
     }];

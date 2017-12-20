@@ -19,6 +19,7 @@
 #import "YKToBeVIPVC.h"
 #import "YKEditInforVC.h"
 #import "YKLoginVC.h"
+#import "YKDepositVC.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -48,6 +49,8 @@
      [self.navigationController.navigationBar setHidden:NO];
 }
 
+
+
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
     
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
@@ -68,12 +71,32 @@
     
     head = [[NSBundle mainBundle] loadNibNamed:@"YKMineheader" owner:self options:nil][0];
     head.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
-    head.VIPClickBlock = ^(){
-        YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-        [weakSelf presentViewController:vip animated:YES completion:^{
-            
-        }];
-    };
+    head.VIPClickBlock = ^(NSInteger VIPStatus){
+        if (VIPStatus==1) {//使用中
+            YKWalletVC *wallet = [YKWalletVC new];
+            wallet.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:wallet animated:YES];
+        }
+        if (VIPStatus==2) {//已过期,充值会员
+            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+            [weakSelf presentViewController:vip animated:YES completion:^{
+                
+            }];
+        }
+        if (VIPStatus==3) {//无押金,充押金
+            YKDepositVC *deposit = [YKDepositVC new];
+            deposit.hidesBottomBarWhenPushed = YES;
+            deposit.validityStatus = 0;//未交押金
+            [weakSelf.navigationController pushViewController:deposit animated:YES];
+        }
+        if (VIPStatus==4) {//未开通
+            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+            [weakSelf presentViewController:vip animated:YES completion:^{
+                
+            }];
+        }
+    }
+    ;
     head.viewClickBlock = ^(){
         if ([Token length] == 0) {
             [weakSelf Login];

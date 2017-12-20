@@ -215,6 +215,7 @@
 		C52D04781FE8EB5D00633550 /* YKNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C52D04751FE8EB5B00633550 /* YKNoDataView.xib */; };
 		C52D04791FE8EB5D00633550 /* YKNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04771FE8EB5D00633550 /* YKNoDataView.m */; };
 		C52D047C1FE8F8A400633550 /* YKAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D047B1FE8F8A400633550 /* YKAleartView.m */; };
+		C52D047F1FEA364800633550 /* LMLGestureHeadImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D047D1FEA364700633550 /* LMLGestureHeadImageScrollView.m */; };
 		C52D0F9B1FC6C27900B50258 /* gapl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C52D0F991FC6C27800B50258 /* gapl.jpg */; };
 		C52D0F9C1FC6C27900B50258 /* gaps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C52D0F9A1FC6C27900B50258 /* gaps.jpg */; };
 		C52D0F9E1FC6C43D00B50258 /* liutao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C52D0F9D1FC6C43D00B50258 /* liutao.jpg */; };
@@ -760,6 +761,8 @@
 		C52D04771FE8EB5D00633550 /* YKNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKNoDataView.m; sourceTree = "<group>"; };
 		C52D047A1FE8F8A400633550 /* YKAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAleartView.h; sourceTree = "<group>"; };
 		C52D047B1FE8F8A400633550 /* YKAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAleartView.m; sourceTree = "<group>"; };
+		C52D047D1FEA364700633550 /* LMLGestureHeadImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLGestureHeadImageScrollView.m; sourceTree = "<group>"; };
+		C52D047E1FEA364700633550 /* LMLGestureHeadImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMLGestureHeadImageScrollView.h; sourceTree = "<group>"; };
 		C52D0F991FC6C27800B50258 /* gapl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gapl.jpg; sourceTree = "<group>"; };
 		C52D0F9A1FC6C27900B50258 /* gaps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gaps.jpg; sourceTree = "<group>"; };
 		C52D0F9D1FC6C43D00B50258 /* liutao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = liutao.jpg; sourceTree = "<group>"; };
@@ -1586,6 +1589,8 @@
 			children = (
 				C53039E41FCC272000FB12CE /* Other */,
 				C53039E01FCC271800FB12CE /* PageView */,
+				C52D047E1FEA364700633550 /* LMLGestureHeadImageScrollView.h */,
+				C52D047D1FEA364700633550 /* LMLGestureHeadImageScrollView.m */,
 				C53039CC1FCBF35500FB12CE /* DDStringHelper.h */,
 				C53039CB1FCBF35400FB12CE /* DDStringHelper.m */,
 				C55D49271FC3E7D3000D2056 /* LBProgressHUD.h */,
@@ -2705,6 +2710,7 @@
 				C5343C741FC526BF00F5132A /* YKNormalQuestionVC.m in Sources */,
 				C525DDF91FBABB68002802AE /* YKHomeVC.m in Sources */,
 				C525DDAE1FBAB2A9002802AE /* TZVideoPlayerController.m in Sources */,
+				C52D047F1FEA364800633550 /* LMLGestureHeadImageScrollView.m in Sources */,
 				C525DDA41FBAB2A9002802AE /* MLLinkLabel.m in Sources */,
 				C525DD711FBAB2A8002802AE /* AFURLRequestSerialization.m in Sources */,
 				C525DDD61FBAB40D002802AE /* YKMainVC.m in Sources */,

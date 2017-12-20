@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *backW;
 @property (weak, nonatomic) IBOutlet UILabel *VIPLable;
 
+@property (nonatomic,assign)NSInteger VIPStatus;
+
 
 @end
 @implementation YKMineheader
@@ -66,31 +68,40 @@
     }
     [_headImage sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"liutao.jpg"]];
     
-//    //不是会员
-    if ([user.isVIP intValue] == 1) {
-        _isVIP.text = @"您还不是会员";
-        _VIPLable.text = @"成为包月会员";
-    }else {//是会员
-        _isVIP.text = @"您已是会员用户";
-        _VIPLable.text = @"会员剩余16天";
-    }
+    self.VIPStatus = [user.effective integerValue];
+        
+    if ([user.effective intValue] != 4) {//会员状态,已开通
+        _isVIP.text = @"会员用户";
+        if ([user.effective intValue] == 1) {//使用中
+            _VIPLable.text = [NSString stringWithFormat:@"会员剩余%@天",user.validity];
         }
+        if ([user.effective intValue] == 2) {//已过期
+            _VIPLable.text = @"会员过期去续费";
+        }
+        if ([user.effective intValue] == 3) {//未交押金
+            _VIPLable.text = @"缴纳押金";
+        }
+        
+    }else {//未开通
+        _isVIP.text = @"您还不是会员用户";
+        _VIPLable.text = @"开通会员";
+    }
+        
+    }
 }
 
 - (void)viewClick{
-//    if ([_user.isVIP isEqualToString:@"0"]) {//不是VIP
+//    if ([_user.effective integerValue] == 4) {//不是VIP
         if (self.viewClickBlock) {
             self.viewClickBlock();
         }
 //    }
-   
+
 }
 
 - (void)VIP{
-    if ([_user.isVIP isEqualToString:@"0"]) {//不是VIP
     if (self.VIPClickBlock) {
-        self.VIPClickBlock();
-    }
+        self.VIPClickBlock(_VIPStatus);//1使用中 2已过期 3无押金 4未开通
     }
 }
 

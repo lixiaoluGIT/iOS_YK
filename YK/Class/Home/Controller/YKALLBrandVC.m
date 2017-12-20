@@ -76,11 +76,7 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.45)];
-    cycleView.imagesArr = self.imagesArr;
-    cycleView.delegate  = self;
-    cycleView.placeHolderImageName = @"0K143Xa_0.jpg";
-    self.tableView.tableHeaderView = cycleView;
+    
     
      [self getBrandList];
 }
@@ -89,6 +85,11 @@
     [[YKHomeManager sharedManager]getBrandListOnResponse:^(NSDictionary *dic) {
         
         self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"]];
+        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
+        cycleView.imagesArr = @[self.blackLists[0][@"brandImg"]];
+        cycleView.delegate  = self;
+        cycleView.placeHolderImageName = @"";
+        self.tableView.tableHeaderView = cycleView;
         [self group:self.blackLists];
         [self.tableView reloadData];
     }];

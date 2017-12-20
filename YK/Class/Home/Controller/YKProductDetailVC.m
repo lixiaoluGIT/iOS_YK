@@ -42,9 +42,6 @@
 
 @implementation YKProductDetailVC
 
-//- (void)setProduct:(YKProduct *)product{
-//    _product = product;
-//}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     self.navigationController.navigationBar.hidden = YES;
@@ -188,7 +185,7 @@
         return;
     }
     if (_sizeNum==0) {
-        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
+        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:0.8];
         return ;
     }
     [[YKSuitManager sharedManager]addToShoppingCartwithclothingId:self.productId clothingStckType:_sizeNum OnResponse:^(NSDictionary *dic) {
@@ -267,7 +264,9 @@
         return cell;
     }
     YKYifuScanCell *scan = (YKYifuScanCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"YKYifuScanCell" forIndexPath:indexPath];
-    scan.imageView.image = [UIImage imageNamed:self.images[indexPath.row]];
+   
+    [scan.imageView sd_setImageWithURL:[NSURL URLWithString:self.product.pruductDetailImgs[indexPath.row][@"clothingImgUrl"]] placeholderImage:[UIImage imageNamed:@"首页商品图"]];
+
     return scan;
 }
 
@@ -367,10 +366,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     
-    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-    detail.productId = cell.goodsId;
-    detail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detail animated:YES];
+    
+    if (indexPath.section==1) {
+        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+        detail.productId = cell.goodsId;
+        detail.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detail animated:YES];
+    }
+    
     
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -382,11 +385,5 @@
     
 }
 
-//- (NSArray *)imagesArr {
-//    if (!_imagesArr) {
-//        _imagesArr = [NSArray arrayWithObjects:@"38.jpg",nil];
-//    }
-//    return _imagesArr;
-//}
 @end
 

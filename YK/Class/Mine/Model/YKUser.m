@@ -12,11 +12,17 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)Dictionary{
     if (self = [super init]) {
-        self.userId = Dictionary[@"userId"];
-        self.nickname = Dictionary[@"nickname"];
-        self.phone = Dictionary[@"phone"];
-        self.gender = Dictionary[@"gender"];
-        self.phone = Dictionary[@"phone"];
+        self.userId = Dictionary[@"userInfo"][@"userId"];
+        self.nickname = Dictionary[@"userInfo"][@"nickname"];
+        self.phone = Dictionary[@"userInfo"][@"phone"];
+        self.gender = Dictionary[@"userInfo"][@"gender"];
+        self.phone = Dictionary[@"userInfo"][@"phone"];
+        
+        self.cardNum = Dictionary[@"cardInfo"][@"cardNum"];
+        self.cardType = Dictionary[@"cardInfo"][@"cardType"];
+        self.depositEffective = Dictionary[@"cardInfo"][@"depositEffective"];
+        self.effective = Dictionary[@"cardInfo"][@"effective"];
+        self.validity = Dictionary[@"cardInfo"][@"validity"];
     }
     return self;
 }

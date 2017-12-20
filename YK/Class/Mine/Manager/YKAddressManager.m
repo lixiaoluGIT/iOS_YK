@@ -64,11 +64,11 @@
 //获取地址列表
 - (void)getAddressListOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
     [YKHttpClient Method:@"GET" URLString:queryAddress_Url paramers:nil success:^(NSDictionary *dict) {
 
-        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
 
         if (dict[@"data"] != [NSNull null]) {
             if (onResponse) {
@@ -115,14 +115,14 @@
 //设为默认地址
 - (void)setDetaultAddressWithAddress:(YKAddress *)address
                           OnResponse:(void (^)(NSDictionary *dic))onResponse{
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url = [NSString stringWithFormat:@"%@?addressId=%@",settingDefaultAddress_Url,address.addressId];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
-        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"设置成功" delay:1.2];
+//        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"设置成功" delay:1.2];
       
                 
                 if (onResponse) {
