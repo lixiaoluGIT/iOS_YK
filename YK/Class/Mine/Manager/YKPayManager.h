@@ -33,7 +33,9 @@ typedef enum : NSInteger {
 
 + (YKPayManager *)sharedManager;
 
-//押金退还returnDeposit_Url
+//申请退押金
+- (void)refondDepositOnResponse:(void (^)(NSDictionary *dic))onResponse;
+//押金退还
 - (void)returnDepositOnResponse:(void (^)(NSDictionary *dic))onResponse;
 //钱包界面
 - (void)getWalletPageOnResponse:(void (^)(NSDictionary *dic))onResponse;

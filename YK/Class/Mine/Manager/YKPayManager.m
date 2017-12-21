@@ -47,7 +47,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 switch (payMethod) {
                     case 1://支付宝支付
-                        [self aliPayWithSign:[self base64Encode:dict[@"data"][@"aliPay"]]];
+                        [self aliPayWithSign:[self base64Encode:dict[@"data"][@"alipay"]]];
                        break;
                         
                     case 2://微信支付
@@ -191,9 +191,34 @@
     }];
 }
 
+//押金退还申请
+- (void)refondDepositOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@",refundApply_Url];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        if ([dic[@"status"] integerValue] == 200) {
+            
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }
+    }];
+}
+
 //押金退还
 - (void)returnDepositOnResponse:(void (^)(NSDictionary *dic))onResponse{
-    [YKHttpClient Method:@"GET" apiName:returnDeposit_Url Params:nil Completion:^(NSDictionary *dic) {
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?userId=%@",returnDeposit_Url,[YKUserManager sharedManager].user.userId];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
         if ([dic[@"status"] integerValue] == 200) {
             

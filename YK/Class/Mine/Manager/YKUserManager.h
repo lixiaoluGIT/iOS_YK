@@ -33,6 +33,10 @@
                             photo:(NSString *)photo
                        OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//上传用户头像
+-(void)uploadHeadImageWithData:(NSData*)picData
+                    OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 //退出登录
 - (void)exitLoginWithPhone:(NSString *)phone
             VetifyCode:(NSString *)vetifiCode

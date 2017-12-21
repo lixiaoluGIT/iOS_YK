@@ -38,7 +38,18 @@
     title.textAlignment = NSTextAlignmentCenter;
     
     self.navigationItem.titleView = title;
+    [NC addObserver:self selector:@selector(alipayResultCurrent:) name:@"alipayres" object:nil];
+    [NC addObserver:self selector:@selector(wxpayresultCurrent:) name:@"wxpaysuc" object:nil];
+    [self getData];
+}
 
+- (void)getData{
+    [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+        _validityStatus = [[YKUserManager sharedManager].user.depositEffective intValue];
+        [self setUpUI];
+    }];
+}
+- (void)setUpUI{
     switch (_validityStatus) {
         case 0://押金未交
             [_validityBtn setTitle:@"缴纳押金" forState:UIControlStateNormal];
@@ -57,14 +68,15 @@
             [_validityBtn setTitleColor:[UIColor colorWithHexString:@"676869"] forState:UIControlStateNormal];
             break;
         case 3://押金无效
-           [_validityBtn setTitle:@"缴纳押金" forState:UIControlStateNormal];
+            [_validityBtn setTitle:@"缴纳押金" forState:UIControlStateNormal];
             [_validityBtn addTarget:self action:@selector(pushMoney) forControlEvents:UIControlEventTouchUpInside];
+            [_validityBtn setBackgroundColor:[UIColor colorWithHexString:@"ff6d6a"]];
+            [_validityBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
             break;
         default:
             break;
     }
 }
-
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -132,9 +144,12 @@
 - (void)pullMoney{
     YKAleartView *alert = [[YKAleartView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [alert showWithtitle:@"确认退还押金吗" notitle:@"确认" yestitle:@"取消" cancelBlock:^{
-        //退还押金
-        [[YKPayManager sharedManager]returnDepositOnResponse:^(NSDictionary *dic) {
-            
+        //申请退押金
+        [[YKPayManager sharedManager]refondDepositOnResponse:^(NSDictionary *dic) {
+            [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+                    _validityStatus = [[YKUserManager sharedManager].user.depositEffective intValue];
+                        [self setUpUI];
+                }];
         }];
     } ensureBlock:^{
         
@@ -142,4 +157,37 @@
     [[UIApplication sharedApplication].keyWindow addSubview:alert];
 }
 
+//支付宝支付结果
+-(void)alipayResultCurrent:(NSNotification *)notify{
+
+    NSDictionary *dict = [notify userInfo];
+    if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"9000"]) {
+       
+        [self getData];
+        
+    }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
+        
+       [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+        
+    }else{
+        
+    
+    }
+}
+
+//微信支付结果
+-(void)wxpayresultCurrent:(NSNotification *)notify{
+    
+    NSDictionary *dict = [notify userInfo];
+    
+    if ([[dict objectForKey:@"codeid"]integerValue]==0) {
+     
+       [self getData];
+        
+    }else{
+        
+        [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+
+    }
+}
 @end

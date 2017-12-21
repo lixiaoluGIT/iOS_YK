@@ -59,6 +59,7 @@
     self.headImage.layer.masksToBounds = YES;
     self.headImage.layer.cornerRadius = self.headImage.frame.size.height/2;
     
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[YKUserManager sharedManager].user.photo] placeholderImage:[UIImage imageNamed:@"liutao.jpg"]];
     self.nickNameText.delegate = self;
     
     self.view1.tag = 101;
@@ -155,29 +156,8 @@
  
     NSData *data = UIImageJPEGRepresentation(image, .3);
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-//    hud.labelText = @"正在上传...";
-    
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,UploadImage_Url];
-    [YKHttpClient uploadPicUrl:url token:Token pic:data success:^(NSDictionary *dict) {
+    [[YKUserManager sharedManager]uploadHeadImageWithData:data OnResponse:^(NSDictionary *dic) {
         
-        
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"上传成功!";
-        hud.margin = 20.f;
-        hud.removeFromSuperViewOnHide = YES;
-        [hud hide:YES afterDelay:1.5];
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            self.headImage.image = image;
-        });
-    } failure:^(NSError *error) {
-        hud.labelText = @"上传失败";
-        [hud hide:YES afterDelay:1.5];
     }];
 }
 

@@ -26,6 +26,10 @@
 
 @implementation YKWalletVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self getData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -50,8 +54,6 @@
     self.navigationItem.rightBarButtonItem = rightBarItem;
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self getData];
 }
 
 - (void)getData{
@@ -120,8 +122,8 @@
         }
         
     }
-    if (depositStatus == 2 || depositStatus == 4) {//无押金或已过期
-        
+    if (depositStatus == 2 || depositStatus == 3) {//无押金或已过期
+        leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         image.image = [UIImage imageNamed:@"zanting-1"];
         //判断卡类型
         if (cardType==0) {//季卡

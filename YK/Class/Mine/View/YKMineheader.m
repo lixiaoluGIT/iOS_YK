@@ -27,6 +27,7 @@
     self.contentView.backgroundColor = [UIColor colorWithRed:246.0/255 green:102.0/255 blue:102.0/255 alpha:1];
     self.headImage.layer.masksToBounds = YES;
     self.headImage.layer.cornerRadius = self.headImage.frame.size.height/2;
+    [self.headImage setContentMode:UIViewContentModeScaleAspectFit];
     self.backView.layer.masksToBounds = YES;
     self.backView.layer.cornerRadius = 20;
     self.backW.constant = 180*WIDHT/414;
@@ -40,8 +41,6 @@
     self.userInteractionEnabled  = YES;
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewClick)];
     [self addGestureRecognizer:tap1];
-    //是会员,不是会员
-    
 }
 
 - (void)setUser:(YKUser *)user{
@@ -53,7 +52,6 @@
         _isVIP.hidden = YES;
         _backView.hidden = YES;
         _VIPLable.hidden = YES;
-//        _huiyuanImage.hidden = YES;
         
     }else {
     //已登录
@@ -91,12 +89,10 @@
 }
 
 - (void)viewClick{
-//    if ([_user.effective integerValue] == 4) {//不是VIP
+
         if (self.viewClickBlock) {
             self.viewClickBlock();
         }
-//    }
-
 }
 
 - (void)VIP{

@@ -103,6 +103,8 @@
 #define releaseOrder_Url @"/order/createOrder"
 //查询订单接口
 #define queryOrder_Url @"/order/queryOrder"
+//确认收货
+#define ensureReceiveOrder_Url @"/order/queryOrder"
 
 /*----------------------------支付模块--------------------------------*/
 //支付宝回调接口
@@ -111,6 +113,8 @@
 #define WXCallBack_Url @"/pay/callback"
 //支付
 #define AliPay_Url  @"/pay/payment"
+//申请退押金
+#define refundApply_Url @"/pay/refundApply"
 //退押金
 #define returnDeposit_Url  @"/pay/returnDeposit"
 

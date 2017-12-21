@@ -12,4 +12,5 @@
 @interface YKSuitEnsureCell : UITableViewCell
 
 @property (nonatomic,strong)YKSuit *suit;
+
 @end

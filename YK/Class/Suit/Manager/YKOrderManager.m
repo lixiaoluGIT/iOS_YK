@@ -84,7 +84,7 @@
     }];
 }
 
-- (void)searchOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSMutableArray *array))onResponse;{
+- (void)searchOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSMutableArray *array))onResponse{
     
     switch (status) {
         case 100:
@@ -113,38 +113,26 @@
         if ([dic[@"status"] integerValue] == 200) {
             NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
             if (array.count == 0) {
-                
                 if (onResponse) {
                     onResponse(nil);
                 }
                 return ;
             }
  
-            if (status==0) {
-                
+            if (status==0) {//全部衣袋
                 [self groupWithDictionary:dic groupDoneBlock:^(void) {
-                    
                     if (onResponse) {
                         onResponse(nil);
                     }
-                    
                 }];
-                
             }else {
-               
-                NSMutableArray *listArray;
-                //TODO:数据结构需变动
+               NSMutableArray *listArray;
                 if (dic[@"data"]) {
-                    //待签收,待归还
-                    
-                    //已归还
-                    if (status==5) {
-                        
+                    if (status==5) {//已归还
                         NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
                         NSMutableArray *totalArray = [NSMutableArray array];
-                        
+                        //合并到大数组里
                         for (int index=0; index<array.count; index++) {
-                            
                             if (listArray.count==0) {
                                 listArray = array[0][@"orderDetailsVoList"];
                                 totalArray = listArray;
@@ -153,27 +141,44 @@
                                 for (int index=0; index<a.count; index++) {
                                     [totalArray addObject:array[index][@"orderDetailsVoList"][index]];
                                 }
-                                
                             }
                         }
+                        
                         listArray = [NSMutableArray arrayWithArray:totalArray];
-                    }else {
+                        
+                    }else {//待签收或待归还
                         listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
+                        _orderNo = dic[@"data"][0][@"orderNo"];
                     }
-                    
-                    }else {
-                        listArray = [NSMutableArray array];
-                    }
+                }else {
+                    listArray = [NSMutableArray array];
+                }
                 
-            
                 if (onResponse) {
                     onResponse(listArray);
                 }
-                
             }
         }
+    }];
+}
+
+- (void)ensureReceiveOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@&OrderNo=%@",ensureReceiveOrder_Url,_orderNo];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
         
+        if ([dic[@"status"] integerValue] == 200) {
+          
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }
     }];
 }
 
@@ -187,11 +192,12 @@
     NSMutableArray *hadBackList = [NSMutableArray array];//存储已归还
     
     for (NSDictionary *model in currentArray) {
-       if ([model[@"orderStatus"] intValue] == 2){
-            //            [receiveList addObject:model[@"orderDetailsVoList"]];
-            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
-        }
-        if ([model[@"orderStatus"] intValue] == 3) {//待归还
+        
+        if ([model[@"orderStatus"] intValue] == 2){
+            self.orderNo = model[@"orderNo"];
+           receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
+        }if ([model[@"orderStatus"] intValue] == 3) {//待归还
+            self.orderNo = model[@"orderNo"];
             [backList addObject:model[@"orderDetailsVoList"]];
         }else if([model[@"orderStatus"] intValue] == 5) {//已归还
             
@@ -208,14 +214,9 @@
                 [hadBackList addObject:model[@"orderDetailsVoList"]];
             }
         }
-//        }else{//其它全部为待签收
-////            [receiveList addObject:model[@"orderDetailsVoList"]];
-//            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
-//        }
-        
+
         //分数组添加到总数组里
         if (receiveList.count>0&&![totlaList containsObject:receiveList]) {
-//            [totlaList addObject:receiveList];
             [totlaList insertObject:receiveList atIndex:0];
             if (![self.sectionArray containsObject:receiveSection]) {
                 [self.sectionArray addObject:receiveSection];
@@ -224,7 +225,6 @@
         
         if (backList.count>0&&![totlaList containsObject:backList]) {
             [totlaList insertObject:receiveList atIndex:0];
-//            [totlaList addObject:backList];
             if (![self.sectionArray containsObject:backSection]) {
                 [self.sectionArray addObject:backSection];
             }
@@ -257,6 +257,7 @@
 - (void)clear{
     [[YKOrderManager sharedManager].totalOrderList removeAllObjects];
     [[YKOrderManager sharedManager].sectionArray removeAllObjects];
+    [YKOrderManager sharedManager].orderNo = nil;
 }
 
 @end

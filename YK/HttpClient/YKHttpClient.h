@@ -24,7 +24,7 @@
  @dict(2) 成功后返回的参数
  
  @error 失败错误信息
- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(暂未用)
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!()
  */
 +(void)Method:(NSString *)method
     URLString:(NSString *)urlString
@@ -35,9 +35,7 @@
 /*!
  
  @url 图片接口地址
- 
- @token 用户token
- 
+
  @pic 图片二进制
  
  @dict 成功后返回的参数
@@ -45,11 +43,7 @@
  @error 失败错误信息
  
  */
-+(void)uploadPicUrl:(NSString *)url
-              token:(NSString *)token
-                pic:(NSData *)pic
-            success:(void(^)(NSDictionary *dict))success
-            failure:(void(^)(NSError *error))failure ;
++(void)uploadPicUrl:(NSString *)url pic:(NSData *)pic success:(void(^)(NSDictionary *dict))success failure:(void(^)(NSError *error))failure;
 
 /*!
  

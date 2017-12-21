@@ -88,13 +88,11 @@
 
     [YKHttpClient Method:@"GET" apiName:GetUserInfor_Url Params:nil Completion:^(NSDictionary *dic) {
         
-        if ([dic[@"status"] integerValue] == 200) {
-            
-            [self getUserInfo:dic[@"data"]];//得到用户基本数据
+       [self getUserInfo:dic[@"data"]];//得到用户基本数据
             if (onResponse) {
                 onResponse(nil);
             }
-        }
+        
     }];
 }
 
@@ -144,12 +142,30 @@
     }];
 }
 
+-(void)uploadHeadImageWithData:(NSData*)picData OnResponse:(void (^)(NSDictionary *dic))onResponse{
+
+     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,UploadImage_Url];
+    [YKHttpClient uploadPicUrl:url pic:picData success:^(NSDictionary *dict) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dict[@"status"] intValue] == 200) {
+             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"修改成功" delay:1.2];
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+        }
+    } failure:^(NSError *error) {
+       
+    }];
+}
+
 - (void)exitLoginWithPhone:(NSString *)phone
                 VetifyCode:(NSString *)vetifiCode
                 OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [self clear];
-      [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];

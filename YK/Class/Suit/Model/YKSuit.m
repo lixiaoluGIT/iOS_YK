@@ -11,6 +11,10 @@
 @implementation YKSuit
 
 - (void)initWithDictionary:(NSDictionary *)dic{
+    
+    if (dic[@"clothingId"]) {
+        _clothingId= [NSString stringWithFormat:@"%@",dic[@"clothingId"]];
+    }
     if (dic[@"clothingStockNum"]) {
         _clothingStockNum= [NSString stringWithFormat:@"%@",dic[@"clothingStockNum"]];
     }

@@ -55,18 +55,19 @@
     if ([url.host isEqualToString:@"safepay"]) {//支付宝支付
       [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             NSInteger resultCode = [resultDic[@"resultStatus"] intValue];
-            switch (resultCode) {
-                case 9000://支付成功
-                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"支付成功" delay:2];
-                    break;
-                case 6001://支付成功
-                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"取消了支付" delay:2];
-                    break;
-                
-                default://支付失败
-                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"支付失败" delay:2];
-                    break;
-            }
+//            switch (resultCode) {
+//                case 9000://支付成功
+//                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"支付成功" delay:2];
+//                    break;
+//                case 6001://支付成功
+//                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"取消了支付" delay:2];
+//                    break;
+//
+//                default://支付失败
+//                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"支付失败" delay:2];
+//                    break;
+//            }
+          [NC postNotificationName:@"alipayres" object:nil userInfo:resultDic];
             NSLog(@"支付结果result=%@",resultDic[@"memo"]);
         }];
     }

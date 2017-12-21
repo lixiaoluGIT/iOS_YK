@@ -233,7 +233,7 @@
     return securityPolicy;
 }
 
-+(void)uploadPicUrl:(NSString *)url token:(NSString *)token pic:(NSData *)pic success:(void(^)(NSDictionary *dict))success failure:(void(^)(NSError *error))failure {
++(void)uploadPicUrl:(NSString *)url pic:(NSData *)pic success:(void(^)(NSDictionary *dict))success failure:(void(^)(NSError *error))failure {
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 

@@ -154,6 +154,16 @@
                     <rect key="frame" x="199" y="557.5" width="46" height="46"/>
                     <state key="normal" image="wechat"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SpT-WC-AJF">
+                    <rect key="frame" x="0.0" y="20" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="ShO-PD-f6O"/>
+                        <constraint firstAttribute="width" constant="100" id="rfN-vt-Pud"/>
+                    </constraints>
+                    <connections>
+                        <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="fY5-Pg-Z98"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -179,10 +189,12 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="8EF-lI-RW7" secondAttribute="trailing" constant="60" id="Vze-YE-I0D"/>
                 <constraint firstItem="ljC-VQ-eY8" firstAttribute="centerY" secondItem="eup-Cv-eco" secondAttribute="centerY" id="ave-g3-Ukg"/>
                 <constraint firstItem="yot-5Q-NTG" firstAttribute="centerY" secondItem="eup-Cv-eco" secondAttribute="centerY" id="cJX-aI-zLd"/>
+                <constraint firstItem="SpT-WC-AJF" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="cdi-i3-5Ch"/>
                 <constraint firstItem="yot-5Q-NTG" firstAttribute="leading" secondItem="XLN-Er-sx9" secondAttribute="leading" id="jsv-cZ-I2e"/>
                 <constraint firstItem="HEq-ez-HuQ" firstAttribute="firstBaseline" secondItem="eup-Cv-eco" secondAttribute="baseline" constant="40" id="kZi-N8-3nI"/>
                 <constraint firstItem="TPd-ot-sMB" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="40" id="lGv-u5-Nfu"/>
                 <constraint firstItem="Qu5-yc-hTs" firstAttribute="width" secondItem="yot-5Q-NTG" secondAttribute="width" id="n99-rL-6wb"/>
+                <constraint firstItem="SpT-WC-AJF" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="tJp-aF-ZR0"/>
                 <constraint firstItem="D9V-GS-GMe" firstAttribute="width" secondItem="TPd-ot-sMB" secondAttribute="width" id="u38-kq-Rb4"/>
                 <constraint firstItem="Hxw-ak-6Hb" firstAttribute="width" secondItem="D9V-GS-GMe" secondAttribute="width" id="u7p-se-k0C"/>
                 <constraint firstItem="eup-Cv-eco" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="vj4-4v-lVX"/>

@@ -12,6 +12,7 @@
 #import "YKReturnVC.h"
 #import "YKSMSInforVC.h"
 #import "YKSuitHeader.h"
+#import "YKProductDetailVC.h"
 
 @interface YKMySuitBagVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -22,13 +23,13 @@
 @property (nonatomic,strong) UIButton *buttom;
 @property (nonatomic,assign) suitBagStatus bagStatus;
 @property (nonatomic,strong) NSMutableArray *orderList;//待签收
+@property (nonatomic,strong) NSString *orderNo;//订单号
 @end
 
 @implementation YKMySuitBagVC
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    
 //    [[YKOrderManager sharedManager]clear];
 }
 - (void)viewDidLoad {
@@ -79,9 +80,8 @@
     NoDataView.backgroundColor = self.view.backgroundColor;
     self.tableView.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:NoDataView];
-//    NoDataView.hidden = YES;
 }
-// 加载选项
+
 -(void)settingButtons{
     UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, WIDHT, HEIGHT/10)];
     backView.backgroundColor = [UIColor whiteColor];
@@ -172,6 +172,9 @@
 - (void)btnClick{
     if (_bagStatus==toReceive) {
         //确认收货
+        [[YKOrderManager sharedManager]ensureReceiveOnResponse:^(NSDictionary *dic) {
+            
+        }];
     }
     if (_bagStatus==toBack) {
         //预约归还,push
@@ -222,9 +225,7 @@
                 _buttom.hidden = YES;
             }
     
-    
             [self.tableView reloadData];
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -255,7 +256,7 @@
     if (_bagStatus==totalBag) {
        
         return [YKOrderManager sharedManager].totalOrderList.count;
-//        return [YKOrderManager sharedManager].sectionArray.count;
+
     }
     return 1;
 }
@@ -281,7 +282,9 @@
              [self.navigationController pushViewController:[YKSMSInforVC new] animated:YES];
         };
         header.ensureReceiveBlock = ^(void){
-            
+            [[YKOrderManager sharedManager]ensureReceiveOnResponse:^(NSDictionary *dic) {
+                
+            }];
         };
         header.orderBackBlock = ^(void){
             YKReturnVC *r = [YKReturnVC new];
@@ -363,20 +366,18 @@
     mycell.selectionStyle = UITableViewCellSelectionStyleNone;
     return mycell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     YKSuitEnsureCell*cell = (YKSuitEnsureCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+    detail.productId = cell.suit.clothingId;
+    detail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detail animated:YES];
+}
+
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat sectionHeaderHeight ;
-//    sectionHeaderHeight = 64+HEIGHT/10+15;
-//        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-//            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-//        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-//            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-//        }
-//        
-//        return;
-//    
-//}
 @end

@@ -38,7 +38,10 @@
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
 
+    //请求物流信息
+    
     [self logisticsInfoData];
+    
     self.navigationItem.title = @"物流状态";
     _logisticsTableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
     _logisticsTableView.delegate = self;
@@ -59,6 +62,8 @@
         NSString *path = [[NSBundle mainBundle] pathForResource:@"logisticsInfo.plist" ofType:nil];
         NSArray *arr = [NSArray arrayWithContentsOfFile:path];
         NSMutableArray *marr = [NSMutableArray new];
+        
+        //得到arr
         
         for (NSDictionary *dict in arr) {
             LogisticsInfo *logisticsInfo = [LogisticsInfo logisticsWithDict:dict];
