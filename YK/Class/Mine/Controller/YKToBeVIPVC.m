@@ -117,5 +117,46 @@
         
     }];
 }
+//支付宝支付结果
+-(void)alipayResultCurrent:(NSNotification *)notify{
+    
+    NSDictionary *dict = [notify userInfo];
+    if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"9000"]) {
+        
+        [self getData];
+        
+    }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
+        
+        [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+        
+    }else{
+        
+        
+    }
+}
+
+//微信支付结果
+-(void)wxpayresultCurrent:(NSNotification *)notify{
+    
+    NSDictionary *dict = [notify userInfo];
+    
+    if ([[dict objectForKey:@"codeid"]integerValue]==0) {
+        
+        [self getData];
+        
+    }else{
+        
+        [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+        
+    }
+}
+
+- (void)getData{
+    [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }];
+}
 
 @end

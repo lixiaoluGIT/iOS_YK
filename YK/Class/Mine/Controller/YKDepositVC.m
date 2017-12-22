@@ -147,6 +147,7 @@
         //申请退押金
         [[YKPayManager sharedManager]refondDepositOnResponse:^(NSDictionary *dic) {
             [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+                [_payView removeFromSuperview];
                     _validityStatus = [[YKUserManager sharedManager].user.depositEffective intValue];
                         [self setUpUI];
                 }];

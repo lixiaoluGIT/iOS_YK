@@ -108,7 +108,7 @@
     if (depositStatus == 1) {//使用中
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         //判断卡类型
-        if (cardType==0) {//季卡
+        if (cardType==2) {//季卡
             image.image = [UIImage imageNamed:@"jika"];
             
         }
@@ -116,7 +116,7 @@
             image.image = [UIImage imageNamed:@"yueka"];
             
         }
-        if (cardType==2) {//年卡
+        if (cardType==3) {//年卡
             image.image = [UIImage imageNamed:@"nianka"];
            
         }
@@ -126,14 +126,14 @@
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         image.image = [UIImage imageNamed:@"zanting-1"];
         //判断卡类型
-        if (cardType==0) {//季卡
-            des.text = @"季卡剩余有效期";
+        if (cardType==3) {//季卡
+            des.text = @"年卡剩余有效期";
         }
-        if (cardType==2) {//月卡
+        if (cardType==1) {//月卡
             des.text = @"月卡剩余有效期";
         }
-        if (cardType==3) {//年卡
-            des.text = @"年卡剩余有效期";
+        if (cardType==2) {//年卡
+            des.text = @"季卡剩余有效期";
         }
     }
  
