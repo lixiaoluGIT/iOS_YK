@@ -10,4 +10,7 @@
 
 @interface YKTotalSMSCell : UITableViewCell
 
+@property (nonatomic,strong)NSString *orderNo;
+
+- (void)initWithDictionary:(NSDictionary *)dic;
 @end

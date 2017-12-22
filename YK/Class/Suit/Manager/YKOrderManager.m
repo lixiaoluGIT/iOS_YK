@@ -162,6 +162,73 @@
     }];
 }
 
+//物流信息
+- (void)searchForSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse{
+
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?sforderId=%@",queryOrderSMSInfor_Url,orderNo];
+    
+    [YKHttpClient Method:@"POST" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dict[@"status"] intValue] != 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
+       
+            return ;
+        }
+       
+        //最新一条
+        NSArray *arr = [NSArray arrayWithArray:dict[@"data"][@"body"]];
+        
+        NSDictionary *model = [NSDictionary dictionaryWithDictionary:arr[0]];
+        
+        NSInteger SMSStatus = [model[@"opcode"] integerValue];
+        
+        switch (SMSStatus) {
+            case 50:
+                self.SMSStatus = @"已收件";
+                break;
+            case 3036:
+                self.SMSStatus = @"运输中";
+                break;
+            case 44:
+                self.SMSStatus = @"正在派件";
+                break;
+            case 70:
+                self.SMSStatus = @"派件不成功";
+                break;
+            case 80:
+                self.SMSStatus = @"派件成功";
+                break;
+            case 8000:
+                self.SMSStatus = @"已签收";
+                break;
+            case 123:
+                self.SMSStatus = @"便利店出仓";
+                break;
+            case 130:
+                self.SMSStatus = @"便利店交接";
+                break;
+            case 607:
+                self.SMSStatus = @"代理收件";
+                break;
+                
+            default:
+                self.SMSStatus = @"未知";
+                break;
+        }
+                
+                if (onResponse) {
+                    onResponse(arr);
+                }
+                
+       
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (void)ensureReceiveOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -209,11 +276,13 @@
                 for (int index=0; index<array.count; index++) {
                     [totalArray addObject:array[index]];
                 }
-                hadBackList = [NSMutableArray arrayWithArray:totalArray];
+                [hadBackList removeAllObjects];
+                [hadBackList insertObject:totalArray atIndex:0];
             }else {
                 [hadBackList addObject:model[@"orderDetailsVoList"]];
             }
         }
+
 
         //分数组添加到总数组里
         if (receiveList.count>0&&![totlaList containsObject:receiveList]) {
@@ -224,7 +293,7 @@
         }
         
         if (backList.count>0&&![totlaList containsObject:backList]) {
-            [totlaList insertObject:receiveList atIndex:0];
+            [totlaList insertObject:backList atIndex:0];
             if (![self.sectionArray containsObject:backSection]) {
                 [self.sectionArray addObject:backSection];
             }
@@ -251,7 +320,6 @@
         if (groupDoneBlock) {//分组完毕
             groupDoneBlock();
         }
-    
 }
 
 - (void)clear{

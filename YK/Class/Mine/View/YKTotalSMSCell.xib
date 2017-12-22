@@ -91,6 +91,9 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="backView" destination="Q0S-DF-Odh" id="ctj-wX-dnp"/>
+                <outlet property="image" destination="qbt-P3-4zB" id="yii-A6-aHM"/>
+                <outlet property="name" destination="t0Z-yZ-ivY" id="ueT-MN-cTZ"/>
+                <outlet property="orderId" destination="QdF-fc-diY" id="awU-Qb-t6g"/>
             </connections>
             <point key="canvasLocation" x="55" y="36.5"/>
         </tableViewCell>

@@ -18,6 +18,7 @@
 @property(nonatomic,strong) UITableView *logisticsTableView;
 
 @property(nonatomic,strong) NSArray *logisticsInfoData;
+
 @end
 
 @implementation YKSMSInforVC
@@ -59,23 +60,27 @@
 -(NSArray *)logisticsInfoData
 {
     if (!_logisticsInfoData) {
+        //测试数据
         NSString *path = [[NSBundle mainBundle] pathForResource:@"logisticsInfo.plist" ofType:nil];
-        NSArray *arr = [NSArray arrayWithContentsOfFile:path];
+      __block NSArray *arr = [NSArray arrayWithContentsOfFile:path];
         NSMutableArray *marr = [NSMutableArray new];
         
         //得到arr
-        
-        for (NSDictionary *dict in arr) {
-            LogisticsInfo *logisticsInfo = [LogisticsInfo logisticsWithDict:dict];
-            LogisticsTableViewCellFrame *cellFrame = [[LogisticsTableViewCellFrame alloc]init];
-            cellFrame.logisticsInfo = logisticsInfo;
-            [marr addObject:cellFrame];
-        }
-        _logisticsInfoData = marr;
+        [[YKOrderManager sharedManager]searchForSMSInforWithOrderNo:self.orderNo OnResponse:^(NSArray *array) {
+            
+            arr = [NSArray arrayWithArray:array];
+            
+           for (NSDictionary *dict in arr) {
+                LogisticsInfo *logisticsInfo = [LogisticsInfo logisticsWithDict:dict];
+                LogisticsTableViewCellFrame *cellFrame = [[LogisticsTableViewCellFrame alloc]init];
+                cellFrame.logisticsInfo = logisticsInfo;
+                [marr addObject:cellFrame];
+            }
+            _logisticsInfoData = marr;
+            [_logisticsTableView reloadData];
+        }];
     }
     return _logisticsInfoData;
-    //物流状态:未发货,已发货(运输中),派送中(有派送员),已签收
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -86,6 +91,7 @@
     if (indexPath.row == 0) {
         YKSMSStatusView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKSMSStatusView" owner:self options:nil][0];
         bagCell.selectionStyle = UITableViewCellEditingStyleNone;
+        [bagCell initWithOrderId:self.orderNo orderStatus:[YKOrderManager sharedManager].SMSStatus phone:PHONE];
         return bagCell;
     }
     if (indexPath.row == 1) {
@@ -106,6 +112,9 @@
         cell.infoLabel.textColor = mainColor;
         cell.timeLabel.textColor = mainColor;
     } else {
+        cell.addressLabel.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+        cell.infoLabel.textColor = [UIColor colorWithHexString:@"afafaf"];
+        cell.timeLabel.textColor = [UIColor colorWithHexString:@"afafaf"];
         cell.imgView.backgroundColor = cell.lineView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
         cell.lineView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     }

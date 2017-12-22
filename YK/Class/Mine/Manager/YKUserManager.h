@@ -37,6 +37,15 @@
 -(void)uploadHeadImageWithData:(NSData*)picData
                     OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//更新手机号获取验证信息
+- (void)changePhoneGetVetifyCodeWithPhone:(NSString *)phone
+                    OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//更新手机号
+- (void)changePhoneWithPhone:(NSString *)phone
+            VetifyCode:(NSString *)vetifiCode
+            OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 //退出登录
 - (void)exitLoginWithPhone:(NSString *)phone
             VetifyCode:(NSString *)vetifiCode

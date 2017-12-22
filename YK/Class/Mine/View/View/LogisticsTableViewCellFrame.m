@@ -33,7 +33,7 @@
     CGFloat addressH = labelHeight;
     _addressFrame = CGRectMake(addressX, addressY, addressW, addressH);
     
-    CGSize textSize = [NSString sizeWithText:logisticsInfo.info maxSize:CGSizeMake(WIDHT-60, MAXFLOAT) font:[UIFont systemFontOfSize:14]];
+    CGSize textSize = [NSString sizeWithText:logisticsInfo.remark maxSize:CGSizeMake(WIDHT-60, MAXFLOAT) font:[UIFont systemFontOfSize:14]];
     CGFloat infoX = leftMargin;
     CGFloat infoY = CGRectGetMaxY(_addressFrame) + margin;
     CGFloat infoW = textSize.width;

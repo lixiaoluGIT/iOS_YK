@@ -150,12 +150,78 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
+            
+            [self getUserInforOnResponse:^(NSDictionary *dic) {
+                if (onResponse) {
+                    onResponse(nil);
+                }
+            }];
              [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"修改成功" delay:1.2];
+            
         }else {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
         }
     } failure:^(NSError *error) {
        
+    }];
+}
+
+- (void)changePhoneGetVetifyCodeWithPhone:(NSString *)phone
+                               OnResponse:(void (^)(NSDictionary *dic))onResponse{
+
+     NSString *url = [NSString stringWithFormat:@"%@?phone=%@",ChangePhoneGetVetifyCode_Url,phone];
+    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+
+        if ([dic[@"status"] integerValue] == 200) {
+
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"验证码发送成功" delay:1.2];
+
+
+            if (onResponse) {
+                onResponse(dic);
+            }
+
+        }else {
+             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+        }
+    }];
+}
+
+- (void)changePhoneWithPhone:(NSString *)phone
+                  VetifyCode:(NSString *)vetifiCode
+                  OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+//    NSDictionary *dic = @{@"phone":phone,@"captcha":vetifiCode};
+     NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@",ChangePhone_Url,phone,vetifiCode];
+    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        if ([dic[@"status"] integerValue] == 200) {
+            
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"修改成功" delay:1.2];
+            
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [self getUserInforOnResponse:^(NSDictionary *dic) {
+                        
+                    }];
+                    if (onResponse) {
+                        onResponse(dic);
+                    }
+                    
+                });
+                
+            });
+            
+        } else {
+             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+        }
     }];
 }
 

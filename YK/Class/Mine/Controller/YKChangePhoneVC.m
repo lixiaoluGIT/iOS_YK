@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *ensureBtn;
 @property (weak, nonatomic) IBOutlet UIButton *getVetifyBtn;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @end
 
@@ -43,12 +44,12 @@ NSInteger timeCount;
     title.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = title;
     
+    self.phoneLabel.text = [YKUserManager sharedManager].user.phone;
     self.ensureBtn.layer.masksToBounds = YES;
     self.ensureBtn.layer.cornerRadius = self.ensureBtn.frame.size.height/2;
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.vetifyText.keyboardType = UIKeyboardTypeNumberPad;
-//    self.phoneText.inputAccessoryView = [self addToolbar];
-//    self.vetifyText.inputAccessoryView = [self addToolbar];
+
     [self.vetifyText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.phoneText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.getVetifyBtn.userInteractionEnabled = NO;
@@ -83,9 +84,12 @@ NSInteger timeCount;
     [self.vetifyText resignFirstResponder];
     [self.phoneText resignFirstResponder];
 }
+//获取验证码
 - (IBAction)getCode:(id)sender {
     //请求验证码接口,成功后
-    [self timeOrder];
+    [[YKUserManager sharedManager]changePhoneGetVetifyCodeWithPhone:self.phoneText.text OnResponse:^(NSDictionary *dic) {
+        [self timeOrder];
+    }];
 }
 -(void)timeOrder{
     
@@ -118,6 +122,8 @@ NSInteger timeCount;
         
     }];
 }
+
+//确认修改
 - (IBAction)login:(id)sender {
     
     if (self.phoneText.text.length!=11) {
@@ -128,16 +134,11 @@ NSInteger timeCount;
         [smartHUD alertText:self.view alert:@"验证码不能为空" delay:1];
         return;
     }
-    [LBProgressHUD showHUDto:self.view animated:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+    [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text OnResponse:^(NSDictionary *dic) {
         
-        [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        [smartHUD alertText:self.view alert:@"修改成功" delay:1];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self leftAction];
-        });
-        
-    });
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];

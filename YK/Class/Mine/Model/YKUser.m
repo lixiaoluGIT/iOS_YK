@@ -16,7 +16,7 @@
         self.nickname = Dictionary[@"userInfo"][@"nickname"];
         self.phone = Dictionary[@"userInfo"][@"phone"];
         self.gender = Dictionary[@"userInfo"][@"gender"];
-        self.phone = Dictionary[@"userInfo"][@"phone"];
+        self.photo = Dictionary[@"userInfo"][@"photo"];
         
         self.cardNum = Dictionary[@"cardInfo"][@"cardNum"];
         self.cardType = Dictionary[@"cardInfo"][@"cardType"];

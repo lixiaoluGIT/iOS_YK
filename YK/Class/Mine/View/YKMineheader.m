@@ -47,7 +47,7 @@
     _user = user;
     
     if ([Token length] == 0) {
-        _headImage.image = [UIImage imageNamed:@"paisongyuan"];
+        _headImage.image = [UIImage imageNamed:@"touxianghuancun"];
         _userName.text = @"未登录";
         _isVIP.hidden = YES;
         _backView.hidden = YES;
@@ -64,7 +64,7 @@
     }else {
         _userName.text = [NSString stringWithFormat:@"%@", user.nickname];
     }
-    [_headImage sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"liutao.jpg"]];
+    [_headImage sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"touxianghuancun"]];
     
     self.VIPStatus = [user.effective integerValue];
         

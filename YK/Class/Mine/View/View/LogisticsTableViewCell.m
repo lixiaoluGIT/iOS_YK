@@ -62,13 +62,13 @@
     _line.frame = logisticsTableViewCellFrame.lineFrame;
     
     _addressLabel.frame = logisticsTableViewCellFrame.addressFrame;
-    _addressLabel.text = logisticsInfo.address;
+    _addressLabel.text = logisticsInfo.acceptAddress;
     
     _infoLabel.frame = logisticsTableViewCellFrame.infoFrame;
-    _infoLabel.text = logisticsInfo.info;
+    _infoLabel.text = logisticsInfo.remark;
     
     _timeLabel.frame = logisticsTableViewCellFrame.timeFrame;
-    _timeLabel.text = logisticsInfo.time;
+    _timeLabel.text = logisticsInfo.acceptTime;
 }
 
 -(UILabel *)setLableTextFont:(CGFloat)fontSize textColor:(UIColor *)color

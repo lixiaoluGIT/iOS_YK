@@ -10,4 +10,5 @@
 
 @interface YKSMSStatusView : UITableViewCell
 
+- (void)initWithOrderId:(NSString *)orderId orderStatus:(NSString *)orderStatus phone:(NSString *)phone;
 @end

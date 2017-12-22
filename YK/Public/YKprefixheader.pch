@@ -11,6 +11,10 @@
 
 //客服电话
 #define PHONE @"4001234123"
+#define kGtAppId @"ZPukyH0WFY94NGSfQn7TLA"
+#define kGtAppKey @"AN8prnLC497UWtiGhSaGm3"
+#define kGtAppSecret @"ce51eQiTPt82AJSr2y0cW3"
+
 /*----------------------------用户token--------------------------------*/
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
 //登录过期时间 day
@@ -51,8 +55,12 @@
 #define GetUserInfor_Url @"/user/getUserInfo"
 //更新用户信息
 #define UpdateUserInfor_Url @"/user/updateInfo"
-//上传图片地址
+//上传头像
 #define  UploadImage_Url @"/user/upload"
+//更新手机号获取验证码
+#define ChangePhone_Url @"/user/checkCaptcha"
+//更新手机号验证验证码
+#define ChangePhoneGetVetifyCode_Url @"/user/updatePhone"
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页
@@ -103,6 +111,8 @@
 #define releaseOrder_Url @"/order/createOrder"
 //查询订单接口
 #define queryOrder_Url @"/order/queryOrder"
+//查询订单物流信息
+#define queryOrderSMSInfor_Url @"/sf/orderSFTrackQuery"
 //确认收货
 #define ensureReceiveOrder_Url @"/order/queryOrder"
 

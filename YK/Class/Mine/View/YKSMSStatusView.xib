@@ -65,6 +65,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="orderId" destination="USA-ZL-PmJ" id="Ygv-1s-fZZ"/>
+                <outlet property="phone" destination="19I-R6-vZP" id="Ius-Ha-QRC"/>
+                <outlet property="smsStatus" destination="4T9-US-dHZ" id="Uo8-8Z-nzH"/>
+            </connections>
             <point key="canvasLocation" x="19" y="204"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="2nA-2h-cab" customClass="YKSMSStatusView">

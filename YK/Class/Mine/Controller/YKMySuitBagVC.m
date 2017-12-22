@@ -191,7 +191,11 @@
             NoDataView.hidden = NO;
             _buttom.hidden = YES;
         }else {
-            self.tableView.frame = CGRectMake(0, 64+HEIGHT/10+15, WIDHT, HEIGHT-64-HEIGHT/10-15);
+            if ([YKOrderManager sharedManager].sectionArray.count==1&&([[YKOrderManager sharedManager].sectionArray containsObject:@"2"])) {
+                self.tableView.frame = CGRectMake(0, 64+HEIGHT/10, WIDHT, HEIGHT-64-HEIGHT/10);
+            }else {
+                self.tableView.frame = CGRectMake(0, 64+HEIGHT/10+15, WIDHT, HEIGHT-64-HEIGHT/10-15);
+            }
             self.tableView.hidden = NO;
             _buttom.hidden = YES;
             NoDataView.hidden = YES;
@@ -237,8 +241,16 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (_bagStatus==totalBag) {
-        NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[section]];
-        return array.count;
+        
+         NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[section]];
+        if (section==0&&([[YKOrderManager sharedManager].sectionArray containsObject:@"0"])) {
+            return array.count;
+        }else {
+            NSArray *a = [NSArray arrayWithArray:array[0]];
+            return a.count;
+        }
+        
+        
     }
     if (_bagStatus==toReceive) {
         return self.orderList.count+1;
@@ -277,15 +289,23 @@
     
     if (_bagStatus==totalBag) {
         NSInteger headerSection = [[YKOrderManager sharedManager].sectionArray[section] integerValue];
+        
         YKSuitHeader *header = [[NSBundle mainBundle] loadNibNamed:@"YKSuitHeader" owner:self options:nil][headerSection];
+       //物流信息
         header.SMSBlock = ^(void){
-             [self.navigationController pushViewController:[YKSMSInforVC new] animated:YES];
+            YKSMSInforVC *sms = [YKSMSInforVC new];
+//            sms.orderNo = [YKOrderManager sharedManager].orderNo;
+            //测试数据
+            sms.orderNo = @"238836512256";
+             [self.navigationController pushViewController:sms animated:YES];
         };
+        //确认收货
         header.ensureReceiveBlock = ^(void){
             [[YKOrderManager sharedManager]ensureReceiveOnResponse:^(NSDictionary *dic) {
                 
             }];
         };
+        //预约归还
         header.orderBackBlock = ^(void){
             YKReturnVC *r = [YKReturnVC new];
             [self.navigationController pushViewController:r animated:YES];
@@ -306,8 +326,12 @@
         }
         YKSuit *suit = [[YKSuit alloc]init];
          NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[indexPath.section]];//数据源
-     
-        [suit initWithDictionary:array[indexPath.row]];
+        if (indexPath.section==0&&([[YKOrderManager sharedManager].sectionArray containsObject:@"0"] )) {
+            [suit initWithDictionary:array[indexPath.row]];
+        }else {
+            [suit initWithDictionary:array[0][indexPath.row]];
+        }
+        
         mycell.suit = suit;
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
@@ -336,6 +360,7 @@
         if (indexPath.row<self.orderList.count) {
             [suit initWithDictionary:self.orderList[indexPath.row]];
         }
+        
         mycell.suit = suit;
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
@@ -376,6 +401,17 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.tableView)
+    {
+        CGFloat sectionHeaderHeight = 69; //sectionHeaderHeight
+        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        }
+    }
+}
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -10,4 +10,6 @@
 
 @interface YKSMSInforVC : UIViewController
 
+@property (nonatomic,strong)NSString *orderNo;//订单号,查询物流
+
 @end

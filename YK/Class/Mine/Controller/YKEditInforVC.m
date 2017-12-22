@@ -32,6 +32,10 @@
 
 @implementation YKEditInforVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self setUI];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人资料";
@@ -55,13 +59,6 @@
     self.navigationItem.rightBarButtonItem = rightBarItem;
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
     
-    [self.headImage setContentMode:UIViewContentModeScaleAspectFit];
-    self.headImage.layer.masksToBounds = YES;
-    self.headImage.layer.cornerRadius = self.headImage.frame.size.height/2;
-    
-    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[YKUserManager sharedManager].user.photo] placeholderImage:[UIImage imageNamed:@"liutao.jpg"]];
-    self.nickNameText.delegate = self;
-    
     self.view1.tag = 101;
     self.view2.tag = 102;
     self.view3.tag = 103;
@@ -78,12 +75,24 @@
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeSex)];
     [self.view4 addGestureRecognizer:tap4];
     
+
+    
+}
+
+- (void)setUI{
+    [self.headImage setContentMode:UIViewContentModeScaleAspectFit];
+    self.headImage.layer.masksToBounds = YES;
+    self.headImage.layer.cornerRadius = self.headImage.frame.size.height/2;
+    
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[YKUserManager sharedManager].user.photo] placeholderImage:[UIImage imageNamed:@"touxianghuancun"]];
+    self.nickNameText.delegate = self;
+    
     if ([YKUserManager sharedManager].user.nickname == [NSNull null]) {
         self.nickNameText.text = @"未设置";
     }else {
         self.nickNameText.text = [YKUserManager sharedManager].user.nickname;
     }
-
+    
     self.phoneLabel.text = [YKUserManager sharedManager].user.phone;
     
     NSString *str = [NSString stringWithFormat:@"%@",[YKUserManager sharedManager].user.gender];
@@ -92,9 +101,7 @@
     }else {
         _sexLabel.text = @"女";
     }
-    
 }
-
 - (void)save{
     [[YKUserManager sharedManager]updateUserInforWithGender:self.sexLabel.text nickname:self.nickNameText.text photo:@"" OnResponse:^(NSDictionary *dic) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -157,7 +164,7 @@
     NSData *data = UIImageJPEGRepresentation(image, .3);
     
     [[YKUserManager sharedManager]uploadHeadImageWithData:data OnResponse:^(NSDictionary *dic) {
-        
+        [self setUI];
     }];
 }
 

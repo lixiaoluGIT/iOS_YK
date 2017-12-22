@@ -114,10 +114,14 @@
             }];
                 return ;
         }
-
-        YKSuccessVC *success = [[YKSuccessVC alloc]initWithNibName:@"YKSuccessVC" bundle:[NSBundle mainBundle]];
+        if (status==200) {
+            YKSuccessVC *success = [[YKSuccessVC alloc]initWithNibName:@"YKSuccessVC" bundle:[NSBundle mainBundle]];
             [self.navigationController pushViewController:success animated:YES];
-    }];
+            return;
+        }
+        [smartHUD alertText:self.view alert:dic[@"msg"] delay:1.2];
+       
+        }];
 }
 
 - (void)leftAction{

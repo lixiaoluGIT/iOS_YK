@@ -314,6 +314,11 @@
 		C5343C931FC69D2400F5132A /* YKBrandDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5343C911FC69D2400F5132A /* YKBrandDetailHeader.xib */; };
 		C5343C971FC6A87900F5132A /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5343C951FC6A87800F5132A /* CBSegmentView.m */; };
 		C5343C991FC6B78B00F5132A /* banner7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5343C981FC6B78B00F5132A /* banner7.jpg */; };
+		C534ECCA1FEB91BC003BB993 /* GTExtensionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECC51FEB91BB003BB993 /* GTExtensionSDK.framework */; };
+		C534ECCB1FEB91BC003BB993 /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECC61FEB91BB003BB993 /* GTSDK.framework */; };
+		C534ECCC1FEB91BC003BB993 /* GTExtensionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECC81FEB91BC003BB993 /* GTExtensionSDK.framework */; };
+		C534ECCD1FEB91BC003BB993 /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECC91FEB91BC003BB993 /* GTSDK.framework */; };
+		C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECCE1FEB923E003BB993 /* libsqlite3.tbd */; };
 		C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F851FE27472000EAF8E /* YKMessageManager.m */; };
 		C54B8F891FE275BC000EAF8E /* YKMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F881FE275BC000EAF8E /* YKMessageVC.m */; };
 		C54B8F8C1FE38015000EAF8E /* YKSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F8B1FE38015000EAF8E /* YKSearchManager.m */; };
@@ -1006,6 +1011,18 @@
 		C5343C951FC6A87800F5132A /* CBSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSegmentView.m; sourceTree = "<group>"; };
 		C5343C961FC6A87800F5132A /* CBSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSegmentView.h; sourceTree = "<group>"; };
 		C5343C981FC6B78B00F5132A /* banner7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner7.jpg; sourceTree = "<group>"; };
+		C534ECC51FEB91BB003BB993 /* GTExtensionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTExtensionSDK.framework; sourceTree = "<group>"; };
+		C534ECC61FEB91BB003BB993 /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
+		C534ECC81FEB91BC003BB993 /* GTExtensionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTExtensionSDK.framework; sourceTree = "<group>"; };
+		C534ECC91FEB91BC003BB993 /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
+		C534ECCE1FEB923E003BB993 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C534ECD01FEB924A003BB993 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C534ECD11FEB9255003BB993 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C534ECD21FEB927E003BB993 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C534ECD31FEB9289003BB993 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C534ECD41FEB9295003BB993 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		C534ECD51FEB92B1003BB993 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		C534ECD61FEB9311003BB993 /* YK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YK.entitlements; sourceTree = "<group>"; };
 		C54B8F841FE27472000EAF8E /* YKMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMessageManager.h; sourceTree = "<group>"; };
 		C54B8F851FE27472000EAF8E /* YKMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMessageManager.m; sourceTree = "<group>"; };
 		C54B8F871FE275BC000EAF8E /* YKMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMessageVC.h; sourceTree = "<group>"; };
@@ -1094,16 +1111,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
 				C532A75E1FDF8EB10068A31D /* CoreTelephony.framework in Frameworks */,
-				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
 				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
-				C532A75B1FDF8E820068A31D /* CoreMotion.framework in Frameworks */,
+				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
 				C532A7581FDF8B320068A31D /* libc++.tbd in Frameworks */,
+				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
+				C534ECCA1FEB91BC003BB993 /* GTExtensionSDK.framework in Frameworks */,
+				C534ECCC1FEB91BC003BB993 /* GTExtensionSDK.framework in Frameworks */,
+				C532A75B1FDF8E820068A31D /* CoreMotion.framework in Frameworks */,
+				C534ECCD1FEB91BC003BB993 /* GTSDK.framework in Frameworks */,
 				C532A77C1FE0CCEE0068A31D /* libWeChatSDK.a in Frameworks */,
+				C534ECCB1FEB91BC003BB993 /* GTSDK.framework in Frameworks */,
 				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
 				C525DEDD1FC27922002802AE /* libxml2.2.tbd in Frameworks */,
 				C532A7481FDF8AAB0068A31D /* AlipaySDK.framework in Frameworks */,
+				C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */,
 				C532A7531FDF8AAC0068A31D /* libcrypto.a in Frameworks */,
 				C532A7521FDF8AAC0068A31D /* libssl.a in Frameworks */,
 			);
@@ -1199,6 +1221,7 @@
 		C525DC571FBAB15C002802AE /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				C534ECC31FEB9123003BB993 /* GeTui */,
 				C52D046C1FE8EA8F00633550 /* Refresh */,
 				C532A76C1FE0CCC70068A31D /* WXPay */,
 				C532A6DF1FDF8A720068A31D /* AliPay */,
@@ -1641,6 +1664,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C53039EF1FCC284000FB12CE /* startApp2.png */,
 				C53039ED1FCC282D00FB12CE /* startApp1.png */,
 				C53039EB1FCC281E00FB12CE /* startApp0.png */,
@@ -2127,6 +2151,13 @@
 		C525DEDB1FC27915002802AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C534ECD51FEB92B1003BB993 /* AdSupport.framework */,
+				C534ECD41FEB9295003BB993 /* UserNotificationsUI.framework */,
+				C534ECD31FEB9289003BB993 /* CoreLocation.framework */,
+				C534ECD21FEB927E003BB993 /* AVFoundation.framework */,
+				C534ECD11FEB9255003BB993 /* MobileCoreServices.framework */,
+				C534ECD01FEB924A003BB993 /* Security.framework */,
+				C534ECCE1FEB923E003BB993 /* libsqlite3.tbd */,
 				C532A77D1FE0CD6A0068A31D /* libsqlite3.0.tbd */,
 				C532A7631FDF8EFA0068A31D /* Foundation.framework */,
 				C532A7621FDF8EEF0068A31D /* UIKit.framework */,
@@ -2344,6 +2375,33 @@
 			path = CBSegment;
 			sourceTree = "<group>";
 		};
+		C534ECC31FEB9123003BB993 /* GeTui */ = {
+			isa = PBXGroup;
+			children = (
+				C534ECC41FEB91BB003BB993 /* GtSdkLib */,
+				C534ECC71FEB91BC003BB993 /* GtSdkLib-noidfa */,
+			);
+			path = GeTui;
+			sourceTree = "<group>";
+		};
+		C534ECC41FEB91BB003BB993 /* GtSdkLib */ = {
+			isa = PBXGroup;
+			children = (
+				C534ECC51FEB91BB003BB993 /* GTExtensionSDK.framework */,
+				C534ECC61FEB91BB003BB993 /* GTSDK.framework */,
+			);
+			path = GtSdkLib;
+			sourceTree = "<group>";
+		};
+		C534ECC71FEB91BC003BB993 /* GtSdkLib-noidfa */ = {
+			isa = PBXGroup;
+			children = (
+				C534ECC81FEB91BC003BB993 /* GTExtensionSDK.framework */,
+				C534ECC91FEB91BC003BB993 /* GTSDK.framework */,
+			);
+			path = "GtSdkLib-noidfa";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2412,6 +2470,14 @@
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					C525DC381FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
@@ -2990,12 +3056,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBB3ME55KM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
+					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib",
+					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib-noidfa",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/apple/iOS_YK/YK/Public/YKprefixheader.pch;
@@ -3025,12 +3094,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBB3ME55KM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
+					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib",
+					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib-noidfa",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/apple/iOS_YK/YK/Public/YKprefixheader.pch;

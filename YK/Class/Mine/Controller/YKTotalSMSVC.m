@@ -63,12 +63,16 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YKTotalSMSCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKTotalSMSCell" owner:self options:nil][0];
-  
+//    [bagCell initWithDictionary:@""]
     bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return bagCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.navigationController pushViewController:[YKSMSInforVC new] animated:YES];
+    YKTotalSMSCell *smsCell = (YKTotalSMSCell *)[tableView cellForRowAtIndexPath:indexPath];
+    YKSMSInforVC *infor = [YKSMSInforVC new];
+    infor.orderNo = @"238836512256";
+//    infor.orderNo = smsCell.orderNo;
+    [self.navigationController pushViewController:infor animated:YES];
 }
 @end

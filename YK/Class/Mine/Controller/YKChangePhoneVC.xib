@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="ensureBtn" destination="Zrm-Hm-d9L" id="fnp-Da-9sE"/>
                 <outlet property="getVetifyBtn" destination="WxQ-Bg-0Ws" id="LuB-aZ-P0D"/>
+                <outlet property="phoneLabel" destination="WIE-Kx-ljx" id="M5A-hJ-YDZ"/>
                 <outlet property="phoneText" destination="s8t-Ht-LpH" id="Eyd-Oa-F7Z"/>
                 <outlet property="vetifyText" destination="lw5-98-Vy9" id="n24-PA-msb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="NfZ-Sb-5eS"/>
