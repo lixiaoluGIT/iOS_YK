@@ -181,7 +181,11 @@
         //最新一条
         NSArray *arr = [NSArray arrayWithArray:dict[@"data"][@"body"]];
         
-        NSDictionary *model = [NSDictionary dictionaryWithDictionary:arr[0]];
+        NSDictionary *model;
+        if (arr.count>0) {
+            model = [NSDictionary dictionaryWithDictionary:arr[0]];
+        }
+        
         
         NSInteger SMSStatus = [model[@"opcode"] integerValue];
         

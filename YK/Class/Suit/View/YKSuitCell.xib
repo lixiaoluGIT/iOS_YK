@@ -21,38 +21,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4.jpg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDE-vv-4eq">
-                        <rect key="frame" x="52" y="30" width="80" height="80"/>
+                        <rect key="frame" x="52" y="30" width="92" height="92"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="PDE-vv-4eq" secondAttribute="height" id="WAr-Wp-bFT"/>
-                            <constraint firstAttribute="width" constant="80" id="x8T-Ev-NyI"/>
+                            <constraint firstAttribute="width" constant="92" id="x8T-Ev-NyI"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字母玫瑰印花连帽卫衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Uw-iY-C0n">
-                        <rect key="frame" x="159" y="30" width="251" height="17"/>
+                        <rect key="frame" x="171" y="30" width="239" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Superme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuE-Q6-pOp">
-                        <rect key="frame" x="159" y="63" width="51" height="14.5"/>
+                        <rect key="frame" x="171" y="69" width="51" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9w-eI-NVs">
-                        <rect key="frame" x="159" y="95.5" width="10.5" height="14.5"/>
+                        <rect key="frame" x="171" y="107.5" width="10.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥228" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPw-YJ-tdo">
-                        <rect key="frame" x="377" y="95.5" width="30" height="14.5"/>
+                        <rect key="frame" x="377" y="107.5" width="30" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfF-mt-l1G">
-                        <rect key="frame" x="12" y="60.5" width="20" height="20"/>
+                        <rect key="frame" x="12" y="66.5" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="9Pt-CZ-1WZ"/>
                             <constraint firstAttribute="width" constant="20" id="dmV-oB-gyQ"/>
@@ -64,10 +64,10 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tishi" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-Pq-4wO">
-                        <rect key="frame" x="157.5" y="130" width="14" height="14"/>
+                        <rect key="frame" x="169.5" y="142" width="14" height="14"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待返架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBj-TB-bjD">
-                        <rect key="frame" x="179.5" y="130.5" width="37" height="14.5"/>
+                        <rect key="frame" x="191.5" y="142.5" width="37" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.99607843137254903" green="0.71736494076797386" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -134,7 +134,7 @@
                 <outlet property="suitType" destination="U9w-eI-NVs" id="3qa-8i-tGh"/>
                 <outlet property="tipImage" destination="9lg-Pq-4wO" id="fDT-ny-Rv8"/>
             </connections>
-            <point key="canvasLocation" x="-253" y="33"/>
+            <point key="canvasLocation" x="-294" y="12"/>
         </tableViewCell>
     </objects>
     <resources>

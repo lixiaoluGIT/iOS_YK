@@ -32,6 +32,9 @@
     [super awakeFromNib];
     [self.suitImage setContentMode:UIViewContentModeScaleAspectFit];
     self.suitImage.clipsToBounds = YES;
+    self.suitImage.layer.masksToBounds = YES;
+    self.suitImage.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
+    self.suitImage.layer.borderWidth = 1;
 }
 
 //点击区域变大

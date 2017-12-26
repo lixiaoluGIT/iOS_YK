@@ -86,7 +86,7 @@
         
         self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"]];
         ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
-        cycleView.imagesArr = @[self.blackLists[0][@"brandImg"]];
+        cycleView.imagesArr = @[self.blackLists[0][@"brandListImg"]];
         cycleView.delegate  = self;
         cycleView.placeHolderImageName = @"";
         self.tableView.tableHeaderView = cycleView;

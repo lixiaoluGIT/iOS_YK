@@ -202,11 +202,13 @@
         
         if ([dic[@"status"] integerValue] == 200) {
             
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
             if (onResponse) {
                 onResponse(dic);
             }
             
+        }else {
+             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
         }
     }];
 }

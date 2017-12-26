@@ -7,6 +7,7 @@
 //
 
 #import "YKSettingVC.h"
+#import "YKHomeVC.h"
 
 @interface YKSettingVC ()
 @property (weak, nonatomic) IBOutlet UIButton *exitBtn;
@@ -46,7 +47,13 @@
 
 - (IBAction)exit:(id)sender {
     [[YKUserManager sharedManager]exitLoginWithPhone:@"" VetifyCode:@"" OnResponse:^(NSDictionary *dic) {
-        [self.tabBarController setSelectedIndex:0];
+//        [self.tabBarController setSelectedIndex:0];
+        YKHomeVC *chatVC = [[YKHomeVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = self.tabBarController.viewControllers[0];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popToRootViewControllerAnimated:NO];
     }];
 }
 - (IBAction)clear:(id)sender {

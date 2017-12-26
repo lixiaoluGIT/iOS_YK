@@ -20,25 +20,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qianbao" translatesAutoresizingMaskIntoConstraints="NO" id="Bd2-OO-fr6">
-                        <rect key="frame" x="26" y="34.5" width="16" height="16"/>
+                        <rect key="frame" x="20" y="34.5" width="16" height="16"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4k-O6-hFo">
-                        <rect key="frame" x="47" y="34.5" width="57.5" height="17"/>
+                        <rect key="frame" x="41" y="34.5" width="57.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="qhM-ZY-ucz">
-                        <rect key="frame" x="344" y="37" width="6" height="12"/>
+                        <rect key="frame" x="340" y="37" width="6" height="12"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-Cz-S7t">
+                        <rect key="frame" x="20" y="83.5" width="346" height="1"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="LLe-IK-cUJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Bd2-OO-fr6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="26" id="I0R-hy-IYx"/>
+                    <constraint firstItem="Bd2-OO-fr6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="I0R-hy-IYx"/>
                     <constraint firstItem="Bd2-OO-fr6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="K55-SR-FzE"/>
+                    <constraint firstAttribute="bottom" secondItem="GhO-Cz-S7t" secondAttribute="bottom" id="UsO-xV-355"/>
                     <constraint firstItem="qhM-ZY-ucz" firstAttribute="centerY" secondItem="s4k-O6-hFo" secondAttribute="centerY" id="a00-YK-EPe"/>
                     <constraint firstItem="s4k-O6-hFo" firstAttribute="centerY" secondItem="Bd2-OO-fr6" secondAttribute="centerY" id="ahm-Y7-PLb"/>
                     <constraint firstItem="s4k-O6-hFo" firstAttribute="leading" secondItem="Bd2-OO-fr6" secondAttribute="trailing" constant="5" id="bPX-XM-YPp"/>
-                    <constraint firstAttribute="trailing" secondItem="qhM-ZY-ucz" secondAttribute="trailing" constant="16" id="pdw-RP-H9L"/>
+                    <constraint firstItem="GhO-Cz-S7t" firstAttribute="leading" secondItem="Bd2-OO-fr6" secondAttribute="leading" id="dc3-ic-GFU"/>
+                    <constraint firstAttribute="trailing" secondItem="GhO-Cz-S7t" secondAttribute="trailing" id="iED-xx-nZY"/>
+                    <constraint firstAttribute="trailing" secondItem="qhM-ZY-ucz" secondAttribute="trailing" constant="20" id="pdw-RP-H9L"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

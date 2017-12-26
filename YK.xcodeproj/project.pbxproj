@@ -340,6 +340,7 @@
 		C5690F9C1FE773550027EFCE /* YKTotalSMSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5690F9B1FE773550027EFCE /* YKTotalSMSVC.m */; };
 		C57A53B01FCBAFF70090E372 /* YKEditInforVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57A53AE1FCBAFF70090E372 /* YKEditInforVC.m */; };
 		C57A53B11FCBAFF70090E372 /* YKEditInforVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57A53AF1FCBAFF70090E372 /* YKEditInforVC.xib */; };
+		C5C0F5921FF2309700A2000A /* 红.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C0F5911FF2309600A2000A /* 红.jpg */; };
 		C5E023051FD64A8B00C33629 /* YKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E023041FD64A8B00C33629 /* YKAddress.m */; };
 		C5E023081FD64AD700C33629 /* YKAddressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E023071FD64AD700C33629 /* YKAddressManager.m */; };
 		C5E0230B1FD78FEA00C33629 /* YKBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E0230A1FD78FEA00C33629 /* YKBrand.m */; };
@@ -1056,6 +1057,7 @@
 		C57A53AD1FCBAFF70090E372 /* YKEditInforVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKEditInforVC.h; sourceTree = "<group>"; };
 		C57A53AE1FCBAFF70090E372 /* YKEditInforVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKEditInforVC.m; sourceTree = "<group>"; };
 		C57A53AF1FCBAFF70090E372 /* YKEditInforVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKEditInforVC.xib; sourceTree = "<group>"; };
+		C5C0F5911FF2309600A2000A /* 红.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "红.jpg"; sourceTree = "<group>"; };
 		C5E023031FD64A8B00C33629 /* YKAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAddress.h; sourceTree = "<group>"; };
 		C5E023041FD64A8B00C33629 /* YKAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAddress.m; sourceTree = "<group>"; };
 		C5E023061FD64AD700C33629 /* YKAddressManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAddressManager.h; sourceTree = "<group>"; };
@@ -1664,6 +1666,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C5C0F5911FF2309600A2000A /* 红.jpg */,
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C53039EF1FCC284000FB12CE /* startApp2.png */,
 				C53039ED1FCC282D00FB12CE /* startApp1.png */,
@@ -2573,6 +2576,7 @@
 				C525DE141FBAC778002802AE /* 0K143Xa_0.jpg in Resources */,
 				C525DE831FBC58E6002802AE /* banner5.jpg in Resources */,
 				C525DE641FBC2A24002802AE /* pp5.jpg in Resources */,
+				C5C0F5921FF2309700A2000A /* 红.jpg in Resources */,
 				C5FECE1D1FC2BA4D00D299AE /* 41.jpg in Resources */,
 				C525DD631FBAB2A8002802AE /* README.md in Resources */,
 				C52D04781FE8EB5D00633550 /* YKNoDataView.xib in Resources */,

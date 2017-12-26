@@ -68,6 +68,7 @@
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"FF6D6A"];
     self.tableView.backgroundColor = self.view.backgroundColor;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     head = [[NSBundle mainBundle] loadNibNamed:@"YKMineheader" owner:self options:nil][0];
     head.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);

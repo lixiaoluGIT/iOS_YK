@@ -30,10 +30,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-//    
-//    [self.allLabel setUserInteractionEnabled:YES];
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(filterAll)];
-//    [self.allLabel addGestureRecognizer:tap];
 }
 
 - (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList{

@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *view4;
 @property (weak, nonatomic) IBOutlet UILabel *sexLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hap;
 
 @end
 
@@ -39,6 +40,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人资料";
+    if([[UIDevice currentDevice].systemVersion floatValue] <= 11.0){
+        _hap.constant = 64;
+    }else {
+        _hap.constant = 0;
+    }
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 44, 44);

@@ -46,10 +46,10 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wodeyidai" translatesAutoresizingMaskIntoConstraints="NO" id="7KR-qX-K3x">
-                        <rect key="frame" x="26" y="30" width="16" height="16"/>
+                        <rect key="frame" x="20" y="30" width="16" height="16"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的衣袋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhS-mB-pp6">
-                        <rect key="frame" x="47" y="30" width="58" height="17"/>
+                        <rect key="frame" x="41" y="30" width="58" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -127,7 +127,7 @@
                     <constraint firstItem="BDz-FR-FN5" firstAttribute="height" secondItem="4j3-qa-jIU" secondAttribute="height" id="WUv-Fc-jEV"/>
                     <constraint firstItem="iwZ-zq-Pjo" firstAttribute="centerY" secondItem="FhG-Dz-acB" secondAttribute="centerY" id="WYP-vq-NFO"/>
                     <constraint firstItem="4Tq-8m-Qu3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" multiplier="0.1" constant="60" id="X33-vI-FS5"/>
-                    <constraint firstItem="7KR-qX-K3x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="26" id="aGi-Rp-qGN"/>
+                    <constraint firstItem="7KR-qX-K3x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="aGi-Rp-qGN"/>
                     <constraint firstItem="FhG-Dz-acB" firstAttribute="centerY" secondItem="4Tq-8m-Qu3" secondAttribute="centerY" id="bf4-tQ-Mo6"/>
                     <constraint firstItem="7mU-WQ-1Kq" firstAttribute="centerX" secondItem="hDi-ya-lZh" secondAttribute="centerX" id="bjx-D4-dTA"/>
                     <constraint firstItem="tr2-9G-J2M" firstAttribute="leading" secondItem="jsG-92-jld" secondAttribute="trailing" id="d9c-RG-Gox"/>

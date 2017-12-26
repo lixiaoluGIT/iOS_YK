@@ -88,6 +88,10 @@
 
     [YKHttpClient Method:@"GET" apiName:GetUserInfor_Url Params:nil Completion:^(NSDictionary *dic) {
         
+        if ([dic[@"status"] intValue] == 401) {//未登录
+            [UD setObject:@"" forKey:@"token"];
+           
+        }
        [self getUserInfo:dic[@"data"]];//得到用户基本数据
             if (onResponse) {
                 onResponse(nil);

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YKEditInforVC">
             <connections>
+                <outlet property="hap" destination="drW-c2-FTT" id="dwd-uu-WkX"/>
                 <outlet property="headImage" destination="KeD-Zz-6hM" id="ooa-vQ-HhN"/>
                 <outlet property="nickNameText" destination="WMo-SH-1Un" id="bh7-Ek-a30"/>
                 <outlet property="phoneLabel" destination="bY6-lQ-Vij" id="T2v-dc-3r0"/>

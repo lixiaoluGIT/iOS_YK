@@ -14,6 +14,7 @@
     [super awakeFromNib];
     _imageView.contentMode   = UIViewContentModeScaleAspectFill;
     _imageView.clipsToBounds = YES;
+    _imageView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
 }
 
 - (void)setProduct:(YKProduct *)product{

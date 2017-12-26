@@ -57,7 +57,7 @@
 
 - (void)setBrand:(NSDictionary *)brand{
     _brand = brand;
-     [_brandImage sd_setImageWithURL:[NSURL URLWithString:brand[@"brandLogo"]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+     [_brandImage sd_setImageWithURL:[NSURL URLWithString:brand[@"brandDetailLogo"]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
 }
 
 @end

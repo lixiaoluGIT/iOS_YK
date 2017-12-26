@@ -125,7 +125,7 @@
             self.Button0 = button;
         }
         [button setBackgroundImage:[UIImage imageNamed:@"白.png"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"主题红.png"] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageNamed:@"红.jpg"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
     }
@@ -372,7 +372,11 @@
             mycell = [[NSBundle mainBundle] loadNibNamed:@"YKMyBagSMSCell" owner:self options:nil][0];
         }
         mycell.scanSMSBlock = ^(void){
-            [self.navigationController pushViewController:[YKSMSInforVC new] animated:YES];
+            YKSMSInforVC *sms = [YKSMSInforVC new];
+            //测试数据
+            sms.orderNo = @"238836512256";
+//            sms.orderNo = [YKOrderManager sharedManager].orderNo;
+            [self.navigationController pushViewController:sms animated:YES];
         };
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
@@ -402,6 +406,9 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_bagStatus != totalBag) {
+        return;
+    }
     if (scrollView == self.tableView)
     {
         CGFloat sectionHeaderHeight = 69; //sectionHeaderHeight

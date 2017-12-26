@@ -17,13 +17,50 @@
 @property (nonatomic,assign) payMethod payMethod;
 @property (nonatomic,assign) payType payType;
 
+@property (weak, nonatomic) IBOutlet UIButton *agreeImage;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *height;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap1;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap3;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap4;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap5;
+@property (weak, nonatomic) IBOutlet UIView *buttomView;
+@property (weak, nonatomic) IBOutlet UILabel *yuanJia;
+@property (weak, nonatomic) IBOutlet UILabel *liJIan;
+@property (weak, nonatomic) IBOutlet UILabel *yaJin;
+@property (weak, nonatomic) IBOutlet UILabel *total;
+
+@property (weak, nonatomic) IBOutlet UIButton *Btn1;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn3;
+@property (weak, nonatomic) IBOutlet UIButton *btn4;
+
 @end
 
 @implementation YKToBeVIPVC
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [NC addObserver:self selector:@selector(alipayResultCurrent:) name:@"alipayres" object:nil];
+    [NC addObserver:self selector:@selector(wxpayresultCurrent:) name:@"wxpaysuc" object:nil];
+    if (WIDHT==320) {
+        _gap.constant = 11;
+        _gap1.constant = 11;
+        _gap2.constant = 11;
+        _gap3.constant = -28;
+        _gap4.constant = 11;
+        _height.constant =135;
+        _gap5.constant = 15;
+    }
+    if (WIDHT==375) {
+        
+    }
     self.payType = 4;//给个非0,1,2,3
+    _buttomView.hidden = YES;
 }
 
 - (void)creatPayView{
@@ -64,6 +101,7 @@
 - (IBAction)agree:(id)sender {
     UIButton * button = (UIButton *)sender;
     button.selected = !button.selected;
+    _agreeImage.selected = button.selected;
 }
 
 //去支付
@@ -82,34 +120,95 @@
     }completion:^(BOOL finished) {
         
     }];
-    
-        
 }
 
 //选择会员种类
 - (IBAction)select:(id)sender {
     
+    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效
+        _buttomView.hidden = NO;
+    }else {
+        _buttomView.hidden = YES;
+    }
+    
+
     UIButton * button = (UIButton *)sender;
  
-    switch (button.tag) {
-        case 101:
-            _payType = MONTH_CARD;
-            break;
-        case 102:
-            _payType = SEASON_CARD;
-            break;
-        case 103:
-            _payType = YEAR_CARD;
-            break;
-            
-        default:
-            break;
-    }
     if (self.Button0 != button) {
         self.Button0.selected = NO;
         button.selected = YES;
     }
     self.Button0 = button;
+    
+    switch (button.tag) {
+        case 1001:
+            _payType = MONTH_CARD;
+            _Btn1.selected = button.selected;
+             _btn2.selected = !button.selected;
+             _btn3.selected = !button.selected;
+             _btn4.selected = !button.selected;
+            break;
+        case 1002:
+            _payType = SEASON_CARD;
+            _Btn1.selected = !button.selected;
+            _btn2.selected = button.selected;
+            _btn3.selected = !button.selected;
+            _btn4.selected = !button.selected;
+            break;
+        case 1003:
+            _payType = YEAR_CARD;
+            _Btn1.selected = !button.selected;
+            _btn2.selected = !button.selected;
+            _btn3.selected = button.selected;
+            _btn4.selected = !button.selected;
+            break;
+            
+        default:
+            _Btn1.selected = !button.selected;
+            _btn2.selected = !button.selected;
+            _btn3.selected = !button.selected;
+            _btn4.selected = button.selected;
+            break;
+    }
+    
+    //TODO:添加固定算法
+    if ([[YKUserManager sharedManager].user.depositEffective intValue] == 0) { //新用户
+        _liJIan.text = @"-¥200";
+        if (_payType == MONTH_CARD) {
+            _yuanJia.text = @"¥498";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥298";
+        }
+        if (_payType == SEASON_CARD) {
+            _yuanJia.text = @"¥798";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥598";
+        }
+        if (_payType == YEAR_CARD) {
+            _yuanJia.text = @"¥1298";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥1098";
+        }
+    }else {
+        _liJIan.text = @"已使用";
+        _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
+        
+        if (_payType == MONTH_CARD) {
+            _yuanJia.text = @"¥498";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥498";
+        }
+        if (_payType == SEASON_CARD) {
+            _yuanJia.text = @"¥798";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥798";
+        }
+        if (_payType == YEAR_CARD) {
+            _yuanJia.text = @"¥1298";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥1298";
+        }
+    }
 }
 
 - (IBAction)close:(id)sender {

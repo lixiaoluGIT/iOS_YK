@@ -27,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衣库用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z46-nt-Zkb">
-                        <rect key="frame" x="110" y="55" width="65.5" height="19.5"/>
+                        <rect key="frame" x="110" y="55" width="78" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" red="0.96078431369999995" green="0.96862745100000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -68,6 +68,7 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96470588235294119" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="jiT-Yr-T4W" firstAttribute="leading" secondItem="Z46-nt-Zkb" secondAttribute="trailing" constant="20" id="5Ge-j7-sZs"/>
                     <constraint firstItem="Z46-nt-Zkb" firstAttribute="leading" secondItem="wWm-o7-6qN" secondAttribute="trailing" constant="16" id="7z4-sW-0xi"/>
                     <constraint firstItem="rYX-OZ-9Dw" firstAttribute="leading" secondItem="wWm-o7-6qN" secondAttribute="trailing" constant="16" id="E6U-f3-cl2"/>
                     <constraint firstItem="wWm-o7-6qN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="42" id="JQL-ZR-zhS"/>

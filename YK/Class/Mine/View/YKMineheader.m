@@ -32,8 +32,21 @@
     self.backView.layer.cornerRadius = 20;
     self.backW.constant = 180*WIDHT/414;
     CGFloat fond;
-    fond = 15*WIDHT/414;
-    self.VIPLable.font = PingFangSC_Regular(fond);
+//    fond = 15*WIDHT/414;
+    
+    if (WIDHT==320) {
+        fond = 10;
+        self.VIPLable.font = PingFangSC_Regular(fond);
+    }
+    if (WIDHT==375) {
+        fond = 11;
+        self.VIPLable.font = PingFangSC_Regular(fond);
+    }
+    if (WIDHT==414) {
+        fond = 14;
+        self.VIPLable.font = PingFangSC_Regular(fond);
+    }
+    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(VIP)];
     [self.backView addGestureRecognizer:tap];

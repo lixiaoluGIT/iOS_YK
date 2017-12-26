@@ -12,11 +12,11 @@
 
 - (void)initWithDictionary:(NSDictionary *)dictionary{
     if (dictionary) {
-        _brandIma = dictionary[@"brandImg"];
+        _brandIma = dictionary[@"brandDetailImg"];
         _brandId = dictionary[@"brandId"];
         _brandName = dictionary[@"brandName"];
         _brandDesc = dictionary[@"brandDesc"];
-        _brandLogo = dictionary[@"brandLogo"];
+        _brandLogo = dictionary[@"brandDetailLogo"];
     }
 }
 @end

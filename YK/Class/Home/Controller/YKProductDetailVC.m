@@ -19,6 +19,7 @@
 #import "YKYifuScanCell.h"
 #import "YKLoginVC.h"
 #import "YKBrandDetailVC.h"
+#import "YKSuitVC.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate>{
@@ -165,9 +166,46 @@
     buttom.AddToCartBlock = ^(void){//添加到购物车
         [weakSelf addTOCart];
     };
+    buttom.KeFuBlock = ^(void){//客服
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+        alertview.delegate = self;
+        [alertview show];
+    };
+    buttom.ToSuitBlock = ^(void){//去衣袋
+        
+        YKSuitVC *chatVC = [[YKSuitVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = self.tabBarController.viewControllers[2];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+//
+//        [nav pushViewController:chatVC animated:YES];
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+//        [self.tabBarController setSelectedIndex:2];
+    };
     [self.view addSubview:buttom];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {//取消
+        
+    }
+    if (buttonIndex==1) {//拨打
+        NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+        NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+        if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+            /// 大于等于10.0系统使用此openURL方法
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+            }
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+        }
+    }
+}
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 //    [self.tabBarController setSelectedIndex:0];
@@ -336,7 +374,7 @@
         return CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/180);
     }
     
-    return CGSizeMake(WIDHT-32,WIDHT*0.8);
+    return CGSizeMake(WIDHT-32,(WIDHT-32)/670*500);
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
