@@ -11,6 +11,9 @@
 
 //客服电话
 #define PHONE @"4001234123"
+//AppID： IUK1udrw6Z5N2S7pOWfAv6
+//AppSecret： Hvg8Emt8g96lGpqLes8hw
+//AppKey： zqVUHdYjHe6mRq4wFXmHp8
 #define kGtAppId @"ZNjebcKttj9NlUlsvD8fX4"
 #define kGtAppKey @"zvGno0honbAJdJBuJ6Tco5"
 #define kGtAppSecret @"ZiTcrGbIBe7tPaOBPeOoR1"
