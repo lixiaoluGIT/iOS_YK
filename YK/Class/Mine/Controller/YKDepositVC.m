@@ -146,11 +146,11 @@
     [alert showWithtitle:@"确认退还押金吗" notitle:@"确认" yestitle:@"取消" cancelBlock:^{
         //申请退押金
         [[YKPayManager sharedManager]refondDepositOnResponse:^(NSDictionary *dic) {
-            [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
-                [_payView removeFromSuperview];
-                    _validityStatus = [[YKUserManager sharedManager].user.depositEffective intValue];
-                        [self setUpUI];
-                }];
+            [self.navigationController popViewControllerAnimated:YES];
+//            [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+//                _validityStatus = [[YKUserManager sharedManager].user.depositEffective intValue];
+//                        [self getData];
+//                }];
         }];
     } ensureBlock:^{
         
@@ -163,8 +163,14 @@
 
     NSDictionary *dict = [notify userInfo];
     if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"9000"]) {
-       
-        [self getData];
+        
+        [smartHUD alertText:self.view alert:@"支付成功" delay:1];
+        [UIView animateWithDuration:0.1 animations:^{
+            [self diss];
+        }completion:^(BOOL finished) {
+            [self getData];
+        }];
+        
         
     }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
         
@@ -181,9 +187,15 @@
     
     NSDictionary *dict = [notify userInfo];
     
+    
     if ([[dict objectForKey:@"codeid"]integerValue]==0) {
      
-       [self getData];
+        [smartHUD alertText:self.view alert:@"支付成功" delay:1];
+        [UIView animateWithDuration:0.1 animations:^{
+            [self diss];
+        }completion:^(BOOL finished) {
+            [self getData];
+        }];
         
     }else{
         

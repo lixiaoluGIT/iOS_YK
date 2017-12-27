@@ -29,22 +29,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YK/AppDelegate.m"
-            timestampString = "535967037.228429"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-userNotificationCenter:willPresentNotification:withCompletionHandler:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKToBeVIPVC.m"
             timestampString = "535974421.352784"
             startingColumnNumber = "9223372036854775807"
@@ -62,12 +46,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKDepositVC.m"
-            timestampString = "535957895.448695"
+            timestampString = "536052047.630784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-pullMoney"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-wxpayresultCurrent:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -77,46 +61,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YK/Class/Mine/Controller/YKDepositVC.m"
-            timestampString = "535957901.569523"
+            filePath = "YK/Class/Mine/Manager/YKPayManager.m"
+            timestampString = "536052047.631312"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "-pullMoney"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-onResp:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__24-[YKDepositVC pullMoney]_block_invoke_2"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Controller/YKDepositVC.m"
-                  timestampString = "535974421.484158"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__24-[YKDepositVC pullMoney]_block_invoke_3"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Controller/YKDepositVC.m"
-                  timestampString = "535974421.486367"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

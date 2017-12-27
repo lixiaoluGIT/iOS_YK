@@ -41,8 +41,17 @@
     //个推
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注:该 法需要在主线程中调
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
+    
     // 注册 APNs
     
+    //是否允许SDK 后台运行（这个一定要设置，否则后台apns不会执行）
+    [GeTuiSdk runBackgroundEnable:YES];
+    // [ GTSdk ]：是否运行电子围栏Lbs功能和是否SDK主动请求用户定位
+    [GeTuiSdk lbsLocationEnable:YES andUserVerify:YES];
+    
+    // [ GTSdk ]：自定义渠道
+    [GeTuiSdk setChannelId:@"GT-Channel"];
+    [GeTuiSdk setPushModeForOff:NO];
     [self registerRemoteNotification];
 //
 //    application.statusBarHidden=NO;
@@ -55,179 +64,217 @@
     return YES;
 }
 
-- (void)registerRemoteNotification {
-    
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
-        if (@available(iOS 10.0, *)) {
-            UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-            center.delegate = self;
-            [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay) completionHandler:^(BOOL granted, NSError *_Nullable error) {
-                if (!error) {
-                    NSLog(@"request authorization succeeded!");
-                } }];
-        } else {
-            // Fallback on earlier versions
-        }
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-} else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-    UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-} else {
-    UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound|UIRemoteNotificationTypeBadge);
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
-    
-                                                                   }
+#pragma mark - 用户通知(推送) _自定义方法
 
+/** 注册远程通知 */
+- (void)registerRemoteNotification {
+    /*
+     警告：Xcode8的需要手动开启“TARGETS -> Capabilities -> Push Notifications”
+     */
+    
+    /*
+     警告：该方法需要开发者自定义，以下代码根据APP支持的iOS系统不同，代码可以对应修改。
+     以下为演示代码，注意根据实际需要修改，注意测试支持的iOS系统都能获取到DeviceToken
+     */
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0 // Xcode 8编译会调用
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay) completionHandler:^(BOOL granted, NSError *_Nullable error) {
+            if (!error) {
+                NSLog(@"request authorization succeeded!");
+            }
+        }];
+        
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+#else // Xcode 7编译会调用
+        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+#endif
+    } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
+                                                                       UIRemoteNotificationTypeSound |
+                                                                       UIRemoteNotificationTypeBadge);
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
+    }
 }
 
-//向个推服务注册DeviceToken
+/** 已登记用户通知 */
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    // 注册远程通知（推送）
+    [application registerForRemoteNotifications];
+}
+
+#pragma mark - Background Fetch 接口回调
+//后台刷新数据
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    /// Background Fetch 恢复SDK 运行
+    [GeTuiSdk resume];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+#pragma mark - 远程通知(推送)回调
+
+
+
+/** 远程通知注册成功委托 */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
-    // 向个推服务 注册deviceToken
+    
+    // [ GTSdk ]：向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
 }
 
-// iOS 10: App在前台获取到通知
+/** 远程通知注册失败委托 */
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"\n>>>[DeviceToken Error]:%@\n\n", error.description);
+}
+
+#pragma mark - APP运行中接收到通知(推送)处理 - iOS 10以下版本收到推送
+
+/** APP已经接收到“远程”通知(推送) - 透传推送消息  */
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+    
+    // [ GTSdk ]：将收到的APNs信息传给个推统计
+    [GeTuiSdk handleRemoteNotification:userInfo];
+    
+    // 控制台打印接收APNs信息
+    NSLog(@"\n>>>[Receive RemoteNotification]:%@\n\n", userInfo);
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+#pragma mark - iOS 10中收到推送消息
+
+
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+//  iOS 10: App在前台获取到通知
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     
-    [GeTuiSdk setBadge:1]; //同步本地 标值到服务
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    NSLog(@"willPresentNotification：%@", notification.request.content.userInfo);
     
-    NSLog(@"willPresentNotification:%@", notification.request.content.userInfo);
-    // 根据APP需要，判断是否要提示 户Badge、Sound、Alert
-    if (@available(iOS 10.0, *)) {
-        completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
-    } else {
-        // Fallback on earlier versions
-    }
+    // 根据APP需要，判断是否要提示用户Badge、Sound、Alert
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+}
+
+//  iOS 10: 点击通知进入App时触发
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    
+    NSLog(@"didReceiveNotification：%@", response.notification.request.content.userInfo);
+    
+    // [ GTSdk ]：将收到的APNs信息传给个推统计
+    [GeTuiSdk handleRemoteNotification:response.notification.request.content.userInfo];
+    
+    completionHandler();
+}
+#endif
+
+#pragma mark - GeTuiSdkDelegate
+
+/** SDK启动成功返回cid */
+- (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
+    // [4-EXT-1]: 个推SDK已注册，返回clientId
+    NSLog(@"\n>>[GTSdk RegisterClient]:%@\n\n", clientId);
+}
+
+/** SDK遇到错误回调 */
+- (void)GeTuiSdkDidOccurError:(NSError *)error {
+    // [EXT]:个推错误报告，集成步骤发生的任何错误都在这里通知，如果集成后，无法正常收到消息，查看这里的通知。
+    NSLog(@"\n>>[GTSdk error]:%@\n\n", [error localizedDescription]);
 }
 
 
 /** SDK收到透传消息回调 */
-- (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *) taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString * )appId {
-    //收到个推消息
-    NSString *payloadMsg = nil; if (payloadData) {
+- (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId {
+    // [ GTSdk ]：汇报个推自定义事件(反馈透传消息)
+    [GeTuiSdk sendFeedbackMessage:90001 andTaskId:taskId andMsgId:msgId];
+    
+    // 数据转换
+    NSString *payloadMsg = nil;
+    if (payloadData) {
         payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
     }
-    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg :%@%@",taskId,msgId, payloadMsg,offLine ? @"<离线消息>" : @""];
-    NSLog(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
+    
+    
+    // 控制台打印日志
+    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
+    NSLog(@"\n>>[GTSdk ReceivePayload]:%@\n\n", msg);
+    
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"收到个信透传消息" message:payloadMsg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看", nil];
+    alertview.delegate = self;
+    [alertview show];
 }
 
-/** SDK启动成功返回cid */
-- (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
-    //个推SDK已注册，返回clientId
-    NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
+/** SDK收到sendMessage消息回调 */
+- (void)GeTuiSdkDidSendMessage:(NSString *)messageId result:(int)result {
+    // 发送上行消息结果反馈
+    NSString *msg = [NSString stringWithFormat:@"sendmessage=%@,result=%d", messageId, result];
+    NSLog(@"\n>>[GTSdk DidSendMessage]:%@\n\n", msg);
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    if (!url) {
-        return NO;
-    }
+/** SDK运行状态通知 */
+- (void)GeTuiSDkDidNotifySdkState:(SdkStatus)aStatus {
+    // 通知SDK运行状态
+    NSLog(@"\n>>[GTSdk SdkState]:%u\n\n", aStatus);
+}
 
-    if ([url.host isEqualToString:@"safepay"]) {//支付宝支付
-      [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSInteger resultCode = [resultDic[@"resultStatus"] intValue];
-//            switch (resultCode) {
-//                case 9000://支付成功
-//                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"支付成功" delay:2];
-//                    break;
-//                case 6001://支付成功
-//                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"取消了支付" delay:2];
-//                    break;
-//
-//                default://支付失败
-//                     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"支付失败" delay:2];
-//                    break;
-//            }
-          [NC postNotificationName:@"alipayres" object:nil userInfo:resultDic];
-            NSLog(@"支付结果result=%@",resultDic[@"memo"]);
-        }];
+/** SDK设置推送模式回调 */
+- (void)GeTuiSdkDidSetPushMode:(BOOL)isModeOff error:(NSError *)error {
+    if (error) {
+        NSLog(@"\n>>[GTSdk SetModeOff Error]:%@\n\n", [error localizedDescription]);
+        return;
     }
     
-    if ([url.description hasSuffix:@"wx"]) {
+    NSLog(@"\n>>[GTSdk SetModeOff]:%@\n\n", isModeOff ? @"开启" : @"关闭");
+}
+
+- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+//    self.contentHandler = contentHandler;
+//    self.bestAttemptContent = [request.content mutableCopy];
+//    //通知个推服务 APNs信息送达
+//    [GeTuiExtSdk handelNotificationServiceRequest:request withComplete:^{
+//        // Modify the notification content here...
+//        self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]
+//                                         ", self.bestAttemptContent.title];
+//                                         //返回新的通知内容,展示APNs通知。
+//                                         self.contentHandler(self.bestAttemptContent);
+//                                         }];
+    }
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic[@"memo"]);
+            [NC postNotificationName:@"alipayres" object:nil userInfo:resultDic];
+
+        }];
+
+    }
+
+    if ([url.host isEqualToString:@"pay"]) {
         
         //微信
         return [WXApi handleOpenURL:url delegate:self];
-        
     }
-    
 
-    
-    
     return YES;
-}
 
-//// NOTE: 9.0以后使用新API接口
-//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
-//{
-//
-//    if (!url) {
-//        return NO;
-//    }
-//
-//    NSString *urlString = [url absoluteString];
-//
-//    // 从QQ的分享进入行程详情
-//    if([urlString rangeOfString:@"travelDetail"].location !=NSNotFound)
-//    {
-//
-//        NSArray *array = [urlString componentsSeparatedByString:@"="];
-//        NSDictionary *travelIdDict = @{@"travelId":array[1]};
-//
-//        [NC postNotificationName:@"changerootvc" object:nil userInfo:@{@"dop":@"passenger"}];
-//
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [NC postNotificationName:@"pushTravelDetailVC" object:nil userInfo:travelIdDict];
-//        });
-//
-//    }
-//
-//    // H5点击邀TA订座跳转置顶聊天页
-//    if ([url.host isEqualToString:@"chatView"]) {
-//
-//        NSArray *array = [urlString componentsSeparatedByString:@"="];
-//
-//        NSDictionary *phoneNumDict = @{@"phoneNum":array[1]};
-//
-//        [NC postNotificationName:@"pushChatView" object:nil userInfo:phoneNumDict];
-//
-//    }
-//
-//    if ([url.host isEqualToString:@"safepay"]) {
-//        //跳转支付宝钱包进行支付，处理支付结果
-//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-//            //NSLog(@"result = %@",resultDic[@"memo"]);
-//
-//            [NC postNotificationName:@"alipayres" object:nil userInfo:resultDic];
-//
-//        }];
-//
-//    }
-//
-//
-//    if ([url.host isEqualToString:@"pay"]) {
-//
-//        //        //NSLog(@"========w============");
-//        //微信
-//        return [WXApi handleOpenURL:url delegate:self];
-//
-//
-//
-//    }
-//
-//    return YES;
-//
-//}
+}
 
 //微信支付结果
 -(void) onResp:(BaseResp*)resp
@@ -274,7 +321,6 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"wxpaysuc" object:nil userInfo:@{@"codeid":[NSString stringWithFormat:@"%d",resp.errCode]}];
-                    
                 });
                 
                 

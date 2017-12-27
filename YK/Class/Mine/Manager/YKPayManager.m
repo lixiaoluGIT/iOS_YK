@@ -202,7 +202,7 @@
         
         if ([dic[@"status"] integerValue] == 200) {
             
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已提交申请" delay:1.2];
             if (onResponse) {
                 onResponse(dic);
             }

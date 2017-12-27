@@ -11,9 +11,9 @@
 
 //客服电话
 #define PHONE @"4001234123"
-#define kGtAppId @"ZPukyH0WFY94NGSfQn7TLA"
-#define kGtAppKey @"AN8prnLC497UWtiGhSaGm3"
-#define kGtAppSecret @"ce51eQiTPt82AJSr2y0cW3"
+#define kGtAppId @"ZNjebcKttj9NlUlsvD8fX4"
+#define kGtAppKey @"zvGno0honbAJdJBuJ6Tco5"
+#define kGtAppSecret @"ZiTcrGbIBe7tPaOBPeOoR1"
 
 /*----------------------------用户token--------------------------------*/
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
