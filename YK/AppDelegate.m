@@ -13,6 +13,12 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 #import "WXApiObject.h"
+#import <UMSocialCore/UMSocialCore.h>
+
+
+#import <Foundation/Foundation.h>
+#import <UShareUI/UShareUI.h>
+//#import "UMSocialShareUIConfig.h"
 
 #import <GTSDK/GeTuiSdk.h> // GetuiSdk头 件应
 // iOS10 及以上需导  UserNotifications.framework
@@ -43,18 +49,35 @@
     //个推
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注:该 法需要在主线程中调
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
-    
     // 注册 APNs
-    
     //是否允许SDK 后台运行（这个一定要设置，否则后台apns不会执行）
     [GeTuiSdk runBackgroundEnable:YES];
     // [ GTSdk ]：是否运行电子围栏Lbs功能和是否SDK主动请求用户定位
     [GeTuiSdk lbsLocationEnable:YES andUserVerify:YES];
-    
     // [ GTSdk ]：自定义渠道
     [GeTuiSdk setChannelId:@"GT-Channel"];
     [GeTuiSdk setPushModeForOff:NO];
     [self registerRemoteNotification];
+
+
+    
+    
+#pragma mark - 友盟分享相关
+    
+    /* 打开调试日志 */
+    [[UMSocialManager defaultManager] openLog:YES];
+    
+    /* 设置友盟appkey */
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"590b1f9b1c5dd07f620000e8"];//USHARE_DEMO_APPKEY
+    
+    [self configUSharePlatforms];
+    
+    [self confitUShareSettings];
+
+    
+
+
+
 //
 //    application.statusBarHidden=NO;
 //
@@ -66,6 +89,41 @@
     return YES;
 }
 
+#pragma mark - UM
+- (void)confitUShareSettings
+{
+    /*
+     * 打开图片水印
+     */
+    [UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+    
+}
+
+- (void)configUSharePlatforms
+{
+    
+    /* 设置微信的appKey和appSecret */
+//    [UMSocialWechatHandler setWXAppId:@"wxb4188a08e56b21a0" appSecret:@"h6JQEGRXMPjsA3aydxEXAzyAujzzDZNp" url:@"http://www.umeng.com/social"];
+   
+    [WXApi isWXAppInstalled];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxb4188a08e56b21a0" appSecret:@"h6JQEGRXMPjsA3aydxEXAzyAujzzDZNp" redirectURL:@"http://mobile.umeng.com/social"];
+    
+    [[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];
+    /* 设置分享到QQ互联的appID
+     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
+     */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1106110833"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+}
 #pragma mark - 用户通知(推送) _自定义方法
 
 /** 注册远程通知 */

@@ -17,6 +17,7 @@
 #define kGtAppId @"ZNjebcKttj9NlUlsvD8fX4"
 #define kGtAppKey @"zvGno0honbAJdJBuJ6Tco5"
 #define kGtAppSecret @"ZiTcrGbIBe7tPaOBPeOoR1"
+#define USHARE_APPKEY @"5a445f58f43e48135500000e"
 
 /*----------------------------用户token--------------------------------*/
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
