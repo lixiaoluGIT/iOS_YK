@@ -25,7 +25,7 @@
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认收货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKw-fk-wUY">
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认收货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKw-fk-wUY">
                         <rect key="frame" x="289.5" y="34.5" width="49.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                         <color key="textColor" red="1" green="0.42745098039215684" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,7 +92,7 @@
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预约归还" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43D-fy-Bay">
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预约归还" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43D-fy-Bay">
                         <rect key="frame" x="289.5" y="36.5" width="49.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                         <color key="textColor" red="1" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,9 +122,21 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0G-fK-bF2">
+                        <rect key="frame" x="259" y="19" width="100" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="HDX-LT-Gke"/>
+                            <constraint firstAttribute="height" constant="50" id="Z5e-8O-0LK"/>
+                        </constraints>
+                        <connections>
+                            <action selector="order:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qNH-Sx-P9X"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="43D-fy-Bay" secondAttribute="trailing" constant="20" id="2J7-pn-awT"/>
+                    <constraint firstItem="v0G-fK-bF2" firstAttribute="centerY" secondItem="43D-fy-Bay" secondAttribute="centerY" id="2dh-hz-8fk"/>
+                    <constraint firstAttribute="trailing" secondItem="v0G-fK-bF2" secondAttribute="trailing" id="7Nf-sv-cHc"/>
                     <constraint firstItem="Ia7-YC-BTc" firstAttribute="width" secondItem="wX7-It-rY2" secondAttribute="width" id="GLE-lp-35e"/>
                     <constraint firstItem="grO-HU-TBU" firstAttribute="top" secondItem="wX7-It-rY2" secondAttribute="bottom" constant="20" id="KzG-oH-VO3"/>
                     <constraint firstItem="43D-fy-Bay" firstAttribute="centerY" secondItem="grO-HU-TBU" secondAttribute="centerY" id="SRP-f6-Brx"/>

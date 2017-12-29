@@ -10,4 +10,6 @@
 
 @interface YKReturnAddressView : UITableViewCell
 
+@property (nonatomic,strong)YKAddress *address;
+
 @end

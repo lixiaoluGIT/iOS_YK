@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *validityBtn;
 @property (nonatomic,strong)UIView *backView;
 @property (nonatomic,strong)YKSelectPayView *payView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
 @property (nonatomic,assign) payMethod payMethod;
 @end
 
@@ -20,6 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if([[UIDevice currentDevice].systemVersion floatValue] <= 11.0){
+        _gap.constant = 64+40;
+    }else {
+        _gap.constant = 40;
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"押金";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];

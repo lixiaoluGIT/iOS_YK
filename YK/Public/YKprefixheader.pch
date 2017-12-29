@@ -117,8 +117,10 @@
 #define queryOrder_Url @"/order/queryOrder"
 //查询订单物流信息
 #define queryOrderSMSInfor_Url @"/sf/orderSFTrackQuery"
-//确认收货
-#define ensureReceiveOrder_Url @"/order/queryOrder"
+//确认收货...更新订单
+#define ensureReceiveOrder_Url @"/order/updateOrder"
+//预约归还
+#define ensureReceiveOrder_Url @"/order/updateOrder"
 
 /*----------------------------支付模块--------------------------------*/
 //支付宝回调接口

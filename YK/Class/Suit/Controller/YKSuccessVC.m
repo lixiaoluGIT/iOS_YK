@@ -7,6 +7,7 @@
 //
 
 #import "YKSuccessVC.h"
+#import "YKMineVC.h"
 
 @interface YKSuccessVC ()
 @property (weak, nonatomic) IBOutlet UIButton *scan;
@@ -38,7 +39,12 @@
     self.returnBtn.layer.cornerRadius = 18;
  }
 - (IBAction)scan:(id)sender {
-    
+    YKMineVC *chatVC = [[YKMineVC alloc] init];
+    chatVC.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = self.tabBarController.viewControllers[3];
+    chatVC.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.selectedViewController = nav;
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 - (IBAction)return:(id)sender {
 //    [self.navigationController popToRootViewControllerAnimated:YES];

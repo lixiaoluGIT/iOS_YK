@@ -24,6 +24,7 @@ typedef enum : NSInteger {
 @property (nonatomic,strong)NSMutableArray *totalOrderList;//全部衣袋的数据源(数组套数组结构)
 @property (nonatomic,strong)NSMutableArray *sectionArray;//存储有哪几组数据(0:待签收;1:待归还;2:已归还)
 @property (nonatomic,strong)NSString *orderNo;//订单号:(待签收,待归还只有一种)
+@property (nonatomic,strong)NSString *ID;//订单ID
 @property (nonatomic,strong)NSString *SMSStatus;//物流状态
 
 + (YKOrderManager *)sharedManager;
@@ -44,9 +45,10 @@ typedef enum : NSInteger {
 - (void)searchForSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse;
 
 //确认收货
-- (void)ensureReceiveOnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)ensureReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //预约归还
+- (void)orderReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 
 - (void)clear;

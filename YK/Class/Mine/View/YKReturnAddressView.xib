@@ -64,6 +64,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="des" destination="0oQ-O5-Uim" id="Qzq-pS-Zys"/>
+                <outlet property="name" destination="QdK-Ry-C0h" id="QbS-43-xlr"/>
+                <outlet property="phone" destination="U6v-OT-gjQ" id="EQG-Ro-lXF"/>
+                <outlet property="zone" destination="cVB-iG-3xp" id="DnL-2h-zrY"/>
+            </connections>
             <point key="canvasLocation" x="98" y="85"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="219" id="UNs-Jz-Ly8" customClass="YKReturnAddressView">

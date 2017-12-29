@@ -32,6 +32,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [NSThread sleepForTimeInterval:3.8];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

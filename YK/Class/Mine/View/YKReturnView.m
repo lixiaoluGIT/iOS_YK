@@ -8,17 +8,20 @@
 
 #import "YKReturnView.h"
 
+@interface YKReturnView()
+
+@property (weak, nonatomic) IBOutlet UILabel *timeLable;
+@end
 @implementation YKReturnView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    _timeLable.text = @"请选择";
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setTime:(NSString *)time{
+    _time = time;
+    _timeLable.text = time;
 }
 
 @end

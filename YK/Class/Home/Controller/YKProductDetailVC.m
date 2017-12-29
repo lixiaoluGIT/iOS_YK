@@ -303,7 +303,7 @@
     }
     YKYifuScanCell *scan = (YKYifuScanCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"YKYifuScanCell" forIndexPath:indexPath];
    
-    [scan.imageView sd_setImageWithURL:[NSURL URLWithString:self.product.pruductDetailImgs[indexPath.row][@"clothingImgUrl"]] placeholderImage:[UIImage imageNamed:@"首页商品图"]];
+    [scan.imageView sd_setImageWithURL:[NSURL URLWithString:self.product.pruductDetailImgs[indexPath.row][@"clothingImgUrl"]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
 
     return scan;
 }

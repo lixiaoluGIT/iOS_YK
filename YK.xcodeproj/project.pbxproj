@@ -352,6 +352,9 @@
 		C59D477E1FF4F214002208BF /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D477C1FF4F213002208BF /* GTSDK.framework */; };
 		C59D47821FF4F235002208BF /* GTExtensionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D47801FF4F234002208BF /* GTExtensionSDK.framework */; };
 		C59D47831FF4F235002208BF /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D47811FF4F234002208BF /* GTSDK.framework */; };
+		C59D47851FF4FDB8002208BF /* startt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C59D47841FF4FDB8002208BF /* startt.jpg */; };
+		C59D47871FF50016002208BF /* 563648f18f3fa.gif in Resources */ = {isa = PBXBuildFile; fileRef = C59D47861FF50016002208BF /* 563648f18f3fa.gif */; };
+		C59D478A1FF623F3002208BF /* PickViewSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = C59D47891FF623F3002208BF /* PickViewSelect.m */; };
 		C5C0F5921FF2309700A2000A /* 红.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C0F5911FF2309600A2000A /* 红.jpg */; };
 		C5E023051FD64A8B00C33629 /* YKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E023041FD64A8B00C33629 /* YKAddress.m */; };
 		C5E023081FD64AD700C33629 /* YKAddressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E023071FD64AD700C33629 /* YKAddressManager.m */; };
@@ -1086,6 +1089,10 @@
 		C59D477C1FF4F213002208BF /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
 		C59D47801FF4F234002208BF /* GTExtensionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTExtensionSDK.framework; sourceTree = "<group>"; };
 		C59D47811FF4F234002208BF /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
+		C59D47841FF4FDB8002208BF /* startt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = startt.jpg; sourceTree = "<group>"; };
+		C59D47861FF50016002208BF /* 563648f18f3fa.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 563648f18f3fa.gif; sourceTree = "<group>"; };
+		C59D47881FF623F3002208BF /* PickViewSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickViewSelect.h; sourceTree = "<group>"; };
+		C59D47891FF623F3002208BF /* PickViewSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickViewSelect.m; sourceTree = "<group>"; };
 		C5C0F5911FF2309600A2000A /* 红.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "红.jpg"; sourceTree = "<group>"; };
 		C5E023031FD64A8B00C33629 /* YKAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAddress.h; sourceTree = "<group>"; };
 		C5E023041FD64A8B00C33629 /* YKAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAddress.m; sourceTree = "<group>"; };
@@ -1704,6 +1711,8 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C59D47861FF50016002208BF /* 563648f18f3fa.gif */,
+				C59D47841FF4FDB8002208BF /* startt.jpg */,
 				C5C0F5911FF2309600A2000A /* 红.jpg */,
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C53039EF1FCC284000FB12CE /* startApp2.png */,
@@ -2163,6 +2172,8 @@
 		C525DEC21FC278C7002802AE /* MOFSPickerManager */ = {
 			isa = PBXGroup;
 			children = (
+				C59D47881FF623F3002208BF /* PickViewSelect.h */,
+				C59D47891FF623F3002208BF /* PickViewSelect.m */,
 				C525DEC31FC278C7002802AE /* AddressModel.h */,
 				C525DEC41FC278C7002802AE /* MOFSPickerView.h */,
 				C525DEC51FC278C7002802AE /* MOFSPickerManager.h */,
@@ -2655,6 +2666,7 @@
 				C52D0F9B1FC6C27900B50258 /* gapl.jpg in Resources */,
 				C525DC2E1FBAAFC1002802AE /* Assets.xcassets in Resources */,
 				C5343C821FC5474800F5132A /* YKProductDetailHeader.xib in Resources */,
+				C59D47871FF50016002208BF /* 563648f18f3fa.gif in Resources */,
 				C52D0FBB1FC7C6E600B50258 /* YKSettingVC.xib in Resources */,
 				C55D492F1FC3F40C000D2056 /* start1.jpg in Resources */,
 				C525DE1E1FBAD1AF002802AE /* YKScrollView.xib in Resources */,
@@ -2736,6 +2748,7 @@
 				C525DE621FBC2A24002802AE /* pp6.jpg in Resources */,
 				C59D47561FF4D750002208BF /* UMSocialSDKResources.bundle in Resources */,
 				C525DE501FBC28FC002802AE /* 12.jpg in Resources */,
+				C59D47851FF4FDB8002208BF /* startt.jpg in Resources */,
 				C525DE981FBD59CA002802AE /* YKMineBagCell.xib in Resources */,
 				C525DE521FBC28FC002802AE /* 8.jpg in Resources */,
 				C5FECE101FC2BA4D00D299AE /* 19.jpg in Resources */,
@@ -3010,6 +3023,7 @@
 				C525DEA81FBD9144002802AE /* YKAddressVC.m in Sources */,
 				C52D0FA81FC6D5FC00B50258 /* YKWalletButtom.m in Sources */,
 				C5343C7D1FC542FF00F5132A /* YKProductDetailVC.m in Sources */,
+				C59D478A1FF623F3002208BF /* PickViewSelect.m in Sources */,
 				C55D49221FC3CE2F000D2056 /* YKMyBagSMSCell.m in Sources */,
 				C532A6DB1FDF78A40068A31D /* YKOrder.m in Sources */,
 				C532A7501FDF8AAB0068A31D /* RSADataSigner.m in Sources */,
@@ -3259,7 +3273,7 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quchuxing.quchuxingapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3342,7 +3356,7 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quchuxing.quchuxingapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

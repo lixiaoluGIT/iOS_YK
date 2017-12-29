@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YKDepositVC">
             <connections>
+                <outlet property="gap" destination="fJi-Us-Gks" id="KCS-Ju-r9T"/>
                 <outlet property="validityBtn" destination="ihS-YJ-XKd" id="xXB-ar-4Ig"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="4qQ-Mf-arG"/>
             </connections>

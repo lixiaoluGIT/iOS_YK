@@ -138,8 +138,8 @@
                                 totalArray = listArray;
                             }else {
                                 NSArray *a = [NSArray arrayWithArray:array[index][@"orderDetailsVoList"]];
-                                for (int index=0; index<a.count; index++) {
-                                    [totalArray addObject:array[index][@"orderDetailsVoList"][index]];
+                                for (int i=0; i<a.count; i++) {
+                                    [totalArray addObject:array[index][@"orderDetailsVoList"][i]];
                                 }
                             }
                         }
@@ -149,6 +149,7 @@
                     }else {//待签收或待归还
                         listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
                         _orderNo = dic[@"data"][0][@"orderNo"];
+                        _ID = dic[@"data"][0][@"id"];
                     }
                 }else {
                     listArray = [NSMutableArray array];
@@ -233,11 +234,14 @@
     }];
 }
 
-- (void)ensureReceiveOnResponse:(void (^)(NSDictionary *dic))onResponse{
+//确认收货
+- (void)ensureReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [self clear];
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@&OrderNo=%@",ensureReceiveOrder_Url,_orderNo];
+    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,orderNo,@"3"];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -245,6 +249,26 @@
         
         if ([dic[@"status"] integerValue] == 200) {
           
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }
+    }];
+}
+
+//预约归还
+- (void)orderReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,self.ID,@"5"];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
+        
+        if ([dic[@"status"] integerValue] == 200) {
+            
             if (onResponse) {
                 onResponse(dic);
             }
@@ -266,9 +290,11 @@
         
         if ([model[@"orderStatus"] intValue] == 2){
             self.orderNo = model[@"orderNo"];
+            self.ID = model[@"id"];
            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
         }if ([model[@"orderStatus"] intValue] == 3) {//待归还
             self.orderNo = model[@"orderNo"];
+            self.ID = model[@"id"];
             [backList addObject:model[@"orderDetailsVoList"]];
         }else if([model[@"orderStatus"] intValue] == 5) {//已归还
             
@@ -330,6 +356,7 @@
     [[YKOrderManager sharedManager].totalOrderList removeAllObjects];
     [[YKOrderManager sharedManager].sectionArray removeAllObjects];
     [YKOrderManager sharedManager].orderNo = nil;
+     [YKOrderManager sharedManager].ID = nil;
 }
 
 @end

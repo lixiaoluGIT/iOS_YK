@@ -10,4 +10,6 @@
 
 @interface YKReturnView : UITableViewCell
 
+@property (nonatomic,strong)NSString *time;
+
 @end

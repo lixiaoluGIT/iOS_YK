@@ -8,17 +8,26 @@
 
 #import "YKReturnAddressView.h"
 
+@interface YKReturnAddressView()
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *phone;
+@property (weak, nonatomic) IBOutlet UILabel *zone;
+@property (weak, nonatomic) IBOutlet UILabel *des;
+
+@end
 @implementation YKReturnAddressView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setAddress:(YKAddress *)address{
+    _address = address;
+    
+    _name.text = _address.name;
+    _phone.text = _address.phone;
+    _zone.text = _address.zone;
+    _des.text = _address.detail;
 }
 
 @end

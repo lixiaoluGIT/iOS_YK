@@ -31,6 +31,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 //    [[YKOrderManager sharedManager]clear];
+    if (_bagStatus==toBack) {
+        [self searchOrders:102];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -144,6 +147,8 @@
 
 -(void)buttonAction:(UIButton *)button{
     
+    [[YKOrderManager sharedManager]clear];
+    
     self.tableView.hidden = YES;
     [self.tableView setContentOffset:CGPointMake(0, 0)];
     
@@ -172,8 +177,11 @@
 - (void)btnClick{
     if (_bagStatus==toReceive) {
         //确认收货
-        [[YKOrderManager sharedManager]ensureReceiveOnResponse:^(NSDictionary *dic) {
-            
+//        [[YKOrderManager sharedManager]ensureReceiveOnResponse:^(NSDictionary *dic) {
+        
+//        }];
+        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
+            [self searchOrders:101];
         }];
     }
     if (_bagStatus==toBack) {
@@ -301,8 +309,8 @@
         };
         //确认收货
         header.ensureReceiveBlock = ^(void){
-            [[YKOrderManager sharedManager]ensureReceiveOnResponse:^(NSDictionary *dic) {
-                
+            [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
+                 [self searchOrders:100];
             }];
         };
         //预约归还
@@ -325,12 +333,16 @@
             mycell = [[NSBundle mainBundle] loadNibNamed:@"YKSuitEnsureCell" owner:self options:nil][0];
         }
         YKSuit *suit = [[YKSuit alloc]init];
-         NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[indexPath.section]];//数据源
-        if (indexPath.section==0&&([[YKOrderManager sharedManager].sectionArray containsObject:@"0"] )) {
-            [suit initWithDictionary:array[indexPath.row]];
-        }else {
-            [suit initWithDictionary:array[0][indexPath.row]];
+        if ([YKOrderManager sharedManager].totalOrderList.count>0) {
+             NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[indexPath.section]];//数据源
+            if (indexPath.section==0&&([[YKOrderManager sharedManager].sectionArray containsObject:@"0"] )) {
+                [suit initWithDictionary:array[indexPath.row]];
+            }else {
+                [suit initWithDictionary:array[0][indexPath.row]];
+            }
         }
+        
+      
         
         mycell.suit = suit;
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
