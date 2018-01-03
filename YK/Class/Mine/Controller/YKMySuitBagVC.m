@@ -17,6 +17,7 @@
 @interface YKMySuitBagVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     YKNoDataView *NoDataView;
+    BOOL isHadOrderreceive;//是否预约订单
 }
 @property (nonatomic,strong) UIButton *Button0;
 @property (nonatomic,strong) UITableView *tableView;
@@ -141,7 +142,20 @@
     [[YKOrderManager sharedManager]searchOrderWithOrderStatus:orderStatus OnResponse:^(NSMutableArray *array) {
         [self.orderList removeAllObjects];
         self.orderList = [NSMutableArray arrayWithArray:array];
-        [weakSelf reloadUI];
+        if (orderStatus==102) {//待归还,判断是否已预约归还
+            [[YKOrderManager sharedManager]queryReceiveOrderOnResponse:^(NSDictionary *dic) {
+                NSString *s = [NSString stringWithFormat:@"%@",dic[@"data"]];
+                if ([s isEqualToString:@"该订单未预约归还"]) {//未预约归还
+                    isHadOrderreceive = NO;
+                }else {//未预约
+                    isHadOrderreceive = YES;
+                }
+                [weakSelf reloadUI];
+            }];
+//            [weakSelf reloadUI];
+        }else {
+            [weakSelf reloadUI];
+        }
     }];
 }
 
@@ -230,7 +244,14 @@
                 if (_bagStatus==toReceive) {
                     [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
                 }else {
-                    [_buttom setTitle:@"预约归还" forState:UIControlStateNormal];
+                    if (!isHadOrderreceive) {
+                        [_buttom setTitle:@"预约归还" forState:UIControlStateNormal];
+                        _buttom.userInteractionEnabled = YES;
+                    }else {
+                        [_buttom setTitle:@"等待快递员上门取件" forState:UIControlStateNormal];
+                        _buttom.userInteractionEnabled = NO;
+                    }
+                    
                 }
             }else {
                 self.tableView.frame = CGRectMake(0, 64+HEIGHT/10+15, WIDHT, HEIGHT-64-HEIGHT/10-15);

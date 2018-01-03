@@ -119,8 +119,10 @@
 #define queryOrderSMSInfor_Url @"/sf/orderSFTrackQuery"
 //确认收货...更新订单
 #define ensureReceiveOrder_Url @"/order/updateOrder"
-//预约归还
-#define ensureReceiveOrder_Url @"/order/updateOrder"
+//预约归还(下圆通订单)
+#define orderReceiveOrder_Url @"/yt/creatYTOrder"
+//查询待归还订单是否预约归还
+#define isHadOrderReceiveOrder_Url @"/yt/getYTTrackResult"
 
 /*----------------------------支付模块--------------------------------*/
 //支付宝回调接口
@@ -162,6 +164,7 @@
 #import "YKHttpClient.h"
 #import "YKAleartView.h"
 #import "YKNoDataView.h"
+#import "DDAleartView.h"
 //manager
 #import "YKHomeManager.h"
 #import "YKSearchManager.h"

@@ -30,6 +30,7 @@
     [super viewWillAppear:YES];
     [self getData];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -155,6 +156,8 @@
         NoDataView.frame = CGRectMake(0, 98+64, WIDHT,HEIGHT-162);
         self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
         [self.view addSubview:NoDataView];
+    }else {
+        [NoDataView removeFromSuperview];
     }
 
     //若会员快到期

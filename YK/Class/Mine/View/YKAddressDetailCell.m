@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *defaultPhone;
 @property (weak, nonatomic) IBOutlet UILabel *defaultAddress;
 @property (nonatomic,strong)UIButton *Button1;
+@property (weak, nonatomic) IBOutlet UIButton *btnImage;
 
 @end
 @implementation YKAddressDetailCell
@@ -39,12 +40,10 @@
 
 - (IBAction)selectBtn:(id)sender {
     UIButton *btn = (UIButton *)sender;
-
-    
     if (!btn.selected) {
-//         btn.selected = !btn.selected;
         [[YKAddressManager sharedManager]setDetaultAddressWithAddress:self.address OnResponse:^(NSDictionary *dic) {
             btn.selected = !btn.selected;
+            _btnImage.selected = btn.selected;
             if (self.selectDefaultBlock) {
                 self.selectDefaultBlock();
             }

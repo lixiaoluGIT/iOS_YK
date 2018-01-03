@@ -168,7 +168,7 @@
 
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@?sforderId=%@",queryOrderSMSInfor_Url,orderNo];
+    NSString *url = [NSString stringWithFormat:@"%@?orderNo=%@",queryOrderSMSInfor_Url,orderNo];
     
     [YKHttpClient Method:@"POST" URLString:url paramers:nil success:^(NSDictionary *dict) {
         
@@ -258,15 +258,40 @@
 }
 
 //预约归还
-- (void)orderReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)orderReceiveWithOrderNo:(NSString *)orderNo addressId:(NSString *)addressId time:(NSString *)time OnResponse:(void (^)(NSDictionary *dic))onResponse{
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,self.ID,@"5"];
-    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+    NSString *url = [NSString stringWithFormat:@"%@?orderNo=%@&addressId=%@&time=%@",orderReceiveOrder_Url,self.orderNo,addressId,time];
+    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
         
+        if ([dic[@"status"] integerValue] == 200) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    if (onResponse) {
+                        onResponse(dic);
+                    }
+                    
+                });
+                
+            });
+            
+        }
+    }];
+}
+
+//有待归还的时候查询是否已预约归还
+- (void)queryReceiveOrderOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@",isHadOrderReceiveOrder_Url,self.orderNo];
+//    NSDictionary *dic = @{@"orderId":self.orderNo};
+    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+   
         if ([dic[@"status"] integerValue] == 200) {
             
             if (onResponse) {

@@ -48,8 +48,10 @@ typedef enum : NSInteger {
 - (void)ensureReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //预约归还
-- (void)orderReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)orderReceiveWithOrderNo:(NSString *)orderNo addressId:(NSString *)addressId time:(NSString *)time OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//查询待归还是否返件
+- (void)queryReceiveOrderOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 - (void)clear;
 @end

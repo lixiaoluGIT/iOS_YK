@@ -54,6 +54,10 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
+         if ([dic[@"status"] integerValue] != 200) {
+         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"验证码错误" delay:1.2];
+         }
+        
         if ([dic[@"status"] integerValue] == 200) {
             
             //登录成功数据处理

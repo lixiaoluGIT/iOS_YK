@@ -46,6 +46,75 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    //分享弹框
+    
+//    [self appear];
+}
+
+- (NSString *)getTimeNow{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    NSString *date = [formatter stringFromDate:[NSDate date]];
+    return date;
+}
+- (void)saveCurrentTime{
+    [UD setObject:[self getTimeNow] forKey:@"lastAleartTime"];
+}
+
+//判断时间是否在一天
+- (BOOL)timeGpIsOK{
+    if ([[self getTimeNow] isEqualToString:[UD objectForKey:@"lastAleartTime"]]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)appear{
+    if ([Token length] == 0) {//未登录
+        return;
+    }
+//    if (![self timeGpIsOK]) {
+//        return;
+//    }
+    
+    
+    //如果是老会员并且会员少于7天
+    if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
+        //弹出分享
+        DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+        
+        [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"温馨提示" detailTitle:@"您还未进行芝麻认证,认证后即可享受保险服务" notitle:@"取消" yestitle:@"认证" color:mainColor type:2 cancelBlock:^{
+            
+        } ensureBlock:^{
+            
+            
+        }];
+        [[UIApplication sharedApplication].keyWindow addSubview:aleart];
+        
+        [UD setBool:YES forKey:@"appearShare"];
+        [UD synchronize];
+        
+        [self saveCurrentTime];
+    }else {
+        if ([[YKUserManager sharedManager].user.validity intValue] <= 7) {
+            //弹出分享
+            DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+            
+            [aleart showWithImage:[UIImage imageNamed:@"icon_yes"] title:@"温馨提示" detailTitle:@"您还未进行芝麻认证,认证后即可享受保险服务" notitle:@"取消" yestitle:@"认证" color:mainColor type:2 cancelBlock:^{
+                
+            } ensureBlock:^{
+                
+            }];
+            [[UIApplication sharedApplication].keyWindow addSubview:aleart];
+            [UD setBool:YES forKey:@"appearShare"];
+            [UD synchronize];
+            
+            [self saveCurrentTime];
+        }
+    }
+    
 }
 
 - (void)viewDidLoad {

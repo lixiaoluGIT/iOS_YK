@@ -88,7 +88,7 @@
                                     };
     }else {
     headField = @{
-                                 @"Content-Type":@"application/json; charset=utf-8"
+                    @"Content-Type":@"application/json; charset=utf-8"
                                };
     }
     
@@ -133,6 +133,7 @@
              [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:NO];
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"finished with error ,code: -1004" delay:2];
             
+             NSLog(@"HTTPRespose:%@%@\n%@",BaseUrl,apiName,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
             return ;
         }
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];

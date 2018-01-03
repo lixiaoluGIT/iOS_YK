@@ -43,6 +43,7 @@
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
             
         }];
+        
     }
     //微信支付
     [WXApi registerApp:@"wxb4188a08e56b21a0" withDescription:@"meng"];

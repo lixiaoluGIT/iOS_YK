@@ -44,7 +44,7 @@
                        clothingSortId:(NSInteger)clothingSortId
                            OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url = [NSString stringWithFormat:@"%@?clothingTypeId=%ld&clothingSortId=%ld",filterCloth_Url,clothingTypeId,clothingSortId];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {

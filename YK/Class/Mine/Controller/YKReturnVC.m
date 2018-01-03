@@ -112,8 +112,8 @@
         return;
     }
     
-    [[YKOrderManager sharedManager]orderReceiveWithOrderNo:@"" OnResponse:^(NSDictionary *dic) {
-        [self.navigationController popViewControllerAnimated:YES];
+    [[YKOrderManager sharedManager]orderReceiveWithOrderNo:@"" addressId:self.address.addressId time:self.timeStr OnResponse:^(NSDictionary *dic) {
+        
     }];
     
 }
@@ -202,7 +202,7 @@
 //pick实现的代理
 -(void)pickViewdelegateWith:(NSString *)dateStr AndHourStr:(NSString *)hourStr
 {
-    _timeStr = [NSString stringWithFormat:@"%@ %@",dateStr,hourStr];
+    _timeStr = [NSString stringWithFormat:@"%@%@",dateStr,hourStr];
     [tableView reloadData];
     NSLog(@"%@-%@",dateStr,hourStr);
 }

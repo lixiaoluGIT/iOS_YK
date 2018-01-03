@@ -114,10 +114,21 @@
     [self.titleWidthArray removeAllObjects];
     CGFloat totalWidth = 15;
     CGFloat btnSpace = 15;
-//    if (style == CBSegmentStyleZoom) {
-//        totalWidth = 10;
-//        btnSpace = 8;
-//    }
+    if (style == CBSegmentStyleZoom) {
+        if (WIDHT==320) {
+            totalWidth = 8;
+            btnSpace = 8;
+        }
+        if (WIDHT==375) {
+            totalWidth = 12;
+            btnSpace = 12;
+        }
+        if (WIDHT==414) {
+            totalWidth = 12;
+            btnSpace = 12;
+        }
+        
+    }
     for (NSInteger i = 0; i<titleArray.count; i++) {
 //        cache title width
         CGFloat titleWidth = [self widthOfTitle:titleArray[i] titleFont:_titleFont];
@@ -126,6 +137,16 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:btn];
         CGFloat btnW = titleWidth+20;
+        
+        if (WIDHT==320) {
+            btnW = titleWidth+14;
+        }
+        if (WIDHT==375) {
+            btnW = titleWidth+18;
+        }
+        if (WIDHT==414) {
+            btnW = titleWidth+20;
+        }
        
         btn.frame =  CGRectMake(totalWidth, 0.5, btnW, _HeaderH-0.5-2);
         btn.contentMode = UIViewContentModeCenter;
@@ -179,13 +200,32 @@
     }
     self.selectedBtn = btn;
     //TODO:需分屏幕
+    int num;
+    if (WIDHT==320) {
+       
+    }
+    if (WIDHT==375) {
+        
+    }
+    if (WIDHT==414) {
+        
+    }
     if (_categotyIds.count>5) {//数量太少不让滑动
-        CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5;
+        CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5+30;
         if (offsetX<0) {
             offsetX = 0;
         }
         if (offsetX>self.contentSize.width-self.frame.size.width) {
-            offsetX = self.contentSize.width-self.frame.size.width;
+            if (WIDHT==320) {
+                offsetX = self.contentSize.width-self.frame.size.width+120;
+            }
+            if (WIDHT==375) {
+                offsetX = self.contentSize.width-self.frame.size.width+90;
+            }
+            if (WIDHT==414) {
+                offsetX = self.contentSize.width-self.frame.size.width;
+            }
+            
         }
         [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
     }
