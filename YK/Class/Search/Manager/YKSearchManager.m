@@ -23,7 +23,7 @@
 - (void)getSelectClothPageDataWithNum:(NSInteger)Num Size:(NSInteger)Size
                       OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url = [NSString stringWithFormat:@"%@?num=1&size=%ld",selectClothPage_Url,Size];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {

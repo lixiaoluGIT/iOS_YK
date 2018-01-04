@@ -11,4 +11,5 @@
 @interface YKMySuitBagVC : UIViewController
 
 @property (nonatomic,assign)NSInteger selectedIndex;
+@property (nonatomic,assign)BOOL isFromSuccess;
 @end

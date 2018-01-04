@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YKSettingVC">
             <connections>
                 <outlet property="exitBtn" destination="kiv-um-XtB" id="oNx-0C-PQN"/>
+                <outlet property="gap" destination="hof-Yf-gFZ" id="Qcp-dg-9JF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="TQ2-hh-Nf3"/>
             </connections>
         </placeholder>
@@ -95,16 +96,6 @@
                         <action selector="exit:" destination="-1" eventType="touchUpInside" id="Uwu-3b-mMB"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utS-C0-TOO">
-                    <rect key="frame" x="0.0" y="78" width="375" height="70"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="70" id="blP-OL-mye"/>
-                    </constraints>
-                    <connections>
-                        <action selector="clear:" destination="-1" eventType="touchUpInside" id="xmn-rS-UNS"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8s-j7-PrO">
                     <rect key="frame" x="0.0" y="146" width="375" height="70"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,6 +114,16 @@
                     </constraints>
                     <connections>
                         <action selector="about:" destination="-1" eventType="touchUpInside" id="YLd-pj-L3O"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utS-C0-TOO">
+                    <rect key="frame" x="0.0" y="77.5" width="375" height="70"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="blP-OL-mye"/>
+                    </constraints>
+                    <connections>
+                        <action selector="clear:" destination="-1" eventType="touchUpInside" id="xmn-rS-UNS"/>
                     </connections>
                 </button>
             </subviews>
@@ -164,7 +165,7 @@
                 <constraint firstItem="seu-IG-aJY" firstAttribute="top" secondItem="W8s-j7-PrO" secondAttribute="bottom" id="zci-hd-yPN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="53.5" y="81.5"/>
+            <point key="canvasLocation" x="6" y="56"/>
         </view>
     </objects>
     <resources>

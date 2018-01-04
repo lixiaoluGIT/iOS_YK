@@ -24,6 +24,7 @@
     BOOL hadButtons;
 }
 
+@property (nonatomic, assign) NSInteger pageNum;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong)YKScrollView *scroll;
 @property (nonatomic, strong)YKSearchHeader *titleView;
@@ -44,7 +45,7 @@
 @property (nonatomic,strong)NSArray *brandArray;
 @property (nonatomic,strong)NSMutableArray *secondLevelCategoryList;
 @property (nonatomic,strong)NSMutableArray *thirdLevelCategoryList;
-@property (nonatomic,strong)NSArray *productList;
+@property (nonatomic,strong)NSMutableArray *productList;
 
 
 @end
@@ -77,7 +78,31 @@
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
     self.collectionView.hidden = YES;
 
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _pageNum = 0;
+        [self getData];
+    }];
+    WeakSelf(weakSelf)
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNum ++;
+        //请求更多商品
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum OnResponse:^(NSArray *array) {
+           
+            if (array.count==0) {
+                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+            }else {
+                [weakSelf.collectionView.mj_footer endRefreshing];
+                for (int i=0; i<array.count; i++) {
+                    [self.productList addObject:array[i]];
+                }
+//                [self.productList arrayByAddingObjectsFromArray:array];
+                [self.collectionView reloadData];
+            }
+        }];
+    }];
+
     //获取数据
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [self getData];
     
 }
@@ -85,6 +110,9 @@
 - (void)getData{
     [[YKSearchManager sharedManager]getSelectClothPageDataWithNum:1 Size:2 OnResponse:^(NSDictionary *dic) {
         
+        
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
         //品牌
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
         //二级类目
@@ -168,6 +196,7 @@
     WeakSelf(weakSelf)
     
     if (kind == UICollectionElementKindSectionHeader) {
+        
         UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         
         //品牌
@@ -206,8 +235,6 @@
             }
             
         }
-        
-       
         
             return head;
     }

@@ -267,6 +267,15 @@
 - (void)clear{
     [UD setObject:@"" forKey:@"token"];
     self.user = nil;
+    [UD removeObjectForKey:@"lastAleartTime"];
+}
+
+- (void)registerPushForGeTui{
+    
+}
+
+- (void)exitPushForGeTui{
+    
 }
 
 @end

@@ -362,6 +362,9 @@
 		C5E023181FDA5FF500C33629 /* NSString+FD.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E023171FDA5FF500C33629 /* NSString+FD.m */; };
 		C5E0231B1FDA601600C33629 /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E0231A1FDA601500C33629 /* pinyin.m */; };
 		C5E0231F1FDA604C00C33629 /* NSDate+FD.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E0231D1FDA604B00C33629 /* NSDate+FD.m */; };
+		C5E46EA91FFE307F002453EB /* YKShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E46EA81FFE307F002453EB /* YKShareVC.m */; };
+		C5E46EAD1FFE3FF2002453EB /* YKShareSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E46EAB1FFE3FF2002453EB /* YKShareSuccessView.m */; };
+		C5E46EAE1FFE3FF2002453EB /* YKShareSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E46EAC1FFE3FF2002453EB /* YKShareSuccessView.xib */; };
 		C5FECDE41FC2860400D299AE /* YKSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FECDE21FC2860400D299AE /* YKSuccessVC.m */; };
 		C5FECDE51FC2860400D299AE /* YKSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5FECDE31FC2860400D299AE /* YKSuccessVC.xib */; };
 		C5FECE0D1FC2BA4D00D299AE /* 33.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5FECDEF1FC2BA4000D299AE /* 33.jpg */; };
@@ -1107,6 +1110,11 @@
 		C5E0231A1FDA601500C33629 /* pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pinyin.m; sourceTree = "<group>"; };
 		C5E0231D1FDA604B00C33629 /* NSDate+FD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FD.m"; sourceTree = "<group>"; };
 		C5E0231E1FDA604C00C33629 /* NSDate+FD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FD.h"; sourceTree = "<group>"; };
+		C5E46EA71FFE307F002453EB /* YKShareVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKShareVC.h; sourceTree = "<group>"; };
+		C5E46EA81FFE307F002453EB /* YKShareVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKShareVC.m; sourceTree = "<group>"; };
+		C5E46EAA1FFE3FF2002453EB /* YKShareSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKShareSuccessView.h; sourceTree = "<group>"; };
+		C5E46EAB1FFE3FF2002453EB /* YKShareSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKShareSuccessView.m; sourceTree = "<group>"; };
+		C5E46EAC1FFE3FF2002453EB /* YKShareSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKShareSuccessView.xib; sourceTree = "<group>"; };
 		C5FECDE11FC2860400D299AE /* YKSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuccessVC.h; sourceTree = "<group>"; };
 		C5FECDE21FC2860400D299AE /* YKSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuccessVC.m; sourceTree = "<group>"; };
 		C5FECDE31FC2860400D299AE /* YKSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSuccessVC.xib; sourceTree = "<group>"; };
@@ -1701,6 +1709,11 @@
 				C52D047B1FE8F8A400633550 /* YKAleartView.m */,
 				C575053C1FFB8AC100F7E07A /* DDAleartView.h */,
 				C57505371FFB853500F7E07A /* DDAleartView.m */,
+				C5E46EA71FFE307F002453EB /* YKShareVC.h */,
+				C5E46EA81FFE307F002453EB /* YKShareVC.m */,
+				C5E46EAA1FFE3FF2002453EB /* YKShareSuccessView.h */,
+				C5E46EAB1FFE3FF2002453EB /* YKShareSuccessView.m */,
+				C5E46EAC1FFE3FF2002453EB /* YKShareSuccessView.xib */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2596,7 +2609,7 @@
 				TargetAttributes = {
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2745,6 +2758,7 @@
 				C525DE821FBC58E6002802AE /* banner1.jpg in Resources */,
 				C5FECDE51FC2860400D299AE /* YKSuccessVC.xib in Resources */,
 				C525DEB21FBD9FEE002802AE /* YKEditAddressView.xib in Resources */,
+				C5E46EAE1FFE3FF2002453EB /* YKShareSuccessView.xib in Resources */,
 				C5E023151FD95DCD00C33629 /* YKSuitEnsureCell.xib in Resources */,
 				C525DD9C1FBAB2A9002802AE /* MLEmoji_Expression.bundle in Resources */,
 				C525DE561FBC28FC002802AE /* 2.jpg in Resources */,
@@ -2957,6 +2971,7 @@
 				C525DEBB1FBEADC7002802AE /* YQAlertTableViewCell.m in Sources */,
 				C532A74C1FDF8AAB0068A31D /* NSDataEx.m in Sources */,
 				C525DD7A1FBAB2A9002802AE /* NSBundle+MJRefresh.m in Sources */,
+				C5E46EA91FFE307F002453EB /* YKShareVC.m in Sources */,
 				C525DD761FBAB2A8002802AE /* UIScrollView+MJRefresh.m in Sources */,
 				C5E0231B1FDA601600C33629 /* pinyin.m in Sources */,
 				C52D0FA11FC6CE2800B50258 /* YKWalletVC.m in Sources */,
@@ -2973,6 +2988,7 @@
 				C525DD971FBAB2A9002802AE /* MASConstraint.m in Sources */,
 				C525DD661FBAB2A8002802AE /* UIRefreshControl+AFNetworking.m in Sources */,
 				C525DD9E1FBAB2A9002802AE /* MLEmojiLabel.m in Sources */,
+				C5E46EAD1FFE3FF2002453EB /* YKShareSuccessView.m in Sources */,
 				C52D04731FE8EA9000633550 /* YyxHeaderRefresh.m in Sources */,
 				C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */,
 				C525DC781FBAB207002802AE /* ZYCollectionViewCell.m in Sources */,
@@ -3194,7 +3210,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3263,8 +3279,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "01568be0-5bec-4943-ba2c-3ae4697a3ec6";
-				PROVISIONING_PROFILE_SPECIFIER = ykDevelopmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -3276,8 +3292,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3346,8 +3362,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "14d875c6-09a8-416d-90ae-270f90febf44";
-				PROVISIONING_PROFILE_SPECIFIER = ykDistributionProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

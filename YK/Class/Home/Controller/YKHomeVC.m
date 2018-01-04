@@ -18,22 +18,20 @@
 #import "YKProductDetailVC.h"
 #import "YKBrandDetailVC.h"
 #import "YKMessageVC.h"
-
-#import <UMSocialCore/UMSocialCore.h>
-#import <Foundation/Foundation.h>
-#import <UShareUI/UShareUI.h>
+#import "YKShareVC.h"
 
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,WMHCustomScrollViewDelegate>
 
-//@property (nonatomic, strong) NSArray * imagesArr;
+@property (nonatomic, assign) NSInteger pageNum;
+
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong) NSArray *images2;
 //真实数据源
 @property (nonatomic,strong)NSArray *imagesArr;
 @property (nonatomic,strong)NSArray *brandArray;
-@property (nonatomic,strong)NSArray *productArray;
+@property (nonatomic,strong)NSMutableArray *productArray;
 
 @property (strong, nonatomic) YyxHeaderRefresh *refresh;
 @property (nonatomic,strong)YKScrollView *scroll;
@@ -49,7 +47,7 @@
     
     //分享弹框
     
-//    [self appear];
+    [self appear];
 }
 
 - (NSString *)getTimeNow{
@@ -78,43 +76,49 @@
 //    if (![self timeGpIsOK]) {
 //        return;
 //    }
-    
-    
-    //如果是老会员并且会员少于7天
-    if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
-        //弹出分享
-        DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
-        
-        [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"温馨提示" detailTitle:@"您还未进行芝麻认证,认证后即可享受保险服务" notitle:@"取消" yestitle:@"认证" color:mainColor type:2 cancelBlock:^{
-            
-        } ensureBlock:^{
-            
-            
+
+    if ([Token length]>0) {//已登录
+        [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+            //如果是老会员并且会员少于7天
+            if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
+                //弹出分享
+                        DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+                
+                        [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"" detailTitle:@"分享后立减200元" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
+                
+                        } ensureBlock:^{
+                            YKShareVC *share = [YKShareVC new];
+                            share.hidesBottomBarWhenPushed = YES;
+                            [self.navigationController pushViewController:share animated:YES];
+                
+                        }];
+                        [[UIApplication sharedApplication].keyWindow addSubview:aleart];
+                
+                        [UD setBool:YES forKey:@"appearShare"];
+                        [UD synchronize];
+                
+                [self saveCurrentTime];
+            }else {
+                if ([[YKUserManager sharedManager].user.validity intValue] <= 7) {
+                    //弹出分享
+                    DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+                    
+                    [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"" detailTitle:@"分享延长会员日期" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
+                        
+                    } ensureBlock:^{
+                        YKShareVC *share = [YKShareVC new];
+                        share.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:share animated:YES];
+                    }];
+                    [[UIApplication sharedApplication].keyWindow addSubview:aleart];
+                    [UD setBool:YES forKey:@"appearShare"];
+                    [UD synchronize];
+                    
+                    [self saveCurrentTime];
+                }
+            }
         }];
-        [[UIApplication sharedApplication].keyWindow addSubview:aleart];
-        
-        [UD setBool:YES forKey:@"appearShare"];
-        [UD synchronize];
-        
-        [self saveCurrentTime];
-    }else {
-        if ([[YKUserManager sharedManager].user.validity intValue] <= 7) {
-            //弹出分享
-            DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
-            
-            [aleart showWithImage:[UIImage imageNamed:@"icon_yes"] title:@"温馨提示" detailTitle:@"您还未进行芝麻认证,认证后即可享受保险服务" notitle:@"取消" yestitle:@"认证" color:mainColor type:2 cancelBlock:^{
-                
-            } ensureBlock:^{
-                
-            }];
-            [[UIApplication sharedApplication].keyWindow addSubview:aleart];
-            [UD setBool:YES forKey:@"appearShare"];
-            [UD synchronize];
-            
-            [self saveCurrentTime];
-        }
     }
-    
 }
 
 - (void)viewDidLoad {
@@ -123,7 +127,7 @@
     
     //请求数据
     self.images2 = [NSArray array];
-    self.images2 = @[@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg",@"5.jpg",@"6.jpg",@"36.jpg",@"8.jpg",@"9.jpg",@"10.jpg",@"11.jpg",@"12.jpg",@"13.jpg",@"14.jpg",@"15.jpg",@"16.jpg",@"17.jpg",@"18.jpg",@"19.jpg",@"20.jpg",@"21.jpg",@"22.jpg",@"23.jpg",@"24.jpg",@"25.jpg",@"26.jpg",@"27.jpg",@"28.jpg",@"29.jpg",@"30.jpg",@"31.jpg",@"32.jpg",@"33.jpg",@"34.jpg",@"35.jpg",@"36.jpg",@"37.jpg",@"38.jpg",@"39.jpg",@"40.jpg",@"41.jpg",@"42.jpg",@"43.jpg"];
+ 
     self.view.backgroundColor =[ UIColor whiteColor];
 
 
@@ -145,16 +149,33 @@ self.collectionView.dataSource = self;
 
     
     //监听tableView 偏移量
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [self dd];
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
-    self.refresh = [YyxHeaderRefresh header];
-    
-    self.refresh.tableView = self.collectionView;
-    [self dd];
-    CATWEAKSELF
-    self.refresh.beginRefreshingBlock = ^(YyxHeaderRefresh *refreshView){
-        [weakSelf dd];
-    };
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _pageNum = 0;
+       [self dd];
+    }];
+    WeakSelf(weakSelf)
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNum ++;
+        //请求更多商品
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum OnResponse:^(NSArray *array) {
+            [self.collectionView.mj_footer endRefreshing];
+            if (array.count==0) {
+                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+            }else {
+                [weakSelf.collectionView.mj_footer endRefreshing];
+                for (int i=0; i<array.count; i++) {
+                    [self.productArray addObject:array[i]];
+                }
+//                [self.productArray arrayByAddingObjectsFromArray:array];
+                [self.collectionView reloadData];
+            }
+        }];
+    }];
+
 
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -170,60 +191,11 @@ self.collectionView.dataSource = self;
 }
 
 - (void)toMessage{
-//    YKMessageVC *message = [[YKMessageVC alloc]init];
-//    message.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:message animated:YES];
-//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-//        // 根据获取的platformType确定所选平台进行下一步操作
-//        [self shareWebPageToPlatformType:platformType];
-//
-//    }];
-    
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_Qzone),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
-    
-    //显示分享面板
-    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-        // 根据获取的platformType确定所选平台进行下一步操作
-        NSLog(@"回调");
-        NSLog(@"%ld",(long)platformType);
-        NSLog(@"%@",userInfo);
-        
-        
-        //创建分享消息对象
-        UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-        
-        //创建网页内容对象
-        NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"共享贡献共荣共衣库" descr:@"哈哈哈哈哈,这是一条测试数据" thumImage:thumbURL];
-        //设置网页地址
-        shareObject.webpageUrl = @"http://p198v6g26.bkt.clouddn.com/user/2017122637869";
-        
-        //分享消息对象设置分享内容对象
-        messageObject.shareObject = shareObject;
-        
-        //调用分享接口
-        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-            NSLog(@"调用分享接口");
-            if (error) {
-                NSLog(@"调用失败%@",error);
-                UMSocialLogInfo(@"************Share fail with error %@*********",error);
-            }else{
-                NSLog(@"调用成功");
-                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-                    UMSocialShareResponse *resp = data;
-                    //分享结果消息
-                    UMSocialLogInfo(@"response message is %@",resp.message);
-                    //第三方原始返回的数据
-                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-                    
-                }else{
-                    UMSocialLogInfo(@"response data is %@",data);
-                }
-            }
-            //        [self alertWithError:error];
-        }];
-    }];
+    YKMessageVC *mes = [YKMessageVC new];
+    mes.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:mes animated:YES];
 }
+
 - (NSMutableArray *)getImageArray:(NSArray *)array{
     NSMutableArray *imageArray = [NSMutableArray array];
     for (NSDictionary *imageModel in array) {
@@ -233,14 +205,16 @@ self.collectionView.dataSource = self;
 }
 -(void)dd{
     
-    NSInteger num = 0;
-    NSInteger size = 1;
+    NSInteger num = 1;
+    NSInteger size = 04;
     [[YKHomeManager sharedManager]getMyHomePageDataWithNum:num Size:size OnResponse:^(NSDictionary *dic) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
         self.collectionView.hidden = NO;
         self.imagesArr = [NSArray arrayWithArray:dic[@"data"][@"imgList"]];
         self.imagesArr = [self getImageArray:self.imagesArr];
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
-        self.productArray = [NSArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
+        self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
        
         [self.collectionView reloadData];
         
@@ -254,42 +228,6 @@ self.collectionView.dataSource = self;
     }];
 }
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
-{
-    
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    
-    NSString *shareDetailStr = @"衣库";
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"衣库衣库" descr:shareDetailStr thumImage:[UIImage imageNamed:@"logo"]];
-    
-    //设置网页地址
-    NSString *urlString = @"";
-    //    shareObject.webpageUrl = share_travelUrl(@"");
-    shareObject.webpageUrl = urlString;
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
-    
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-        if (error) {
-            UMSocialLogInfo(@"************Share fail with error %@*********",error);
-        }else{
-            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-                UMSocialShareResponse *resp = data;
-                //分享结果消息
-                UMSocialLogInfo(@"response message is %@",resp.message);
-                //第三方原始返回的数据
-                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-                
-            }else{
-                UMSocialLogInfo(@"response data is %@",data);
-            }
-        }
-       
-    }];
-
-}
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     
     UIScrollView * scrollView = (UIScrollView *)object;

@@ -12,4 +12,5 @@
 @property (nonatomic,copy)void (^SMSBlock)(void);
 @property (nonatomic,copy)void (^ensureReceiveBlock)(void);
 @property (nonatomic,copy)void (^orderBackBlock)(void);
+@property (weak, nonatomic) IBOutlet UILabel *yuyue;
 @end

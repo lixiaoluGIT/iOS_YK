@@ -76,6 +76,7 @@
                 <outlet property="ensureReceive" destination="IKw-fk-wUY" id="eup-4W-97h"/>
                 <outlet property="orderBack" destination="43D-fy-Bay" id="R6q-19-0Re"/>
                 <outlet property="scanSMS" destination="brx-Rm-FDq" id="wBu-6j-XJh"/>
+                <outlet property="yuyue" destination="43D-fy-Bay" id="xBo-Q2-s0R"/>
             </connections>
             <point key="canvasLocation" x="70" y="-6"/>
         </tableViewCell>
@@ -123,7 +124,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0G-fK-bF2">
-                        <rect key="frame" x="259" y="19" width="100" height="50"/>
+                        <rect key="frame" x="259" y="18" width="100" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="HDX-LT-Gke"/>
                             <constraint firstAttribute="height" constant="50" id="Z5e-8O-0LK"/>

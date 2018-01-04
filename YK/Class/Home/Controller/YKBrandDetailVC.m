@@ -36,7 +36,7 @@
 @property (nonatomic,strong)NSMutableArray *imagesArr;
 @property (nonatomic,strong)NSDictionary *brand;
 @property (nonatomic,strong)NSMutableArray *secondLevelCategoryList;
-@property (nonatomic,strong)NSArray *productList;
+@property (nonatomic,strong)NSMutableArray *productList;
 
 
 
@@ -110,13 +110,19 @@
     self.title = @"品牌介绍";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 44, 44);
+    btn.frame = CGRectMake(0, 0, 20, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    }
     btn.adjustsImageWhenHighlighted = NO;
     [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -18;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+        negativeSpacer.width = -18;
+    }
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
@@ -156,7 +162,7 @@
     _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKBrandDetailHeader" owner:self options:nil][0];
 
     UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(0, 20, 44, 44);
+    btn1.frame = CGRectMake(3, 20, 44, 44);
     btn1.adjustsImageWhenHighlighted = NO;
     [btn1 setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];

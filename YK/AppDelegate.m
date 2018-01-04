@@ -32,7 +32,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [NSThread sleepForTimeInterval:3.8];
+    [NSThread sleepForTimeInterval:1];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -327,13 +327,14 @@
         }];
 
     }
+    
+    
 
-    if ([url.host isEqualToString:@"pay"]) {
-        
-        //微信
+    if ([options[UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.tencent.xin"] && [url.absoluteString containsString:@"pay"]) {
         return [WXApi handleOpenURL:url delegate:self];
+    }else{
+        return [[UMSocialManager defaultManager] handleOpenURL:url];
     }
-
     return YES;
 
 }

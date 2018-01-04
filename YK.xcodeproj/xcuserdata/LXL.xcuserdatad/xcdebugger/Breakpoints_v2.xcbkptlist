@@ -30,108 +30,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Manager/YKPayManager.m"
-            timestampString = "536052047.631312"
+            timestampString = "536758012.490224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "-onResp:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Home/Controller/YKHomeVC.m"
-            timestampString = "536667662.601017"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
-            landmarkName = "-shareWebPageToPlatformType:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Mine/Controller/YKMySuitBagVC.m"
-            timestampString = "536667662.601139"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
-            landmarkName = "-tableView:viewForHeaderInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Suit/Manager/YKOrderManager.m"
-            timestampString = "536667662.601811"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "-orderReceiveWithOrderNo:addressId:time:OnResponse:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[YKOrderManager orderReceiveWithOrderNo:OnResponse:]"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "536667663.268755"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "265"
-                  endingLineNumber = "265"
-                  offsetFromSymbolStart = "381">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__53-[YKOrderManager orderReceiveWithOrderNo:OnResponse:]_block_invoke"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "536667663.27188"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "267"
-                  endingLineNumber = "267"
-                  offsetFromSymbolStart = "47">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Suit/Manager/YKOrderManager.m"
-            timestampString = "536667662.601938"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "-orderReceiveWithOrderNo:addressId:time:OnResponse:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

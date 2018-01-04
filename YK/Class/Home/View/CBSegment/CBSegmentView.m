@@ -67,6 +67,7 @@
         _titleColor = [UIColor colorWithHexString:@"1a1a1a"];
         _titleSelectedColor = [UIColor colorWithHexString:@"ff6d6a"];
         _titleFont = 14;
+        [self setContentSize:CGSizeMake(WIDHT, 0)];
     }
     return self;
 }
@@ -88,6 +89,7 @@
      if (style == CBSegmentStyleZoom) {
          self.layer.borderColor = [UIColor colorWithHexString:@"ffffff"].CGColor;
          self.layer.borderWidth = 0;
+
      }
 //    set style
     if (style != 0) {
@@ -120,8 +122,8 @@
             btnSpace = 8;
         }
         if (WIDHT==375) {
-            totalWidth = 12;
-            btnSpace = 12;
+            totalWidth = 10;
+            btnSpace = 10;
         }
         if (WIDHT==414) {
             totalWidth = 12;
@@ -178,7 +180,7 @@
 //        }
     }
     totalWidth = totalWidth+btnSpace;
-    self.contentSize = CGSizeMake(totalWidth, 0);
+    self.contentSize = CGSizeMake(totalWidth*1.2, 0);
 }
 
 //  button click
@@ -211,16 +213,16 @@
         
     }
     if (_categotyIds.count>5) {//数量太少不让滑动
-        CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5+30;
+        CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5;
         if (offsetX<0) {
             offsetX = 0;
         }
         if (offsetX>self.contentSize.width-self.frame.size.width) {
             if (WIDHT==320) {
-                offsetX = self.contentSize.width-self.frame.size.width+120;
+                offsetX = self.contentSize.width-self.frame.size.width;
             }
             if (WIDHT==375) {
-                offsetX = self.contentSize.width-self.frame.size.width+90;
+                offsetX = self.contentSize.width-self.frame.size.width;
             }
             if (WIDHT==414) {
                 offsetX = self.contentSize.width-self.frame.size.width;

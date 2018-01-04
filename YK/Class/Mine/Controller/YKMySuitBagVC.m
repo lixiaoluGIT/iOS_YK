@@ -13,12 +13,14 @@
 #import "YKSMSInforVC.h"
 #import "YKSuitHeader.h"
 #import "YKProductDetailVC.h"
+#import "YKHomeVC.h"
 
 @interface YKMySuitBagVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     YKNoDataView *NoDataView;
     BOOL isHadOrderreceive;//是否预约订单
 }
+
 @property (nonatomic,strong) UIButton *Button0;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) UIButton *buttom;
@@ -43,13 +45,19 @@
     self.title = @"衣袋";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 44, 44);
+    btn.frame = CGRectMake(0, 0, 20, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    }
     btn.adjustsImageWhenHighlighted = NO;
     [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+        negativeSpacer.width = -18;
+    }
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
 
@@ -335,7 +343,13 @@
             }];
         };
         //预约归还
+//        if (!isHadOrderreceive) {
+            header.yuyue.text = @"等待取件";
+//        }
         header.orderBackBlock = ^(void){
+            if (isHadOrderreceive) {
+                return ;
+            }
             YKReturnVC *r = [YKReturnVC new];
             [self.navigationController pushViewController:r animated:YES];
         };
@@ -453,7 +467,16 @@
     }
 }
 - (void)leftAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_isFromSuccess) {
+        YKHomeVC *chatVC = [[YKHomeVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = self.tabBarController.viewControllers[0];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

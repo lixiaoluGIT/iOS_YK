@@ -23,7 +23,7 @@
 - (void)getMyHomePageDataWithNum:(NSInteger)Num Size:(NSInteger)Size
                       OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
     NSString *url = [NSString stringWithFormat:@"%@?num=1&size=%ld",GetHomePage_Url,Size];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
@@ -115,6 +115,26 @@
         
         if (onResponse) {
             onResponse(dic);
+        }
+        
+    }];
+}
+
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage OnResponse:(void (^)(NSArray *array))onResponse{
+    
+    NSString *url = [NSString stringWithFormat:@"%@?num=%ld",GetMoreProduct_Url,numPage];
+    
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+        if (array.count == 0) {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"暂无更多商品" delay:1.2];
+        }
+        
+        if (onResponse) {
+            onResponse(array);
         }
         
     }];

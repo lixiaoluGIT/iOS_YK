@@ -82,6 +82,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="ima" destination="7Aq-nD-nOn" id="uDU-RO-cat"/>
                 <outlet property="myBrand" destination="23z-lD-7IG" id="2en-GG-AIR"/>
                 <outlet property="myDes" destination="Dr5-5i-qvZ" id="Aru-KM-iYD"/>
                 <outlet property="myImage" destination="7Aq-nD-nOn" id="Yot-wF-K7c"/>

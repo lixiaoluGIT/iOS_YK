@@ -30,5 +30,7 @@
 
 //获取品牌列表
 - (void)getBrandListOnResponse:(void (^)(NSDictionary *dic))onResponse;
-    
+
+//请求更多商品
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage OnResponse:(void (^)(NSArray *array))onResponse;
 @end

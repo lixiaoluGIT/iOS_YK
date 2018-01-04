@@ -35,13 +35,19 @@
     self.title = @"预约归还";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 44, 44);
+    btn.frame = CGRectMake(0, 0, 20, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    }
     btn.adjustsImageWhenHighlighted = NO;
     [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;
+    negativeSpacer.width = -8;
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+        negativeSpacer.width = -18;
+    }
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
@@ -54,7 +60,7 @@
     [releaseButton setBackgroundImage:[UIImage imageNamed:@"tel"] forState:UIControlStateNormal];
     UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
     UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;
+    negativeSpacer.width = -8;
     self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
     
@@ -202,7 +208,7 @@
 //pick实现的代理
 -(void)pickViewdelegateWith:(NSString *)dateStr AndHourStr:(NSString *)hourStr
 {
-    _timeStr = [NSString stringWithFormat:@"%@%@",dateStr,hourStr];
+    _timeStr = [NSString stringWithFormat:@"%@!%@",dateStr,hourStr];
     [tableView reloadData];
     NSLog(@"%@-%@",dateStr,hourStr);
 }

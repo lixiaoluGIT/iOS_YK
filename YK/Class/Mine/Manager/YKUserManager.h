@@ -50,4 +50,11 @@
 - (void)exitLoginWithPhone:(NSString *)phone
             VetifyCode:(NSString *)vetifiCode
             OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//用户注册推送
+- (void)registerPushForGeTui;
+
+//注销推送
+- (void)exitPushForGeTui;
+
 @end

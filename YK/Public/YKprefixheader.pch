@@ -77,6 +77,8 @@
 #define GetBrandPageByCategory_Url @"/brand/getBrandPageByCategory"
 //商品详情
 #define GetProductDetail_Url @"/product/getClothingDetail"
+//分页请求更多商品(刷新商品列表)
+#define GetMoreProduct_Url @"/product/getFreshClothList"
 
 /*----------------------------选衣--------------------------------*/
 //筛选商品
@@ -165,6 +167,7 @@
 #import "YKAleartView.h"
 #import "YKNoDataView.h"
 #import "DDAleartView.h"
+#import "MJRefresh.h"
 //manager
 #import "YKHomeManager.h"
 #import "YKSearchManager.h"
