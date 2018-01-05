@@ -10,4 +10,6 @@
 
 @interface YKChongZhiBtn : UITableViewCell
 
+@property (nonatomic,copy)void (^chongzhi)(void);
+
 @end

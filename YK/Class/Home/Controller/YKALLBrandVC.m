@@ -90,15 +90,24 @@
 - (void)getBrandList{
     [[YKHomeManager sharedManager]getBrandListOnResponse:^(NSDictionary *dic) {
         
-        self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"]];
+        self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"brandBannerImgList"]];
+       
         ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
-        cycleView.imagesArr = @[self.blackLists[0][@"brandListImg"]];
+        cycleView.imagesArr =  [self getImageArray:array];;
         cycleView.delegate  = self;
         cycleView.placeHolderImageName = @"";
         self.tableView.tableHeaderView = cycleView;
         [self group:self.blackLists];
         [self.tableView reloadData];
     }];
+}
+- (NSMutableArray *)getImageArray:(NSArray *)array{
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (NSDictionary *imageModel in array) {
+        [imageArray addObject:imageModel[@"brandImgUrl"]];
+    }
+    return imageArray;
 }
 - (void)ZYCollectionViewClick:(NSInteger)index {
     NSLog(@"%ld", index);

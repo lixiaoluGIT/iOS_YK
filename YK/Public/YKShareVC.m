@@ -87,6 +87,7 @@
     [[UIApplication sharedApplication].keyWindow addSubview:close];
     close.frame = CGRectMake(WIDHT/2-20, HEIGHT-80, 40, 40) ;
     [close addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    close.hidden = YES;
 //    [close mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.centerX.equalTo(su.mas_centerX);
 //        make.bottom.equalTo(@50);
@@ -97,6 +98,7 @@
 - (void)close{
     [su removeFromSuperview];
     [backView removeFromSuperview];
+    [close removeFromSuperview];
 }
 - (void)toShare{
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
@@ -116,7 +118,7 @@
         NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
         UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"共享贡献共荣共衣库" descr:@"哈哈哈哈哈,这是一条测试数据" thumImage:thumbURL];
         //设置网页地址
-        shareObject.webpageUrl = @"http://p198v6g26.bkt.clouddn.com/user/2017122637869";
+        shareObject.webpageUrl = @"http://dingniu8.com/desk/UploadPic/2013-1/201311122394666.jpg";
         
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
@@ -130,11 +132,12 @@
                 UMSocialLogInfo(@"************Share fail with error %@*********",error);
             }else{
                 NSLog(@"调用成功");
-                //弹出分享成功的提示,告诉后台
+                //弹出分享成功的提示,告诉后台,成功后getuser
                 
                 
                 backView.hidden = NO;
                 su.hidden = NO;
+                close.hidden = NO;
                 
                 if ([data isKindOfClass:[UMSocialShareResponse class]]) {
                     UMSocialShareResponse *resp = data;

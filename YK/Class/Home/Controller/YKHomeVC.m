@@ -19,6 +19,7 @@
 #import "YKBrandDetailVC.h"
 #import "YKMessageVC.h"
 #import "YKShareVC.h"
+#import "YKLoginVC.h"
 
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,WMHCustomScrollViewDelegate>
@@ -43,83 +44,11 @@
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
+
     //分享弹框
-    
-    [self appear];
+    [[YKHomeManager sharedManager]showAleartViewToShare];
 }
 
-- (NSString *)getTimeNow{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd";
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
-    NSString *date = [formatter stringFromDate:[NSDate date]];
-    return date;
-}
-- (void)saveCurrentTime{
-    [UD setObject:[self getTimeNow] forKey:@"lastAleartTime"];
-}
-
-//判断时间是否在一天
-- (BOOL)timeGpIsOK{
-    if ([[self getTimeNow] isEqualToString:[UD objectForKey:@"lastAleartTime"]]) {
-        return NO;
-    }
-    return YES;
-}
-
-- (void)appear{
-    if ([Token length] == 0) {//未登录
-        return;
-    }
-//    if (![self timeGpIsOK]) {
-//        return;
-//    }
-
-    if ([Token length]>0) {//已登录
-        [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
-            //如果是老会员并且会员少于7天
-            if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
-                //弹出分享
-                        DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
-                
-                        [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"" detailTitle:@"分享后立减200元" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
-                
-                        } ensureBlock:^{
-                            YKShareVC *share = [YKShareVC new];
-                            share.hidesBottomBarWhenPushed = YES;
-                            [self.navigationController pushViewController:share animated:YES];
-                
-                        }];
-                        [[UIApplication sharedApplication].keyWindow addSubview:aleart];
-                
-                        [UD setBool:YES forKey:@"appearShare"];
-                        [UD synchronize];
-                
-                [self saveCurrentTime];
-            }else {
-                if ([[YKUserManager sharedManager].user.validity intValue] <= 7) {
-                    //弹出分享
-                    DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
-                    
-                    [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"" detailTitle:@"分享延长会员日期" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
-                        
-                    } ensureBlock:^{
-                        YKShareVC *share = [YKShareVC new];
-                        share.hidesBottomBarWhenPushed = YES;
-                        [self.navigationController pushViewController:share animated:YES];
-                    }];
-                    [[UIApplication sharedApplication].keyWindow addSubview:aleart];
-                    [UD setBool:YES forKey:@"appearShare"];
-                    [UD synchronize];
-                    
-                    [self saveCurrentTime];
-                }
-            }
-        }];
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -161,7 +90,7 @@ self.collectionView.dataSource = self;
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
         //请求更多商品
-        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum OnResponse:^(NSArray *array) {
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:@"" sortId:@"2" OnResponse:^(NSArray *array) {
             [self.collectionView.mj_footer endRefreshing];
             if (array.count==0) {
                 [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
@@ -170,10 +99,11 @@ self.collectionView.dataSource = self;
                 for (int i=0; i<array.count; i++) {
                     [self.productArray addObject:array[i]];
                 }
-//                [self.productArray arrayByAddingObjectsFromArray:array];
+                //                [self.productArray arrayByAddingObjectsFromArray:array];
                 [self.collectionView reloadData];
             }
         }];
+      
     }];
 
 
@@ -191,6 +121,14 @@ self.collectionView.dataSource = self;
 }
 
 - (void)toMessage{
+    if ([Token length] == 0) {
+        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+        [self presentViewController:login animated:YES completion:^{
+            
+        }];
+        login.hidesBottomBarWhenPushed = YES;
+        return;
+    }
     YKMessageVC *mes = [YKMessageVC new];
     mes.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:mes animated:YES];
@@ -267,12 +205,8 @@ self.collectionView.dataSource = self;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    
-//    if (section==0) {
+
         return CGSizeMake(WIDHT, WIDHT*0.55 +200 +60);
-//    }else {
-//         return CGSizeMake(self.view.frame.size.width, 60);
-//    }
 }
 
 #pragma mark - scrollViewDelegate
@@ -359,18 +293,5 @@ self.collectionView.dataSource = self;
     
 }
 
-//- (NSArray *)imagesArr {
-//    if (!_imagesArr) {
-//        NSString * url1 = @"http://pic.newssc.org/upload/news/20161011/1476154849151.jpg";
-//        NSString * url2 = @"http://img.mp.itc.cn/upload/20160328/f512a3a808c44b1ab9b18a96a04f46cc_th.jpg";
-//        NSString * url3 = @"http://p1.ifengimg.com/cmpp/2016/10/10/08/f2016fa9-f1ea-4da5-a0f5-ba388de46a96_size80_w550_h354.JPG";
-//        NSString * url4 = @"http://image.xinmin.cn/2016/10/11/6150190064053734729.jpg";
-//        NSString * url5 = @"http://imgtu.lishiquwen.com/20160919/63e053727778a18993545741f4028c67.jpg";
-//        NSString * url6 = @"http://imgtu.lishiquwen.com/20160919/590346287e6e45faf1070a07159314b7.jpg";
-////        _imagesArr = [NSArray arrayWithObjects: url1, url2, url3, url4, url5, url6, nil];
-//        
-//        _imagesArr = [NSArray arrayWithObjects:@"banner1.jpg",@"banner2.jpg",@"banner3.jpg",@"banner4.jpg",@"banner5.jpg",nil];
-//    }
-//    return _imagesArr;
-//}
+
 @end

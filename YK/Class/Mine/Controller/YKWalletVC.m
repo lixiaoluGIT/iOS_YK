@@ -59,9 +59,12 @@
     title.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = title;
     
-    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
-    self.navigationItem.rightBarButtonItem = rightBarItem;
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
+    //如果是老用户,显示明细
+    
+//    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
+//    self.navigationItem.rightBarButtonItem = rightBarItem;
+//    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -150,8 +153,8 @@
     if (depositStatus == 4) {//未开通
         image.hidden = YES;
         leftLabel.hidden = YES;
+       
        //去开通
-
         WeakSelf(weakSelf)
         NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
         [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"huiyuan-1"] statusDes:@"您还不是会员" hiddenBtn:NO actionTitle:@"去购买" actionBlock:^{
@@ -165,17 +168,26 @@
         self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
         [self.view addSubview:NoDataView];
     }else {
+        UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
+        self.navigationItem.rightBarButtonItem = rightBarItem;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
         [NoDataView removeFromSuperview];
     }
 
     //若会员快到期
-    YKChongZhiBtn *chongzhi = [[NSBundle mainBundle] loadNibNamed:@"YKChongZhiBtn" owner:self options:nil][0];
+   __block YKChongZhiBtn *chongzhi = [[NSBundle mainBundle] loadNibNamed:@"YKChongZhiBtn" owner:self options:nil][0];
     chongzhi.frame = CGRectMake(20, image.frame.origin.y+image.frame.size.height+20,WIDHT-40,40);
+    chongzhi.chongzhi = ^(void){
+        [self presentViewController:[YKToBeVIPVC new] animated:YES completion:^{
+            
+        }];
+    };
     [self.view addSubview:chongzhi];
     if (effectiveDay<=7 && effectiveDay!=0) {
         chongzhi.hidden = NO;
     }else {
         chongzhi.hidden = YES;
+        
     }
     
     //押金状态

@@ -34,6 +34,8 @@
 }
 
 - (void)toMsg{
-    
+    if (_ToMsgBlock) {
+        _ToMsgBlock();
+    }
 }
 @end

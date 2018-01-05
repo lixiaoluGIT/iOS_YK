@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^titleChooseBlock)(NSInteger x);
+typedef void(^titleChooseBlock)(NSString *x);
 
 typedef NS_ENUM(NSInteger, CBSegmentStyle) {
     /**

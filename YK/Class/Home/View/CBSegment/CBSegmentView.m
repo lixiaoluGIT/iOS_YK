@@ -185,8 +185,18 @@
 
 //  button click
 - (void)titleButtonSelected:(UIButton *)btn {
-    self.selectedBtn.selected = NO;
-    btn.selected = YES;
+    
+    if (self.selectedBtn == btn) {
+//        self.selectedBtn.selected = !self.selectedBtn.selected;
+        btn.selected = !btn.selected;
+    }else {
+        self.selectedBtn.selected = NO;
+        self.selectedBtn = btn;
+        btn.selected = YES;
+    }
+//    btn.selected = !btn.selected;
+//    self.selectedBtn = btn;
+
     if (_SegmentStyle == CBSegmentStyleSlider) {
         NSNumber* sliderWidth = self.titleWidthArray[btn.tag];
         [UIView animateWithDuration:0.2 animations:^{
@@ -200,18 +210,8 @@
             
         }];
     }
-    self.selectedBtn = btn;
     //TODO:需分屏幕
-    int num;
-    if (WIDHT==320) {
-       
-    }
-    if (WIDHT==375) {
-        
-    }
-    if (WIDHT==414) {
-        
-    }
+
     if (_categotyIds.count>5) {//数量太少不让滑动
         CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5;
         if (offsetX<0) {
@@ -234,7 +234,12 @@
    
     NSInteger catrgoryId = [_categotyIds[btn.tag] integerValue];
     if (self.titleChooseReturn) {
-        self.titleChooseReturn(catrgoryId);
+        if (btn.selected) {
+            self.titleChooseReturn(_categotyIds[btn.tag]);
+        }else {
+            self.titleChooseReturn(@"");
+        }
+        
     }
 }
 //  cache title width

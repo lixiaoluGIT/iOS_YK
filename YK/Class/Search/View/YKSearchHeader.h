@@ -14,7 +14,7 @@
 //@property (nonatomic,copy)void (^filterTypeBlock)(NSInteger categoryId);
 //@property (nonatomic,copy)void (^filterSortBlock)(NSInteger sortId);
 
-@property (nonatomic,copy)void (^filterBlock)(NSInteger categoryId,NSInteger sortId);
+@property (nonatomic,copy)void (^filterBlock)(NSString *categoryId,NSString *sortId);
 
 - (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList;
 @end

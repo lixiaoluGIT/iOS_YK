@@ -12,5 +12,9 @@
 
 + (YKMessageManager *)sharedManager;
 
+//获取消息通知列表列表
 - (void)getMessageListOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//获取物流消息列表
+- (void)getSMSMessageListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

@@ -22,7 +22,7 @@
                             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //品牌详情页根据类目查找相关商品
-- (void)getBrandPageByCategoryWithBrandId:(NSInteger )brandId categoryId:(NSInteger)categoryId OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)getBrandPageByCategoryWithBrandId:(NSString *)brandId categoryId:(NSString *)categoryId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //获取商品详情
 - (void)getProductDetailInforWithProductId:(NSInteger )ProductId
@@ -32,5 +32,9 @@
 - (void)getBrandListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //请求更多商品
-- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage OnResponse:(void (^)(NSArray *array))onResponse;
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId OnResponse:(void (^)(NSArray *array))onResponse;
+
+//判断弹框是否弹出
+- (void)showAleartViewToShare;
+
 @end

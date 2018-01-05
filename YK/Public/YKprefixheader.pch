@@ -14,9 +14,9 @@
 //AppID： IUK1udrw6Z5N2S7pOWfAv6
 //AppSecret： Hvg8Emt8g96lGpqLes8hw
 //AppKey： zqVUHdYjHe6mRq4wFXmHp8
-#define kGtAppId @"ZNjebcKttj9NlUlsvD8fX4"
-#define kGtAppKey @"zvGno0honbAJdJBuJ6Tco5"
-#define kGtAppSecret @"ZiTcrGbIBe7tPaOBPeOoR1"
+#define kGtAppId @"fnydpUUe1z8w436Xlu1B67"
+#define kGtAppKey @"4LA8t6ruUBAVhF0cThkiP1"
+#define kGtAppSecret @"ApOplySuOg5grR5Dn4yyG4"
 #define USHARE_APPKEY @"5a445f58f43e48135500000e"
 
 /*----------------------------用户token--------------------------------*/
@@ -65,6 +65,8 @@
 #define ChangePhone_Url @"/user/checkCaptcha"
 //更新手机号验证验证码
 #define ChangePhoneGetVetifyCode_Url @"/user/updatePhone"
+//上传推送ID
+#define upLoadPushID_Url @"/user/uploadPushId"
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页
@@ -151,6 +153,8 @@
 #define GetMessageList_Ur @"/pushMessage/queryMessage"
 
 /*----------------------------其它接口--------------------------------*/
+//分享成功的回调接口
+#define ShareSuccess_Url @""
 
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"

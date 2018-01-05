@@ -10,7 +10,10 @@
 #import "YKSelectPayView.h"
 
 @interface YKToBeVIPVC ()
-
+{
+    BOOL isShareUser;
+}
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (nonatomic,strong)UIButton *Button0;
 @property (nonatomic,strong)UIView *backView;
 @property (nonatomic,strong)YKSelectPayView *payView;
@@ -98,6 +101,7 @@
         [weakSelf.payView removeFromSuperview];
     }];
 }
+
 - (IBAction)agree:(id)sender {
     UIButton * button = (UIButton *)sender;
     button.selected = !button.selected;
@@ -172,7 +176,8 @@
     }
     
     //TODO:添加固定算法
-    if ([[YKUserManager sharedManager].user.depositEffective intValue] == 0) { //新用户
+    if ([[YKUserManager sharedManager].user.isShare intValue] == 4) { //新用户,需求改为分享用户立减
+        //TODO:判断是不是已分享过得用户,
         _liJIan.text = @"-¥200";
         if (_payType == MONTH_CARD) {
             _yuanJia.text = @"¥498";
@@ -190,7 +195,7 @@
             _total.text = @"¥1098";
         }
     }else {
-        _liJIan.text = @"已使用";
+        _liJIan.text = @"立减不可用";
         _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
         
         if (_payType == MONTH_CARD) {
@@ -256,6 +261,10 @@
             
         }];
     }];
+}
+
+- (IBAction)toShare:(id)sender {
+    
 }
 
 @end

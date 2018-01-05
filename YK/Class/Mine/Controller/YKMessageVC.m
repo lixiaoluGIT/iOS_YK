@@ -9,6 +9,7 @@
 #import "YKMessageVC.h"
 #import "YKTotalMsgView.h"
 #import "YKTotalSMSVC.h"
+#import "YKMsgDetailVc.h"
 @interface YKMessageVC ()
 
 @end
@@ -46,9 +47,13 @@
     YKTotalMsgView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKTotalMsgView" owner:self options:nil][0];
     bagCell.selectionStyle = UITableViewCellEditingStyleNone;
     bagCell.frame = CGRectMake(0, 64,WIDHT,HEIGHT-64);
+    bagCell.ToMsgBlock = ^(void){
+        [self.navigationController pushViewController:[YKMsgDetailVc new] animated:YES];
+    };
     bagCell.ToSMSBlock = ^(void){
         [self.navigationController pushViewController:[YKTotalSMSVC new] animated:YES];
     };
+    
     [self.view addSubview:bagCell];
 }
 

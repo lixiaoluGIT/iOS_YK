@@ -198,15 +198,30 @@
     CGFloat w = self.frame.size.width;
 
 
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
 
         CGRect rect;
         rect.size.height = 400;
-        rect.size.width = w-100*WIDHT/414;
+        rect.size.width = w-80*WIDHT/414;
         self.aleartView.frame = rect;
         self.aleartView.center = self.center;
     }completion:^(BOOL finished) {
-    
+        
+//        [UIView animateWithDuration:0.2 animations:^{
+//            CGRect rect;
+//            rect.size.height = 420;
+//            rect.size.width = w-90*WIDHT/414;
+//            self.aleartView.frame = rect;
+//            self.aleartView.center = self.center;
+//        }completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.1 animations:^{
+//                CGRect rect;
+//                rect.size.height = 400;
+//                rect.size.width = w-100*WIDHT/414;
+//                self.aleartView.frame = rect;
+//                self.aleartView.center = self.center;
+//            }];
+//        }];
     }];
 }
 - (void)dissmiss{

@@ -247,8 +247,8 @@
                 sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, WIDHT*0.55+100 + 30 + _scroll.Lheight, self.view.frame.size.width, 48)];
                [sliderSegmentView setTitleArray:self.titles categoryIds:self.categotyIds withStyle:CBSegmentStyleSlider];
                 sliderSegmentView.categotyIds = self.categotyIds;
-                sliderSegmentView.titleChooseReturn = ^(NSInteger catrgoryId) {
-                    [weakSelf getCategoryListByBrandId:[weakSelf.scroll.brand.brandId integerValue] categoryId:catrgoryId];
+                sliderSegmentView.titleChooseReturn = ^(NSString  *catrgoryId) {
+                    [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:catrgoryId];
                 };
                 if (!hadMakeSegment) {
                     [headerView addSubview:sliderSegmentView];
@@ -312,7 +312,8 @@
     NSLog(@"%ld", index);
 }
 
-- (void)getCategoryListByBrandId:(NSInteger)brand categoryId:(NSInteger)categoryId{
+- (void)getCategoryListByBrandId:(NSString *)brand categoryId:(NSString *)categoryId{
+    
     [[YKHomeManager sharedManager]getBrandPageByCategoryWithBrandId:brand categoryId:categoryId OnResponse:^(NSDictionary *dic) {
         self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
         [self.collectionView reloadData];

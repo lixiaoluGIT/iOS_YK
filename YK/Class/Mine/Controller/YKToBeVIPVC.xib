@@ -25,6 +25,7 @@
                 <outlet property="gap5" destination="VEH-2z-uRp" id="5u3-mH-THq"/>
                 <outlet property="height" destination="XRJ-jA-DVH" id="C2P-Ks-eDY"/>
                 <outlet property="liJIan" destination="2SY-Yz-SgU" id="lFc-V2-Saq"/>
+                <outlet property="shareBtn" destination="Kgt-dI-v9K" id="e37-pf-UhS"/>
                 <outlet property="total" destination="53E-uR-gkd" id="b7u-Kh-LsH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="2eC-2W-UmC"/>
                 <outlet property="yaJin" destination="s4O-AL-D6t" id="Go9-6g-0nx"/>
@@ -270,12 +271,23 @@
                                 <action selector="agree:" destination="-1" eventType="touchUpInside" id="RC1-CJ-bNZ"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgt-dI-v9K">
+                            <rect key="frame" x="92" y="217" width="192" height="30"/>
+                            <state key="normal" title="分享APP给好友,立减200元&gt;">
+                                <color key="titleColor" red="1" green="0.42745098039215684" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="toShare:" destination="-1" eventType="touchUpInside" id="Gvo-V2-d51"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="Kgt-dI-v9K" firstAttribute="top" secondItem="M0T-1x-pEe" secondAttribute="bottom" constant="20" id="2og-lQ-DDC"/>
                         <constraint firstItem="M0T-1x-pEe" firstAttribute="leading" secondItem="Y8r-4j-Cfu" secondAttribute="leading" constant="20" id="4fZ-2I-kdS"/>
                         <constraint firstItem="M0T-1x-pEe" firstAttribute="top" secondItem="Y8r-4j-Cfu" secondAttribute="top" constant="17" id="5aa-2U-Eh9"/>
                         <constraint firstAttribute="trailing" secondItem="M0T-1x-pEe" secondAttribute="trailing" constant="20" id="NWh-s8-iqj"/>
+                        <constraint firstItem="Kgt-dI-v9K" firstAttribute="centerX" secondItem="M0T-1x-pEe" secondAttribute="centerX" id="RTx-aj-Yaq"/>
                         <constraint firstItem="XvR-LI-a5W" firstAttribute="centerX" secondItem="Y8r-4j-Cfu" secondAttribute="centerX" id="hVI-mu-H2Z"/>
                         <constraint firstItem="Gk7-sr-Tub" firstAttribute="leading" secondItem="AOX-ZO-tOU" secondAttribute="trailing" constant="3" id="kBq-6y-dhw"/>
                         <constraint firstItem="AOX-ZO-tOU" firstAttribute="centerY" secondItem="Gk7-sr-Tub" secondAttribute="centerY" id="nlX-71-9bT"/>

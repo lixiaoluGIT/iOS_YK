@@ -30,13 +30,109 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Manager/YKPayManager.m"
-            timestampString = "536758012.490224"
+            timestampString = "536831040.455309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "-onResp:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Manager/YKMessageManager.m"
+            timestampString = "536831610.882471"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-getMessageListOnResponse:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKMessageVC.m"
+            timestampString = "536842391.510523"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-getMessageList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKMessageVC.m"
+            timestampString = "536842391.51063"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-getMessageList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Manager/YKMessageManager.m"
+            timestampString = "536831610.882659"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-getMessageListOnResponse:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YKMessageManager getMessageListOnResponse:]"
+                  moduleName = "YK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Manager/YKMessageManager.m"
+                  timestampString = "536842391.635772"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45-[YKMessageManager getMessageListOnResponse:]_block_invoke"
+                  moduleName = "YK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Manager/YKMessageManager.m"
+                  timestampString = "536842391.637919"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

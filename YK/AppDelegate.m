@@ -249,6 +249,9 @@
 - (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
     // [4-EXT-1]: 个推SDK已注册，返回clientId
     NSLog(@"\n>>[GTSdk RegisterClient]:%@\n\n", clientId);
+    //保存clientId
+    [UD setObject:clientId forKey:@"GTID"];
+    [UD synchronize];;
 }
 
 /** SDK遇到错误回调 */

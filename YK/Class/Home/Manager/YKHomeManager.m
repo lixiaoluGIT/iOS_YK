@@ -7,6 +7,7 @@
 //
 
 #import "YKHomeManager.h"
+#import "YKShareVC.h"
 
 @implementation YKHomeManager
 
@@ -61,7 +62,7 @@
     }];
 }
 
-- (void)getBrandPageByCategoryWithBrandId:(NSInteger )brandId categoryId:(NSInteger)categoryId OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)getBrandPageByCategoryWithBrandId:(NSString *)brandId categoryId:(NSString *)categoryId OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
   
@@ -120,9 +121,13 @@
     }];
 }
 
-- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage OnResponse:(void (^)(NSArray *array))onResponse{
+//分页请求
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId OnResponse:(void (^)(NSArray *array))onResponse{
     
-    NSString *url = [NSString stringWithFormat:@"%@?num=%ld",GetMoreProduct_Url,numPage];
+//    if (s) {
+//        <#statements#>
+//    }
+    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&typeId=%@&sortId=%@",GetMoreProduct_Url,numPage,typeId,sortId];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
@@ -139,4 +144,126 @@
         
     }];
 }
+
+//弹出分享提示框
+- (void)showAleartViewToShare{
+    [self appear];
+}
+
+- (NSString *)getTimeNow{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    NSString *date = [formatter stringFromDate:[NSDate date]];
+    return date;
+}
+- (void)saveCurrentTime{
+    [UD setObject:[self getTimeNow] forKey:@"lastAleartTime"];
+}
+
+//判断时间是否在一天
+- (BOOL)timeGpIsOK{
+    if ([[self getTimeNow] isEqualToString:[UD objectForKey:@"lastAleartTime"]]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)appear{
+    if ([Token length] == 0) {//未登录
+        return;
+    }
+    //    if (![self timeGpIsOK]) {
+    //        return;
+    //    }
+    
+    if ([Token length]>0) {//已登录
+        [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+            //如果已经分享过
+             if ([[YKUserManager sharedManager].user.isShare intValue] == 4) {
+                 return ;
+            }
+            //如果是老会员并且会员少于7天
+            if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
+                //弹出分享
+                DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+                
+                [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"" detailTitle:@"分享后立减200元" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
+                    
+                } ensureBlock:^{
+                    YKShareVC *share = [YKShareVC new];
+                    share.hidesBottomBarWhenPushed = YES;
+                    [[self getCurrentVC].navigationController pushViewController:share animated:YES];
+                    
+                }];
+                [[UIApplication sharedApplication].keyWindow addSubview:aleart];
+                
+                [UD setBool:YES forKey:@"appearShare"];
+                [UD synchronize];
+                
+                [self saveCurrentTime];
+            }else {
+                if ([[YKUserManager sharedManager].user.validity intValue] <= 7) {
+                    //弹出分享
+                    DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+                    
+                    [aleart showWithImage:[UIImage imageNamed:@"huiyuan-2"] title:@"" detailTitle:@"分享延长会员日期" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
+                        
+                    } ensureBlock:^{
+                        YKShareVC *share = [YKShareVC new];
+                        share.hidesBottomBarWhenPushed = YES;
+                        [[self getCurrentVC].navigationController pushViewController:share animated:YES];
+                    }];
+                    [[UIApplication sharedApplication].keyWindow addSubview:aleart];
+                    [UD setBool:YES forKey:@"appearShare"];
+                    [UD synchronize];
+                    
+                    [self saveCurrentTime];
+                }
+            }
+        }];
+    }
+}
+
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    if ([window subviews].count>0) {
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+        id nextResponder = [frontView nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]]){
+            result = nextResponder;
+        }
+        else{
+            result = window.rootViewController;
+        }
+    }
+    else{
+        result = window.rootViewController;
+    }
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [((UITabBarController*)result) selectedViewController];
+    }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [((UINavigationController*)result) visibleViewController];
+    }
+    
+    return result;
+}
+
 @end
