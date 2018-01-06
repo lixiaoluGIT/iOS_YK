@@ -119,7 +119,7 @@
     }
     
     [[YKOrderManager sharedManager]orderReceiveWithOrderNo:@"" addressId:self.address.addressId time:self.timeStr OnResponse:^(NSDictionary *dic) {
-        
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     
 }

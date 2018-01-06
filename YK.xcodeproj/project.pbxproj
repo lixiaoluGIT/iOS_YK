@@ -261,6 +261,7 @@
 		C5303A091FCEB18500FB12CE /* YKReturnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5303A081FCEB18500FB12CE /* YKReturnVC.m */; };
 		C5303A0C1FCFA28700FB12CE /* YKSuitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5303A0B1FCFA28700FB12CE /* YKSuitManager.m */; };
 		C5303A0F1FCFA4D500FB12CE /* YKSuit.m in Sources */ = {isa = PBXBuildFile; fileRef = C5303A0E1FCFA4D500FB12CE /* YKSuit.m */; };
+		C531D9512000E09A000A5A15 /* ka.png in Resources */ = {isa = PBXBuildFile; fileRef = C531D9502000E099000A5A15 /* ka.png */; };
 		C532A6D81FDF74E80068A31D /* YKOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C532A6D71FDF74E80068A31D /* YKOrderManager.m */; };
 		C532A6DB1FDF78A40068A31D /* YKOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C532A6DA1FDF78A40068A31D /* YKOrder.m */; };
 		C532A6DE1FDF881E0068A31D /* YKPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C532A6DD1FDF881E0068A31D /* YKPayManager.m */; };
@@ -862,6 +863,7 @@
 		C5303A0B1FCFA28700FB12CE /* YKSuitManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuitManager.m; sourceTree = "<group>"; };
 		C5303A0D1FCFA4D500FB12CE /* YKSuit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuit.h; sourceTree = "<group>"; };
 		C5303A0E1FCFA4D500FB12CE /* YKSuit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuit.m; sourceTree = "<group>"; };
+		C531D9502000E099000A5A15 /* ka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ka.png; path = YK/Assets.xcassets/icon/ka.imageset/ka.png; sourceTree = SOURCE_ROOT; };
 		C532A6D61FDF74E80068A31D /* YKOrderManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrderManager.h; sourceTree = "<group>"; };
 		C532A6D71FDF74E80068A31D /* YKOrderManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKOrderManager.m; sourceTree = "<group>"; };
 		C532A6D91FDF78A40068A31D /* YKOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrder.h; sourceTree = "<group>"; };
@@ -1735,6 +1737,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C531D9502000E099000A5A15 /* ka.png */,
 				C52CA76E2000C6D300ECDC80 /* WechatIMG55.jpeg */,
 				C52CA76C2000C23500ECDC80 /* ad.png */,
 				C59D47861FF50016002208BF /* 563648f18f3fa.gif */,
@@ -2796,6 +2799,7 @@
 				C5FECE1E1FC2BA4D00D299AE /* 22.jpg in Resources */,
 				C5FECE0E1FC2BA4D00D299AE /* 21.jpg in Resources */,
 				C525DE6B1FBC34B4002802AE /* YKMineheader.xib in Resources */,
+				C531D9512000E09A000A5A15 /* ka.png in Resources */,
 				C5343C991FC6B78B00F5132A /* banner7.jpg in Resources */,
 				C52D0FC51FC80D3B00B50258 /* YKToBeVIPVC.xib in Resources */,
 				C525DE0A1FBABE69002802AE /* CGQCollectionViewCell.xib in Resources */,

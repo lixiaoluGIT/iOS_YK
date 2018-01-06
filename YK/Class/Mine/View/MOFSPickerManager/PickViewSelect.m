@@ -65,7 +65,7 @@
 {
     //获取一个月之内的时间
     NSMutableArray *pickerData = [NSMutableArray array];
-    for (int i=0;i<365; i++) {
+    for (int i=1;i<365; i++) {
         NSDate *yesterday = [NSDate dateWithTimeIntervalSinceNow:+(24*60*60)*i];
         NSDateFormatter  *dateformat=[[NSDateFormatter alloc] init];
         [dateformat setDateFormat:@"YYYY-MM-dd"];
