@@ -23,7 +23,15 @@
         self.depositEffective = Dictionary[@"cardInfo"][@"depositEffective"];
         self.effective = Dictionary[@"cardInfo"][@"effective"];
         self.validity = Dictionary[@"cardInfo"][@"validity"];
-    }
+        
+        //是否分享过
+        if (Dictionary[@"userInfo"][@"isShare"] == [NSNull null]) {
+            self.isShare = @"0";
+        }else
+            self.isShare = Dictionary[@"userInfo"][@"isShare"];
+        }
+    
+    
     return self;
 }
 

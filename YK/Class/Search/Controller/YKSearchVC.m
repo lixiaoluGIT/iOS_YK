@@ -91,7 +91,7 @@
         _pageNum ++;
         //请求更多商品
         
-        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.categoryId sortId:self.sortId OnResponse:^(NSArray *array) {
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.categoryId sortId:self.sortId brandId:@"" OnResponse:^(NSArray *array) {
             
             NSLog(@"--%@,---%@,---%@",self.categoryId,self.sortId,array);
             if (array.count==0) {
@@ -289,11 +289,11 @@
 
 - (void)filterProductWithCategoryId:(NSString *)CategoryId sortId:(NSString *)sortId{
     
-    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:CategoryId sortId:sortId OnResponse:^(NSArray *array) {
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:CategoryId sortId:sortId brandId:@"" OnResponse:^(NSArray *array) {
         
         [self.productList removeAllObjects];
-//        NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
-        
+
         if (array.count==0) {
             [self.collectionView.mj_footer endRefreshingWithNoMoreData];
         }else {
@@ -303,15 +303,10 @@
             }
             [self.collectionView reloadData];
         }
-        
-        //        self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
+      
         self.collectionView.hidden = NO;
         [self.collectionView reloadData];
     }];
-//    [[YKSearchManager sharedManager]filterClothWithclothingTypeId:CategoryId clothingSortId:sortId OnResponse:^(NSDictionary *dic) {
-//
-//
-//    }];
 }
 
 

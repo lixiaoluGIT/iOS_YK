@@ -24,7 +24,8 @@
     CBSegmentView *sliderSegmentView ;
     BOOL hadMakeSegment;
 }
-//@property (nonatomic, strong) NSArray * imagesArr;
+@property (nonatomic,strong)NSString *catrgoryId;
+@property (nonatomic, assign) NSInteger pageNum;
 @property (nonatomic,strong)__block YKBrandDetailHeader *scroll;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *images;
@@ -69,9 +70,6 @@
         self.categotyIds = [NSMutableArray array];
         self.titles = [self arrayWithArray:self.secondLevelCategoryList];
         self.categotyIds = [self brandsIdarrayWithArray:self.secondLevelCategoryList];
-        
-        
-        
         //商品
         self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"]];
         
@@ -103,8 +101,8 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.alpha = 1;
     [self.collectionView removeObserver:self forKeyPath:@"contentOffset"];
-    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"品牌介绍";
@@ -158,6 +156,29 @@
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
     self.collectionView.hidden = YES;
+    
+    self.catrgoryId = @"";
+    WeakSelf(weakSelf)
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNum ++;
+//         [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:weakSelf.catrgoryId];
+        //请求更多商品
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.catrgoryId sortId:@"" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
+            [self.collectionView.mj_footer endRefreshing];
+            if (array.count==0) {
+                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+            }else {
+                [weakSelf.collectionView.mj_footer endRefreshing];
+                for (int i=0; i<array.count; i++) {
+                    [self.productList addObject:array[i]];
+                }
+               
+                [self.collectionView reloadData];
+            }
+        }];
+        
+    }];
+
     
     _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKBrandDetailHeader" owner:self options:nil][0];
 
@@ -248,6 +269,8 @@
                [sliderSegmentView setTitleArray:self.titles categoryIds:self.categotyIds withStyle:CBSegmentStyleSlider];
                 sliderSegmentView.categotyIds = self.categotyIds;
                 sliderSegmentView.titleChooseReturn = ^(NSString  *catrgoryId) {
+                    _pageNum = 0;
+                    weakSelf.catrgoryId = catrgoryId;
                     [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:catrgoryId];
                 };
                 if (!hadMakeSegment) {
@@ -314,10 +337,29 @@
 
 - (void)getCategoryListByBrandId:(NSString *)brand categoryId:(NSString *)categoryId{
     
-    [[YKHomeManager sharedManager]getBrandPageByCategoryWithBrandId:brand categoryId:categoryId OnResponse:^(NSDictionary *dic) {
-        self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:categoryId sortId:@"" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
+        
+        [self.productList removeAllObjects];
+        
+        if (array.count==0) {
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [self.collectionView.mj_footer endRefreshing];
+            for (int i=0; i<array.count; i++) {
+                [self.productList addObject:array[i]];
+            }
+            [self.collectionView reloadData];
+        }
+        
+        self.collectionView.hidden = NO;
         [self.collectionView reloadData];
     }];
+    
+//    [[YKHomeManager sharedManager]getBrandPageByCategoryWithBrandId:brand categoryId:categoryId OnResponse:^(NSDictionary *dic) {
+//        self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
+//        [self.collectionView reloadData];
+//    }];
 }
 
 @end

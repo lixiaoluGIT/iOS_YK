@@ -207,6 +207,9 @@
 		C525DED61FC278C7002802AE /* MOFSToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DECF1FC278C7002802AE /* MOFSToolbar.m */; };
 		C525DEDA1FC278CD002802AE /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DED91FC278CD002802AE /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C525DEDD1FC27922002802AE /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C525DEDC1FC27916002802AE /* libxml2.2.tbd */; };
+		C52CA76B2000BFA800ECDC80 /* DDAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C52CA7692000BFA700ECDC80 /* DDAdvertisementVC.m */; };
+		C52CA76D2000C23500ECDC80 /* ad.png in Resources */ = {isa = PBXBuildFile; fileRef = C52CA76C2000C23500ECDC80 /* ad.png */; };
+		C52CA76F2000C6D300ECDC80 /* WechatIMG55.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C52CA76E2000C6D300ECDC80 /* WechatIMG55.jpeg */; };
 		C52D04671FE8E8C600633550 /* MBProgressHUD+CustomSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04651FE8E8C500633550 /* MBProgressHUD+CustomSet.m */; };
 		C52D04681FE8E8C600633550 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04661FE8E8C500633550 /* MBProgressHUD.m */; };
 		C52D04721FE8EA9000633550 /* cat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D046E1FE8EA8F00633550 /* cat@2x.png */; };
@@ -770,6 +773,10 @@
 		C525DED81FC278CD002802AE /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		C525DED91FC278CD002802AE /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		C525DEDC1FC27916002802AE /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		C52CA7692000BFA700ECDC80 /* DDAdvertisementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAdvertisementVC.m; sourceTree = "<group>"; };
+		C52CA76A2000BFA700ECDC80 /* DDAdvertisementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAdvertisementVC.h; sourceTree = "<group>"; };
+		C52CA76C2000C23500ECDC80 /* ad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad.png; sourceTree = "<group>"; };
+		C52CA76E2000C6D300ECDC80 /* WechatIMG55.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WechatIMG55.jpeg; sourceTree = "<group>"; };
 		C52D04631FE8E8C400633550 /* MBProgressHUD+CustomSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+CustomSet.h"; sourceTree = "<group>"; };
 		C52D04641FE8E8C500633550 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C52D04651FE8E8C500633550 /* MBProgressHUD+CustomSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CustomSet.m"; sourceTree = "<group>"; };
@@ -1702,6 +1709,8 @@
 		C525DC6E1FBAB15D002802AE /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				C52CA76A2000BFA700ECDC80 /* DDAdvertisementVC.h */,
+				C52CA7692000BFA700ECDC80 /* DDAdvertisementVC.m */,
 				C52D04761FE8EB5C00633550 /* YKNoDataView.h */,
 				C52D04771FE8EB5D00633550 /* YKNoDataView.m */,
 				C52D04751FE8EB5B00633550 /* YKNoDataView.xib */,
@@ -1726,6 +1735,8 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C52CA76E2000C6D300ECDC80 /* WechatIMG55.jpeg */,
+				C52CA76C2000C23500ECDC80 /* ad.png */,
 				C59D47861FF50016002208BF /* 563648f18f3fa.gif */,
 				C59D47841FF4FDB8002208BF /* startt.jpg */,
 				C5C0F5911FF2309600A2000A /* 红.jpg */,
@@ -2614,7 +2625,7 @@
 				TargetAttributes = {
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2661,6 +2672,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C52CA76F2000C6D300ECDC80 /* WechatIMG55.jpeg in Resources */,
 				C525DE331FBC04EE002802AE /* YKSearchHeader.xib in Resources */,
 				C55D49301FC3F40C000D2056 /* start2.jpg in Resources */,
 				C525DE531FBC28FC002802AE /* 11.jpg in Resources */,
@@ -2731,6 +2743,7 @@
 				C525DE4D1FBC28FC002802AE /* 5.jpg in Resources */,
 				C525DDA01FBAB2A9002802AE /* LICENSE in Resources */,
 				C57A53B11FCBAFF70090E372 /* YKEditInforVC.xib in Resources */,
+				C52CA76D2000C23500ECDC80 /* ad.png in Resources */,
 				C5FECE251FC2BA4D00D299AE /* 29.jpg in Resources */,
 				C5FECE241FC2BA4D00D299AE /* 39.jpg in Resources */,
 				C5FECE141FC2BA4D00D299AE /* 20.jpg in Resources */,
@@ -2920,6 +2933,7 @@
 				C52D55081FFF5FCC004B52C4 /* YKMsgDetailVc.m in Sources */,
 				C525DDA71FBAB2A9002802AE /* NSString+MLExpression.m in Sources */,
 				C5E023051FD64A8B00C33629 /* YKAddress.m in Sources */,
+				C52CA76B2000BFA800ECDC80 /* DDAdvertisementVC.m in Sources */,
 				C525DE6A1FBC34B4002802AE /* YKMineheader.m in Sources */,
 				C525DDC11FBAB2A9002802AE /* UIImage+GIF.m in Sources */,
 				C525DE7B1FBC4981002802AE /* YKMineCell.m in Sources */,
@@ -3216,7 +3230,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3285,8 +3299,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "23187261-6ab7-4d0a-bae4-123a3b398c5d";
+				PROVISIONING_PROFILE_SPECIFIER = ykDevelopmentProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -3298,8 +3312,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3368,8 +3382,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "14d875c6-09a8-416d-90ae-270f90febf44";
+				PROVISIONING_PROFILE_SPECIFIER = ykDistributionProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

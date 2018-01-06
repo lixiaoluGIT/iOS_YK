@@ -92,8 +92,10 @@
         }
         if (VIPStatus==4) {//未开通
             YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-            [weakSelf presentViewController:vip animated:YES completion:^{
-                
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//            [weakSelf presentViewController:nav animated:YES completion:NULL];
+            [weakSelf presentViewController:nav animated:YES completion:^{
+
             }];
         }
     }

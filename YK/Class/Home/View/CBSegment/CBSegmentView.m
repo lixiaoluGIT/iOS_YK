@@ -198,11 +198,19 @@
 //    self.selectedBtn = btn;
 
     if (_SegmentStyle == CBSegmentStyleSlider) {
-        NSNumber* sliderWidth = self.titleWidthArray[btn.tag];
-        [UIView animateWithDuration:0.2 animations:^{
-            self.slider.cb_Width = sliderWidth.floatValue;
-            self.slider.cb_CenterX = btn.cb_CenterX;
-        }];
+        
+            NSNumber* sliderWidth = self.titleWidthArray[btn.tag];
+            [UIView animateWithDuration:0.2 animations:^{
+                self.slider.cb_Width = sliderWidth.floatValue;
+                self.slider.cb_CenterX = btn.cb_CenterX;
+            }];
+        
+       
+        if (!btn.selected) {
+            self.slider.backgroundColor = [UIColor clearColor];
+        }else {
+            self.slider.backgroundColor = mainColor;
+        }
     }else if (_SegmentStyle == CBSegmentStyleZoom) {
         [UIView animateWithDuration:0.2 animations:^{
             self.selectedBtn.transform = CGAffineTransformIdentity;
@@ -229,10 +237,11 @@
             }
             
         }
-        [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        if (btn.tag!=self.categotyIds.count-1&&btn.tag!=self.categotyIds.count-2) {
+            [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        }
     }
-   
-    NSInteger catrgoryId = [_categotyIds[btn.tag] integerValue];
+
     if (self.titleChooseReturn) {
         if (btn.selected) {
             self.titleChooseReturn(_categotyIds[btn.tag]);

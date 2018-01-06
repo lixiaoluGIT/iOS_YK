@@ -66,7 +66,7 @@
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
   
-    NSString *url = [NSString stringWithFormat:@"%@?brandId=%ld&categoryId=%ld",GetBrandPageByCategory_Url,brandId,categoryId];
+    NSString *url = [NSString stringWithFormat:@"%@?brandId=%@&categoryId=%@",GetBrandPageByCategory_Url,brandId,categoryId];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
@@ -74,7 +74,7 @@
         
         NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
         if (array.count == 0) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"暂无相关商品" delay:1.2];
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"暂无相关商品" delay:1.2];
         }
         
         if (onResponse) {
@@ -121,13 +121,10 @@
     }];
 }
 
-//分页请求
-- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId OnResponse:(void (^)(NSArray *array))onResponse{
-    
-//    if (s) {
-//        <#statements#>
-//    }
-    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&typeId=%@&sortId=%@",GetMoreProduct_Url,numPage,typeId,sortId];
+//分页请求商品
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse{
+
+    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&typeId=%@&sortId=%@&brandId=%@",GetMoreProduct_Url,numPage,typeId,sortId,brandId];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
@@ -135,7 +132,7 @@
         
         NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
         if (array.count == 0) {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"暂无更多商品" delay:1.2];
+
         }
         
         if (onResponse) {
@@ -173,14 +170,14 @@
     if ([Token length] == 0) {//未登录
         return;
     }
-    //    if (![self timeGpIsOK]) {
-    //        return;
-    //    }
+        if (![self timeGpIsOK]) {
+            return;
+        }
     
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
             //如果已经分享过
-             if ([[YKUserManager sharedManager].user.isShare intValue] == 4) {
+             if ([[YKUserManager sharedManager].user.isShare intValue] == 1) {
                  return ;
             }
             //如果是老会员并且会员少于7天

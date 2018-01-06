@@ -8,6 +8,7 @@
 
 #import "YKToBeVIPVC.h"
 #import "YKSelectPayView.h"
+#import "YKShareVC.h"
 
 @interface YKToBeVIPVC ()
 {
@@ -46,8 +47,79 @@
 
 @implementation YKToBeVIPVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+    
+    //新用户并且分享过享受立减(0未分享过,1分享过)
+    if ([[YKUserManager sharedManager].user.effective intValue] == 4
+        && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
+        
+        _shareBtn.hidden = YES;
+        _liJIan.text = @"-¥200";
+        if (_payType == MONTH_CARD) {
+            _yuanJia.text = @"¥498";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥298";
+        }
+        if (_payType == SEASON_CARD) {
+            _yuanJia.text = @"¥798";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥598";
+        }
+        if (_payType == YEAR_CARD) {
+            _yuanJia.text = @"¥1298";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥1098";
+        }
+    }else {
+        //新用户并且未分享过,可以分享
+        if ([[YKUserManager sharedManager].user.effective intValue] == 4
+            && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
+            _shareBtn.hidden = NO;
+        }else {//不是新用户,分享按钮永不显示
+            _shareBtn.hidden = YES;
+        }
+        
+        _liJIan.text = @"立减不可用";
+        _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
+        
+        if (_payType == MONTH_CARD) {
+            _yuanJia.text = @"¥498";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥498";
+        }
+        if (_payType == SEASON_CARD) {
+            _yuanJia.text = @"¥798";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥798";
+        }
+        if (_payType == YEAR_CARD) {
+            _yuanJia.text = @"¥1298";
+            _yaJin.text = @"¥299";
+            _total.text = @"¥1298";
+        }
+    }
+    if ([[YKUserManager sharedManager].user.effective intValue] == 4
+        && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
+        if (_payType==1||_payType==2||_payType==3) {
+            _shareBtn.hidden = NO;
+        }else {
+            _shareBtn.hidden = YES;
+        }
+    }else {//不是新用户,分享按钮永不显示
+        _shareBtn.hidden = YES;
+    }
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    _shareBtn.hidden = YES;
     [NC addObserver:self selector:@selector(alipayResultCurrent:) name:@"alipayres" object:nil];
     [NC addObserver:self selector:@selector(wxpayresultCurrent:) name:@"wxpaysuc" object:nil];
     if (WIDHT==320) {
@@ -129,10 +201,13 @@
 //选择会员种类
 - (IBAction)select:(id)sender {
     
-    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效
+    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
         _buttomView.hidden = NO;
-    }else {
+        _shareBtn.hidden = NO;
+        
+    }else {//押金有效(只续费)
         _buttomView.hidden = YES;
+        _shareBtn.hidden = YES;
     }
     
 
@@ -168,16 +243,17 @@
             break;
             
         default:
-            _Btn1.selected = !button.selected;
-            _btn2.selected = !button.selected;
-            _btn3.selected = !button.selected;
-            _btn4.selected = button.selected;
+            
             break;
     }
     
     //TODO:添加固定算法
-    if ([[YKUserManager sharedManager].user.isShare intValue] == 4) { //新用户,需求改为分享用户立减
-        //TODO:判断是不是已分享过得用户,
+    
+    //新用户并且分享过享受立减(0未分享过,1分享过)
+    if ([[YKUserManager sharedManager].user.effective intValue] == 4
+        && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
+      
+        _shareBtn.hidden = YES;
         _liJIan.text = @"-¥200";
         if (_payType == MONTH_CARD) {
             _yuanJia.text = @"¥498";
@@ -195,6 +271,14 @@
             _total.text = @"¥1098";
         }
     }else {
+        //新用户并且未分享过,可以分享
+        if ([[YKUserManager sharedManager].user.effective intValue] == 4
+            && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
+            _shareBtn.hidden = NO;
+        }else {//不是新用户,分享按钮永不显示
+            _shareBtn.hidden = YES;
+        }
+        
         _liJIan.text = @"立减不可用";
         _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
         
@@ -264,7 +348,7 @@
 }
 
 - (IBAction)toShare:(id)sender {
-    
+    [self.navigationController pushViewController:[YKShareVC new] animated:YES];
 }
 
 @end

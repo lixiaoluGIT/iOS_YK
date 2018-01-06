@@ -154,7 +154,7 @@
 
 /*----------------------------其它接口--------------------------------*/
 //分享成功的回调接口
-#define ShareSuccess_Url @""
+#define ShareSuccess_Url @"/user/shareInfo"
 
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"

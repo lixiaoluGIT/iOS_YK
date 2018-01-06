@@ -66,7 +66,7 @@
             
             [self saveCurrentToken:dic];//保存token
             
-            [self upLoadPushID];
+            [self upLoadPushID];//上传推送ID
             //获取当前用户信息
             [self getUserInforOnResponse:^(NSDictionary *dic) {
                 
@@ -297,8 +297,11 @@
 //通知server已分享
 - (void)shareSuccess{
     
-    [YKHttpClient Method:@"GET" apiName:ShareSuccess_Url Params:nil Completion:^(NSDictionary *dic) {
-    
+    [YKHttpClient Method:@"POST" apiName:ShareSuccess_Url Params:nil Completion:^(NSDictionary *dic) {
+        [self getUserInforOnResponse:^(NSDictionary *dic) {
+            
+        }];
     }];
 }
+
 @end

@@ -134,6 +134,7 @@
                 NSLog(@"调用成功");
                 //弹出分享成功的提示,告诉后台,成功后getuser
                 
+                [[YKUserManager sharedManager]shareSuccess];
                 
                 backView.hidden = NO;
                 su.hidden = NO;

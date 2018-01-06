@@ -149,16 +149,16 @@ NSInteger timeNum;
 - (IBAction)login:(id)sender {
     
     if (self.phoneText.text.length == 0) {
-        [smartHUD alertText:self.view alert:@"Phone number error!" delay:1];
+        [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
         return;
     }else {
         if (![steyHelper isValidatePhone:self.phoneText.text] ) {
-            [smartHUD alertText:self.view alert:@"Phone number error!" delay:1];
+            [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
             return;
         }
     }
     if (self.vetifyText.text.length == 0) {
-        [smartHUD alertText:self.view alert:@"Please fill in the SMS verification code！" delay:1];
+        [smartHUD alertText:self.view alert:@"验证码不能为空" delay:1];
         return;
     }
     

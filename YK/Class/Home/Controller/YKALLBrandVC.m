@@ -88,7 +88,27 @@
 }
 
 - (void)getBrandList{
+    
+    if ([UD valueForKey:@"brandFile"]) {
+        
+        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:[UD objectForKey:@"brandFile"]];
+        self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"brandBannerImgList"]];
+        
+        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
+        cycleView.imagesArr =  [self getImageArray:array];;
+        cycleView.delegate  = self;
+        cycleView.placeHolderImageName = @"";
+        self.tableView.tableHeaderView = cycleView;
+        [self group:self.blackLists];
+        [self.tableView reloadData];
+        return;
+    }
     [[YKHomeManager sharedManager]getBrandListOnResponse:^(NSDictionary *dic) {
+        
+        //缓存dic
+//        [UD setObject:dic forKey:@"brandFile"];
+//        [UD synchronize];
         
         self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
         NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"brandBannerImgList"]];

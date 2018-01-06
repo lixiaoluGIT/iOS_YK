@@ -23,6 +23,8 @@
 #import <GTSDK/GeTuiSdk.h> // GetuiSdk头 件应
 // iOS10 及以上需导  UserNotifications.framework
  #import <UserNotifications/UserNotifications.h>
+
+#import "DDAdvertisementVC.h"
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate>
 
 @end
@@ -37,7 +39,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [[YKMainVC alloc]init];
+    self.window.rootViewController = [[DDAdvertisementVC alloc]init];
     
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {

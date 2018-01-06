@@ -32,7 +32,7 @@
 - (void)getBrandListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //请求更多商品
-- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId OnResponse:(void (^)(NSArray *array))onResponse;
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse;
 
 //判断弹框是否弹出
 - (void)showAleartViewToShare;

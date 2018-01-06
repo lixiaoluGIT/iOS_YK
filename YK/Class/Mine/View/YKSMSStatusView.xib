@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -88,9 +89,6 @@
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dianhua" translatesAutoresizingMaskIntoConstraints="NO" id="WSk-12-StJ">
-                        <rect key="frame" x="365" y="30" width="20" height="20"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="飞毛腿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wq-ah-PTb">
                         <rect key="frame" x="106" y="31" width="43" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -125,7 +123,6 @@
                 <constraints>
                     <constraint firstItem="H5D-8F-ReM" firstAttribute="centerY" secondItem="zvI-2o-EkN" secondAttribute="centerY" id="4bj-75-9ae"/>
                     <constraint firstItem="BPn-sa-CMY" firstAttribute="leading" secondItem="zvI-2o-EkN" secondAttribute="trailing" id="AAr-X2-JVC"/>
-                    <constraint firstAttribute="trailing" secondItem="WSk-12-StJ" secondAttribute="trailing" constant="20" id="GPg-Pr-96a"/>
                     <constraint firstItem="QXI-bt-HXZ" firstAttribute="top" secondItem="nNF-ML-K3q" secondAttribute="top" id="LJA-ct-Ps6"/>
                     <constraint firstAttribute="bottom" secondItem="N6t-AI-Uqg" secondAttribute="bottom" id="LXm-Yc-ztQ"/>
                     <constraint firstAttribute="trailing" secondItem="N6t-AI-Uqg" secondAttribute="trailing" id="Lrm-qo-1A8"/>
@@ -134,12 +131,11 @@
                     <constraint firstItem="N6t-AI-Uqg" firstAttribute="leading" secondItem="nNF-ML-K3q" secondAttribute="leading" id="WXQ-Vj-60R"/>
                     <constraint firstItem="7wq-ah-PTb" firstAttribute="leading" secondItem="H5D-8F-ReM" secondAttribute="trailing" constant="10" id="X7Y-4U-mPG"/>
                     <constraint firstItem="7wq-ah-PTb" firstAttribute="centerY" secondItem="H5D-8F-ReM" secondAttribute="centerY" id="Za1-f3-0Ji"/>
-                    <constraint firstItem="WSk-12-StJ" firstAttribute="centerY" secondItem="H5D-8F-ReM" secondAttribute="centerY" id="bE5-rn-tLP"/>
                     <constraint firstItem="H5D-8F-ReM" firstAttribute="leading" secondItem="zvI-2o-EkN" secondAttribute="trailing" constant="10" id="diE-mW-ZJ4"/>
                     <constraint firstItem="BPn-sa-CMY" firstAttribute="top" secondItem="nNF-ML-K3q" secondAttribute="top" constant="10" id="gSG-b4-Dbj"/>
                     <constraint firstAttribute="bottom" secondItem="BPn-sa-CMY" secondAttribute="bottom" id="k3O-0B-ay1"/>
-                    <constraint firstItem="WSk-12-StJ" firstAttribute="leading" secondItem="BPn-sa-CMY" secondAttribute="trailing" id="lor-Gj-Yvo"/>
                     <constraint firstItem="QXI-bt-HXZ" firstAttribute="leading" secondItem="nNF-ML-K3q" secondAttribute="leading" id="n8V-ab-Ut6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="BPn-sa-CMY" secondAttribute="trailing" constant="20" id="nqf-Ts-yEG"/>
                     <constraint firstItem="zvI-2o-EkN" firstAttribute="leading" secondItem="nNF-ML-K3q" secondAttribute="leading" constant="20" id="v0m-Y0-HWD"/>
                 </constraints>
             </tableViewCellContentView>
@@ -149,7 +145,6 @@
     </objects>
     <resources>
         <image name="5.jpg" width="500" height="500"/>
-        <image name="dianhua" width="20" height="20"/>
         <image name="paisongyuan" width="18" height="18"/>
     </resources>
 </document>

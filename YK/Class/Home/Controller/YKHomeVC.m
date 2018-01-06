@@ -90,7 +90,7 @@ self.collectionView.dataSource = self;
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
         //请求更多商品
-        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:@"" sortId:@"2" OnResponse:^(NSArray *array) {
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:@"" sortId:@"2" brandId:@"" OnResponse:^(NSArray *array) {
             [self.collectionView.mj_footer endRefreshing];
             if (array.count==0) {
                 [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
@@ -99,7 +99,7 @@ self.collectionView.dataSource = self;
                 for (int i=0; i<array.count; i++) {
                     [self.productArray addObject:array[i]];
                 }
-                //                [self.productArray arrayByAddingObjectsFromArray:array];
+                
                 [self.collectionView reloadData];
             }
         }];
