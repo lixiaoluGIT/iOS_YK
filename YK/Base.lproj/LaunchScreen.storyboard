@@ -18,22 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hA4-Cj-Rxb">
-                                <rect key="frame" x="162.5" y="321.5" width="50" height="44"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="开屏" translatesAutoresizingMaskIntoConstraints="NO" id="hA4-Cj-Rxb">
+                                <rect key="frame" x="0.0" y="10" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="爱马仕的设计,衣库的价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4d-Vf-ZaD">
-                                <rect key="frame" x="90" y="389" width="196" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.42745098039215684" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hA4-Cj-Rxb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4eJ-LV-H4t"/>
                             <constraint firstItem="hA4-Cj-Rxb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5gq-EV-gGm"/>
-                            <constraint firstItem="l4d-Vf-ZaD" firstAttribute="centerX" secondItem="hA4-Cj-Rxb" secondAttribute="centerX" id="ApJ-rL-uYN"/>
-                            <constraint firstItem="l4d-Vf-ZaD" firstAttribute="top" secondItem="hA4-Cj-Rxb" secondAttribute="bottom" constant="23" id="RSf-Kv-oJn"/>
                             <constraint firstItem="hA4-Cj-Rxb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ufl-Sg-m48"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -45,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="50" height="44"/>
+        <image name="开屏" width="375" height="667"/>
     </resources>
 </document>

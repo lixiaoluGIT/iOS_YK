@@ -12,9 +12,12 @@
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import "YKShareSuccessView.h"
+#import "VTingSeaPopView.h"
 
-@interface YKShareVC ()
-{
+@interface YKShareVC ()<VTingPopItemSelectDelegate> {
+    NSMutableArray *images;
+    NSMutableArray *titles;
+    VTingSeaPopView *pop;
     UIView *backView;
     YKShareSuccessView *su ;
     UIButton *close;
@@ -63,9 +66,15 @@
     btn1.layer.cornerRadius = 20;
     btn1.backgroundColor = mainColor;
     [btn1 setTitle:@"分享这张卡片给好友" forState:UIControlStateNormal];
+    
     btn1.titleLabel.font = PingFangSC_Regular(14);
     [self.view addSubview:btn1];
     [btn1 addTarget:self action:@selector(toShare) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn2.frame = CGRectMake(0, im.frame.size.height+im.frame.origin.y+40, WIDHT, 100);
+    [btn2 addTarget:self action:@selector(toShare) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn2];
     
     backView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     backView.backgroundColor = [UIColor blackColor];
@@ -88,11 +97,17 @@
     close.frame = CGRectMake(WIDHT/2-20, HEIGHT-80, 40, 40) ;
     [close addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     close.hidden = YES;
-//    [close mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(su.mas_centerX);
-//        make.bottom.equalTo(@50);
-//        make.height.width.equalTo(@30);
-//    }];
+
+    images = [NSMutableArray array];
+    titles = [NSMutableArray arrayWithObjects:@"微信",@"朋友圈", nil];
+    
+    for (int i = 0; i<2; i++) {
+        if (i==0) {
+            [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"weixin-1"]]];
+        }else{
+            [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"pengyouquan"]]];
+        }
+    }
     
 }
 - (void)close{
@@ -104,26 +119,11 @@
 - (void)toShare{
     //弹出两种方式
     
-    WXMediaMessage *message = [WXMediaMessage message];
-    [message setThumbImage:[UIImage imageNamed:@"logo"]];
-    //缩略图
-
-   
     
-    WXImageObject *ext = [WXImageObject object];
-    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
-    ext.imageData  = [NSData dataWithContentsOfFile:filePath];
-    UIImage *image = [UIImage imageWithData:ext.imageData];
-    ext.imageData  = UIImagePNGRepresentation(image);
-    
-    message.mediaObject = ext;
-    
-    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-    req.bText   = NO;
-    req.message = message;
-    req.scene   = WXSceneTimeline;
-    
-    [WXApi sendReq:req];
+    pop = [[VTingSeaPopView alloc] initWithButtonBGImageArr:images andButtonBGT:titles];
+    [[UIApplication sharedApplication].keyWindow addSubview:pop];
+    pop.delegate = self;
+    [pop show];
     
 //    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
 //
@@ -181,6 +181,32 @@
 }
 
 
+#pragma mark delegate
+-(void)itemDidSelected:(NSInteger)index {
+    
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:[UIImage imageNamed:@"logo"]];
+  
+    WXImageObject *ext = [WXImageObject object];
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
+    ext.imageData  = [NSData dataWithContentsOfFile:filePath];
+    UIImage *image = [UIImage imageWithData:ext.imageData];
+    ext.imageData  = UIImagePNGRepresentation(image);
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    req.bText   = NO;
+    req.message = message;
+    if (index==0) {
+         req.scene   = WXSceneSession ;
+    }else {
+        req.scene   = WXSceneTimeline ;
+    }
+   
+    
+    [WXApi sendReq:req];
+}
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }

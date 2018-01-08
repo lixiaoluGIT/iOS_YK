@@ -51,14 +51,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-p7-v0l">
-                        <rect key="frame" x="57" y="53.5" width="383" height="48"/>
+                        <rect key="frame" x="51" y="53.5" width="389" height="48"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="yGe-Mp-8UX"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oyt-0N-872">
-                        <rect key="frame" x="57" y="87" width="383" height="48"/>
+                        <rect key="frame" x="51" y="87" width="389" height="48"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="FBR-eh-kgM"/>
@@ -73,7 +73,7 @@
                     <constraint firstItem="hcp-p7-v0l" firstAttribute="centerY" secondItem="Qhp-ST-fPW" secondAttribute="centerY" id="IIT-Td-VsI"/>
                     <constraint firstAttribute="trailing" secondItem="hcp-p7-v0l" secondAttribute="trailing" id="Mg5-u7-Q4D"/>
                     <constraint firstItem="YL9-dh-mPw" firstAttribute="leading" secondItem="74N-co-ViQ" secondAttribute="trailing" constant="5" id="P4r-Is-LMh"/>
-                    <constraint firstItem="hcp-p7-v0l" firstAttribute="leading" secondItem="Qhp-ST-fPW" secondAttribute="trailing" constant="16" id="R8F-tp-lRC"/>
+                    <constraint firstItem="hcp-p7-v0l" firstAttribute="leading" secondItem="Qhp-ST-fPW" secondAttribute="trailing" constant="10" id="R8F-tp-lRC"/>
                     <constraint firstItem="pKX-hx-Dkr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Rpo-sC-0nF"/>
                     <constraint firstItem="74N-co-ViQ" firstAttribute="top" secondItem="pKX-hx-Dkr" secondAttribute="bottom" constant="22" id="Tyu-dA-4nQ"/>
                     <constraint firstItem="Oyt-0N-872" firstAttribute="centerY" secondItem="Lgr-1H-Tke" secondAttribute="centerY" id="Uy4-6b-KZ9"/>

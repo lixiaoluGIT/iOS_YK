@@ -64,7 +64,7 @@
         
         _HeaderH = frame.size.height;
         _SegmentStyle = CBSegmentStyleSlider;
-        _titleColor = [UIColor colorWithHexString:@"1a1a1a"];
+        _titleColor = [UIColor colorWithHexString:@"676869"];
         _titleSelectedColor = [UIColor colorWithHexString:@"ff6d6a"];
         _titleFont = 14;
         [self setContentSize:CGSizeMake(WIDHT, 0)];
@@ -168,16 +168,17 @@
         [btn addTarget:self action:@selector(titleButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
         totalWidth = totalWidth+btnW+btnSpace;
 
-//        if (i == 0) {
-//            btn.selected = YES;
-//            self.selectedBtn = btn;
-//            if (_SegmentStyle == CBSegmentStyleSlider) {
-//                self.slider.cb_Width = titleWidth;
-//                self.slider.cb_CenterX = btn.cb_CenterX;
-//            }else if (_SegmentStyle == CBSegmentStyleZoom) {
+        if (i == 0) {
+            btn.selected = YES;
+            self.selectedBtn = btn;
+            if (_SegmentStyle == CBSegmentStyleSlider) {
+                self.slider.cb_Width = titleWidth;
+                self.slider.cb_CenterX = btn.cb_CenterX;
+            }else if (_SegmentStyle == CBSegmentStyleZoom) {
 //                self.selectedBtn.transform = CGAffineTransformMakeScale(1.3, 1.3);
-//            }
-//        }
+                self.selectedBtn.titleLabel.font = PingFangSC_Regular(14);
+            }
+        }
     }
     totalWidth = totalWidth+btnSpace;
     self.contentSize = CGSizeMake(totalWidth*1.2, 0);
@@ -188,7 +189,8 @@
     
     if (self.selectedBtn == btn) {
 //        self.selectedBtn.selected = !self.selectedBtn.selected;
-        btn.selected = !btn.selected;
+//        btn.selected = !btn.selected;
+        return;
     }else {
         self.selectedBtn.selected = NO;
         self.selectedBtn = btn;
@@ -206,15 +208,15 @@
             }];
         
        
-        if (!btn.selected) {
-            self.slider.backgroundColor = [UIColor clearColor];
-        }else {
-            self.slider.backgroundColor = mainColor;
-        }
+//        if (!btn.selected) {
+//            self.slider.backgroundColor = [UIColor clearColor];
+//        }else {
+//            self.slider.backgroundColor = mainColor;
+//        }
     }else if (_SegmentStyle == CBSegmentStyleZoom) {
         [UIView animateWithDuration:0.2 animations:^{
-            self.selectedBtn.transform = CGAffineTransformIdentity;
-            btn.transform = CGAffineTransformMakeScale(1.0, 1.0);
+//            self.selectedBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+//            btn.transform = CGAffineTransformMakeScale(1.3, 1.3);
             
         }];
     }
@@ -237,11 +239,22 @@
             }
             
         }
+        
+      
+   
         if (btn.tag!=self.categotyIds.count-1&&btn.tag!=self.categotyIds.count-2) {
             [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        }else {
+            if (WIDHT!=414) {
+                [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+            }else {
+                
+            }
         }
+        
+        
     }
-
+    
     if (self.titleChooseReturn) {
         if (btn.selected) {
             self.titleChooseReturn(_categotyIds[btn.tag]);
@@ -250,6 +263,8 @@
         }
         
     }
+
+
 }
 //  cache title width
 - (CGFloat)widthOfTitle:(NSString *)title titleFont:(CGFloat)titleFont {

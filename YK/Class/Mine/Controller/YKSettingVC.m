@@ -8,6 +8,7 @@
 
 #import "YKSettingVC.h"
 #import "YKHomeVC.h"
+#import "YKWebVC.h"
 
 @interface YKSettingVC ()
 @property (weak, nonatomic) IBOutlet UIButton *exitBtn;
@@ -73,7 +74,10 @@
     [smartHUD alertText:self.view alert:@"检查更新" delay:1.2];
 }
 - (IBAction)about:(id)sender {
-    [smartHUD alertText:self.view alert:@"关于我们" delay:1.2];
+    YKWebVC *web = [YKWebVC new];
+    web.imageName = @"";
+    web.titleStr = @"关于我们";
+    [self.navigationController pushViewController:web animated:YES];
 }
 
 @end

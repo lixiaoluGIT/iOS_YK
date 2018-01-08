@@ -39,7 +39,14 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [[DDAdvertisementVC alloc]init];
+    if (![UD boolForKey:@"notFirst"]) {
+    
+        _window.rootViewController = [[WelcomeViewController alloc] init];
+    }
+    else{
+        self.window.rootViewController = [[DDAdvertisementVC alloc]init];
+    }
+    
     
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
@@ -335,7 +342,7 @@
     
     
 
-    if ([options[UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.tencent.xin"] && [url.absoluteString containsString:@"pay"]) {
+    if ([options[UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.tencent.xin"]) {
         return [WXApi handleOpenURL:url delegate:self];
     }else{
         return [[UMSocialManager defaultManager] handleOpenURL:url];
@@ -350,10 +357,29 @@
     
     NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
     NSString *strTitle;
-    
+
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+        
+        SendMessageToWXResp *response = (SendMessageToWXResp *)resp;
+        NSLog(@"error code %d  error msg %@  lang %@   country %@",response.errCode,response.errStr,response.lang,response.country);
+        
+        if (resp.errCode == 0) {  //成功。
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"分享成功" delay:2];
+            [[YKUserManager sharedManager]shareSuccess];
+            //这里处理回调的方法 。 通过代理吧对应的登录消息传送过去。
+//            if (_wxDelegate) {
+//                if([_wxDelegate respondsToSelector:@selector(shareSuccessByCode:)]){
+//                    [_wxDelegate shareSuccessByCode:response.errCode];
+//                }
+//            }
+        }else{ //失败
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"分享失败" delay:2];
+//            NSLog(@"error %@",resp.errStr);
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"分享失败" message:[NSString stringWithFormat:@"reason : %@",resp.errStr] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//            [alert show];
+        }
     }
     
     

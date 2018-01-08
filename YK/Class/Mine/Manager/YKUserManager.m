@@ -22,6 +22,7 @@
 - (void)getVetifyCodeWithPhone:(NSString *)phone
                     OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     NSString *url = [NSString stringWithFormat:@"%@?phone=%@",GetVetifyCode_Url,phone];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {

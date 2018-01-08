@@ -8,6 +8,7 @@
 
 #import "YKNormalQuestionVC.h"
 #import "YKMineCell.h"
+#import "YKWebVC.h"
 
 @interface YKNormalQuestionVC ()
 @property (nonatomic,strong)NSArray *titles;
@@ -125,9 +126,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        //        YKMySuitBagVC *suit = [YKMySuitBagVC new];
-        //        suit.hidesBottomBarWhenPushed = YES;
-        //        [self.navigationController pushViewController:suit animated:YES];
+        YKWebVC *web = [YKWebVC new];
+        web.imageName = @"";
+        web.titleStr = self.titles[indexPath.row];
+        [self.navigationController pushViewController:web animated:YES];
     }
 }
 
