@@ -13,6 +13,7 @@
 @interface YKNormalQuestionVC ()
 @property (nonatomic,strong)NSArray *titles;
 @property (nonatomic,strong)NSArray *images;
+@property (nonatomic,strong)NSArray *desImages;
 @end
 
 @implementation YKNormalQuestionVC
@@ -55,7 +56,10 @@
     self.images = [NSArray array];
     self.images = @[@"zuyi",@"huanyi",@"wuliu-1",@"dingdanwenti",@"shangpinwenti",@"qitawenti",@"qingxi"];
     self.titles = [NSArray array];
-    self.titles = @[@"租衣规则",@"还衣规则",@"物流配送",@"订单问题",@"商品问题",@"其他问题",@"了解清洗"];
+    self.titles = @[@"租衣规则",@"还衣规则",@"物流配送",@"订单问题",@"清洗服务"];
+    
+    self.desImages = [NSArray array];
+    self.desImages = @[@"租衣规则",@"还衣规则",@"物流配送",@"订单问题",@"清洗服务"];
 }
 
 - (void)leftAction{
@@ -127,7 +131,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         YKWebVC *web = [YKWebVC new];
-        web.imageName = @"";
+        web.imageName = self.desImages[indexPath.row];
         web.titleStr = self.titles[indexPath.row];
         [self.navigationController pushViewController:web animated:YES];
     }

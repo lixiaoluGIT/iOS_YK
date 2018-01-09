@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -85,7 +84,7 @@
                         <rect key="frame" x="305" y="120" width="14" height="14"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VS2-3p-VnG">
-                        <rect key="frame" x="0.0" y="104" width="120" height="44.5"/>
+                        <rect key="frame" x="0.0" y="103.5" width="120" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="Xtv-m8-S2A"/>
                         </constraints>
@@ -122,7 +121,6 @@
                     <constraint firstItem="F71-iV-Me2" firstAttribute="leading" secondItem="823-5H-csp" secondAttribute="leading" id="yqY-V8-kJe"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="btnImage" destination="ZMn-rq-Fy1" id="sL5-pz-b7e"/>
                 <outlet property="defaultAddress" destination="pEE-SS-R83" id="aoe-64-KB3"/>
@@ -185,7 +183,6 @@
                     <constraint firstAttribute="trailing" secondItem="qZ1-rS-vxD" secondAttribute="trailing" constant="20" id="zH0-4e-6aV"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="VnG-Ly-6kd"/>
             <connections>
                 <outlet property="detailAddress" destination="pEE-SS-R83" id="hYt-2P-J2g"/>
                 <outlet property="name" destination="ZVN-qc-6uO" id="EL9-iw-V3U"/>

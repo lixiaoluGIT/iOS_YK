@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"衣库";
+    self.title = @"衣庫";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -188,8 +188,8 @@
     [message setThumbImage:[UIImage imageNamed:@"logo"]];
   
     WXImageObject *ext = [WXImageObject object];
-    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
-    ext.imageData  = [NSData dataWithContentsOfFile:filePath];
+//    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
+//    ext.imageData  = [NSData dataWithContentsOfFile:filePath];
     UIImage *image = [UIImage imageWithData:ext.imageData];
     ext.imageData  = UIImagePNGRepresentation(image);
     

@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, SearchType) {
 @property (nonatomic, strong) MOFSToolbar *toolBar;
 @property (nonatomic, strong) UIView *containerView;
 
-- (void)showMOFSAddressPickerCommitBlock:(void(^)(NSString *address, NSString *zipcode))commitBlock cancelBlock:(void(^)())cancelBlock;
+- (void)showMOFSAddressPickerCommitBlock:(void(^)(NSString *address, NSString *zipcode))commitBlock cancelBlock:(void(^)(void))cancelBlock;
 
 - (void)searchType:(SearchType)searchType key:(NSString *)key block:(void(^)(NSString *result))block;
 

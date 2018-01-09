@@ -91,7 +91,7 @@
             status=0;//全部衣袋
             break;
         case 101:
-            status=2;//待签收
+            status=2;//待签收(待发货,待签收)
             break;
         case 102:
             status=3;//待归还
@@ -105,6 +105,34 @@
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
+    
+    //待签收:包括待发货和待签收
+    if (status==2) {
+        status=1;
+        NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
+        [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
+            NSMutableArray *listArray;
+            NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
+            if (array.count!=0) {
+                
+                _isOnRoad = NO;//未发货
+                
+            listArray = [NSMutableArray arrayWithArray:array[0][@"orderDetailsVoList"]];
+            _orderNo = dic[@"data"][0][@"orderNo"];
+            _ID = dic[@"data"][0][@"id"];
+
+            if (listArray.count!=0) {
+                if (onResponse) {
+                    onResponse(listArray);
+                }
+                return;
+            }
+            }
+
+        }];
+
+    }
+    
    
     [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
 
@@ -313,7 +341,7 @@
     
     for (NSDictionary *model in currentArray) {
         
-        if ([model[@"orderStatus"] intValue] == 2){
+        if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 3){
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];

@@ -175,6 +175,21 @@
         [weakSelf addTOCart];
     };
     buttom.KeFuBlock = ^(void){//客服
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
+            NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+            NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+            if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+                /// 大于等于10.0系统使用此openURL方法
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+                } else {
+                    // Fallback on earlier versions
+                }
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+            }
+            return;
+        }
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
         alertview.delegate = self;
         [alertview show];

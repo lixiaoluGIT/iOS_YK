@@ -343,7 +343,6 @@
 		C5742ECD2003548A00BBB882 /* VTingTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5742ECB2003548A00BBB882 /* VTingTimeView.m */; };
 		C5742ED02003661800BBB882 /* STPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C5742ECF2003661800BBB882 /* STPageControl.m */; };
 		C5742ED22003872C00BBB882 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5742ED12003872C00BBB882 /* Images.xcassets */; };
-		C5742ED42003897C00BBB882 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5742ED32003897C00BBB882 /* Images-2.xcassets */; };
 		C57505381FFB853500F7E07A /* DDAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C57505371FFB853500F7E07A /* DDAleartView.m */; };
 		C57A53B01FCBAFF70090E372 /* YKEditInforVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57A53AE1FCBAFF70090E372 /* YKEditInforVC.m */; };
 		C57A53B11FCBAFF70090E372 /* YKEditInforVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57A53AF1FCBAFF70090E372 /* YKEditInforVC.xib */; };
@@ -1090,7 +1089,6 @@
 		C5742ECE2003661800BBB882 /* STPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPageControl.h; sourceTree = "<group>"; };
 		C5742ECF2003661800BBB882 /* STPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPageControl.m; sourceTree = "<group>"; };
 		C5742ED12003872C00BBB882 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C5742ED32003897C00BBB882 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		C57505371FFB853500F7E07A /* DDAleartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAleartView.m; sourceTree = "<group>"; };
 		C575053C1FFB8AC100F7E07A /* DDAleartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAleartView.h; path = ../../../Desktop/QCX/dongdongcar/Views/DDAleartView.h; sourceTree = "<group>"; };
 		C57A53AD1FCBAFF70090E372 /* YKEditInforVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKEditInforVC.h; sourceTree = "<group>"; };
@@ -1257,12 +1255,11 @@
 				C525DC271FBAAFC1002802AE /* ViewController.h */,
 				C525DC281FBAAFC1002802AE /* ViewController.m */,
 				C525DC2A1FBAAFC1002802AE /* Main.storyboard */,
+				C5742ED12003872C00BBB882 /* Images.xcassets */,
 				C525DC2D1FBAAFC1002802AE /* Assets.xcassets */,
 				C525DC2F1FBAAFC1002802AE /* LaunchScreen.storyboard */,
 				C525DC321FBAAFC1002802AE /* Info.plist */,
 				C525DC331FBAAFC1002802AE /* main.m */,
-				C5742ED12003872C00BBB882 /* Images.xcassets */,
-				C5742ED32003897C00BBB882 /* Images-2.xcassets */,
 			);
 			path = YK;
 			sourceTree = "<group>";
@@ -2714,7 +2711,6 @@
 				C55D491D1FC2EDF8000D2056 /* 白.png in Resources */,
 				C5FECE211FC2BA4D00D299AE /* 34.jpg in Resources */,
 				C525DE2E1FBB0320002802AE /* YKSuitCell.xib in Resources */,
-				C5742ED42003897C00BBB882 /* Images-2.xcassets in Resources */,
 				C55D492B1FC3F24F000D2056 /* start.jpg in Resources */,
 				C5FECE191FC2BA4D00D299AE /* 24.jpg in Resources */,
 				C525DE851FBC58E6002802AE /* banner3.jpg in Resources */,
@@ -3258,7 +3254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-5";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -3289,7 +3285,7 @@
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
 				);
 				INFOPLIST_FILE = YK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3342,7 +3338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-5";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -3373,7 +3369,7 @@
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
 				);
 				INFOPLIST_FILE = YK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

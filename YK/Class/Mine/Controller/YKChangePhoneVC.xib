@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jf-0A-S5r">
-                    <rect key="frame" x="0.0" y="84" width="375" height="66"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="66"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前绑定手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYL-Gu-Utu">
                             <rect key="frame" x="20" y="25" width="100" height="17"/>
@@ -51,7 +50,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hD-lx-lXA">
-                    <rect key="frame" x="0.0" y="160" width="375" height="140"/>
+                    <rect key="frame" x="0.0" y="140" width="375" height="140"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s8t-Ht-LpH">
                             <rect key="frame" x="20" y="23" width="238" height="30"/>
@@ -112,7 +111,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrm-Hm-d9L">
-                    <rect key="frame" x="48" y="360" width="279" height="40"/>
+                    <rect key="frame" x="48" y="340" width="279" height="40"/>
                     <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Zk8-ek-8AI"/>
@@ -127,18 +126,17 @@
             </subviews>
             <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="8Jf-0A-S5r" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="64" id="5BK-br-Icb"/>
-                <constraint firstItem="7hD-lx-lXA" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Jyr-BJ-Pap"/>
-                <constraint firstItem="8Jf-0A-S5r" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="LxX-EE-i7K"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Zrm-Hm-d9L" secondAttribute="trailing" constant="48" id="Mmr-dd-UHD"/>
+                <constraint firstItem="8Jf-0A-S5r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="5BK-br-Icb"/>
+                <constraint firstItem="7hD-lx-lXA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jyr-BJ-Pap"/>
+                <constraint firstItem="8Jf-0A-S5r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LxX-EE-i7K"/>
+                <constraint firstAttribute="trailing" secondItem="Zrm-Hm-d9L" secondAttribute="trailing" constant="48" id="Mmr-dd-UHD"/>
                 <constraint firstItem="Zrm-Hm-d9L" firstAttribute="top" secondItem="7hD-lx-lXA" secondAttribute="bottom" constant="60" id="Zlx-Fh-R7q"/>
-                <constraint firstItem="8Jf-0A-S5r" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="64" id="biB-nh-BF7"/>
-                <constraint firstItem="Zrm-Hm-d9L" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="g9D-Eh-5TX"/>
+                <constraint firstItem="8Jf-0A-S5r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="biB-nh-BF7"/>
+                <constraint firstItem="Zrm-Hm-d9L" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="g9D-Eh-5TX"/>
                 <constraint firstItem="7hD-lx-lXA" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="irM-t8-QbT"/>
                 <constraint firstItem="7hD-lx-lXA" firstAttribute="top" secondItem="8Jf-0A-S5r" secondAttribute="bottom" constant="10" id="wne-gf-ynY"/>
-                <constraint firstItem="8Jf-0A-S5r" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="xan-q2-FX7"/>
+                <constraint firstItem="8Jf-0A-S5r" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="xan-q2-FX7"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="33.5" y="99.5"/>
         </view>
     </objects>

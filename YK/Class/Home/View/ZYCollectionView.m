@@ -126,6 +126,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //TODO:
 
+    NSLog(@"%f",scrollView.contentOffset.x);
 //    pageView.indexNumWithSlide = self.index;
     if (scrollView.contentOffset.x == (_imagesArr.count + 1) * WIDHT) {//最右边
         [scrollView setContentOffset:CGPointMake(WIDHT, 0)];
@@ -183,6 +184,9 @@
     [self startAutoCarousel];
 }
 
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    [self startAutoCarousel];
+//}
 - (void)stopAutoCarousel {
     if (_timer == nil) {
         return;

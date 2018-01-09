@@ -22,7 +22,7 @@
 @property (nonatomic, assign) NSInteger selectedIndex_area;
 
 @property (nonatomic, assign) BOOL isGettingData;
-@property (nonatomic, strong) void (^getDataCompleteBlock)();
+@property (nonatomic, strong) void (^getDataCompleteBlock)(void);
 
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -71,7 +70,6 @@
                     <constraint firstItem="IKw-fk-wUY" firstAttribute="leading" secondItem="2aJ-zh-Xa7" secondAttribute="trailing" constant="4" id="zkA-fd-AOe"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="ensureReceive" destination="IKw-fk-wUY" id="eup-4W-97h"/>
                 <outlet property="orderBack" destination="43D-fy-Bay" id="R6q-19-0Re"/>
@@ -134,7 +132,6 @@
                     <constraint firstAttribute="bottom" secondItem="Ia7-YC-BTc" secondAttribute="bottom" id="yaj-TY-ZPq"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="vuK-hx-wi3"/>
             <point key="canvasLocation" x="70" y="131"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="PTE-jo-tDQ" customClass="YKSuitHeader">
@@ -182,7 +179,6 @@
                     <constraint firstItem="HwF-1g-nB6" firstAttribute="top" secondItem="l4i-p3-fIL" secondAttribute="bottom" constant="20" id="vEK-sE-nBV"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="K9p-fL-cY8"/>
             <point key="canvasLocation" x="70" y="271"/>
         </tableViewCell>
     </objects>

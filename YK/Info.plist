@@ -39,7 +39,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxb4188a08e56b21a0</string>
+				<string>wx08491f30bacfc1ce</string>
 			</array>
 		</dict>
 		<dict>
@@ -123,8 +123,6 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

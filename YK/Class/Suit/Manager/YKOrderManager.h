@@ -27,6 +27,8 @@ typedef enum : NSInteger {
 @property (nonatomic,strong)NSString *ID;//订单ID
 @property (nonatomic,strong)NSString *SMSStatus;//物流状态
 
+@property (nonatomic,assign)BOOL isOnRoad;
+
 + (YKOrderManager *)sharedManager;
 
 //提交订单

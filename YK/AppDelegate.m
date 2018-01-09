@@ -55,7 +55,7 @@
         
     }
     //微信支付
-    [WXApi registerApp:@"wxb4188a08e56b21a0" withDescription:@"meng"];
+    [WXApi registerApp:@"wx08491f30bacfc1ce" withDescription:@"meng"];
     
     //个推
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注:该 法需要在主线程中调

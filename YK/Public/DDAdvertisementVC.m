@@ -34,9 +34,9 @@
 
     [self addBottomView];
     
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-100)];
+    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT)];
 
-    [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:[UIImage imageNamed:@"WechatIMG55.jpeg"]];
+    [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:[UIImage imageNamed:@"广告"]];
     [self.view addSubview:image];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toWeb)];
