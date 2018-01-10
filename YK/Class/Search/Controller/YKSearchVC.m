@@ -20,7 +20,7 @@
 
 @interface YKSearchVC ()<UICollectionViewDelegate, UICollectionViewDataSource>
 {
-    BOOL hadScroll;
+    BOOL hadScroll;//已经添加
     BOOL hadButtons;
  }
 
@@ -122,6 +122,8 @@
         [self.collectionView.mj_footer endRefreshing];
         //品牌
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
+        
+        hadScroll = YES;
         //二级类目
         self.secondLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"secondLevelCategoryList"]];
         self.titles = [NSMutableArray array];
@@ -223,7 +225,11 @@
             
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
-        [head addSubview:_scroll];
+        if (hadScroll) {
+            [head addSubview:_scroll];
+            hadScroll = NO;
+        }
+        
        
       
         

@@ -1,21 +1,93 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="YKAboutView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="433" id="KGk-i7-Jjw" customClass="YKAboutView">
+            <rect key="frame" x="0.0" y="0.0" width="295" height="433"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="295" height="432.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group Copy-1" translatesAutoresizingMaskIntoConstraints="NO" id="IxC-aK-gZM">
+                        <rect key="frame" x="93.5" y="44" width="108" height="82"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衣庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sS1-H0-xVP">
+                        <rect key="frame" x="127" y="144" width="41" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0版" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkr-Ai-S92">
+                        <rect key="frame" x="128.5" y="171" width="38.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="0.42745098040000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017-2018 Xykoo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgS-u0-rjf">
+                        <rect key="frame" x="74.5" y="376.5" width="146.5" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衣库用户协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHA-ZD-6hu">
+                        <rect key="frame" x="111" y="352" width="74" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylk-ca-VI3">
+                        <rect key="frame" x="111" y="366.5" width="74" height="1"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="4j5-Th-AeX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjN-X8-gKX">
+                        <rect key="frame" x="98" y="334.5" width="100" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="c6F-f0-o0i"/>
+                            <constraint firstAttribute="height" constant="50" id="rLa-dm-U6K"/>
+                        </constraints>
+                        <connections>
+                            <action selector="toxieyi:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZQG-ne-de6"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rjN-X8-gKX" firstAttribute="centerY" secondItem="eHA-ZD-6hu" secondAttribute="centerY" id="1xE-LO-jfY"/>
+                    <constraint firstItem="ylk-ca-VI3" firstAttribute="width" secondItem="eHA-ZD-6hu" secondAttribute="width" id="Ajw-1h-aev"/>
+                    <constraint firstItem="ylk-ca-VI3" firstAttribute="bottom" secondItem="eHA-ZD-6hu" secondAttribute="bottom" constant="1" id="F8Y-2N-yQS"/>
+                    <constraint firstItem="sS1-H0-xVP" firstAttribute="top" secondItem="IxC-aK-gZM" secondAttribute="bottom" constant="18" id="JQE-1C-ndY"/>
+                    <constraint firstItem="sS1-H0-xVP" firstAttribute="centerX" secondItem="IxC-aK-gZM" secondAttribute="centerX" id="LWk-OV-T75"/>
+                    <constraint firstItem="YgS-u0-rjf" firstAttribute="top" secondItem="eHA-ZD-6hu" secondAttribute="bottom" constant="10" id="LY8-jC-iDX"/>
+                    <constraint firstItem="IxC-aK-gZM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="44" id="Qdj-wW-VRk"/>
+                    <constraint firstItem="IxC-aK-gZM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="SEa-WI-GRf"/>
+                    <constraint firstItem="ylk-ca-VI3" firstAttribute="centerX" secondItem="eHA-ZD-6hu" secondAttribute="centerX" id="TV9-KZ-xXR"/>
+                    <constraint firstItem="rjN-X8-gKX" firstAttribute="centerX" secondItem="eHA-ZD-6hu" secondAttribute="centerX" id="gzH-SK-HlH"/>
+                    <constraint firstItem="YgS-u0-rjf" firstAttribute="centerX" secondItem="Kkr-Ai-S92" secondAttribute="centerX" id="j8N-D1-bLm"/>
+                    <constraint firstAttribute="bottom" secondItem="YgS-u0-rjf" secondAttribute="bottom" constant="44" id="lMY-K0-MIO"/>
+                    <constraint firstItem="Kkr-Ai-S92" firstAttribute="centerX" secondItem="sS1-H0-xVP" secondAttribute="centerX" id="px1-XC-grh"/>
+                    <constraint firstItem="eHA-ZD-6hu" firstAttribute="centerX" secondItem="YgS-u0-rjf" secondAttribute="centerX" id="qbA-ZF-SEG"/>
+                    <constraint firstItem="Kkr-Ai-S92" firstAttribute="top" secondItem="sS1-H0-xVP" secondAttribute="bottom" constant="3" id="y2X-pf-V4B"/>
+                </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="0.5" y="222.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Group Copy-1" width="108" height="82"/>
+    </resources>
 </document>

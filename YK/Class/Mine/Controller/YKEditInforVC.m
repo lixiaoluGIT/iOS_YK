@@ -35,15 +35,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [self setUI];
+   
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人资料";
-    if([[UIDevice currentDevice].systemVersion floatValue] < 11.0){
+    if([[UIDevice currentDevice].systemVersion floatValue] >= 11.0){
         _hap.constant = 64;
     }else {
-        _hap.constant = 0;
+        _hap.constant = 64;
     }
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -87,7 +87,7 @@
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeSex)];
     [self.view4 addGestureRecognizer:tap4];
     
-
+    [self setUI];
     
 }
 
@@ -176,7 +176,7 @@
     NSData *data = UIImageJPEGRepresentation(image, .3);
     
     [[YKUserManager sharedManager]uploadHeadImageWithData:data OnResponse:^(NSDictionary *dic) {
-        [self setUI];
+//        [self setUI];
     }];
 }
 

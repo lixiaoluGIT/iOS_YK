@@ -49,6 +49,7 @@
 //    [self.navigationController popToRootViewControllerAnimated:NO];
     YKMySuitBagVC *bag = [YKMySuitBagVC new];
     bag.isFromSuccess = YES;
+    bag.selectedIndex = 100;
     [self.navigationController pushViewController:bag animated:YES];
 }
 - (IBAction)return:(id)sender {

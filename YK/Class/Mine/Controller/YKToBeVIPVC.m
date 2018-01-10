@@ -9,10 +9,12 @@
 #import "YKToBeVIPVC.h"
 #import "YKSelectPayView.h"
 #import "YKShareVC.h"
+#import "YKWebVC.h"
 
 @interface YKToBeVIPVC ()
 {
     BOOL isShareUser;
+    BOOL isAgree;
 }
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (nonatomic,strong)UIButton *Button0;
@@ -42,10 +44,31 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UIButton *btn3;
 @property (weak, nonatomic) IBOutlet UIButton *btn4;
+@property (weak, nonatomic) IBOutlet UILabel *xieyi;
 
 @end
 
 @implementation YKToBeVIPVC
+- (IBAction)yajinshuoming:(id)sender {
+    
+    YKWebVC *web = [YKWebVC new];
+    web.titleStr = @"押金说明";
+    web.imageName = @"押金说明";
+
+    [self.navigationController pushViewController:web animated:YES];
+//    YKShareVC *share = [YKShareVC new];
+//    share.hidesBottomBarWhenPushed = YES;
+//    [[self getCurrentVC].navigationController pushViewController:share animated:YES];
+}
+- (IBAction)yonghuxieyi:(id)sender {
+    YKWebVC *web = [YKWebVC new];
+    web.titleStr = @"充值说明";
+    web.imageName = @"充值说明";
+    [self.navigationController pushViewController:web animated:YES];
+//    YKShareVC *share = [YKShareVC new];
+//    share.hidesBottomBarWhenPushed = YES;
+//    [[self getCurrentVC].navigationController pushViewController:share animated:YES];
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
@@ -58,18 +81,18 @@
         _liJIan.text = @"-¥200";
         if (_payType == MONTH_CARD) {
             _yuanJia.text = @"¥498";
-            _yaJin.text = @"¥299";
+            _yaJin.text = @"¥199";
             _total.text = @"¥298";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥798";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥598";
+            _yuanJia.text = @"¥1006";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥806";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥1298";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥1098";
+            _yuanJia.text = @"¥3187";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥2987";
         }
     }else {
         //新用户并且未分享过,可以分享
@@ -85,18 +108,18 @@
         
         if (_payType == MONTH_CARD) {
             _yuanJia.text = @"¥498";
-            _yaJin.text = @"¥299";
+            _yaJin.text = @"¥199";
             _total.text = @"¥498";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥798";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥798";
+            _yuanJia.text = @"¥1006";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥1006";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥1298";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥1298";
+            _yuanJia.text = @"¥3187";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥3187";
         }
     }
     if ([[YKUserManager sharedManager].user.effective intValue] == 4
@@ -136,6 +159,17 @@
     }
     self.payType = 4;//给个非0,1,2,3
     _buttomView.hidden = YES;
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"阅读并同意充值说明和押金说明"];
+    
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(str.length-4,4)]; //设置字体颜色
+    
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(str.length-9,4)]; //设置字体颜色
+    
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial" size:12.0] range:NSMakeRange(0, 5)]; //设置字体字号和字体类别
+    
+    _xieyi.attributedText = str;
+
 }
 
 - (void)creatPayView{
@@ -178,10 +212,15 @@
     UIButton * button = (UIButton *)sender;
     button.selected = !button.selected;
     _agreeImage.selected = button.selected;
+    isAgree = button.selected;
 }
 
 //去支付
 - (IBAction)aliPay:(id)sender {
+    if (!isAgree) {
+        [smartHUD alertText:self.view alert:@"请先阅读充值说明并同意" delay:3.0];
+        return;
+    }
     if (self.payType!=0&&self.payType!=1&&self.payType!=2&&self.payType!=3) {
         [smartHUD alertText:self.view alert:@"请选择VIP类型" delay:1.2];
         return ;
@@ -257,18 +296,18 @@
         _liJIan.text = @"-¥200";
         if (_payType == MONTH_CARD) {
             _yuanJia.text = @"¥498";
-            _yaJin.text = @"¥299";
+            _yaJin.text = @"¥199";
             _total.text = @"¥298";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥798";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥598";
+            _yuanJia.text = @"¥1006";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥806";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥1298";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥1098";
+            _yuanJia.text = @"¥3187";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥2987";
         }
     }else {
         //新用户并且未分享过,可以分享
@@ -284,18 +323,18 @@
         
         if (_payType == MONTH_CARD) {
             _yuanJia.text = @"¥498";
-            _yaJin.text = @"¥299";
+            _yaJin.text = @"¥199";
             _total.text = @"¥498";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥798";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥798";
+            _yuanJia.text = @"¥1006";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥1006";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥1298";
-            _yaJin.text = @"¥299";
-            _total.text = @"¥1298";
+            _yuanJia.text = @"¥3187";
+            _yaJin.text = @"¥199";
+            _total.text = @"¥3187";
         }
     }
 }
@@ -305,6 +344,7 @@
         
     }];
 }
+
 //支付宝支付结果
 -(void)alipayResultCurrent:(NSNotification *)notify{
     

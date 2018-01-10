@@ -326,10 +326,23 @@
     }
     YKYifuScanCell *scan = (YKYifuScanCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"YKYifuScanCell" forIndexPath:indexPath];
    
-    [scan.imageView sd_setImageWithURL:[NSURL URLWithString:self.product.pruductDetailImgs[indexPath.row][@"clothingImgUrl"]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
-
+    [scan.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.product.pruductDetailImgs[indexPath.row][@"clothingImgUrl"]]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
+    [scan.imageView setContentMode:UIViewContentModeScaleAspectFill];
+//    scan.imageView.backgroundColor = [UIColor redColor];
     return scan;
 }
+
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
+
 
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
@@ -397,7 +410,7 @@
         return CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/180);
     }
     
-    return CGSizeMake(WIDHT-32,(WIDHT-32)/670*500);
+    return CGSizeMake(WIDHT-32,(WIDHT-32));
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

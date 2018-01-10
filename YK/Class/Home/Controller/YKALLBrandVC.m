@@ -10,6 +10,7 @@
 #import "YKALLBrandCell.h"
 #import "ZYCollectionView.h"
 #import "YKBrandDetailVC.h"
+#import "YKLinkWebVC.h"
 
 @interface YKALLBrandVC ()<ZYCollectionViewDelegate>
 {
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic,strong)NSArray *blackLists;//原数据源
 @property (nonatomic,strong)NSMutableArray *sections;//分好组的数据源
+@property (nonatomic,strong)NSArray *imageClickUrls;
 //@property (nonatomic,strong)DDIndicatorView *indicatorView;
 @end
 
@@ -111,7 +113,12 @@
 //        [UD synchronize];
         
         self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
+        
         NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"brandBannerImgList"]];
+        
+        self.imageClickUrls = [NSArray array];
+        self.imageClickUrls = [self getImageUrlsArray:array];
+        
        
         ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
         cycleView.imagesArr =  [self getImageArray:array];;
@@ -122,6 +129,7 @@
         [self.tableView reloadData];
     }];
 }
+
 - (NSMutableArray *)getImageArray:(NSArray *)array{
     NSMutableArray *imageArray = [NSMutableArray array];
     for (NSDictionary *imageModel in array) {
@@ -129,9 +137,15 @@
     }
     return imageArray;
 }
-- (void)ZYCollectionViewClick:(NSInteger)index {
-    NSLog(@"%ld", index);
+
+- (NSMutableArray *)getImageUrlsArray:(NSArray *)array{
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (NSDictionary *imageModel in array) {
+        [imageArray addObject:imageModel[@"brandLinkUrl"]];
+    }
+    return imageArray;
 }
+
 
 - (void)group:(NSArray *)array{
 
@@ -269,6 +283,15 @@
     YKBrandDetailVC *brand = [YKBrandDetailVC new];
     brand.brandId = brandCell.brandId;
     [self.navigationController pushViewController:brand animated:YES];
+    
+}
+
+- (void)ZYCollectionViewClick:(NSInteger)index {
+    //跳转到网页
+    YKLinkWebVC *web =[YKLinkWebVC new];
+    web.url = self.imageClickUrls[index];
+    web.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:web animated:YES];
     
 }
 

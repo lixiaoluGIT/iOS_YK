@@ -108,8 +108,8 @@
     
     //待签收:包括待发货和待签收
     if (status==2) {
-        status=1;
-        NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
+        NSInteger s = 1;
+        NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
         [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
             NSMutableArray *listArray;
             NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
@@ -127,6 +127,7 @@
                 }
                 return;
             }
+                
             }
 
         }];
@@ -340,8 +341,8 @@
     NSMutableArray *hadBackList = [NSMutableArray array];//存储已归还
     
     for (NSDictionary *model in currentArray) {
-        
-        if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 3){
+   
+        if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 3 && [model[@"orderStatus"] intValue] != 8){
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];

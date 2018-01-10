@@ -175,27 +175,27 @@
                 self.slider.cb_Width = titleWidth;
                 self.slider.cb_CenterX = btn.cb_CenterX;
             }else if (_SegmentStyle == CBSegmentStyleZoom) {
-//                self.selectedBtn.transform = CGAffineTransformMakeScale(1.3, 1.3);
-                self.selectedBtn.titleLabel.font = PingFangSC_Regular(14);
+                self.selectedBtn.transform = CGAffineTransformMakeScale(1.3, 1.3);
+//                self.selectedBtn.titleLabel.font = PingFangSC_Regular(14);
             }
         }
     }
     totalWidth = totalWidth+btnSpace;
-    self.contentSize = CGSizeMake(totalWidth*1.2, 0);
+    self.contentSize = CGSizeMake(totalWidth*1.04, 0);
 }
 
 //  button click
 - (void)titleButtonSelected:(UIButton *)btn {
-    
-    if (self.selectedBtn == btn) {
-//        self.selectedBtn.selected = !self.selectedBtn.selected;
-//        btn.selected = !btn.selected;
-        return;
-    }else {
-        self.selectedBtn.selected = NO;
-        self.selectedBtn = btn;
-        btn.selected = YES;
-    }
+    self.selectedBtn.selected = NO;
+    btn.selected = YES;
+//    if (self.selectedBtn == btn) {
+//
+//        return;
+//    }else {
+//        self.selectedBtn.selected = NO;
+//        self.selectedBtn = btn;
+//        btn.selected = YES;
+//    }
 //    btn.selected = !btn.selected;
 //    self.selectedBtn = btn;
 
@@ -214,13 +214,18 @@
 //            self.slider.backgroundColor = mainColor;
 //        }
     }else if (_SegmentStyle == CBSegmentStyleZoom) {
-        [UIView animateWithDuration:0.2 animations:^{
-//            self.selectedBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-//            btn.transform = CGAffineTransformMakeScale(1.3, 1.3);
+   
+                      [UIView animateWithDuration:0.2 animations:^{
+            self.selectedBtn.transform = CGAffineTransformIdentity;
+            btn.transform = CGAffineTransformMakeScale(1.3, 1.3);
             
         }];
+            
+        
     }
+    self.selectedBtn = btn;
     //TODO:需分屏幕
+    
 
     if (_categotyIds.count>5) {//数量太少不让滑动
         CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5;

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="432" height="128.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Zc-0C-p7j">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="物流big" translatesAutoresizingMaskIntoConstraints="NO" id="7Zc-0C-p7j">
                         <rect key="frame" x="20" y="24.5" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="exk-Qh-V5W"/>
@@ -141,7 +141,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="5.jpg" width="500" height="500"/>
         <image name="paisongyuan" width="18" height="18"/>
+        <image name="物流big" width="80" height="80"/>
     </resources>
 </document>

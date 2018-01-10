@@ -129,6 +129,11 @@
     NSURLRequest *request = [YKHttpClient urlRequstWithMethod:(NSString*)method MethodName:apiName Dic:params];
     NSURLSessionDataTask *dataTask = [YKHttpClient dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
+        if (error.code==-1001) {
+            [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请求超时" delay:2];
+            return ;
+        }
         if (data.length == 0) {
              [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:NO];
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"finished with error ,code: -1004" delay:2];

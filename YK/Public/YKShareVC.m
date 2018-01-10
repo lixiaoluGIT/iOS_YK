@@ -188,8 +188,8 @@
     [message setThumbImage:[UIImage imageNamed:@"logo"]];
   
     WXImageObject *ext = [WXImageObject object];
-//    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
-//    ext.imageData  = [NSData dataWithContentsOfFile:filePath];
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
+    ext.imageData  = [NSData dataWithContentsOfFile:filePath];
     UIImage *image = [UIImage imageWithData:ext.imageData];
     ext.imageData  = UIImagePNGRepresentation(image);
     

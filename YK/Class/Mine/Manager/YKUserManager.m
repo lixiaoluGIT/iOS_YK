@@ -305,4 +305,35 @@
     }];
 }
 
+- (void)checkVersion{
+   
+        NSString *localVersion = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
+        NSNumber *flag = [NSNumber numberWithInt:1];
+        double localVersionDou = [localVersion doubleValue];
+
+    NSString *url = [NSString stringWithFormat:@"%@?appVersion=%@",@"/user/checkTheLatestVersion",@"1"];
+
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"程序猿哥哥又创造了奇迹" message:@"有新版本可以更新了!" delegate:self cancelButtonTitle:@"暂不更新" otherButtonTitles:@"更新", nil];
+    alertview.delegate = self;
+    [alertview show];
+    [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        //如果新版本大于当前版本,更新
+//        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"程序猿哥哥又创造了奇迹" message:@"有新版本可以更新了!" delegate:self cancelButtonTitle:@"暂不更新" otherButtonTitles:@"更新", nil];
+//        alertview.delegate = self;
+//        [alertview show];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {//取消
+        
+    }
+    if (buttonIndex==1) {//appstore更新
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/app/id1197745409"]];
+    }
+}
+
 @end

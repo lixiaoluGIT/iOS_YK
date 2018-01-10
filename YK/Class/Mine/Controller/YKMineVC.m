@@ -80,7 +80,9 @@
         }
         if (VIPStatus==2) {//已过期,充值会员
             YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-            [weakSelf presentViewController:vip animated:YES completion:^{
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+            //            [weakSelf presentViewController:nav animated:YES completion:NULL];
+            [self presentViewController:nav animated:YES completion:^{
                 
             }];
         }

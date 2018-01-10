@@ -18,12 +18,22 @@
     self.goodsId  = [NSString stringWithFormat:@"%@",dic[@"clothingId"]];
     self.goodsName = [NSString stringWithFormat:@"%@",dic[@"clothingName"]];
     self.goodsNo = [NSString stringWithFormat:@"%@",dic[@"goodsNo"]];
-    self.imageAttach  = [NSString stringWithFormat:@"%@",dic[@"clothingImgUrl"]];
+    self.imageAttach  = [NSString stringWithFormat:@"%@",[self URLEncodedString:dic[@"clothingImgUrl"]]];
     self.imageDetails = [NSString stringWithFormat:@"%@",dic[@"imageDetails"]];
     self.imageMaster = [NSString stringWithFormat:@"%@",dic[@"imageMaster"]];
     self.clothingPrice = [NSString stringWithFormat:@"%@",dic[@"clothingPrice"]];
 }
 
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
 - (void)setProductDetail:(YKProductDetail *)productDetail{
     _productDetail = productDetail;
     

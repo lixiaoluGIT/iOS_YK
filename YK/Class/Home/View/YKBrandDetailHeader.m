@@ -16,6 +16,16 @@
 @end
 @implementation YKBrandDetailHeader
 
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
 - (void)setBrand:(YKBrand *)brand{
     if (!brand) {
         return;
@@ -24,7 +34,7 @@
    
     
     //品牌logo
-    [_brandLogo sd_setImageWithURL:[NSURL URLWithString:brand.brandLogo] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+    [_brandLogo sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:brand.brandLogo]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
     //品牌名
     _brandName.text = brand.brandName;
     //品牌介绍

@@ -66,7 +66,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编辑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVW-Sh-Ihr">
-                        <rect key="frame" x="327" y="119.5" width="25" height="15"/>
+                        <rect key="frame" x="327" y="120" width="25" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.4039215686" green="0.40784313729999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -84,12 +84,22 @@
                         <rect key="frame" x="305" y="120" width="14" height="14"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VS2-3p-VnG">
-                        <rect key="frame" x="0.0" y="103.5" width="120" height="45"/>
+                        <rect key="frame" x="0.0" y="105" width="120" height="43.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="Xtv-m8-S2A"/>
                         </constraints>
                         <connections>
                             <action selector="selectBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TeJ-TO-pYc"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4go-sb-Qj5">
+                        <rect key="frame" x="292" y="102" width="60" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="QnM-y9-8zW"/>
+                            <constraint firstAttribute="height" constant="50" id="Riw-de-TYF"/>
+                        </constraints>
+                        <connections>
+                            <action selector="delete:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mwa-Oe-Exb"/>
                         </connections>
                     </button>
                 </subviews>
@@ -115,7 +125,9 @@
                     <constraint firstItem="f9l-5a-I9e" firstAttribute="centerY" secondItem="XVW-Sh-Ihr" secondAttribute="centerY" id="jmn-zR-uvU"/>
                     <constraint firstItem="ZMn-rq-Fy1" firstAttribute="top" secondItem="vZE-SR-yyJ" secondAttribute="bottom" constant="20" id="kbU-kq-CEk"/>
                     <constraint firstAttribute="trailing" secondItem="vZE-SR-yyJ" secondAttribute="trailing" id="lAc-6U-N9x"/>
+                    <constraint firstItem="4go-sb-Qj5" firstAttribute="centerY" secondItem="Be3-fN-vaG" secondAttribute="centerY" id="mfu-5h-NIi"/>
                     <constraint firstAttribute="bottom" secondItem="VS2-3p-VnG" secondAttribute="bottom" id="rI1-ZW-8Bt"/>
+                    <constraint firstItem="4go-sb-Qj5" firstAttribute="trailing" secondItem="XVW-Sh-Ihr" secondAttribute="trailing" id="wBt-m3-wQi"/>
                     <constraint firstItem="Be3-fN-vaG" firstAttribute="leading" secondItem="XVW-Sh-Ihr" secondAttribute="trailing" constant="30" id="wdJ-7A-W98"/>
                     <constraint firstItem="ZMn-rq-Fy1" firstAttribute="leading" secondItem="F71-iV-Me2" secondAttribute="leading" id="y7l-g0-FZ0"/>
                     <constraint firstItem="F71-iV-Me2" firstAttribute="leading" secondItem="823-5H-csp" secondAttribute="leading" id="yqY-V8-kJe"/>

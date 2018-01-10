@@ -36,7 +36,7 @@
                                         <color key="textColor" red="1" green="0.42745098039215684" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="14.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qbt-P3-4zB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="物流small" translatesAutoresizingMaskIntoConstraints="NO" id="qbt-P3-4zB">
                                         <rect key="frame" x="20" y="41" width="54" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="PYT-GN-2AK"/>
@@ -97,6 +97,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="14.jpg" width="500" height="500"/>
+        <image name="物流small" width="27" height="27"/>
     </resources>
 </document>

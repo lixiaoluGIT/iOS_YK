@@ -261,7 +261,6 @@
 		C5303A091FCEB18500FB12CE /* YKReturnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5303A081FCEB18500FB12CE /* YKReturnVC.m */; };
 		C5303A0C1FCFA28700FB12CE /* YKSuitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5303A0B1FCFA28700FB12CE /* YKSuitManager.m */; };
 		C5303A0F1FCFA4D500FB12CE /* YKSuit.m in Sources */ = {isa = PBXBuildFile; fileRef = C5303A0E1FCFA4D500FB12CE /* YKSuit.m */; };
-		C531D9512000E09A000A5A15 /* ka.png in Resources */ = {isa = PBXBuildFile; fileRef = C531D9502000E099000A5A15 /* ka.png */; };
 		C532A6D81FDF74E80068A31D /* YKOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C532A6D71FDF74E80068A31D /* YKOrderManager.m */; };
 		C532A6DB1FDF78A40068A31D /* YKOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C532A6DA1FDF78A40068A31D /* YKOrder.m */; };
 		C532A6DE1FDF881E0068A31D /* YKPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C532A6DD1FDF881E0068A31D /* YKPayManager.m */; };
@@ -363,6 +362,11 @@
 		C59D478A1FF623F3002208BF /* PickViewSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = C59D47891FF623F3002208BF /* PickViewSelect.m */; };
 		C59D47991FFB6C61002208BF /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D47971FFB6C61002208BF /* GTSDK.framework */; };
 		C5C0F5921FF2309700A2000A /* 红.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C0F5911FF2309600A2000A /* 红.jpg */; };
+		C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84AC2005AB00002A12E3 /* YKAboutView.m */; };
+		C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */; };
+		C5DA84B22005AFE2002A12E3 /* YKAboutUsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84B12005AFE2002A12E3 /* YKAboutUsVC.m */; };
+		C5DA84B42005E5D0002A12E3 /* ka.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DA84B32005E5D0002A12E3 /* ka.png */; };
+		C5DA84B720060692002A12E3 /* YKLinkWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84B620060692002A12E3 /* YKLinkWebVC.m */; };
 		C5E023051FD64A8B00C33629 /* YKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E023041FD64A8B00C33629 /* YKAddress.m */; };
 		C5E023081FD64AD700C33629 /* YKAddressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E023071FD64AD700C33629 /* YKAddressManager.m */; };
 		C5E0230B1FD78FEA00C33629 /* YKBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E0230A1FD78FEA00C33629 /* YKBrand.m */; };
@@ -867,7 +871,6 @@
 		C5303A0B1FCFA28700FB12CE /* YKSuitManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuitManager.m; sourceTree = "<group>"; };
 		C5303A0D1FCFA4D500FB12CE /* YKSuit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuit.h; sourceTree = "<group>"; };
 		C5303A0E1FCFA4D500FB12CE /* YKSuit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuit.m; sourceTree = "<group>"; };
-		C531D9502000E099000A5A15 /* ka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ka.png; path = YK/Assets.xcassets/icon/ka.imageset/ka.png; sourceTree = SOURCE_ROOT; };
 		C532A6D61FDF74E80068A31D /* YKOrderManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrderManager.h; sourceTree = "<group>"; };
 		C532A6D71FDF74E80068A31D /* YKOrderManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKOrderManager.m; sourceTree = "<group>"; };
 		C532A6D91FDF78A40068A31D /* YKOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrder.h; sourceTree = "<group>"; };
@@ -1118,6 +1121,14 @@
 		C59D47961FFB6C61002208BF /* GTExtensionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTExtensionSDK.framework; sourceTree = "<group>"; };
 		C59D47971FFB6C61002208BF /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
 		C5C0F5911FF2309600A2000A /* 红.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "红.jpg"; sourceTree = "<group>"; };
+		C5DA84AB2005AB00002A12E3 /* YKAboutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAboutView.h; sourceTree = "<group>"; };
+		C5DA84AC2005AB00002A12E3 /* YKAboutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAboutView.m; sourceTree = "<group>"; };
+		C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKAboutView.xib; sourceTree = "<group>"; };
+		C5DA84B02005AFE2002A12E3 /* YKAboutUsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAboutUsVC.h; sourceTree = "<group>"; };
+		C5DA84B12005AFE2002A12E3 /* YKAboutUsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAboutUsVC.m; sourceTree = "<group>"; };
+		C5DA84B32005E5D0002A12E3 /* ka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ka.png; path = YK/Assets.xcassets/icon/ka.imageset/ka.png; sourceTree = SOURCE_ROOT; };
+		C5DA84B520060692002A12E3 /* YKLinkWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKLinkWebVC.h; sourceTree = "<group>"; };
+		C5DA84B620060692002A12E3 /* YKLinkWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLinkWebVC.m; sourceTree = "<group>"; };
 		C5E023031FD64A8B00C33629 /* YKAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAddress.h; sourceTree = "<group>"; };
 		C5E023041FD64A8B00C33629 /* YKAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAddress.m; sourceTree = "<group>"; };
 		C5E023061FD64AD700C33629 /* YKAddressManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAddressManager.h; sourceTree = "<group>"; };
@@ -1387,12 +1398,12 @@
 				C525DE1F1FBAD659002802AE /* YKScrollBtnView.h */,
 				C525DE201FBAD659002802AE /* YKScrollBtnView.m */,
 				C525DE211FBAD659002802AE /* YKScrollBtnView.xib */,
+				C5343C7E1FC5474800F5132A /* YKProductDetailHeader.h */,
 				C525DE271FBAEB15002802AE /* YKALLBrandCell.h */,
 				C525DE281FBAEB15002802AE /* YKALLBrandCell.m */,
 				C525DE341FBC18AA002802AE /* YKRecommentTitleView.h */,
 				C525DE351FBC18AA002802AE /* YKRecommentTitleView.m */,
 				C525DE361FBC18AA002802AE /* YKRecommentTitleView.xib */,
-				C5343C7E1FC5474800F5132A /* YKProductDetailHeader.h */,
 				C5343C7F1FC5474800F5132A /* YKProductDetailHeader.m */,
 				C5343C801FC5474800F5132A /* YKProductDetailHeader.xib */,
 				C5343C831FC577AF00F5132A /* YKProductDetailButtom.h */,
@@ -1515,6 +1526,8 @@
 				C5690F8C1FE75F830027EFCE /* YKWebVC.m */,
 				C52D55061FFF5FCC004B52C4 /* YKMsgDetailVc.h */,
 				C52D55071FFF5FCC004B52C4 /* YKMsgDetailVc.m */,
+				C5DA84B02005AFE2002A12E3 /* YKAboutUsVC.h */,
+				C5DA84B12005AFE2002A12E3 /* YKAboutUsVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1619,6 +1632,9 @@
 				C5690F951FE770BD0027EFCE /* YKTotalSMSCell.h */,
 				C5690F961FE770BD0027EFCE /* YKTotalSMSCell.m */,
 				C5690F971FE770BD0027EFCE /* YKTotalSMSCell.xib */,
+				C5DA84AB2005AB00002A12E3 /* YKAboutView.h */,
+				C5DA84AC2005AB00002A12E3 /* YKAboutView.m */,
+				C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1748,6 +1764,8 @@
 				C5742EC92003548900BBB882 /* VTingSeaPopView.m */,
 				C5742ECA2003548900BBB882 /* VTingTimeView.h */,
 				C5742ECB2003548A00BBB882 /* VTingTimeView.m */,
+				C5DA84B520060692002A12E3 /* YKLinkWebVC.h */,
+				C5DA84B620060692002A12E3 /* YKLinkWebVC.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -1755,7 +1773,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C531D9502000E099000A5A15 /* ka.png */,
+				C5DA84B32005E5D0002A12E3 /* ka.png */,
 				C52CA76E2000C6D300ECDC80 /* WechatIMG55.jpeg */,
 				C52CA76C2000C23500ECDC80 /* ad.png */,
 				C59D47861FF50016002208BF /* 563648f18f3fa.gif */,
@@ -2755,6 +2773,7 @@
 				C525DE641FBC2A24002802AE /* pp5.jpg in Resources */,
 				C5C0F5921FF2309700A2000A /* 红.jpg in Resources */,
 				C5FECE1D1FC2BA4D00D299AE /* 41.jpg in Resources */,
+				C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */,
 				C525DD631FBAB2A8002802AE /* README.md in Resources */,
 				C52D04781FE8EB5D00633550 /* YKNoDataView.xib in Resources */,
 				C525DE381FBC18AA002802AE /* YKRecommentTitleView.xib in Resources */,
@@ -2818,11 +2837,11 @@
 				C5FECE1E1FC2BA4D00D299AE /* 22.jpg in Resources */,
 				C5FECE0E1FC2BA4D00D299AE /* 21.jpg in Resources */,
 				C525DE6B1FBC34B4002802AE /* YKMineheader.xib in Resources */,
-				C531D9512000E09A000A5A15 /* ka.png in Resources */,
 				C5343C991FC6B78B00F5132A /* banner7.jpg in Resources */,
 				C52D0FC51FC80D3B00B50258 /* YKToBeVIPVC.xib in Resources */,
 				C525DE0A1FBABE69002802AE /* CGQCollectionViewCell.xib in Resources */,
 				C5FECE281FC2BA4D00D299AE /* 25.jpg in Resources */,
+				C5DA84B42005E5D0002A12E3 /* ka.png in Resources */,
 				C525DE7C1FBC4981002802AE /* YKMineCell.xib in Resources */,
 				C53039EC1FCC281F00FB12CE /* startApp0.png in Resources */,
 				C59D47541FF4D750002208BF /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -2898,6 +2917,7 @@
 				C5343C861FC577AF00F5132A /* YKProductDetailButtom.m in Sources */,
 				C525DD741FBAB2A8002802AE /* AFSecurityPolicy.m in Sources */,
 				C525DD9F1FBAB2A9002802AE /* TTTAttributedLabel.m in Sources */,
+				C5DA84B22005AFE2002A12E3 /* YKAboutUsVC.m in Sources */,
 				C525DEA01FBD8030002802AE /* YKSuitDetailVC.m in Sources */,
 				C525DD7E1FBAB2A9002802AE /* MJRefreshBackNormalFooter.m in Sources */,
 				C53347231FD11FDF002A08D0 /* YKHomeManager.m in Sources */,
@@ -2937,6 +2957,7 @@
 				C525DD931FBAB2A9002802AE /* MASConstraintMaker.m in Sources */,
 				C525DD941FBAB2A9002802AE /* MASLayoutConstraint.m in Sources */,
 				C52D0FAD1FC6D97700B50258 /* YKWalletDetailCell.m in Sources */,
+				C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */,
 				C525DD6C1FBAB2A8002802AE /* AFURLResponseSerialization.m in Sources */,
 				C525DEA41FBD89F7002802AE /* YKSMSCell.m in Sources */,
 				C525DE921FBD28D6002802AE /* SteyHelper.m in Sources */,
@@ -3035,6 +3056,7 @@
 				C5E46EAD1FFE3FF2002453EB /* YKShareSuccessView.m in Sources */,
 				C52D04731FE8EA9000633550 /* YyxHeaderRefresh.m in Sources */,
 				C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */,
+				C5DA84B720060692002A12E3 /* YKLinkWebVC.m in Sources */,
 				C525DC781FBAB207002802AE /* ZYCollectionViewCell.m in Sources */,
 				C525DC261FBAAFC1002802AE /* AppDelegate.m in Sources */,
 				C525DDC31FBAB2A9002802AE /* SDWebImageCompat.m in Sources */,
@@ -3256,6 +3278,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
@@ -3285,7 +3308,7 @@
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
 				);
 				INFOPLIST_FILE = YK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3340,6 +3363,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
@@ -3369,7 +3393,7 @@
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
 				);
 				INFOPLIST_FILE = YK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

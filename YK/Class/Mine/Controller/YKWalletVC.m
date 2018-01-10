@@ -159,8 +159,10 @@
         NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
         [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"huiyuan-1"] statusDes:@"您还不是会员" hiddenBtn:NO actionTitle:@"去购买" actionBlock:^{
             YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-            [weakSelf presentViewController:vip animated:YES completion:^{
-
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+            //            [weakSelf presentViewController:nav animated:YES completion:NULL];
+            [self presentViewController:nav animated:YES completion:^{
+                
             }];
         }];
 
@@ -178,7 +180,10 @@
    __block YKChongZhiBtn *chongzhi = [[NSBundle mainBundle] loadNibNamed:@"YKChongZhiBtn" owner:self options:nil][0];
     chongzhi.frame = CGRectMake(20, image.frame.origin.y+image.frame.size.height+20,WIDHT-40,40);
     chongzhi.chongzhi = ^(void){
-        [self presentViewController:[YKToBeVIPVC new] animated:YES completion:^{
+        YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+        //            [weakSelf presentViewController:nav animated:YES completion:NULL];
+        [self presentViewController:nav animated:YES completion:^{
             
         }];
     };

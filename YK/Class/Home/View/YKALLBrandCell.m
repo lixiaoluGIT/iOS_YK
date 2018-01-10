@@ -53,10 +53,21 @@
     return self;
 }
 
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
+
 - (void)initWithDictionary:(NSDictionary *)dic{
     self.brandId = [NSString stringWithFormat:@"%@",dic[@"brandId"]];
     self.headurl = [NSString stringWithFormat:@"%@",dic[@"brandLittleLogo"]];
-    [self.imgHead sd_setImageWithURL:[NSURL URLWithString:self.headurl] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+    [self.imgHead sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.headurl]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
     
     self.labName.text = [NSString stringWithFormat:@"%@",dic[@"brandName"]];
 }

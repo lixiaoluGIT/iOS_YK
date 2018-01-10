@@ -250,7 +250,14 @@
                 _buttom.hidden = NO;
                 self.tableView.frame = CGRectMake(0, 64+HEIGHT/10+15, WIDHT, HEIGHT-64-HEIGHT/10-15-50);
                 if (_bagStatus==toReceive) {
-                    [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
+//                    if ([YKOrderManager sharedManager].isOnRoad) {
+                        [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
+                        _buttom.userInteractionEnabled = YES;
+//                    }else {
+//                        [_buttom setTitle:@"待发货" forState:UIControlStateNormal];
+//                         _buttom.userInteractionEnabled = NO;
+//                    }
+                    
                 }else {
                     if (!isHadOrderreceive) {
                         [_buttom setTitle:@"预约归还" forState:UIControlStateNormal];

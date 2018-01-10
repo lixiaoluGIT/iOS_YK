@@ -81,4 +81,6 @@
 //用户分享成功的回调
 - (void)shareSuccess;
 
+//检查更新
+- (void)checkVersion;
 @end

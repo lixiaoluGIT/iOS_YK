@@ -16,6 +16,7 @@
 
 @interface ZYCollectionView : UIView
 @property (nonatomic, strong) NSArray  * imagesArr;
+@property (nonatomic, strong) NSArray  * imageClickUrls;
 @property (nonatomic, copy)   NSString * placeHolderImageName;
 @property (nonatomic, weak)   id<ZYCollectionViewDelegate>delegate;
 @end

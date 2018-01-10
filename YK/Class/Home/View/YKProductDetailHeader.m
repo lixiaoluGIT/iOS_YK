@@ -57,7 +57,18 @@
 
 - (void)setBrand:(NSDictionary *)brand{
     _brand = brand;
-     [_brandImage sd_setImageWithURL:[NSURL URLWithString:brand[@"brandDetailLogo"]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+     [_brandImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:brand[@"brandDetailLogo"]]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+}
+
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
 }
 
 @end

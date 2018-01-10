@@ -9,6 +9,7 @@
 #import "YKSettingVC.h"
 #import "YKHomeVC.h"
 #import "YKWebVC.h"
+#import "YKAboutUsVC.h"
 
 @interface YKSettingVC ()
 @property (weak, nonatomic) IBOutlet UIButton *exitBtn;
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([[UIDevice currentDevice].systemVersion floatValue]>= 11) {
-        _gap.constant = 20;
+        _gap.constant = 84;
     }
     self.title = @"设置";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -74,10 +75,12 @@
     [smartHUD alertText:self.view alert:@"检查更新" delay:1.2];
 }
 - (IBAction)about:(id)sender {
-    YKWebVC *web = [YKWebVC new];
-    web.imageName = @"";
-    web.titleStr = @"关于我们";
-    [self.navigationController pushViewController:web animated:YES];
+//    YKWebVC *web = [YKWebVC new];
+//    web.imageName = @"";
+//    web.titleStr = @"关于我们";
+    [self.navigationController pushViewController:[YKAboutUsVC new] animated:YES];
+    
+    
 }
 
 @end

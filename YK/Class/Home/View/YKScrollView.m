@@ -28,6 +28,17 @@
     
 }
 
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
+
 - (void)setBrandArray:(NSMutableArray *)brandArray{
     _brandArray = brandArray;
     
@@ -36,7 +47,8 @@
     [self.allLabel addGestureRecognizer:tap];
     for (int i = 0; i<brandArray.count; i++) {
         YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
-        [btn.image sd_setImageWithURL:[NSURL URLWithString:brandArray[i][@"brandLargeLogo"]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+        NSString *s = [NSString stringWithFormat:@"%@",brandArray[i][@"brandLargeLogo"]];
+        [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
         btn.title.text = brandArray[i][@"brandName"];
         btn.brandId = brandArray[i][@"brandId"];
         btn.clickDetailBlock = ^(NSString *brandId){

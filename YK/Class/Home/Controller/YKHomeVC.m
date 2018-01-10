@@ -20,10 +20,15 @@
 #import "YKMessageVC.h"
 #import "YKShareVC.h"
 #import "YKLoginVC.h"
+#import "YKLinkWebVC.h"
 
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,WMHCustomScrollViewDelegate>
-
+{
+    BOOL hadAppearCheckVersion;
+    BOOL hadtitle1;
+    BOOL hadtitle2;
+}
 @property (nonatomic, assign) NSInteger pageNum;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -31,6 +36,7 @@
 @property (nonatomic, strong) NSArray *images2;
 //真实数据源
 @property (nonatomic,strong)NSArray *imagesArr;
+@property (nonatomic,strong)NSArray *imageClickUrls;
 @property (nonatomic,strong)NSArray *brandArray;
 @property (nonatomic,strong)NSMutableArray *productArray;
 
@@ -44,7 +50,6 @@
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-
     //分享弹框
     [[YKHomeManager sharedManager]showAleartViewToShare];
 }
@@ -53,7 +58,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    
     //请求数据
     self.images2 = [NSArray array];
  
@@ -107,17 +111,25 @@ self.collectionView.dataSource = self;
     }];
 
 
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    releaseButton.frame = CGRectMake(0, 25, 25, 25);
-    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
-    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
-    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
-    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;
-    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
-    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
-   
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
+//    releaseButton.frame = CGRectMake(0, 25, 25, 25);
+//    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
+//    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
+//    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
+//    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = -16;
+//    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+//    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
+//
+    
+    //检查版本更新
+//    [self performSelector:@selector(checkVersion) withObject:nil afterDelay:2.2];
+    
+}
+
+- (void)checkVersion{
+     [[YKUserManager sharedManager]checkVersion];
 }
 
 - (void)toMessage{
@@ -141,28 +153,39 @@ self.collectionView.dataSource = self;
     }
     return imageArray;
 }
+
+- (NSMutableArray *)getImageClickUrlsArray:(NSArray *)array{
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (NSDictionary *imageModel in array) {
+        [imageArray addObject:imageModel[@"homeLinkUrl"]];
+    }
+    return imageArray;
+}
+
 -(void)dd{
     
     NSInteger num = 1;
     NSInteger size = 04;
     [[YKHomeManager sharedManager]getMyHomePageDataWithNum:num Size:size OnResponse:^(NSDictionary *dic) {
+        
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
+        
+        if (!hadAppearCheckVersion) {
+            [self checkVersion];
+            hadAppearCheckVersion = YES;
+        }
         self.collectionView.hidden = NO;
-        self.imagesArr = [NSArray arrayWithArray:dic[@"data"][@"imgList"]];
-        self.imagesArr = [self getImageArray:self.imagesArr];
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"imgList"]];
+        self.imagesArr = [self getImageArray:array];
+        self.imageClickUrls = [NSArray array];
+        self.imageClickUrls = [self getImageClickUrlsArray:array];
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
        
+        hadtitle1 = YES;
         [self.collectionView reloadData];
-        
-        double delayInSeconds = 0.6;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self.refresh endRefreshing];
-            
-        });
-        
+       
     }];
 }
 
@@ -246,12 +269,25 @@ self.collectionView.dataSource = self;
             
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
-            [headerView addSubview:_scroll];
+        
+//
+            if (hadtitle1) {
+                [headerView addSubview:_scroll];
+                hadtitle1 = NO;
+            }
+            
+        
+        
         
         //推荐标题
             YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
             ti.frame = CGRectMake(0, WIDHT*0.55+200,WIDHT, 60);
-            [headerView addSubview:ti];
+        
+            if (!hadtitle2) {
+                [headerView addSubview:ti];
+                hadtitle2 = YES;
+            }
+        
             return headerView;
         }
     
@@ -288,8 +324,13 @@ self.collectionView.dataSource = self;
     NSLog(@"index === %ld",indexPath.row);
 
 }
+
 - (void)ZYCollectionViewClick:(NSInteger)index {
-    NSLog(@"%ld", index);
+    //跳转到网页
+    YKLinkWebVC *web =[YKLinkWebVC new];
+    web.url = self.imageClickUrls[index];
+    web.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:web animated:YES];
     
 }
 

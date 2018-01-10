@@ -17,10 +17,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,WIDHT, HEIGHT-64)];
-    image.image = [UIImage imageNamed:_imageName];
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.frame = CGRectMake(0, 0, WIDHT, HEIGHT); // frame中的size指UIScrollView的可视范围
+         scrollView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:scrollView];
+
+        // 2.创建UIImageView（图片）
+         UIImageView *imageView = [[UIImageView alloc] init];
+         imageView.image = [UIImage imageNamed:_imageName];
+         CGFloat imgW = imageView.image.size.width; // 图片的宽度
+         CGFloat imgH = imageView.image.size.height; // 图片的高度
+    CGFloat pix = imgW/imgH;//宽高比
+         imageView.frame = CGRectMake(0, 0, WIDHT,WIDHT/pix);
+         [scrollView addSubview:imageView];
     
-    [self.view addSubview:image];
+         // 3.设置scrollView的属性
+    
+         // 设置UIScrollView的滚动范围（内容大小）
+         scrollView.contentSize = CGSizeMake(0, WIDHT/pix);
+
+    imageView.image = [UIImage imageNamed:_imageName];
+    
+    [scrollView addSubview:imageView];
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = _titleStr;

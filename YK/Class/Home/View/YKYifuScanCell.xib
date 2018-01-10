@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="386" height="286"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liutao.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="frY-2I-8gd">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liutao.jpg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frY-2I-8gd">
                         <rect key="frame" x="0.0" y="0.0" width="386" height="286"/>
                     </imageView>
                 </subviews>

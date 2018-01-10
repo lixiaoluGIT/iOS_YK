@@ -28,10 +28,22 @@
     [self.contentView addSubview:_imageView];
 }
 
-- (void)setImagesUrl:(NSString *)imagesUrl {
-    _imagesUrl = imagesUrl;
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
 
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:imagesUrl] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+- (void)setImagesUrl:(NSString *)imagesUrl {
+    _imagesUrl = [self URLEncodedString:imagesUrl];
+//    _imagesUrl = imagesUrl;
+
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:_imagesUrl] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
 }
 
 - (void)setPlaceHolderImageName:(NSString *)placeHolderImageName {

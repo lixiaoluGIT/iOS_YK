@@ -14,6 +14,12 @@
     [super awakeFromNib];
     // Initialization code
 }
+- (IBAction)toxieyi:(id)sender {
+    if (self.toXieYi) {
+        self.toXieYi();
+    }
+
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -28,14 +28,12 @@
 
 @implementation ZYCollectionView
 
+- (void)setImageClickUrls:(NSArray *)imageClickUrls{
+    _imageClickUrls = imageClickUrls;
+}
 
 - (void)setImagesArr:(NSArray *)imagesArr {
     _imagesArr = imagesArr;
-//    if (self.pageControl){
-//        self.pageControl.numberOfPages = imagesArr.count;
-//    }
-    
-    
     
     if (self.cycleCollectionView){
         [_cycleCollectionView reloadData];
@@ -126,7 +124,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //TODO:
 
-    NSLog(@"%f",scrollView.contentOffset.x);
+//    NSLog(@"%f",scrollView.contentOffset.x);
 //    pageView.indexNumWithSlide = self.index;
     if (scrollView.contentOffset.x == (_imagesArr.count + 1) * WIDHT) {//最右边
         [scrollView setContentOffset:CGPointMake(WIDHT, 0)];

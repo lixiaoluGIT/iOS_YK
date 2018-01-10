@@ -84,4 +84,8 @@
     }];
     
 }
+- (IBAction)delete:(id)sender {
+    
+    [self toEdit];
+}
 @end

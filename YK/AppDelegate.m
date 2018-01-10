@@ -33,8 +33,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [NSThread sleepForTimeInterval:1];
+   
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -55,7 +54,7 @@
         
     }
     //微信支付
-    [WXApi registerApp:@"wx08491f30bacfc1ce" withDescription:@"meng"];
+    [WXApi registerApp:@"wx08491f30bacfc1ce" withDescription:@"yk"];
     
     //个推
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注:该 法需要在主线程中调

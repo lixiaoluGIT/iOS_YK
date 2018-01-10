@@ -1,5 +1,5 @@
 //
-//  YKAboutView.h
+//  YKLinkWebVC.h
 //  YK
 //
 //  Created by LXL on 2018/1/10.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKAboutView : UITableViewCell
+@interface YKLinkWebVC : UIViewController
 
-@property (nonatomic,copy)void (^toXieYi)(void);
+@property (nonatomic,strong)NSString *url;
 @end
