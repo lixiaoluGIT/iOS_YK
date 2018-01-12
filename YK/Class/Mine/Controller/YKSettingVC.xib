@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YKSettingVC">
             <connections>
+                <outlet property="cacheLabel" destination="8dH-9k-lbh" id="TMW-kn-QBa"/>
                 <outlet property="exitBtn" destination="kiv-um-XtB" id="oNx-0C-PQN"/>
                 <outlet property="gap" destination="hof-Yf-gFZ" id="Qcp-dg-9JF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="TQ2-hh-Nf3"/>

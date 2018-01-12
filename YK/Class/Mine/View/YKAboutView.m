@@ -8,11 +8,17 @@
 
 #import "YKAboutView.h"
 
+@interface YKAboutView()
+@property (weak, nonatomic) IBOutlet UILabel *currentVersion;
+
+@end
+
 @implementation YKAboutView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    NSString *localVersion = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
+    _currentVersion.text = localVersion;
 }
 - (IBAction)toxieyi:(id)sender {
     if (self.toXieYi) {

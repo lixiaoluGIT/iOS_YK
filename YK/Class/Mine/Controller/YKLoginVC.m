@@ -109,6 +109,10 @@ NSInteger timeNum;
     return toolbar;
 }
 - (IBAction)getCode:(id)sender {
+    if (![steyHelper isValidatePhone:self.phoneText.text] ) {
+        [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
+        return;
+    }
     //请求验证码接口,成功后
     [[YKUserManager sharedManager]getVetifyCodeWithPhone:self.phoneText.text OnResponse:^(NSDictionary *dic) {
         [self timeOrder];

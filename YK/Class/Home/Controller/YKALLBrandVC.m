@@ -124,7 +124,7 @@
         cycleView.imagesArr =  [self getImageArray:array];;
         cycleView.delegate  = self;
         cycleView.placeHolderImageName = @"";
-        self.tableView.tableHeaderView = cycleView;
+//        self.tableView.tableHeaderView = cycleView;
         [self group:self.blackLists];
         [self.tableView reloadData];
     }];

@@ -226,7 +226,7 @@
     return [components minute];
 }
 
-- (NSString*) mk_urlEncodedString
++ (NSString*) mk_urlEncodedString
 { // mk_ prefix prevents a clash with a private api
     
     CFStringRef encodedCFString = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
@@ -242,5 +242,7 @@
     
     return encodedString;
 }
+
+
 
 @end

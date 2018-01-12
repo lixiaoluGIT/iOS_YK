@@ -27,7 +27,7 @@ typedef enum : NSInteger {
 @property (nonatomic,strong)NSString *ID;//订单ID
 @property (nonatomic,strong)NSString *SMSStatus;//物流状态
 
-@property (nonatomic,assign)BOOL isOnRoad;
+@property (nonatomic,assign)BOOL isOnRoad;//未用
 
 + (YKOrderManager *)sharedManager;
 
@@ -49,11 +49,17 @@ typedef enum : NSInteger {
 //确认收货
 - (void)ensureReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//模拟归还>>>>>>>>>>>测试用
+- (void)toReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 //预约归还
 - (void)orderReceiveWithOrderNo:(NSString *)orderNo addressId:(NSString *)addressId time:(NSString *)time OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //查询待归还是否返件
 - (void)queryReceiveOrderOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//生成sf(后台生成,前台)
+- (void)creatSfOrderWithOrderNum:(NSString *)orderNum OnResponse:(void (^)(NSDictionary *dic))onResponse;
 - (void)clear;
+
 @end

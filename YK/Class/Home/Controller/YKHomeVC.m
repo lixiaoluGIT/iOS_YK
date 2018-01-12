@@ -86,8 +86,9 @@ self.collectionView.dataSource = self;
     [self dd];
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
+    _pageNum = 1;
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _pageNum = 0;
+        _pageNum = 1;
        [self dd];
     }];
     WeakSelf(weakSelf)
@@ -171,10 +172,10 @@ self.collectionView.dataSource = self;
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-        if (!hadAppearCheckVersion) {
-            [self checkVersion];
-            hadAppearCheckVersion = YES;
-        }
+//        if (!hadAppearCheckVersion) {
+//            [self checkVersion];
+//            hadAppearCheckVersion = YES;
+//        }
         self.collectionView.hidden = NO;
         NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"imgList"]];
         self.imagesArr = [self getImageArray:array];

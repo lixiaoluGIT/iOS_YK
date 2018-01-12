@@ -10,8 +10,10 @@
 #import "YKHomeVC.h"
 #import "YKWebVC.h"
 #import "YKAboutUsVC.h"
+#import "YKCacheManager.h"
 
 @interface YKSettingVC ()
+@property (weak, nonatomic) IBOutlet UILabel *cacheLabel;
 @property (weak, nonatomic) IBOutlet UIButton *exitBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
 
@@ -51,8 +53,12 @@
     self.navigationItem.titleView = title;
     self.exitBtn.layer.masksToBounds = YES;
     self.exitBtn.layer.cornerRadius = self.exitBtn.frame.size.height/2;
-    // Do any additional setup after loading the view from its nib.
+    
+    self.cacheLabel.text = [NSString stringWithFormat:@"%.1fM",[[YKCacheManager sharedManager]getFolderSize]];
+
 }
+
+
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -69,8 +75,12 @@
     }];
 }
 - (IBAction)clear:(id)sender {
-    [smartHUD alertText:self.view alert:@"清除缓存" delay:1.2];
+//    [smartHUD alertText:self.view alert:@"清除缓存" delay:1.2];
+    [[YKCacheManager sharedManager] removeCacheOnResponse:^(NSDictionary *dic) {
+        self.cacheLabel.text = [NSString stringWithFormat:@"%.1fM",[[YKCacheManager sharedManager]getFolderSize]];
+    }];
 }
+
 - (IBAction)update:(id)sender {
     [smartHUD alertText:self.view alert:@"检查更新" delay:1.2];
 }

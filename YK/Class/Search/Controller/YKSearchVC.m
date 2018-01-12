@@ -86,6 +86,7 @@
 //        _pageNum = 0;
 //        [self getData];
 //    }];
+    _pageNum = 1;
     WeakSelf(weakSelf)
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
@@ -239,7 +240,7 @@
             [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
             //筛选
             self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){
-                _pageNum = 0;
+                _pageNum = 1;
                 _sortId = sortId;
                 _categoryId = categoryId;
                 [weakSelf filterProductWithCategoryId:categoryId sortId:sortId];

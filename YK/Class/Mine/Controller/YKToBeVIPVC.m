@@ -56,18 +56,12 @@
     web.imageName = @"押金说明";
 
     [self.navigationController pushViewController:web animated:YES];
-//    YKShareVC *share = [YKShareVC new];
-//    share.hidesBottomBarWhenPushed = YES;
-//    [[self getCurrentVC].navigationController pushViewController:share animated:YES];
 }
 - (IBAction)yonghuxieyi:(id)sender {
     YKWebVC *web = [YKWebVC new];
     web.titleStr = @"充值说明";
     web.imageName = @"充值说明";
     [self.navigationController pushViewController:web animated:YES];
-//    YKShareVC *share = [YKShareVC new];
-//    share.hidesBottomBarWhenPushed = YES;
-//    [[self getCurrentVC].navigationController pushViewController:share animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -162,9 +156,9 @@
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"阅读并同意充值说明和押金说明"];
     
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(str.length-4,4)]; //设置字体颜色
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"4a90e2"] range:NSMakeRange(str.length-4,4)]; //设置字体颜色
     
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(str.length-9,4)]; //设置字体颜色
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"4a90e2"] range:NSMakeRange(str.length-9,4)]; //设置字体颜色
     
     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial" size:12.0] range:NSMakeRange(0, 5)]; //设置字体字号和字体类别
     

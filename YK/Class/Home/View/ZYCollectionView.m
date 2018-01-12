@@ -15,6 +15,7 @@
 @interface ZYCollectionView ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
      CusPageControlWithView *pageView;
+    BOOL hadBegin;
 }
 
 @property (nonatomic, strong) UICollectionViewFlowLayout * layout;
@@ -51,6 +52,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self createCycleView];
+        hadBegin = NO;
 //        [self createPageControl];
     }
     return self;
@@ -124,20 +126,31 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //TODO:
 
-//    NSLog(@"%f",scrollView.contentOffset.x);
+    NSLog(@"%f",scrollView.contentOffset.x);
+    
 //    pageView.indexNumWithSlide = self.index;
-    if (scrollView.contentOffset.x == (_imagesArr.count + 1) * WIDHT) {//最右边
+    if (scrollView.contentOffset.x == (_imagesArr.count +1) * WIDHT) {//最右边
         [scrollView setContentOffset:CGPointMake(WIDHT, 0)];
         pageView.indexNumWithSlide = 0;
+        return;
     }
-    else if (scrollView.contentOffset.x == 0){//最左边
+   if (scrollView.contentOffset.x == 0){//最左边
         [scrollView setContentOffset:CGPointMake(_imagesArr.count *WIDHT, 0)];
         pageView.indexNumWithSlide = _imagesArr.count;
+       return;
     }
-    else{
-        double pageNum = scrollView.contentOffset.x / self.frame.size.width - 1;
-        pageView.indexNumWithSlide = (int)(pageNum + 0.5);
+   
+    //TODO:第一次pageView的位置不变化
+    if (hadBegin) {
+        double pageNum = scrollView.contentOffset.x / self.frame.size.width-1;
+        pageView.indexNumWithSlide = (int)(pageNum +0.5);
+    }else {
+        double pageNum = scrollView.contentOffset.x / self.frame.size.width;
+        pageView.indexNumWithSlide = (int)(pageNum);
+        hadBegin = YES;
     }
+      
+    
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -198,7 +211,7 @@
 //        if (_timer) {
 //            return;
 //        }
-        _timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(roll) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(roll) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     }
 }

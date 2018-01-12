@@ -34,19 +34,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017-2018 Xykoo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgS-u0-rjf">
-                        <rect key="frame" x="74.5" y="376.5" width="146.5" height="12"/>
+                        <rect key="frame" x="74.5" y="354" width="146.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衣库用户协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHA-ZD-6hu">
-                        <rect key="frame" x="111" y="352" width="74" height="14.5"/>
+                        <rect key="frame" x="111" y="329.5" width="74" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylk-ca-VI3">
-                        <rect key="frame" x="111" y="366.5" width="74" height="1"/>
+                        <rect key="frame" x="111" y="344" width="74" height="1"/>
                         <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="4j5-Th-AeX"/>
@@ -56,7 +56,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjN-X8-gKX">
-                        <rect key="frame" x="98" y="334.5" width="100" height="50"/>
+                        <rect key="frame" x="98" y="312" width="100" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="c6F-f0-o0i"/>
                             <constraint firstAttribute="height" constant="50" id="rLa-dm-U6K"/>
@@ -65,10 +65,18 @@
                             <action selector="toxieyi:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZQG-ne-de6"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京衣点科技有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7U-mu-Q14">
+                        <rect key="frame" x="87" y="368" width="123" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="rjN-X8-gKX" firstAttribute="centerY" secondItem="eHA-ZD-6hu" secondAttribute="centerY" id="1xE-LO-jfY"/>
+                    <constraint firstAttribute="bottom" secondItem="Z7U-mu-Q14" secondAttribute="bottom" constant="50" id="2Yt-JF-4ZT"/>
                     <constraint firstItem="ylk-ca-VI3" firstAttribute="width" secondItem="eHA-ZD-6hu" secondAttribute="width" id="Ajw-1h-aev"/>
+                    <constraint firstItem="Z7U-mu-Q14" firstAttribute="centerX" secondItem="YgS-u0-rjf" secondAttribute="centerX" id="E2g-dn-9Jl"/>
                     <constraint firstItem="ylk-ca-VI3" firstAttribute="bottom" secondItem="eHA-ZD-6hu" secondAttribute="bottom" constant="1" id="F8Y-2N-yQS"/>
                     <constraint firstItem="sS1-H0-xVP" firstAttribute="top" secondItem="IxC-aK-gZM" secondAttribute="bottom" constant="18" id="JQE-1C-ndY"/>
                     <constraint firstItem="sS1-H0-xVP" firstAttribute="centerX" secondItem="IxC-aK-gZM" secondAttribute="centerX" id="LWk-OV-T75"/>
@@ -76,14 +84,17 @@
                     <constraint firstItem="IxC-aK-gZM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="44" id="Qdj-wW-VRk"/>
                     <constraint firstItem="IxC-aK-gZM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="SEa-WI-GRf"/>
                     <constraint firstItem="ylk-ca-VI3" firstAttribute="centerX" secondItem="eHA-ZD-6hu" secondAttribute="centerX" id="TV9-KZ-xXR"/>
+                    <constraint firstItem="Z7U-mu-Q14" firstAttribute="top" secondItem="YgS-u0-rjf" secondAttribute="bottom" constant="2" id="UEZ-0V-6KN"/>
                     <constraint firstItem="rjN-X8-gKX" firstAttribute="centerX" secondItem="eHA-ZD-6hu" secondAttribute="centerX" id="gzH-SK-HlH"/>
                     <constraint firstItem="YgS-u0-rjf" firstAttribute="centerX" secondItem="Kkr-Ai-S92" secondAttribute="centerX" id="j8N-D1-bLm"/>
-                    <constraint firstAttribute="bottom" secondItem="YgS-u0-rjf" secondAttribute="bottom" constant="44" id="lMY-K0-MIO"/>
                     <constraint firstItem="Kkr-Ai-S92" firstAttribute="centerX" secondItem="sS1-H0-xVP" secondAttribute="centerX" id="px1-XC-grh"/>
                     <constraint firstItem="eHA-ZD-6hu" firstAttribute="centerX" secondItem="YgS-u0-rjf" secondAttribute="centerX" id="qbA-ZF-SEG"/>
                     <constraint firstItem="Kkr-Ai-S92" firstAttribute="top" secondItem="sS1-H0-xVP" secondAttribute="bottom" constant="3" id="y2X-pf-V4B"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="currentVersion" destination="Kkr-Ai-S92" id="0SU-bW-mzb"/>
+            </connections>
             <point key="canvasLocation" x="0.5" y="222.5"/>
         </tableViewCell>
     </objects>

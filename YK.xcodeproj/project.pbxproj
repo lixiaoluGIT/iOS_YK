@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C50394932007BDB2004B41C3 /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = C50394922007BDB1004B41C3 /* Default-568.png */; };
 		C50E58D61FE1117F0063F377 /* YKSuitHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C50E58D41FE1117F0063F377 /* YKSuitHeader.m */; };
 		C50E58D71FE1117F0063F377 /* YKSuitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50E58D51FE1117F0063F377 /* YKSuitHeader.xib */; };
 		C525DC261FBAAFC1002802AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DC251FBAAFC1002802AE /* AppDelegate.m */; };
@@ -319,6 +320,7 @@
 		C5343C971FC6A87900F5132A /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5343C951FC6A87800F5132A /* CBSegmentView.m */; };
 		C5343C991FC6B78B00F5132A /* banner7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5343C981FC6B78B00F5132A /* banner7.jpg */; };
 		C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECCE1FEB923E003BB993 /* libsqlite3.tbd */; };
+		C536298420089C9200CA1F8B /* YKCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C536298320089C9200CA1F8B /* YKCacheManager.m */; };
 		C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F851FE27472000EAF8E /* YKMessageManager.m */; };
 		C54B8F891FE275BC000EAF8E /* YKMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F881FE275BC000EAF8E /* YKMessageVC.m */; };
 		C54B8F8C1FE38015000EAF8E /* YKSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F8B1FE38015000EAF8E /* YKSearchManager.m */; };
@@ -430,6 +432,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C50394922007BDB1004B41C3 /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568.png"; sourceTree = "<group>"; };
 		C50E58D31FE1117F0063F377 /* YKSuitHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuitHeader.h; sourceTree = "<group>"; };
 		C50E58D41FE1117F0063F377 /* YKSuitHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuitHeader.m; sourceTree = "<group>"; };
 		C50E58D51FE1117F0063F377 /* YKSuitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSuitHeader.xib; sourceTree = "<group>"; };
@@ -1055,6 +1058,8 @@
 		C534ECD41FEB9295003BB993 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		C534ECD51FEB92B1003BB993 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		C534ECD61FEB9311003BB993 /* YK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YK.entitlements; sourceTree = "<group>"; };
+		C536298220089C9200CA1F8B /* YKCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCacheManager.h; sourceTree = "<group>"; };
+		C536298320089C9200CA1F8B /* YKCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCacheManager.m; sourceTree = "<group>"; };
 		C54B8F841FE27472000EAF8E /* YKMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMessageManager.h; sourceTree = "<group>"; };
 		C54B8F851FE27472000EAF8E /* YKMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMessageManager.m; sourceTree = "<group>"; };
 		C54B8F871FE275BC000EAF8E /* YKMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMessageVC.h; sourceTree = "<group>"; };
@@ -1266,6 +1271,7 @@
 				C525DC271FBAAFC1002802AE /* ViewController.h */,
 				C525DC281FBAAFC1002802AE /* ViewController.m */,
 				C525DC2A1FBAAFC1002802AE /* Main.storyboard */,
+				C50394922007BDB1004B41C3 /* Default-568.png */,
 				C5742ED12003872C00BBB882 /* Images.xcassets */,
 				C525DC2D1FBAAFC1002802AE /* Assets.xcassets */,
 				C525DC2F1FBAAFC1002802AE /* LaunchScreen.storyboard */,
@@ -1543,6 +1549,8 @@
 				C532A6DD1FDF881E0068A31D /* YKPayManager.m */,
 				C54B8F841FE27472000EAF8E /* YKMessageManager.h */,
 				C54B8F851FE27472000EAF8E /* YKMessageManager.m */,
+				C536298220089C9200CA1F8B /* YKCacheManager.h */,
+				C536298320089C9200CA1F8B /* YKCacheManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1739,6 +1747,7 @@
 		C525DC6E1FBAB15D002802AE /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				C525DE871FBD2813002802AE /* YKprefixheader.pch */,
 				C52CA76A2000BFA700ECDC80 /* DDAdvertisementVC.h */,
 				C52CA7692000BFA700ECDC80 /* DDAdvertisementVC.m */,
 				C52D04761FE8EB5C00633550 /* YKNoDataView.h */,
@@ -1748,7 +1757,6 @@
 				C53039DD1FCC26C000FB12CE /* WelcomeViewController.m */,
 				C525DDD41FBAB40D002802AE /* YKMainVC.h */,
 				C525DDD51FBAB40D002802AE /* YKMainVC.m */,
-				C525DE871FBD2813002802AE /* YKprefixheader.pch */,
 				C52D047A1FE8F8A400633550 /* YKAleartView.h */,
 				C52D047B1FE8F8A400633550 /* YKAleartView.m */,
 				C575053C1FFB8AC100F7E07A /* DDAleartView.h */,
@@ -2796,6 +2804,7 @@
 				C5742ED22003872C00BBB882 /* Images.xcassets in Resources */,
 				C525DE481FBC28FC002802AE /* 6.jpg in Resources */,
 				C533470B1FCFFE58002A08D0 /* logisticsInfo.plist in Resources */,
+				C50394932007BDB2004B41C3 /* Default-568.png in Resources */,
 				C525DE4F1FBC28FC002802AE /* 7.gif in Resources */,
 				C525DD621FBAB2A8002802AE /* LICENSE in Resources */,
 				C5FECE221FC2BA4D00D299AE /* 38.jpg in Resources */,
@@ -3001,6 +3010,7 @@
 				C525DDAA1FBAB2A9002802AE /* MLLabelLayoutManager.m in Sources */,
 				C525DD6D1FBAB2A8002802AE /* AFHTTPSessionManager.m in Sources */,
 				C525DE371FBC18AA002802AE /* YKRecommentTitleView.m in Sources */,
+				C536298420089C9200CA1F8B /* YKCacheManager.m in Sources */,
 				C57505381FFB853500F7E07A /* DDAleartView.m in Sources */,
 				C525DC341FBAAFC1002802AE /* main.m in Sources */,
 				C5690F981FE770BD0027EFCE /* YKTotalSMSCell.m in Sources */,
@@ -3276,7 +3286,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -3361,9 +3370,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;

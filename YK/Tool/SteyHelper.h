@@ -36,5 +36,5 @@
 +(NSInteger)piancha:(NSDate *)lastDate current:(NSDate *)cureDate;
 +(NSInteger)pianchaToNow:(NSDate *)lastDate;
 
-- (NSString*) mk_urlEncodedString;
++ (NSString*) mk_urlEncodedString;
 @end

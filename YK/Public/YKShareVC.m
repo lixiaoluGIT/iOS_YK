@@ -185,12 +185,15 @@
 -(void)itemDidSelected:(NSInteger)index {
     
     WXMediaMessage *message = [WXMediaMessage message];
-    [message setThumbImage:[UIImage imageNamed:@"logo"]];
+//    [message setThumbImage:[UIImage imageNamed:@""]];
   
     WXImageObject *ext = [WXImageObject object];
     NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
     ext.imageData  = [NSData dataWithContentsOfFile:filePath];
     UIImage *image = [UIImage imageWithData:ext.imageData];
+    
+    [message setThumbImage:image];
+    
     ext.imageData  = UIImagePNGRepresentation(image);
     
     message.mediaObject = ext;
@@ -207,22 +210,14 @@
     
     [WXApi sendReq:req];
 }
+
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -159,6 +159,7 @@
     
     self.catrgoryId = @"";
     WeakSelf(weakSelf)
+    _pageNum = 1;
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
 //         [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:weakSelf.catrgoryId];
@@ -269,7 +270,7 @@
                [sliderSegmentView setTitleArray:self.titles categoryIds:self.categotyIds withStyle:CBSegmentStyleSlider];
                 sliderSegmentView.categotyIds = self.categotyIds;
                 sliderSegmentView.titleChooseReturn = ^(NSString  *catrgoryId) {
-                    _pageNum = 0;
+                    _pageNum = 1;
                     weakSelf.catrgoryId = catrgoryId;
                     [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:catrgoryId];
                 };

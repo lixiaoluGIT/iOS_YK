@@ -205,6 +205,8 @@
             [UIView animateWithDuration:0.2 animations:^{
                 self.slider.cb_Width = sliderWidth.floatValue;
                 self.slider.cb_CenterX = btn.cb_CenterX;
+                self.selectedBtn.transform = CGAffineTransformIdentity;
+                btn.transform = CGAffineTransformMakeScale(1.3, 1.3);
             }];
         
        
@@ -215,7 +217,7 @@
 //        }
     }else if (_SegmentStyle == CBSegmentStyleZoom) {
    
-                      [UIView animateWithDuration:0.2 animations:^{
+            [UIView animateWithDuration:0.2 animations:^{
             self.selectedBtn.transform = CGAffineTransformIdentity;
             btn.transform = CGAffineTransformMakeScale(1.3, 1.3);
             

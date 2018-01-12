@@ -38,6 +38,8 @@
                         onResponse(dic);
                     }
 
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
         }
     }];
     

@@ -102,43 +102,68 @@
         default:
             break;
     }
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+   
     
-    NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
     
-    //待签收:包括待发货和待签收
+    //待签收:包括待发货和待签收>>>查询2待签收,先查看1待发货
     if (status==2) {
+         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
         NSInteger s = 1;
         NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
         [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
+             [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+            
             NSMutableArray *listArray;
             NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
-            if (array.count!=0) {
-                
+            if (array.count!=0) {//待发货有数据
                 _isOnRoad = NO;//未发货
-                
-            listArray = [NSMutableArray arrayWithArray:array[0][@"orderDetailsVoList"]];
-            _orderNo = dic[@"data"][0][@"orderNo"];
-            _ID = dic[@"data"][0][@"id"];
+                listArray = [NSMutableArray arrayWithArray:array[0][@"orderDetailsVoList"]];
+                _orderNo = dic[@"data"][0][@"orderNo"];
+                _ID = dic[@"data"][0][@"id"];
 
-            if (listArray.count!=0) {
-                if (onResponse) {
-                    onResponse(listArray);
-                }
-                return;
-            }
+                    if (onResponse) {
+                        onResponse(listArray);
+                    }
+                
+            }else {//没有待发货的1,查询待签收2
+                NSString *url = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
+                [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+                    NSMutableArray *listArray;
+                    
+                    NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+                    if (array.count>0) {
+                        listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
+                        _orderNo = dic[@"data"][0][@"orderNo"];
+                        _ID = dic[@"data"][0][@"id"];
+                       
+                    }else {
+                        listArray = [NSMutableArray array];
+                    }
+                   
+                    if (onResponse) {
+                        onResponse(listArray);
+                    }
+     
+                    
+                        
+                    
+                        
+                    
+                }];
                 
             }
 
         }];
 
-    }
+    }else {
     
    
+         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
     [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
 
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        
+
         if ([dic[@"status"] integerValue] == 200) {
             NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
             if (array.count == 0) {
@@ -147,7 +172,7 @@
                 }
                 return ;
             }
- 
+
             if (status==0) {//全部衣袋
                 [self groupWithDictionary:dic groupDoneBlock:^(void) {
                     if (onResponse) {
@@ -172,9 +197,9 @@
                                 }
                             }
                         }
-                        
+
                         listArray = [NSMutableArray arrayWithArray:totalArray];
-                        
+
                     }else {//待签收或待归还
                         listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
                         _orderNo = dic[@"data"][0][@"orderNo"];
@@ -183,13 +208,17 @@
                 }else {
                     listArray = [NSMutableArray array];
                 }
-                
+
                 if (onResponse) {
                     onResponse(listArray);
                 }
             }
         }
+    
     }];
+    
+    }
+
 }
 
 //物流信息
@@ -202,15 +231,15 @@
     [YKHttpClient Method:@"POST" URLString:url paramers:nil success:^(NSDictionary *dict) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        if ([dict[@"status"] intValue] != 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
-       
-            return ;
-        }
+      
        
         //最新一条
         NSArray *arr = [NSArray arrayWithArray:dict[@"data"][@"body"]];
         
+        if (arr.count == 0) {//未查到物流信息
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"未查到物流信息" delay:2];
+            return ;
+        }
         NSDictionary *model;
         if (arr.count>0) {
             model = [NSDictionary dictionaryWithDictionary:arr[0]];
@@ -278,6 +307,29 @@
         
         if ([dic[@"status"] integerValue] == 200) {
           
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }
+    }];
+}
+
+//测试用
+- (void)toReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [self clear];
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,orderNo,@"5"];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
+        
+        if ([dic[@"status"] integerValue] == 200) {
+            
             if (onResponse) {
                 onResponse(dic);
             }
@@ -406,11 +458,28 @@
         }
 }
 
+- (void)creatSfOrderWithOrderNum:(NSString *)orderNum OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@",creatSFOrder_Url,self.orderNo];
+    
+    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        if ([dic[@"status"] integerValue] == 200) {
+            
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }
+    }];
+    
+}
+
 - (void)clear{
     [[YKOrderManager sharedManager].totalOrderList removeAllObjects];
     [[YKOrderManager sharedManager].sectionArray removeAllObjects];
     [YKOrderManager sharedManager].orderNo = nil;
-     [YKOrderManager sharedManager].ID = nil;
+    [YKOrderManager sharedManager].ID = nil;
 }
 
 @end

@@ -38,11 +38,11 @@
     return dataTask;
 }
 
-- (NSString*) mk_urlEncodedString
+- (NSString*) mk_urlEncodedString:(NSString *)str
 { // mk_ prefix prevents a clash with a private api
     
     CFStringRef encodedCFString = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                          (__bridge CFStringRef) self,
+                                                                          (__bridge CFStringRef)str,
                                                                           nil,
                                                                           CFSTR("?!@#$^&%*+,:;='\"`<>()[]{}/\\| "),
                                                                           kCFStringEncodingUTF8);

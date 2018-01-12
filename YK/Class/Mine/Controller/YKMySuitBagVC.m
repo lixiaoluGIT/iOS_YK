@@ -33,11 +33,18 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-//    [[YKOrderManager sharedManager]clear];
+
     if (_bagStatus==toBack) {
         [self searchOrders:102];
     }
 }
+
+- (void)test{
+    [[YKOrderManager sharedManager]toReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
+        [self searchOrders:102];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[YKOrderManager sharedManager]clear];
@@ -60,6 +67,14 @@
     }
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
+    
+    
+    //TODO:测试用,记得注释掉
+    //
+//    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(test)];
+//    self.navigationItem.rightBarButtonItem = rightBarItem;
+//    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
+    //end
 
     [self settingButtons];
     
@@ -117,7 +132,7 @@
         index = 3;
         _bagStatus = hadBack;
     }
-    //查询订单
+    //查询订单,刚进来的时候
     [self searchOrders:self.selectedIndex];
     
     for (int i = 0; i < 4; i++) {
@@ -158,9 +173,11 @@
                 }else {//未预约
                     isHadOrderreceive = YES;
                 }
+                
                 [weakSelf reloadUI];
+                
             }];
-//            [weakSelf reloadUI];
+
         }else {
             [weakSelf reloadUI];
         }
@@ -338,9 +355,9 @@
        //物流信息
         header.SMSBlock = ^(void){
             YKSMSInforVC *sms = [YKSMSInforVC new];
-//            sms.orderNo = [YKOrderManager sharedManager].orderNo;
+            sms.orderNo = [YKOrderManager sharedManager].orderNo;
             //测试数据
-            sms.orderNo = @"238836512256";
+//            sms.orderNo = @"238836512256";
              [self.navigationController pushViewController:sms animated:YES];
         };
         //确认收货
@@ -428,8 +445,8 @@
         mycell.scanSMSBlock = ^(void){
             YKSMSInforVC *sms = [YKSMSInforVC new];
             //测试数据
-            sms.orderNo = @"238836512256";
-//            sms.orderNo = [YKOrderManager sharedManager].orderNo;
+//            sms.orderNo = @"238836512256";
+            sms.orderNo = [YKOrderManager sharedManager].orderNo;
             [self.navigationController pushViewController:sms animated:YES];
         };
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -451,12 +468,25 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
      YKSuitEnsureCell*cell = (YKSuitEnsureCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
-    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-    detail.productId = cell.suit.clothingId;
-    detail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detail animated:YES];
+    //请求商品信息,判断是否下架
+    [[YKHomeManager sharedManager]getProductDetailInforWithProductId:[cell.suit.clothingId intValue] OnResponse:^(NSDictionary *dic) {
+
+        if ([dic[@"status"] intValue] == 400) {
+            [smartHUD alertText:self.view alert:dic[@"msg"] delay:2];
+           
+        }else {
+            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+            detail.productId = cell.suit.clothingId;
+            detail.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detail animated:YES];
+        }
+        
+    }];
+    
+
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

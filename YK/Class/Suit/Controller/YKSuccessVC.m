@@ -41,32 +41,19 @@
     self.returnBtn.layer.cornerRadius = 18;
  }
 - (IBAction)scan:(id)sender {
-//    YKMineVC *chatVC = [[YKMineVC alloc] init];
-//    chatVC.hidesBottomBarWhenPushed = YES;
-//    UINavigationController *nav = self.tabBarController.viewControllers[3];
-//    chatVC.hidesBottomBarWhenPushed = YES;
-//    self.tabBarController.selectedViewController = nav;
-//    [self.navigationController popToRootViewControllerAnimated:NO];
     YKMySuitBagVC *bag = [YKMySuitBagVC new];
     bag.isFromSuccess = YES;
     bag.selectedIndex = 100;
     [self.navigationController pushViewController:bag animated:YES];
 }
 - (IBAction)return:(id)sender {
-//    [self.navigationController popToRootViewControllerAnimated:YES];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    
+
     YKHomeVC *chatVC = [[YKHomeVC alloc] init];
     chatVC.hidesBottomBarWhenPushed = YES;
     UINavigationController *nav = self.tabBarController.viewControllers[0];
     chatVC.hidesBottomBarWhenPushed = YES;
     self.tabBarController.selectedViewController = nav;
     [self.navigationController popToRootViewControllerAnimated:NO];
-//        [self.navigationController popToRootViewControllerAnimated:NO];
-//        self.tabBarController.selectedIndex = 0;
-//    });
-
-    
 }
 
 @end

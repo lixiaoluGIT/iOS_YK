@@ -71,7 +71,7 @@
     _isVIP.hidden = NO;
     _backView.hidden = NO;
     _VIPLable.hidden = NO;
-    if (user.nickname == [NSNull null]) {
+        if ([user.nickname isEqual:[NSNull null]]) {
         _userName.text = user.phone;
      
     }else {

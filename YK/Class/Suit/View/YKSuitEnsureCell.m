@@ -32,11 +32,21 @@
 - (void)setSuit:(YKSuit *)suit{
     _suit = suit;
     
-    [self.myImage sd_setImageWithURL:[NSURL URLWithString:suit.clothingImgUrl] placeholderImage:[UIImage imageNamed:@"商品图"]];
+    [self.myImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:suit.clothingImgUrl]] placeholderImage:[UIImage imageNamed:@"商品图"]];
     self.myDes.text = [NSString stringWithFormat:@"%@",suit.clothingName];
     self.myBrand.text = suit.clothingBrandName;
     self.mySize.text = suit.clothingStockType;
     self.myPrice.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];
 }
 
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
 @end

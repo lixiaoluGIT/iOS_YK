@@ -120,10 +120,21 @@
     
 }
 
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
+
 - (void)setSuit:(YKSuit *)suit{
     _suit = suit;
     self.suitImage.autoresizingMask = NO;
-    [self.suitImage sd_setImageWithURL:[NSURL URLWithString:suit.clothingImgUrl] placeholderImage:[UIImage imageNamed:@"商品图"]];
+    [self.suitImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:suit.clothingImgUrl]] placeholderImage:[UIImage imageNamed:@"商品图"]];
     self.suitName.text = suit.clothingName;
     self.suitBrand.text = suit.clothingBrandName;
     self.suitType.text = suit.clothingStockType;
