@@ -70,6 +70,7 @@
     [self.imgHead sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.headurl]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
     
     self.labName.text = [NSString stringWithFormat:@"%@",dic[@"brandName"]];
+    self.brandName = self.labName.text;
 }
 
 

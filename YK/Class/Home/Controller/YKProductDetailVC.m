@@ -87,7 +87,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _sizeNum = 0;
-    self.title = @"商品详情";
+    self.title = self.titleStr;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -110,6 +110,8 @@
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.font = PingFangSC_Regular(17);
     
     self.navigationItem.titleView = title;
     
@@ -375,10 +377,11 @@
             scroll.selectBlock = ^(NSString *type){
                 weakSelf.sizeNum = type;
             };
-            scroll.toDetailBlock = ^(NSInteger brandId){
+            scroll.toDetailBlock = ^(NSInteger brandId,NSString *brandName){
                 YKBrandDetailVC *brand = [YKBrandDetailVC new];
                 brand.hidesBottomBarWhenPushed = YES;
                 brand.brandId = [NSString stringWithFormat:@"%ld",brandId];
+                brand.titleStr = brandName;
                 
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
@@ -417,7 +420,7 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (section==0) {
-        return UIEdgeInsetsMake(0, 0, 0, 0);
+        return UIEdgeInsetsMake(16, 0, 16, 0);
     }
         return UIEdgeInsetsMake(16, 16, 16, 16);
 
@@ -447,6 +450,7 @@
     if (indexPath.section==1) {
         YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
         detail.productId = cell.goodsId;
+        detail.titleStr = cell.goodsName;
         detail.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detail animated:YES];
     }

@@ -70,6 +70,8 @@
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.font = PingFangSC_Regular(17);
     
     self.navigationItem.titleView = title;
     
@@ -264,6 +266,7 @@
     title.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
     title.textColor = [UIColor whiteColor];
     title.textAlignment = NSTextAlignmentCenter;
+   
     [head addSubview:title];
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -282,6 +285,7 @@
     YKALLBrandCell *brandCell = (YKALLBrandCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     YKBrandDetailVC *brand = [YKBrandDetailVC new];
     brand.brandId = brandCell.brandId;
+    brand.titleStr = brandCell.brandName;
     [self.navigationController pushViewController:brand animated:YES];
     
 }

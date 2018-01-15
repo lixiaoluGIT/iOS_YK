@@ -51,9 +51,9 @@
         [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
         btn.title.text = brandArray[i][@"brandName"];
         btn.brandId = brandArray[i][@"brandId"];
-        btn.clickDetailBlock = ^(NSString *brandId){
+        btn.clickDetailBlock = ^(NSString *brandId,NSString *brandName){
             if (self.toDetailBlock) {
-                self.toDetailBlock(brandId);
+                self.toDetailBlock(brandId, brandArray[i][@"brandName"]);
             }
         };
         btn.image.contentMode   = UIViewContentModeScaleAspectFill;

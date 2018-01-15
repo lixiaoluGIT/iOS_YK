@@ -12,7 +12,7 @@
 @interface YKProductDetailHeader : UITableViewCell
 
 
-@property (nonatomic,copy)void (^toDetailBlock)(NSInteger brandId);
+@property (nonatomic,copy)void (^toDetailBlock)(NSInteger brandId,NSString *brandName);
 @property (nonatomic,copy)void (^selectBlock)(NSString *type);
 @property (nonatomic,strong)NSDictionary *product;
 

@@ -15,4 +15,6 @@
 
 @property (nonatomic,strong)NSString *productId;
 
+@property (nonatomic,strong)NSString *titleStr;
+
 @end

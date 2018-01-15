@@ -12,4 +12,6 @@
 
 @property (nonatomic,assign)NSString *brandId;//品牌Id
 
+@property (nonatomic,strong)NSString *titleStr;
+
 @end

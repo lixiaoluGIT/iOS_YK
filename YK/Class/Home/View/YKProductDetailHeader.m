@@ -32,7 +32,7 @@
 
 - (void)toDetail{
     if (self.toDetailBlock ) {
-        self.toDetailBlock([_brand[@"brandId"] integerValue]);
+        self.toDetailBlock([_brand[@"brandId"] integerValue],_brand[@"brandName"]);
     }
 }
 

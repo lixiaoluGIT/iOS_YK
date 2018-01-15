@@ -480,6 +480,7 @@
         }else {
             YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
             detail.productId = cell.suit.clothingId;
+            detail.titleStr = cell.suit.clothingName;
             detail.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:detail animated:YES];
         }

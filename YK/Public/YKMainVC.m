@@ -52,6 +52,7 @@
         
         YKSuitVC *shareLineController = [[YKSuitVC  alloc] init];
         shareLineController.title = @"衣袋";
+ 
         shareLineController.tabBarItem.image = [UIImage imageNamed:@"yidai"];
         shareLineController.tabBarItem.selectedImage = [UIImage imageNamed:@"yidai1"];
         shareLineController.tabBarItem.title = @"衣袋";

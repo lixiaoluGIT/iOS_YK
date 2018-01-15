@@ -53,6 +53,8 @@
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.font = PingFangSC_Regular(17);
     self.navigationItem.titleView = title;
     
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];

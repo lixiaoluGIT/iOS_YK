@@ -57,6 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     self.categoryId = @"";
     self.sortId = @"";
     self.cellDic = [[NSMutableDictionary alloc] init];
@@ -218,11 +219,12 @@
             brand.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
-        _scroll.toDetailBlock = ^(NSString *brandId){
+        _scroll.toDetailBlock = ^(NSString *brandId,NSString *brandName){
             NSLog(@"所点品牌ID:%@",brandId);
             YKBrandDetailVC *brand = [YKBrandDetailVC new];
             brand.hidesBottomBarWhenPushed = YES;
             brand.brandId = brandId;
+            brand.titleStr = brandName;
             
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
@@ -283,6 +285,7 @@
     
     YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
     detail.productId = cell.goodsId;
+    detail.titleStr = cell.goodsName;
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
     

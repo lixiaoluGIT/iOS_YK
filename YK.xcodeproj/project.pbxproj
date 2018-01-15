@@ -3456,7 +3456,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WBB3ME55KM;
+				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
@@ -3471,7 +3471,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WBB3ME55KM;
+				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
@@ -3485,7 +3485,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WBB3ME55KM;
+				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
@@ -3499,7 +3499,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WBB3ME55KM;
+				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;

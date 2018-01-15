@@ -61,6 +61,7 @@
     //请求数据
     self.images2 = [NSArray array];
  
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     self.view.backgroundColor =[ UIColor whiteColor];
 
 
@@ -262,9 +263,10 @@ self.collectionView.dataSource = self;
                 brand.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
-        _scroll.toDetailBlock = ^(NSString *brandId){
+        _scroll.toDetailBlock = ^(NSString *brandId,NSString *brandName){
             NSLog(@"所点品牌ID:%@",brandId);
             YKBrandDetailVC *brand = [YKBrandDetailVC new];
+            brand.titleStr = brandName;
             brand.hidesBottomBarWhenPushed = YES;
             brand.brandId = brandId;
             
@@ -317,6 +319,7 @@ self.collectionView.dataSource = self;
     
     YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
     detail.productId = cell.goodsId;
+    detail.titleStr = cell.goodsName;
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
 }

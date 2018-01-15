@@ -18,7 +18,7 @@
 }
 - (void)toDetail{
     if (self.clickDetailBlock) {
-        self.clickDetailBlock(self.brandId);
+        self.clickDetailBlock(self.brandId,nil);
     }
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -106,7 +106,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"品牌介绍";
+    self.title = self.titleStr;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -127,6 +127,8 @@
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.font = PingFangSC_Regular(17);
     
     self.navigationItem.titleView = title;
     
@@ -372,6 +374,7 @@
     
     YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
     detail.productId = cell.goodsId;
+    detail.titleStr = cell.goodsName;
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
 }

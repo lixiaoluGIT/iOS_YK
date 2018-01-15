@@ -10,5 +10,6 @@
 
 @interface YKALLBrandCell : UITableViewCell
 @property (nonatomic) NSString *brandId;
+@property (nonatomic,strong)NSString *brandName;
 - (void)initWithDictionary:(NSDictionary *)dic;
 @end
