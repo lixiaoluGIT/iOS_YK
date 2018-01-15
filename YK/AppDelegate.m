@@ -54,7 +54,7 @@
         
     }
     //微信支付
-    [WXApi registerApp:@"wx08491f30bacfc1ce" withDescription:@"yk"];
+    [WXApi registerApp:WeChat_APPKEY withDescription:@"yk"];
     
     //个推
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注:该 法需要在主线程中调
@@ -350,13 +350,21 @@
 
 }
 
-//微信支付结果
--(void) onResp:(BaseResp*)resp
-{
+//微信结果
+-(void) onResp:(BaseResp*)resp{
     
     NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
     NSString *strTitle;
 
+    if ([resp isKindOfClass:[SendAuthResp class]]) //判断是否为授权请求，否则与微信支付等功能发生冲突
+    {
+        SendAuthResp *aresp = (SendAuthResp *)resp;
+        if (aresp.errCode== 0)
+        {
+            NSLog(@"code %@",aresp.code);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"wechatDidLoginNotification" object:self userInfo:@{@"code":aresp.code}];
+        }
+    }
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
@@ -375,9 +383,6 @@
 //            }
         }else{ //失败
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"分享失败" delay:2];
-//            NSLog(@"error %@",resp.errStr);
-//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"分享失败" message:[NSString stringWithFormat:@"reason : %@",resp.errStr] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//            [alert show];
         }
     }
     
@@ -390,11 +395,10 @@
             case WXSuccess:{
                 
                 strMsg = @"微信支付结果：成功！";
-                //NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    //NSLog(@"caonima");
+ 
                     
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"wxpaysuc" object:nil userInfo:@{@"codeid":[NSString stringWithFormat:@"%d",resp.errCode]}];
                     

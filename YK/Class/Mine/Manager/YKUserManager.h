@@ -83,4 +83,15 @@
 
 //检查更新
 - (void)checkVersion;
+
+//第三方登录
+
+//微信登录
+- (void)loginByWeChatOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+- (void)getWechatAccessTokenWithCode:(NSString *)code OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//qq登录
+- (void)loginByTencentOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 @end

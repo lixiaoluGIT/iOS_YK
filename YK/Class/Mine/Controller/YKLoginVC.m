@@ -44,6 +44,19 @@ NSInteger timeNum;
     [self.vetifyText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.phoneText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.getVetifyBtn.userInteractionEnabled = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatDidLoginNotification:) name:@"wechatDidLoginNotification" object:nil];
+}
+
+//接收微信登录的通知
+- (void)wechatDidLoginNotification:(NSNotification *)notify{
+    NSDictionary *dict = [notify userInfo];
+    [[YKUserManager sharedManager]getWechatAccessTokenWithCode:dict[@"code"] OnResponse:^(NSDictionary *dic) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+
+    }];
 }
 
 - (void) textFieldDidChange:(id) sender {
@@ -173,5 +186,19 @@ NSInteger timeNum;
         }];
     }];
 }
+//qq登录
+- (IBAction)tencentLogin:(id)sender {
+//    [[YKUserManager sharedManager]loginByTencentOnResponse:^(NSDictionary *dic) {
+//        
+//    }];
+}
+
+//微信登录
+- (IBAction)weChatLogin:(id)sender {
+    [[YKUserManager sharedManager]loginByWeChatOnResponse:^(NSDictionary *dic) {
+        
+    }];
+}
+
 
 @end

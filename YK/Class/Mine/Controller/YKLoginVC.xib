@@ -148,10 +148,16 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEq-ez-HuQ">
                     <rect key="frame" x="130" y="557" width="46" height="46"/>
                     <state key="normal" image="qq"/>
+                    <connections>
+                        <action selector="tencentLogin:" destination="-1" eventType="touchUpInside" id="Txs-JB-b4y"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9es-1X-BLe">
                     <rect key="frame" x="199" y="557.5" width="46" height="46"/>
                     <state key="normal" image="wechat"/>
+                    <connections>
+                        <action selector="weChatLogin:" destination="-1" eventType="touchUpInside" id="IKS-Hy-1nm"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SpT-WC-AJF">
                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>

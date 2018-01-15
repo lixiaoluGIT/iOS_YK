@@ -338,4 +338,102 @@
     }
 }
 
+- (void)loginByWeChatOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    SendAuthReq* req =[[SendAuthReq alloc] init];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"123" ;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    [WXApi sendReq:req];
+}
+
+- (void)getWechatAccessTokenWithCode:(NSString *)code OnResponse:(void (^)(NSDictionary *dic))onResponse
+{
+    NSString *url =[NSString stringWithFormat:
+                    @"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",
+                    WeChat_APPKEY,WeChat_Secret,code];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (data)
+            {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:NSJSONReadingMutableContainers error:nil];
+                
+                NSLog(@"%@",dic);
+                NSString *accessToken = dic[@"access_token"];
+                NSString *openId = dic[@"openid"];
+                
+                [self getWechatUserInfoWithAccessToken:accessToken openId:openId OnResponse:^(NSDictionary *dic) {
+                    if (onResponse) {
+                        onResponse(nil);
+                    }
+                }];
+            }
+        });
+    });
+}
+
+- (void)getWechatUserInfoWithAccessToken:(NSString *)accessToken openId:(NSString *)openId OnResponse:(void (^)(NSDictionary *dic))onResponse
+{
+    NSString *url =[NSString stringWithFormat:
+                    @"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openId];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (data)
+            {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:NSJSONReadingMutableContainers error:nil];
+                
+                NSLog(@"%@",dic);
+                
+                NSString *openId = [dic objectForKey:@"openid"];
+                NSString *memNickName = [dic objectForKey:@"nickname"];
+                NSString *memSex = [dic objectForKey:@"sex"];
+                
+                [self loginWithOpenId:openId memNickName:memNickName memSex:memSex dic:dic OnResponse:^(NSDictionary *dic) {
+                    if (onResponse) {
+                        onResponse(nil);
+                    }
+                }];
+                
+            }
+        });
+        
+    });
+}
+
+//调用server的第三方登录接口
+- (void)loginWithOpenId:(NSString *)openId memNickName:(NSString *)memNickName memSex:(NSString *)memSex dic:(NSDictionary *)dic OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    //把值赋给app
+    [YKUserManager sharedManager].user.nickname  = dic[@"nickname"];
+    [YKUserManager sharedManager].user.photo = dic[@"headimgurl"];
+    [YKUserManager sharedManager].user.gender = dic[@"sex"];
+    [UD setObject:@"sad ad " forKey:@"token"];//已登录的状态
+    
+    //app登录
+//    [self thirdLoginByWeChatOnResponse:^(NSDictionary *dic) {
+        if (onResponse) {
+            onResponse(nil);
+        }
+//    }];
+    
+}
+
+//调用APP的登录接口
+- (void)thirdLoginByWeChatOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    if (onResponse) {
+        onResponse(nil);
+    }
+}
+
 @end

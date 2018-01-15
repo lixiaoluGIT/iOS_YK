@@ -22,6 +22,8 @@
 #define kGtAppSecret @"Hvg8Emt8g96lGpqLes8hw"
 
 #define USHARE_APPKEY @"5a445f58f43e48135500000e"
+#define WeChat_APPKEY @"wx08491f30bacfc1ce"
+#define WeChat_Secret @"51a5ffb7b547d3cb3f1a0d4ecf366dfa"
 
 /*----------------------------用户token--------------------------------*/
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
@@ -60,6 +62,10 @@
 #define GetVetifyCode_Url @"/tokens/sendSms"
 //登录
 #define Login_Url @"/tokens/login"
+//微信登录接口
+
+//qq登录接口
+
 //获取用户信息
 #define GetUserInfor_Url @"/user/getUserInfo"
 //更新用户信息
