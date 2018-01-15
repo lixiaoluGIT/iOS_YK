@@ -27,7 +27,7 @@
     for (int i = 0; i<[_timeLable.text length]; i++) {
         //截取字符串中的每一个字符
         NSString *s = [_timeLable.text substringWithRange:NSMakeRange(i, 1)];
-        NSLog(@"string is %@",s);
+//        NSLog(@"string is %@",s);
         if ([s isEqualToString:@"!"]) {
             NSRange range = NSMakeRange(i, 1);
             //将字符串中的“m”转化为“w”

@@ -91,7 +91,7 @@
 
 - (void)getBrandList{
     
-    if ([UD valueForKey:@"brandFile"]) {
+    if ([UD objectForKey:@"brandFile"]) {
         
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:[UD objectForKey:@"brandFile"]];
         self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
