@@ -328,7 +328,8 @@
    
     [scan.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.product.pruductDetailImgs[indexPath.row][@"clothingImgUrl"]]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
     [scan.imageView setContentMode:UIViewContentModeScaleAspectFill];
-//    scan.imageView.backgroundColor = [UIColor redColor];
+    scan.imageArray = [self getImageArray:self.product.pruductDetailImgs];
+    scan.num = indexPath.row;
     return scan;
 }
 
@@ -410,12 +411,14 @@
         return CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/180);
     }
     
-    return CGSizeMake(WIDHT-32,(WIDHT-32));
+    return CGSizeMake(WIDHT,(WIDHT));
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-   
+    if (section==0) {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
         return UIEdgeInsetsMake(16, 16, 16, 16);
 
 }

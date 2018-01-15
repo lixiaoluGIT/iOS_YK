@@ -10,5 +10,7 @@
 
 @interface YKYifuScanCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic,strong)NSArray *imageArray;
+@property (nonatomic,assign)NSUInteger num;
 
 @end
