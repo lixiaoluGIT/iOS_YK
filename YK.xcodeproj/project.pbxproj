@@ -15,7 +15,6 @@
 		C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A7611FDF8EE10068A31D /* CoreGraphics.framework */; };
 		C50CF1B9200DD93300A717DF /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1B8200DD93300A717DF /* libstdc++.tbd */; };
 		C50CF1BB200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle in Sources */ = {isa = PBXBuildFile; fileRef = C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */; };
-		C50CF1BF200DF46400A717DF /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1BE200DF46300A717DF /* TencentOpenAPI.framework */; };
 		C50E58D61FE1117F0063F377 /* YKSuitHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C50E58D41FE1117F0063F377 /* YKSuitHeader.m */; };
 		C50E58D71FE1117F0063F377 /* YKSuitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50E58D51FE1117F0063F377 /* YKSuitHeader.xib */; };
 		C525DC261FBAAFC1002802AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DC251FBAAFC1002802AE /* AppDelegate.m */; };
@@ -446,7 +445,6 @@
 		C50CF1B5200DD8C300A717DF /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		C50CF1B8200DD93300A717DF /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
-		C50CF1BE200DF46300A717DF /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		C50E58D31FE1117F0063F377 /* YKSuitHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuitHeader.h; sourceTree = "<group>"; };
 		C50E58D41FE1117F0063F377 /* YKSuitHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuitHeader.m; sourceTree = "<group>"; };
 		C50E58D51FE1117F0063F377 /* YKSuitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSuitHeader.xib; sourceTree = "<group>"; };
@@ -1213,7 +1211,6 @@
 				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
 				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
 				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
-				C50CF1BF200DF46400A717DF /* TencentOpenAPI.framework in Frameworks */,
 				C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */,
 				C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */,
 				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
@@ -1811,7 +1808,6 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */,
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C5DA84B32005E5D0002A12E3 /* ka.png */,
 				C52CA76E2000C6D300ECDC80 /* WechatIMG55.jpeg */,
@@ -2307,8 +2303,8 @@
 		C525DEDB1FC27915002802AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */,
 				C50CF1B8200DD93300A717DF /* libstdc++.tbd */,
-				C50CF1BE200DF46300A717DF /* TencentOpenAPI.framework */,
 				C50CF1B5200DD8C300A717DF /* libiconv.tbd */,
 				C59D47321FF49C48002208BF /* ImageIO.framework */,
 				C534ECD51FEB92B1003BB993 /* AdSupport.framework */,
