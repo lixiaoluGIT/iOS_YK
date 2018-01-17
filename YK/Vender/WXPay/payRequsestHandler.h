@@ -39,14 +39,14 @@
  */
 
 // 账号帐户资料
-//更改商户把相关参数后可测试
+//更改商户相关参数后可测试
 
-#define APP_ID          @"wxb4188a08e56b21a0"               //APPID
-#define APP_SECRET      @"h6JQEGRXMPjsA3aydxEXAzyAujzzDZNp" //appsecret
+#define APP_ID          @"wx08491f30bacfc1ce"               //APPID
+#define APP_SECRET      @"51a5ffb7b547d3cb3f1a0d4ecf366dfa" //appsecret
 //商户号，填写商户对应参数
-#define MCH_ID          @"1437430302"
+#define MCH_ID          @"1426371702"
 //商户API密钥，填写相应参数
-#define PARTNER_ID      @"h6JQEGRXMPjsA3aydxEXAzyAujzzDZNp"
+#define PARTNER_ID      @"UDkqMRSAMz4HIws3Ll7T9PVcktX9xD0g"
 
 //支付结果回调页面
 //#define NOTIFY_URL      @"https://v1.passenger.quchuxing.com.cn/pay/weixinpay/notify"

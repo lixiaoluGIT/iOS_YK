@@ -73,7 +73,7 @@
                 }
                 
             }else{
-//                  [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"清除失败" delay:1.6];
+                  [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"清除成功" delay:1.6];
                  [smartHUD Hide];
                 NSLog(@"清除失败");
                 

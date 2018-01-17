@@ -38,6 +38,11 @@ NSInteger timeNum;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //TODO:
+    [_QQLoginBtn setHidden:YES];
+    [_WXLoginBtn setHidden:YES];
+    
     [self setAutoLayoutMargin];
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.vetifyText.keyboardType = UIKeyboardTypeNumberPad;

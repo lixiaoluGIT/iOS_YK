@@ -84,7 +84,8 @@
 }
 
 - (IBAction)update:(id)sender {
-    [smartHUD alertText:self.view alert:@"检查更新" delay:1.2];
+//    [smartHUD alertText:self.view alert:@"检查更新" delay:1.2];
+    [self.navigationController pushViewController:[YKAboutUsVC new] animated:YES];
 }
 - (IBAction)about:(id)sender {
 //    YKWebVC *web = [YKWebVC new];
