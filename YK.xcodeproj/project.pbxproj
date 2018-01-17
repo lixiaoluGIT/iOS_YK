@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		C50394932007BDB2004B41C3 /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = C50394922007BDB1004B41C3 /* Default-568.png */; };
+		C50CF1AB200DD4D000A717DF /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1AA200DD4D000A717DF /* TencentOpenAPI.framework */; };
+		C50CF1B1200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */; };
+		C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD01FEB924A003BB993 /* Security.framework */; };
+		C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1B5200DD8C300A717DF /* libiconv.tbd */; };
+		C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A7611FDF8EE10068A31D /* CoreGraphics.framework */; };
+		C50CF1B9200DD93300A717DF /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1B8200DD93300A717DF /* libstdc++.tbd */; };
+		C50CF1BB200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle in Sources */ = {isa = PBXBuildFile; fileRef = C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */; };
+		C50CF1BF200DF46400A717DF /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1BE200DF46300A717DF /* TencentOpenAPI.framework */; };
 		C50E58D61FE1117F0063F377 /* YKSuitHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C50E58D41FE1117F0063F377 /* YKSuitHeader.m */; };
 		C50E58D71FE1117F0063F377 /* YKSuitHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50E58D51FE1117F0063F377 /* YKSuitHeader.xib */; };
 		C525DC261FBAAFC1002802AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DC251FBAAFC1002802AE /* AppDelegate.m */; };
@@ -433,6 +441,12 @@
 
 /* Begin PBXFileReference section */
 		C50394922007BDB1004B41C3 /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568.png"; sourceTree = "<group>"; };
+		C50CF1AA200DD4D000A717DF /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		C50CF1B5200DD8C300A717DF /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		C50CF1B8200DD93300A717DF /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		C50CF1BE200DF46300A717DF /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		C50E58D31FE1117F0063F377 /* YKSuitHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuitHeader.h; sourceTree = "<group>"; };
 		C50E58D41FE1117F0063F377 /* YKSuitHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuitHeader.m; sourceTree = "<group>"; };
 		C50E58D51FE1117F0063F377 /* YKSuitHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSuitHeader.xib; sourceTree = "<group>"; };
@@ -1194,22 +1208,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C50CF1B9200DD93300A717DF /* libstdc++.tbd in Frameworks */,
+				C532A75E1FDF8EB10068A31D /* CoreTelephony.framework in Frameworks */,
+				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
+				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
+				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
+				C50CF1BF200DF46400A717DF /* TencentOpenAPI.framework in Frameworks */,
+				C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */,
+				C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */,
 				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
 				C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */,
-				C532A75E1FDF8EB10068A31D /* CoreTelephony.framework in Frameworks */,
-				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
 				C59D47571FF4D750002208BF /* UShareUI.framework in Frameworks */,
 				C532A7581FDF8B320068A31D /* libc++.tbd in Frameworks */,
 				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
 				C59D47501FF4D750002208BF /* libSocialWeChat.a in Frameworks */,
 				C59D47991FFB6C61002208BF /* GTSDK.framework in Frameworks */,
+				C50CF1AB200DD4D000A717DF /* TencentOpenAPI.framework in Frameworks */,
 				C532A75B1FDF8E820068A31D /* CoreMotion.framework in Frameworks */,
 				C59D474F1FF4D750002208BF /* libSocialUniqueId.a in Frameworks */,
 				C59D47531FF4D750002208BF /* libSocialQQ.a in Frameworks */,
 				C532A77C1FE0CCEE0068A31D /* libWeChatSDK.a in Frameworks */,
 				C59D47521FF4D750002208BF /* libWeChatSDK.a in Frameworks */,
 				C59D47591FF4D750002208BF /* UMSocialNetwork.framework in Frameworks */,
-				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
 				C525DEDD1FC27922002802AE /* libxml2.2.tbd in Frameworks */,
 				C532A7481FDF8AAB0068A31D /* AlipaySDK.framework in Frameworks */,
 				C59D47551FF4D750002208BF /* TencentOpenAPI.framework in Frameworks */,
@@ -1236,6 +1256,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C50CF1A9200DD48400A717DF /* Tencent */ = {
+			isa = PBXGroup;
+			children = (
+				C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */,
+				C50CF1AA200DD4D000A717DF /* TencentOpenAPI.framework */,
+			);
+			path = Tencent;
+			sourceTree = "<group>";
+		};
 		C525DC181FBAAFC1002802AE = {
 			isa = PBXGroup;
 			children = (
@@ -1311,6 +1340,7 @@
 		C525DC571FBAB15C002802AE /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				C50CF1A9200DD48400A717DF /* Tencent */,
 				C59D464A1FF49B38002208BF /* UMSocial */,
 				C534ECC31FEB9123003BB993 /* GeTui */,
 				C52D046C1FE8EA8F00633550 /* Refresh */,
@@ -1781,6 +1811,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */,
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C5DA84B32005E5D0002A12E3 /* ka.png */,
 				C52CA76E2000C6D300ECDC80 /* WechatIMG55.jpeg */,
@@ -2276,6 +2307,9 @@
 		C525DEDB1FC27915002802AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C50CF1B8200DD93300A717DF /* libstdc++.tbd */,
+				C50CF1BE200DF46300A717DF /* TencentOpenAPI.framework */,
+				C50CF1B5200DD8C300A717DF /* libiconv.tbd */,
 				C59D47321FF49C48002208BF /* ImageIO.framework */,
 				C534ECD51FEB92B1003BB993 /* AdSupport.framework */,
 				C534ECD41FEB9295003BB993 /* UserNotificationsUI.framework */,
@@ -2843,6 +2877,7 @@
 				C5FECE1C1FC2BA4D00D299AE /* 26.jpg in Resources */,
 				C53039DC1FCC0A0A00FB12CE /* YKChangePhoneVC.xib in Resources */,
 				C525DE631FBC2A24002802AE /* u=943153858,2463250246&fm=27&gp=0.jpg.gif in Resources */,
+				C50CF1B1200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				C5FECE1E1FC2BA4D00D299AE /* 22.jpg in Resources */,
 				C5FECE0E1FC2BA4D00D299AE /* 21.jpg in Resources */,
 				C525DE6B1FBC34B4002802AE /* YKMineheader.xib in Resources */,
@@ -2888,6 +2923,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C50CF1BB200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle in Sources */,
 				C525DED51FC278C7002802AE /* MOFSAddressPickerView.m in Sources */,
 				C525DD791FBAB2A9002802AE /* UIScrollView+MJExtension.m in Sources */,
 				C525DE901FBD28D6002802AE /* SteyUtil.m in Sources */,
@@ -3308,6 +3344,8 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ/QQSDK",
 					"$(PROJECT_DIR)/YK/Vender/GtSdkLib-noidfa",
 					"$(PROJECT_DIR)/YK/Vender/GtSdkLib",
+					"$(PROJECT_DIR)/YK/Vender/Tencent",
+					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3356,7 +3394,7 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3393,6 +3431,8 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ/QQSDK",
 					"$(PROJECT_DIR)/YK/Vender/GtSdkLib-noidfa",
 					"$(PROJECT_DIR)/YK/Vender/GtSdkLib",
+					"$(PROJECT_DIR)/YK/Vender/Tencent",
+					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3440,7 +3480,7 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

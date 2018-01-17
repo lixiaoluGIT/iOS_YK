@@ -86,7 +86,7 @@
 - (void)WXPayPostDic:(NSDictionary *)dic  Debug:(void(^)(NSString *error))errorBlock CallWXpay:(void(^)(NSString *wrong))callWXpay {
  
     payRequsestHandler *req = [payRequsestHandler alloc];
-    [req init:APP_ID mch_id:MCH_ID];
+    [req init:WeChat_APPKEY mch_id:MCH_ID];
     [req setKey:PARTNER_ID];
 
     if(dic == nil){

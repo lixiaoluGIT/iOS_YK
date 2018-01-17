@@ -8,7 +8,7 @@
 
 #import "YKLoginVC.h"
 
-@interface YKLoginVC ()<UITextFieldDelegate>{
+@interface YKLoginVC ()<UITextFieldDelegate,TencentSessionDelegate>{
     NSTimer *timer;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *h1;//44
@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *QQLoginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *WXLoginBtn;
+
+@property (nonatomic,strong)TencentOAuth *tencentOAuth;
 
 @end
 NSInteger timeNum;
@@ -189,8 +191,12 @@ NSInteger timeNum;
 //qq登录
 - (IBAction)tencentLogin:(id)sender {
 //    [[YKUserManager sharedManager]loginByTencentOnResponse:^(NSDictionary *dic) {
-//        
+//
 //    }];
+    
+    _tencentOAuth = [[TencentOAuth alloc]initWithAppId:QQ_APPID andDelegate:self];
+    NSArray *permissions = [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_INFO,kOPEN_PERMISSION_GET_USER_INFO,kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
+    [_tencentOAuth authorize:permissions inSafari:NO]; //授权
 }
 
 //微信登录

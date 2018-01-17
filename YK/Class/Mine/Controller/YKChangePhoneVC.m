@@ -51,8 +51,12 @@ NSInteger timeCount;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.font = PingFangSC_Regular(17);
     self.navigationItem.titleView = title;
-    
-    self.phoneLabel.text = [YKUserManager sharedManager].user.phone;
+
+    if ([YKUserManager sharedManager].user.phone!=[NSNull null]) {
+        self.phoneLabel.text = [YKUserManager sharedManager].user.phone;
+    }else {
+        self.phoneLabel.text = @"未绑定手机号";
+    }
     self.ensureBtn.layer.masksToBounds = YES;
     self.ensureBtn.layer.cornerRadius = self.ensureBtn.frame.size.height/2;
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;

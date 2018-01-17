@@ -54,10 +54,10 @@
         return;
     }
     
-    if (_payMethod==WXPAY) {
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信支付即将接入"  delay:1.2];
-        return;
-    }
+//    if (_payMethod==WXPAY) {
+//        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信支付即将接入"  delay:1.2];
+//        return;
+//    }
 
     if (_selectPayBlock) {
         _selectPayBlock(_payMethod);

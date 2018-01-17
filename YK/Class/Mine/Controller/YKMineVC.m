@@ -37,9 +37,9 @@
     [super viewWillAppear:YES];;
     [self.navigationController.navigationBar setHidden:YES];
     [self setStatusBarBackgroundColor:[UIColor colorWithRed:246.0/255 green:102.0/255 blue:102.0/255 alpha:1]];
-//    [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+    [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
          head.user = [YKUserManager sharedManager].user;
-//    }];
+    }];
     
 }
 

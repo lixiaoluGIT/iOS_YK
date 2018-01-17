@@ -101,13 +101,18 @@
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:[YKUserManager sharedManager].user.photo] placeholderImage:[UIImage imageNamed:@"touxianghuancun"]];
     self.nickNameText.delegate = self;
     
-    if ([YKUserManager sharedManager].user.nickname == [NSNull null]) {
+    if ([[YKUserManager sharedManager].user.nickname isEqual:[NSNull null]]) {
         self.nickNameText.text = @"未设置";
     }else {
         self.nickNameText.text = [YKUserManager sharedManager].user.nickname;
     }
     
-    self.phoneLabel.text = [YKUserManager sharedManager].user.phone;
+    if ([YKUserManager sharedManager].user.phone != [NSNull null]) {
+        self.phoneLabel.text = [YKUserManager sharedManager].user.phone;
+    }else {
+        self.phoneLabel.text = @"未绑定手机号";
+    }
+ 
     
     NSString *str = [NSString stringWithFormat:@"%@",[YKUserManager sharedManager].user.gender];
     if ([str isEqualToString:@"1"]) {

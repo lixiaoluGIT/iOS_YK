@@ -22,8 +22,12 @@
 #define kGtAppSecret @"Hvg8Emt8g96lGpqLes8hw"
 
 #define USHARE_APPKEY @"5a445f58f43e48135500000e"
+
 #define WeChat_APPKEY @"wx08491f30bacfc1ce"
 #define WeChat_Secret @"51a5ffb7b547d3cb3f1a0d4ecf366dfa"
+
+#define QQ_APPID @"1106544375"
+#define QQ_APPKEY @"roLPsuRwxLL26kfe"
 
 /*----------------------------用户token--------------------------------*/
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
@@ -63,7 +67,7 @@
 //登录
 #define Login_Url @"/tokens/login"
 //微信登录接口
-
+#define WeChatLogin_Url @"/user/wxLogin"
 //qq登录接口
 
 //获取用户信息
@@ -188,6 +192,7 @@
 #import "YKNoDataView.h"
 #import "DDAleartView.h"
 #import "MJRefresh.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 //manager
 #import "YKHomeManager.h"
 #import "YKSearchManager.h"

@@ -46,7 +46,6 @@
 //商户号，填写商户对应参数
 #define MCH_ID          @"1437430302"
 //商户API密钥，填写相应参数
-
 #define PARTNER_ID      @"h6JQEGRXMPjsA3aydxEXAzyAujzzDZNp"
 
 //支付结果回调页面

@@ -25,7 +25,9 @@
  #import <UserNotifications/UserNotifications.h>
 
 #import "DDAdvertisementVC.h"
+
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate>
+
 
 @end
 
@@ -55,7 +57,7 @@
     }
     //微信支付
     [WXApi registerApp:WeChat_APPKEY withDescription:@"yk"];
-    
+ 
     //个推
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注:该 法需要在主线程中调
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
@@ -130,9 +132,9 @@
     
     [[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];
     /* 设置分享到QQ互联的appID
-     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
-     */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1106110833"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+//     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
+//     */
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQ_/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
 }
 #pragma mark - 用户通知(推送) _自定义方法
 
@@ -326,9 +328,19 @@
 //                                         }];
     }
 
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+//    return [TencentOAuth HandleOpenURL:url];
+//}
+
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
+    //qq登录
+    if ([url.host isEqualToString:@"tencent"]) {
+        return [TencentOAuth HandleOpenURL:url];
+
+    }
+    
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -349,6 +361,7 @@
     return YES;
 
 }
+
 
 //微信结果
 -(void) onResp:(BaseResp*)resp{
