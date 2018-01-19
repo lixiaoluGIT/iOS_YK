@@ -63,7 +63,7 @@
                             <constraint firstAttribute="height" constant="104" id="hyE-EE-FqU"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pp1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="bfT-mp-GhZ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bfT-mp-GhZ">
                         <rect key="frame" x="20" y="199" width="70" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="VVP-Nr-3X4"/>
@@ -168,7 +168,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="pp1.jpg" width="500" height="321"/>
+        <image name="logo" width="50" height="44"/>
         <image name="right" width="6" height="12"/>
     </resources>
 </document>

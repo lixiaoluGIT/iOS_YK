@@ -65,6 +65,7 @@
             <connections>
                 <outlet property="des" destination="0oQ-O5-Uim" id="Qzq-pS-Zys"/>
                 <outlet property="name" destination="QdK-Ry-C0h" id="QbS-43-xlr"/>
+                <outlet property="normalLabel" destination="B5Q-hH-wel" id="Imr-xS-cJk"/>
                 <outlet property="phone" destination="U6v-OT-gjQ" id="EQG-Ro-lXF"/>
                 <outlet property="zone" destination="cVB-iG-3xp" id="DnL-2h-zrY"/>
             </connections>

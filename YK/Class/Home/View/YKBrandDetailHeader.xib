@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="453" height="310.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gaps.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jX2-hm-3TT">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="jX2-hm-3TT">
                         <rect key="frame" x="20" y="40" width="80" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="3a0-dL-aiG"/>
@@ -57,6 +57,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="gaps.jpg" width="720" height="400"/>
+        <image name="logo" width="50" height="44"/>
     </resources>
 </document>

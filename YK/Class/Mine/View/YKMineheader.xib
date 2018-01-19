@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="368" height="137.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wWm-o7-6qN">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wWm-o7-6qN">
                         <rect key="frame" x="22" y="42" width="72" height="72"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="72" id="Aa4-kE-wrQ"/>
@@ -91,8 +91,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="head.jpg" width="300" height="300"/>
         <image name="huiyuan" width="16" height="14"/>
+        <image name="logo" width="50" height="44"/>
         <image name="right" width="6" height="12"/>
     </resources>
 </document>

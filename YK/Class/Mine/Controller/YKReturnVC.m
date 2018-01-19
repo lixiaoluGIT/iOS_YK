@@ -12,6 +12,7 @@
 #import "YKMineCell.h"
 #import "YKAddressVC.h"
 #import "PickViewSelect.h"
+#import "YKNormalQuestionVC.h"
 
 @interface YKReturnVC ()<UITableViewDelegate,UITableViewDataSource,pickViewStrDelegate>
 {
@@ -60,6 +61,7 @@
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
     releaseButton.frame = CGRectMake(0, 25, 25, 25);
     [releaseButton setBackgroundImage:[UIImage imageNamed:@"tel"] forState:UIControlStateNormal];
+    [releaseButton addTarget:self action:@selector(tel) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
     UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -8;
@@ -85,6 +87,47 @@
     
     //请求地址
     [self getAddress];
+}
+
+- (void)tel{
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
+        NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+        NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+        if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+            /// 大于等于10.0系统使用此openURL方法
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+            }
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+        }
+        return;
+    }
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+    alertview.delegate = self;
+    [alertview show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {//取消
+        
+    }
+    if (buttonIndex==1) {//拨打
+        NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+        NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+        if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+            /// 大于等于10.0系统使用此openURL方法
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+            }
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+        }
+    }
 }
 
 - (void)getAddress{
@@ -161,6 +204,7 @@
     
     if (indexPath.row == 2) {
         YKReturnAddressView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKReturnAddressView" owner:self options:nil][1];
+
          bagCell.selectionStyle = UITableViewCellEditingStyleNone;
         return bagCell;
     }
@@ -196,6 +240,10 @@
             [tableView reloadData];
         };
         [self.navigationController pushViewController:address animated:YES];
+    }
+    if (indexPath.row == 2) {
+        YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
+        [self.navigationController pushViewController:normal animated:YES];
     }
 }
 

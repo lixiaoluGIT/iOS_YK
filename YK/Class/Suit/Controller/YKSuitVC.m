@@ -95,7 +95,7 @@
     WeakSelf(weakSelf)
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
     [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"shangpin"] statusDes:@"暂无商品" hiddenBtn:NO actionTitle:@"去逛逛" actionBlock:^{
-        [weakSelf.tabBarController setSelectedIndex:0];
+        [weakSelf.tabBarController setSelectedIndex:1];
     }];
  
     NoDataView.frame = CGRectMake(0, 98+64, WIDHT,HEIGHT-162);

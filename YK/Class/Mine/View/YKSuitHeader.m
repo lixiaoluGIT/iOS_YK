@@ -33,6 +33,14 @@
     
     UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(order)];
     [self.orderBack addGestureRecognizer:tap3];
+    
+    if ([YKOrderManager sharedManager].isOnRoad) {//已发货
+        _ensureReceive.userInteractionEnabled = YES;
+        _ensureReceive.text = @"确认收货";
+    }else {
+        _ensureReceive.userInteractionEnabled = NO;
+        _ensureReceive.text = @"待发货";
+    }
 }
 
 - (void)sms{
@@ -42,9 +50,12 @@
 }
 
 - (void)ensure{
-    if (_ensureReceiveBlock) {
-        _ensureReceiveBlock();
-    }
+    
+        if (_ensureReceiveBlock) {
+            _ensureReceiveBlock();
+        }
+    
+   
 }
 
 - (void)order{

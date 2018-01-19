@@ -10,7 +10,7 @@
 
 @interface YKBrand : NSObject
 
-@property (nonatomic,copy)NSString *brandIma;//品牌ID
+@property (nonatomic,copy)NSString *brandIma;//品牌图
 @property (nonatomic,copy)NSString *brandId;//品牌ID
 @property (nonatomic,copy)NSString *brandLogo;//品牌Logo
 @property (nonatomic,copy)NSString *brandName;//品牌名

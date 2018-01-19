@@ -58,8 +58,9 @@ typedef enum : NSInteger {
 //查询待归还是否返件
 - (void)queryReceiveOrderOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
-//生成sf(后台生成,前台)
+//生成sf(后台生成,前台不用)
 - (void)creatSfOrderWithOrderNum:(NSString *)orderNum OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 - (void)clear;
 
 @end

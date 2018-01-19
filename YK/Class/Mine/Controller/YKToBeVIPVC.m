@@ -212,7 +212,7 @@
 //去支付
 - (IBAction)aliPay:(id)sender {
     if (!isAgree) {
-        [smartHUD alertText:self.view alert:@"请先阅读充值说明并同意" delay:3.0];
+        [smartHUD alertText:self.view alert:@"请先阅读充值说明并同意" delay:2.0];
         return;
     }
     if (self.payType!=0&&self.payType!=1&&self.payType!=2&&self.payType!=3) {

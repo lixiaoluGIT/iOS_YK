@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C50394932007BDB2004B41C3 /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = C50394922007BDB1004B41C3 /* Default-568.png */; };
-		C50CF1AB200DD4D000A717DF /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1AA200DD4D000A717DF /* TencentOpenAPI.framework */; };
 		C50CF1B1200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */; };
 		C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD01FEB924A003BB993 /* Security.framework */; };
 		C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1B5200DD8C300A717DF /* libiconv.tbd */; };
@@ -264,7 +263,6 @@
 		C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A75F1FDF8EBE0068A31D /* QuartzCore.framework */; };
 		C53347061FCFFDB9002A08D0 /* YKSMSInforVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C53347051FCFFDB9002A08D0 /* YKSMSInforVC.m */; };
 		C533470A1FCFFE58002A08D0 /* LogisticsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C53347081FCFFE57002A08D0 /* LogisticsInfo.m */; };
-		C533470B1FCFFE58002A08D0 /* logisticsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = C53347091FCFFE57002A08D0 /* logisticsInfo.plist */; };
 		C53347111FCFFE6E002A08D0 /* LogisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C533470E1FCFFE6E002A08D0 /* LogisticsTableViewCell.m */; };
 		C53347121FCFFE6E002A08D0 /* LogisticsTableViewCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C533470F1FCFFE6E002A08D0 /* LogisticsTableViewCellFrame.m */; };
 		C53347151FCFFECF002A08D0 /* NSString+textStringToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = C53347141FCFFECE002A08D0 /* NSString+textStringToSize.m */; };
@@ -289,6 +287,7 @@
 		C5343C971FC6A87900F5132A /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5343C951FC6A87800F5132A /* CBSegmentView.m */; };
 		C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECCE1FEB923E003BB993 /* libsqlite3.tbd */; };
 		C536298420089C9200CA1F8B /* YKCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C536298320089C9200CA1F8B /* YKCacheManager.m */; };
+		C54350AB200F3E1A00B5732D /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54350AA200F3E1A00B5732D /* TencentOpenAPI.framework */; };
 		C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F851FE27472000EAF8E /* YKMessageManager.m */; };
 		C54B8F891FE275BC000EAF8E /* YKMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F881FE275BC000EAF8E /* YKMessageVC.m */; };
 		C54B8F8C1FE38015000EAF8E /* YKSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F8B1FE38015000EAF8E /* YKSearchManager.m */; };
@@ -366,7 +365,6 @@
 
 /* Begin PBXFileReference section */
 		C50394922007BDB1004B41C3 /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568.png"; sourceTree = "<group>"; };
-		C50CF1AA200DD4D000A717DF /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		C50CF1B5200DD8C300A717DF /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		C50CF1B8200DD93300A717DF /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -909,7 +907,6 @@
 		C53347051FCFFDB9002A08D0 /* YKSMSInforVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSMSInforVC.m; sourceTree = "<group>"; };
 		C53347071FCFFE57002A08D0 /* LogisticsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogisticsInfo.h; sourceTree = "<group>"; };
 		C53347081FCFFE57002A08D0 /* LogisticsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogisticsInfo.m; sourceTree = "<group>"; };
-		C53347091FCFFE57002A08D0 /* logisticsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = logisticsInfo.plist; sourceTree = "<group>"; };
 		C533470D1FCFFE6E002A08D0 /* LogisticsTableViewCellFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogisticsTableViewCellFrame.h; sourceTree = "<group>"; };
 		C533470E1FCFFE6E002A08D0 /* LogisticsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogisticsTableViewCell.m; sourceTree = "<group>"; };
 		C533470F1FCFFE6E002A08D0 /* LogisticsTableViewCellFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogisticsTableViewCellFrame.m; sourceTree = "<group>"; };
@@ -959,6 +956,7 @@
 		C534ECD61FEB9311003BB993 /* YK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YK.entitlements; sourceTree = "<group>"; };
 		C536298220089C9200CA1F8B /* YKCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCacheManager.h; sourceTree = "<group>"; };
 		C536298320089C9200CA1F8B /* YKCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCacheManager.m; sourceTree = "<group>"; };
+		C54350AA200F3E1A00B5732D /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		C54B8F841FE27472000EAF8E /* YKMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMessageManager.h; sourceTree = "<group>"; };
 		C54B8F851FE27472000EAF8E /* YKMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMessageManager.m; sourceTree = "<group>"; };
 		C54B8F871FE275BC000EAF8E /* YKMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMessageVC.h; sourceTree = "<group>"; };
@@ -1063,6 +1061,7 @@
 				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
 				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
 				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
+				C54350AB200F3E1A00B5732D /* TencentOpenAPI.framework in Frameworks */,
 				C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */,
 				C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */,
 				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
@@ -1072,7 +1071,6 @@
 				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
 				C59D47501FF4D750002208BF /* libSocialWeChat.a in Frameworks */,
 				C59D47991FFB6C61002208BF /* GTSDK.framework in Frameworks */,
-				C50CF1AB200DD4D000A717DF /* TencentOpenAPI.framework in Frameworks */,
 				C532A75B1FDF8E820068A31D /* CoreMotion.framework in Frameworks */,
 				C59D474F1FF4D750002208BF /* libSocialUniqueId.a in Frameworks */,
 				C59D47531FF4D750002208BF /* libSocialQQ.a in Frameworks */,
@@ -1108,8 +1106,8 @@
 		C50CF1A9200DD48400A717DF /* Tencent */ = {
 			isa = PBXGroup;
 			children = (
+				C54350AA200F3E1A00B5732D /* TencentOpenAPI.framework */,
 				C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */,
-				C50CF1AA200DD4D000A717DF /* TencentOpenAPI.framework */,
 			);
 			path = Tencent;
 			sourceTree = "<group>";
@@ -1439,7 +1437,6 @@
 			children = (
 				C53347071FCFFE57002A08D0 /* LogisticsInfo.h */,
 				C53347081FCFFE57002A08D0 /* LogisticsInfo.m */,
-				C53347091FCFFE57002A08D0 /* logisticsInfo.plist */,
 				C533A0961FD4EF48000DE949 /* YKUser.h */,
 				C533A0971FD4EF48000DE949 /* YKUser.m */,
 				C5E023031FD64A8B00C33629 /* YKAddress.h */,
@@ -1661,12 +1658,12 @@
 			isa = PBXGroup;
 			children = (
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
+				C525DEB61FBEADB1002802AE /* region.json */,
 				C5DA84B32005E5D0002A12E3 /* ka.png */,
 				C5C0F5911FF2309600A2000A /* 红.jpg */,
 				C52D0F9D1FC6C43D00B50258 /* liutao.jpg */,
 				C55D491B1FC2EDF8000D2056 /* 白.png */,
 				C55D491C1FC2EDF8000D2056 /* 主题红.png */,
-				C525DEB61FBEADB1002802AE /* region.json */,
 				C525DE111FBABF81002802AE /* timg.jpg */,
 			);
 			path = Resource;
@@ -2568,7 +2565,6 @@
 				C57A53B11FCBAFF70090E372 /* YKEditInforVC.xib in Resources */,
 				C525DDAB1FBAB2A9002802AE /* README.md in Resources */,
 				C5742ED22003872C00BBB882 /* Images.xcassets in Resources */,
-				C533470B1FCFFE58002A08D0 /* logisticsInfo.plist in Resources */,
 				C50394932007BDB2004B41C3 /* Default-568.png in Resources */,
 				C525DD621FBAB2A8002802AE /* LICENSE in Resources */,
 				C525DC2C1FBAAFC1002802AE /* Main.storyboard in Resources */,
@@ -3023,7 +3019,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
@@ -3094,7 +3090,7 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "-fobjc-arc";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3110,7 +3106,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
@@ -3180,7 +3176,7 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
 				);
-				OTHER_LDFLAGS = "-fobjc-arc";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

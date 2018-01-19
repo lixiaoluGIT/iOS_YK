@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="422" height="208.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4.jpg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDE-vv-4eq">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDE-vv-4eq">
                         <rect key="frame" x="52" y="30" width="92" height="92"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="PDE-vv-4eq" secondAttribute="height" id="WAr-Wp-bFT"/>
@@ -136,7 +136,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="4.jpg" width="500" height="500"/>
+        <image name="logo" width="50" height="44"/>
         <image name="tishi" width="14" height="14"/>
         <image name="weixuanzhong" width="20" height="20"/>
         <image name="xuanzhong" width="20" height="20"/>

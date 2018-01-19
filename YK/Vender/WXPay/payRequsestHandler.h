@@ -44,7 +44,7 @@
 #define APP_ID          @"wx08491f30bacfc1ce"               //APPID
 #define APP_SECRET      @"51a5ffb7b547d3cb3f1a0d4ecf366dfa" //appsecret
 //商户号，填写商户对应参数
-#define MCH_ID          @"1426371702"
+#define MCH_ID          @"1496670272"
 //商户API密钥，填写相应参数
 #define PARTNER_ID      @"UDkqMRSAMz4HIws3Ll7T9PVcktX9xD0g"
 

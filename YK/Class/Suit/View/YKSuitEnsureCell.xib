@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="412" height="147.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Aq-nD-nOn">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="7Aq-nD-nOn">
                         <rect key="frame" x="20" y="34" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="Tp0-au-sz1"/>
@@ -91,6 +91,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="3.jpg" width="500" height="500"/>
+        <image name="logo" width="50" height="44"/>
     </resources>
 </document>

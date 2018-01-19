@@ -103,8 +103,6 @@
             break;
     }
    
-    
-    
     //待签收:包括待发货和待签收>>>查询2待签收,先查看1待发货
     if (status==2) {
          [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -126,6 +124,7 @@
                     }
                 
             }else {//没有待发货的1,查询待签收2
+                _isOnRoad = YES;
                 NSString *url = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
                 [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
                     NSMutableArray *listArray;

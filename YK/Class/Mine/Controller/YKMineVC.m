@@ -103,7 +103,6 @@
     }
     ;
     head.viewClickBlock = ^(){
-        NSString *st = Token;
         if ([Token length] == 0) {
             [weakSelf Login];
             return ;

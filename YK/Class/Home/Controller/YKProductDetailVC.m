@@ -119,7 +119,7 @@
     
     //请求数据
     self.images = [NSArray array];
-    self.images= @[@"35.jpg",@"36.jpg",@"37.jpg",@"38.jpg",@"39.jpg",@"40.jpg",@"41.jpg",@"42.jpg",@"43.jpg"];
+//    self.images= @[@"35.jpg",@"36.jpg",@"37.jpg",@"38.jpg",@"39.jpg",@"40.jpg",@"41.jpg",@"42.jpg",@"43.jpg"];
     self.view.backgroundColor =[ UIColor whiteColor];
     
     

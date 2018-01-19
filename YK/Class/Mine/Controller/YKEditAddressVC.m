@@ -80,7 +80,7 @@
         [smartHUD alertText:self.view alert:@"请选择所在位置" delay:1.2];
         return;
     }
-    if (_editView.textView.text.length==0) {
+    if (_editView.textView.text.length==0 || [_editView.textView.text isEqualToString:@"请填写详细地址,不少于五个字"]) {
         [smartHUD alertText:self.view alert:@"请填写具体收货地址" delay:1.2];
         return;
     }

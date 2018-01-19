@@ -97,7 +97,7 @@
 
 - (void)pushMoney{
     YKAleartView *alert = [[YKAleartView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    [alert showWithtitle:@"确认缴纳押金 ¥299" notitle:@"取消" yestitle:@"确认" cancelBlock:^{
+    [alert showWithtitle:@"确认缴纳押金 ¥199" notitle:@"取消" yestitle:@"确认" cancelBlock:^{
         
     } ensureBlock:^{
         [self creatPayView];

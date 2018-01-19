@@ -13,13 +13,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *phone;
 @property (weak, nonatomic) IBOutlet UILabel *zone;
 @property (weak, nonatomic) IBOutlet UILabel *des;
+@property (weak, nonatomic) IBOutlet UILabel *normalLabel;
 
 @end
 @implementation YKReturnAddressView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+
 }
+
 
 - (void)setAddress:(YKAddress *)address{
     _address = address;
