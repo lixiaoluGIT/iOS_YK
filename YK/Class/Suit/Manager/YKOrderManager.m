@@ -91,10 +91,10 @@
             status=0;//全部衣袋
             break;
         case 101:
-            status=2;//待签收(待发货,待签收)
+            status=3;//待签收(待发货,待签收)
             break;
         case 102:
-            status=3;//待归还
+            status=4;//待归还
             break;
         case 103:
             status=5;//已归还
@@ -103,8 +103,8 @@
             break;
     }
    
-    //待签收:包括待发货和待签收>>>查询2待签收,先查看1待发货
-    if (status==2) {
+    //待签收:包括待配货,待发货和待签收>>>查询3待签收,先查看1待配货 2,待发货
+    if (status==3) {
          [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
         NSInteger s = 1;
         NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
@@ -113,7 +113,7 @@
             
             NSMutableArray *listArray;
             NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
-            if (array.count!=0) {//待发货有数据
+            if (array.count!=0) {//待配货有数据
                 _isOnRoad = NO;//未发货
                 listArray = [NSMutableArray arrayWithArray:array[0][@"orderDetailsVoList"]];
                 _orderNo = dic[@"data"][0][@"orderNo"];
@@ -123,43 +123,61 @@
                         onResponse(listArray);
                     }
                 
-            }else {//没有待发货的1,查询待签收2
-                _isOnRoad = YES;
-                NSString *url = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
+            }else {//没有待配货的1,查询待发货2
+                
+                NSInteger s = 2;
+                NSString *url = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
                 [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
                     NSMutableArray *listArray;
                     
                     NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
-                    if (array.count>0) {
+                    if (array.count>0) {//待发货有数据
+                        _isOnRoad = NO;
                         listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
                         _orderNo = dic[@"data"][0][@"orderNo"];
                         _ID = dic[@"data"][0][@"id"];
-                       
-                    }else {
-                        listArray = [NSMutableArray array];
+                        if (onResponse) {
+                            onResponse(listArray);
+                        }
+                    }else {//待发货没数据,查询待签收
+                        listArray = [NSMutableArray array];//
+                        NSString *url = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
+                        [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+                            NSMutableArray *listArray;
+                            
+                            NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+                            if (array.count>0) {//待签收有数据
+                                _isOnRoad = YES;
+                                listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
+                                _orderNo = dic[@"data"][0][@"orderNo"];
+                                _ID = dic[@"data"][0][@"id"];
+                                if (onResponse) {
+                                    onResponse(listArray);
+                                }
+                                
+                            }else {//待发货没数据
+                                _isOnRoad = NO;
+                                listArray = [NSMutableArray array];
+                                if (onResponse) {
+                                    onResponse(listArray);
+                                }
+                            }
+                            
+                            
+                            
+                        }];
                     }
                    
-                    if (onResponse) {
-                        onResponse(listArray);
-                    }
-     
-                    
-                        
-                    
-                        
-                    
                 }];
                 
             }
 
         }];
-
-    }else {
     
-   
-         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
-    [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
+    }else {//不是查询待签收
+        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+        NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
+        [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
 
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
 
@@ -345,10 +363,10 @@
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
+        
         
         if ([dic[@"status"] integerValue] == 200) {
-            
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"预约成功" delay:2];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -393,7 +411,16 @@
     
     for (NSDictionary *model in currentArray) {
    
-        if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 3 && [model[@"orderStatus"] intValue] != 8){
+        //不是3,5,8的状态全部放入待签收
+        if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 3 && [model[@"orderStatus"] intValue] != 8 ){
+            
+            //如果状态有1或2,存在待配货或待发货的订单
+            if ([model[@"orderStatus"] intValue] == 1 || [model[@"orderStatus"] intValue] == 2 ){
+                _isOnRoad = NO;
+            }else {//状态为3(待签收)已发货
+                _isOnRoad = YES;
+            }
+            
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
@@ -401,7 +428,7 @@
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
             [backList addObject:model[@"orderDetailsVoList"]];
-        }else if([model[@"orderStatus"] intValue] == 5) {//已归还
+        }else if([model[@"orderStatus"] intValue] == 5 && [model[@"orderStatus"] intValue] == 8) {//已归还
             
             if (hadBackList.count > 0 ) {
                 [totlaList removeObject:hadBackList];
@@ -455,6 +482,7 @@
         if (groupDoneBlock) {//分组完毕
             groupDoneBlock();
         }
+    
 }
 
 - (void)creatSfOrderWithOrderNum:(NSString *)orderNum OnResponse:(void (^)(NSDictionary *dic))onResponse{

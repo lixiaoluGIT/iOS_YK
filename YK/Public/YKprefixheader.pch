@@ -69,6 +69,7 @@
 //微信登录接口
 #define WeChatLogin_Url @"/user/wxLogin"
 //qq登录接口
+#define TencentLogin_Url @"/user/qqLogin"
 
 //获取用户信息
 #define GetUserInfor_Url @"/user/getUserInfo"

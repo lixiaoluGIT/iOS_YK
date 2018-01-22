@@ -40,6 +40,8 @@ typedef enum : NSInteger {
  查询订单
  订单状态码
  0 - 全部 1 - 待发货 2 - 待签收 3 - 待归还 4 - 质检中 41 - 通过 42 - 未通过 5 - 已归还 6 - 已取  7 - 已删除
+ 
+ 订单状态:0，1:待配货，2:待发货，3:待签收，4:待归还，5:已归还，6:已取消，7:已删除，8:已入库
  */
 - (void)searchOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSMutableArray *array))onResponse;
 

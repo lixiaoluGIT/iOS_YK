@@ -94,4 +94,6 @@
 //qq登录
 - (void)loginByTencentOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//qq登录成功(调server)
+- (void)loginSuccessByTencentDic:(NSDictionary *)Dic OnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

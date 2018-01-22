@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatShareSuccessNotification) name:@"wechatShareSuccessNotification" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"衣庫";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -160,7 +161,7 @@
 //                NSLog(@"调用成功");
 //                //弹出分享成功的提示,告诉后台,成功后getuser
 //
-//                [[YKUserManager sharedManager]shareSuccess];
+                [[YKUserManager sharedManager]shareSuccess];
 //
 //                backView.hidden = NO;
 //                su.hidden = NO;
@@ -211,6 +212,14 @@
    
     
     [WXApi sendReq:req];
+}
+
+//接收分享成功的通知
+- (void)wechatShareSuccessNotification{
+    [[YKUserManager sharedManager]shareSuccess];
+    backView.hidden = NO;
+    su.hidden = NO;
+    close.hidden = NO;
 }
 
 - (void)leftAction{

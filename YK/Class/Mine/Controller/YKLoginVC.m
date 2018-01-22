@@ -8,7 +8,7 @@
 
 #import "YKLoginVC.h"
 
-@interface YKLoginVC ()<UITextFieldDelegate,TencentSessionDelegate>{
+@interface YKLoginVC ()<UITextFieldDelegate>{
     NSTimer *timer;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *h1;//44
@@ -30,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *QQLoginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *WXLoginBtn;
 
-@property (nonatomic,strong)TencentOAuth *tencentOAuth;
 
 @end
 NSInteger timeNum;
@@ -40,8 +39,8 @@ NSInteger timeNum;
     [super viewDidLoad];
     
     //TODO:
-    [_QQLoginBtn setHidden:YES];
-    [_WXLoginBtn setHidden:YES];
+//    [_QQLoginBtn setHidden:YES];
+//    [_WXLoginBtn setHidden:YES];
     
     [self setAutoLayoutMargin];
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
@@ -53,6 +52,25 @@ NSInteger timeNum;
     self.getVetifyBtn.userInteractionEnabled = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatDidLoginNotification:) name:@"wechatDidLoginNotification" object:nil];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TencentDidLoginNotification:) name:@"TencentDidLoginNotification" object:nil];
+}
+
+//接收qq登录成功的通知
+//{
+//    "city": "string",
+//    "headimgurl": "string",
+//    "nickname": "string",
+//    "openid": "string",
+//    "sex": "string"
+//}
+- (void)TencentDidLoginNotification:(NSNotification *)notify{
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:notify.userInfo];
+    [[YKUserManager sharedManager]loginSuccessByTencentDic:dic[@"code"] OnResponse:^(NSDictionary *dic) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }];
 }
 
 //接收微信登录的通知
@@ -195,13 +213,9 @@ NSInteger timeNum;
 }
 //qq登录
 - (IBAction)tencentLogin:(id)sender {
-//    [[YKUserManager sharedManager]loginByTencentOnResponse:^(NSDictionary *dic) {
-//
-//    }];
-    
-    _tencentOAuth = [[TencentOAuth alloc]initWithAppId:QQ_APPID andDelegate:self];
-    NSArray *permissions = [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_INFO,kOPEN_PERMISSION_GET_USER_INFO,kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
-    [_tencentOAuth authorize:permissions inSafari:NO]; //授权
+    [[YKUserManager sharedManager]loginByTencentOnResponse:^(NSDictionary *dic) {
+
+    }];
 }
 
 //微信登录
