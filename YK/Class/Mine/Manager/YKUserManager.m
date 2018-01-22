@@ -476,7 +476,7 @@
         city = dic[@"city"];
     }
     [dic setObject:Dic[@"city"] forKey:@"city"];
-    [dic setObject:Dic[@"figureurl"] forKey:@"headimgurl"];
+    [dic setObject:Dic[@"figureurl"] forKey:@"figureurl_qq_2"];
     [dic setObject:_tencentOAuth.openId forKey:@"openid"];
     [dic setObject:Dic[@"nickname"] forKey:@"nickname"];
     [dic setObject:Dic[@"gender"] forKey:@"sex"];

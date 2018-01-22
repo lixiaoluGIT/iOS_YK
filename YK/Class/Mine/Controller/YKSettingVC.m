@@ -12,7 +12,7 @@
 #import "YKAboutUsVC.h"
 #import "YKCacheManager.h"
 
-@interface YKSettingVC ()
+@interface YKSettingVC ()<DXAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *cacheLabel;
 @property (weak, nonatomic) IBOutlet UIButton *exitBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
@@ -66,31 +66,37 @@
 }
 
 - (IBAction)exit:(id)sender {
-    [[YKUserManager sharedManager]exitLoginWithPhone:@"" VetifyCode:@"" OnResponse:^(NSDictionary *dic) {
-//        [self.tabBarController setSelectedIndex:0];
-        YKHomeVC *chatVC = [[YKHomeVC alloc] init];
-        chatVC.hidesBottomBarWhenPushed = YES;
-        UINavigationController *nav = self.tabBarController.viewControllers[0];
-        chatVC.hidesBottomBarWhenPushed = YES;
-        self.tabBarController.selectedViewController = nav;
-        [self.navigationController popToRootViewControllerAnimated:NO];
-    }];
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"确定要退出登录吗?" cancelBtnTitle:@"取消" otherBtnTitle:@"确定"];
+    alertView.delegate = self;
+    [alertView show];
+
+}
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[YKUserManager sharedManager]exitLoginWithPhone:@"" VetifyCode:@"" OnResponse:^(NSDictionary *dic) {
+           
+            YKHomeVC *chatVC = [[YKHomeVC alloc] init];
+            chatVC.hidesBottomBarWhenPushed = YES;
+            UINavigationController *nav = self.tabBarController.viewControllers[0];
+            chatVC.hidesBottomBarWhenPushed = YES;
+            self.tabBarController.selectedViewController = nav;
+            [self.navigationController popToRootViewControllerAnimated:NO];
+        }];
+    }
+    
 }
 - (IBAction)clear:(id)sender {
-//    [smartHUD alertText:self.view alert:@"清除缓存" delay:1.2];
     [[YKCacheManager sharedManager] removeCacheOnResponse:^(NSDictionary *dic) {
         self.cacheLabel.text = [NSString stringWithFormat:@"%.1fM",[[YKCacheManager sharedManager]getFolderSize]];
     }];
 }
 
 - (IBAction)update:(id)sender {
-//    [smartHUD alertText:self.view alert:@"检查更新" delay:1.2];
+
     [self.navigationController pushViewController:[YKAboutUsVC new] animated:YES];
 }
 - (IBAction)about:(id)sender {
-//    YKWebVC *web = [YKWebVC new];
-//    web.imageName = @"";
-//    web.titleStr = @"关于我们";
+
     [self.navigationController pushViewController:[YKAboutUsVC new] animated:YES];
     
     

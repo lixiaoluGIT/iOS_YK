@@ -105,7 +105,7 @@
    
     //待签收:包括待配货,待发货和待签收>>>查询3待签收,先查看1待配货 2,待发货
     if (status==3) {
-         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
         NSInteger s = 1;
         NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
         [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
@@ -314,16 +314,15 @@
     
     [self clear];
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,orderNo,@"3"];
+    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,orderNo,@"4"];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:2];
-        
-        if ([dic[@"status"] integerValue] == 200) {
-          
+      
+        if ([dic[@"status"] integerValue] == 200) {//成功确认收货
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"" delay:2];
             if (onResponse) {
                 onResponse(dic);
             }
@@ -412,7 +411,7 @@
     for (NSDictionary *model in currentArray) {
    
         //不是3,5,8的状态全部放入待签收
-        if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 3 && [model[@"orderStatus"] intValue] != 8 ){
+        if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 4 && [model[@"orderStatus"] intValue] != 8 ){
             
             //如果状态有1或2,存在待配货或待发货的订单
             if ([model[@"orderStatus"] intValue] == 1 || [model[@"orderStatus"] intValue] == 2 ){
@@ -424,11 +423,11 @@
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
-        }if ([model[@"orderStatus"] intValue] == 3) {//待归还
+        }if ([model[@"orderStatus"] intValue] == 4) {//待归还
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
             [backList addObject:model[@"orderDetailsVoList"]];
-        }else if([model[@"orderStatus"] intValue] == 5 && [model[@"orderStatus"] intValue] == 8) {//已归还
+        }else if([model[@"orderStatus"] intValue] == 5 || [model[@"orderStatus"] intValue] == 8) {//已归还
             
             if (hadBackList.count > 0 ) {
                 [totlaList removeObject:hadBackList];

@@ -342,6 +342,8 @@
 		C5E46EA91FFE307F002453EB /* YKShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E46EA81FFE307F002453EB /* YKShareVC.m */; };
 		C5E46EAD1FFE3FF2002453EB /* YKShareSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E46EAB1FFE3FF2002453EB /* YKShareSuccessView.m */; };
 		C5E46EAE1FFE3FF2002453EB /* YKShareSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E46EAC1FFE3FF2002453EB /* YKShareSuccessView.xib */; };
+		C5E97F7B2015B6BA0043705B /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E97F782015B6B90043705B /* DXAlertView.m */; };
+		C5E97F7C2015B6BA0043705B /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E97F792015B6B90043705B /* UILabel+ChangeLineSpaceAndWordSpace.m */; };
 		C5FECDE41FC2860400D299AE /* YKSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FECDE21FC2860400D299AE /* YKSuccessVC.m */; };
 		C5FECDE51FC2860400D299AE /* YKSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5FECDE31FC2860400D299AE /* YKSuccessVC.xib */; };
 /* End PBXBuildFile section */
@@ -1046,6 +1048,10 @@
 		C5E46EAA1FFE3FF2002453EB /* YKShareSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKShareSuccessView.h; sourceTree = "<group>"; };
 		C5E46EAB1FFE3FF2002453EB /* YKShareSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKShareSuccessView.m; sourceTree = "<group>"; };
 		C5E46EAC1FFE3FF2002453EB /* YKShareSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKShareSuccessView.xib; sourceTree = "<group>"; };
+		C5E97F772015B6B90043705B /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
+		C5E97F782015B6B90043705B /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
+		C5E97F792015B6B90043705B /* UILabel+ChangeLineSpaceAndWordSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ChangeLineSpaceAndWordSpace.m"; sourceTree = "<group>"; };
+		C5E97F7A2015B6B90043705B /* UILabel+ChangeLineSpaceAndWordSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ChangeLineSpaceAndWordSpace.h"; sourceTree = "<group>"; };
 		C5FECDE11FC2860400D299AE /* YKSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuccessVC.h; sourceTree = "<group>"; };
 		C5FECDE21FC2860400D299AE /* YKSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuccessVC.m; sourceTree = "<group>"; };
 		C5FECDE31FC2860400D299AE /* YKSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSuccessVC.xib; sourceTree = "<group>"; };
@@ -1586,8 +1592,12 @@
 		C525DC6D1FBAB15D002802AE /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				C53039E41FCC272000FB12CE /* Other */,
 				C53039E01FCC271800FB12CE /* PageView */,
+				C53039E41FCC272000FB12CE /* Other */,
+				C5E97F7A2015B6B90043705B /* UILabel+ChangeLineSpaceAndWordSpace.h */,
+				C5E97F792015B6B90043705B /* UILabel+ChangeLineSpaceAndWordSpace.m */,
+				C5E97F772015B6B90043705B /* DXAlertView.h */,
+				C5E97F782015B6B90043705B /* DXAlertView.m */,
 				C52D047E1FEA364700633550 /* LMLGestureHeadImageScrollView.h */,
 				C52D047D1FEA364700633550 /* LMLGestureHeadImageScrollView.m */,
 				C53039CC1FCBF35500FB12CE /* DDStringHelper.h */,
@@ -2624,6 +2634,7 @@
 				C525DD791FBAB2A9002802AE /* UIScrollView+MJExtension.m in Sources */,
 				C525DE901FBD28D6002802AE /* SteyUtil.m in Sources */,
 				C5343C921FC69D2400F5132A /* YKBrandDetailHeader.m in Sources */,
+				C5E97F7B2015B6BA0043705B /* DXAlertView.m in Sources */,
 				C5303A001FCEAE4D00FB12CE /* YKReturnView.m in Sources */,
 				C57A53B01FCBAFF70090E372 /* YKEditInforVC.m in Sources */,
 				C53039DF1FCC26C100FB12CE /* WelcomeViewController.m in Sources */,
@@ -2702,6 +2713,7 @@
 				C525DD6C1FBAB2A8002802AE /* AFURLResponseSerialization.m in Sources */,
 				C525DEA41FBD89F7002802AE /* YKSMSCell.m in Sources */,
 				C525DE921FBD28D6002802AE /* SteyHelper.m in Sources */,
+				C5E97F7C2015B6BA0043705B /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */,
 				C525DDA81FBAB2A9002802AE /* MLExpressionManager.m in Sources */,
 				C525DDC01FBAB2A9002802AE /* SDWebImageDownloader.m in Sources */,
 				C50E58D61FE1117F0063F377 /* YKSuitHeader.m in Sources */,

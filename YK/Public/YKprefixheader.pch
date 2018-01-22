@@ -194,6 +194,7 @@
 #import "DDAleartView.h"
 #import "MJRefresh.h"
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "DXAlertView.h"
 //manager
 #import "YKHomeManager.h"
 #import "YKSearchManager.h"

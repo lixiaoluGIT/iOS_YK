@@ -25,8 +25,9 @@
  #import <UserNotifications/UserNotifications.h>
 
 #import "DDAdvertisementVC.h"
+#import "YKMessageVC.h"
 
-@interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate>
+@interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate,DXAlertViewDelegate>
 
 
 @end
@@ -86,18 +87,6 @@
     
     [self confitUShareSettings];
 
-    
-
-
-
-//
-//    application.statusBarHidden=NO;
-//
-//    self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    [self.window makeKeyAndVisible];
-//    self.window.rootViewController=[[WelcomeViewController alloc]init];
-    
-    // Override point for customization after application launch.
     return YES;
 }
 
@@ -278,18 +267,17 @@
     
     // 数据转换
     NSString *payloadMsg = nil;
+    NSDictionary *dic = [NSDictionary dictionary];
     if (payloadData) {
-        payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
+//        payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
+        dic = [NSJSONSerialization JSONObjectWithData:payloadData options:NSPropertyListMutableContainers error:nil];
     }
-    
     
     // 控制台打印日志
     NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
     NSLog(@"\n>>[GTSdk ReceivePayload]:%@\n\n", msg);
-    
-    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"收到个信透传消息" message:payloadMsg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看", nil];
-    alertview.delegate = self;
-    [alertview show];
+
+    [[YKMessageManager sharedManager]showMessageWithTitle:dic[@"title"] Content:dic[@"text"]];
 }
 
 /** SDK收到sendMessage消息回调 */
@@ -369,6 +357,7 @@
     NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
     NSString *strTitle;
 
+    //微信登录
     if ([resp isKindOfClass:[SendAuthResp class]]) //判断是否为授权请求，否则与微信支付等功能发生冲突
     {
         SendAuthResp *aresp = (SendAuthResp *)resp;
@@ -378,6 +367,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"wechatDidLoginNotification" object:self userInfo:@{@"code":aresp.code}];
         }
     }
+    //微信分享
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
@@ -400,7 +390,7 @@
         }
     }
     
-    
+    //微信支付
     if([resp isKindOfClass:[PayResp class]]){
         //支付返回结果，实际支付结果需要去微信服务器端查询
         strTitle = [NSString stringWithFormat:@"支付结果"];

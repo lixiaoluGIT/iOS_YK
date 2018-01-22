@@ -58,6 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+   
     //请求数据
     self.images2 = [NSArray array];
  
@@ -113,16 +114,16 @@ self.collectionView.dataSource = self;
     }];
 
 
-//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
-//    releaseButton.frame = CGRectMake(0, 25, 25, 25);
-//    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
-//    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
-//    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
-//    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    negativeSpacer.width = -16;
-//    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
-//    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    releaseButton.frame = CGRectMake(0, 25, 25, 25);
+    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
+    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
+    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
+    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -16;
+    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
 //
     
     //检查版本更新

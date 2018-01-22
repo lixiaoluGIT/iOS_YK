@@ -12,6 +12,7 @@
 
 + (YKMessageManager *)sharedManager;
 
+- (void)showMessageWithTitle:(NSString *)title Content:(NSString *)content;
 //获取消息通知列表列表
 - (void)getMessageListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
