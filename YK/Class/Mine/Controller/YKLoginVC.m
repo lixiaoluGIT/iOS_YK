@@ -56,14 +56,7 @@ NSInteger timeNum;
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TencentDidLoginNotification:) name:@"TencentDidLoginNotification" object:nil];
 }
 
-//接收qq登录成功的通知
-//{
-//    "city": "string",
-//    "headimgurl": "string",
-//    "nickname": "string",
-//    "openid": "string",
-//    "sex": "string"
-//}
+
 - (void)TencentDidLoginNotification:(NSNotification *)notify{
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:notify.userInfo];
     [[YKUserManager sharedManager]loginSuccessByTencentDic:dic[@"code"] OnResponse:^(NSDictionary *dic) {

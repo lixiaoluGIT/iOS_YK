@@ -50,7 +50,7 @@
     [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     
     self.product = [YKProduct new];
-
+    
     [self getPruductDetail];
 }
 
@@ -58,7 +58,7 @@
     [super viewWillDisappear:YES];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.alpha = 1;
-
+    
     [self.collectionView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
@@ -95,7 +95,7 @@
         btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
     }
     btn.adjustsImageWhenHighlighted = NO;
-//    btn.backgroundColor = [UIColor redColor];
+    //    btn.backgroundColor = [UIColor redColor];
     [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
@@ -115,11 +115,11 @@
     
     self.navigationItem.titleView = title;
     
-  
+    
     
     //请求数据
     self.images = [NSArray array];
-//    self.images= @[@"35.jpg",@"36.jpg",@"37.jpg",@"38.jpg",@"39.jpg",@"40.jpg",@"41.jpg",@"42.jpg",@"43.jpg"];
+    //    self.images= @[@"35.jpg",@"36.jpg",@"37.jpg",@"38.jpg",@"39.jpg",@"40.jpg",@"41.jpg",@"42.jpg",@"43.jpg"];
     self.view.backgroundColor =[ UIColor whiteColor];
     
     
@@ -144,18 +144,18 @@
     
     
     //监听tableView 偏移量
-//    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
-//    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
-//    self.refresh = [YyxHeaderRefresh header];
-//
-//    self.refresh.tableView = self.collectionView;
-//    [self dd];
-//    CATWEAKSELF
-//    self.refresh.beginRefreshingBlock = ^(YyxHeaderRefresh *refreshView){
-//        [weakSelf dd];
-//    };
-//
-//       // [BQActivityView showActiviTy];
+    //    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
+    //    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
+    //    self.refresh = [YyxHeaderRefresh header];
+    //
+    //    self.refresh.tableView = self.collectionView;
+    //    [self dd];
+    //    CATWEAKSELF
+    //    self.refresh.beginRefreshingBlock = ^(YyxHeaderRefresh *refreshView){
+    //        [weakSelf dd];
+    //    };
+    //
+    //       // [BQActivityView showActiviTy];
     [LBProgressHUD showHUDto:self.view animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //        [BQActivityView hideActiviTy];
@@ -204,10 +204,10 @@
         chatVC.hidesBottomBarWhenPushed = YES;
         self.tabBarController.selectedViewController = nav;
         [self.navigationController popToRootViewControllerAnimated:NO];
-//
-//        [nav pushViewController:chatVC animated:YES];
-//        [self.navigationController popToRootViewControllerAnimated:NO];
-//        [self.tabBarController setSelectedIndex:2];
+        //
+        //        [nav pushViewController:chatVC animated:YES];
+        //        [self.navigationController popToRootViewControllerAnimated:NO];
+        //        [self.tabBarController setSelectedIndex:2];
     };
     [self.view addSubview:buttom];
 }
@@ -233,7 +233,7 @@
 }
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
-//    [self.tabBarController setSelectedIndex:0];
+    //    [self.tabBarController setSelectedIndex:0];
 }
 
 - (void)addTOCart{
@@ -258,7 +258,7 @@
 -(void)dd{
     
     int random = self.images2.count;
-
+    
     NSMutableArray *temp = [NSMutableArray new];
     for (int i = 1; i < random; i++) {
         int randomIndex = arc4random_uniform(random);
@@ -294,11 +294,11 @@
     if (scrollView.contentOffset.y>280) {
         self.refresh.hidden = YES;
         self.navigationController.navigationBar.alpha = 1;
-//        self.navigationController.navigationBar.hidden = NO;
+        //        self.navigationController.navigationBar.hidden = NO;
     }else {
         self.refresh.hidden = NO;
         self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
-//        self.navigationController.navigationBar.hidden = YES;
+        //        self.navigationController.navigationBar.hidden = YES;
     }
     
     
@@ -311,15 +311,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (section==0) {
-      return self.product.pruductDetailImgs.count;
+        return self.product.pruductDetailImgs.count;
     }
     return self.product.productList.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CGQCollectionViewCell" forIndexPath:indexPath];
-
-   
+    
+    
     if (indexPath.section==1) {
         YKProduct *product = [YKProduct new];
         [product initWithDictionary:self.product.productList[indexPath.row]];
@@ -327,7 +327,7 @@
         return cell;
     }
     YKYifuScanCell *scan = (YKYifuScanCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"YKYifuScanCell" forIndexPath:indexPath];
-   
+    
     [scan.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.product.pruductDetailImgs[indexPath.row][@"clothingImgUrl"]]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
     [scan.imageView setContentMode:UIViewContentModeScaleAspectFill];
     scan.imageArray = [self getImageArray:self.product.pruductDetailImgs];
@@ -360,7 +360,7 @@
     
     WeakSelf(weakSelf)
     if (kind == UICollectionElementKindSectionHeader) {
-    
+        
         if (indexPath.section==0) {
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
@@ -368,7 +368,7 @@
             cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55+100)];
             cycleView.imagesArr = self.imagesArr;
             cycleView.delegate  = self;
-
+            
             self.origialFrame = cycleView.frame;
             [headerView addSubview:cycleView];
             
@@ -397,7 +397,7 @@
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView2" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
             YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-                    ti.frame = CGRectMake(0, 15,WIDHT, 80);
+            ti.frame = CGRectMake(0, 15,WIDHT, 80);
             [ti reSetTitle];
             [headerView addSubview:ti];
             
@@ -422,8 +422,8 @@
     if (section==0) {
         return UIEdgeInsetsMake(16, 0, 16, 0);
     }
-        return UIEdgeInsetsMake(16, 16, 16, 16);
-
+    return UIEdgeInsetsMake(16, 16, 16, 16);
+    
 }
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section

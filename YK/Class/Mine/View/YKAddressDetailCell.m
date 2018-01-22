@@ -57,7 +57,6 @@
     
     _address = address;
     
-    
     self.name.text = address.name;
     self.phone.text = address.phone;
     self.detailAddress.text = [NSString stringWithFormat:@"%@%@",address.zone,address.detail];
@@ -84,8 +83,10 @@
     }];
     
 }
+
 - (IBAction)delete:(id)sender {
     
     [self toEdit];
 }
+
 @end

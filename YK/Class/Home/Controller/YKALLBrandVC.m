@@ -47,7 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"品牌馆";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -80,15 +80,15 @@
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
-   
+    
     [self.tableView setSectionIndexColor:[UIColor colorWithHexString:@"676869"]];
-
+    
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     
     
-     [self getBrandList];
+    [self getBrandList];
 }
 
 - (void)getBrandList{
@@ -111,8 +111,8 @@
     [[YKHomeManager sharedManager]getBrandListOnResponse:^(NSDictionary *dic) {
         
         //缓存dic
-//        [UD setObject:dic forKey:@"brandFile"];
-//        [UD synchronize];
+        //        [UD setObject:dic forKey:@"brandFile"];
+        //        [UD synchronize];
         
         self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
         
@@ -121,12 +121,12 @@
         self.imageClickUrls = [NSArray array];
         self.imageClickUrls = [self getImageUrlsArray:array];
         
-       
+        
         ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
         cycleView.imagesArr =  [self getImageArray:array];;
         cycleView.delegate  = self;
         cycleView.placeHolderImageName = @"";
-//        self.tableView.tableHeaderView = cycleView;
+        //        self.tableView.tableHeaderView = cycleView;
         [self group:self.blackLists];
         [self.tableView reloadData];
     }];
@@ -150,7 +150,7 @@
 
 
 - (void)group:(NSArray *)array{
-
+    
     for (NSDictionary *blacker in self.blackLists) {
         if (blacker[@"brandName"] == [NSNull null] || blacker[@"brandName"] == nil){
             break;
@@ -230,7 +230,7 @@
     NSDictionary *blacker = self.sections[indexPath.section][indexPath.row];
     [cell initWithDictionary:blacker];
     
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
@@ -266,7 +266,7 @@
     title.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
     title.textColor = [UIColor whiteColor];
     title.textAlignment = NSTextAlignmentCenter;
-   
+    
     [head addSubview:title];
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -57,31 +57,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-   
+    
+    
     //请求数据
     self.images2 = [NSArray array];
- 
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     self.view.backgroundColor =[ UIColor whiteColor];
-
-
-
-UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
-layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-layoutView.itemSize = CGSizeMake((WIDHT-48)/2, (w-48)/2*240/180);
-
-self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
-self.collectionView.backgroundColor = [UIColor whiteColor];
-[self.view addSubview:self.collectionView];
-self.collectionView.delegate = self;
-self.collectionView.dataSource = self;
-[self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CGQCollectionViewCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"CGQCollectionViewCell"];
-[self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
-[self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
+    
+    
+    
+    UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
+    layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layoutView.itemSize = CGSizeMake((WIDHT-48)/2, (w-48)/2*240/180);
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.collectionView];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CGQCollectionViewCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"CGQCollectionViewCell"];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
-   self.collectionView.hidden = YES;
-
+    self.collectionView.hidden = YES;
+    
     
     //监听tableView 偏移量
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -91,7 +91,7 @@ self.collectionView.dataSource = self;
     _pageNum = 1;
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _pageNum = 1;
-       [self dd];
+        [self dd];
     }];
     WeakSelf(weakSelf)
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -110,10 +110,10 @@ self.collectionView.dataSource = self;
                 [self.collectionView reloadData];
             }
         }];
-      
+        
     }];
-
-
+    
+    
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
     releaseButton.frame = CGRectMake(0, 25, 25, 25);
@@ -124,15 +124,15 @@ self.collectionView.dataSource = self;
     negativeSpacer.width = -16;
     self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
-//
+    //
     
     //检查版本更新
-//    [self performSelector:@selector(checkVersion) withObject:nil afterDelay:2.2];
+    //    [self performSelector:@selector(checkVersion) withObject:nil afterDelay:2.2];
     
 }
 
 - (void)checkVersion{
-     [[YKUserManager sharedManager]checkVersion];
+    [[YKUserManager sharedManager]checkVersion];
 }
 
 - (void)toMessage{
@@ -174,10 +174,10 @@ self.collectionView.dataSource = self;
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-//        if (!hadAppearCheckVersion) {
-//            [self checkVersion];
-//            hadAppearCheckVersion = YES;
-//        }
+        //        if (!hadAppearCheckVersion) {
+        //            [self checkVersion];
+        //            hadAppearCheckVersion = YES;
+        //        }
         self.collectionView.hidden = NO;
         NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"imgList"]];
         self.imagesArr = [self getImageArray:array];
@@ -185,10 +185,10 @@ self.collectionView.dataSource = self;
         self.imageClickUrls = [self getImageClickUrlsArray:array];
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
-       
+        
         hadtitle1 = YES;
         [self.collectionView reloadData];
-       
+        
     }];
 }
 
@@ -210,7 +210,7 @@ self.collectionView.dataSource = self;
     }else {
         self.refresh.hidden = NO;
     }
-
+    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -218,7 +218,7 @@ self.collectionView.dataSource = self;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-
+    
     return self.productArray.count;
 }
 
@@ -231,8 +231,8 @@ self.collectionView.dataSource = self;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-
-        return CGSizeMake(WIDHT, WIDHT*0.55 +200 +60);
+    
+    return CGSizeMake(WIDHT, WIDHT*0.55 +200 +60);
 }
 
 #pragma mark - scrollViewDelegate
@@ -241,29 +241,29 @@ self.collectionView.dataSource = self;
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-  
+    
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         headerView.backgroundColor =[UIColor whiteColor];
-
+        
         //banner图
-            ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
-            cycleView.imagesArr = self.imagesArr;
-            cycleView.delegate  = self;
-            cycleView.placeHolderImageName = @"banner.jpg";
-            [headerView addSubview:cycleView];
+        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
+        cycleView.imagesArr = self.imagesArr;
+        cycleView.delegate  = self;
+        cycleView.placeHolderImageName = @"banner.jpg";
+        [headerView addSubview:cycleView];
         WeakSelf(weakSelf)
         
         //品牌
-            _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
-            _scroll.frame = CGRectMake(0, WIDHT*0.55,WIDHT, 200);
-            [_scroll resetUI];
+        _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
+        _scroll.frame = CGRectMake(0, WIDHT*0.55,WIDHT, 200);
+        [_scroll resetUI];
         _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
-            _scroll.clickALLBlock = ^(){
-                YKALLBrandVC *brand = [YKALLBrandVC new];
-                brand.hidesBottomBarWhenPushed = YES;
-                [weakSelf.navigationController pushViewController:brand animated:YES];
-            };
+        _scroll.clickALLBlock = ^(){
+            YKALLBrandVC *brand = [YKALLBrandVC new];
+            brand.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:brand animated:YES];
+        };
         _scroll.toDetailBlock = ^(NSString *brandId,NSString *brandName){
             NSLog(@"所点品牌ID:%@",brandId);
             YKBrandDetailVC *brand = [YKBrandDetailVC new];
@@ -274,26 +274,26 @@ self.collectionView.dataSource = self;
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
         
-//
-            if (hadtitle1) {
-                [headerView addSubview:_scroll];
-                hadtitle1 = NO;
-            }
-            
+        //
+        if (hadtitle1) {
+            [headerView addSubview:_scroll];
+            hadtitle1 = NO;
+        }
+        
         
         
         
         //推荐标题
-            YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-            ti.frame = CGRectMake(0, WIDHT*0.55+200,WIDHT, 60);
+        YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
+        ti.frame = CGRectMake(0, WIDHT*0.55+200,WIDHT, 60);
         
-            if (!hadtitle2) {
-                [headerView addSubview:ti];
-                hadtitle2 = YES;
-            }
-        
-            return headerView;
+        if (!hadtitle2) {
+            [headerView addSubview:ti];
+            hadtitle2 = YES;
         }
+        
+        return headerView;
+    }
     
     return nil;
 }
@@ -327,7 +327,7 @@ self.collectionView.dataSource = self;
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"index === %ld",indexPath.row);
-
+    
 }
 
 - (void)ZYCollectionViewClick:(NSInteger)index {

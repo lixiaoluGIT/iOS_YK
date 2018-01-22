@@ -49,7 +49,7 @@
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-
+    
     NSDictionary *dic = @{@"addressId":address.addressId,@"shoppingCartIdList":[self handleArrayWithArry:shoppingCartIdList]};
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
@@ -57,7 +57,7 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] != 200) {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
+            //            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
             
             if (onResponse) {
                 onResponse(dict);
@@ -65,11 +65,11 @@
             return ;
         }
         
-    
+        
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"订单提交成功" delay:1.2];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-  
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 if (onResponse) {
@@ -102,14 +102,14 @@
         default:
             break;
     }
-   
+    
     //待签收:包括待配货,待发货和待签收>>>查询3待签收,先查看1待配货 2,待发货
     if (status==3) {
-//         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+        //         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
         NSInteger s = 1;
         NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
         [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
-             [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+            [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
             
             NSMutableArray *listArray;
             NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
@@ -118,10 +118,10 @@
                 listArray = [NSMutableArray arrayWithArray:array[0][@"orderDetailsVoList"]];
                 _orderNo = dic[@"data"][0][@"orderNo"];
                 _ID = dic[@"data"][0][@"id"];
-
-                    if (onResponse) {
-                        onResponse(listArray);
-                    }
+                
+                if (onResponse) {
+                    onResponse(listArray);
+                }
                 
             }else {//没有待配货的1,查询待发货2
                 
@@ -167,80 +167,80 @@
                             
                         }];
                     }
-                   
+                    
                 }];
                 
             }
-
+            
         }];
-    
+        
     }else {//不是查询待签收
         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
         NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)status];
         [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
-
-        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-
-        if ([dic[@"status"] integerValue] == 200) {
-            NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
-            if (array.count == 0) {
-                if (onResponse) {
-                    onResponse(nil);
-                }
-                return ;
-            }
-
-            if (status==0) {//全部衣袋
-                [self groupWithDictionary:dic groupDoneBlock:^(void) {
+            
+            [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+            
+            if ([dic[@"status"] integerValue] == 200) {
+                NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+                if (array.count == 0) {
                     if (onResponse) {
                         onResponse(nil);
                     }
-                }];
-            }else {
-               NSMutableArray *listArray;
-                if (dic[@"data"]) {
-                    if (status==5) {//已归还
-                        NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
-                        NSMutableArray *totalArray = [NSMutableArray array];
-                        //合并到大数组里
-                        for (int index=0; index<array.count; index++) {
-                            if (listArray.count==0) {
-                                listArray = array[0][@"orderDetailsVoList"];
-                                totalArray = listArray;
-                            }else {
-                                NSArray *a = [NSArray arrayWithArray:array[index][@"orderDetailsVoList"]];
-                                for (int i=0; i<a.count; i++) {
-                                    [totalArray addObject:array[index][@"orderDetailsVoList"][i]];
+                    return ;
+                }
+                
+                if (status==0) {//全部衣袋
+                    [self groupWithDictionary:dic groupDoneBlock:^(void) {
+                        if (onResponse) {
+                            onResponse(nil);
+                        }
+                    }];
+                }else {
+                    NSMutableArray *listArray;
+                    if (dic[@"data"]) {
+                        if (status==5) {//已归还
+                            NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
+                            NSMutableArray *totalArray = [NSMutableArray array];
+                            //合并到大数组里
+                            for (int index=0; index<array.count; index++) {
+                                if (listArray.count==0) {
+                                    listArray = array[0][@"orderDetailsVoList"];
+                                    totalArray = listArray;
+                                }else {
+                                    NSArray *a = [NSArray arrayWithArray:array[index][@"orderDetailsVoList"]];
+                                    for (int i=0; i<a.count; i++) {
+                                        [totalArray addObject:array[index][@"orderDetailsVoList"][i]];
+                                    }
                                 }
                             }
+                            
+                            listArray = [NSMutableArray arrayWithArray:totalArray];
+                            
+                        }else {//待签收或待归还
+                            listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
+                            _orderNo = dic[@"data"][0][@"orderNo"];
+                            _ID = dic[@"data"][0][@"id"];
                         }
-
-                        listArray = [NSMutableArray arrayWithArray:totalArray];
-
-                    }else {//待签收或待归还
-                        listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
-                        _orderNo = dic[@"data"][0][@"orderNo"];
-                        _ID = dic[@"data"][0][@"id"];
+                    }else {
+                        listArray = [NSMutableArray array];
                     }
-                }else {
-                    listArray = [NSMutableArray array];
-                }
-
-                if (onResponse) {
-                    onResponse(listArray);
+                    
+                    if (onResponse) {
+                        onResponse(listArray);
+                    }
                 }
             }
-        }
-    
-    }];
-    
+            
+        }];
+        
     }
-
+    
 }
 
 //物流信息
 - (void)searchForSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse{
-
+    
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url = [NSString stringWithFormat:@"%@?orderNo=%@",queryOrderSMSInfor_Url,orderNo];
@@ -248,8 +248,8 @@
     [YKHttpClient Method:@"POST" URLString:url paramers:nil success:^(NSDictionary *dict) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-      
-       
+        
+        
         //最新一条
         NSArray *arr = [NSArray arrayWithArray:dict[@"data"][@"body"]];
         
@@ -298,12 +298,12 @@
                 self.SMSStatus = @"未知";
                 break;
         }
-                
-                if (onResponse) {
-                    onResponse(arr);
-                }
-                
-       
+        
+        if (onResponse) {
+            onResponse(arr);
+        }
+        
+        
     } failure:^(NSError *error) {
         
     }];
@@ -314,15 +314,15 @@
     
     [self clear];
     
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,orderNo,@"4"];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-      
+        
         if ([dic[@"status"] integerValue] == 200) {//成功确认收货
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"" delay:2];
+            //            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"" delay:2];
             if (onResponse) {
                 onResponse(dic);
             }
@@ -386,9 +386,9 @@
 - (void)queryReceiveOrderOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     NSString *url = [NSString stringWithFormat:@"%@?orderId=%@",isHadOrderReceiveOrder_Url,self.orderNo];
-//    NSDictionary *dic = @{@"orderId":self.orderNo};
+    //    NSDictionary *dic = @{@"orderId":self.orderNo};
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
-   
+        
         if ([dic[@"status"] integerValue] == 200) {
             
             if (onResponse) {
@@ -409,7 +409,7 @@
     NSMutableArray *hadBackList = [NSMutableArray array];//存储已归还
     
     for (NSDictionary *model in currentArray) {
-   
+        
         //不是3,5,8的状态全部放入待签收
         if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 4 && [model[@"orderStatus"] intValue] != 8 ){
             
@@ -422,7 +422,7 @@
             
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
-           receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
+            receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
         }if ([model[@"orderStatus"] intValue] == 4) {//待归还
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
@@ -443,8 +443,8 @@
                 [hadBackList addObject:model[@"orderDetailsVoList"]];
             }
         }
-
-
+        
+        
         //分数组添加到总数组里
         if (receiveList.count>0&&![totlaList containsObject:receiveList]) {
             [totlaList insertObject:receiveList atIndex:0];
@@ -468,19 +468,19 @@
         }
     }
     
-        NSArray *resultArray = [self.sectionArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-
-            return [obj1 compare:obj2]; //升序
+    NSArray *resultArray = [self.sectionArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         
-        }];
+        return [obj1 compare:obj2]; //升序
+        
+    }];
     
-        self.sectionArray = [NSMutableArray arrayWithArray:resultArray];
+    self.sectionArray = [NSMutableArray arrayWithArray:resultArray];
     
-        self.totalOrderList = totlaList;
+    self.totalOrderList = totlaList;
     
-        if (groupDoneBlock) {//分组完毕
-            groupDoneBlock();
-        }
+    if (groupDoneBlock) {//分组完毕
+        groupDoneBlock();
+    }
     
 }
 

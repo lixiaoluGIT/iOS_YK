@@ -95,10 +95,10 @@
 
     [self.navigationController pushViewController:[YKAboutUsVC new] animated:YES];
 }
+
 - (IBAction)about:(id)sender {
 
     [self.navigationController pushViewController:[YKAboutUsVC new] animated:YES];
-    
     
 }
 

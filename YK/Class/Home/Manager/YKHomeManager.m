@@ -24,8 +24,8 @@
 - (void)getMyHomePageDataWithNum:(NSInteger)Num Size:(NSInteger)Size
                       OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-
+    //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
     NSString *url = [NSString stringWithFormat:@"%@?num=1&size=%ld",GetHomePage_Url,Size];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
@@ -35,7 +35,7 @@
         if (onResponse) {
             onResponse(dic);
         }
-            
+        
         
         
     }];
@@ -47,9 +47,9 @@
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-//    NSDictionary *dic = @{@"brandId":@"12"};
+    //    NSDictionary *dic = @{@"brandId":@"12"};
     NSString *url = [NSString stringWithFormat:@"%@?brandId=%ld",GetBrandDetail_Url,brandId];
-//    NSLog(@"%@",dic);
+    //    NSLog(@"%@",dic);
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -65,7 +65,7 @@
 - (void)getBrandPageByCategoryWithBrandId:(NSString *)brandId categoryId:(NSString *)categoryId OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-  
+    
     NSString *url = [NSString stringWithFormat:@"%@?brandId=%@&categoryId=%@",GetBrandPageByCategory_Url,brandId,categoryId];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
@@ -74,7 +74,7 @@
         
         NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
         if (array.count == 0) {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"暂无相关商品" delay:1.2];
+            //            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"暂无相关商品" delay:1.2];
         }
         
         if (onResponse) {
@@ -89,7 +89,7 @@
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-      [YKHttpClient Method:@"GET" apiName:getBrandList_Url Params:nil Completion:^(NSDictionary *dic) {
+    [YKHttpClient Method:@"GET" apiName:getBrandList_Url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
@@ -106,9 +106,9 @@
                                 OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-
+    
     NSString *url = [NSString stringWithFormat:@"%@?clothing_id=%ld",GetProductDetail_Url,ProductId];
-   
+    
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -123,7 +123,7 @@
 
 //分页请求商品
 - (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse{
-
+    
     NSString *url = [NSString stringWithFormat:@"%@?page=%ld&typeId=%@&sortId=%@&brandId=%@",GetMoreProduct_Url,numPage,typeId,sortId,brandId];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
@@ -132,7 +132,7 @@
         
         NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
         if (array.count == 0) {
-
+            
         }
         
         if (onResponse) {
@@ -170,15 +170,15 @@
     if ([Token length] == 0) {//未登录
         return;
     }
-        if (![self timeGpIsOK]) {
-            return;
-        }
+    if (![self timeGpIsOK]) {
+        return;
+    }
     
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
             //如果已经分享过
-             if ([[YKUserManager sharedManager].user.isShare intValue] == 1) {
-                 return ;
+            if ([[YKUserManager sharedManager].user.isShare intValue] == 1) {
+                return ;
             }
             //如果是老会员并且会员少于7天
             if ([[YKUserManager sharedManager].user.effective intValue] == 4) {

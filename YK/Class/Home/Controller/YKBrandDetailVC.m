@@ -66,7 +66,7 @@
         self.imagesArr = [NSMutableArray array];
         [self.imagesArr addObject:_scroll.brand.brandIma];
         //二级类目
-       self.secondLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"secondLevelCategoryList"]];
+        self.secondLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"secondLevelCategoryList"]];
         self.titles = [NSMutableArray array];
         self.categotyIds = [NSMutableArray array];
         self.titles = [self arrayWithArray:self.secondLevelCategoryList];
@@ -138,7 +138,7 @@
     [self getDetailInfor];
     
     self.images = [NSArray array];
- 
+    
     self.view.backgroundColor =[ UIColor whiteColor];
     
     
@@ -165,7 +165,7 @@
     _pageNum = 1;
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
-//         [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:weakSelf.catrgoryId];
+        //         [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:weakSelf.catrgoryId];
         //请求更多商品
         [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.catrgoryId sortId:@"" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
             [self.collectionView.mj_footer endRefreshing];
@@ -176,16 +176,16 @@
                 for (int i=0; i<array.count; i++) {
                     [self.productList addObject:array[i]];
                 }
-               
+                
                 [self.collectionView reloadData];
             }
         }];
         
     }];
-
+    
     
     _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKBrandDetailHeader" owner:self options:nil][0];
-
+    
     UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(3, 20, 44, 44);
     btn1.adjustsImageWhenHighlighted = NO;
@@ -193,14 +193,14 @@
     [btn1 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
     
-
+    
     
     self.navigationController.delegate = self; // 设置navigationController的代理为self,并实现其代理方法
     
     self.view.userInteractionEnabled = YES;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(backHandle:)];
     [self.view addGestureRecognizer:panGesture];
-
+    
 }
 
 - (void)backHandle:(UIPanGestureRecognizer *)recognizer
@@ -291,7 +291,7 @@
 
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-        return CGSizeMake(WIDHT, WIDHT*0.55 +100 + 60 + _scroll.Lheight + 30);
+    return CGSizeMake(WIDHT, WIDHT*0.55 +100 + 60 + _scroll.Lheight + 30);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -307,18 +307,18 @@
             cycleView.imagesArr = self.imagesArr;
             cycleView.delegate  = self;
             [headerView addSubview:cycleView];
-
+            
             _scroll.frame = CGRectMake(0, WIDHT*0.55+100,WIDHT, 30 + _scroll.Lheight);
-           
+            
             if (!hadMakeHeader) {
                 [headerView addSubview:_scroll];
                 hadMakeHeader = YES;
             }
             
-        // sliderStyle
+            // sliderStyle
             if (_scroll.Lheight!=0) {
                 sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, WIDHT*0.55+100 + 30 + _scroll.Lheight, self.view.frame.size.width, 48)];
-               [sliderSegmentView setTitleArray:self.titles categoryIds:self.categotyIds withStyle:CBSegmentStyleSlider];
+                [sliderSegmentView setTitleArray:self.titles categoryIds:self.categotyIds withStyle:CBSegmentStyleSlider];
                 sliderSegmentView.categotyIds = self.categotyIds;
                 sliderSegmentView.titleChooseReturn = ^(NSString  *catrgoryId) {
                     _pageNum = 1;
@@ -330,9 +330,9 @@
                     hadMakeSegment = YES;
                 }
             }
-           
-
-          
+            
+            
+            
             return headerView;
             
         }
@@ -358,14 +358,14 @@
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-
+    
     return 16;
 }
 
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-   
+    
     return 10;
 }
 
@@ -409,10 +409,10 @@
         [self.collectionView reloadData];
     }];
     
-//    [[YKHomeManager sharedManager]getBrandPageByCategoryWithBrandId:brand categoryId:categoryId OnResponse:^(NSDictionary *dic) {
-//        self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
-//        [self.collectionView reloadData];
-//    }];
+    //    [[YKHomeManager sharedManager]getBrandPageByCategoryWithBrandId:brand categoryId:categoryId OnResponse:^(NSDictionary *dic) {
+    //        self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
+    //        [self.collectionView reloadData];
+    //    }];
 }
 
 @end

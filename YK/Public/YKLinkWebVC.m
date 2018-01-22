@@ -71,7 +71,6 @@
 
 
 - (void)creatWeb{
-    CGRect bounds = self.view.frame;
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, WIDHT, HEIGHT-64)];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
@@ -93,10 +92,8 @@
 -(void)webViewDidFinishLoad:(UIWebView*)webView {
     
     self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    
-
-    
     _indicatorView.hidden = YES;
+    
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     

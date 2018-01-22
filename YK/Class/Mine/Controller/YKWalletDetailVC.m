@@ -78,8 +78,6 @@
         [bagCell initWithDictionary:self.dataArray[indexPath.row]];
         bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return bagCell;
-    }
-
-
+}
 
 @end
