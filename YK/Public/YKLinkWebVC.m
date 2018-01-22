@@ -75,7 +75,7 @@
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
     [self.view addSubview:_webView];
-    NSURL* url = [NSURL URLWithString:_url];
+    NSURL* url = [NSURL URLWithString:[self URLEncodedString:_url]];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     
     [_webView loadRequest:request];
@@ -87,7 +87,16 @@
     _indicatorView.hidden = NO;
 }
 
-
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
 
 -(void)webViewDidFinishLoad:(UIWebView*)webView {
     

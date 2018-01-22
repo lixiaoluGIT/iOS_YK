@@ -46,7 +46,7 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Manager/YKUserManager.m"
-                  timestampString = "538309970.2432621"
+                  timestampString = "538311469.232429"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "484"
@@ -61,7 +61,7 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Manager/YKUserManager.m"
-                  timestampString = "538309970.245831"
+                  timestampString = "538311469.234674"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "485"
@@ -69,22 +69,6 @@
                   offsetFromSymbolStart = "64">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Mine/Manager/YKMessageManager.m"
-            timestampString = "538309970.106233"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "-showMessageWithTitle:Content:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
