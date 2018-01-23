@@ -423,7 +423,9 @@
 
     [dic removeObjectForKey:@"privilege"];
 
+      [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [YKHttpClient Method:@"POST" URLString:WeChatLogin_Url paramers:dic success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信授权成功" delay:1.8];
             [self saveCurrentToken:dict[@"data"][@"token"]];
@@ -468,6 +470,8 @@
 
 - (void)loginSuccessByTencentDic:(NSDictionary *)Dic OnResponse:(void (^)(NSDictionary *dic))onResponse{
 
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     NSString *city;
     if ([dic[@"city"] isEqualToString:@""]) {
@@ -476,12 +480,13 @@
         city = dic[@"city"];
     }
     [dic setObject:Dic[@"city"] forKey:@"city"];
-    [dic setObject:Dic[@"figureurl"] forKey:@"figureurl_qq_2"];
+    [dic setObject:Dic[@"figureurl_qq_2"] forKey:@"headimgurl"];
     [dic setObject:_tencentOAuth.openId forKey:@"openid"];
     [dic setObject:Dic[@"nickname"] forKey:@"nickname"];
     [dic setObject:Dic[@"gender"] forKey:@"sex"];
     
     [YKHttpClient Method:@"POST" URLString:TencentLogin_Url paramers:dic success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"qq授权成功" delay:1.8];
             [self saveCurrentToken:dict[@"data"][@"token"]];

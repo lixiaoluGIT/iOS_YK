@@ -26,49 +26,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Manager/YKUserManager.m"
-            timestampString = "538309970.106108"
+            timestampString = "538390011.46032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484"
-            landmarkName = "-loginSuccessByTencentDic:OnResponse:"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-getUserInforOnResponse:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[YKUserManager loginSuccessByTencentDic:OnResponse:]"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Manager/YKUserManager.m"
-                  timestampString = "538311469.232429"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "484"
-                  endingLineNumber = "484"
-                  offsetFromSymbolStart = "892">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__53-[YKUserManager loginSuccessByTencentDic:OnResponse:]_block_invoke"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/iOS_YK/YK/Class/Mine/Manager/YKUserManager.m"
-                  timestampString = "538311469.234674"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "485"
-                  endingLineNumber = "485"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -30,9 +30,9 @@
 
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        YKMessageVC *message = [YKMessageVC new];
-        message.hidesBottomBarWhenPushed = YES;
-        [[self getCurrentVC].navigationController pushViewController:message animated:YES];
+//        YKMessageVC *message = [YKMessageVC new];
+//        message.hidesBottomBarWhenPushed = YES;
+//        [[self getCurrentVC].navigationController pushViewController:message animated:YES];
     }
     
 }

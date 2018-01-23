@@ -82,7 +82,7 @@
             YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
             //            [weakSelf presentViewController:nav animated:YES completion:NULL];
-            [self presentViewController:nav animated:YES completion:^{
+            [weakSelf presentViewController:nav animated:YES completion:^{
                 
             }];
         }
@@ -274,4 +274,5 @@
         
     }];
 }
+
 @end

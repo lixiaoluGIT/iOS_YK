@@ -269,15 +269,15 @@
     NSString *payloadMsg = nil;
     NSDictionary *dic = [NSDictionary dictionary];
     if (payloadData) {
-//        payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
-        dic = [NSJSONSerialization JSONObjectWithData:payloadData options:NSPropertyListMutableContainers error:nil];
+        payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
+//        dic = [NSJSONSerialization JSONObjectWithData:payloadData options:NSPropertyListMutableContainers error:nil];
     }
     
     // 控制台打印日志
     NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
     NSLog(@"\n>>[GTSdk ReceivePayload]:%@\n\n", msg);
 
-    [[YKMessageManager sharedManager]showMessageWithTitle:dic[@"title"] Content:dic[@"text"]];
+    [[YKMessageManager sharedManager]showMessageWithTitle:@"订单通知" Content:payloadMsg];
 }
 
 /** SDK收到sendMessage消息回调 */
