@@ -7,8 +7,13 @@
 //
 
 #import "YKProduct.h"
+#import "YKProductType.h"
 
 @implementation YKProduct
+
+- (void)setClothingStockArray:(NSArray *)clothingStockArray{
+    
+}
 
 - (void)initWithDictionary:(NSDictionary *)dic{
     
@@ -22,6 +27,18 @@
     self.imageDetails = [NSString stringWithFormat:@"%@",dic[@"imageDetails"]];
     self.imageMaster = [NSString stringWithFormat:@"%@",dic[@"imageMaster"]];
     self.clothingPrice = [NSString stringWithFormat:@"%@",dic[@"clothingPrice"]];
+    
+    //存储商品的不同型号模型
+    NSArray *clothingStockArray = [NSArray arrayWithArray:dic[@"clothingStockDTOS"]];
+    //遍历所有的型号
+    for (NSDictionary *type in clothingStockArray) {
+        if ([type[@"clothingStockNum"] intValue] != 0) {//如果有库存数量不为0的型号
+            _isHadStock = YES;//有库存
+        }else {
+            _isHadStock = NO;//无库存
+        }
+    }
+    
 }
 
 - (NSString *)URLEncodedString:(NSString *)str

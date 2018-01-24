@@ -26,6 +26,8 @@
 @property (nonatomic,copy)NSString *imageMaster;
 @property (nonatomic,copy)NSString *clothingPrice;//推荐价格
 
+@property (nonatomic,assign)BOOL isHadStock;//有无库存
+
 //
 
 @property (nonatomic,strong)NSMutableArray *bannerImages;//轮播图

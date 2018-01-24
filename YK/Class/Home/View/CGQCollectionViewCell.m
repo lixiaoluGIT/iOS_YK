@@ -8,6 +8,11 @@
 
 #import "CGQCollectionViewCell.h"
 
+@interface CGQCollectionViewCell()
+@property (weak, nonatomic) IBOutlet UIImageView *tagimage;
+
+@end
+
 @implementation CGQCollectionViewCell
 
 - (void)awakeFromNib {
@@ -34,6 +39,8 @@
     [_imageView sd_setImageWithURL:[NSURL URLWithString:_imageAttach] placeholderImage:[UIImage imageNamed:@"商品图"]];
     _lable.text = _brandName;
     _detailLabel.text = _goodsName;
+    
+    _tagimage.hidden = product.isHadStock;
 }
 
 @end
