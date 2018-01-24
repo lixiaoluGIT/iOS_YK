@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKNormalQuestionVC : UITableViewController
+@interface YKNormalQuestionVC : YKBaseTableVC
 
 @end

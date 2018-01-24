@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKTotalSMSVC : UITableViewController
+@interface YKTotalSMSVC : YKBaseTableVC
 
 @end

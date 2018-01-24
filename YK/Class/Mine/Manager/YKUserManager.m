@@ -8,7 +8,7 @@
 
 #import "YKUserManager.h"
 
-@interface YKUserManager()<TencentSessionDelegate>
+@interface YKUserManager()<TencentSessionDelegate,DXAlertViewDelegate>
 {
 //    TencentOAuth *tencentOAuth;
 //    NSArray * permissions;
@@ -317,26 +317,41 @@
 
 - (void)checkVersion{
    
-        NSString *localVersion = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
-        NSNumber *flag = [NSNumber numberWithInt:1];
-        double localVersionDou = [localVersion doubleValue];
+    NSString *localVersion = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
+   
+    double localVersionDou = [localVersion doubleValue];
 
     NSString *url = [NSString stringWithFormat:@"%@?appVersion=%@",@"/user/checkTheLatestVersion",@"1"];
 
-    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"程序猿哥哥又创造了奇迹" message:@"有新版本可以更新了!" delegate:self cancelButtonTitle:@"暂不更新" otherButtonTitles:@"更新", nil];
-    alertview.delegate = self;
-    [alertview show];
     [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
         //如果新版本大于当前版本,更新
-//        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"程序猿哥哥又创造了奇迹" message:@"有新版本可以更新了!" delegate:self cancelButtonTitle:@"暂不更新" otherButtonTitles:@"更新", nil];
-//        alertview.delegate = self;
-//        [alertview show];
+        double versionNumberMin = [dict[@"data"][@"firstVersion"] doubleValue];
+        double versionNumberMax = [dict[@"data"][@"newVersion"] doubleValue];
+        if (localVersionDou < versionNumberMin) {//当前版本小于最低版本
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self updateVersion];
+            });
+        }else if (localVersionDou > versionNumberMin && localVersionDou < versionNumberMax){//大于最低版本小于最高版本
+            [self updateVersion];
+        }
+       
         
     } failure:^(NSError *error) {
         
     }];
 }
 
+- (void)updateVersion{
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"新的版本,新的征程" message:@"有新版本可以更新了!" cancelBtnTitle:@"暂不更新" otherBtnTitle:@"去更新"];
+    alertView.delegate = self;
+    [alertView show];
+}
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DownLoad_Url]];
+    }
+    
+}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==0) {//取消
         

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKALLBrandVC : UITableViewController
+@interface YKALLBrandVC : YKBaseTableVC
 
 @end

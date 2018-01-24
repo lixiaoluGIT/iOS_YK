@@ -12,14 +12,14 @@
 //客服电话
 #define PHONE @"010-52894251"
 
-//shengchan
-//#define kGtAppId @"2ODogJlGyr9QQLSnhi4316"
-//#define kGtAppKey @"REYkiqa1u864kyVaC3IPD7"
-//#define kGtAppSecret @"vnVOQu6HYV9Df78fpBqYY3"
+//Production
+#define kGtAppId @"2ODogJlGyr9QQLSnhi4316"
+#define kGtAppKey @"REYkiqa1u864kyVaC3IPD7"
+#define kGtAppSecret @"vnVOQu6HYV9Df78fpBqYY3"
 //kaifa
-#define kGtAppId @"IUK1udrw6Z5N2S7pOWfAv6"
-#define kGtAppKey @"zqVUHdYjHe6mRq4wFXmHp8"
-#define kGtAppSecret @"Hvg8Emt8g96lGpqLes8hw"
+//#define kGtAppId @"IUK1udrw6Z5N2S7pOWfAv6"
+//#define kGtAppKey @"zqVUHdYjHe6mRq4wFXmHp8"
+//#define kGtAppSecret @"Hvg8Emt8g96lGpqLes8hw"
 
 #define USHARE_APPKEY @"5a445f58f43e48135500000e"
 
@@ -176,6 +176,8 @@
 #define ShareSuccess_Url @"/user/shareInfo"
 //检查更新
  #define CheckVer @"/user/checkTheLatestVersion"/
+//商店下载链接
+#define DownLoad_Url @"https://itunes.apple.com/cn/app/%E8%A1%A3%E5%BA%AB/id1332986434?mt=8"
 
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"
@@ -195,6 +197,10 @@
 #import "MJRefresh.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "DXAlertView.h"
+
+//VC
+#import "YKBaseVC.h"
+#import "YKBaseTableVC.h"
 //manager
 #import "YKHomeManager.h"
 #import "YKSearchManager.h"

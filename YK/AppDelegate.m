@@ -267,17 +267,51 @@
     
     // 数据转换
     NSString *payloadMsg = nil;
-    NSDictionary *dic = [NSDictionary dictionary];
     if (payloadData) {
         payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
-//        dic = [NSJSONSerialization JSONObjectWithData:payloadData options:NSPropertyListMutableContainers error:nil];
     }
     
     // 控制台打印日志
     NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
     NSLog(@"\n>>[GTSdk ReceivePayload]:%@\n\n", msg);
+    NSDictionary *totalDic = [self dictionaryWithJsonString:payloadMsg];
+    if (totalDic.allKeys.count>0) {//后台消息
+        [[YKMessageManager sharedManager]showMessageWithTitle:totalDic[@"title"] Content:totalDic[@"text"]];
+    }else {//其它消息
+        [[YKMessageManager sharedManager]showMessageWithTitle:@"消息提醒" Content:payloadMsg];
+        
+    }
 
-    [[YKMessageManager sharedManager]showMessageWithTitle:@"订单通知" Content:payloadMsg];
+}
+//{"text":"您的订单，编号：【1111111111】已经发货，请注意签收。","type":1,"title":"发货通知"}
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    
+    if (jsonString == nil) {
+        
+        return nil;
+        
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *err;
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                         
+                                                        options:NSJSONReadingMutableContainers
+                         
+                                                          error:&err];
+    
+    if(err) {
+        
+        NSLog(@"json解析失败：%@",err);
+        
+        return nil;
+        
+    }
+    
+    return dic;
+    
 }
 
 /** SDK收到sendMessage消息回调 */

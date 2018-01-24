@@ -11,11 +11,9 @@
 @interface YKSuitVC : UIViewController
 {
     NSMutableArray* _dataArray;
-    
     int _selectRow;
-    
-    
     NSMutableArray* _mulitSelectArray;
 }
 
+@property (nonatomic,assign)BOOL isFromeProduct;
 @end

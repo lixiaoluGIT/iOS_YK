@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKEditInforVC : UIViewController
+@interface YKEditInforVC : YKBaseVC
 
 @end

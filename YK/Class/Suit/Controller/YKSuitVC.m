@@ -61,12 +61,46 @@
     _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
 }
 
+- (void)leftAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     
+    if (_isFromeProduct) {
+        UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, 20, 44);
+        if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+            btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+        }
+        btn.adjustsImageWhenHighlighted = NO;
+        //    btn.backgroundColor = [UIColor redColor];
+        [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
+        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+        if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+            negativeSpacer.width = -18;
+        }
+        
+        self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
+        [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
+        
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+        title.text = @"衣袋";
+        title.textAlignment = NSTextAlignmentCenter;
+        title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+        title.font = PingFangSC_Regular(17);
+        self.navigationItem.titleView = title;
+    }
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-100) style:UITableViewStylePlain];
+    if (_isFromeProduct) {
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-56*WIDHT/414) style:UITableViewStylePlain];
+    }
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;
@@ -82,6 +116,17 @@
     }
     if (WIDHT==414){
         _btn.frame = CGRectMake(0, self.view.frame.size.height-100*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+    }
+    if (_isFromeProduct) {
+        if (WIDHT==320) {
+            _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
+        if (WIDHT==375){
+            _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
+        if (WIDHT==414){
+            _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
     }
     [_btn setTitle:@"确认衣袋" forState:UIControlStateNormal];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -120,16 +165,12 @@
         [smartHUD alertText:self.view alert:@"请先选择商品" delay:1.2];
         return;
     }
-    
-    //确认衣袋
-//    [[YKSuitManager sharedManager]postOrderwithSuits:nil OnResponse:^(NSDictionary *dic) {
+
         YKSuitDetailVC *detail = [YKSuitDetailVC new];
         detail.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detail animated:YES];
-//    }];
-    
-    
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     NSString *status = [self.dataArray[indexPath.row][@"clothingStockNum"] intValue]  > 0 ?@"1":@"0";

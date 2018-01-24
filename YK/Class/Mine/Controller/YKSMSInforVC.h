@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKSMSInforVC : UIViewController
+@interface YKSMSInforVC : YKBaseVC
 
 @property (nonatomic,strong)NSString *orderNo;//订单号,查询物流
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKChangePhoneVC : UIViewController
+@interface YKChangePhoneVC : YKBaseVC   
 
 @end

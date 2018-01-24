@@ -55,23 +55,6 @@
 - (void)upLoadPushID;
 
 
-/**
- *  绑定别名功能:后台可以根据别名进行推送
- *
- *  @param alias 别名字符串
- *  @param aSn   绑定序列码, 不为nil
- */
-+ (void)bindAlias:(NSString *)alias andSequenceNum:(NSString *)aSn;
-
-/**
- *  取消绑定别名功能
- *
- *  @param alias   别名字符串
- *  @param aSn     绑定序列码, 不为nil
- *  @param isSelf  是否只对当前cid有效，如果是true，只对当前cid做解绑；如果是false，对所有绑定该别名的cid列表做解绑
- */
-+ (void)unbindAlias:(NSString *)alias andSequenceNum:(NSString *)aSn andIsSelf:(BOOL) isSelf;
-
 //用户注册推送
 - (void)registerPushForGeTui;
 

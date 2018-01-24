@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKEditAddressVC : UIViewController
+@interface YKEditAddressVC : YKBaseVC
 @property (nonatomic,strong)YKAddress *address;
 @end

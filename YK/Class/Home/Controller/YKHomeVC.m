@@ -174,10 +174,10 @@
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-        //        if (!hadAppearCheckVersion) {
-        //            [self checkVersion];
-        //            hadAppearCheckVersion = YES;
-        //        }
+                if (!hadAppearCheckVersion) {
+                    [self checkVersion];
+                    hadAppearCheckVersion = YES;
+                }
         self.collectionView.hidden = NO;
         NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"imgList"]];
         self.imagesArr = [self getImageArray:array];

@@ -112,7 +112,6 @@
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.font = PingFangSC_Regular(17);
-    
     self.navigationItem.titleView = title;
     
     
@@ -198,16 +197,15 @@
     };
     buttom.ToSuitBlock = ^(void){//去衣袋
         
-        YKSuitVC *chatVC = [[YKSuitVC alloc] init];
-        chatVC.hidesBottomBarWhenPushed = YES;
-        UINavigationController *nav = self.tabBarController.viewControllers[2];
-        chatVC.hidesBottomBarWhenPushed = YES;
-        self.tabBarController.selectedViewController = nav;
-        [self.navigationController popToRootViewControllerAnimated:NO];
-        //
-        //        [nav pushViewController:chatVC animated:YES];
-        //        [self.navigationController popToRootViewControllerAnimated:NO];
-        //        [self.tabBarController setSelectedIndex:2];
+        YKSuitVC *suit = [[YKSuitVC alloc] init];
+        suit.hidesBottomBarWhenPushed = YES;
+        suit.isFromeProduct = YES;
+        [self.navigationController pushViewController:suit animated:YES];
+//        UINavigationController *nav = self.tabBarController.viewControllers[2];
+//        chatVC.hidesBottomBarWhenPushed = YES;
+//        self.tabBarController.selectedViewController = nav;
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+        
     };
     [self.view addSubview:buttom];
 }

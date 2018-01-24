@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKMessageVC : UIViewController
+@interface YKMessageVC : YKBaseVC
 
 @end

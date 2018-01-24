@@ -345,7 +345,8 @@
 		C5E97F7B2015B6BA0043705B /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E97F782015B6B90043705B /* DXAlertView.m */; };
 		C5E97F7C2015B6BA0043705B /* UILabel+ChangeLineSpaceAndWordSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E97F792015B6B90043705B /* UILabel+ChangeLineSpaceAndWordSpace.m */; };
 		C5E97F7F20174BFC0043705B /* YKProductType.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E97F7E20174BFC0043705B /* YKProductType.m */; };
-		C5E97F81201752560043705B /* nodata.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5E97F80201752560043705B /* nodata.jpg */; };
+		C5E97F86201860150043705B /* YKBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E97F85201860150043705B /* YKBaseVC.m */; };
+		C5E97F892018630B0043705B /* YKBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E97F882018630B0043705B /* YKBaseTableVC.m */; };
 		C5FECDE41FC2860400D299AE /* YKSuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FECDE21FC2860400D299AE /* YKSuccessVC.m */; };
 		C5FECDE51FC2860400D299AE /* YKSuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5FECDE31FC2860400D299AE /* YKSuccessVC.xib */; };
 /* End PBXBuildFile section */
@@ -1056,7 +1057,10 @@
 		C5E97F7A2015B6B90043705B /* UILabel+ChangeLineSpaceAndWordSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ChangeLineSpaceAndWordSpace.h"; sourceTree = "<group>"; };
 		C5E97F7D20174BFC0043705B /* YKProductType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductType.h; sourceTree = "<group>"; };
 		C5E97F7E20174BFC0043705B /* YKProductType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductType.m; sourceTree = "<group>"; };
-		C5E97F80201752560043705B /* nodata.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nodata.jpg; sourceTree = "<group>"; };
+		C5E97F84201860150043705B /* YKBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBaseVC.h; sourceTree = "<group>"; };
+		C5E97F85201860150043705B /* YKBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBaseVC.m; sourceTree = "<group>"; };
+		C5E97F872018630B0043705B /* YKBaseTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBaseTableVC.h; sourceTree = "<group>"; };
+		C5E97F882018630B0043705B /* YKBaseTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBaseTableVC.m; sourceTree = "<group>"; };
 		C5FECDE11FC2860400D299AE /* YKSuccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuccessVC.h; sourceTree = "<group>"; };
 		C5FECDE21FC2860400D299AE /* YKSuccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuccessVC.m; sourceTree = "<group>"; };
 		C5FECDE31FC2860400D299AE /* YKSuccessVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSuccessVC.xib; sourceTree = "<group>"; };
@@ -1667,6 +1671,10 @@
 				C5742ECB2003548A00BBB882 /* VTingTimeView.m */,
 				C5DA84B520060692002A12E3 /* YKLinkWebVC.h */,
 				C5DA84B620060692002A12E3 /* YKLinkWebVC.m */,
+				C5E97F84201860150043705B /* YKBaseVC.h */,
+				C5E97F85201860150043705B /* YKBaseVC.m */,
+				C5E97F872018630B0043705B /* YKBaseTableVC.h */,
+				C5E97F882018630B0043705B /* YKBaseTableVC.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -1674,7 +1682,6 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C5E97F80201752560043705B /* nodata.jpg */,
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C525DEB61FBEADB1002802AE /* region.json */,
 				C5DA84B32005E5D0002A12E3 /* ka.png */,
@@ -2495,7 +2502,7 @@
 				TargetAttributes = {
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2545,7 +2552,6 @@
 				C525DE331FBC04EE002802AE /* YKSearchHeader.xib in Resources */,
 				C525DC311FBAAFC1002802AE /* LaunchScreen.storyboard in Resources */,
 				C525DC2E1FBAAFC1002802AE /* Assets.xcassets in Resources */,
-				C5E97F81201752560043705B /* nodata.jpg in Resources */,
 				C5343C821FC5474800F5132A /* YKProductDetailHeader.xib in Resources */,
 				C52D0FBB1FC7C6E600B50258 /* YKSettingVC.xib in Resources */,
 				C525DE1E1FBAD1AF002802AE /* YKScrollView.xib in Resources */,
@@ -2854,6 +2860,7 @@
 				C525DDB61FBAB2A9002802AE /* TZPhotoPickerController.m in Sources */,
 				C532A7511FDF8AAC0068A31D /* Order.m in Sources */,
 				C532A7491FDF8AAB0068A31D /* openssl_wrapper.m in Sources */,
+				C5E97F892018630B0043705B /* YKBaseTableVC.m in Sources */,
 				C525DDC61FBAB2A9002802AE /* SDWebImageDownloaderOperation.m in Sources */,
 				C525DEA81FBD9144002802AE /* YKAddressVC.m in Sources */,
 				C52D0FA81FC6D5FC00B50258 /* YKWalletButtom.m in Sources */,
@@ -2863,6 +2870,7 @@
 				C55D49221FC3CE2F000D2056 /* YKMyBagSMSCell.m in Sources */,
 				C532A6DB1FDF78A40068A31D /* YKOrder.m in Sources */,
 				C532A7501FDF8AAB0068A31D /* RSADataSigner.m in Sources */,
+				C5E97F86201860150043705B /* YKBaseVC.m in Sources */,
 				C525DD701FBAB2A8002802AE /* AFHTTPRequestOperationManager.m in Sources */,
 				C525DE971FBD59CA002802AE /* YKMineBagCell.m in Sources */,
 				C525DD731FBAB2A8002802AE /* AFNetworkReachabilityManager.m in Sources */,
@@ -3016,7 +3024,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3042,8 +3050,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Wang (B93J56XJ62)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3115,10 +3123,10 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "23187261-6ab7-4d0a-bae4-123a3b398c5d";
+				PROVISIONING_PROFILE_SPECIFIER = ykDevelopmentProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -3129,8 +3137,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3201,10 +3209,10 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "14d875c6-09a8-416d-90ae-270f90febf44";
+				PROVISIONING_PROFILE_SPECIFIER = ykDistributionProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

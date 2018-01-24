@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKReturnVC : UIViewController
+@interface YKReturnVC : YKBaseVC
 
 @end

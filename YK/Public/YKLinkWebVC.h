@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKLinkWebVC : UIViewController
+@interface YKLinkWebVC : YKBaseVC
 
 @property (nonatomic,strong)NSString *url;
 @end

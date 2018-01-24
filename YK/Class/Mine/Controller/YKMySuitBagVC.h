@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKMySuitBagVC : UIViewController
+@interface YKMySuitBagVC : YKBaseVC
 
 @property (nonatomic,assign)NSInteger selectedIndex;
 @property (nonatomic,assign)BOOL isFromSuccess;

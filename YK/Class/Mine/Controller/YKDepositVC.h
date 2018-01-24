@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKDepositVC : UIViewController
+@interface YKDepositVC : YKBaseVC
 
 @property (nonatomic,assign)NSInteger validityStatus;//押金状态
 @end

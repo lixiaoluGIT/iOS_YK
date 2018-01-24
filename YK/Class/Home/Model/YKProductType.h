@@ -17,6 +17,8 @@
 @property (nonatomic,strong)NSString *clothingStockTotal;//库存总数
 @property (nonatomic,strong)NSString *clothingStockType;//型号
 
+@property (nonatomic,assign)BOOL isHadStock;//是否有库存状态
+
 - (void)initWithDictionary:(NSDictionary *)dic;
 
 @end

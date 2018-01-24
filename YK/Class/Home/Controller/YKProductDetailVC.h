@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YKProduct.h"
 
-@interface YKProductDetailVC : UIViewController
+@interface YKProductDetailVC : YKBaseVC
 
 @property (nonatomic,strong)YKProduct *product;
 

@@ -48,7 +48,7 @@
     
 
     //===============清除缓存==============
-    [smartHUD progressShow:[UIApplication sharedApplication].keyWindow alertText:@"正在清除缓存"];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     //获取路径
     NSString*cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)objectAtIndex:0];
     
@@ -65,16 +65,17 @@
         {
             BOOL isRemove = [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
             if(isRemove) {
-                NSLog(@"清除成功");
+                [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
                 [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"清除成功" delay:1.6];
-                [smartHUD Hide];
+                
                 if (onResponse) {
                     onResponse(nil);
                 }
                 
             }else{
+                [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
                   [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"清除成功" delay:1.6];
-                 [smartHUD Hide];
+                
                 NSLog(@"清除失败");
                 
             }

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKSuitDetailVC : UIViewController
+@interface YKSuitDetailVC : YKBaseVC
 
 @end

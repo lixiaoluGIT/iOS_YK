@@ -17,6 +17,10 @@
         _clothingStockNum = dic[@"clothingStockNum"];
         _clothingStockTotal = dic[@"clothingStockTotal"];
         _clothingStockType = dic[@"clothingStockType"];
+        
+        _isHadStock = [_clothingStockNum intValue]>0;
+        
+      
     }
 //    [self setValuesForKeysWithDictionary:dic];
 }

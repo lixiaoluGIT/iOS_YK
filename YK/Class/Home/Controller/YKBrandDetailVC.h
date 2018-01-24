@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKBrandDetailVC : UIViewController
+@interface YKBrandDetailVC : YKBaseVC
 
 @property (nonatomic,assign)NSString *brandId;//品牌Id
 

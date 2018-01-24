@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKAboutUsVC : UIViewController
+@interface YKAboutUsVC : YKBaseVC
 
 @end

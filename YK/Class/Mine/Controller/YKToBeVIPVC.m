@@ -16,6 +16,7 @@
     BOOL isShareUser;
     BOOL isAgree;
 }
+@property (weak, nonatomic) IBOutlet UILabel *carPrice;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (nonatomic,strong)UIButton *Button0;
 @property (nonatomic,strong)UIView *backView;
@@ -74,17 +75,20 @@
         _shareBtn.hidden = YES;
         _liJIan.text = @"-¥200";
         if (_payType == MONTH_CARD) {
-            _yuanJia.text = @"¥498";
+            _carPrice.text = @"月卡价";
+            _yuanJia.text = @"¥299";
             _yaJin.text = @"¥199";
             _total.text = @"¥298";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥1006";
+            _carPrice.text = @"季卡价";
+            _yuanJia.text = @"¥807";
             _yaJin.text = @"¥199";
             _total.text = @"¥806";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥3187";
+            _carPrice.text = @"年卡价";
+            _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
             _total.text = @"¥2987";
         }
@@ -101,17 +105,20 @@
         _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
         
         if (_payType == MONTH_CARD) {
-            _yuanJia.text = @"¥498";
+            _carPrice.text = @"月卡价";
+            _yuanJia.text = @"¥299";
             _yaJin.text = @"¥199";
             _total.text = @"¥498";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥1006";
+            _carPrice.text = @"季卡价";
+            _yuanJia.text = @"¥807";
             _yaJin.text = @"¥199";
             _total.text = @"¥1006";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥3187";
+            _carPrice.text = @"年卡价";
+            _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
             _total.text = @"¥3187";
         }
@@ -289,17 +296,20 @@
         _shareBtn.hidden = YES;
         _liJIan.text = @"-¥200";
         if (_payType == MONTH_CARD) {
-            _yuanJia.text = @"¥498";
+            _carPrice.text = @"月卡价";
+            _yuanJia.text = @"¥299";
             _yaJin.text = @"¥199";
             _total.text = @"¥298";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥1006";
+            _carPrice.text = @"季卡价";
+            _yuanJia.text = @"¥807";
             _yaJin.text = @"¥199";
             _total.text = @"¥806";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥3187";
+            _carPrice.text = @"年卡价";
+            _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
             _total.text = @"¥2987";
         }
@@ -316,17 +326,20 @@
         _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
         
         if (_payType == MONTH_CARD) {
-            _yuanJia.text = @"¥498";
+            _carPrice.text = @"月卡价";
+            _yuanJia.text = @"¥299";
             _yaJin.text = @"¥199";
             _total.text = @"¥498";
         }
         if (_payType == SEASON_CARD) {
-            _yuanJia.text = @"¥1006";
+            _carPrice.text = @"季卡价";
+            _yuanJia.text = @"¥807";
             _yaJin.text = @"¥199";
             _total.text = @"¥1006";
         }
         if (_payType == YEAR_CARD) {
-            _yuanJia.text = @"¥3187";
+            _carPrice.text = @"年卡价";
+            _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
             _total.text = @"¥3187";
         }
@@ -349,7 +362,7 @@
         
     }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
         
-        [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+        [smartHUD alertText:self.view alert:@"支付失败" delay:1.5];
         
     }else{
         
@@ -368,7 +381,7 @@
         
     }else{
         
-        [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+        [smartHUD alertText:self.view alert:@"支付失败" delay:1.5];
         
     }
 }

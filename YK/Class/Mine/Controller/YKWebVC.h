@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKWebVC : UIViewController
+@interface YKWebVC : YKBaseVC
 
 @property (nonatomic,strong)NSString *imageName;
 @property (nonatomic,strong)NSString *titleStr;
