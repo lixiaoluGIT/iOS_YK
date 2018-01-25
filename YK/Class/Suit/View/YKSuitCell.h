@@ -17,10 +17,10 @@
 @property (nonatomic,assign)BOOL selectStatus;
 @property (nonatomic,strong)NSString *suitId;
 
+/** 删除选中按钮 */
+@property(nonatomic,weak) UIButton *collectBtn;
+
 + (CGFloat)heightForCell:(NSString *)suitStatus;
 - (void)setSelectBtnStatus:(NSInteger)sype;
-//确认衣袋调用
-//@property (nonatomic,strong)YKSuit *suit2;
-//
-//- (void)setContentWithSuit:(YKSuit *)suit;
+
 @end

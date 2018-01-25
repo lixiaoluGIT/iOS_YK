@@ -260,8 +260,8 @@
         NSDictionary *model;
         if (arr.count>0) {
             model = [NSDictionary dictionaryWithDictionary:arr[0]];
+            _sfOrderId = model[@"mailNo"];
         }
-        
         
         NSInteger SMSStatus = [model[@"opcode"] integerValue];
         
@@ -269,7 +269,10 @@
             case 50:
                 self.SMSStatus = @"已收件";
                 break;
-            case 3036:
+            case 30:
+                self.SMSStatus = @"运输中";
+                break;
+            case 31:
                 self.SMSStatus = @"运输中";
                 break;
             case 44:

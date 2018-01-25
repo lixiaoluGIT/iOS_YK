@@ -97,7 +97,7 @@
     if (indexPath.row == 0) {
         YKSMSStatusView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKSMSStatusView" owner:self options:nil][0];
         bagCell.selectionStyle = UITableViewCellEditingStyleNone;
-        [bagCell initWithOrderId:self.orderNo orderStatus:[YKOrderManager sharedManager].SMSStatus phone:PHONE];
+        [bagCell initWithOrderId:[YKOrderManager sharedManager].sfOrderId orderStatus:[YKOrderManager sharedManager].SMSStatus phone:PHONE];
         return bagCell;
     }
     if (indexPath.row == 1) {
