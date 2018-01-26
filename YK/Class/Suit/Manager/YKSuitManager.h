@@ -35,4 +35,5 @@
 - (void)postOrderwithSuits:(NSArray *)suits
                                   OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+- (void)clear;
 @end

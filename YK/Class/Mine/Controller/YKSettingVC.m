@@ -80,7 +80,7 @@
             UINavigationController *nav = self.tabBarController.viewControllers[0];
             chatVC.hidesBottomBarWhenPushed = YES;
             self.tabBarController.selectedViewController = nav;
-            [self.navigationController popToRootViewControllerAnimated:NO];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }];
     }
     

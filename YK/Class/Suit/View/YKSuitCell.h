@@ -21,6 +21,7 @@
 @property(nonatomic,weak) UIButton *collectBtn;
 
 + (CGFloat)heightForCell:(NSString *)suitStatus;
-- (void)setSelectBtnStatus:(NSInteger)sype;
+- (void)setSelectBtnStatus:(NSInteger)type;
+- (void)setDeleteBtnStatus:(NSInteger)type;
 
 @end

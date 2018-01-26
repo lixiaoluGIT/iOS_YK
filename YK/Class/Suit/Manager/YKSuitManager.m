@@ -127,4 +127,8 @@
     return _suitArray;
 }
 
+- (void)clear{
+    [self.suitArray removeAllObjects];
+    self.suitAccount = 0;
+}
 @end

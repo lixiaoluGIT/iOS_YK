@@ -12,7 +12,8 @@
 {
     NSMutableArray* _dataArray;
     int _selectRow;
-    NSMutableArray* _mulitSelectArray;
+    NSMutableArray * _mulitSelectArray;//选中预定的商品数组
+    NSMutableArray *selectDeArray;//选中删除的商品数组
 }
 
 @property (nonatomic,assign)BOOL isFromeProduct;

@@ -55,12 +55,12 @@
 
 - (void)setupRightSelectView{
     UIView *line = [[UIView alloc]init];
-    line.backgroundColor = [UIColor colorWithHexString:@"EFEFEF"];
+    line.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self);
         make.right.equalTo(self.mas_right);
-        make.width.mas_equalTo(@1);
+        make.width.equalTo(@1);
     }];
     self.borderLine = line;
     UIView *view = [[UIView alloc]init];
@@ -70,7 +70,7 @@
         make.left.equalTo(self.borderLine.mas_left);
         make.top.equalTo(self);
         make.bottom.equalTo(self).offset(-1);
-        make.width.mas_equalTo(50);
+        make.width.equalTo(@50);
     }];
     self.borderView = view;
     
@@ -111,20 +111,19 @@
     //更新价钱UI
         [self.price mas_updateConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-15+self.moveNum);
-//            make.bottom.equalTo(self).offset(-12);
-//            make.height.with.mas_equalTo(@30);
+            
         }];
     //更新标志UI
     [self.seleBtn mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(12+self.moveNum);
         make.bottom.equalTo(self).offset(-12);
-        make.height.with.mas_equalTo(@20);
+        make.height.with.equalTo(@20);
     }];
     //更新其它UI
     [self.borderLine mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self);
         make.left.equalTo(self.mas_right).offset(self.moveNum);
-        make.width.mas_equalTo(@1);
+        make.width.equalTo(@1);
     }];
 
     
@@ -215,9 +214,18 @@
     return CGFLOAT_MIN;
 }
 
-- (void)setSelectBtnStatus:(NSInteger)sype{
-    self.seleBtn.selected = sype;
-    self.bigBtn.selected = sype;
+- (void)setSelectBtnStatus:(NSInteger)type{
+    self.seleBtn.selected = type;
+    self.bigBtn.selected = type;
+}
+
+- (void)setDeleteBtnStatus:(NSInteger)type{
+    self.collectBtn.selected = type;
+    if (self.collectBtn.selected) {
+        [self.collectBtn setImage:[UIImage imageNamed:@"xuanzhong"] forState:UIControlStateNormal];
+    }else{
+        [self.collectBtn setImage:[UIImage imageNamed:@"weixuanzhong"] forState:UIControlStateNormal];
+    }
 }
 
 @end

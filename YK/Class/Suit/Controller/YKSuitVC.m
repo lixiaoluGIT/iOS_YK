@@ -11,6 +11,7 @@
 #import "YKSuitDetailVC.h"
 #import "YKLoginVC.h"
 #import "YKProductDetailVC.h"
+#import "YKSearchVC.h"
 
 #define vH  56*WIDHT/414
 
@@ -18,6 +19,7 @@
 {
     YKNoDataView *NoDataView;
 }
+@property (nonatomic,strong)UIButton *selectAll;
 @property (nonatomic,strong)UIButton *btn;
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -30,23 +32,44 @@
 @property(nonatomic,weak) UIView *bottomBgView;
 //全选按钮上的图片
 @property(nonatomic,weak) UIImageView *selectAllImageView;
+//存储cell
+@property (nonatomic,strong)NSMutableArray *cellArray;
 
 @end
 
 @implementation YKSuitVC
 - (void)viewWillDisappear:(BOOL)animated{
     [_mulitSelectArray removeAllObjects];
+    [selectDeArray removeAllObjects];
     [YKSuitManager sharedManager].suitAccount = 0;
+   
+    [self resetMasonrys];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-50*WIDHT/414);
+        [self.view layoutIfNeeded];
+    }];
+    [self.tableView setEditing:NO animated:YES];
+    [_mulitSelectArray removeAllObjects];
+    [selectDeArray removeAllObjects];
+    [self.tableView reloadData];
+    self.selectAll.selected = NO;
+    self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
+    [self setLeftBar];
+    self.goodsIsClips = NO;
 }
 
 - (void)getShoppingList{
     [[YKSuitManager sharedManager]getShoppingListOnResponse:^(NSDictionary *dic) {
         self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
         
+         [self setLeftBar];
         if (self.dataArray.count==0) {
             self.tableView.hidden = YES;
             NoDataView.hidden = NO;
             _btn.hidden = YES;
+            [self.tableView setEditing:NO animated:YES];
+            [self resetMasonrys];
+            self.goodsIsClips = NO;
         }else {
             self.tableView.hidden = NO;
             _btn.hidden = NO;
@@ -57,9 +80,25 @@
 
     }];
 }
-
+- (void)setLeftBar{
+    UIBarButtonItem *rightBarItem ;
+    if (_dataArray.count == 0) {
+        rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
+    }else {
+        if (self.tableView.editing) {
+             rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
+        }else {
+            rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
+            
+        }
+    }
+    
+    self.navigationItem.rightBarButtonItem = rightBarItem;
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"afafaf"];
+}
 - (void)viewWillAppear:(BOOL)animated{
     [_mulitSelectArray removeAllObjects];
+    [selectDeArray removeAllObjects];
     
     [self getShoppingList];
     
@@ -108,9 +147,9 @@
         self.navigationItem.titleView = title;
     }
     //添加编辑按钮
-    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
-    self.navigationItem.rightBarButtonItem = rightBarItem;
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"afafaf"];
+//    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"管理" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
+//    self.navigationItem.rightBarButtonItem = rightBarItem;
+//    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"afafaf"];
     
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-100) style:UITableViewStylePlain];
@@ -154,11 +193,18 @@
     [self.view addSubview:_btn];
     
     _mulitSelectArray = [[NSMutableArray alloc] init];
-    
-    WeakSelf(weakSelf)
+    selectDeArray = [[NSMutableArray alloc]init];
+    _cellArray  = [[NSMutableArray alloc]init];
+
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
     [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"shangpin"] statusDes:@"暂无商品" hiddenBtn:NO actionTitle:@"去逛逛" actionBlock:^{
-        [weakSelf.tabBarController setSelectedIndex:1];
+        YKSearchVC *searchVC = [[YKSearchVC alloc] init];
+        searchVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = self.tabBarController.viewControllers[1];
+        searchVC.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
     }];
  
     NoDataView.frame = CGRectMake(0, 98+64, WIDHT,HEIGHT-162);
@@ -188,56 +234,91 @@
 
 //左侧全选按钮
 - (void)setLeftSelectAllBtn{
-    UIButton *selectAll = [[UIButton alloc]init];
-    [selectAll setTitle:@"全选" forState:UIControlStateNormal];
-    [selectAll setTitleColor:[UIColor colorWithHexString:@"A1A1A1"] forState:UIControlStateNormal];
-    [selectAll addTarget:self action:@selector(clickSelectAll) forControlEvents:UIControlEventTouchUpInside];
-    selectAll.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    [self.bottomBgView addSubview:selectAll];
-    [selectAll mas_makeConstraints:^(MASConstraintMaker *make) {
+    _selectAll = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_selectAll setTitle:@"全选" forState:UIControlStateNormal];
+    [_selectAll setTitleColor:[UIColor colorWithHexString:@"A1A1A1"] forState:UIControlStateNormal];
+    [_selectAll addTarget:self action:@selector(clickSelectAll:) forControlEvents:UIControlEventTouchUpInside];
+    _selectAll.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.bottomBgView addSubview:_selectAll];
+    [_selectAll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.top.equalTo(self.bottomBgView);
         make.width.mas_equalTo(@164);
     }];
+   
     //图片
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.image = [UIImage imageNamed:@"weixuanzhong"];
-    [selectAll addSubview:imageView];
+    [_selectAll addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(selectAll).offset(20);
-        make.centerY.equalTo(selectAll);
-        make.width.height.mas_equalTo(@25);
+        make.left.equalTo(_selectAll).offset(28);
+        make.centerY.equalTo(_selectAll);
+        make.width.height.mas_equalTo(@20);
     }];
     self.selectAllImageView = imageView;
 }
 //全选按钮点击事件
-- (void)clickSelectAll{
-    for (YKSuitCell *cell in self.tableView.visibleCells) {
-        cell.collectBtn.selected = !cell.collectBtn.selected;
-            if (cell.collectBtn.selected) {
-                [cell.collectBtn setImage:[UIImage imageNamed:@"xuanzhong"] forState:UIControlStateNormal];
-                    self.selectAllImageView.image = [UIImage imageNamed:@"xuanzhong"];
-            }else{
-                    [cell.collectBtn setImage:[UIImage imageNamed:@"weixuanzhong"] forState:UIControlStateNormal];
-                    self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
+- (void)clickSelectAll:(UIButton *)btn{
+    btn.selected = !btn.selected;
+    if (btn.selected) {
+        for (int index=0;index<_dataArray.count;index++) {
+            NSString *selectRow  = [NSString stringWithFormat:@"%d",index];
+            if (![selectDeArray containsObject:selectRow]) {
+                [selectDeArray addObject:selectRow];
             }
+        }
+        self.selectAllImageView.image = [UIImage imageNamed:@"xuanzhong"];
+    }else{
+        [selectDeArray removeAllObjects];
+        self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
+    }
+    
+    for (YKSuitCell *cell in _cellArray) {
+        cell.collectBtn.selected = btn.selected;
+        [cell setDeleteBtnStatus:cell.collectBtn.selected];
     }
 }
 //右侧删除按钮
 - (void)setRightDeleteBtn{
     UIButton *btn = [[UIButton alloc]init];
     [btn setTitle:@"删除" forState:UIControlStateNormal];
-    btn.backgroundColor = [UIColor colorWithHexString:@"FF5A5A"];
+    btn.backgroundColor = [UIColor colorWithHexString:@"FF6d6a"];
     [self.bottomBgView addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.bottom.equalTo(self.bottomBgView);
         make.width.mas_equalTo(@(WIDHT-164));
     }];
+    [btn addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)delete{
+    if (selectDeArray.count==0) {
+        [smartHUD alertText:self.view alert:@"请选择要删除的商品" delay:1.2];
+        return;
+    }
+    
+    for (int index=0; index<selectDeArray.count; index++) {
+        YKSuitCell *cell = _cellArray[[selectDeArray[index] intValue]];
+        [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:cell.suit.shoppingCartId OnResponse:^(NSDictionary *dic) {
+            [_mulitSelectArray removeAllObjects];
+            [selectDeArray removeAllObjects];
+            [_cellArray removeAllObjects];
+            [self getShoppingList];
+            [[YKSuitManager sharedManager]clear];
+            
+        }];
+    }
+    
 }
 - (void)edit:(UIBarButtonItem *)btn{
+    if (_dataArray.count==0) {
+        btn.title = @"";
+        return;
+    }
+    [[YKSuitManager sharedManager]clear];
+    _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
     self.goodsIsClips = !self.goodsIsClips;
     if (self.goodsIsClips) {
         [self updateMasonrys];
-        btn.title = @"删除";
+        btn.title = @"完成";
         [UIView animateWithDuration:0.3 animations:^{
             self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-vH);
             [self.view layoutIfNeeded];
@@ -245,16 +326,20 @@
         [self.tableView setEditing:YES animated:YES];
     }else{
         btn.title = @"管理";
-//        btn.action = []
-        
         [self resetMasonrys];
         [UIView animateWithDuration:0.3 animations:^{
             self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-50*WIDHT/414);
             [self.view layoutIfNeeded];
         }];
-        [self.tableView setEditing:NO animated:NO];
+        [self.tableView setEditing:NO animated:YES];
+        [_mulitSelectArray removeAllObjects];
+        [selectDeArray removeAllObjects];
+        [self.tableView reloadData];
+        self.selectAll.selected = NO;
+        self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
     }
 }
+
 //Method
 - (void)updateMasonrys{
     [self.bottomBgView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -313,28 +398,25 @@
     return 1;
 }
 
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    
-    NSString *identifier = [self.array objectForKey:[NSString stringWithFormat:@"%@", indexPath]];
-    
     YKSuitCell *mycell = [[NSBundle mainBundle] loadNibNamed:@"YKSuitCell" owner:self options:nil][0];
-
     mycell.selectionStyle = UITableViewCellSelectionStyleNone;
     YKSuit *suit = [[YKSuit alloc]init];
     [suit initWithDictionary:self.dataArray[indexPath.row]];
     mycell.suit = suit;
     mycell.selectClickBlock = ^(NSInteger status){
+        if (self.tableView.editing) {
+            [[YKSuitManager sharedManager]clear];
+            return ;
+        }
         NSString*  selectRow  = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-        //判断数组中有没有被选中行的行号,
-        if ([_mulitSelectArray containsObject:selectRow]) {
+       if ([_mulitSelectArray containsObject:selectRow]) {
             [_mulitSelectArray removeObject:selectRow];
             
         }else{
             [_mulitSelectArray addObject:selectRow];
         }
-        NSLog(@"选中的行_mulitSelectArray = %@",_mulitSelectArray);
+      
         if (status==0) {
             _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
         }else {
@@ -347,9 +429,12 @@
     NSString* selectRow = [NSString stringWithFormat:@"%ld",indexPath.row];
 
     //数组中包含当前行号，设置对号
-        [mycell setSelectBtnStatus:[_mulitSelectArray  containsObject:selectRow]];
-   
-    return mycell;
+    [mycell setSelectBtnStatus:[_mulitSelectArray  containsObject:selectRow]];
+    [mycell setDeleteBtnStatus:[selectDeArray containsObject:selectRow]];
+    if (![_cellArray containsObject:mycell]) {
+        [_cellArray addObject:mycell];
+    }
+        return mycell;
 }
 
 //选中cell时调用的方法
@@ -357,6 +442,21 @@
     if (self.tableView.editing) {
         YKSuitCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.collectBtn.selected = !cell.collectBtn.selected;
+        
+        NSString*  selectRow  = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+        if ([selectDeArray containsObject:selectRow]) {
+            [selectDeArray removeObject:selectRow];
+            
+        }else{
+            [selectDeArray addObject:selectRow];
+        }
+        if (selectDeArray.count == _dataArray.count) {
+            self.selectAll.selected = YES;
+            self.selectAllImageView.image = [UIImage imageNamed:@"xuanzhong"];
+        }else {
+            self.selectAll.selected = NO;
+            self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
+        }
         if (cell.collectBtn.selected) {
             [cell.collectBtn setImage:[UIImage imageNamed:@"xuanzhong"] forState:UIControlStateNormal];
         }else{
@@ -372,83 +472,11 @@
         detail.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detail animated:YES];
     }
-    
-    
-}
-- (NSString *)getFilePath
-{
-    NSString* filePath = [NSHomeDirectory()  stringByAppendingPathComponent:@"Documents/saveData"];
-    return filePath;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     //编辑设置成自定义的必须把系统的设置为None
     return UITableViewCellEditingStyleNone;
 }
-
-
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    YKSuitCell *ce = (YKSuitCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-//    NSString*  selectRow  = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//
-//        [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:ce.suit.shoppingCartId OnResponse:^(NSDictionary *dic) {
-//
-//            if ([_mulitSelectArray containsObject:selectRow]) {
-//                [_mulitSelectArray removeObject:selectRow];
-//                [[YKSuitManager sharedManager]cancelSelectCurrentPruduct:ce.suit];
-//                [YKSuitManager sharedManager].suitAccount--;
-//            }
-//
-//                //TODO:需重新分配数据,选中状态的保存,此处有BUG
-//                for (NSString *row in _mulitSelectArray) {
-//
-//                    int rowInter = [row intValue];
-//
-//                    int seleRowInter = [selectRow intValue];
-//
-//                    if (rowInter >= seleRowInter) {
-//                        rowInter--;
-//                        [_mulitSelectArray removeObject:row];
-//                        [_mulitSelectArray addObject:@(rowInter)];
-//                    }
-//                }
-//
-////                [YKSuitManager sharedManager].suitAccount--;
-////            }
-//
-//
-//                if ([YKSuitManager sharedManager].suitAccount==0) {
-//                    _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
-//                }else {
-//                    _btn.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
-//
-//                }
-//
-//            [self.dataArray removeObjectAtIndex:indexPath.row];
-//            // 删除列表中数据
-//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//
-//             NSLog(@"选中array:%@",_mulitSelectArray);
-//
-////            [self getShoppingList];
-//            if (self.dataArray.count==0) {
-//                self.tableView.hidden = YES;
-//                NoDataView.hidden = NO;
-//                _btn.hidden = YES;
-//            }else {
-//                self.tableView.hidden = NO;
-//                _btn.hidden = NO;
-//                NoDataView.hidden = YES;
-////                [self.tableView reloadData];
-//            }
-//        }];
-//    }
-    
-}
-
-
 
 @end
