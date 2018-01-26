@@ -18,10 +18,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
-//#import "UMSocialShareUIConfig.h"
 
 #import <GTSDK/GeTuiSdk.h> // GetuiSdk头 件应
 // iOS10 及以上需导  UserNotifications.framework
+#import <UMCommon/UMCommon.h>           // 公共组件是所有友盟产品的基础组件，必选
+#import <UMAnalytics/MobClick.h>
+
  #import <UserNotifications/UserNotifications.h>
 
 #import "DDAdvertisementVC.h"
@@ -76,6 +78,12 @@
     
     
 #pragma mark - 友盟分享相关
+    [UMConfigure initWithAppkey:@"5a6ae7f7f43e4834a500012e" channel:@"App Store"];
+    /* appkey: 开发者在友盟后台申请的应用获得（可在统计后台的 “统计分析->设置->应用信息” 页面查看）*/
+    
+    // 统计组件配置
+    [MobClick setScenarioType:E_UM_NORMAL];
+    // [MobClick setScenarioType:E_UM_GAME];  // optional: 游戏场景设置
     
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];

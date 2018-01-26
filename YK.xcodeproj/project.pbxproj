@@ -325,6 +325,8 @@
 		C59D475B1FF4D750002208BF /* UMSocialCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D474E1FF4D750002208BF /* UMSocialCore.framework */; };
 		C59D478A1FF623F3002208BF /* PickViewSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = C59D47891FF623F3002208BF /* PickViewSelect.m */; };
 		C59D47991FFB6C61002208BF /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D47971FFB6C61002208BF /* GTSDK.framework */; };
+		C5B2C6CB201B235500688E77 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2C6CA201B235500688E77 /* UMAnalytics.framework */; };
+		C5B2C6CD201B236300688E77 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2C6CC201B236300688E77 /* UMCommon.framework */; };
 		C5C0F5921FF2309700A2000A /* 红.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C0F5911FF2309600A2000A /* 红.jpg */; };
 		C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84AC2005AB00002A12E3 /* YKAboutView.m */; };
 		C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */; };
@@ -1022,6 +1024,8 @@
 		C59D47891FF623F3002208BF /* PickViewSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickViewSelect.m; sourceTree = "<group>"; };
 		C59D47961FFB6C61002208BF /* GTExtensionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTExtensionSDK.framework; sourceTree = "<group>"; };
 		C59D47971FFB6C61002208BF /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
+		C5B2C6CA201B235500688E77 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		C5B2C6CC201B236300688E77 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		C5C0F5911FF2309600A2000A /* 红.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "红.jpg"; sourceTree = "<group>"; };
 		C5DA84AB2005AB00002A12E3 /* YKAboutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAboutView.h; sourceTree = "<group>"; };
 		C5DA84AC2005AB00002A12E3 /* YKAboutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAboutView.m; sourceTree = "<group>"; };
@@ -1072,8 +1076,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C50CF1B9200DD93300A717DF /* libstdc++.tbd in Frameworks */,
+				C5B2C6CD201B236300688E77 /* UMCommon.framework in Frameworks */,
 				C532A75E1FDF8EB10068A31D /* CoreTelephony.framework in Frameworks */,
 				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
+				C5B2C6CB201B235500688E77 /* UMAnalytics.framework in Frameworks */,
 				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
 				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
 				C54350AB200F3E1A00B5732D /* TencentOpenAPI.framework in Frameworks */,
@@ -1202,6 +1208,7 @@
 		C525DC571FBAB15C002802AE /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				C5B2C6C9201B207D00688E77 /* UMAnalysis */,
 				C50CF1A9200DD48400A717DF /* Tencent */,
 				C59D464A1FF49B38002208BF /* UMSocial */,
 				C534ECC31FEB9123003BB993 /* GeTui */,
@@ -2435,6 +2442,15 @@
 			path = GtSdkLib;
 			sourceTree = "<group>";
 		};
+		C5B2C6C9201B207D00688E77 /* UMAnalysis */ = {
+			isa = PBXGroup;
+			children = (
+				C5B2C6CC201B236300688E77 /* UMCommon.framework */,
+				C5B2C6CA201B235500688E77 /* UMAnalytics.framework */,
+			);
+			path = UMAnalysis;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3072,6 +3088,7 @@
 					"$(PROJECT_DIR)/YK/Vender/GtSdkLib",
 					"$(PROJECT_DIR)/YK/Vender/Tencent",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/YK/Vender/UMAnalysis",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3159,6 +3176,7 @@
 					"$(PROJECT_DIR)/YK/Vender/GtSdkLib",
 					"$(PROJECT_DIR)/YK/Vender/Tencent",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/YK/Vender/UMAnalysis",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
