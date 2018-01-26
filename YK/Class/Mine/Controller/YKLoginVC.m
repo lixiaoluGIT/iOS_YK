@@ -39,8 +39,8 @@ NSInteger timeNum;
     [super viewDidLoad];
     
     //TODO:
-    [_QQLoginBtn setHidden:YES];
-    [_WXLoginBtn setHidden:YES];
+//    [_QQLoginBtn setHidden:YES];
+//    [_WXLoginBtn setHidden:YES];
     
     [self setAutoLayoutMargin];
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;

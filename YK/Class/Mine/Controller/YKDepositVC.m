@@ -178,7 +178,7 @@
     NSDictionary *dict = [notify userInfo];
     if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"9000"]) {
         
-        [smartHUD alertText:self.view alert:@"支付成功" delay:1];
+        [smartHUD alertText:self.view alert:@"支付成功" delay:1.5];
         [UIView animateWithDuration:0.1 animations:^{
             [self diss];
         }completion:^(BOOL finished) {
@@ -188,7 +188,7 @@
         
     }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
         
-       [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+       [smartHUD alertText:self.view alert:@"支付失败." delay:1.5];
         
     }else{
         
@@ -204,7 +204,7 @@
     
     if ([[dict objectForKey:@"codeid"]integerValue]==0) {
      
-        [smartHUD alertText:self.view alert:@"支付成功" delay:1];
+        [smartHUD alertText:self.view alert:@"支付成功" delay:1.5];
         [UIView animateWithDuration:0.1 animations:^{
             [self diss];
         }completion:^(BOOL finished) {
@@ -213,7 +213,7 @@
         
     }else{
         
-        [smartHUD alertText:self.view alert:@"支付失败." delay:1];
+        [smartHUD alertText:self.view alert:@"支付失败" delay:1.5];
 
     }
 }
