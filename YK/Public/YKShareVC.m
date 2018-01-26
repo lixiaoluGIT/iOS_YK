@@ -56,7 +56,7 @@
     
     self.navigationItem.titleView = title;
     
-    UIImageView *im = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ka"]];
+    UIImageView *im = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newka"]];
     [self.view addSubview:im];
     
     [im sizeToFit];
@@ -191,7 +191,7 @@
 //    [message setThumbImage:[UIImage imageNamed:@""]];
   
     WXImageObject *ext = [WXImageObject object];
-    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"ka" ofType:@"png"];
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"newka" ofType:@"png"];
     ext.imageData  = [NSData dataWithContentsOfFile:filePath];
     UIImage *image = [UIImage imageWithData:ext.imageData];
     
