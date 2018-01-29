@@ -94,7 +94,7 @@
     }
     
     self.navigationItem.rightBarButtonItem = rightBarItem;
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"afafaf"];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"000000"];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [_mulitSelectArray removeAllObjects];

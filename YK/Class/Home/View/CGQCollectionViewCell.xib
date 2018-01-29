@@ -13,30 +13,30 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CGQCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="378" height="413"/>
+            <rect key="frame" x="0.0" y="0.0" width="445" height="553"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="378" height="413"/>
+                <rect key="frame" x="0.0" y="0.0" width="445" height="553"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg.jpg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VsE-Au-0OE">
-                        <rect key="frame" x="0.0" y="0.0" width="378" height="289"/>
+                        <rect key="frame" x="0.0" y="0.0" width="445" height="387"/>
                         <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maxmating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBc-Nl-XRj">
-                        <rect key="frame" x="0.0" y="307" width="378" height="17"/>
+                        <rect key="frame" x="0.0" y="405" width="445" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="短款套头连帽卫衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6F-GH-N2m">
-                        <rect key="frame" x="140" y="329" width="99" height="14"/>
+                        <rect key="frame" x="173.5" y="427" width="99" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nodata" translatesAutoresizingMaskIntoConstraints="NO" id="J3u-08-iDU">
-                        <rect key="frame" x="0.0" y="0.0" width="378" height="289"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nodata" translatesAutoresizingMaskIntoConstraints="NO" id="J3u-08-iDU">
+                        <rect key="frame" x="0.0" y="0.0" width="445" height="387"/>
                     </imageView>
                 </subviews>
             </view>
@@ -56,14 +56,14 @@
                 <constraint firstItem="J3u-08-iDU" firstAttribute="centerY" secondItem="VsE-Au-0OE" secondAttribute="centerY" id="iig-3I-2sT"/>
                 <constraint firstItem="J3u-08-iDU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kcS-GS-gZ2"/>
             </constraints>
-            <size key="customSize" width="378" height="413"/>
+            <size key="customSize" width="445" height="553"/>
             <connections>
                 <outlet property="detailLabel" destination="P6F-GH-N2m" id="gvF-ta-iVq"/>
                 <outlet property="imageView" destination="VsE-Au-0OE" id="0lg-4d-ous"/>
                 <outlet property="lable" destination="mBc-Nl-XRj" id="HGF-NA-7oZ"/>
                 <outlet property="tagimage" destination="J3u-08-iDU" id="MfC-4q-wgC"/>
             </connections>
-            <point key="canvasLocation" x="64" y="233.5"/>
+            <point key="canvasLocation" x="-7.5" y="75.5"/>
         </collectionViewCell>
     </objects>
     <resources>

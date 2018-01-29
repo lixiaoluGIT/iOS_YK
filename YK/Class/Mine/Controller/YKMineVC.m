@@ -274,5 +274,17 @@
         
     }];
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+ 
+    if (scrollView.contentOffset.y <= 0) {
+        scrollView.bounces = NO;
+ 
+    }else
+        if (scrollView.contentOffset.y >= 0){
+            scrollView.bounces = YES;
+           
+        }
+}
 
 @end

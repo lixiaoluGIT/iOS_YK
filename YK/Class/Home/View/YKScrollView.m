@@ -9,7 +9,7 @@
 #import "YKScrollView.h"
 #import "YKScrollBtnView.h"
 
-@interface YKScrollView()
+@interface YKScrollView()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *allLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *tuijianImage;
@@ -22,10 +22,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    
-    //[self setUpView];
-    
+    _scrollView.delegate = self;
+    _scrollView.showsHorizontalScrollIndicator = FALSE;
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -59,12 +57,20 @@
         btn.image.contentMode   = UIViewContentModeScaleAspectFill;
         btn.image.clipsToBounds = YES;
         //Tag值设为品牌ID
-        btn.frame = CGRectMake(20+(100+20)*i, 0, 100, 150);
+        CGFloat w = WIDHT-60;
+        btn.frame = CGRectMake(20+(w+20)*i, 0, w, 150);
 
         [self.scrollView addSubview:btn];
+        btn.backgroundColor = [UIColor colorWithHexString:@"fe7310"];
 
     }
-    self.scrollView.contentSize = CGSizeMake((brandArray.count+1)*100+60, 0);
+    self.scrollView.contentSize = CGSizeMake((brandArray.count)*(WIDHT-60)+60, 0);
+    self.scrollView.pagingEnabled = YES;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat x = scrollView.contentOffset.x;
+    self.scrollView.contentOffset.x == x+20;
 }
 
 - (void)clickAll{
