@@ -10,13 +10,17 @@
 
 #import "AppDelegate.h"
 #import "YKMainVC.h"
-
+#import "LLGifImageView.h"
+#import "LLGifView.h"
 
 @interface DDAdvertisementVC ()
 {
     dispatch_source_t _timer;
 }
 @property (nonatomic,strong)UIButton *jumpBtn;
+
+@property (nonatomic, strong) LLGifView *gifView;
+@property (nonatomic, strong) LLGifImageView *gifImageView;
 @end
 
 @implementation DDAdvertisementVC
@@ -29,15 +33,33 @@
 - (void)viewDidAppear:(BOOL)animated{
     [self startTimer];
 }
+
+- (void)removeGif {
+    if (_gifView) {
+        [_gifView removeFromSuperview];
+        _gifView = nil;
+    }
+    if (_gifImageView) {
+        [_gifImageView removeFromSuperview];
+        _gifImageView = nil;
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self addBottomView];
     
+    //加载本地gif图片
+    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sss" ofType:@"gif"]];
+    _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
+    [self.view addSubview:_gifView];
+    [_gifView startGif];
+    
+    //加载本地图片
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT)];
 
     [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:[UIImage imageNamed:@"广告"]];
-    [self.view addSubview:image];
+//    [self.view addSubview:image];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toWeb)];
     [image setUserInteractionEnabled:YES];
@@ -68,7 +90,6 @@
         make.bottom.equalTo(self.view.mas_bottom).offset(-22);
         make.centerX.equalTo(bottomView.mas_centerX);
     }];
-    
 }
 
 - (void)startTimer {
@@ -98,6 +119,11 @@
     dispatch_source_cancel(_timer);
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
         window.rootViewController = [YKMainVC new];
+    
+    CATransition *anim = [CATransition animation];
+    anim.duration = 1.0;
+    anim.type = @"fade";
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
 }
 
 - (void)toWeb{

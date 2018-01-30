@@ -48,8 +48,10 @@
         _window.rootViewController = [[WelcomeViewController alloc] init];
     }
     else{
-        self.window.rootViewController = [[DDAdvertisementVC alloc]init];
+        UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:[DDAdvertisementVC new]];
+        self.window.rootViewController = nvi;
     }
+    //TODO:请求广告页图片并保存到文件
     
     
     if ([Token length]>0) {//已登录

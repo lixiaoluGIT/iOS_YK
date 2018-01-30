@@ -185,7 +185,7 @@
         self.imageClickUrls = [self getImageClickUrlsArray:array];
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
-        
+
         hadtitle1 = YES;
         [self.collectionView reloadData];
         
@@ -258,7 +258,10 @@
         _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
         _scroll.frame = CGRectMake(0, WIDHT*0.55,WIDHT, 200);
         [_scroll resetUI];
-        _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+        if (self.brandArray.count!=0) {
+            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+        }
+        
         _scroll.clickALLBlock = ^(){
             YKALLBrandVC *brand = [YKALLBrandVC new];
             brand.hidesBottomBarWhenPushed = YES;

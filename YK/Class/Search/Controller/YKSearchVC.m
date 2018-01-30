@@ -213,8 +213,10 @@
         //品牌
         _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
         _scroll.frame = CGRectMake(0,0,WIDHT, 200);
-        _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
-        _scroll.clickALLBlock = ^(){
+        if (self.brandArray.count!=0) {
+             _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+        }
+       _scroll.clickALLBlock = ^(){
             YKALLBrandVC *brand = [YKALLBrandVC new];
             brand.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:brand animated:YES];

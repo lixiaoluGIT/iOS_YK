@@ -11,4 +11,5 @@
 @interface YKLinkWebVC : YKBaseVC
 
 @property (nonatomic,strong)NSString *url;
+@property (nonatomic,assign)NSInteger status;
 @end

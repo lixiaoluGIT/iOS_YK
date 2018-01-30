@@ -7,6 +7,7 @@
 //
 
 #import "YKLinkWebVC.h"
+#import "YKMainVC.h"
 
 @interface YKLinkWebVC ()<UIWebViewDelegate>
 
@@ -64,7 +65,17 @@
 }
 
 - (void)leftAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_status == 1) {
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        window.rootViewController = [YKMainVC new];
+        
+        CATransition *anim = [CATransition animation];
+        anim.duration = 0.8;
+        anim.type = @"fade";
+        [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 
@@ -100,7 +111,15 @@
 
 -(void)webViewDidFinishLoad:(UIWebView*)webView {
     
-    self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+   
+    NSString *allHtml =[_webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+    //获取网页title
+    
+    NSString *htmlTitle = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+
+    self.title = htmlTitle;
+
+    
     _indicatorView.hidden = YES;
     
 }
