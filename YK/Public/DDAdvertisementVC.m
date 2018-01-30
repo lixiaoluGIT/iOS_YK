@@ -52,14 +52,14 @@
     //加载本地gif图片
     NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sss" ofType:@"gif"]];
     _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
-    [self.view addSubview:_gifView];
+//    [self.view addSubview:_gifView];
     [_gifView startGif];
     
     //加载本地图片
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT)];
 
     [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:[UIImage imageNamed:@"广告"]];
-//    [self.view addSubview:image];
+    [self.view addSubview:image];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toWeb)];
     [image setUserInteractionEnabled:YES];

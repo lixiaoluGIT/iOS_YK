@@ -66,7 +66,7 @@
     
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
-    [_imageView addGestureRecognizer:tapGesture];
+//    [_imageView addGestureRecognizer:tapGesture];
    
 }
 

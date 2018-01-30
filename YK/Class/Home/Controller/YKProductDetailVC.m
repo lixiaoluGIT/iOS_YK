@@ -20,6 +20,8 @@
 #import "YKLoginVC.h"
 #import "YKBrandDetailVC.h"
 #import "YKSuitVC.h"
+//#import "CLImageTypesetView.h"
+#import "CLImageBrowserController.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate>{
@@ -49,9 +51,9 @@
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     
-    self.product = [YKProduct new];
+//    self.product = [YKProduct new];
     
-    [self getPruductDetail];
+//    [self getPruductDetail];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -85,6 +87,7 @@
     return imageArray;
 }
 - (void)viewDidLoad {
+    [self getPruductDetail];
     [super viewDidLoad];
     _sizeNum = 0;
     self.title = self.titleStr;
@@ -444,6 +447,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     
+    if (indexPath.section==0) {
+        NSArray *array = [self getImageArray:self.product.pruductDetailImgs];
+        CLImageBrowserController *imageBrowser = [[CLImageBrowserController alloc] initWithSourceArray:array imageArray:array index:indexPath.row];
+        imageBrowser.transitioningDelegate = imageBrowser;
+        [self presentViewController:imageBrowser animated:YES completion:nil];
+    }
     
     if (indexPath.section==1) {
         YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
@@ -457,10 +466,15 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"index === %ld",indexPath.row);
+   
     
 }
 - (void)ZYCollectionViewClick:(NSInteger)index {
     NSLog(@"%ld", index);
+    
+    CLImageBrowserController *imageBrowser = [[CLImageBrowserController alloc] initWithSourceArray:_imagesArr imageArray:_imagesArr index:index];
+    imageBrowser.transitioningDelegate = imageBrowser;
+    [self presentViewController:imageBrowser animated:YES completion:nil];
     
 }
 

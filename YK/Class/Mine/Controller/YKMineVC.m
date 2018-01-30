@@ -67,7 +67,7 @@
     self.tableView.estimatedRowHeight = 140;
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"FF6D6A"];
-    self.tableView.backgroundColor = self.view.backgroundColor;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     head = [[NSBundle mainBundle] loadNibNamed:@"YKMineheader" owner:self options:nil][0];
