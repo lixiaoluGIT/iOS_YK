@@ -56,43 +56,40 @@
     
     self.rollView.delegate = self;
     
-    [self addSubview:self.rollView];
+//    [self addSubview:self.rollView];
     
     
     NSArray *arr = @[@"newka.png",
                      @"liutao.jpg",
                      @"timg.jpg"];
     
-    [self.rollView rollView:self.brandArray];
+//    [self.rollView rollView:self.brandArray];
  
-    for (int i = 0; i<6; i++) {
-//        YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
-//        NSString *s = [NSString stringWithFormat:@"%@",brandArray[i][@"brandLargeLogo"]];
-//        [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
-//        btn.title.text = brandArray[i][@"brandName"];
-//        btn.brandId = brandArray[i][@"brandId"];
+    for (int i = 0; i<brandArray.count; i++) {
+        YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
+        NSString *s = [NSString stringWithFormat:@"%@",brandArray[i][@"brandLargeLogo"]];
+        [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+        btn.title.text = brandArray[i][@"brandName"];
+        btn.brandId = brandArray[i][@"brandId"];
         
-//        NSString *s = @"sada ";
-//        [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
-//        btn.title.text = @"sad d";
-//        btn.brandId = @"sad ad";
-//        btn.clickDetailBlock = ^(NSString *brandId,NSString *brandName){
-//            if (self.toDetailBlock) {
-//                self.toDetailBlock(brandId, brandArray[i][@"brandName"]);
-//            }
-//        };
-//        btn.image.contentMode   = UIViewContentModeScaleAspectFill;
-//        btn.image.clipsToBounds = YES;
-        //Tag值设为品牌ID
+       
+        btn.clickDetailBlock = ^(NSString *brandId,NSString *brandName){
+            if (self.toDetailBlock) {
+                self.toDetailBlock(brandId, brandArray[i][@"brandName"]);
+            }
+        };
+        btn.image.contentMode   = UIViewContentModeScaleAspectFill;
+        btn.image.clipsToBounds = YES;
+//        Tag值设为品牌ID
 //        CGFloat w = WIDHT-60;
-//        btn.frame = CGRectMake(20+(w+20)*i, 0, w, 150);
-//
-//        [self.scrollView addSubview:btn];
+        btn.frame = CGRectMake(20+(100+20)*i, 0, 100, 150);
+
+        [self.scrollView addSubview:btn];
 //        btn.backgroundColor = [UIColor colorWithHexString:@"fe7310"];
 //        self.scrollView.contentOffset=CGPointMake((WIDHT-20)*i, 0);
     }
     
-    self.scrollView.contentSize = CGSizeMake((6)*(WIDHT-60)+100, 0);
+    self.scrollView.contentSize = CGSizeMake((brandArray.count-1)*140+100, 0);
 //    self.scrollView.pagingEnabled = YES;
 }
 #pragma mark - 滚动视图协议

@@ -28,9 +28,9 @@
     self.headImage.layer.masksToBounds = YES;
     self.headImage.layer.cornerRadius = self.headImage.frame.size.height/2;
     [self.headImage setContentMode:UIViewContentModeScaleAspectFit];
-    self.backView.layer.masksToBounds = YES;
-    self.backView.layer.cornerRadius = 20;
-    self.backW.constant = 180*WIDHT/414;
+//    self.backView.layer.masksToBounds = YES;
+//    self.backView.layer.cornerRadius = 20;
+//    self.backW.constant = 180*WIDHT/414;
     CGFloat fond;
 //    fond = 15*WIDHT/414;
     

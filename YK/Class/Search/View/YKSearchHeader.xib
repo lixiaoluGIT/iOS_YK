@@ -91,7 +91,7 @@
                 <outlet property="back1View" destination="hcp-p7-v0l" id="8q1-kl-vLP"/>
                 <outlet property="back2View" destination="Oyt-0N-872" id="Zlw-KF-s9G"/>
             </connections>
-            <point key="canvasLocation" x="110" y="57.5"/>
+            <point key="canvasLocation" x="115" y="55"/>
         </tableViewCell>
     </objects>
     <resources>

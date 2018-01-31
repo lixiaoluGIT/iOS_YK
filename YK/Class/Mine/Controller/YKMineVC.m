@@ -20,11 +20,13 @@
 #import "YKEditInforVC.h"
 #import "YKLoginVC.h"
 #import "YKDepositVC.h"
+#import "YKMyHeaderView.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-    YKMineheader *head;
+//    YKMineheader *head;
+    YKMyHeaderView *head;
 }
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSArray *titles;
@@ -36,7 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];;
     [self.navigationController.navigationBar setHidden:YES];
-    [self setStatusBarBackgroundColor:[UIColor colorWithRed:246.0/255 green:102.0/255 blue:102.0/255 alpha:1]];
+//    [self setStatusBarBackgroundColor:[UIColor colorWithRed:246.0/255 green:102.0/255 blue:102.0/255 alpha:1]];
     [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
          head.user = [YKUserManager sharedManager].user;
     }];
@@ -45,81 +47,143 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
-    [self setStatusBarBackgroundColor:self.view.backgroundColor];
+//    [self setStatusBarBackgroundColor:self.view.backgroundColor];
      [self.navigationController.navigationBar setHidden:NO];
 }
-
-
-
-- (void)setStatusBarBackgroundColor:(UIColor *)color {
-    
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-        statusBar.backgroundColor = color;
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor=[UIColor clearColor];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.rowHeight = 50;
     }
+    return _tableView;
 }
+-(UIImageView*)imageview{
+    if (!_headImageView) {
+        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
+        _headImageView.image = [UIImage imageNamed:@"背景"];
+        self.origialFrame = _headImageView.frame;
+    }
+    return _headImageView;
+}
+-(void)addHeadView{
+    WeakSelf(weakSelf)
+    head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
+    head.userInteractionEnabled = YES;
+     self.tableView.tableHeaderView=head;
+    
+    head.VIPClickBlock = ^(NSInteger VIPStatus){
+                if (VIPStatus==1) {//使用中
+                    YKWalletVC *wallet = [YKWalletVC new];
+                    wallet.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:wallet animated:YES];
+                }
+                if (VIPStatus==2) {//已过期,充值会员
+                    YKWalletVC *wallet = [YKWalletVC new];
+                    wallet.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:wallet animated:YES];
+                }
+                if (VIPStatus==3) {//无押金,充押金
+                    YKWalletVC *wallet = [YKWalletVC new];
+                    wallet.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:wallet animated:YES];
+                }
+                if (VIPStatus==4) {//未开通
+                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+       
+                    [weakSelf presentViewController:nav animated:YES completion:^{
+        
+                    }];
+                }
+            }
+            ;
+            head.viewClickBlock = ^(){
+                if ([Token length] == 0) {
+                    [weakSelf Login];
+                    return ;
+                }else {
+                    YKEditInforVC *set = [[YKEditInforVC alloc]initWithNibName:@"YKEditInforVC" bundle:[NSBundle mainBundle]];
+                    set.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:set animated:YES];
+                }
+        
+        
+            };
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    WeakSelf(weakSelf)
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 140;
-    [self.view addSubview:self.tableView];
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"FF6D6A"];
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    head = [[NSBundle mainBundle] loadNibNamed:@"YKMineheader" owner:self options:nil][0];
-    head.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
-    head.VIPClickBlock = ^(NSInteger VIPStatus){
-        if (VIPStatus==1) {//使用中
-            YKWalletVC *wallet = [YKWalletVC new];
-            wallet.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:wallet animated:YES];
-        }
-        if (VIPStatus==2) {//已过期,充值会员
-            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-            //            [weakSelf presentViewController:nav animated:YES completion:NULL];
-            [weakSelf presentViewController:nav animated:YES completion:^{
-                
-            }];
-        }
-        if (VIPStatus==3) {//无押金,充押金
-            YKDepositVC *deposit = [YKDepositVC new];
-            deposit.hidesBottomBarWhenPushed = YES;
-            deposit.validityStatus = 0;//未交押金
-            [weakSelf.navigationController pushViewController:deposit animated:YES];
-        }
-        if (VIPStatus==4) {//未开通
-            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//            [weakSelf presentViewController:nav animated:YES completion:NULL];
-            [weakSelf presentViewController:nav animated:YES completion:^{
-
-            }];
-        }
-    }
-    ;
-    head.viewClickBlock = ^(){
-        if ([Token length] == 0) {
-            [weakSelf Login];
-            return ;
-        }else {
-            YKEditInforVC *set = [[YKEditInforVC alloc]initWithNibName:@"YKEditInforVC" bundle:[NSBundle mainBundle]];
-            set.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:set animated:YES];
-        }
-        
-        
-    };
-    self.tableView.tableHeaderView = head;
+    WeakSelf(weakSelf)
+//    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+//    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) style:UITableViewStylePlain];
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+//    self.tableView.estimatedRowHeight = 140;
+//    [self.view addSubview:self.tableView];
+//    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.tableView.backgroundColor = [UIColor whiteColor];
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.view addSubview:[self imageview]];
+    [self.view addSubview:self.tableView];
+    [self addHeadView];
+//    head = [[NSBundle mainBundle] loadNibNamed:@"YKMineheader" owner:self options:nil][0];
+//    head.frame = CGRectMake(0, 0, self.view.frame.size.width, WIDHT/3*2);
+//    head.VIPClickBlock = ^(NSInteger VIPStatus){
+//        if (VIPStatus==1) {//使用中
+//            YKWalletVC *wallet = [YKWalletVC new];
+//            wallet.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:wallet animated:YES];
+//        }
+//        if (VIPStatus==2) {//已过期,充值会员
+//            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//            //            [weakSelf presentViewController:nav animated:YES completion:NULL];
+//            [weakSelf presentViewController:nav animated:YES completion:^{
+//
+//            }];
+//        }
+//        if (VIPStatus==3) {//无押金,充押金
+//            YKDepositVC *deposit = [YKDepositVC new];
+//            deposit.hidesBottomBarWhenPushed = YES;
+//            deposit.validityStatus = 0;//未交押金
+//            [weakSelf.navigationController pushViewController:deposit animated:YES];
+//        }
+//        if (VIPStatus==4) {//未开通
+//            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+////            [weakSelf presentViewController:nav animated:YES completion:NULL];
+//            [weakSelf presentViewController:nav animated:YES completion:^{
+//
+//            }];
+//        }
+//    }
+//    ;
+//    head.viewClickBlock = ^(){
+//        if ([Token length] == 0) {
+//            [weakSelf Login];
+//            return ;
+//        }else {
+//            YKEditInforVC *set = [[YKEditInforVC alloc]initWithNibName:@"YKEditInforVC" bundle:[NSBundle mainBundle]];
+//            set.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:set animated:YES];
+//        }
+//
+//
+//    };
+//    self.tableView.tableHeaderView = head;
     
     self.images = [NSArray array];
     self.images = @[@"qianbao",@"gerenziliao",@"address",@"question",@"kefu-1",@"setting"];
     self.titles = [NSArray array];
     self.titles = @[@"我的钱包",@"个人资料",@"收货地址",@"常见问题",@"联系客服",@"设置"];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -144,7 +208,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return 150;
+        return 132*WIDHT/414;
     }
     return 60;
 }
@@ -274,17 +338,28 @@
         
     }];
 }
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
- 
-    if (scrollView.contentOffset.y <= 0) {
-        scrollView.bounces = NO;
- 
-    }else
-        if (scrollView.contentOffset.y >= 0){
-            scrollView.bounces = YES;
-           
-        }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    //往上滑动offset增加，往下滑动，yoffset减小
+    CGFloat yoffset = scrollView.contentOffset.y;
+    //处理背景图的放大效果和往上移动的效果
+    if (yoffset>0) {//往上滑动
+        
+        _headImageView.frame = ({
+            CGRect frame = self.origialFrame;
+            frame.origin.y = self.origialFrame.origin.y - yoffset;
+            frame;
+        });
+        
+    }else {//往下滑动，放大处理
+        _headImageView.frame = ({
+            CGRect frame = self.origialFrame;
+            frame.size.height = self.origialFrame.size.height - yoffset;
+            frame.size.width = frame.size.height*1.5;
+            frame.origin.x = _origialFrame.origin.x - (frame.size.width-_origialFrame.size.width)/2;
+            frame;
+        });
+    }
 }
 
 @end

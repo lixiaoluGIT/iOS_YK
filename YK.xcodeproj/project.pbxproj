@@ -335,6 +335,7 @@
 		C5B2C6D6201B387F00688E77 /* newka.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D4201B387F00688E77 /* newka.png */; };
 		C5B2C6D7201B387F00688E77 /* newka@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D5201B387F00688E77 /* newka@3x.png */; };
 		C5C0F5921FF2309700A2000A /* 红.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C0F5911FF2309600A2000A /* 红.jpg */; };
+		C5D981642021ACE40099D36A /* YKMyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D981632021ACE40099D36A /* YKMyHeaderView.m */; };
 		C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84AC2005AB00002A12E3 /* YKAboutView.m */; };
 		C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */; };
 		C5DA84B22005AFE2002A12E3 /* YKAboutUsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84B12005AFE2002A12E3 /* YKAboutUsVC.m */; };
@@ -1050,6 +1051,8 @@
 		C5B2C6D4201B387F00688E77 /* newka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newka.png; sourceTree = "<group>"; };
 		C5B2C6D5201B387F00688E77 /* newka@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newka@3x.png"; sourceTree = "<group>"; };
 		C5C0F5911FF2309600A2000A /* 红.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "红.jpg"; sourceTree = "<group>"; };
+		C5D981622021ACE40099D36A /* YKMyHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMyHeaderView.h; sourceTree = "<group>"; };
+		C5D981632021ACE40099D36A /* YKMyHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMyHeaderView.m; sourceTree = "<group>"; };
 		C5DA84AB2005AB00002A12E3 /* YKAboutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAboutView.h; sourceTree = "<group>"; };
 		C5DA84AC2005AB00002A12E3 /* YKAboutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAboutView.m; sourceTree = "<group>"; };
 		C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKAboutView.xib; sourceTree = "<group>"; };
@@ -1582,6 +1585,8 @@
 				C5DA84AB2005AB00002A12E3 /* YKAboutView.h */,
 				C5DA84AC2005AB00002A12E3 /* YKAboutView.m */,
 				C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */,
+				C5D981622021ACE40099D36A /* YKMyHeaderView.h */,
+				C5D981632021ACE40099D36A /* YKMyHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2603,7 +2608,7 @@
 				TargetAttributes = {
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2779,6 +2784,7 @@
 				C54B8F891FE275BC000EAF8E /* YKMessageVC.m in Sources */,
 				C525DDBB1FBAB2A9002802AE /* UIImage+WebP.m in Sources */,
 				C525DEB51FBDA023002802AE /* YKEditAddressVC.m in Sources */,
+				C5D981642021ACE40099D36A /* YKMyHeaderView.m in Sources */,
 				C525DDA61FBAB2A9002802AE /* MLTextAttachment.m in Sources */,
 				C525DDC91FBAB2A9002802AE /* UIView+WebCacheOperation.m in Sources */,
 				C53347061FCFFDB9002A08D0 /* YKSMSInforVC.m in Sources */,
@@ -3165,8 +3171,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Wang (B93J56XJ62)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3239,8 +3245,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "23187261-6ab7-4d0a-bae4-123a3b398c5d";
+				PROVISIONING_PROFILE_SPECIFIER = ykDevelopmentProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -3253,8 +3259,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3326,8 +3332,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "14d875c6-09a8-416d-90ae-270f90febf44";
+				PROVISIONING_PROFILE_SPECIFIER = ykDistributionProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

@@ -60,14 +60,15 @@
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
-        self.layer.borderWidth = 1;
+        self.layer.borderWidth = 0;
         
         _HeaderH = frame.size.height;
         _SegmentStyle = CBSegmentStyleSlider;
-        _titleColor = [UIColor colorWithHexString:@"676869"];
-        _titleSelectedColor = [UIColor colorWithHexString:@"ff6d6a"];
+        _titleColor = [UIColor colorWithHexString:@"1a1a1a"];
+        _titleSelectedColor = [UIColor colorWithHexString:@"ffffff"];
         _titleFont = 14;
         [self setContentSize:CGSizeMake(WIDHT, 0)];
+//        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -86,11 +87,11 @@
    titleSelectedColor:(UIColor *)selectedColor
             withStyle:(CBSegmentStyle)style {
     
-     if (style == CBSegmentStyleZoom) {
-         self.layer.borderColor = [UIColor colorWithHexString:@"ffffff"].CGColor;
-         self.layer.borderWidth = 0;
-
-     }
+//     if (style == CBSegmentStyleZoom) {
+////         self.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+////         self.layer.borderWidth = 1;
+//
+//     }
 //    set style
     if (style != 0) {
         _SegmentStyle = style;
@@ -106,11 +107,13 @@
     }
     
     if (style == CBSegmentStyleSlider) {
-        UIView *slider = [[UIView alloc]init];
-        slider.frame = CGRectMake(0, _HeaderH-2, 0, 2);
-        slider.backgroundColor = _titleSelectedColor;
-        [self addSubview:slider];
-        self.slider = slider;
+//        UIView *slider = [[UIView alloc]init];
+//        slider.frame = CGRectMake(0, _HeaderH-2, 0, 2);
+//        slider.backgroundColor = _titleSelectedColor;
+//        [self addSubview:slider];
+//        self.slider = slider;
+        self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
+        self.layer.borderWidth = 1;
     }
     
     [self.titleWidthArray removeAllObjects];
@@ -150,7 +153,8 @@
             btnW = titleWidth+20;
         }
        
-        btn.frame =  CGRectMake(totalWidth, 0.5, btnW, _HeaderH-0.5-2);
+        btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+        btn.frame =  CGRectMake(totalWidth,_HeaderH/4 , btnW, _HeaderH/2-0.5-2);
         btn.contentMode = UIViewContentModeCenter;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.tag = i;
@@ -159,12 +163,13 @@
         [btn setTitleColor:_titleSelectedColor forState:UIControlStateSelected];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:_titleFont]];
         
-        if (style == CBSegmentStyleZoom) {
+//        if (style == CBSegmentStyleZoom) {
             [btn setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
-        
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+            [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            btn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+            btn.layer.borderWidth = 1;
            
-        }
+//        }
         [btn addTarget:self action:@selector(titleButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
         totalWidth = totalWidth+btnW+btnSpace;
 
@@ -174,9 +179,13 @@
             if (_SegmentStyle == CBSegmentStyleSlider) {
                 self.slider.cb_Width = titleWidth;
                 self.slider.cb_CenterX = btn.cb_CenterX;
+                self.selectedBtn.transform = CGAffineTransformMakeScale(1,1);
+                self.selectedBtn.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }else if (_SegmentStyle == CBSegmentStyleZoom) {
-                self.selectedBtn.transform = CGAffineTransformMakeScale(1.3, 1.3);
-//                self.selectedBtn.titleLabel.font = PingFangSC_Regular(14);
+                self.selectedBtn.transform = CGAffineTransformMakeScale(1,1);
+                self.selectedBtn.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }
         }
     }
@@ -188,10 +197,11 @@
 - (void)titleButtonSelected:(UIButton *)btn {
     self.selectedBtn.selected = NO;
     btn.selected = YES;
-//    if (self.selectedBtn == btn) {
-//
-//        return;
-//    }else {
+    if (self.selectedBtn == btn) {
+
+        return;
+    }
+//    else {
 //        self.selectedBtn.selected = NO;
 //        self.selectedBtn = btn;
 //        btn.selected = YES;
@@ -199,32 +209,40 @@
 //    btn.selected = !btn.selected;
 //    self.selectedBtn = btn;
 
-    if (_SegmentStyle == CBSegmentStyleSlider) {
-        
-            NSNumber* sliderWidth = self.titleWidthArray[btn.tag];
-            [UIView animateWithDuration:0.2 animations:^{
-                self.slider.cb_Width = sliderWidth.floatValue;
-                self.slider.cb_CenterX = btn.cb_CenterX;
-                self.selectedBtn.transform = CGAffineTransformIdentity;
-                btn.transform = CGAffineTransformMakeScale(1.3, 1.3);
-            }];
-        
-       
-//        if (!btn.selected) {
-//            self.slider.backgroundColor = [UIColor clearColor];
-//        }else {
-//            self.slider.backgroundColor = mainColor;
-//        }
-    }else if (_SegmentStyle == CBSegmentStyleZoom) {
+//    if (_SegmentStyle == CBSegmentStyleSlider) {
+//
+//            NSNumber* sliderWidth = self.titleWidthArray[btn.tag];
+//            [UIView animateWithDuration:0.2 animations:^{
+//                self.slider.cb_Width = sliderWidth.floatValue;
+//                self.slider.cb_CenterX = btn.cb_CenterX;
+//                self.selectedBtn.transform = CGAffineTransformIdentity;
+//                btn.transform = CGAffineTransformMakeScale(1, 1);
+//            }];
+//
+//
+////        if (!btn.selected) {
+////            self.slider.backgroundColor = [UIColor clearColor];
+////        }else {
+////            self.slider.backgroundColor = mainColor;
+////        }
+//    }else if (_SegmentStyle == CBSegmentStyleZoom) {
    
             [UIView animateWithDuration:0.2 animations:^{
-            self.selectedBtn.transform = CGAffineTransformIdentity;
-            btn.transform = CGAffineTransformMakeScale(1.3, 1.3);
-            
-        }];
+                self.selectedBtn.transform = CGAffineTransformIdentity;
+                
+                btn.transform = CGAffineTransformMakeScale(1, 1);
+                btn.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+                [btn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+                
+                self.selectedBtn.backgroundColor = [UIColor whiteColor];
+                self.selectedBtn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+                self.selectedBtn.layer.borderWidth = 1;
+                [self.selectedBtn setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
+//                self.selectedBtn set
+            }];
             
         
-    }
+//    }
     self.selectedBtn = btn;
     //TODO:需分屏幕
     
