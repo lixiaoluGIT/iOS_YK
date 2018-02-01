@@ -84,7 +84,7 @@
         case 3://押金无效
             [_validityBtn setTitle:@"缴纳押金" forState:UIControlStateNormal];
             [_validityBtn addTarget:self action:@selector(pushMoney) forControlEvents:UIControlEventTouchUpInside];
-            [_validityBtn setBackgroundColor:[UIColor colorWithHexString:@"ff6d6a"]];
+            [_validityBtn setBackgroundColor:mainColor];
             [_validityBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
             break;
         default:

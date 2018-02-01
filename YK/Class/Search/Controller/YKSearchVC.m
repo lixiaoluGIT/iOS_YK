@@ -196,7 +196,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
 //
 //    if (section==0) {
-        return CGSizeMake(self.view.frame.size.width, 200 + 125);
+        return CGSizeMake(self.view.frame.size.width, 200 + 170);
 //    }else {
 //        return CGSizeMake(self.view.frame.size.width, 125);
 //    }
@@ -240,7 +240,7 @@
         
         if (self.titles.count!=0) {
             self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
-            self.titleView.frame = CGRectMake(0, 200,head.frame.size.width, 125);
+            self.titleView.frame = CGRectMake(0, 200,head.frame.size.width, 170);
             [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
             //筛选
             self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){

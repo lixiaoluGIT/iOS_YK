@@ -18,44 +18,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="329" height="73.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jingxuan" translatesAutoresizingMaskIntoConstraints="NO" id="qlw-Sg-fAc">
-                        <rect key="frame" x="16" y="33" width="16" height="16"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBA-pN-Kl7">
-                        <rect key="frame" x="0.0" y="0.0" width="329" height="10"/>
-                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="10" id="Tg6-AK-rtL"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精选推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1a-GM-9v1">
-                        <rect key="frame" x="37" y="33" width="57.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <rect key="frame" x="124" y="25.5" width="82" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="X1a-GM-9v1" firstAttribute="leading" secondItem="qlw-Sg-fAc" secondAttribute="trailing" constant="5" id="67U-6L-xS6"/>
-                    <constraint firstItem="X1a-GM-9v1" firstAttribute="centerY" secondItem="qlw-Sg-fAc" secondAttribute="centerY" id="Jme-ap-7rE"/>
-                    <constraint firstItem="qlw-Sg-fAc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="PUL-5j-Cuc"/>
-                    <constraint firstItem="KBA-pN-Kl7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Xaz-jb-c0q"/>
-                    <constraint firstItem="KBA-pN-Kl7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xvc-ic-IVl"/>
-                    <constraint firstAttribute="trailing" secondItem="KBA-pN-Kl7" secondAttribute="trailing" id="dd6-uL-x7h"/>
-                    <constraint firstItem="qlw-Sg-fAc" firstAttribute="top" secondItem="KBA-pN-Kl7" secondAttribute="bottom" constant="23" id="ntz-v6-QHU"/>
+                    <constraint firstItem="X1a-GM-9v1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="K7P-Jd-lZh"/>
+                    <constraint firstItem="X1a-GM-9v1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="kbG-FZ-bwY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="image" destination="qlw-Sg-fAc" id="TNN-MD-xGm"/>
                 <outlet property="title" destination="X1a-GM-9v1" id="GtH-sX-GJX"/>
             </connections>
             <point key="canvasLocation" x="38.5" y="97"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="jingxuan" width="16" height="16"/>
-    </resources>
 </document>

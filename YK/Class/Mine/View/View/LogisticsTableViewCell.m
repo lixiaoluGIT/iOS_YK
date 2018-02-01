@@ -33,7 +33,7 @@
 {
     _imgView = [[UIImageView alloc]init];
     _imgView.layer.cornerRadius = 5.5;
-    _imgView.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
+    _imgView.backgroundColor = mainColor;
     [self.contentView addSubview:_imgView];
     
     _lineView = [[UIView alloc]init];

@@ -5,8 +5,8 @@
 //  Created by LXL on 2017/11/14.
 //  Copyright © 2017年 YK. All rights reserved.
 //
-#define Hl 170
-#define Hs 140
+#define Hl 190
+#define Hs 160
 #import "YKSuitCell.h"
 @interface YKSuitCell()
 
@@ -110,12 +110,12 @@
 - (void)updateMasonry{
     //更新价钱UI
         [self.price mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(-15+self.moveNum);
+            make.right.equalTo(self).offset(-29+self.moveNum);
             
         }];
     //更新标志UI
     [self.seleBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(12+self.moveNum);
+        make.left.equalTo(self).offset(29+self.moveNum);
         make.bottom.equalTo(self).offset(-12);
         make.height.with.equalTo(@20);
     }];

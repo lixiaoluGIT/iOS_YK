@@ -95,7 +95,7 @@
     [self.noBtn setTitle:notitle forState:UIControlStateNormal];
     [self.yesBtn setTitle:yestitle forState:UIControlStateNormal];
     [self.yesBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.yesBtn setBackgroundColor:[UIColor colorWithHexString:@"ff6d6a"]];
+    [self.yesBtn setBackgroundColor:[UIColor colorWithHexString:@"1a1a1a"]];
 }
 
 - (void)setLayOut{

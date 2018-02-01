@@ -68,14 +68,14 @@ NSInteger timeCount;
 }
 - (void) textFieldDidChange:(id) sender {
     if (self.phoneText.text.length>10) {
-        [self.getVetifyBtn setTitleColor:[UIColor colorWithHexString:@"ff6d6a"] forState:UIControlStateNormal];
+        [self.getVetifyBtn setTitleColor:mainColor forState:UIControlStateNormal];
         self.getVetifyBtn.userInteractionEnabled = YES;
     }else {
         self.getVetifyBtn.userInteractionEnabled = NO;
         [self.getVetifyBtn setTitleColor:[UIColor colorWithHexString:@"afafaf"] forState:UIControlStateNormal];
     }
     if (self.phoneText.text.length>10&&self.vetifyText.text.length>0) {
-        self.ensureBtn.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
+        self.ensureBtn.backgroundColor = mainColor;
         [self.ensureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }else {
         self.ensureBtn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
@@ -119,7 +119,7 @@ NSInteger timeCount;
         self.getVetifyBtn.userInteractionEnabled = YES;
         [timer invalidate];
         [self.getVetifyBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [self.getVetifyBtn setTitleColor:[UIColor colorWithHexString:@"ff6d6a"] forState:UIControlStateNormal];
+        [self.getVetifyBtn setTitleColor:mainColor forState:UIControlStateNormal];
         
     }else{
         

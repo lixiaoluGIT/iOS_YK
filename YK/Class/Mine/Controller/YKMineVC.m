@@ -65,7 +65,7 @@
 -(UIImageView*)imageview{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
-        _headImageView.image = [UIImage imageNamed:@"春节.jpg"];
+        _headImageView.image = [UIImage imageNamed:@"背景.jpg"];
         self.origialFrame = _headImageView.frame;
     }
     return _headImageView;

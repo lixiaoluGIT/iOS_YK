@@ -54,9 +54,10 @@
     [[YKHomeManager sharedManager]showAleartViewToShare];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     
     //请求数据

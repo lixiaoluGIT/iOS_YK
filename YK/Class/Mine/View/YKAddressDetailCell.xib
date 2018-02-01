@@ -52,36 +52,36 @@
                             <constraint firstAttribute="width" constant="20" id="0RB-hw-yNq"/>
                             <constraint firstAttribute="height" constant="20" id="bnU-Vr-FjE"/>
                         </constraints>
-                        <state key="normal" image="feimoren"/>
-                        <state key="selected" image="moren"/>
+                        <state key="normal" image="weixuanzhong"/>
+                        <state key="selected" image="xuanzhong"/>
                         <state key="highlighted" image="weixuanzhong"/>
                         <connections>
                             <action selector="selectBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dcp-eF-8JF"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设为默认" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-tG-Rqg">
-                        <rect key="frame" x="52" y="119.5" width="49.5" height="14.5"/>
+                        <rect key="frame" x="52" y="120" width="49.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编辑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVW-Sh-Ihr">
-                        <rect key="frame" x="327" y="120" width="25" height="14.5"/>
+                        <rect key="frame" x="327" y="120.5" width="25" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.4039215686" green="0.40784313729999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZo-OO-QQa">
-                        <rect key="frame" x="404" y="119.5" width="25" height="15"/>
+                        <rect key="frame" x="404" y="120" width="25" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.4039215686" green="0.40784313729999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="Be3-fN-vaG">
-                        <rect key="frame" x="382" y="120" width="14" height="14"/>
+                        <rect key="frame" x="382" y="120.5" width="14" height="14"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit" translatesAutoresizingMaskIntoConstraints="NO" id="f9l-5a-I9e">
-                        <rect key="frame" x="305" y="120" width="14" height="14"/>
+                        <rect key="frame" x="305" y="120.5" width="14" height="14"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VS2-3p-VnG">
                         <rect key="frame" x="0.0" y="105" width="120" height="43.5"/>
@@ -93,7 +93,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4go-sb-Qj5">
-                        <rect key="frame" x="292" y="102" width="60" height="50"/>
+                        <rect key="frame" x="292" y="102.5" width="60" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="QnM-y9-8zW"/>
                             <constraint firstAttribute="height" constant="50" id="Riw-de-TYF"/>
@@ -207,9 +207,8 @@
         <image name="address" width="16" height="16"/>
         <image name="delete" width="14" height="14"/>
         <image name="edit" width="14" height="14"/>
-        <image name="feimoren" width="18" height="18"/>
-        <image name="moren" width="18" height="18"/>
         <image name="right" width="6" height="12"/>
         <image name="weixuanzhong" width="20" height="20"/>
+        <image name="xuanzhong" width="20" height="20"/>
     </resources>
 </document>

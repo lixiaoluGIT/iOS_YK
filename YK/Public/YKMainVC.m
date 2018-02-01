@@ -21,7 +21,10 @@
 - (id)init{
     if (self = [super init]) {
 
-//        self.tabBar.tintColor=[UIColor greenColor];
+
+        self.tabBar.barTintColor = [UIColor whiteColor];
+        self.tabBar.alpha = 1;
+        
         UIImage *homeImageSel = [UIImage imageNamed:@"home_a.png"];
         homeImageSel = [homeImageSel imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:0];

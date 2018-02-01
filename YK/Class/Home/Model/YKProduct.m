@@ -34,9 +34,10 @@
     for (NSDictionary *type in clothingStockArray) {
         if ([type[@"clothingStockNum"] intValue] != 0) {//如果有库存数量不为0的型号
             _isHadStock = YES;//有库存
-        }else {
-            _isHadStock = NO;//无库存
         }
+//        }else {
+//            _isHadStock = NO;//无库存
+//        }
     }
     
 }

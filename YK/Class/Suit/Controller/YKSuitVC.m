@@ -187,7 +187,7 @@
     }
     [_btn setTitle:@"确认衣袋" forState:UIControlStateNormal];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _btn.titleLabel.font = PingFangSC_Regular(14);
+    _btn.titleLabel.font = PingFangSC_Regular(16);
     _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
     [_btn addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn];
@@ -235,14 +235,15 @@
 //左侧全选按钮
 - (void)setLeftSelectAllBtn{
     _selectAll = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_selectAll setTitle:@"全选" forState:UIControlStateNormal];
-    [_selectAll setTitleColor:[UIColor colorWithHexString:@"A1A1A1"] forState:UIControlStateNormal];
+//    [_selectAll setTitle:@"全选" forState:UIControlStateNormal];
+    [_selectAll setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
     [_selectAll addTarget:self action:@selector(clickSelectAll:) forControlEvents:UIControlEventTouchUpInside];
     _selectAll.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.bottomBgView addSubview:_selectAll];
+    _selectAll.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [_selectAll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.top.equalTo(self.bottomBgView);
-        make.width.mas_equalTo(@164);
+        make.width.mas_equalTo(@120);
     }];
    
     //图片
@@ -250,11 +251,23 @@
     imageView.image = [UIImage imageNamed:@"weixuanzhong"];
     [_selectAll addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_selectAll).offset(28);
+        make.left.equalTo(_selectAll).offset(24);
         make.centerY.equalTo(_selectAll);
         make.width.height.mas_equalTo(@20);
     }];
     self.selectAllImageView = imageView;
+    
+    UILabel *la = [[UILabel alloc]init];
+    la.text = @"全选";
+    la.font = PingFangSC_Semibold(14);
+    la.textColor = mainColor;
+    [_selectAll addSubview:la];
+    la.textAlignment = NSTextAlignmentLeft;
+
+    [la mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(imageView.mas_right).offset(12);
+        make.centerY.equalTo(_selectAll.mas_centerY);
+    }];
 }
 //全选按钮点击事件
 - (void)clickSelectAll:(UIButton *)btn{
@@ -281,11 +294,11 @@
 - (void)setRightDeleteBtn{
     UIButton *btn = [[UIButton alloc]init];
     [btn setTitle:@"删除" forState:UIControlStateNormal];
-    btn.backgroundColor = [UIColor colorWithHexString:@"FF6d6a"];
+    btn.backgroundColor = [UIColor colorWithHexString:@"EE2D2D "];
     [self.bottomBgView addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.bottom.equalTo(self.bottomBgView);
-        make.width.mas_equalTo(@(WIDHT-164));
+        make.width.mas_equalTo(@(WIDHT-120));
     }];
     [btn addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -420,7 +433,7 @@
         if (status==0) {
             _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
         }else {
-            _btn.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
+            _btn.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
             
         }
 

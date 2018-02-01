@@ -263,7 +263,7 @@
         title.text = _searchBtnArr[section];
     }
     title.font = [UIFont boldSystemFontOfSize:14];
-    title.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
+    title.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.textColor = [UIColor whiteColor];
     title.textAlignment = NSTextAlignmentCenter;
     
@@ -271,12 +271,12 @@
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(head.mas_centerY);
-        make.left.equalTo(@25);
-        make.width.height.equalTo(@20);
+        make.centerX.equalTo(head.mas_centerX);
+        make.width.equalTo(@30);
+        make.height.equalTo(@20);
         
     }];
-    title.layer.masksToBounds = YES;
-    title.layer.cornerRadius = 10;
+   
     return head;
 }
 

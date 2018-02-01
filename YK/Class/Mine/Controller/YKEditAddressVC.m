@@ -47,7 +47,7 @@
     
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedOKbtn)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
+    self.navigationItem.rightBarButtonItem.tintColor = mainColor;
    
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;

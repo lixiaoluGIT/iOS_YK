@@ -87,7 +87,7 @@
     
     _buttom = [UIButton buttonWithType:UIButtonTypeCustom];
     _buttom.frame = CGRectMake(0, HEIGHT-50, WIDHT, 50);
-    _buttom.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
+    _buttom.backgroundColor = mainColor;
     [self.view addSubview:_buttom];
     [_buttom setTitle:@"\\\\" forState:UIControlStateNormal];
     _buttom.titleLabel.font = [UIFont systemFontOfSize:14];

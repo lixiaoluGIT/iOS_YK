@@ -174,7 +174,7 @@
     }else {
         UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
         self.navigationItem.rightBarButtonItem = rightBarItem;
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
+        self.navigationItem.rightBarButtonItem.tintColor = mainColor;
         [NoDataView removeFromSuperview];
     }
 

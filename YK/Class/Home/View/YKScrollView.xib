@@ -19,47 +19,41 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ii-29-66Z">
-                        <rect key="frame" x="0.0" y="69" width="396" height="68.5"/>
+                        <rect key="frame" x="0.0" y="71" width="396" height="66.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </scrollView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全部品牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-ev-bTd">
-                        <rect key="frame" x="316.5" y="21" width="49.5" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看全部" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-ev-bTd">
+                        <rect key="frame" x="308.5" y="27.5" width="58" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="3A2-w3-c8l">
-                        <rect key="frame" x="374" y="22" width="6" height="12"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuijian" translatesAutoresizingMaskIntoConstraints="NO" id="YVs-5U-8w6">
-                        <rect key="frame" x="16" y="20" width="16" height="16"/>
+                        <rect key="frame" x="374" y="29.5" width="6" height="12"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐品牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcJ-RZ-WwQ">
-                        <rect key="frame" x="37" y="20" width="57.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <rect key="frame" x="24" y="24" width="77.5" height="23"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="3A2-w3-c8l" firstAttribute="centerY" secondItem="Gos-ev-bTd" secondAttribute="centerY" id="2Jf-y8-Ust"/>
-                    <constraint firstItem="KcJ-RZ-WwQ" firstAttribute="leading" secondItem="YVs-5U-8w6" secondAttribute="trailing" constant="5" id="CUh-go-yaR"/>
-                    <constraint firstItem="4ii-29-66Z" firstAttribute="top" secondItem="YVs-5U-8w6" secondAttribute="bottom" constant="33" id="FmK-uY-yGc"/>
-                    <constraint firstItem="YVs-5U-8w6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="KfT-Pm-a53"/>
                     <constraint firstAttribute="trailing" secondItem="4ii-29-66Z" secondAttribute="trailing" id="Qv8-cd-Ebt"/>
                     <constraint firstAttribute="bottom" secondItem="4ii-29-66Z" secondAttribute="bottom" constant="12" id="Uxj-MC-BWf"/>
+                    <constraint firstItem="4ii-29-66Z" firstAttribute="top" secondItem="KcJ-RZ-WwQ" secondAttribute="bottom" constant="24" id="X6a-X7-NaF"/>
                     <constraint firstItem="4ii-29-66Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XIs-wa-1x8"/>
+                    <constraint firstItem="KcJ-RZ-WwQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="dD2-Or-FmL"/>
                     <constraint firstAttribute="trailing" secondItem="Gos-ev-bTd" secondAttribute="trailing" constant="30" id="ggR-OB-jNk"/>
+                    <constraint firstItem="KcJ-RZ-WwQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="hSE-hX-pTz"/>
                     <constraint firstAttribute="trailing" secondItem="3A2-w3-c8l" secondAttribute="trailing" constant="16" id="jYi-Vs-Flg"/>
                     <constraint firstItem="Gos-ev-bTd" firstAttribute="centerY" secondItem="KcJ-RZ-WwQ" secondAttribute="centerY" id="okd-vl-MgJ"/>
-                    <constraint firstItem="KcJ-RZ-WwQ" firstAttribute="centerY" secondItem="YVs-5U-8w6" secondAttribute="centerY" id="spZ-kp-pxP"/>
-                    <constraint firstItem="YVs-5U-8w6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="vJv-jM-Y2M"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="allLabel" destination="Gos-ev-bTd" id="Sr5-oH-7Ry"/>
                 <outlet property="scrollView" destination="4ii-29-66Z" id="CpB-09-QVl"/>
-                <outlet property="tuijianImage" destination="YVs-5U-8w6" id="cyz-jW-R3Q"/>
                 <outlet property="tuijianLable" destination="KcJ-RZ-WwQ" id="Tog-Tn-Cfi"/>
             </connections>
             <point key="canvasLocation" x="227" y="212"/>
@@ -67,6 +61,5 @@
     </objects>
     <resources>
         <image name="right" width="6" height="12"/>
-        <image name="tuijian" width="16" height="16"/>
     </resources>
 </document>

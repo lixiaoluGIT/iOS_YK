@@ -20,7 +20,7 @@
     self.scanBtn.layer.masksToBounds = YES;
     self.scanBtn.layer.cornerRadius = self.scanBtn.frame.size.height/2;
     self.scanBtn.layer.borderWidth = 1;
-    self.scanBtn.layer.borderColor = [UIColor colorWithHexString:@"ff6d6a"].CGColor;
+    self.scanBtn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
 }
 
 

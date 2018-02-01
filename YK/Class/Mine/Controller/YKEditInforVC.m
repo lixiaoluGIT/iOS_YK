@@ -71,7 +71,7 @@
     
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
+    self.navigationItem.rightBarButtonItem.tintColor = mainColor;
     
     self.view1.tag = 101;
     self.view2.tag = 102;

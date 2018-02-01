@@ -101,7 +101,7 @@
     [buttom setTitle:@"提交订单" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     buttom.titleLabel.font = PingFangSC_Regular(14);
-    buttom.backgroundColor = [UIColor colorWithRed:246.0/255 green:102.0/255 blue:102.0/255 alpha:1];
+    buttom.backgroundColor = mainColor;
     [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];
 }

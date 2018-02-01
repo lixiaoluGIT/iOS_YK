@@ -109,7 +109,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.text = @"待返架";
         label.font = [UIFont systemFontOfSize:12];
-        label.textColor = [UIColor colorWithHexString:@"FEB710"];
+        label.textColor = [UIColor colorWithHexString:@"ee2d2d"];
         [self addSubview:label];
         label.hidden = YES;
         
@@ -150,7 +150,7 @@
         
         [UIView animateWithDuration:0.3 animations:^{
             btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-            btn.backgroundColor = [UIColor colorWithHexString:@"ff6d6a"];
+            btn.backgroundColor = mainColor;
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             
             self.Button1.titleLabel.font = [UIFont systemFontOfSize:12];

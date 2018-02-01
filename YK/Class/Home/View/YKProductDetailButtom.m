@@ -17,7 +17,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [_addBtn setBackgroundColor:[UIColor colorWithHexString:@"ff6d6a"]];
+    [_addBtn setBackgroundColor:mainColor];
 }
 
 - (IBAction)addToShoppingCart:(id)sender {

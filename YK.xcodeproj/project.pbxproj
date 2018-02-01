@@ -10,6 +10,7 @@
 		C5016FF02022B77800E22301 /* YKMineCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */; };
 		C5016FF12022B77800E22301 /* YKMineCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5016FEF2022B77800E22301 /* YKMineCategoryCell.xib */; };
 		C5016FF32022CEC500E22301 /* 春节.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5016FF22022CEC500E22301 /* 春节.jpg */; };
+		C5016FF52022E73200E22301 /* 风景.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5016FF42022E73200E22301 /* 风景.jpg */; };
 		C50394932007BDB2004B41C3 /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = C50394922007BDB1004B41C3 /* Default-568.png */; };
 		C50CF1B1200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */; };
 		C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD01FEB924A003BB993 /* Security.framework */; };
@@ -393,6 +394,7 @@
 		C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMineCategoryCell.m; sourceTree = "<group>"; };
 		C5016FEF2022B77800E22301 /* YKMineCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKMineCategoryCell.xib; sourceTree = "<group>"; };
 		C5016FF22022CEC500E22301 /* 春节.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "春节.jpg"; sourceTree = "<group>"; };
+		C5016FF42022E73200E22301 /* 风景.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "风景.jpg"; sourceTree = "<group>"; };
 		C50394922007BDB1004B41C3 /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568.png"; sourceTree = "<group>"; };
 		C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		C50CF1B5200DD8C300A717DF /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -1713,6 +1715,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C5016FF42022E73200E22301 /* 风景.jpg */,
 				C5016FF22022CEC500E22301 /* 春节.jpg */,
 				C571B50D2020155C007AB5B8 /* sss.gif */,
 				C571B50A202012D6007AB5B8 /* 888.gif */,
@@ -2726,6 +2729,7 @@
 				C5E46EAE1FFE3FF2002453EB /* YKShareSuccessView.xib in Resources */,
 				C5E023151FD95DCD00C33629 /* YKSuitEnsureCell.xib in Resources */,
 				C525DD9C1FBAB2A9002802AE /* MLEmoji_Expression.bundle in Resources */,
+				C5016FF52022E73200E22301 /* 风景.jpg in Resources */,
 				C55D49231FC3CE2F000D2056 /* YKMyBagSMSCell.xib in Resources */,
 				C525DD9A1FBAB2A9002802AE /* Info.plist in Resources */,
 				C525DEB71FBEADB1002802AE /* region.json in Resources */,

@@ -144,7 +144,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVJ-b1-vd8">
                     <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                    <color key="backgroundColor" red="1" green="0.42745098039215684" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="GxD-Wq-gz2"/>
                     </constraints>
@@ -246,8 +246,8 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOX-ZO-tOU">
-                            <rect key="frame" x="87" y="333" width="12" height="22"/>
-                            <state key="normal" image="weixuanzhong-1"/>
+                            <rect key="frame" x="79" y="333" width="20" height="22"/>
+                            <state key="normal" image="weixuanzhong"/>
                             <state key="selected" image="xuanzhong-1"/>
                             <connections>
                                 <action selector="agree:" destination="-1" eventType="touchUpInside" id="lQ3-yH-95h"/>
@@ -453,7 +453,7 @@
     <resources>
         <image name="guanbi" width="14" height="14"/>
         <image name="weixuan" width="18" height="18"/>
-        <image name="weixuanzhong-1" width="12" height="12"/>
+        <image name="weixuanzhong" width="20" height="20"/>
         <image name="xuanzhong" width="20" height="20"/>
         <image name="xuanzhong-1" width="12" height="12"/>
     </resources>

@@ -154,7 +154,7 @@
         }
        
         btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-        btn.frame =  CGRectMake(totalWidth,_HeaderH/4 , btnW, _HeaderH/2-0.5-2);
+        btn.frame =  CGRectMake(totalWidth,_HeaderH/4 , btnW, _HeaderH/2);
         btn.contentMode = UIViewContentModeCenter;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.tag = i;
@@ -293,7 +293,7 @@
 }
 //  cache title width
 - (CGFloat)widthOfTitle:(NSString *)title titleFont:(CGFloat)titleFont {
-    CGSize titleSize = [title boundingRectWithSize:CGSizeMake(MAXFLOAT, _HeaderH-2)
+    CGSize titleSize = [title boundingRectWithSize:CGSizeMake(MAXFLOAT, _HeaderH)
                                             options:NSStringDrawingUsesLineFragmentOrigin
                                          attributes:[NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:titleFont] forKey:NSFontAttributeName]
                                             context:nil].size;

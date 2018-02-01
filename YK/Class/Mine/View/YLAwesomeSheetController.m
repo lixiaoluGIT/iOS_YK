@@ -94,7 +94,7 @@ static CGFloat cellHeight = 40;
     if(!_ensureBtn){
         _ensureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _ensureBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        UIColor *titleColor = [UIColor colorWithHexString:@"ff6d6a"];
+        UIColor *titleColor = [UIColor colorWithHexString:@"1a1a1a"];
         [_ensureBtn setTitleColor:titleColor forState:UIControlStateNormal];
         
         [_ensureBtn setTitle:@"确定" forState:UIControlStateNormal];

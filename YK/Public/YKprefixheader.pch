@@ -41,7 +41,7 @@
 
 /*----------------------------色号--------------------------------*/
 
-#define mainColor [UIColor colorWithHexString:@"ff6d6a"]
+#define mainColor [UIColor colorWithHexString:@"1a1a1a"]
 #define backColor [UIColor colorWithHexString:@"dddddd"]
 
 /*----------------------------字体--------------------------------*/
