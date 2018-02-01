@@ -60,15 +60,15 @@
 }
 
 - (void)setUser:(YKUser *)user{
-_user = user;
-
-if ([Token length] == 0) {
+    _user = user;
+    
+    if ([Token length] == 0) {
     _headPho.image = [UIImage imageNamed:@"touxianghuancun"];
     _name.text = @"未登录";
     _vipLabel.text = @"您还不是会员用户";
 
 
-}else {
+    }else {
     //已登录
 
     if ([user.nickname isEqual:[NSNull null]]) {

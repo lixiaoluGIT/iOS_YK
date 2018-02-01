@@ -21,6 +21,7 @@
 #import "YKLoginVC.h"
 #import "YKDepositVC.h"
 #import "YKMyHeaderView.h"
+#import "YKMineCategoryCell.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -64,7 +65,7 @@
 -(UIImageView*)imageview{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
-        _headImageView.image = [UIImage imageNamed:@"背景"];
+        _headImageView.image = [UIImage imageNamed:@"春节.jpg"];
         self.origialFrame = _headImageView.frame;
     }
     return _headImageView;
@@ -183,7 +184,7 @@
     self.titles = [NSArray array];
     self.titles = @[@"我的钱包",@"个人资料",@"收货地址",@"常见问题",@"联系客服",@"设置"];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -210,14 +211,14 @@
     if (indexPath.section==0) {
         return 132*WIDHT/414;
     }
-    return 60;
+    return WIDHT/3*2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
         return 1;
     }
-    return self.titles.count;
+    return 1;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -243,74 +244,81 @@
         return bagCell;
     }
     
-    static NSString *ID = @"cell";
-    YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (mycell == nil) {
-        mycell = [[NSBundle mainBundle] loadNibNamed:@"YKMineCell" owner:self options:nil][0];
-        mycell.title.text = [NSString stringWithFormat:@"%@",self.titles[indexPath.row]];
-        mycell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
+//    static NSString *ID = @"cell";
+//    YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
+//    if (mycell == nil) {
+//        mycell = [[NSBundle mainBundle] loadNibNamed:@"YKMineCell" owner:self options:nil][0];
+//        mycell.title.text = [NSString stringWithFormat:@"%@",self.titles[indexPath.row]];
+//        mycell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
+//    }
+//    mycell.selectionStyle = UITableViewCellSelectionStyleNone;
+    static NSString *identifer = @"cell";
+    YKMineCategoryCell *cell = [[YKMineCategoryCell alloc]init];
+    if (!cell) {
+        cell = [tableView dequeueReusableCellWithIdentifier:identifer];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    mycell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return mycell;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([Token length] == 0) {
-        if (indexPath.row!=3&&indexPath.row!=4) {
-            [self Login];
-             return;
-        }
-    }
-    if (indexPath.section == 1) {
-        if (indexPath.row==0) {//钱包
-            YKWalletVC *wallet = [YKWalletVC new];
-            wallet.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:wallet animated:YES];
-        }
-        if (indexPath.row==1) {//个人资料
-            YKEditInforVC *set = [[YKEditInforVC alloc]initWithNibName:@"YKEditInforVC" bundle:[NSBundle mainBundle]];
-            set.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:set animated:YES];
-            
-        }
-        if (indexPath.row==2) {//收货地址
-            YKAddressVC *address = [YKAddressVC new];
-            address.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:address animated:YES];
-        }
-        if (indexPath.row==3) {//常见问题
-            YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
-            normal.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:normal animated:YES];
-        }
-        if (indexPath.row==4) {//联系客服
-            if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
-                NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
-                NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
-                if (compare == NSOrderedDescending || compare == NSOrderedSame) {
-                    /// 大于等于10.0系统使用此openURL方法
-                    if (@available(iOS 10.0, *)) {
-                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
-                    } else {
-                        // Fallback on earlier versions
-                    }
-                } else {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-                }
+    [cell initWithTitleArray:self.titles ImageArray:self.images];
+    cell.clickBlock = ^(NSInteger tag){
+        if ([Token length] == 0) {
+            if (tag!=3&&tag!=4) {
+                [self Login];
                 return;
             }
-            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
-            alertview.delegate = self;
-            [alertview show];
         }
-        if (indexPath.row==5) {//设置
-            YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
-            set.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:set animated:YES];
-        }
+       
+            if (tag==0) {//钱包
+                YKWalletVC *wallet = [YKWalletVC new];
+                wallet.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:wallet animated:YES];
+            }
+            if (tag==1) {//个人资料
+                YKEditInforVC *set = [[YKEditInforVC alloc]initWithNibName:@"YKEditInforVC" bundle:[NSBundle mainBundle]];
+                set.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:set animated:YES];
+                
+            }
+            if (tag==2) {//收货地址
+                YKAddressVC *address = [YKAddressVC new];
+                address.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:address animated:YES];
+            }
+            if (tag==3) {//常见问题
+                YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
+                normal.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:normal animated:YES];
+            }
+            if (tag==4) {//联系客服
+                if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
+                    NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+                    NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+                    if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+                        /// 大于等于10.0系统使用此openURL方法
+                        if (@available(iOS 10.0, *)) {
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                    } else {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+                    }
+                    return;
+                }
+                UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+                alertview.delegate = self;
+                [alertview show];
+            }
+            if (tag==5) {//设置
+                YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
+                set.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:set animated:YES];
+            }
+            
         
-    }
+    };
+    return cell;
 }
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==0) {//取消
