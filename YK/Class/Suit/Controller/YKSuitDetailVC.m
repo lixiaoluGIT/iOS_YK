@@ -76,7 +76,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Regular(17);
+    title.font = PingFangSC_Semibold(20);
     
     self.navigationItem.titleView = title;
     
@@ -168,7 +168,7 @@
     if (indexPath.row==0) {
         return 64;
     }
-    return 140;
+    return 152;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -49,7 +49,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Regular(17);
+    title.font = PingFangSC_Semibold(20);
     
     self.navigationItem.titleView = title;
     [NC addObserver:self selector:@selector(alipayResultCurrent:) name:@"alipayres" object:nil];

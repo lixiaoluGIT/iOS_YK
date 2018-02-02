@@ -114,7 +114,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Regular(17);
+    title.font = PingFangSC_Semibold(20);
     self.navigationItem.titleView = title;
     
     
@@ -168,7 +168,7 @@
     UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(3, 20, 44, 44);
     btn1.adjustsImageWhenHighlighted = NO;
-    [btn1 setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [btn1 setImage:[UIImage imageNamed:@"newback"] forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
     

@@ -7,6 +7,8 @@
 //
 
 #import "YKLoginVC.h"
+#import "WXApi.h"
+
 
 @interface YKLoginVC ()<UITextFieldDelegate>{
     NSTimer *timer;
@@ -37,10 +39,27 @@ NSInteger timeNum;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [_QQLoginBtn setHidden:YES];
+    [_WXLoginBtn setHidden:YES];
     
-    //TODO:
-//    [_QQLoginBtn setHidden:YES];
-//    [_WXLoginBtn setHidden:YES];
+    if ([WXApi isWXAppInstalled]) {
+        [_WXLoginBtn setHidden:NO];
+        if (![TencentOAuth iphoneQQInstalled]) {
+            [_QQLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.view.mas_centerX);
+            }];
+        }
+    }
+    if ([TencentOAuth iphoneQQInstalled]) {
+        [_QQLoginBtn setHidden:NO];
+        if (![WXApi isWXAppInstalled]) {
+            [_WXLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.view.mas_centerX);
+            }];
+        }
+    }
+  
     
     [self setAutoLayoutMargin];
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;

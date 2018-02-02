@@ -246,8 +246,8 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOX-ZO-tOU">
-                            <rect key="frame" x="79" y="333" width="20" height="22"/>
-                            <state key="normal" image="weixuanzhong"/>
+                            <rect key="frame" x="87" y="333" width="12" height="22"/>
+                            <state key="normal" image="weixuanzhong-1"/>
                             <state key="selected" image="xuanzhong-1"/>
                             <connections>
                                 <action selector="agree:" destination="-1" eventType="touchUpInside" id="lQ3-yH-95h"/>
@@ -278,16 +278,6 @@
                                 <action selector="yajinshuoming:" destination="-1" eventType="touchUpInside" id="wRN-Rv-YnU"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBU-Jl-X9q">
-                            <rect key="frame" x="76" y="320" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="7BD-gY-m2G"/>
-                                <constraint firstAttribute="width" constant="50" id="jKP-bU-jtz"/>
-                            </constraints>
-                            <connections>
-                                <action selector="agree:" destination="-1" eventType="touchUpInside" id="N8T-RL-pvv"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="108-Pn-ONB">
                             <rect key="frame" x="156" y="320" width="50" height="50"/>
                             <constraints>
@@ -296,6 +286,16 @@
                             </constraints>
                             <connections>
                                 <action selector="yonghuxieyi:" destination="-1" eventType="touchUpInside" id="4iF-Dk-ERl"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBU-Jl-X9q">
+                            <rect key="frame" x="76" y="320" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="7BD-gY-m2G"/>
+                                <constraint firstAttribute="width" constant="50" id="jKP-bU-jtz"/>
+                            </constraints>
+                            <connections>
+                                <action selector="agree:" destination="-1" eventType="touchUpInside" id="N8T-RL-pvv"/>
                             </connections>
                         </button>
                     </subviews>
@@ -453,7 +453,7 @@
     <resources>
         <image name="guanbi" width="14" height="14"/>
         <image name="weixuan" width="18" height="18"/>
-        <image name="weixuanzhong" width="20" height="20"/>
+        <image name="weixuanzhong-1" width="12" height="12"/>
         <image name="xuanzhong" width="20" height="20"/>
         <image name="xuanzhong-1" width="12" height="12"/>
     </resources>

@@ -116,7 +116,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     
     //添加返回按钮
     if (_isFromeProduct) {
@@ -143,7 +143,7 @@
         title.text = @"衣袋";
         title.textAlignment = NSTextAlignmentCenter;
         title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-        title.font = PingFangSC_Regular(17);
+        title.font = PingFangSC_Semibold(20);
         self.navigationItem.titleView = title;
     }
     //添加编辑按钮

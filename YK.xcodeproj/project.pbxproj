@@ -291,6 +291,7 @@
 		C5343C971FC6A87900F5132A /* CBSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5343C951FC6A87800F5132A /* CBSegmentView.m */; };
 		C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECCE1FEB923E003BB993 /* libsqlite3.tbd */; };
 		C536298420089C9200CA1F8B /* YKCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C536298320089C9200CA1F8B /* YKCacheManager.m */; };
+		C54301FA2024495C006F84E0 /* 红.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54301F92024495C006F84E0 /* 红.jpg */; };
 		C54350AB200F3E1A00B5732D /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54350AA200F3E1A00B5732D /* TencentOpenAPI.framework */; };
 		C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F851FE27472000EAF8E /* YKMessageManager.m */; };
 		C54B8F891FE275BC000EAF8E /* YKMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F881FE275BC000EAF8E /* YKMessageVC.m */; };
@@ -338,7 +339,6 @@
 		C5B2C6CD201B236300688E77 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2C6CC201B236300688E77 /* UMCommon.framework */; };
 		C5B2C6D6201B387F00688E77 /* newka.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D4201B387F00688E77 /* newka.png */; };
 		C5B2C6D7201B387F00688E77 /* newka@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D5201B387F00688E77 /* newka@3x.png */; };
-		C5C0F5921FF2309700A2000A /* 红.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C0F5911FF2309600A2000A /* 红.jpg */; };
 		C5D981642021ACE40099D36A /* YKMyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D981632021ACE40099D36A /* YKMyHeaderView.m */; };
 		C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84AC2005AB00002A12E3 /* YKAboutView.m */; };
 		C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */; };
@@ -987,6 +987,7 @@
 		C534ECD61FEB9311003BB993 /* YK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YK.entitlements; sourceTree = "<group>"; };
 		C536298220089C9200CA1F8B /* YKCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCacheManager.h; sourceTree = "<group>"; };
 		C536298320089C9200CA1F8B /* YKCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCacheManager.m; sourceTree = "<group>"; };
+		C54301F92024495C006F84E0 /* 红.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "红.jpg"; sourceTree = "<group>"; };
 		C54350AA200F3E1A00B5732D /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		C54B8F841FE27472000EAF8E /* YKMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMessageManager.h; sourceTree = "<group>"; };
 		C54B8F851FE27472000EAF8E /* YKMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMessageManager.m; sourceTree = "<group>"; };
@@ -1059,7 +1060,6 @@
 		C5B2C6CC201B236300688E77 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		C5B2C6D4201B387F00688E77 /* newka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newka.png; sourceTree = "<group>"; };
 		C5B2C6D5201B387F00688E77 /* newka@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newka@3x.png"; sourceTree = "<group>"; };
-		C5C0F5911FF2309600A2000A /* 红.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "红.jpg"; sourceTree = "<group>"; };
 		C5D981622021ACE40099D36A /* YKMyHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMyHeaderView.h; sourceTree = "<group>"; };
 		C5D981632021ACE40099D36A /* YKMyHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMyHeaderView.m; sourceTree = "<group>"; };
 		C5DA84AB2005AB00002A12E3 /* YKAboutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAboutView.h; sourceTree = "<group>"; };
@@ -1715,6 +1715,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C54301F92024495C006F84E0 /* 红.jpg */,
 				C5016FF42022E73200E22301 /* 风景.jpg */,
 				C5016FF22022CEC500E22301 /* 春节.jpg */,
 				C571B50D2020155C007AB5B8 /* sss.gif */,
@@ -1724,7 +1725,6 @@
 				C5B2C6D5201B387F00688E77 /* newka@3x.png */,
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C525DEB61FBEADB1002802AE /* region.json */,
-				C5C0F5911FF2309600A2000A /* 红.jpg */,
 				C52D0F9D1FC6C43D00B50258 /* liutao.jpg */,
 				C55D491B1FC2EDF8000D2056 /* 白.png */,
 				C55D491C1FC2EDF8000D2056 /* 主题红.png */,
@@ -2701,9 +2701,9 @@
 				C52D04721FE8EA9000633550 /* cat@2x.png in Resources */,
 				C53039FC1FCEA97100FB12CE /* YKChongZhiBtn.xib in Resources */,
 				C52D0FA91FC6D5FC00B50258 /* YKWalletButtom.xib in Resources */,
+				C54301FA2024495C006F84E0 /* 红.jpg in Resources */,
 				C525DE9D1FBD7FA5002802AE /* YKAddAddressCell.xib in Resources */,
 				C59D47511FF4D750002208BF /* README.txt in Resources */,
-				C5C0F5921FF2309700A2000A /* 红.jpg in Resources */,
 				C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */,
 				C5016FF12022B77800E22301 /* YKMineCategoryCell.xib in Resources */,
 				C525DD631FBAB2A8002802AE /* README.md in Resources */,

@@ -29,8 +29,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    CGFloat margin = 45*WIDHT/414;
-    CGFloat gap = 65*WIDHT/414;
+    CGFloat margin = 46*WIDHT/414;
+    CGFloat gap = 74*WIDHT/414;
     self.Leftmargin.constant = margin;
     self.TightMargin.constant = margin;
     self.gap1.constant = gap;

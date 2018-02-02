@@ -42,7 +42,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Regular(17);
+    title.font = PingFangSC_Semibold(20);
     
     _aboutUSView = [[NSBundle mainBundle] loadNibNamed:@"YKAboutView" owner:self options:nil][0];
     _aboutUSView.selectionStyle = UITableViewCellSelectionStyleNone;

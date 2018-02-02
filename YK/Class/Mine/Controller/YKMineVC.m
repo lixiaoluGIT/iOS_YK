@@ -209,9 +209,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return 132*WIDHT/414;
+        return 106*WIDHT/414;
     }
-    return WIDHT/3*2;
+    return WIDHT/3*2*108/124;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

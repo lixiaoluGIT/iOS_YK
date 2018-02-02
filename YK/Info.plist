@@ -70,7 +70,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.4</string>
+	<string>1.0.5</string>
 	<key>Get Info stringLaunch screen interface file base name</key>
 	<string>LaunchScreen</string>
 	<key>LSApplicationCategoryType</key>
@@ -124,11 +124,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许此App使用你的相机？</string>
+	<string>是否允许此App使用您的相机来上传您的头像？</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>location obtain</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许此App访问你的媒体资料库？</string>
+	<string>是否允许此App访问你的媒体资料库来上传你的头像？</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

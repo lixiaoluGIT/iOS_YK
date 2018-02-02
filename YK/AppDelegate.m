@@ -126,7 +126,6 @@
     /* 设置微信的appKey和appSecret */
 //    [UMSocialWechatHandler setWXAppId:@"wxb4188a08e56b21a0" appSecret:@"h6JQEGRXMPjsA3aydxEXAzyAujzzDZNp" url:@"http://www.umeng.com/social"];
    
-    [WXApi isWXAppInstalled];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx51c59dc22885c8a8" appSecret:@"52f78604f4aba5a7f3979cdc02846dd3" redirectURL:@"http://mobile.umeng.com/social"];
     
     [[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];

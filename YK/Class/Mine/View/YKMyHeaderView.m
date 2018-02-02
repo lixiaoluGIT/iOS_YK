@@ -33,8 +33,8 @@
     [self addSubview:_headPho];
     
     _name=[[UILabel alloc]initWithFrame:CGRectMake(WIDHT /2-100, 160,200, 20)];
-    _name.font=[UIFont systemFontOfSize:20];
-    _name.textColor=[UIColor whiteColor];
+    _name.font = PingFangSC_Semibold(20);
+    _name.textColor = mainColor;
     _name.textAlignment=1;
     [self addSubview:_name];
 

@@ -71,21 +71,21 @@
             </connections>
             <point key="canvasLocation" x="98" y="85"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="219" id="UNs-Jz-Ly8" customClass="YKReturnAddressView">
-            <rect key="frame" x="0.0" y="0.0" width="428" height="219"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="379" id="UNs-Jz-Ly8" customClass="YKReturnAddressView">
+            <rect key="frame" x="0.0" y="0.0" width="471" height="379"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UNs-Jz-Ly8" id="5la-7r-PLw">
-                <rect key="frame" x="0.0" y="0.0" width="428" height="218.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="471" height="378.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="圆通快递人员将会和您联系确认取件信息" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3s-MW-W2c">
-                        <rect key="frame" x="85" y="61" width="258" height="17"/>
+                        <rect key="frame" x="106.5" y="61" width="258" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTB-OA-hRJ">
-                        <rect key="frame" x="0.0" y="11" width="428" height="10"/>
+                        <rect key="frame" x="0.0" y="11" width="471" height="10"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="WlD-dr-OK6"/>
@@ -95,20 +95,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请保持电话畅通" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChB-Wl-npw">
-                        <rect key="frame" x="164" y="90" width="100" height="17"/>
+                        <rect key="frame" x="185.5" y="90" width="100" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.4039215686" green="0.40784313729999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="常见问题" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5Q-hH-wel">
-                        <rect key="frame" x="185" y="147" width="58" height="17"/>
+                        <rect key="frame" x="206.5" y="147" width="58" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="question" translatesAutoresizingMaskIntoConstraints="NO" id="dl2-5Q-jSw">
-                        <rect key="frame" x="165" y="147.5" width="16" height="16"/>
+                        <rect key="frame" x="176.5" y="142.5" width="26" height="26"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJw-GJ-N4p">
+                        <rect key="frame" x="26" y="214" width="419" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="x3s-MW-W2c" firstAttribute="centerX" secondItem="5la-7r-PLw" secondAttribute="centerX" id="9bf-os-toE"/>
@@ -116,19 +122,23 @@
                     <constraint firstItem="LTB-OA-hRJ" firstAttribute="top" secondItem="5la-7r-PLw" secondAttribute="top" constant="11" id="Jxj-J6-TmA"/>
                     <constraint firstItem="LTB-OA-hRJ" firstAttribute="centerX" secondItem="5la-7r-PLw" secondAttribute="centerX" id="Q9u-ov-R91"/>
                     <constraint firstItem="LTB-OA-hRJ" firstAttribute="width" secondItem="5la-7r-PLw" secondAttribute="width" id="Ts0-hp-X2f"/>
+                    <constraint firstItem="yJw-GJ-N4p" firstAttribute="centerX" secondItem="5la-7r-PLw" secondAttribute="centerX" id="Vg7-8q-gV1"/>
+                    <constraint firstAttribute="trailing" secondItem="yJw-GJ-N4p" secondAttribute="trailing" constant="26" id="Vqv-xh-GYu"/>
                     <constraint firstItem="ChB-Wl-npw" firstAttribute="centerX" secondItem="x3s-MW-W2c" secondAttribute="centerX" id="aFZ-Ml-0eI"/>
                     <constraint firstItem="B5Q-hH-wel" firstAttribute="leading" secondItem="dl2-5Q-jSw" secondAttribute="trailing" constant="4" id="f5P-22-2uQ"/>
                     <constraint firstItem="B5Q-hH-wel" firstAttribute="top" secondItem="ChB-Wl-npw" secondAttribute="bottom" constant="40" id="kxD-KG-Xfa"/>
                     <constraint firstItem="dl2-5Q-jSw" firstAttribute="centerY" secondItem="B5Q-hH-wel" secondAttribute="centerY" id="mMj-UW-cDW"/>
+                    <constraint firstItem="yJw-GJ-N4p" firstAttribute="top" secondItem="B5Q-hH-wel" secondAttribute="bottom" constant="50" id="oUJ-i8-GIe"/>
+                    <constraint firstItem="yJw-GJ-N4p" firstAttribute="leading" secondItem="5la-7r-PLw" secondAttribute="leading" constant="26" id="rrx-vY-z25"/>
                     <constraint firstItem="B5Q-hH-wel" firstAttribute="centerX" secondItem="ChB-Wl-npw" secondAttribute="centerX" id="xv4-Ve-z0m"/>
                     <constraint firstItem="ChB-Wl-npw" firstAttribute="top" secondItem="x3s-MW-W2c" secondAttribute="bottom" constant="12" id="y8p-cC-xfB"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="98" y="313"/>
+            <point key="canvasLocation" x="119.5" y="392.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="question" width="16" height="16"/>
+        <image name="question" width="26" height="26"/>
         <image name="right" width="6" height="12"/>
     </resources>
 </document>

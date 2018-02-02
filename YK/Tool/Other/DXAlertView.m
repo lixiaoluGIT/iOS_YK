@@ -51,16 +51,16 @@
             self.titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 16, AlertView_W, DXATitle_H)];
             self.titleLab.text=title;
             self.titleLab.textAlignment=NSTextAlignmentCenter;
-            self.titleLab.textColor=[UIColor colorWithHexString:@"1a1a1a"];
-            self.titleLab.font=FONT_17;
+            self.titleLab.textColor=mainColor;
+            self.titleLab.font = PingFangSC_Semibold(17);
         }
         
         CGFloat messageLabSpace = 15;
         self.messageLab=[[UILabel alloc] init];
         self.messageLab.backgroundColor=[UIColor whiteColor];
         self.messageLab.text=message;
-        self.messageLab.textColor=[UIColor colorWithHexString:@"afafaf"];
-        self.messageLab.font=FONT_15;
+        self.messageLab.textColor=mainColor;
+        self.messageLab.font=PingFangSC_Regular(15);
         self.messageLab.numberOfLines=0;
         self.messageLab.textAlignment=NSTextAlignmentCenter;
         self.messageLab.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -72,12 +72,12 @@
         
         if (cancelTitle) {
             self.cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [self.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            [self.cancelBtn setTitleColor:mainColor forState:UIControlStateNormal];
             [self.cancelBtn setTitle:cancelTitle forState:UIControlStateNormal];
             self.cancelBtn.titleLabel.font=FONT_15;
             self.cancelBtn.layer.cornerRadius=3;
             self.cancelBtn.layer.masksToBounds=YES;
-            self.cancelBtn.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+            self.cancelBtn.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
             [self.cancelBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
             [self.alertview addSubview:self.cancelBtn];
         }

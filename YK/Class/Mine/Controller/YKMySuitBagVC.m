@@ -44,7 +44,10 @@
         [self searchOrders:102];
     }];
 }
-
+- (void)alert{
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"问题解决" message:@"如果遇到特殊情况无法预约或预约出现问题，需要您主动联系快递上门取件(快递费由衣库平台承担)。收件地址：山东省 青州市 丰收二路 衣库仓储中心,收件人信息：衣库APP,收件人联系方式：182 6441 1625" cancelBtnTitle:@"取消" otherBtnTitle:@"确定"];
+   [alertView show];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[YKOrderManager sharedManager]clear];
@@ -68,6 +71,15 @@
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
     
+    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    releaseButton.frame = CGRectMake(0, 25, 25, 25);
+    [releaseButton setBackgroundImage:[UIImage imageNamed:@"question-1"] forState:UIControlStateNormal];
+    [releaseButton addTarget:self action:@selector(alert) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
+    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -8;
+    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
     
     //TODO:测试用,记得注释掉
     //
