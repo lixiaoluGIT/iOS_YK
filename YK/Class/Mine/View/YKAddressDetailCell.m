@@ -7,7 +7,7 @@
 //
 
 #import "YKAddressDetailCell.h"
-@interface YKAddressDetailCell()
+@interface YKAddressDetailCell()<DXAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *phone;
@@ -75,12 +75,19 @@
 }
 
 - (void)toDelete{
-    
-    [[YKAddressManager sharedManager]deleteAddressWithAddress:self.address OnResponse:^(NSDictionary *dic) {
-        if (self.deleteBlock) {
-            self.deleteBlock();
-        }
-    }];
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"确定要删除此地址吗?" cancelBtnTitle:@"取消" otherBtnTitle:@"确定"];
+    alertView.delegate = self;
+    [alertView show];
+}
+
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[YKAddressManager sharedManager]deleteAddressWithAddress:self.address OnResponse:^(NSDictionary *dic) {
+            if (self.deleteBlock) {
+                self.deleteBlock();
+            }
+        }];
+    }
     
 }
 

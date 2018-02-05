@@ -105,7 +105,7 @@
     
     //待签收:包括待配货,待发货和待签收>>>查询3待签收,先查看1待配货 2,待发货
     if (status==3) {
-        //         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+                 [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
         NSInteger s = 1;
         NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
         [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {

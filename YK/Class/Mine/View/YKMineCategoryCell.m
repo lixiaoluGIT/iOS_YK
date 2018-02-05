@@ -13,7 +13,7 @@
 - (void)setUpUITitleArray:(NSArray *)title ImageArray:(NSArray *)imageArray{
    
     CGFloat h = WIDHT/3*108/124;
-    CGFloat gap = 26*WIDHT/375;
+    
     
     for (int i=0; i<6; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
