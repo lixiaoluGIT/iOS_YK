@@ -173,8 +173,6 @@
 		C525DEB71FBEADB1002802AE /* region.json in Resources */ = {isa = PBXBuildFile; fileRef = C525DEB61FBEADB1002802AE /* region.json */; };
 		C525DEBB1FBEADC7002802AE /* YQAlertTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DEB81FBEADC6002802AE /* YQAlertTableViewCell.m */; };
 		C525DEBC1FBEADC7002802AE /* YQAlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C525DEB91FBEADC6002802AE /* YQAlertTableViewCell.xib */; };
-		C525DEC01FBEAE21002802AE /* YQAlertTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C525DEBD1FBEAE20002802AE /* YQAlertTableViewController.xib */; };
-		C525DEC11FBEAE21002802AE /* YQAlertTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DEBE1FBEAE20002802AE /* YQAlertTableViewController.m */; };
 		C525DED01FC278C7002802AE /* province_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = C525DEC61FC278C7002802AE /* province_data.xml */; };
 		C525DED11FC278C7002802AE /* MOFSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DEC71FC278C7002802AE /* MOFSDatePicker.m */; };
 		C525DED21FC278C7002802AE /* MOFSPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C525DECA1FC278C7002802AE /* MOFSPickerManager.m */; };
@@ -692,9 +690,6 @@
 		C525DEB81FBEADC6002802AE /* YQAlertTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQAlertTableViewCell.m; sourceTree = "<group>"; };
 		C525DEB91FBEADC6002802AE /* YQAlertTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YQAlertTableViewCell.xib; sourceTree = "<group>"; };
 		C525DEBA1FBEADC6002802AE /* YQAlertTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQAlertTableViewCell.h; sourceTree = "<group>"; };
-		C525DEBD1FBEAE20002802AE /* YQAlertTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YQAlertTableViewController.xib; sourceTree = "<group>"; };
-		C525DEBE1FBEAE20002802AE /* YQAlertTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQAlertTableViewController.m; sourceTree = "<group>"; };
-		C525DEBF1FBEAE21002802AE /* YQAlertTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQAlertTableViewController.h; sourceTree = "<group>"; };
 		C525DEC31FC278C7002802AE /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		C525DEC41FC278C7002802AE /* MOFSPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSPickerView.h; sourceTree = "<group>"; };
 		C525DEC51FC278C7002802AE /* MOFSPickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFSPickerManager.h; sourceTree = "<group>"; };
@@ -1430,9 +1425,6 @@
 				C525DEA71FBD9144002802AE /* YKAddressVC.m */,
 				C525DEB31FBDA023002802AE /* YKEditAddressVC.h */,
 				C525DEB41FBDA023002802AE /* YKEditAddressVC.m */,
-				C525DEBF1FBEAE21002802AE /* YQAlertTableViewController.h */,
-				C525DEBE1FBEAE20002802AE /* YQAlertTableViewController.m */,
-				C525DEBD1FBEAE20002802AE /* YQAlertTableViewController.xib */,
 				C55D49181FC2EAB6000D2056 /* YKMySuitBagVC.h */,
 				C55D49191FC2EAB6000D2056 /* YKMySuitBagVC.m */,
 				C5343C721FC526BF00F5132A /* YKNormalQuestionVC.h */,
@@ -2702,7 +2694,6 @@
 				C59D47561FF4D750002208BF /* UMSocialSDKResources.bundle in Resources */,
 				C525DE981FBD59CA002802AE /* YKMineBagCell.xib in Resources */,
 				C525DD9B1FBAB2A9002802AE /* MLEmoji_Expression.plist in Resources */,
-				C525DEC01FBEAE21002802AE /* YQAlertTableViewController.xib in Resources */,
 				C5FECDE51FC2860400D299AE /* YKSuccessVC.xib in Resources */,
 				C525DEB21FBD9FEE002802AE /* YKEditAddressView.xib in Resources */,
 				C5E46EAE1FFE3FF2002453EB /* YKShareSuccessView.xib in Resources */,
@@ -2797,7 +2788,6 @@
 				C525DE221FBAD659002802AE /* YKScrollBtnView.m in Sources */,
 				C525DE021FBABBD1002802AE /* YKSuitVC.m in Sources */,
 				C525DDA31FBAB2A9002802AE /* NSAttributedString+MLLabel.m in Sources */,
-				C525DEC11FBEAE21002802AE /* YQAlertTableViewController.m in Sources */,
 				C52D047C1FE8F8A400633550 /* YKAleartView.m in Sources */,
 				C525DDBF1FBAB2A9002802AE /* UIImageView+HighlightedWebCache.m in Sources */,
 				C525DE091FBABE69002802AE /* CGQCollectionViewCell.m in Sources */,

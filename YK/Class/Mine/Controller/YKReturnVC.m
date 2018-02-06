@@ -260,7 +260,6 @@
 {
     _timeStr = [NSString stringWithFormat:@"%@!%@",dateStr,hourStr];
     [tableView reloadData];
-    NSLog(@"%@-%@",dateStr,hourStr);
 }
 
 @end
