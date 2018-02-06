@@ -174,7 +174,7 @@
     
     WeakSelf(weakSelf)
     YKProductDetailButtom *buttom=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailButtom" owner:self options:nil][0];
-    buttom.frame = CGRectMake(0,HEIGHT-50,WIDHT, 50);
+    buttom.frame = CGRectMake(0,HEIGHT-50,WIDHT, 51);
     buttom.AddToCartBlock = ^(void){//添加到购物车
         [weakSelf addTOCart];
     };

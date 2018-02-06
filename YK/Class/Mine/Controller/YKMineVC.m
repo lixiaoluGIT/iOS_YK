@@ -8,7 +8,7 @@
 
 #import "YKMineVC.h"
 #import "YKSuitCell.h"
-#import "YKMineheader.h"
+
 #import "YKMineCell.h"
 #import "YKMineBagCell.h"
 #import "YKMySuitBagVC.h"
@@ -118,66 +118,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    WeakSelf(weakSelf)
-//    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-//    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) style:UITableViewStylePlain];
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
-//    self.tableView.estimatedRowHeight = 140;
-//    [self.view addSubview:self.tableView];
-//    self.tableView.backgroundColor = [UIColor clearColor];
-//    self.tableView.backgroundColor = [UIColor whiteColor];
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+
     
     [self.view addSubview:[self imageview]];
     [self.view addSubview:self.tableView];
     [self addHeadView];
-//    head = [[NSBundle mainBundle] loadNibNamed:@"YKMineheader" owner:self options:nil][0];
-//    head.frame = CGRectMake(0, 0, self.view.frame.size.width, WIDHT/3*2);
-//    head.VIPClickBlock = ^(NSInteger VIPStatus){
-//        if (VIPStatus==1) {//使用中
-//            YKWalletVC *wallet = [YKWalletVC new];
-//            wallet.hidesBottomBarWhenPushed = YES;
-//            [weakSelf.navigationController pushViewController:wallet animated:YES];
-//        }
-//        if (VIPStatus==2) {//已过期,充值会员
-//            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//            //            [weakSelf presentViewController:nav animated:YES completion:NULL];
-//            [weakSelf presentViewController:nav animated:YES completion:^{
-//
-//            }];
-//        }
-//        if (VIPStatus==3) {//无押金,充押金
-//            YKDepositVC *deposit = [YKDepositVC new];
-//            deposit.hidesBottomBarWhenPushed = YES;
-//            deposit.validityStatus = 0;//未交押金
-//            [weakSelf.navigationController pushViewController:deposit animated:YES];
-//        }
-//        if (VIPStatus==4) {//未开通
-//            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-////            [weakSelf presentViewController:nav animated:YES completion:NULL];
-//            [weakSelf presentViewController:nav animated:YES completion:^{
-//
-//            }];
-//        }
-//    }
-//    ;
-//    head.viewClickBlock = ^(){
-//        if ([Token length] == 0) {
-//            [weakSelf Login];
-//            return ;
-//        }else {
-//            YKEditInforVC *set = [[YKEditInforVC alloc]initWithNibName:@"YKEditInforVC" bundle:[NSBundle mainBundle]];
-//            set.hidesBottomBarWhenPushed = YES;
-//            [weakSelf.navigationController pushViewController:set animated:YES];
-//        }
-//
-//
-//    };
-//    self.tableView.tableHeaderView = head;
+
     
     self.images = [NSArray array];
     self.images = @[@"qianbao",@"gerenziliao",@"address",@"question",@"kefu-1",@"setting"];
@@ -244,14 +191,6 @@
         return bagCell;
     }
     
-//    static NSString *ID = @"cell";
-//    YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
-//    if (mycell == nil) {
-//        mycell = [[NSBundle mainBundle] loadNibNamed:@"YKMineCell" owner:self options:nil][0];
-//        mycell.title.text = [NSString stringWithFormat:@"%@",self.titles[indexPath.row]];
-//        mycell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
-//    }
-//    mycell.selectionStyle = UITableViewCellSelectionStyleNone;
     static NSString *identifer = @"cell";
     YKMineCategoryCell *cell = [[YKMineCategoryCell alloc]init];
     if (!cell) {

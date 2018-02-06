@@ -15,8 +15,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.addBtn.layer.masksToBounds = YES;
-    self.addBtn.layer.cornerRadius = self.addBtn.frame.size.height/2;
+//    self.addBtn.layer.masksToBounds = YES;
+//    self.addBtn.layer.cornerRadius = self.addBtn.frame.size.height/2;
     [self.addBtn setUserInteractionEnabled:NO];
 }
 

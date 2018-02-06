@@ -17,7 +17,7 @@
 #import "YKSuitEnsureCell.h"
 #import "YKToBeVIPVC.h"
 
-@interface YKSuitDetailVC ()<UITableViewDelegate,UITableViewDataSource>{
+@interface YKSuitDetailVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>{
     BOOL isHadDefaultAddress;
 }
 @property (nonatomic,strong)UITableView *tableView;
@@ -100,7 +100,7 @@
     }
     [buttom setTitle:@"提交订单" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buttom.titleLabel.font = PingFangSC_Regular(14);
+    buttom.titleLabel.font = PingFangSC_Semibold(16);
     buttom.backgroundColor = mainColor;
     [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];
@@ -112,17 +112,34 @@
         [smartHUD alertText:self.view alert:@"请添加收货地址" delay:1.2];
         return;
     }
+    //春节期间物流提示(2月13----2月23)
+    if ([steyHelper validateWithStartTime:@"2018-02-13" withExpireTime:@"2018-02-23"]) {
+        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"小仙女，快递小哥回家过年了，现在下单23号以后才可以正常发货哦!" cancelBtnTitle:@"取消" otherBtnTitle:@"继续确认"];
+        alertView.delegate = self;
+        [alertView show];
+        return;
+    }
+    
+    [self order];
+}
+
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [self order];
+    }
+    
+}
+- (void)order{
     //提交订单
     [[YKOrderManager sharedManager]releaseOrderWithAddress:self.addressM shoppingCartIdList:[YKSuitManager sharedManager].suitArray OnResponse:^(NSDictionary *dic) {
         NSInteger status = [dic[@"status"] intValue];
         if (status==438) {
             YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-            //            [weakSelf presentViewController:nav animated:YES completion:NULL];
             [self presentViewController:nav animated:YES completion:^{
                 
             }];
-                return ;
+            return ;
         }
         if (status==200) {
             YKSuccessVC *success = [[YKSuccessVC alloc]initWithNibName:@"YKSuccessVC" bundle:[NSBundle mainBundle]];
@@ -130,10 +147,9 @@
             return;
         }
         [smartHUD alertText:self.view alert:dic[@"msg"] delay:1.2];
-       
-        }];
+        
+    }];
 }
-
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }

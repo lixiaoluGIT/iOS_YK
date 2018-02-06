@@ -211,7 +211,7 @@
 //        if (_timer) {
 //            return;
 //        }
-        _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(roll) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(roll) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     }
 }

@@ -31,14 +31,6 @@
 @end
 @implementation YKSuitCell
 
-//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-//    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-//        self.selectionStyle = UITableViewCellSelectionStyleNone;
-//        [self setupUI];
-//    }
-//    return self;
-//}
-
 - (void)awakeFromNib{
     [super awakeFromNib];
     [self setupUI];
@@ -135,11 +127,11 @@
     UIButton *btn = (UIButton *)sender;
     
     if ([YKSuitManager sharedManager].suitAccount>=3&&btn.selected==NO) {
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"一次最多选三件" delay:1.2];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"亲,一次最多选购三件哦" delay:2];
         return;
     }
     if ([self.suitStatus isEqualToString:@"0"]) {
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"该商品暂缺" delay:1.2];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"该宝贝被抢光了,下次记得早点哦" delay:2];
         return;
     }
     

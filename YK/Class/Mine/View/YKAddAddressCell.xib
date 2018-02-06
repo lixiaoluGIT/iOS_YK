@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCG-4S-3zn">
-                        <rect key="frame" x="26" y="21.5" width="338" height="49.5"/>
+                        <rect key="frame" x="0.0" y="21.5" width="390" height="49.5"/>
                         <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="49.5" id="2IQ-3l-gum"/>
@@ -30,10 +30,11 @@
                         </state>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="0.0" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="BCG-4S-3zn" secondAttribute="trailing" constant="26" id="CnW-Ta-Cev"/>
+                    <constraint firstAttribute="trailing" secondItem="BCG-4S-3zn" secondAttribute="trailing" id="CnW-Ta-Cev"/>
                     <constraint firstItem="BCG-4S-3zn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bIp-4H-Se2"/>
-                    <constraint firstItem="BCG-4S-3zn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="26" id="gHh-d3-iye"/>
+                    <constraint firstItem="BCG-4S-3zn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gHh-d3-iye"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

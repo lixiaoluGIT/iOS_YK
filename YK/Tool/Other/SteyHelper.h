@@ -37,4 +37,6 @@
 +(NSInteger)pianchaToNow:(NSDate *)lastDate;
 
 + (NSString*) mk_urlEncodedString;
+//判断时间在某个时间段内
++ (BOOL)validateWithStartTime:(NSString *)startTime withExpireTime:(NSString *)expireTime;
 @end

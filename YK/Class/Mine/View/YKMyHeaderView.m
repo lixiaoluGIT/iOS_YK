@@ -46,7 +46,7 @@
     _vipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, WIDHT/1.5-40, WIDHT, 40)];
     _vipLabel.text = @"您还不是会员,立即加入!  >>";
     _vipLabel.textColor = [UIColor colorWithHexString:@"FDDD55"];
-    _vipLabel.font = [UIFont systemFontOfSize:14];
+    _vipLabel.font = PingFangSC_Semibold(16);
     [self addSubview:_vipLabel];
     _vipLabel.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
     _vipLabel.textAlignment = NSTextAlignmentCenter;

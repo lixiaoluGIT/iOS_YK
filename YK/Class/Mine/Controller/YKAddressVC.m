@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     self.title = @"收货地址";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -50,7 +50,7 @@
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.font = PingFangSC_Semibold(20);
     self.navigationItem.titleView = title;
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(24, 0, WIDHT-48, HEIGHT) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;
@@ -74,13 +74,16 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return CGFLOAT_MIN;
+    if (section!=self.addressArray.count) {
+        return 24;
+    }
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section!=self.addressArray.count) {
-        return 10;
-    }
+//    if (section!=self.addressArray.count) {
+//        return 24;
+//    }
     return CGFLOAT_MIN;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -90,12 +93,12 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [UIView new];
-    view.backgroundColor = [UIColor blackColor];
+    view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==self.addressArray.count) {
-        return 140;
+        return 50;
     }
     return 150;
 }

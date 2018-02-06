@@ -187,7 +187,7 @@
     }
     [_btn setTitle:@"确认衣袋" forState:UIControlStateNormal];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _btn.titleLabel.font = PingFangSC_Regular(16);
+    _btn.titleLabel.font = PingFangSC_Semibold(16);
     _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
     [_btn addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btn];

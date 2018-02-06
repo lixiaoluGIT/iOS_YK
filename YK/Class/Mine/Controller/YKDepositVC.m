@@ -161,10 +161,7 @@
         //申请退押金
         [[YKPayManager sharedManager]refondDepositOnResponse:^(NSDictionary *dic) {
             [self.navigationController popViewControllerAnimated:YES];
-//            [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
-//                _validityStatus = [[YKUserManager sharedManager].user.depositEffective intValue];
-//                        [self getData];
-//                }];
+
         }];
     } ensureBlock:^{
         
