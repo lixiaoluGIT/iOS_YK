@@ -11,4 +11,5 @@
 @interface YKAleartView : UIView
 
 - (void)showWithtitle:(NSString *)title notitle:(NSString *)notitle yestitle:(NSString *)yestitle cancelBlock:(void (^)(void))cancelBlock ensureBlock:(void (^)(void))ensureBlock;
+
 @end

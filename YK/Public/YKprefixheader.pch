@@ -45,10 +45,10 @@
 #define backColor [UIColor colorWithHexString:@"dddddd"]
 
 /*----------------------------字体--------------------------------*/
-
 #define PingFangTC_Light(fontSize)  [UIFont fontWithName:@"PingFangTC-Light" size:(fontSize)];
 #define PingFangSC_Semibold(fontSize)  [UIFont fontWithName:@"PingFangSC-Semibold" size:(fontSize)];
 #define PingFangSC_Regular(fontSize)  [UIFont fontWithName:@"PingFangSC-Regular" size:(fontSize)];
+
 /*----------------------------宽高--------------------------------*/
 #define WIDHT  [[UIScreen mainScreen]bounds].size.width
 #define HEIGHT  [[UIScreen mainScreen]bounds].size.height
@@ -145,7 +145,6 @@
 #define isHadOrderReceiveOrder_Url @"/yt/getYTTrackResult"
 //生成顺风定单
 #define creatSFOrder_Url @"/sf/creatSFOrder"
-
 
 /*----------------------------支付模块--------------------------------*/
 //支付宝回调接口

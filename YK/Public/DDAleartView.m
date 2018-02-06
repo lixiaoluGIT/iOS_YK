@@ -206,30 +206,13 @@
         self.aleartView.frame = rect;
         self.aleartView.center = self.center;
     }completion:^(BOOL finished) {
-        
-//        [UIView animateWithDuration:0.2 animations:^{
-//            CGRect rect;
-//            rect.size.height = 420;
-//            rect.size.width = w-90*WIDHT/414;
-//            self.aleartView.frame = rect;
-//            self.aleartView.center = self.center;
-//        }completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.1 animations:^{
-//                CGRect rect;
-//                rect.size.height = 400;
-//                rect.size.width = w-100*WIDHT/414;
-//                self.aleartView.frame = rect;
-//                self.aleartView.center = self.center;
-//            }];
-//        }];
+
     }];
 }
 - (void)dissmiss{
-    //[UIView animateWithDuration:0.3 animations:^{
-      //  self.aleartView.frame = CGRectMake(20,self.frame.size.height, self.frame.size.width-40, 230);
-    //}completion:^(BOOL finished) {
+ 
         [self removeFromSuperview];
-    //}];
+  
 }
 @end
 

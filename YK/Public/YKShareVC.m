@@ -94,7 +94,7 @@
     [[UIApplication sharedApplication].keyWindow bringSubviewToFront:su];
     su.hidden = YES;
     
-   close = [UIButton buttonWithType:UIButtonTypeCustom];
+    close = [UIButton buttonWithType:UIButtonTypeCustom];
     [close setBackgroundImage:[UIImage imageNamed:@"guanbi-1"] forState:UIControlStateNormal];
     [[UIApplication sharedApplication].keyWindow addSubview:close];
     close.frame = CGRectMake(WIDHT/2-20, HEIGHT-80, 40, 40) ;
@@ -161,7 +161,7 @@
 //                NSLog(@"调用成功");
 //                //弹出分享成功的提示,告诉后台,成功后getuser
 //
-                [[YKUserManager sharedManager]shareSuccess];
+//                [[YKUserManager sharedManager]shareSuccess];
 //
 //                backView.hidden = NO;
 //                su.hidden = NO;
