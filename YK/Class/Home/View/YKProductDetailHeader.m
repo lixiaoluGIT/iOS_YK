@@ -104,7 +104,7 @@
     _tishilabel = [[UILabel alloc]init];
     _tishilabel.text = @"待返架";
     _tishilabel.textColor = YKRedColor;
-    _tishilabel.font = PingFangSC_Semibold(14);
+    _tishilabel.font = PingFangSC_Regular(14);
     [self addSubview:_tishilabel];
     
     _tishiImage = [[UIImageView alloc]init];
@@ -131,7 +131,7 @@
         btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
         btn.frame = CGRectMake((48+14)*i,17,48, 24);
         [btn setTitle:array[i][@"clothingStockType"] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [btn setTitleColor:mainColor forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchDown];
         btn.tag = i;
@@ -180,12 +180,12 @@
       
         
         [UIView animateWithDuration:0.3 animations:^{
-            btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+            btn.titleLabel.font = [UIFont systemFontOfSize:14];
             btn.backgroundColor = mainColor;
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
              btn.layer.borderWidth = 1;
             
-            self.Button1.titleLabel.font = [UIFont systemFontOfSize:12];
+            self.Button1.titleLabel.font = [UIFont systemFontOfSize:14];
             self.Button1.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
             [self.Button1 setTitleColor:mainColor forState:UIControlStateNormal];
             self.Button1.layer.borderWidth = 1;

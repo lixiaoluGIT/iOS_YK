@@ -24,11 +24,13 @@
 
         self.tabBar.barTintColor = [UIColor whiteColor];
         self.tabBar.alpha = 1;
-        
-        UIImage *homeImageSel = [UIImage imageNamed:@"home_a.png"];
-        homeImageSel = [homeImageSel imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:0];
-        homeItem.selectedImage = homeImageSel;
+//        self.tabBarController.tabBar.translucent = NO;
+        self.tabBarController.tabBar.translucent = NO;
+//
+//        UIImage *homeImageSel = [UIImage imageNamed:@"home_a.png"];
+//        homeImageSel = [homeImageSel imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:0];
+//        homeItem.selectedImage = homeImageSel;
         
         UINavigationController *home;
         UINavigationController *near;

@@ -112,8 +112,8 @@
 //        slider.backgroundColor = _titleSelectedColor;
 //        [self addSubview:slider];
 //        self.slider = slider;
-        self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
-        self.layer.borderWidth = 1;
+//        self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
+//        self.layer.borderWidth = 1;
     }
     
     [self.titleWidthArray removeAllObjects];
