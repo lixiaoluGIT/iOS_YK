@@ -351,7 +351,7 @@
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return CGSizeMake(WIDHT, WIDHT*0.55 +350+100);
+        return CGSizeMake(WIDHT, WIDHT*0.55 +228+100);
     }
     return CGSizeMake(WIDHT, 80);
 }
@@ -386,7 +386,8 @@
                 
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
-            scroll.frame = CGRectMake(0, WIDHT*0.55+100,WIDHT, 350);
+            scroll.frame = CGRectMake(0, WIDHT*0.55+100,WIDHT, 228);
+            
             if (!hadMakeHeader) {
                 [headerView addSubview:scroll];
                 hadMakeHeader = YES;
@@ -412,18 +413,18 @@
 //设置大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==1) {
-        return CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/180);
+        return CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/180);
     }
     
-    return CGSizeMake(WIDHT,(WIDHT));
+    return CGSizeMake(WIDHT-48,WIDHT-48);
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (section==0) {
-        return UIEdgeInsetsMake(16, 0, 16, 0);
+        return UIEdgeInsetsMake(16, 24, 16, 24);
     }
-    return UIEdgeInsetsMake(16, 16, 16, 16);
+    return UIEdgeInsetsMake(16, 24, 16, 24);
     
 }
 //设置每个item水平间距

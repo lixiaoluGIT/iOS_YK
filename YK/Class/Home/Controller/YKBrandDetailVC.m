@@ -295,13 +295,13 @@
 }
 //设置大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/180);
+    return CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/180);
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     
-    return UIEdgeInsetsMake(16, 16, 16, 16);
+    return UIEdgeInsetsMake(16, 24, 16, 24);
     
 }
 

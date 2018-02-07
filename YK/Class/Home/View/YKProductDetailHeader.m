@@ -20,15 +20,17 @@
 @property (nonatomic,strong)NSArray *stockArray;//库存数组
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *toBrandDetailView;
+@property (weak, nonatomic) IBOutlet UILabel *tishiLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *tishiImage;
 
 @end
 
 @implementation YKProductDetailHeader
 - (void)awakeFromNib{
     [super awakeFromNib];
-    [_toBrandDetailView setUserInteractionEnabled:YES];
+    [_brandName setUserInteractionEnabled:YES];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail)];
-    [_toBrandDetailView addGestureRecognizer:tap];
+    [_brandName addGestureRecognizer:tap];
 }
 
 - (void)toDetail{
@@ -52,6 +54,7 @@
     [self.sizeView initViewWithArray:self.stockArray];
     self.sizeView.frame = self.scrollView.frame;
     self.sizeView.selectBlock = self.selectBlock;
+   
     [self addSubview:self.sizeView];
     
 }
@@ -85,6 +88,10 @@
 @property (nonatomic,strong)NSMutableArray *stockStatusLabelArray;//存储库存状态label数组
 @property (nonatomic,strong)NSMutableArray *typeBtnArray;
 
+@property (nonatomic,strong)UILabel *tishilabel;
+@property (nonatomic,strong)UIImageView *tishiImage;
+
+
 @end
 @implementation YKSizeView
 
@@ -93,33 +100,57 @@
     self.stockStatusLabelArray = [NSMutableArray array];
     self.typeBtnArray = [NSMutableArray array];
     
+    //添加待返架提示
+    _tishilabel = [[UILabel alloc]init];
+    _tishilabel.text = @"待返架";
+    _tishilabel.textColor = YKRedColor;
+    _tishilabel.font = PingFangSC_Semibold(14);
+    [self addSubview:_tishilabel];
+    
+    _tishiImage = [[UIImageView alloc]init];
+    _tishiImage.image = [UIImage imageNamed:@"tishi"];
+    [self addSubview:_tishiImage];
+    
+    _tishilabel.hidden = YES;
+    _tishiImage.hidden = YES;
+    
+    [_tishilabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@(-24));
+        make.centerY.equalTo(self.mas_centerY);
+    }];
+    [_tishiImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_tishilabel.mas_centerY);
+        make.right.equalTo(_tishilabel.mas_left).offset(-6);
+    }];
+    
     for (int i=0; i<array.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = 13;
-        btn.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
-        btn.frame = CGRectMake(20+(44+20)*i,12,44, 26);
+        btn.layer.borderColor = mainColor.CGColor;
+        btn.layer.borderWidth = 1;
+        btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+        btn.frame = CGRectMake((48+14)*i,17,48, 24);
         [btn setTitle:array[i][@"clothingStockType"] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-        [btn setTitleColor:[UIColor colorWithHexString:@"676869"] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        [btn setTitleColor:mainColor forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchDown];
         btn.tag = i;
         [self addSubview:btn];
         
-        UILabel *label = [[UILabel alloc]init];
-        label.text = @"待返架";
-        label.font = [UIFont systemFontOfSize:12];
-        label.textColor = [UIColor colorWithHexString:@"ee2d2d"];
-        [self addSubview:label];
-        label.hidden = YES;
+//        UILabel *label = [[UILabel alloc]init];
+//        label.text = @"待返架";
+//        label.font = [UIFont systemFontOfSize:12];
+//        label.textColor = [UIColor colorWithHexString:@"ee2d2d"];
+//        [self addSubview:label];
+//        label.hidden = YES;
         
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(btn.mas_centerX);
-            make.top.equalTo(btn.mas_bottom).offset(6);
-        }];
+//        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(btn.mas_centerX);
+//            make.top.equalTo(btn.mas_bottom).offset(6);
+//        }];
         
         [self.typeBtnArray addObject:btn];
-        [self.stockStatusLabelArray addObject:label];
+//        [self.stockStatusLabelArray addObject:label];
         
     }
 }
@@ -136,14 +167,14 @@
         //判断显示标签
         YKProductType *product = [[YKProductType alloc]init];
         [product initWithDictionary:self.stockArray[self.selectindex]];
-        self.stockStatuslabel = self.stockStatusLabelArray[self.selectindex];
-        self.stockStatuslabel.hidden = product.isHadStock;
+//        self.stockStatuslabel = self.stockStatusLabelArray[self.selectindex];
+//        self.stockStatuslabel.hidden = product.isHadStock;
        
-        for (UILabel *otherlabel in self.stockStatusLabelArray) {
-            if (otherlabel!=self.stockStatuslabel) {
-                otherlabel.hidden = YES;
-            }
-        }
+//        for (UILabel *otherlabel in self.stockStatusLabelArray) {
+//            if (otherlabel!=self.stockStatuslabel) {
+//                otherlabel.hidden = YES;
+//            }
+//        }
        
         btn.selected = YES;
       
@@ -152,21 +183,31 @@
             btn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
             btn.backgroundColor = mainColor;
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+             btn.layer.borderWidth = 1;
             
             self.Button1.titleLabel.font = [UIFont systemFontOfSize:12];
-            self.Button1.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
-            [self.Button1 setTitleColor:[UIColor colorWithHexString:@"676869"] forState:UIControlStateNormal];
+            self.Button1.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+            [self.Button1 setTitleColor:mainColor forState:UIControlStateNormal];
+            self.Button1.layer.borderWidth = 1;
             
             if (!product.isHadStock) {//当前选择没有库存
-                btn.frame = CGRectMake(20+(44+20)*self.selectindex,4,44, 26);
+//                btn.frame = CGRectMake((44+20)*self.selectindex,4,48, 24);
+                btn.backgroundColor = YKRedColor;
+                btn.layer.borderWidth = 0;
+                _tishilabel.hidden = NO;
+                _tishiImage.hidden = NO;
+            }else {
+                _tishilabel.hidden = YES;
+                _tishiImage.hidden = YES;
             }
             
-            for (int i=0; i<self.typeBtnArray.count; i++) {//找到上一个选中的下标
-                UIButton *b = self.typeBtnArray[i];
-                if (self.Button1 == b) {
-                    self.Button1.frame = CGRectMake(20+(44+20)*i,12,44, 26);
-                }
-            }
+//            for (int i=0; i<self.typeBtnArray.count; i++) {//找到上一个选中的下标
+//                UIButton *b = self.typeBtnArray[i];
+//                if (self.Button1 == b) {
+//                    btn.backgroundColor = mainColor;
+////                    self.Button1.frame = CGRectMake(20+(44+20)*i,12,44, 26);
+//                }
+//            }
         }];
         
     }

@@ -43,6 +43,7 @@
 
 #define mainColor [UIColor colorWithHexString:@"1a1a1a"]
 #define backColor [UIColor colorWithHexString:@"dddddd"]
+#define YKRedColor [UIColor colorWithHexString:@"EE2D2D"]
 
 /*----------------------------字体--------------------------------*/
 #define PingFangTC_Light(fontSize)  [UIFont fontWithName:@"PingFangTC-Light" size:(fontSize)];

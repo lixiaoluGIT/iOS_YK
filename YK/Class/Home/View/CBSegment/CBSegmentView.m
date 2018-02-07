@@ -190,7 +190,7 @@
         }
     }
     totalWidth = totalWidth+btnSpace;
-    self.contentSize = CGSizeMake(totalWidth*1.04, 0);
+    self.contentSize = CGSizeMake(totalWidth*1.06, 0);
 }
 
 //  button click
@@ -267,15 +267,15 @@
         
       
    
-        if (btn.tag!=self.categotyIds.count-1&&btn.tag!=self.categotyIds.count-2) {
+//        if (btn.tag!=self.categotyIds.count-1&&btn.tag!=self.categotyIds.count-2) {
             [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
-        }else {
-            if (WIDHT!=414) {
-                [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
-            }else {
-                
-            }
-        }
+//        }else {
+//            if (WIDHT!=414) {
+//                [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+//            }else {
+//
+//            }
+//        }
         
         
     }

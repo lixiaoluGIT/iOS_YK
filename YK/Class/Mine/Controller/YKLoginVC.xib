@@ -25,6 +25,7 @@
                 <outlet property="h8" destination="S6v-ch-Hg3" id="Tfo-gU-2YX"/>
                 <outlet property="h9" destination="ccc-fd-oKk" id="ZGu-Sf-Yy1"/>
                 <outlet property="loginBtn" destination="8EF-lI-RW7" id="JEs-XF-cbF"/>
+                <outlet property="logo" destination="Lu2-aK-9Pa" id="6AN-f1-f0T"/>
                 <outlet property="phoneText" destination="TPd-ot-sMB" id="8mb-wG-y0h"/>
                 <outlet property="vetifyText" destination="XLN-Er-sx9" id="2kg-qh-Ec5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="I35-qw-dXp"/>
@@ -44,7 +45,7 @@
                         <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="RP8-Xt-4w9"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Lu2-aK-9Pa">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Lu2-aK-9Pa">
                     <rect key="frame" x="163" y="92" width="50" height="44"/>
                 </imageView>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TPd-ot-sMB">
@@ -169,6 +170,12 @@
                         <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="fY5-Pg-Z98"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎加入衣庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhL-zH-29m">
+                    <rect key="frame" x="90.5" y="94.5" width="194" height="39"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                    <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -196,9 +203,11 @@
                 <constraint firstItem="yot-5Q-NTG" firstAttribute="centerY" secondItem="eup-Cv-eco" secondAttribute="centerY" id="cJX-aI-zLd"/>
                 <constraint firstItem="SpT-WC-AJF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cdi-i3-5Ch"/>
                 <constraint firstItem="yot-5Q-NTG" firstAttribute="leading" secondItem="XLN-Er-sx9" secondAttribute="leading" id="jsv-cZ-I2e"/>
+                <constraint firstItem="xhL-zH-29m" firstAttribute="centerY" secondItem="Lu2-aK-9Pa" secondAttribute="centerY" id="k3E-wY-qQv"/>
                 <constraint firstItem="HEq-ez-HuQ" firstAttribute="firstBaseline" secondItem="eup-Cv-eco" secondAttribute="baseline" constant="40" id="kZi-N8-3nI"/>
                 <constraint firstItem="TPd-ot-sMB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="lGv-u5-Nfu"/>
                 <constraint firstItem="Qu5-yc-hTs" firstAttribute="width" secondItem="yot-5Q-NTG" secondAttribute="width" id="n99-rL-6wb"/>
+                <constraint firstItem="xhL-zH-29m" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="o8G-rt-dy7"/>
                 <constraint firstItem="SpT-WC-AJF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tJp-aF-ZR0"/>
                 <constraint firstItem="D9V-GS-GMe" firstAttribute="width" secondItem="TPd-ot-sMB" secondAttribute="width" id="u38-kq-Rb4"/>
                 <constraint firstItem="Hxw-ak-6Hb" firstAttribute="width" secondItem="D9V-GS-GMe" secondAttribute="width" id="u7p-se-k0C"/>
