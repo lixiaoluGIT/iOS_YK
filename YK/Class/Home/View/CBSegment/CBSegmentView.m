@@ -112,8 +112,8 @@
 //        slider.backgroundColor = _titleSelectedColor;
 //        [self addSubview:slider];
 //        self.slider = slider;
-//        self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
-//        self.layer.borderWidth = 1;
+        self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
+        self.layer.borderWidth = 1;
     }
     
     [self.titleWidthArray removeAllObjects];
@@ -190,7 +190,11 @@
         }
     }
     totalWidth = totalWidth+btnSpace;
-    self.contentSize = CGSizeMake(totalWidth*1.06, 0);
+    if (style == CBSegmentStyleZoom) {
+        self.contentSize = CGSizeMake(totalWidth*1.2, 0);
+    }else {
+        self.contentSize = CGSizeMake(totalWidth*1.03, 0);
+    }
 }
 
 //  button click
@@ -268,13 +272,13 @@
       
    
 //        if (btn.tag!=self.categotyIds.count-1&&btn.tag!=self.categotyIds.count-2) {
-            [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+//            [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
 //        }else {
-//            if (WIDHT!=414) {
-//                [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
-//            }else {
-//
-//            }
+            if (WIDHT!=414) {
+                [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+            }else {
+                [self setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+            }
 //        }
         
         
