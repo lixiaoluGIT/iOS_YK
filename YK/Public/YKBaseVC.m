@@ -18,6 +18,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    self.title = _titleS;
+//    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.frame = CGRectMake(0, 0, 20, 44);
+//    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+//        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+//    }
+//    btn.adjustsImageWhenHighlighted = NO;
+//    [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+//    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+//        negativeSpacer.width = -18;
+//    }
+//    self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
+//    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
+//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+//    title.text = self.title;
+//    title.textAlignment = NSTextAlignmentCenter;
+//    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+//    title.font = PingFangSC_Semibold(20);
+//    
+//    self.navigationItem.titleView = title;
     self.navigationController.delegate = self; // 设置navigationController的代理为self,并实现其代理方法
     
 //    self.view.userInteractionEnabled = YES;
@@ -35,6 +61,9 @@
 //    [self.view addGestureRecognizer:panGesture];
 
 
+}
+- (void)leftAction{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 

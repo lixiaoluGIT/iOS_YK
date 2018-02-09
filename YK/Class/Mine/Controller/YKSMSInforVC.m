@@ -112,11 +112,11 @@
     LogisticsTableViewCellFrame *cellFrame = _logisticsInfoData[indexPath.row-2];
     cell.logisticsTableViewCellFrame = cellFrame;
     if (indexPath.row == 2) { 
-        cell.imgView.backgroundColor = mainColor;
-        cell.lineView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
-        cell.addressLabel.textColor = mainColor;
-        cell.infoLabel.textColor = mainColor;
-        cell.timeLabel.textColor = mainColor;
+        cell.imgView.backgroundColor = YKRedColor;
+        cell.lineView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+        cell.addressLabel.textColor = YKRedColor;
+        cell.infoLabel.textColor = YKRedColor;
+        cell.timeLabel.textColor = YKRedColor;
     } else {
         cell.addressLabel.textColor = [UIColor colorWithHexString:@"1a1a1a"];
         cell.infoLabel.textColor = [UIColor colorWithHexString:@"afafaf"];

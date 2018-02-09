@@ -10,4 +10,6 @@
 
 @interface YKBaseVC : UIViewController
 
+@property (nonatomic,strong)NSString *titleS;
+
 @end

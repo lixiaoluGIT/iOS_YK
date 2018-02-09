@@ -331,6 +331,10 @@
 		C5B2C6CD201B236300688E77 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2C6CC201B236300688E77 /* UMCommon.framework */; };
 		C5B2C6D6201B387F00688E77 /* newka.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D4201B387F00688E77 /* newka.png */; };
 		C5B2C6D7201B387F00688E77 /* newka@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D5201B387F00688E77 /* newka@3x.png */; };
+		C5B723D7202C3BB700344339 /* YKUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B723D5202C3BB700344339 /* YKUpdateVC.m */; };
+		C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B723D6202C3BB700344339 /* YKUpdateVC.xib */; };
+		C5B723DA202D53F500344339 /* ss.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5B723D9202D53F400344339 /* ss.gif */; };
+		C5B723DC202D70F200344339 /* s.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5B723DB202D70F100344339 /* s.gif */; };
 		C5D981642021ACE40099D36A /* YKMyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D981632021ACE40099D36A /* YKMyHeaderView.m */; };
 		C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84AC2005AB00002A12E3 /* YKAboutView.m */; };
 		C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DA84AD2005AB00002A12E3 /* YKAboutView.xib */; };
@@ -1042,6 +1046,11 @@
 		C5B2C6CC201B236300688E77 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		C5B2C6D4201B387F00688E77 /* newka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newka.png; sourceTree = "<group>"; };
 		C5B2C6D5201B387F00688E77 /* newka@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newka@3x.png"; sourceTree = "<group>"; };
+		C5B723D4202C3BB700344339 /* YKUpdateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKUpdateVC.h; sourceTree = "<group>"; };
+		C5B723D5202C3BB700344339 /* YKUpdateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKUpdateVC.m; sourceTree = "<group>"; };
+		C5B723D6202C3BB700344339 /* YKUpdateVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKUpdateVC.xib; sourceTree = "<group>"; };
+		C5B723D9202D53F400344339 /* ss.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ss.gif; sourceTree = "<group>"; };
+		C5B723DB202D70F100344339 /* s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = s.gif; sourceTree = "<group>"; };
 		C5D981622021ACE40099D36A /* YKMyHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMyHeaderView.h; sourceTree = "<group>"; };
 		C5D981632021ACE40099D36A /* YKMyHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMyHeaderView.m; sourceTree = "<group>"; };
 		C5DA84AB2005AB00002A12E3 /* YKAboutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAboutView.h; sourceTree = "<group>"; };
@@ -1465,6 +1474,9 @@
 				C52D55071FFF5FCC004B52C4 /* YKMsgDetailVc.m */,
 				C5DA84B02005AFE2002A12E3 /* YKAboutUsVC.h */,
 				C5DA84B12005AFE2002A12E3 /* YKAboutUsVC.m */,
+				C5B723D4202C3BB700344339 /* YKUpdateVC.h */,
+				C5B723D5202C3BB700344339 /* YKUpdateVC.m */,
+				C5B723D6202C3BB700344339 /* YKUpdateVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1691,6 +1703,8 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C5B723DB202D70F100344339 /* s.gif */,
+				C5B723D9202D53F400344339 /* ss.gif */,
 				C54301F92024495C006F84E0 /* 红.jpg */,
 				C571B50D2020155C007AB5B8 /* sss.gif */,
 				C5B2C6D4201B387F00688E77 /* newka.png */,
@@ -2653,6 +2667,7 @@
 				C525DE2E1FBB0320002802AE /* YKSuitCell.xib in Resources */,
 				C5343C8C1FC584FD00F5132A /* YKYifuScanCell.xib in Resources */,
 				C55D491E1FC2EDF8000D2056 /* 主题红.png in Resources */,
+				C5B723DA202D53F500344339 /* ss.gif in Resources */,
 				C5343C931FC69D2400F5132A /* YKBrandDetailHeader.xib in Resources */,
 				C52D0F9E1FC6C43D00B50258 /* liutao.jpg in Resources */,
 				C525DE231FBAD659002802AE /* YKScrollBtnView.xib in Resources */,
@@ -2661,6 +2676,7 @@
 				C525DE121FBABF81002802AE /* timg.jpg in Resources */,
 				C525DEAD1FBD97BA002802AE /* YKAddressDetailCell.xib in Resources */,
 				C52D0FAE1FC6D97700B50258 /* YKWalletDetailCell.xib in Resources */,
+				C5B723DC202D70F200344339 /* s.gif in Resources */,
 				C5B2C6D6201B387F00688E77 /* newka.png in Resources */,
 				C525DEA51FBD89F7002802AE /* YKSMSCell.xib in Resources */,
 				C5690F991FE770BD0027EFCE /* YKTotalSMSCell.xib in Resources */,
@@ -2690,6 +2706,7 @@
 				C50394932007BDB2004B41C3 /* Default-568.png in Resources */,
 				C525DD621FBAB2A8002802AE /* LICENSE in Resources */,
 				C525DC2C1FBAAFC1002802AE /* Main.storyboard in Resources */,
+				C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */,
 				C50E58D71FE1117F0063F377 /* YKSuitHeader.xib in Resources */,
 				C59D47561FF4D750002208BF /* UMSocialSDKResources.bundle in Resources */,
 				C525DE981FBD59CA002802AE /* YKMineBagCell.xib in Resources */,
@@ -2917,6 +2934,7 @@
 				C525DD6E1FBAB2A8002802AE /* AFURLConnectionOperation.m in Sources */,
 				C525DD911FBAB2A9002802AE /* ViewController+MASAdditions.m in Sources */,
 				C525DED41FC278C7002802AE /* AddressModel.m in Sources */,
+				C5B723D7202C3BB700344339 /* YKUpdateVC.m in Sources */,
 				C525DDCA1FBAB2A9002802AE /* UIButton+WebCache.m in Sources */,
 				C525DD971FBAB2A9002802AE /* MASConstraint.m in Sources */,
 				C525DD661FBAB2A8002802AE /* UIRefreshControl+AFNetworking.m in Sources */,

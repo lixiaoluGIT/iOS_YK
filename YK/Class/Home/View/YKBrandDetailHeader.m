@@ -51,9 +51,12 @@
 }
 
 - (CGFloat)lableHeight{
-    return 90 + [self heightForString:self.labelText  andWidth:WIDHT/2];
+    if (WIDHT==375) {
+        return 125 + [self heightForString:self.labelText  andWidth:WIDHT/2];
+    }else {
+        return 110 + [self heightForString:self.labelText  andWidth:WIDHT/2];
+    }
 }
-
 - (CGFloat) heightForString:(NSString *)value andWidth:(CGFloat)width{
     
     if (value.length == 0) {

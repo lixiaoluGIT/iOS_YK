@@ -11,6 +11,7 @@
 #import "YKWebVC.h"
 #import "YKAboutUsVC.h"
 #import "YKCacheManager.h"
+#import "YKUpdateVC.h"
 
 @interface YKSettingVC ()<DXAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *cacheLabel;
@@ -92,8 +93,8 @@
 }
 
 - (IBAction)update:(id)sender {
-
-    [self.navigationController pushViewController:[YKAboutUsVC new] animated:YES];
+    YKUpdateVC *update = [[YKUpdateVC alloc]initWithNibName:@"YKUpdateVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:update animated:YES];
 }
 
 - (IBAction)about:(id)sender {

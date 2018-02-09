@@ -59,7 +59,7 @@ NSInteger timeNum;
     
     
     //加载本地gif图片
-    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sss" ofType:@"gif"]];
+    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"s" ofType:@"gif"]];
     _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
     [self.view addSubview:_gifView];
     [self.view sendSubviewToBack:_gifView];

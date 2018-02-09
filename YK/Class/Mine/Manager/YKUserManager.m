@@ -315,24 +315,29 @@
     }];
 }
 
+- (NSString *)getVersionString:(NSString *)str{
+    NSString *version = [str stringByReplacingOccurrencesOfString:@"." withString:@""];
+    return version;
+}
+
 - (void)checkVersion{
    
     NSString *localVersion = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
    
-    double localVersionDou = [localVersion doubleValue];
+    double localVersionDou = [[self getVersionString:localVersion] doubleValue];
 
     NSString *url = [NSString stringWithFormat:@"%@?appVersion=%@",@"/user/checkTheLatestVersion",@"1"];
 
     [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
         //如果新版本大于当前版本,更新
-        double versionNumberMin = [dict[@"data"][@"firstVersion"] doubleValue];
-        double versionNumberMax = [dict[@"data"][@"newVersion"] doubleValue];
+        double versionNumberMin = [[self getVersionString:dict[@"data"][@"firstVersion"]] doubleValue];
+        double versionNumberMax = [[self getVersionString:dict[@"data"][@"newVersion"]] doubleValue];
         if (localVersionDou < versionNumberMin) {//当前版本小于最低版本
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateVersion];
+                [self updateVersion:dict[@"data"][@"newVersion"]];
             });
         }else if (localVersionDou > versionNumberMin && localVersionDou < versionNumberMax){//大于最低版本小于最高版本
-            [self updateVersion];
+            [self updateVersion:dict[@"data"][@"newVersion"]];
         }
        
         
@@ -341,8 +346,9 @@
     }];
 }
 
-- (void)updateVersion{
-    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"新的版本,新的征程" message:@"有新版本可以更新了!" cancelBtnTitle:@"暂不更新" otherBtnTitle:@"去更新"];
+- (void)updateVersion:(NSString *)version{
+    NSString *msg = [NSString stringWithFormat:@"发现有%@版本可以更新!",version];
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"升级提示" message:msg cancelBtnTitle:@"暂不更新" otherBtnTitle:@"去更新"];
     alertView.delegate = self;
     [alertView show];
 }

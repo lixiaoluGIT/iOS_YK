@@ -191,7 +191,11 @@
     }
     totalWidth = totalWidth+btnSpace;
     if (style == CBSegmentStyleZoom) {
-        self.contentSize = CGSizeMake(totalWidth*1.2, 0);
+        if (WIDHT==375) {
+            self.contentSize = CGSizeMake(totalWidth*1.3, 0);
+        }else {
+            self.contentSize = CGSizeMake(totalWidth*1.13, 0);
+        }
     }else {
         self.contentSize = CGSizeMake(totalWidth*1.03, 0);
     }
