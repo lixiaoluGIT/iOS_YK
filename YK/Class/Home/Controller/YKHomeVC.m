@@ -187,7 +187,10 @@
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
 
-        hadtitle1 = YES;
+//        hadtitle1 = YES;
+        if (self.brandArray.count!=0) {
+            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+        }
         [self.collectionView reloadData];
         
     }];
@@ -259,9 +262,9 @@
         _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
         _scroll.frame = CGRectMake(0, WIDHT*0.55,WIDHT, 200);
         [_scroll resetUI];
-        if (self.brandArray.count!=0) {
-            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
-        }
+//        if (self.brandArray.count!=0) {
+//            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+//        }
         
         _scroll.clickALLBlock = ^(){
             YKALLBrandVC *brand = [YKALLBrandVC new];
@@ -279,9 +282,9 @@
         };
         
         //
-        if (hadtitle1) {
+        if (!hadtitle1) {
             [headerView addSubview:_scroll];
-            hadtitle1 = NO;
+            hadtitle1 = YES;
         }
         
         

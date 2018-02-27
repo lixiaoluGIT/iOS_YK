@@ -50,20 +50,20 @@
     
     self.rollView = [[YKRollView alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, 150) withDistanceForScroll:12.0f withGap:8.0f];
     
-    /** 全屏宽滑动 视图之间间隙,  将 Distance 设置为 -12.0f */
-    // self.rollView = [[RollView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 150) withDistanceForScroll: -12.0f withGap:8.0f];
-    // self.rollView.backgroundColor = [UIColor blackColor];
+//    * 全屏宽滑动 视图之间间隙,  将 Distance 设置为 -12.0f
+//     self.rollView = [[RollView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 150) withDistanceForScroll: -12.0f withGap:8.0f];
+     self.rollView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     
     self.rollView.delegate = self;
     
-//    [self addSubview:self.rollView];
+    [self addSubview:self.rollView];
     
     
     NSArray *arr = @[@"newka.png",
                      @"liutao.jpg",
                      @"timg.jpg"];
     
-//    [self.rollView rollView:self.brandArray];
+    [self.rollView rollView:self.brandArray];
  
     for (int i = 0; i<brandArray.count; i++) {
         YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
@@ -81,16 +81,16 @@
         btn.image.contentMode   = UIViewContentModeScaleAspectFill;
         btn.image.clipsToBounds = YES;
 //        Tag值设为品牌ID
-//        CGFloat w = WIDHT-60;
-        btn.frame = CGRectMake(20+(100+20)*i, 0, 100, 150);
+        CGFloat w = WIDHT-60;
+        btn.frame = CGRectMake(20+(100+20)*i, 0, w, 150);
 
         [self.scrollView addSubview:btn];
-//        btn.backgroundColor = [UIColor colorWithHexString:@"fe7310"];
-//        self.scrollView.contentOffset=CGPointMake((WIDHT-20)*i, 0);
+        btn.backgroundColor = [UIColor colorWithHexString:@"fe7310"];
+        self.scrollView.contentOffset=CGPointMake((WIDHT-20)*i, 0);
     }
     
     self.scrollView.contentSize = CGSizeMake((brandArray.count-1)*140+100, 0);
-//    self.scrollView.pagingEnabled = YES;
+    self.scrollView.pagingEnabled = YES;
 }
 #pragma mark - 滚动视图协议
 -(void)didSelectPicWithIndexPath:(NSInteger)index{
