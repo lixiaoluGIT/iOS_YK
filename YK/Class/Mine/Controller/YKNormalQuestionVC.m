@@ -9,6 +9,7 @@
 #import "YKNormalQuestionVC.h"
 #import "YKMineCell.h"
 #import "YKWebVC.h"
+#import "YKLinkWebVC.h"
 
 @interface YKNormalQuestionVC ()
 @property (nonatomic,strong)NSArray *titles;
@@ -61,7 +62,7 @@
     self.titles = @[@"租衣规则",@"还衣规则",@"物流配送",@"订单问题",@"清洗服务"];
     
     self.desImages = [NSArray array];
-    self.desImages = @[@"租衣规则",@"还衣规则",@"物流配送",@"订单问题",@"清洗服务"];
+    self.desImages = @[@"http://img-cdn.xykoo.cn/appHtml/rentalAgreement.html",@"http://img-cdn.xykoo.cn/appHtml/back.html",@"http://img-cdn.xykoo.cn/appHtml/Logistics.html",@"http://img-cdn.xykoo.cn/appHtml/order.html",@"http://img-cdn.xykoo.cn/appHtml/clean.html"];
 }
 
 - (void)leftAction{
@@ -132,9 +133,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        YKWebVC *web = [YKWebVC new];
-        web.imageName = self.desImages[indexPath.row];
-        web.titleStr = self.titles[indexPath.row];
+        YKLinkWebVC *web = [YKLinkWebVC new];
+//        web.imageName = self.desImages[indexPath.row];
+        web.url = self.desImages[indexPath.row];
         [self.navigationController pushViewController:web animated:YES];
     }
 }

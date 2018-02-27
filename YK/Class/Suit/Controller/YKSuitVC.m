@@ -41,6 +41,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [_mulitSelectArray removeAllObjects];
     [selectDeArray removeAllObjects];
+    [selectDeShoppingCartList removeAllObjects];
     [YKSuitManager sharedManager].suitAccount = 0;
    
     [self resetMasonrys];
@@ -51,6 +52,7 @@
     [self.tableView setEditing:NO animated:YES];
     [_mulitSelectArray removeAllObjects];
     [selectDeArray removeAllObjects];
+    [selectDeShoppingCartList removeAllObjects];
     [self.tableView reloadData];
     self.selectAll.selected = NO;
     self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
@@ -99,6 +101,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [_mulitSelectArray removeAllObjects];
     [selectDeArray removeAllObjects];
+    [selectDeShoppingCartList removeAllObjects];
     
     [self getShoppingList];
     
@@ -194,6 +197,7 @@
     
     _mulitSelectArray = [[NSMutableArray alloc] init];
     selectDeArray = [[NSMutableArray alloc]init];
+    selectDeShoppingCartList = [[NSMutableArray alloc]init];
     _cellArray  = [[NSMutableArray alloc]init];
 
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
@@ -273,6 +277,15 @@
 - (void)clickSelectAll:(UIButton *)btn{
     btn.selected = !btn.selected;
     if (btn.selected) {
+        //添加购物车ID
+        for (NSDictionary *cart in _dataArray) {
+            NSString *selectShoppingCardId = cart[@"shoppingCartId"];
+            if (![selectDeShoppingCartList containsObject:selectShoppingCardId]) {
+                [selectDeShoppingCartList addObject:selectShoppingCardId];
+            }
+        }
+        
+        //添加当前第几行
         for (int index=0;index<_dataArray.count;index++) {
             NSString *selectRow  = [NSString stringWithFormat:@"%d",index];
             if (![selectDeArray containsObject:selectRow]) {
@@ -282,6 +295,7 @@
         self.selectAllImageView.image = [UIImage imageNamed:@"xuanzhong"];
     }else{
         [selectDeArray removeAllObjects];
+        [selectDeShoppingCartList removeAllObjects];
         self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
     }
     
@@ -308,17 +322,18 @@
         return;
     }
     
-    for (int index=0; index<selectDeArray.count; index++) {
-        YKSuitCell *cell = _cellArray[[selectDeArray[index] intValue]];
-        [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:cell.suit.shoppingCartId OnResponse:^(NSDictionary *dic) {
+//    for (int index=0; index<selectDeArray.count; index++) {
+//        YKSuitCell *cell = _cellArray[[selectDeArray[index] intValue]];
+        [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:selectDeShoppingCartList OnResponse:^(NSDictionary *dic) {
             [_mulitSelectArray removeAllObjects];
             [selectDeArray removeAllObjects];
+            [selectDeShoppingCartList removeAllObjects];
             [_cellArray removeAllObjects];
             [self getShoppingList];
             [[YKSuitManager sharedManager]clear];
             
         }];
-    }
+//    }
     
 }
 - (void)edit:(UIBarButtonItem *)btn{
@@ -347,6 +362,7 @@
         [self.tableView setEditing:NO animated:YES];
         [_mulitSelectArray removeAllObjects];
         [selectDeArray removeAllObjects];
+        [selectDeShoppingCartList removeAllObjects];
         [self.tableView reloadData];
         self.selectAll.selected = NO;
         self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
@@ -457,6 +473,15 @@
         cell.collectBtn.selected = !cell.collectBtn.selected;
         
         NSString*  selectRow  = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+        NSString *shoppingCardId = cell.suit.shoppingCartId;
+        //购物车ID
+        if ([selectDeShoppingCartList containsObject:shoppingCardId]) {
+            [selectDeShoppingCartList removeObject:shoppingCardId];
+            
+        }else{
+            [selectDeShoppingCartList addObject:shoppingCardId];
+        }
+        //选中行
         if ([selectDeArray containsObject:selectRow]) {
             [selectDeArray removeObject:selectRow];
             

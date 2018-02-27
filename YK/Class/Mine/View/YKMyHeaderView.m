@@ -34,7 +34,7 @@
     
     _name=[[UILabel alloc]initWithFrame:CGRectMake(WIDHT /2-100, 160,200, 20)];
     _name.font = PingFangSC_Semibold(20);
-    _name.textColor = mainColor;
+    _name.textColor = [UIColor colorWithHexString:@"ffffff"];
     _name.textAlignment=1;
     [self addSubview:_name];
 
@@ -45,10 +45,10 @@
     
     _vipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, WIDHT/1.5-40, WIDHT, 40)];
     _vipLabel.text = @"您还不是会员,立即加入!  >>";
-    _vipLabel.textColor = [UIColor colorWithHexString:@"FDDD55"];
-    _vipLabel.font = PingFangSC_Semibold(16);
+    _vipLabel.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    _vipLabel.font = PingFangSC_Semibold(14);
     [self addSubview:_vipLabel];
-    _vipLabel.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+    _vipLabel.backgroundColor = [UIColor colorWithHexString:@"FDDD55"];
     _vipLabel.textAlignment = NSTextAlignmentCenter;
     _vipLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(VIP)];

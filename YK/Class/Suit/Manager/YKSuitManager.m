@@ -59,26 +59,41 @@
     }];
 }
 
-- (void)deleteFromShoppingCartwithShoppingCartId:(NSString *)shoppingCartId OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)deleteFromShoppingCartwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse{
 
 
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    NSString *url = [NSString stringWithFormat:@"%@?shoppingCartId=%@",DeleteFromShoppingCart_Url,shoppingCartId];
-    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
-        
-//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        
-        if ([dic[@"status"] integerValue] == 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+    
+    NSDictionary *dic = @{@"cartIdList":shoppingCartIdList};
+    
+    [YKHttpClient Method:@"POST" URLString:DeleteFromShoppingCart_Url paramers:dic success:^(NSDictionary *dict) {
+        if ([dict[@"status"] integerValue] == 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
             if (onResponse) {
                 onResponse(dic);
             }
         }else {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
         }
-        
+       
+    } failure:^(NSError *error) {
         
     }];
+//    [YKHttpClient Method:@"POST" apiName:DeleteFromShoppingCart_Url Params:dic Completion:^(NSDictionary *dic) {
+//
+////        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//
+//        if ([dic[@"status"] integerValue] == 200) {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+//            if (onResponse) {
+//                onResponse(dic);
+//            }
+//        }else {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+//        }
+//
+//
+//    }];
 }
 
 - (void)selectCurrentPruduct:(YKSuit *)suit{

@@ -58,17 +58,18 @@
     
     self.noBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.noBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [self.noBtn setTitleColor:[UIColor colorWithHexString:@"516484"] forState:UIControlStateNormal];
+    [self.noBtn setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+    [self.noBtn setBackgroundColor:[UIColor colorWithHexString:@"f2f2f2"]];
     [self.aleartView addSubview:self.noBtn];
     [self.noBtn addTarget:self action:@selector(no) forControlEvents:UIControlEventTouchUpInside];
-    self.noBtn.titleLabel.font = PingFangSC_Regular(14);
+    self.noBtn.titleLabel.font = PingFangSC_Regular(16);
     
     
     self.yesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.aleartView addSubview:self.yesBtn];
     [self.yesBtn addTarget:self action:@selector(yes) forControlEvents:UIControlEventTouchUpInside];
     [self.yesBtn setTitle:@"确定" forState:UIControlStateNormal];
-    self.yesBtn.titleLabel.font = PingFangSC_Regular(14);
+    self.yesBtn.titleLabel.font = PingFangSC_Regular(16);
     
     UILabel *line1 = [[UILabel alloc]init];
     line1.backgroundColor = [UIColor colorWithHexString:@"F5F7FA"];
@@ -91,11 +92,11 @@
     self.titleLabel.text = title;
     
     
-    self.titleLabel.textColor = [UIColor colorWithHexString:@"000000"];
+    self.titleLabel.textColor = mainColor;
     [self.noBtn setTitle:notitle forState:UIControlStateNormal];
     [self.yesBtn setTitle:yestitle forState:UIControlStateNormal];
     [self.yesBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.yesBtn setBackgroundColor:[UIColor colorWithHexString:@"1a1a1a"]];
+    [self.yesBtn setBackgroundColor:YKRedColor];
 }
 
 - (void)setLayOut{

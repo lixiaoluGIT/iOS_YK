@@ -9,7 +9,9 @@
 #import "YKLinkWebVC.h"
 #import "YKMainVC.h"
 
-@interface YKLinkWebVC ()<UIWebViewDelegate>
+@interface YKLinkWebVC ()<UIWebViewDelegate>{
+    UILabel *title;
+}
 
 @property (nonatomic,strong)UIWebView *webView;
 @property (nonatomic,strong)UIActivityIndicatorView *indicatorView;
@@ -36,7 +38,7 @@
 - (void)viewDidLoad {
 
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"衣庫";
+//    self.title = @"衣庫";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -54,12 +56,12 @@
     }
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
-    title.text = self.title;
+    title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+    
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.font = PingFangSC_Semibold(20);;
-    
+
     self.navigationItem.titleView = title;
     [self creatWeb];
 }
@@ -117,7 +119,12 @@
     
     NSString *htmlTitle = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 
-    self.title = htmlTitle;
+    if ([htmlTitle length] == 0) {
+        title.text = @"衣库";
+    }else {
+        title.text = htmlTitle;
+        
+    }
 
     
     _indicatorView.hidden = YES;

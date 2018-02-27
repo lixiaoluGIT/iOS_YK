@@ -37,10 +37,10 @@
 }
 - (void)setupUI {
     [self.suitImage setContentMode:UIViewContentModeScaleAspectFit];
-    self.suitImage.clipsToBounds = YES;
-    self.suitImage.layer.masksToBounds = YES;
-    self.suitImage.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
-    self.suitImage.layer.borderWidth = 1;
+//    self.suitImage.clipsToBounds = YES;
+//    self.suitImage.layer.masksToBounds = YES;
+//    self.suitImage.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
+//    self.suitImage.layer.borderWidth = 1;
     
     [self setupRightSelectView];//右侧删除点选按钮
 }
@@ -102,12 +102,12 @@
 - (void)updateMasonry{
     //更新价钱UI
         [self.price mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(-29+self.moveNum);
+            make.right.equalTo(self).offset(-24+self.moveNum);
             
         }];
     //更新标志UI
     [self.seleBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(29+self.moveNum);
+        make.left.equalTo(self).offset(24+self.moveNum);
         make.bottom.equalTo(self).offset(-12);
         make.height.with.equalTo(@20);
     }];

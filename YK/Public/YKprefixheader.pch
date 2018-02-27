@@ -110,10 +110,12 @@
 #define AddToShoppingCart_Url @"/shoppingCart/addClothingToCart"
 //购物车列表
 #define ShoppingCartList_Url @"/shoppingCart/toCart"
-//从购物车删除
-#define DeleteFromShoppingCart_Url @"/shoppingCart/deleteClothingToCart"
+//从购物车删除(未用)
+//#define DeleteFromShoppingCart_Url @"/shoppingCart/deleteClothingToCart"
 //确认购物车
 //#define PostOrder_Url @"/shoppingCart/confirmShoppingCart"
+//批量删除购物车
+#define DeleteFromShoppingCart_Url @"/shoppingCart/batchDeleting"
 
 /*----------------------------地址模块--------------------------------*/
 //新增收货地址

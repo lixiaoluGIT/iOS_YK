@@ -23,7 +23,7 @@
 - (void)getShoppingListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //从购物车删除
-- (void)deleteFromShoppingCartwithShoppingCartId:(NSString *)shoppingCartId OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)deleteFromShoppingCartwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //选中商品
 - (void)selectCurrentPruduct:(YKSuit *)suit;

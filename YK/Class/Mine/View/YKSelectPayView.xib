@@ -80,13 +80,13 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5r-l6-w4i">
                         <rect key="frame" x="0.0" y="187.5" width="218" height="49"/>
-                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="49" id="VjK-2g-cFl"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal" title="取消">
-                            <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.65253631161971826" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="0.65253631161971826" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="cancle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Wj-47-3qk"/>

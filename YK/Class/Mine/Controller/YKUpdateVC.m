@@ -72,15 +72,18 @@
             [_updateBtn setUserInteractionEnabled:YES];
             [_updateBtn addTarget:self action:@selector(toUpDate) forControlEvents:UIControlEventTouchUpInside];
         }
+        
         if (localVersionDou > versionNumberMin && localVersionDou < versionNumberMax){//大于最低版本小于最高版本
             [_updateBtn setTitle:@"去更新" forState:UIControlStateNormal];
             [_updateBtn setUserInteractionEnabled:YES];
             [_updateBtn addTarget:self action:@selector(toUpDate) forControlEvents:UIControlEventTouchUpInside];
-            
         }
+        
         if (localVersionDou>=versionNumberMax) {
             [_updateBtn setUserInteractionEnabled:NO];
             [_updateBtn setTitle:@"已是最新版本" forState:UIControlStateNormal];
+            [_updateBtn setBackgroundColor:[UIColor clearColor]];
+            [_updateBtn setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         }
         
         

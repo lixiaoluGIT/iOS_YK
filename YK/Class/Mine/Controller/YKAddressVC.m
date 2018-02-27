@@ -100,7 +100,7 @@
     if (indexPath.section==self.addressArray.count) {
         return 50;
     }
-    return 150;
+    return 124;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

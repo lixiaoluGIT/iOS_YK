@@ -39,6 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];;
     [self.navigationController.navigationBar setHidden:YES];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 //    [self setStatusBarBackgroundColor:[UIColor colorWithRed:246.0/255 green:102.0/255 blue:102.0/255 alpha:1]];
     [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
          head.user = [YKUserManager sharedManager].user;
@@ -50,6 +51,7 @@
     [super viewWillDisappear:YES];
 //    [self setStatusBarBackgroundColor:self.view.backgroundColor];
      [self.navigationController.navigationBar setHidden:NO];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 - (UITableView *)tableView{
     if (!_tableView) {
@@ -65,7 +67,8 @@
 -(UIImageView*)imageview{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
-        _headImageView.image = [UIImage imageNamed:@"背景.jpg"];
+//        _headImageView.image = [UIImage imageNamed:@"背景.jpg"];
+        _headImageView.backgroundColor = mainColor;
         self.origialFrame = _headImageView.frame;
     }
     return _headImageView;
