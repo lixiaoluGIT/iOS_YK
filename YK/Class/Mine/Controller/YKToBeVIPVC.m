@@ -44,8 +44,22 @@
 @property (weak, nonatomic) IBOutlet UIButton *Btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UIButton *btn3;
-@property (weak, nonatomic) IBOutlet UIButton *btn4;
+
 @property (weak, nonatomic) IBOutlet UILabel *xieyi;
+
+//
+@property (weak, nonatomic) IBOutlet UIButton *Lbtn1;
+@property (weak, nonatomic) IBOutlet UIButton *Lbtn2;
+@property (weak, nonatomic) IBOutlet UIButton *Lbtn3;
+@property (weak, nonatomic) IBOutlet UILabel *yueka;
+
+@property (weak, nonatomic) IBOutlet UILabel *yuekaPrice;
+
+@property (weak, nonatomic) IBOutlet UILabel *jika;
+@property (weak, nonatomic) IBOutlet UILabel *jikaPrice;
+
+@property (weak, nonatomic) IBOutlet UILabel *nianka;
+@property (weak, nonatomic) IBOutlet UILabel *niankaPrice;
 
 @end
 
@@ -259,29 +273,52 @@
     }
     self.Button0 = button;
     
+    [self reSetBtnUI:button];
+    
     switch (button.tag) {
         case 1001:
             _payType = MONTH_CARD;
             _Btn1.selected = button.selected;
              _btn2.selected = !button.selected;
              _btn3.selected = !button.selected;
-             _btn4.selected = !button.selected;
+            
             break;
         case 1002:
             _payType = SEASON_CARD;
             _Btn1.selected = !button.selected;
             _btn2.selected = button.selected;
             _btn3.selected = !button.selected;
-            _btn4.selected = !button.selected;
+           
             break;
         case 1003:
             _payType = YEAR_CARD;
             _Btn1.selected = !button.selected;
             _btn2.selected = !button.selected;
             _btn3.selected = button.selected;
-            _btn4.selected = !button.selected;
+            
             break;
             
+        case 101:
+            _payType = MONTH_CARD;
+            _Btn1.selected = button.selected;
+            _btn2.selected = !button.selected;
+            _btn3.selected = !button.selected;
+            
+            break;
+        case 102:
+            _payType = SEASON_CARD;
+            _Btn1.selected = !button.selected;
+            _btn2.selected = button.selected;
+            _btn3.selected = !button.selected;
+            
+            break;
+        case 103:
+            _payType = YEAR_CARD;
+            _Btn1.selected = !button.selected;
+            _btn2.selected = !button.selected;
+            _btn3.selected = button.selected;
+            
+            break;
         default:
             
             break;
@@ -343,6 +380,44 @@
             _yaJin.text = @"¥199";
             _total.text = @"¥3187";
         }
+    }
+}
+
+- (void)reSetBtnUI:(UIButton *)btn{
+    if (btn.tag == 1001 || btn.tag == 101) {//月卡
+        _Lbtn1.backgroundColor = mainColor;
+        _Lbtn2.backgroundColor = [UIColor whiteColor];
+        _Lbtn3.backgroundColor = [UIColor whiteColor];
+        _yueka.textColor = [UIColor whiteColor];
+        _yuekaPrice.textColor = [UIColor whiteColor];
+        _jika.textColor = mainColor;
+        _jikaPrice.textColor = mainColor;
+        _nianka.textColor = mainColor;
+        _niankaPrice.textColor = mainColor;
+    }
+    
+    if (btn.tag == 1002 || btn.tag == 102) {//季卡
+        _Lbtn1.backgroundColor = [UIColor whiteColor];
+        _Lbtn2.backgroundColor = mainColor;
+        _Lbtn3.backgroundColor = [UIColor whiteColor];
+        _yueka.textColor = mainColor;
+        _yuekaPrice.textColor = mainColor;
+        _jika.textColor = [UIColor whiteColor];
+        _jikaPrice.textColor = [UIColor whiteColor];
+        _nianka.textColor = mainColor;
+        _niankaPrice.textColor = mainColor;
+    }
+    
+    if (btn.tag == 1003 || btn.tag == 103) {//年卡
+        _Lbtn1.backgroundColor = [UIColor whiteColor];
+        _Lbtn2.backgroundColor = [UIColor whiteColor];
+        _Lbtn3.backgroundColor = mainColor;
+        _yueka.textColor = mainColor;
+        _yuekaPrice.textColor = mainColor;
+        _jika.textColor = mainColor;
+        _jikaPrice.textColor = mainColor;
+        _nianka.textColor = [UIColor whiteColor];
+        _niankaPrice.textColor = [UIColor whiteColor];
     }
 }
 
