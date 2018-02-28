@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qianbao" translatesAutoresizingMaskIntoConstraints="NO" id="Bd2-OO-fr6">
-                        <rect key="frame" x="20" y="34.5" width="16" height="16"/>
+                        <rect key="frame" x="20" y="29.5" width="26" height="26"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4k-O6-hFo">
-                        <rect key="frame" x="41" y="34.5" width="57.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <rect key="frame" x="60" y="33.5" width="65.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="qhM-ZY-ucz">
-                        <rect key="frame" x="340" y="37" width="6" height="12"/>
+                        <rect key="frame" x="336" y="36" width="10" height="14"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-Cz-S7t">
                         <rect key="frame" x="20" y="83.5" width="346" height="1"/>
@@ -47,7 +47,7 @@
                     <constraint firstAttribute="bottom" secondItem="GhO-Cz-S7t" secondAttribute="bottom" id="UsO-xV-355"/>
                     <constraint firstItem="qhM-ZY-ucz" firstAttribute="centerY" secondItem="s4k-O6-hFo" secondAttribute="centerY" id="a00-YK-EPe"/>
                     <constraint firstItem="s4k-O6-hFo" firstAttribute="centerY" secondItem="Bd2-OO-fr6" secondAttribute="centerY" id="ahm-Y7-PLb"/>
-                    <constraint firstItem="s4k-O6-hFo" firstAttribute="leading" secondItem="Bd2-OO-fr6" secondAttribute="trailing" constant="5" id="bPX-XM-YPp"/>
+                    <constraint firstItem="s4k-O6-hFo" firstAttribute="leading" secondItem="Bd2-OO-fr6" secondAttribute="trailing" constant="14" id="bPX-XM-YPp"/>
                     <constraint firstItem="GhO-Cz-S7t" firstAttribute="leading" secondItem="Bd2-OO-fr6" secondAttribute="leading" id="dc3-ic-GFU"/>
                     <constraint firstAttribute="trailing" secondItem="GhO-Cz-S7t" secondAttribute="trailing" id="iED-xx-nZY"/>
                     <constraint firstAttribute="trailing" secondItem="qhM-ZY-ucz" secondAttribute="trailing" constant="20" id="pdw-RP-H9L"/>
@@ -97,6 +97,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="SSt-8b-XC1" firstAttribute="top" secondItem="cXc-0t-K5B" secondAttribute="top" constant="26" id="God-b9-34m"/>
                     <constraint firstItem="tK1-BW-Zgq" firstAttribute="top" secondItem="SSt-8b-XC1" secondAttribute="bottom" constant="22" id="KLE-wo-rfF"/>
@@ -114,7 +115,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="qianbao" width="16" height="16"/>
-        <image name="right" width="6" height="12"/>
+        <image name="qianbao" width="26" height="26"/>
+        <image name="right" width="10" height="14"/>
     </resources>
 </document>

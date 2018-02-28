@@ -22,34 +22,34 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单成功!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJg-E5-8rU">
-                    <rect key="frame" x="144" y="164" width="87.5" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="1" green="0.42745098039215684" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="110" y="164" width="155.5" height="43"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                    <color key="textColor" red="0.93333333333333335" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZR-0i-iet">
-                    <rect key="frame" x="58" y="240" width="100.5" height="36"/>
-                    <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="58" y="267" width="100.5" height="36"/>
+                    <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="Q9O-Mt-osl"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <state key="normal" title="查看订单">
-                        <color key="titleColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="scan:" destination="-1" eventType="touchUpInside" id="4TC-Cs-1sv"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Nm-PoB">
-                    <rect key="frame" x="216.5" y="240" width="100.5" height="36"/>
-                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="216.5" y="267" width="100.5" height="36"/>
+                    <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="IbR-DU-PzS"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <state key="normal" title="返回首页">
-                        <color key="titleColor" red="0.4039215686" green="0.40784313729999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="return:" destination="-1" eventType="touchUpInside" id="2Cy-VO-oSs"/>
@@ -61,7 +61,7 @@
                 <constraint firstItem="rJg-E5-8rU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3In-cG-Wfh"/>
                 <constraint firstItem="rJg-E5-8rU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="164" id="5d8-ZX-xty"/>
                 <constraint firstItem="SZR-0i-iet" firstAttribute="width" secondItem="RQt-Nm-PoB" secondAttribute="width" id="6wa-fM-qcN"/>
-                <constraint firstItem="SZR-0i-iet" firstAttribute="top" secondItem="rJg-E5-8rU" secondAttribute="bottom" constant="52" id="ZRf-bp-wCa"/>
+                <constraint firstItem="SZR-0i-iet" firstAttribute="top" secondItem="rJg-E5-8rU" secondAttribute="bottom" constant="60" id="ZRf-bp-wCa"/>
                 <constraint firstAttribute="trailing" secondItem="RQt-Nm-PoB" secondAttribute="trailing" constant="58" id="drV-ke-53f"/>
                 <constraint firstItem="SZR-0i-iet" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="58" id="gnT-IM-WZD"/>
                 <constraint firstItem="RQt-Nm-PoB" firstAttribute="leading" secondItem="SZR-0i-iet" secondAttribute="trailing" constant="58" id="qVq-0f-wed"/>

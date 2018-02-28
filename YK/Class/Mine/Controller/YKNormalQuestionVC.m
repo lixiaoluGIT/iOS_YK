@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     self.title = @"常见问题";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -80,12 +80,12 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [UIView new];
-    view.backgroundColor = [UIColor colorWithHexString:@"F8f8f8"];
+    view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     return view;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [UIView new];
-    view.backgroundColor = [UIColor blackColor];
+    view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     return view;
 }
 

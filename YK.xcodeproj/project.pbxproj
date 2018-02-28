@@ -333,7 +333,6 @@
 		C5B2C6D7201B387F00688E77 /* newka@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D5201B387F00688E77 /* newka@3x.png */; };
 		C5B723D7202C3BB700344339 /* YKUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B723D5202C3BB700344339 /* YKUpdateVC.m */; };
 		C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B723D6202C3BB700344339 /* YKUpdateVC.xib */; };
-		C5B723DA202D53F500344339 /* ss.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5B723D9202D53F400344339 /* ss.gif */; };
 		C5B723DC202D70F200344339 /* s.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5B723DB202D70F100344339 /* s.gif */; };
 		C5D981642021ACE40099D36A /* YKMyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D981632021ACE40099D36A /* YKMyHeaderView.m */; };
 		C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA84AC2005AB00002A12E3 /* YKAboutView.m */; };
@@ -1049,7 +1048,6 @@
 		C5B723D4202C3BB700344339 /* YKUpdateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKUpdateVC.h; sourceTree = "<group>"; };
 		C5B723D5202C3BB700344339 /* YKUpdateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKUpdateVC.m; sourceTree = "<group>"; };
 		C5B723D6202C3BB700344339 /* YKUpdateVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKUpdateVC.xib; sourceTree = "<group>"; };
-		C5B723D9202D53F400344339 /* ss.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ss.gif; sourceTree = "<group>"; };
 		C5B723DB202D70F100344339 /* s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = s.gif; sourceTree = "<group>"; };
 		C5D981622021ACE40099D36A /* YKMyHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMyHeaderView.h; sourceTree = "<group>"; };
 		C5D981632021ACE40099D36A /* YKMyHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMyHeaderView.m; sourceTree = "<group>"; };
@@ -1704,7 +1702,6 @@
 			isa = PBXGroup;
 			children = (
 				C5B723DB202D70F100344339 /* s.gif */,
-				C5B723D9202D53F400344339 /* ss.gif */,
 				C54301F92024495C006F84E0 /* 红.jpg */,
 				C571B50D2020155C007AB5B8 /* sss.gif */,
 				C5B2C6D4201B387F00688E77 /* newka.png */,
@@ -2667,7 +2664,6 @@
 				C525DE2E1FBB0320002802AE /* YKSuitCell.xib in Resources */,
 				C5343C8C1FC584FD00F5132A /* YKYifuScanCell.xib in Resources */,
 				C55D491E1FC2EDF8000D2056 /* 主题红.png in Resources */,
-				C5B723DA202D53F500344339 /* ss.gif in Resources */,
 				C5343C931FC69D2400F5132A /* YKBrandDetailHeader.xib in Resources */,
 				C52D0F9E1FC6C43D00B50258 /* liutao.jpg in Resources */,
 				C525DE231FBAD659002802AE /* YKScrollBtnView.xib in Resources */,
