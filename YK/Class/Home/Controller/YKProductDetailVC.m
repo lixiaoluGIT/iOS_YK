@@ -465,11 +465,12 @@
     
     
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"index === %ld",indexPath.row);
    
-    
 }
+
 - (void)ZYCollectionViewClick:(NSInteger)index {
     NSLog(@"%ld", index);
     

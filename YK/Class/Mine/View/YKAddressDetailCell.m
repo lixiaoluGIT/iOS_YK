@@ -57,7 +57,7 @@
     
     _address = address;
     
-    self.name.text = address.name;
+    self.name.text = [NSString stringWithFormat:@"收货人: %@",address.name];
     self.phone.text = address.phone;
     self.detailAddress.text = [NSString stringWithFormat:@"%@%@",address.zone,address.detail];
     self.defaultImage.selected = [address.isDefaultAddress intValue];

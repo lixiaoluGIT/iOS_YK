@@ -147,52 +147,54 @@
             </connections>
             <point key="canvasLocation" x="10.5" y="114"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="109" id="Pba-fq-agR" customClass="YKAddressDetailCell">
-            <rect key="frame" x="0.0" y="0.0" width="395" height="109"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="117" id="Pba-fq-agR" customClass="YKAddressDetailCell">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="117"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pba-fq-agR" id="OAo-lk-ei5">
-                <rect key="frame" x="0.0" y="0.0" width="395" height="108.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="116.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWC-A3-0ct">
+                        <rect key="frame" x="14" y="14" width="369" height="87"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="范冰冰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVN-qc-6uO">
-                        <rect key="frame" x="66" y="26" width="49" height="19.5"/>
+                        <rect key="frame" x="28" y="26" width="49" height="20"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15801006186" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mF-h3-cJ6">
-                        <rect key="frame" x="239.5" y="26.5" width="105.5" height="19.5"/>
+                        <rect key="frame" x="255" y="26" width="106" height="20"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京市海淀区西三旗龙乡小区3-3-402" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEE-SS-R83">
-                        <rect key="frame" x="66" y="65.5" width="309" height="17"/>
+                        <rect key="frame" x="28" y="60" width="363" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="address" translatesAutoresizingMaskIntoConstraints="NO" id="fd4-J9-AUp">
-                        <rect key="frame" x="20" y="41.5" width="26" height="26"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="qZ1-rS-vxD">
-                        <rect key="frame" x="369" y="47.5" width="6" height="14"/>
+                        <rect key="frame" x="393" y="51.5" width="10" height="14"/>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="ZVN-qc-6uO" firstAttribute="top" secondItem="OAo-lk-ei5" secondAttribute="top" constant="26" id="1Ds-Sp-cp2"/>
+                    <constraint firstItem="qZ1-rS-vxD" firstAttribute="centerY" secondItem="OAo-lk-ei5" secondAttribute="centerY" id="3qu-bU-Xu5"/>
                     <constraint firstAttribute="trailing" secondItem="0mF-h3-cJ6" secondAttribute="trailing" constant="50" id="7b1-T6-G5A"/>
-                    <constraint firstItem="qZ1-rS-vxD" firstAttribute="centerY" secondItem="fd4-J9-AUp" secondAttribute="centerY" id="7nS-eM-T0u"/>
+                    <constraint firstAttribute="bottom" secondItem="IWC-A3-0ct" secondAttribute="bottom" constant="15.5" id="D5Y-ph-81e"/>
                     <constraint firstItem="pEE-SS-R83" firstAttribute="leading" secondItem="ZVN-qc-6uO" secondAttribute="leading" id="Lre-T1-qBX"/>
-                    <constraint firstItem="ZVN-qc-6uO" firstAttribute="leading" secondItem="fd4-J9-AUp" secondAttribute="trailing" constant="20" id="Ndt-Jx-ajz"/>
-                    <constraint firstItem="qZ1-rS-vxD" firstAttribute="leading" secondItem="0mF-h3-cJ6" secondAttribute="trailing" constant="24" id="QvY-eA-gyw"/>
-                    <constraint firstItem="fd4-J9-AUp" firstAttribute="leading" secondItem="OAo-lk-ei5" secondAttribute="leading" constant="20" id="Rby-Qr-7Uf"/>
-                    <constraint firstItem="fd4-J9-AUp" firstAttribute="centerY" secondItem="OAo-lk-ei5" secondAttribute="centerY" id="hxh-fw-b8r"/>
-                    <constraint firstItem="qZ1-rS-vxD" firstAttribute="centerY" secondItem="fd4-J9-AUp" secondAttribute="centerY" id="sAY-X2-x9X"/>
+                    <constraint firstItem="IWC-A3-0ct" firstAttribute="leading" secondItem="OAo-lk-ei5" secondAttribute="leading" constant="14" id="VDU-OO-h0d"/>
+                    <constraint firstItem="IWC-A3-0ct" firstAttribute="top" secondItem="OAo-lk-ei5" secondAttribute="top" constant="14" id="hSe-x8-zmy"/>
+                    <constraint firstItem="ZVN-qc-6uO" firstAttribute="leading" secondItem="OAo-lk-ei5" secondAttribute="leading" constant="28" id="pZV-Z1-cbc"/>
                     <constraint firstAttribute="trailing" secondItem="pEE-SS-R83" secondAttribute="trailing" constant="20" id="uhO-ow-sSX"/>
-                    <constraint firstItem="pEE-SS-R83" firstAttribute="top" secondItem="ZVN-qc-6uO" secondAttribute="bottom" constant="20" id="wdv-07-Y79"/>
+                    <constraint firstItem="pEE-SS-R83" firstAttribute="top" secondItem="ZVN-qc-6uO" secondAttribute="bottom" constant="14" id="wdv-07-Y79"/>
+                    <constraint firstAttribute="trailing" secondItem="IWC-A3-0ct" secondAttribute="trailing" constant="28" id="xoo-Xw-HFz"/>
                     <constraint firstItem="0mF-h3-cJ6" firstAttribute="centerY" secondItem="ZVN-qc-6uO" secondAttribute="centerY" id="yFR-uY-oAR"/>
-                    <constraint firstAttribute="trailing" secondItem="qZ1-rS-vxD" secondAttribute="trailing" constant="20" id="zH0-4e-6aV"/>
+                    <constraint firstAttribute="trailing" secondItem="qZ1-rS-vxD" secondAttribute="trailing" constant="8" id="zH0-4e-6aV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -200,11 +202,10 @@
                 <outlet property="name" destination="ZVN-qc-6uO" id="EL9-iw-V3U"/>
                 <outlet property="phone" destination="0mF-h3-cJ6" id="EbT-ch-sE7"/>
             </connections>
-            <point key="canvasLocation" x="-6.5" y="296.5"/>
+            <point key="canvasLocation" x="1.5" y="300.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="address" width="26" height="26"/>
         <image name="delete" width="14" height="14"/>
         <image name="edit" width="14" height="14"/>
         <image name="right" width="10" height="14"/>

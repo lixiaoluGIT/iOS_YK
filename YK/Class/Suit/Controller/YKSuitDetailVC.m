@@ -160,7 +160,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==1) {
-        return 10;
+        return CGFLOAT_MIN;
     }
     return CGFLOAT_MIN;
 }
@@ -177,7 +177,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         if (isHadDefaultAddress) {
-            return 100;
+            return 105;
         }
         return 64;
     }
