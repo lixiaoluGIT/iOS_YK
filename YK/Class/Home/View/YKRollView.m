@@ -26,7 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.halfGap = gap / 2;
+        self.halfGap = gap/2;
         
         /** 设置 UIScrollView */
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(distance, 0, self.frame.size.width - 2 * distance, self.frame.size.height)];
@@ -35,6 +35,7 @@
         self.scrollView.delegate = self;
         
         self.scrollView.clipsToBounds = NO;
+//        self.scrollView.backgroundColor = [UIColor redColor];
         
         /** 添加手势 */
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
@@ -70,7 +71,13 @@
 //    [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
     
     //循环创建添加轮播图片, 前后各添加一张
-    for (int i = 0; i < self.rollDataArr.count + 2; i++) {
+    NSInteger count;
+    if (dataArr.count==1) {
+        count=0;
+    }else {
+        count=2;
+    }
+    for (int i = 0; i < self.rollDataArr.count + count; i++) {
         
         for (UIView *underView in self.scrollView.subviews) {
             
@@ -99,37 +106,48 @@
          *  i   -> (2 * i +1) *  halfGap + i *(width - 2 * halfGap )
          */
         
-        
+        if (self.rollDataArr.count == 1) {
+            picImageView.frame = CGRectMake(12, 0, (self.scrollView.frame.size.width - 24), self.frame.size.height);
+        }else {
         picImageView.frame = CGRectMake((2 * i + 1) * self.halfGap + i * (self.scrollView.frame.size.width - 2 * self.halfGap), 0, (self.scrollView.frame.size.width - 2 * self.halfGap), self.frame.size.height);
-        
+            
+//            picImageView.backgroundColor = [UIColor redColor];
+        }
         //设置图片
         if (i == 0) {
             
 //            picImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.rollDataArr[self.rollDataArr.count - 1]]];
             
             NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[self.rollDataArr.count - 1][@"brandLargeLogo"]];
-            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"activity"]];
             
         }else if (i == self.rollDataArr.count+1) {
             
 //            picImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.rollDataArr[0]]];
             
             NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[0][@"brandLargeLogo"]];
-            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"activity"]];
         }else {
             
 //            picImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.rollDataArr[i - 1]]];
             NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[i - 1][@"brandLargeLogo"]];
-            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"activity"]];
         }
         
         [self.scrollView addSubview:picImageView];
-        [picImageView setContentMode:UIViewContentModeScaleAspectFit];
+//        [picImageView setContentMode:UIViewContentModeScaleAspectFit];
         picImageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     }
     //设置轮播图当前的显示区域
-    self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width, 0);
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (self.rollDataArr.count + 2), 0);
+    if (dataArr.count==1) {
+       self.scrollView.contentOffset = CGPointMake(0, 0);
+        self.scrollView.userInteractionEnabled = NO;
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (self.rollDataArr.count + 2), 0);
+    }else {
+        self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width, 0);
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (self.rollDataArr.count + 2), 0);
+    }
+
     
 }
 

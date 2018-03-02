@@ -62,8 +62,12 @@
     
     //请求数据
     self.images2 = [NSArray array];
+//
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
+    UIImage *titleImages = [UIImage imageNamed:@"title"];
+    UIImageView *newTitleView = [[UIImageView alloc] initWithImage:titleImages];
+    self.navigationItem.titleView = newTitleView;
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     self.view.backgroundColor =[ UIColor whiteColor];
     
     
@@ -115,16 +119,16 @@
     }];
     
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    releaseButton.frame = CGRectMake(0, 25, 25, 25);
-    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
-    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
-    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
-    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;
-    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
-    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
+//    releaseButton.frame = CGRectMake(0, 25, 25, 25);
+//    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
+//    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
+//    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
+//    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = -16;
+//    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+//    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
     
     
     //检查版本更新
@@ -189,7 +193,7 @@
 
 //        hadtitle1 = YES;
         if (self.brandArray.count!=0) {
-            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+            _scroll.activityArray = [NSMutableArray arrayWithArray:self.brandArray];
         }
         [self.collectionView reloadData];
         
@@ -236,13 +240,14 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    return CGSizeMake(WIDHT, WIDHT*0.55 +200 +60);
+    return CGSizeMake(WIDHT, WIDHT*0.55 +320 +100);
 }
 
 #pragma mark - scrollViewDelegate
 -(void)scrollViewImageClick:(WMHCustomScroll *)WMHView{
     NSLog(@"%.f",WMHView.WMHScroll.contentOffset.x / WIDHT - 1);
 }
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -259,9 +264,9 @@
         WeakSelf(weakSelf)
         
         //品牌
-        _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
-        _scroll.frame = CGRectMake(0, WIDHT*0.55,WIDHT, 200);
-        [_scroll resetUI];
+        _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
+        _scroll.frame = CGRectMake(0, WIDHT*0.55,WIDHT, 320);
+//        [_scroll resetUI];
 //        if (self.brandArray.count!=0) {
 //            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
 //        }
@@ -292,7 +297,7 @@
         
         //推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-        ti.frame = CGRectMake(0, WIDHT*0.55+200,WIDHT, 60);
+        ti.frame = CGRectMake(0, WIDHT*0.55+320,WIDHT, 100);
         
         if (!hadtitle2) {
             [headerView addSubview:ti];

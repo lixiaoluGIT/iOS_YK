@@ -11,6 +11,7 @@
 
 #import "LLGifImageView.h"
 #import "LLGifView.h"
+#import "YKChangePhoneVC.h"
 
 
 @interface YKLoginVC ()<UITextFieldDelegate>{
@@ -61,8 +62,8 @@ NSInteger timeNum;
     //加载本地gif图片
     NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"s" ofType:@"gif"]];
     _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
-    [self.view addSubview:_gifView];
-    [self.view sendSubviewToBack:_gifView];
+//    [self.view addSubview:_gifView];
+//    [self.view sendSubviewToBack:_gifView];
     _gifView.alpha = 0.5;
     [_gifView startGif];
 
@@ -104,12 +105,17 @@ NSInteger timeNum;
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TencentDidLoginNotification:) name:@"TencentDidLoginNotification" object:nil];
 }
 
-
+//接收qq登录成功的通知
 - (void)TencentDidLoginNotification:(NSNotification *)notify{
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:notify.userInfo];
     [[YKUserManager sharedManager]loginSuccessByTencentDic:dic[@"code"] OnResponse:^(NSDictionary *dic) {
         [self dismissViewControllerAnimated:YES completion:^{
-            
+            if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]]) {
+                YKChangePhoneVC *changePhone = [YKChangePhoneVC new];
+                changePhone.isFromThirdLogin = YES;
+                changePhone.hidesBottomBarWhenPushed = YES;
+                [[self getCurrentVC].navigationController pushViewController:changePhone animated:YES];
+            }
         }];
     }];
 }
@@ -119,10 +125,56 @@ NSInteger timeNum;
     NSDictionary *dict = [notify userInfo];
     [[YKUserManager sharedManager]getWechatAccessTokenWithCode:dict[@"code"] OnResponse:^(NSDictionary *dic) {
         [self dismissViewControllerAnimated:YES completion:^{
-            
+            if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]] || [YKUserManager sharedManager].user.phone.length == 0) {
+                YKChangePhoneVC *changePhone = [YKChangePhoneVC new];
+                changePhone.isFromThirdLogin = YES;
+                changePhone.hidesBottomBarWhenPushed = YES;
+                [[self getCurrentVC].navigationController pushViewController:changePhone animated:YES];
+            }
         }];
 
     }];
+}
+
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    if ([window subviews].count>0) {
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+        id nextResponder = [frontView nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]]){
+            result = nextResponder;
+        }
+        else{
+            result = window.rootViewController;
+        }
+    }
+    else{
+        result = window.rootViewController;
+    }
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [((UITabBarController*)result) selectedViewController];
+    }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [((UINavigationController*)result) visibleViewController];
+    }
+    
+    return result;
 }
 
 - (void) textFieldDidChange:(id) sender {
@@ -224,6 +276,7 @@ NSInteger timeNum;
         [self.getVetifyBtn setTitleColor:[UIColor colorWithHexString:@"afafaf"] forState:UIControlStateNormal   ];
     }
 }
+
 - (IBAction)dismiss:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         

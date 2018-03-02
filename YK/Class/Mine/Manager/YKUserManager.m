@@ -105,8 +105,7 @@
 - (void)getUserInforOnResponse:(void (^)(NSDictionary *dic))onResponse{
 
     [YKHttpClient Method:@"GET" apiName:GetUserInfor_Url Params:nil Completion:^(NSDictionary *dic) {
-        
-        if ([dic[@"status"] intValue] == 401) {//未登录
+                if ([dic[@"status"] intValue] == 401) {//未登录
             [UD setObject:@"" forKey:@"token"];
            
         }
@@ -212,19 +211,31 @@
 }
 
 - (void)changePhoneWithPhone:(NSString *)phone
-                  VetifyCode:(NSString *)vetifiCode
-                  OnResponse:(void (^)(NSDictionary *dic))onResponse{
+                  VetifyCode:(NSString *)vetifiCode status:(NSInteger)status
+                  OnResponse:(void (^)(NSDictionary *dic))onResponse;{
     
 //    NSDictionary *dic = @{@"phone":phone,@"captcha":vetifiCode};
-     NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@",ChangePhone_Url,phone,vetifiCode];
+    
+    NSString *urlStr;
+    if (status==0) {
+        urlStr = BindPhone_Url;
+    }
+    if (status==1) {
+        urlStr = ChangePhone_Url;
+    }
+    
+     NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@",urlStr,phone,vetifiCode];
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
         if ([dic[@"status"] integerValue] == 200) {
             
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"修改成功" delay:1.2];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"绑定成功" delay:1.2];
             
+            if (status==0) {
+                [self saveCurrentToken:dic[@"data"][@"token"]];
+            }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
@@ -254,13 +265,13 @@
     
     [self clear];
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"退出成功" delay:1.2];
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"退出成功" delay:1.2];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             if (onResponse) {
                 onResponse(nil);
@@ -511,9 +522,12 @@
         if ([dict[@"status"] intValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"qq授权成功" delay:1.8];
             [self saveCurrentToken:dict[@"data"][@"token"]];
-            if (onResponse) {
-                onResponse(nil);
-            }
+            [self getUserInforOnResponse:^(NSDictionary *dic) {
+                if (onResponse) {
+                    onResponse(nil);
+                }
+            }];
+           
         }else {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"message"] delay:1.8];
         }

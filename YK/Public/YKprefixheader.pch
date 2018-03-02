@@ -80,6 +80,8 @@
 #define  UploadImage_Url @"/user/upload"
 //更新手机号获取验证码
 #define ChangePhone_Url @"/user/checkCaptcha"
+//绑定手机号
+#define BindPhone_Url @"/user/bindingPhone"
 //更新手机号验证验证码
 #define ChangePhoneGetVetifyCode_Url @"/user/updatePhone"
 //上传推送ID

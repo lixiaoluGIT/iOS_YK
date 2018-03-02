@@ -7,6 +7,7 @@
 //
 
 #import "YKChangePhoneVC.h"
+#import "YKLoginVC.h"
 
 @interface YKChangePhoneVC ()
 {
@@ -27,7 +28,13 @@ NSInteger timeCount;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"修改手机号";
+    
+    if (self.isFromThirdLogin) {
+        self.title = @"绑定手机号";
+    }else {
+        self.title = @"修改手机号";
+    }
+    
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -99,9 +106,17 @@ NSInteger timeCount;
 //获取验证码
 - (IBAction)getCode:(id)sender {
     //请求验证码接口,成功后
-    [[YKUserManager sharedManager]changePhoneGetVetifyCodeWithPhone:self.phoneText.text OnResponse:^(NSDictionary *dic) {
-        [self timeOrder];
-    }];
+    
+    if (self.isFromThirdLogin) {
+        [[YKUserManager sharedManager]getVetifyCodeWithPhone:self.phoneText.text OnResponse:^(NSDictionary *dic) {
+            [self timeOrder];
+        }];
+    }else {
+        [[YKUserManager sharedManager]changePhoneGetVetifyCodeWithPhone:self.phoneText.text OnResponse:^(NSDictionary *dic) {
+            [self timeOrder];
+        }];
+    }
+  
 }
 -(void)timeOrder{
     
@@ -146,15 +161,37 @@ NSInteger timeCount;
         [smartHUD alertText:self.view alert:@"验证码不能为空" delay:1];
         return;
     }
+    NSInteger status;
+    if (self.isFromThirdLogin) {
+        //绑定手机号
+        status = 0;
+        
+    }else {
+        //修改手机号
+        status = 1;
+    }
     
-    [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text OnResponse:^(NSDictionary *dic) {
+    [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text status:status OnResponse:^(NSDictionary *dic) {
         
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
+
 - (void)leftAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.isFromThirdLogin) {
+        [[YKUserManager sharedManager]exitLoginWithPhone:@"" VetifyCode:@"" OnResponse:^(NSDictionary *dic) {
+          
+            
+            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            [self presentViewController:login animated:YES completion:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
+
 
 
 @end

@@ -43,7 +43,7 @@
 
 //更新手机号
 - (void)changePhoneWithPhone:(NSString *)phone
-            VetifyCode:(NSString *)vetifiCode
+                  VetifyCode:(NSString *)vetifiCode status:(NSInteger)status
             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //退出登录

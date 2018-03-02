@@ -113,6 +113,9 @@
 }
 
 - (void)VIP{
+    if ([Token length] == 0) {
+        return;
+    }
     if (self.VIPClickBlock) {
         self.VIPClickBlock(_VIPStatus);//1使用中 2已过期 3无押金 4未开通
     }

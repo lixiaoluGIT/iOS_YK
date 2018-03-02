@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKChangePhoneVC : YKBaseVC   
+@interface YKChangePhoneVC : UIViewController
+
+@property (nonatomic,assign)BOOL isFromThirdLogin;
 
 @end
