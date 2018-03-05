@@ -94,10 +94,10 @@
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     _pageNum = 1;
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _pageNum = 1;
-        [self dd];
-    }];
+//    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        _pageNum = 1;
+//        [self dd];
+//    }];
     WeakSelf(weakSelf)
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;

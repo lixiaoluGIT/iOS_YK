@@ -288,11 +288,12 @@
     detail.titleStr = cell.goodsName;
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
-    
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     
 }
+
 - (void)ZYCollectionViewClick:(NSInteger)index {
     NSLog(@"%ld", index);
 }
