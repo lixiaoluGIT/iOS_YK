@@ -72,11 +72,12 @@
                      @"liutao.jpg",
                      @"timg.jpg"];
     
-    NSDictionary *dic = @{@"brandLargeLogo":@""};
-    [self.activityArray removeAllObjects];
-    [self.activityArray addObject:dic];
+//    NSDictionary *dic = @{@"brandLargeLogo":@""};
+//    [self.activityArray removeAllObjects];
+//    [self.activityArray addObject:dic];
     
-    [self.rollView rollView:self.activityArray];
+    //1首页,2选衣
+    [self.rollView rollView:self.activityArray status:1];
     
 //    for (int i = 0; i<self.activityArray.count; i++) {
 //        YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
@@ -127,7 +128,8 @@
                      @"liutao.jpg",
                      @"timg.jpg"];
     
-    [self.rollView rollView:self.brandArray];
+    //1首页,2选衣
+    [self.rollView rollView:self.brandArray status:2];
  
 //    for (int i = 0; i<brandArray.count; i++) {
 //        YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
@@ -161,6 +163,16 @@
     
     //活动
     if (isActivity) {
+        if (_activityArray.count == 1) {
+            if (self.toDetailBlock) {
+                self.toDetailBlock(_activityArray[0][@"specialLink"],nil);
+            }
+            return;
+        }
+
+        if (self.toDetailBlock) {
+            self.toDetailBlock(_activityArray[index-1][@"specialLink"],nil);
+        }
         return;
     }
     //品牌

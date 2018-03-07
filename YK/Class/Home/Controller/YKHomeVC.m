@@ -21,6 +21,7 @@
 #import "YKShareVC.h"
 #import "YKLoginVC.h"
 #import "YKLinkWebVC.h"
+#import "YKSearchVC.h"
 
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,WMHCustomScrollViewDelegate>
@@ -52,11 +53,23 @@
     self.navigationController.navigationBar.hidden = NO;
     //分享弹框
     [[YKHomeManager sharedManager]showAleartViewToShare];
+    
+    [UD setBool:NO forKey:@"atSearch"];
+}
+- (void)toSearch{
+    YKSearchVC *search = [[YKSearchVC alloc] init];
+    search.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = self.tabBarController.viewControllers[1];
+    search.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.selectedViewController = nav;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+     [NC addObserver:self selector:@selector(toSearch) name:@"tosearch" object:nil];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     
@@ -76,7 +89,7 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/180);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-180*WIDHT/414) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -99,6 +112,7 @@
 //        [self dd];
 //    }];
     WeakSelf(weakSelf)
+    
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
         //请求更多商品
@@ -117,18 +131,18 @@
         }];
         
     }];
+
     
-    
-//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
-//    releaseButton.frame = CGRectMake(0, 25, 25, 25);
-//    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
-//    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
-//    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
-//    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    negativeSpacer.width = -16;
-//    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
-//    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    releaseButton.frame = CGRectMake(0, 25, 25, 25);
+    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
+    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
+    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
+    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -16;
+    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
     
     
     //检查版本更新
@@ -149,9 +163,19 @@
         login.hidesBottomBarWhenPushed = YES;
         return;
     }
-    YKMessageVC *mes = [YKMessageVC new];
-    mes.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:mes animated:YES];
+//    YKMessageVC *mes = [YKMessageVC new];
+//    mes.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:mes animated:YES];
+    
+    
+    YKChatVC *chatService = [[YKChatVC alloc] init];
+
+//    chatService.NameStr = @"客服";
+    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+    chatService.targetId = RoundCloudServiceId;
+//    chatService.title = chatService.NameStr;
+    chatService.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController :chatService animated:YES];
 }
 
 - (NSMutableArray *)getImageArray:(NSArray *)array{
@@ -188,7 +212,7 @@
         self.imagesArr = [self getImageArray:array];
         self.imageClickUrls = [NSArray array];
         self.imageClickUrls = [self getImageClickUrlsArray:array];
-        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
+        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"specials"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
 
 //        hadtitle1 = YES;
@@ -276,14 +300,19 @@
             brand.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
-        _scroll.toDetailBlock = ^(NSString *brandId,NSString *brandName){
-            NSLog(@"所点品牌ID:%@",brandId);
-            YKBrandDetailVC *brand = [YKBrandDetailVC new];
-            brand.titleStr = brandName;
-            brand.hidesBottomBarWhenPushed = YES;
-            brand.brandId = brandId;
-            
-            [weakSelf.navigationController pushViewController:brand animated:YES];
+     
+        _scroll.toDetailBlock = ^(NSString *url,NSString *brandName){
+            YKLinkWebVC *web =[YKLinkWebVC new];
+            web.url = url;
+            web.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:web animated:YES];
+//            NSLog(@"所点品牌ID:%@",brandId);
+//            YKBrandDetailVC *brand = [YKBrandDetailVC new];
+//            brand.titleStr = brandName;
+//            brand.hidesBottomBarWhenPushed = YES;
+//            brand.brandId = brandId;
+//
+//            [weakSelf.navigationController pushViewController:brand animated:YES];
         };
         
         //

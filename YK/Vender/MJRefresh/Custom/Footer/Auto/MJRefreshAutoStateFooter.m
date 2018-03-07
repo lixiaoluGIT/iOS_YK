@@ -48,6 +48,14 @@
 {
     if (self.state == MJRefreshStateIdle) {
         [self beginRefreshing];
+      
+    }
+    if (self.state == MJRefreshStateNoMoreData) {
+//        if (self.toSearch) {
+//            self.toSearch();
+//        }
+        [NC postNotificationName:@"tosearch" object:nil userInfo:nil];
+        
     }
 }
 
@@ -62,11 +70,24 @@
     // 初始化文字
     [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
     [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    
+//    if ([UD boolForKey:@"atSearch"]) {
+//        [self setTitle:@"小衣库没有更多商品了" forState:MJRefreshStateNoMoreData];
+//    }else {
+        [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+//    }
+   
+//    self.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toS)];
+//    [self addGestureRecognizer:tap];
     
     // 监听label
     self.stateLabel.userInteractionEnabled = YES;
     [self.stateLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateLabelClick)]];
+}
+
+- (void)toS{
+    NSLog(@"asdjbasidiusabdiu ");
 }
 
 - (void)placeSubviews
@@ -76,7 +97,12 @@
     if (self.stateLabel.constraints.count) return;
     
     // 状态标签
-    self.stateLabel.frame = self.bounds;
+    [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.equalTo(@(150));
+        make.height.equalTo(@(30));
+    }];
 }
 
 - (void)setState:(MJRefreshState)state

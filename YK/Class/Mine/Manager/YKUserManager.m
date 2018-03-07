@@ -7,6 +7,7 @@
 //
 
 #import "YKUserManager.h"
+#import <RongIMKit/RongIMKit.h>
 
 @interface YKUserManager()<TencentSessionDelegate,DXAlertViewDelegate>
 {
@@ -78,6 +79,10 @@
             [self saveCurrentToken:dic[@"data"][@"token"] ];//保存token
             
             [self upLoadPushID];//上传推送ID
+            
+            //链接融云
+            [self RongCloudConnect:dic];
+            
             //获取当前用户信息
             [self getUserInforOnResponse:^(NSDictionary *dic) {
                 
@@ -100,6 +105,22 @@
             });
         }
     }];
+}
+
+-(void)RongCloudConnect:(NSDictionary *)dic{
+
+//    NSString *rongToken = [dic objectForKey:@"rongToken"];
+    NSString *rongToken = @"kA3F5Jsbq+r2NV2RlyTj4/j1/xSbm1iM+Ll5z+GXEC0DI+lKHd2mijEXOHavCuVpS5Ne7bMfcHco0qakSX04KA==";
+    
+    [UD setObject:rongToken forKey:@"ronglogin"];
+    [[RCIM sharedRCIM] connectWithToken:rongToken success:^(NSString *userId) {
+        NSLog(@"融云链接成功,当前用户:%@",userId);
+    } error:^(RCConnectErrorCode status) {
+        NSLog(@"融云链接失败");
+    } tokenIncorrect:^{
+        NSLog(@"融云token失效");
+    }];
+    
 }
 
 - (void)getUserInforOnResponse:(void (^)(NSDictionary *dic))onResponse{
@@ -304,6 +325,7 @@
 
 - (void)clear{
     [UD setObject:@"" forKey:@"token"];
+    [UD setObject:@"" forKey:@"ronglogin"];
     self.user = nil;
     [UD removeObjectForKey:@"lastAleartTime"];
 }

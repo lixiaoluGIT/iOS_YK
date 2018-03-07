@@ -29,7 +29,7 @@
 - (instancetype)initWithFrame:(CGRect)frame withDistanceForScroll:(float)distance withGap:(float)gap;
 
 /** 滚动视图数据 */
--(void)rollView:(NSArray *)dataArr;
+-(void)rollView:(NSArray *)dataArr status:(NSInteger)status;
 
 
 

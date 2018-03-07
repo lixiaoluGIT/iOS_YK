@@ -29,6 +29,8 @@
 #import "DDAdvertisementVC.h"
 #import "YKMessageVC.h"
 
+#import <RongIMKit/RongIMKit.h>
+
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate,DXAlertViewDelegate>
 
 
@@ -76,7 +78,19 @@
     [GeTuiSdk setPushModeForOff:NO];
     [self registerRemoteNotification];
 
+    //注册融云服务
+    [[RCIM sharedRCIM] initWithAppKey:RongAPPID];
 
+    NSString *rong = [UD objectForKey:@"ronglogin"];
+    if (rong.length>0) {
+        [[RCIM sharedRCIM] connectWithToken:rong success:^(NSString *userId) {
+            NSLog(@"融云链接成功,当前用户:%@",userId);
+        } error:^(RCConnectErrorCode status) {
+            NSLog(@"融云链接失败");
+        } tokenIncorrect:^{
+            NSLog(@"融云token失效");
+        }];
+    }
     
     
 #pragma mark - 友盟分享相关

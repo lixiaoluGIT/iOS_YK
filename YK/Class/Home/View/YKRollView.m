@@ -62,8 +62,10 @@
                                                               kCFStringEncodingUTF8));
     return encodedString;
 }
+
+
 #pragma mark - 视图数据
--(void)rollView:(NSArray *)dataArr{
+-(void)rollView:(NSArray *)dataArr status:(NSInteger)status{
     
     self.rollDataArr = dataArr;
     
@@ -115,23 +117,42 @@
         }
         //设置图片
         if (i == 0) {
+
+            NSString *s;
+            if (status==2) {
+                s = [NSString stringWithFormat:@"%@",self.rollDataArr[self.rollDataArr.count - 1][@"brandLargeLogo"]];
+            }else {
+                s = [NSString stringWithFormat:@"%@",self.rollDataArr[self.rollDataArr.count - 1][@"specialImg"]];
+            }
+         
+            NSURL *URL= [NSURL URLWithString:[self URLEncodedString:s]];
+            [picImageView sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"activity"]];
             
-//            picImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.rollDataArr[self.rollDataArr.count - 1]]];
-            
-            NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[self.rollDataArr.count - 1][@"brandLargeLogo"]];
-            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"activity"]];
             
         }else if (i == self.rollDataArr.count+1) {
             
 //            picImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.rollDataArr[0]]];
-            
-            NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[0][@"brandLargeLogo"]];
+//
+//            NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[0][@"brandLargeLogo"]];
+            NSString *s;
+            if (status==2) {
+                s = [NSString stringWithFormat:@"%@",self.rollDataArr[0][@"brandLargeLogo"]];
+            }else {
+                s = [NSString stringWithFormat:@"%@",self.rollDataArr[0][@"specialImg"]];
+            }
             [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"activity"]];
+            
         }else {
             
 //            picImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.rollDataArr[i - 1]]];
-            NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[i - 1][@"brandLargeLogo"]];
-            [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"activity"]];
+//            NSString *s = [NSString stringWithFormat:@"%@",self.rollDataArr[i - 1][@"brandLargeLogo"]];
+            NSString *s;
+            if (status==2) {
+                s = [NSString stringWithFormat:@"%@",self.rollDataArr[i - 1][@"brandLargeLogo"]];
+            }else {
+                s = [NSString stringWithFormat:@"%@",self.rollDataArr[i - 1][@"specialImg"]];
+            }
+           [picImageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"activity"]];
         }
         
         [self.scrollView addSubview:picImageView];
@@ -141,9 +162,11 @@
     //设置轮播图当前的显示区域
     if (dataArr.count==1) {
        self.scrollView.contentOffset = CGPointMake(0, 0);
-        self.scrollView.userInteractionEnabled = NO;
+        self.scrollView.userInteractionEnabled = YES;
             self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (self.rollDataArr.count + 2), 0);
+        self.scrollView.scrollEnabled = NO;
     }else {
+        self.scrollView.userInteractionEnabled = YES;
         self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width, 0);
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (self.rollDataArr.count + 2), 0);
     }

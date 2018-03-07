@@ -11,6 +11,7 @@
 #import "YKSearchVC.h"
 #import "YKSuitVC.h"
 #import "YKMineVC.h"
+#import "YKHomeSegementVC.h"
 
 @interface YKMainVC ()
 
@@ -35,7 +36,13 @@
         UINavigationController *home;
         UINavigationController *near;
         
-        YKHomeVC *homeVC = [YKHomeVC new];
+//        YKHomeVC *homeVC = [YKHomeVC new];
+//        homeVC.tabBarItem.image = [UIImage imageNamed:@"home"];
+//        homeVC.tabBarItem.selectedImage = [UIImage imageNamed:@"home1"];
+//        homeVC.tabBarItem.title = @"首页";
+//        homeVC.title = @"首页";
+        
+        YKHomeSegementVC *homeVC = [YKHomeSegementVC new];
         homeVC.tabBarItem.image = [UIImage imageNamed:@"home"];
         homeVC.tabBarItem.selectedImage = [UIImage imageNamed:@"home1"];
         homeVC.tabBarItem.title = @"首页";

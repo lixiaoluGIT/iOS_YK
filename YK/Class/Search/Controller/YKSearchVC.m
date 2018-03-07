@@ -54,8 +54,14 @@
 
 @implementation YKSearchVC
 
+- (void)viewWillAppear:(BOOL)animated{
+     [super viewWillAppear:animated];
+    [UD setBool:YES forKey:@"atSearch"];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+   
     
      [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     self.categoryId = @"";
@@ -97,7 +103,8 @@
             
             NSLog(@"--%@,---%@,---%@",self.categoryId,self.sortId,array);
             if (array.count==0) {
-                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+//                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+                [weakSelf.collectionView.mj_footer endRefreshing];
             }else {
                 [weakSelf.collectionView.mj_footer endRefreshing];
                 for (int i=0; i<array.count; i++) {

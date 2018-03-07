@@ -19,4 +19,6 @@
 
 /** 隐藏刷新状态的文字 */
 @property (assign, nonatomic, getter=isRefreshingTitleHidden) BOOL refreshingTitleHidden;
+
+@property (nonatomic,copy)void (^toSearch)(void);
 @end

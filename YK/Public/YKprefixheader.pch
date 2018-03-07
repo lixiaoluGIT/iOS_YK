@@ -30,6 +30,12 @@
 #define QQ_APPID @"1106544375"
 #define QQ_APPKEY @"roLPsuRwxLL26kfe"
 
+
+//融云appID(开发环境)
+#define RongAPPID @"25wehl3u2s52w"
+//融云客服ID(即时通讯)
+#define RoundCloudServiceId @"KEFU152024228589645"
+
 /*----------------------------用户token--------------------------------*/
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
 //登录过期时间 day
@@ -89,7 +95,7 @@
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页
-#define GetHomePage_Url @"/product/getHomePage"
+#define GetHomePage_Url @"/product/homePage"
 //品牌列表
 #define getBrandList_Url @"/brand/getBrandList"
 //品牌详情
@@ -201,6 +207,7 @@
 #import "MJRefresh.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "DXAlertView.h"
+#import "YKChatVC.h"
 
 //VC
 #import "YKBaseVC.h"

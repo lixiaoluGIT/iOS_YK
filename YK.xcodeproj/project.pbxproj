@@ -313,6 +313,31 @@
 		C57505381FFB853500F7E07A /* DDAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C57505371FFB853500F7E07A /* DDAleartView.m */; };
 		C57A53B01FCBAFF70090E372 /* YKEditInforVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C57A53AE1FCBAFF70090E372 /* YKEditInforVC.m */; };
 		C57A53B11FCBAFF70090E372 /* YKEditInforVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C57A53AF1FCBAFF70090E372 /* YKEditInforVC.xib */; };
+		C592922F204E414F002ED8DB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C592922E204E414F002ED8DB /* AssetsLibrary.framework */; };
+		C5929231204E4161002ED8DB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929230204E4161002ED8DB /* AudioToolbox.framework */; };
+		C5929232204E4169002ED8DB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD21FEB927E003BB993 /* AVFoundation.framework */; };
+		C5929233204E4172002ED8DB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A75C1FDF8E940068A31D /* CFNetwork.framework */; };
+		C5929235204E4180002ED8DB /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929234204E417F002ED8DB /* CoreAudio.framework */; };
+		C5929236204E4196002ED8DB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD31FEB9289003BB993 /* CoreLocation.framework */; };
+		C5929238204E41A2002ED8DB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929237204E41A2002ED8DB /* CoreMedia.framework */; };
+		C592923A204E41BD002ED8DB /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929239204E41BD002ED8DB /* CoreVideo.framework */; };
+		C592923B204E41C6002ED8DB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D47321FF49C48002208BF /* ImageIO.framework */; };
+		C592923D204E41E5002ED8DB /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C592923C204E41E5002ED8DB /* libc++abi.tbd */; };
+		C592923F204E4240002ED8DB /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C592923E204E4240002ED8DB /* libxml2.tbd */; };
+		C5929241204E4265002ED8DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929240204E4265002ED8DB /* MapKit.framework */; };
+		C5929243204E426D002ED8DB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929242204E426D002ED8DB /* OpenGLES.framework */; };
+		C5929244204E429A002ED8DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A7621FDF8EEF0068A31D /* UIKit.framework */; };
+		C5929246204E42B2002ED8DB /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929245204E42B2002ED8DB /* Photos.framework */; };
+		C5929248204E42BD002ED8DB /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929247204E42BD002ED8DB /* SafariServices.framework */; };
+		C592924B204E4722002ED8DB /* YKChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592924A204E4722002ED8DB /* YKChatVC.m */; };
+		C5929255204FC4A4002ED8DB /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C592924D204FC4A4002ED8DB /* RongCloudKit.strings */; };
+		C5929256204FC4A4002ED8DB /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929250204FC4A4002ED8DB /* RongIMKit.framework */; };
+		C5929257204FC4A4002ED8DB /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929251204FC4A4002ED8DB /* RongIMLib.framework */; };
+		C5929258204FC4A4002ED8DB /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5929252204FC4A4002ED8DB /* libopencore-amrnb.a */; };
+		C5929259204FC4A4002ED8DB /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5929253204FC4A4002ED8DB /* Emoji.plist */; };
+		C592925A204FC4A4002ED8DB /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5929254204FC4A4002ED8DB /* RongCloud.bundle */; };
+		C592925D204FD9D7002ED8DB /* YKHomeSegementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592925C204FD9D7002ED8DB /* YKHomeSegementVC.m */; };
+		C5929260204FDA41002ED8DB /* YKCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C592925F204FDA41002ED8DB /* YKCommunityVC.m */; };
 		C59D474F1FF4D750002208BF /* libSocialUniqueId.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D47381FF4D74E002208BF /* libSocialUniqueId.a */; };
 		C59D47501FF4D750002208BF /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D473A1FF4D74E002208BF /* libSocialWeChat.a */; };
 		C59D47511FF4D750002208BF /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C59D473D1FF4D74E002208BF /* README.txt */; };
@@ -1020,6 +1045,30 @@
 		C57A53AD1FCBAFF70090E372 /* YKEditInforVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKEditInforVC.h; sourceTree = "<group>"; };
 		C57A53AE1FCBAFF70090E372 /* YKEditInforVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKEditInforVC.m; sourceTree = "<group>"; };
 		C57A53AF1FCBAFF70090E372 /* YKEditInforVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKEditInforVC.xib; sourceTree = "<group>"; };
+		C592922E204E414F002ED8DB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		C5929230204E4161002ED8DB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C5929234204E417F002ED8DB /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		C5929237204E41A2002ED8DB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C5929239204E41BD002ED8DB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		C592923C204E41E5002ED8DB /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		C592923E204E4240002ED8DB /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		C5929240204E4265002ED8DB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C5929242204E426D002ED8DB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		C5929245204E42B2002ED8DB /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		C5929247204E42BD002ED8DB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		C5929249204E4722002ED8DB /* YKChatVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKChatVC.h; sourceTree = "<group>"; };
+		C592924A204E4722002ED8DB /* YKChatVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKChatVC.m; sourceTree = "<group>"; };
+		C592924E204FC4A4002ED8DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
+		C592924F204FC4A4002ED8DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
+		C5929250204FC4A4002ED8DB /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
+		C5929251204FC4A4002ED8DB /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
+		C5929252204FC4A4002ED8DB /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		C5929253204FC4A4002ED8DB /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
+		C5929254204FC4A4002ED8DB /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
+		C592925B204FD9D7002ED8DB /* YKHomeSegementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHomeSegementVC.h; sourceTree = "<group>"; };
+		C592925C204FD9D7002ED8DB /* YKHomeSegementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHomeSegementVC.m; sourceTree = "<group>"; };
+		C592925E204FDA41002ED8DB /* YKCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCommunityVC.h; sourceTree = "<group>"; };
+		C592925F204FDA41002ED8DB /* YKCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCommunityVC.m; sourceTree = "<group>"; };
 		C59D47321FF49C48002208BF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C59D47371FF4D74E002208BF /* UMSocialUniqueIdHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialUniqueIdHandler.h; sourceTree = "<group>"; };
 		C59D47381FF4D74E002208BF /* libSocialUniqueId.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialUniqueId.a; sourceTree = "<group>"; };
@@ -1113,21 +1162,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5929248204E42BD002ED8DB /* SafariServices.framework in Frameworks */,
+				C5929246204E42B2002ED8DB /* Photos.framework in Frameworks */,
+				C5929244204E429A002ED8DB /* UIKit.framework in Frameworks */,
+				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
+				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
+				C5929243204E426D002ED8DB /* OpenGLES.framework in Frameworks */,
+				C5929241204E4265002ED8DB /* MapKit.framework in Frameworks */,
+				C5929258204FC4A4002ED8DB /* libopencore-amrnb.a in Frameworks */,
+				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
+				C592923F204E4240002ED8DB /* libxml2.tbd in Frameworks */,
 				C50CF1B9200DD93300A717DF /* libstdc++.tbd in Frameworks */,
-				C5B2C6CD201B236300688E77 /* UMCommon.framework in Frameworks */,
+				C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */,
+				C592923D204E41E5002ED8DB /* libc++abi.tbd in Frameworks */,
+				C532A7581FDF8B320068A31D /* libc++.tbd in Frameworks */,
+				C592923B204E41C6002ED8DB /* ImageIO.framework in Frameworks */,
+				C592923A204E41BD002ED8DB /* CoreVideo.framework in Frameworks */,
 				C532A75E1FDF8EB10068A31D /* CoreTelephony.framework in Frameworks */,
+				C5929238204E41A2002ED8DB /* CoreMedia.framework in Frameworks */,
+				C5929236204E4196002ED8DB /* CoreLocation.framework in Frameworks */,
+				C5929256204FC4A4002ED8DB /* RongIMKit.framework in Frameworks */,
+				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
+				C5929235204E4180002ED8DB /* CoreAudio.framework in Frameworks */,
+				C5929233204E4172002ED8DB /* CFNetwork.framework in Frameworks */,
+				C5929232204E4169002ED8DB /* AVFoundation.framework in Frameworks */,
+				C5929231204E4161002ED8DB /* AudioToolbox.framework in Frameworks */,
+				C592922F204E414F002ED8DB /* AssetsLibrary.framework in Frameworks */,
+				C5B2C6CD201B236300688E77 /* UMCommon.framework in Frameworks */,
 				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
 				C5B2C6CB201B235500688E77 /* UMAnalytics.framework in Frameworks */,
-				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
-				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
 				C54350AB200F3E1A00B5732D /* TencentOpenAPI.framework in Frameworks */,
 				C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */,
 				C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */,
-				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
-				C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */,
 				C59D47571FF4D750002208BF /* UShareUI.framework in Frameworks */,
-				C532A7581FDF8B320068A31D /* libc++.tbd in Frameworks */,
-				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
 				C59D47501FF4D750002208BF /* libSocialWeChat.a in Frameworks */,
 				C59D47991FFB6C61002208BF /* GTSDK.framework in Frameworks */,
 				C532A75B1FDF8E820068A31D /* CoreMotion.framework in Frameworks */,
@@ -1139,6 +1206,7 @@
 				C525DEDD1FC27922002802AE /* libxml2.2.tbd in Frameworks */,
 				C532A7481FDF8AAB0068A31D /* AlipaySDK.framework in Frameworks */,
 				C59D47551FF4D750002208BF /* TencentOpenAPI.framework in Frameworks */,
+				C5929257204FC4A4002ED8DB /* RongIMLib.framework in Frameworks */,
 				C59D475B1FF4D750002208BF /* UMSocialCore.framework in Frameworks */,
 				C532A7531FDF8AAC0068A31D /* libcrypto.a in Frameworks */,
 				C532A7521FDF8AAC0068A31D /* libssl.a in Frameworks */,
@@ -1246,6 +1314,7 @@
 		C525DC571FBAB15C002802AE /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				C592924C204FC4A4002ED8DB /* RongYun */,
 				C5B2C6C9201B207D00688E77 /* UMAnalysis */,
 				C50CF1A9200DD48400A717DF /* Tencent */,
 				C59D464A1FF49B38002208BF /* UMSocial */,
@@ -1298,6 +1367,10 @@
 				C525DE251FBAEA58002802AE /* YKALLBrandVC.m */,
 				C5343C781FC52E2400F5132A /* YKBrandDetailVC.h */,
 				C5343C791FC52E2400F5132A /* YKBrandDetailVC.m */,
+				C592925B204FD9D7002ED8DB /* YKHomeSegementVC.h */,
+				C592925C204FD9D7002ED8DB /* YKHomeSegementVC.m */,
+				C592925E204FDA41002ED8DB /* YKCommunityVC.h */,
+				C592925F204FDA41002ED8DB /* YKCommunityVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1694,6 +1767,8 @@
 				C5E97F85201860150043705B /* YKBaseVC.m */,
 				C5E97F872018630B0043705B /* YKBaseTableVC.h */,
 				C5E97F882018630B0043705B /* YKBaseTableVC.m */,
+				C5929249204E4722002ED8DB /* YKChatVC.h */,
+				C592924A204E4722002ED8DB /* YKChatVC.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2125,6 +2200,17 @@
 		C525DEDB1FC27915002802AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5929247204E42BD002ED8DB /* SafariServices.framework */,
+				C5929245204E42B2002ED8DB /* Photos.framework */,
+				C5929242204E426D002ED8DB /* OpenGLES.framework */,
+				C5929240204E4265002ED8DB /* MapKit.framework */,
+				C592923E204E4240002ED8DB /* libxml2.tbd */,
+				C592923C204E41E5002ED8DB /* libc++abi.tbd */,
+				C5929239204E41BD002ED8DB /* CoreVideo.framework */,
+				C5929237204E41A2002ED8DB /* CoreMedia.framework */,
+				C5929234204E417F002ED8DB /* CoreAudio.framework */,
+				C5929230204E4161002ED8DB /* AudioToolbox.framework */,
+				C592922E204E414F002ED8DB /* AssetsLibrary.framework */,
 				C50CF1BA200DDA3900A717DF /* TencentOpenApi_IOS_Bundle.bundle */,
 				C50CF1B8200DD93300A717DF /* libstdc++.tbd */,
 				C50CF1B5200DD8C300A717DF /* libiconv.tbd */,
@@ -2405,6 +2491,19 @@
 			path = "../../../Downloads/LLGifView-master/LLGifView/LLGifView";
 			sourceTree = "<group>";
 		};
+		C592924C204FC4A4002ED8DB /* RongYun */ = {
+			isa = PBXGroup;
+			children = (
+				C592924D204FC4A4002ED8DB /* RongCloudKit.strings */,
+				C5929250204FC4A4002ED8DB /* RongIMKit.framework */,
+				C5929251204FC4A4002ED8DB /* RongIMLib.framework */,
+				C5929252204FC4A4002ED8DB /* libopencore-amrnb.a */,
+				C5929253204FC4A4002ED8DB /* Emoji.plist */,
+				C5929254204FC4A4002ED8DB /* RongCloud.bundle */,
+			);
+			path = RongYun;
+			sourceTree = "<group>";
+		};
 		C59D464A1FF49B38002208BF /* UMSocial */ = {
 			isa = PBXGroup;
 			children = (
@@ -2634,6 +2733,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = C525DC181FBAAFC1002802AE;
 			productRefGroup = C525DC221FBAAFC1002802AE /* Products */;
@@ -2683,8 +2783,10 @@
 				C525DEBC1FBEADC7002802AE /* YQAlertTableViewCell.xib in Resources */,
 				C52D04721FE8EA9000633550 /* cat@2x.png in Resources */,
 				C53039FC1FCEA97100FB12CE /* YKChongZhiBtn.xib in Resources */,
+				C5929255204FC4A4002ED8DB /* RongCloudKit.strings in Resources */,
 				C52D0FA91FC6D5FC00B50258 /* YKWalletButtom.xib in Resources */,
 				C54301FA2024495C006F84E0 /* 红.jpg in Resources */,
+				C5929259204FC4A4002ED8DB /* Emoji.plist in Resources */,
 				C525DE9D1FBD7FA5002802AE /* YKAddAddressCell.xib in Resources */,
 				C59D47511FF4D750002208BF /* README.txt in Resources */,
 				C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */,
@@ -2700,6 +2802,7 @@
 				C5742ED22003872C00BBB882 /* Images.xcassets in Resources */,
 				C5F929B720206E52001D2139 /* CLImageBrowserCell.xib in Resources */,
 				C50394932007BDB2004B41C3 /* Default-568.png in Resources */,
+				C592925A204FC4A4002ED8DB /* RongCloud.bundle in Resources */,
 				C525DD621FBAB2A8002802AE /* LICENSE in Resources */,
 				C525DC2C1FBAAFC1002802AE /* Main.storyboard in Resources */,
 				C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */,
@@ -2781,6 +2884,7 @@
 				C54B8F891FE275BC000EAF8E /* YKMessageVC.m in Sources */,
 				C525DDBB1FBAB2A9002802AE /* UIImage+WebP.m in Sources */,
 				C525DEB51FBDA023002802AE /* YKEditAddressVC.m in Sources */,
+				C592924B204E4722002ED8DB /* YKChatVC.m in Sources */,
 				C5D981642021ACE40099D36A /* YKMyHeaderView.m in Sources */,
 				C525DDA61FBAB2A9002802AE /* MLTextAttachment.m in Sources */,
 				C525DDC91FBAB2A9002802AE /* UIView+WebCacheOperation.m in Sources */,
@@ -2827,6 +2931,7 @@
 				C525DDA11FBAB2A9002802AE /* NSMutableAttributedString+MLLabel.m in Sources */,
 				C5F929BC20206E53001D2139 /* FYTransitionData.m in Sources */,
 				C533470A1FCFFE58002A08D0 /* LogisticsInfo.m in Sources */,
+				C592925D204FD9D7002ED8DB /* YKHomeSegementVC.m in Sources */,
 				C525DDB51FBAB2A9002802AE /* TZImageManager.m in Sources */,
 				C532A77A1FE0CCEE0068A31D /* WXUtil.mm in Sources */,
 				C525DE9C1FBD7FA5002802AE /* YKAddAddressCell.m in Sources */,
@@ -2851,6 +2956,7 @@
 				C532A74E1FDF8AAB0068A31D /* base64.m in Sources */,
 				C53039EA1FCC272000FB12CE /* ChangeFontWithLabel.m in Sources */,
 				C53039C41FCBEAC500FB12CE /* CustomSheetView.m in Sources */,
+				C5929260204FDA41002ED8DB /* YKCommunityVC.m in Sources */,
 				C525DD961FBAB2A9002802AE /* View+MASAdditions.m in Sources */,
 				C52D55081FFF5FCC004B52C4 /* YKMsgDetailVc.m in Sources */,
 				C525DDA71FBAB2A9002802AE /* NSString+MLExpression.m in Sources */,
@@ -3054,6 +3160,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		C592924D204FC4A4002ED8DB /* RongCloudKit.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C592924E204FC4A4002ED8DB /* zh-Hans */,
+				C592924F204FC4A4002ED8DB /* en */,
+			);
+			name = RongCloudKit.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3190,6 +3305,15 @@
 					"$(PROJECT_DIR)/YK/Vender/Tencent",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/YK/Vender/UMAnalysis",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/QQ/QQSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/QQ/QQSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/alipay",
+					"$(PROJECT_DIR)/YK/Vender/RongYun",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3236,6 +3360,21 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/UniqueId",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/UniqueId",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/alipay",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/Lib",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/wxpay",
+					"$(PROJECT_DIR)/YK/Vender/RongYun",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -3278,6 +3417,15 @@
 					"$(PROJECT_DIR)/YK/Vender/Tencent",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/YK/Vender/UMAnalysis",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/QQ/QQSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/QQ/QQSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/alipay",
+					"$(PROJECT_DIR)/YK/Vender/RongYun",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3324,6 +3472,21 @@
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/UniqueId",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/UniqueId",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/alipay",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/Lib",
+					"$(PROJECT_DIR)/YK/Vender/dongdongcar/wxpay",
+					"$(PROJECT_DIR)/YK/Vender/RongYun",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
