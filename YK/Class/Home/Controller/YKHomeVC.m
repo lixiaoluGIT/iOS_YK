@@ -89,7 +89,8 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/180);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-180*WIDHT/414) collectionViewLayout:layoutView];
+//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-180*WIDHT/414) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -163,19 +164,19 @@
         login.hidesBottomBarWhenPushed = YES;
         return;
     }
-//    YKMessageVC *mes = [YKMessageVC new];
-//    mes.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:mes animated:YES];
+    YKMessageVC *mes = [YKMessageVC new];
+    mes.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:mes animated:YES];
     
     
-    YKChatVC *chatService = [[YKChatVC alloc] init];
-
-//    chatService.NameStr = @"客服";
-    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-    chatService.targetId = RoundCloudServiceId;
-//    chatService.title = chatService.NameStr;
-    chatService.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController :chatService animated:YES];
+//    YKChatVC *chatService = [[YKChatVC alloc] init];
+//
+////    chatService.NameStr = @"客服";
+//    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+//    chatService.targetId = RoundCloudServiceId;
+////    chatService.title = chatService.NameStr;
+//    chatService.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController :chatService animated:YES];
 }
 
 - (NSMutableArray *)getImageArray:(NSArray *)array{
