@@ -55,11 +55,12 @@
     }
     //TODO:请求广告页图片并保存到文件
     
+    //注册融云服务
+    [[RCIM sharedRCIM] initWithAppKey:RongAPPID];
     
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
-            //注册融云服务
-            [[RCIM sharedRCIM] initWithAppKey:RongAPPID];
+           
             
             NSString *rong = [YKUserManager sharedManager].user.rongToken;
             NSString *rongToken;
