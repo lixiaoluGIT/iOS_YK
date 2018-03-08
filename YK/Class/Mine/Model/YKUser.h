@@ -11,6 +11,8 @@
 @interface YKUser : NSObject
 
 //用户信息
+
+@property (nonatomic,strong)NSString *rongToken;//融云token
 @property (nonatomic,strong)NSString *userId;//用户Id
 @property (nonatomic,strong)NSString *nickname;//用户昵称
 @property (nonatomic,strong)NSString *photo;//用户头像url

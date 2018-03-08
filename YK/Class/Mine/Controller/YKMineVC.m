@@ -232,6 +232,15 @@
                 [self.navigationController pushViewController:normal animated:YES];
             }
             if (tag==4) {//联系客服
+                
+                if ([Token length] == 0) {
+                    YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+                    [self presentViewController:login animated:YES completion:^{
+                        
+                    }];
+                    login.hidesBottomBarWhenPushed = YES;
+                    return;
+                }
                 YKChatVC *chatService = [[YKChatVC alloc] init];
                 
                 //    chatService.NameStr = @"客服";

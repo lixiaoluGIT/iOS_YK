@@ -58,6 +58,24 @@
     
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+            //注册融云服务
+            [[RCIM sharedRCIM] initWithAppKey:RongAPPID];
+            
+            NSString *rong = [YKUserManager sharedManager].user.rongToken;
+            NSString *rongToken;
+            if (rong.length>0) {
+                rongToken = rong;
+            }else {
+                //        rongToken = @"mpQunDWgfbYX1aUZ9sKm4FcQiL9c5ZAVYfjoGUM8E8gWfEDFWFo5MVdLkwRRNpWzj8XLG974CL6jEKsp8uXlGw==";
+                rongToken = @"";
+            }
+            [[RCIM sharedRCIM] connectWithToken:rongToken success:^(NSString *userId) {
+                NSLog(@"融云链接成功,当前用户:%@",userId);
+            } error:^(RCConnectErrorCode status) {
+                NSLog(@"融云链接失败");
+            } tokenIncorrect:^{
+                NSLog(@"融云token失效");
+            }];
             
         }];
         
@@ -78,20 +96,6 @@
     [GeTuiSdk setPushModeForOff:NO];
     [self registerRemoteNotification];
 
-    //注册融云服务
-    [[RCIM sharedRCIM] initWithAppKey:RongAPPID];
-
-    NSString *rong = [UD objectForKey:@"ronglogin"];
-    if (rong.length>0) {
-        [[RCIM sharedRCIM] connectWithToken:rong success:^(NSString *userId) {
-            NSLog(@"融云链接成功,当前用户:%@",userId);
-        } error:^(RCConnectErrorCode status) {
-            NSLog(@"融云链接失败");
-        } tokenIncorrect:^{
-            NSLog(@"融云token失效");
-        }];
-    }
-    
     
 #pragma mark - 友盟分享相关
     [UMConfigure initWithAppkey:@"5a6ae7f7f43e4834a500012e" channel:@"App Store"];

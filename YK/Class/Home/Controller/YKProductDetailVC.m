@@ -179,12 +179,17 @@
         [weakSelf addTOCart];
     };
     buttom.KeFuBlock = ^(void){//客服
+        if ([Token length] == 0) {
+            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            [self presentViewController:login animated:YES completion:^{
+                
+            }];
+            login.hidesBottomBarWhenPushed = YES;
+            return;
+        }
         YKChatVC *chatService = [[YKChatVC alloc] init];
-        
-        //    chatService.NameStr = @"客服";
         chatService.conversationType = ConversationType_CUSTOMERSERVICE;
         chatService.targetId = RoundCloudServiceId;
-        //    chatService.title = chatService.NameStr;
         chatService.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController :chatService animated:YES];
 //        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {

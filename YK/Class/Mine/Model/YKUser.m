@@ -12,6 +12,9 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)Dictionary{
     if (self = [super init]) {
+        
+        self.rongToken = Dictionary[@"rongToken"];
+        
         self.userId = Dictionary[@"userInfo"][@"userId"];
         self.nickname = Dictionary[@"userInfo"][@"nickname"];
         self.phone = Dictionary[@"userInfo"][@"phone"];

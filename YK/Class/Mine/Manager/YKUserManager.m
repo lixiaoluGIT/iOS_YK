@@ -81,11 +81,11 @@
             [self upLoadPushID];//上传推送ID
             
             //链接融云
-            [self RongCloudConnect:dic];
+//            [self RongCloudConnect:dic];
             
             //获取当前用户信息
             [self getUserInforOnResponse:^(NSDictionary *dic) {
-                
+                 [self RongCloudConnect];
             }];
             
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"登录成功" delay:1.2];
@@ -107,12 +107,10 @@
     }];
 }
 
--(void)RongCloudConnect:(NSDictionary *)dic{
+-(void)RongCloudConnect{
 
-//    NSString *rongToken = [dic objectForKey:@"rongToken"];
-    NSString *rongToken = @"kA3F5Jsbq+r2NV2RlyTj4/j1/xSbm1iM+Ll5z+GXEC0DI+lKHd2mijEXOHavCuVpS5Ne7bMfcHco0qakSX04KA==";
-    
-    [UD setObject:rongToken forKey:@"ronglogin"];
+    NSString *rongToken = self.user.rongToken;
+ 
     [[RCIM sharedRCIM] connectWithToken:rongToken success:^(NSString *userId) {
         NSLog(@"融云链接成功,当前用户:%@",userId);
     } error:^(RCConnectErrorCode status) {
@@ -325,9 +323,20 @@
 
 - (void)clear{
     [UD setObject:@"" forKey:@"token"];
-    [UD setObject:@"" forKey:@"ronglogin"];
     self.user = nil;
     [UD removeObjectForKey:@"lastAleartTime"];
+    
+    [[RCIM sharedRCIM] logout];//断开当前用户与融云的链接
+    
+//    //建立匿名聊天
+//    [[RCIM sharedRCIM] connectWithToken:@"mpQunDWgfbYX1aUZ9sKm4FcQiL9c5ZAVYfjoGUM8E8gWfEDFWFo5MVdLkwRRNpWzj8XLG974CL6jEKsp8uXlGw==" success:^(NSString *userId) {
+//        NSLog(@"融云链接成功,当前用户:%@",userId);
+//    } error:^(RCConnectErrorCode status) {
+//        NSLog(@"融云链接失败");
+//    } tokenIncorrect:^{
+//        NSLog(@"融云token失效");
+//    }];
+    
 }
 
 - (void)registerPushForGeTui{
@@ -483,6 +492,14 @@
         if ([dict[@"status"] intValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信授权成功" delay:1.8];
             [self saveCurrentToken:dict[@"data"][@"token"]];
+            
+            //链接融云
+            
+            [self getUserInforOnResponse:^(NSDictionary *dic) {
+                //链接融云
+                [self RongCloudConnect];
+            }];
+            
             if (onResponse) {
                 onResponse(nil);
             }
@@ -543,12 +560,23 @@
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"qq授权成功" delay:1.8];
+
             [self saveCurrentToken:dict[@"data"][@"token"]];
+            
+            //链接融云
+//            [self RongCloudConnect:dic];
+            
             [self getUserInforOnResponse:^(NSDictionary *dic) {
+                
+                //链接融云
+                [self RongCloudConnect];
+                
                 if (onResponse) {
                     onResponse(nil);
+                    
                 }
             }];
+            
            
         }else {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"message"] delay:1.8];
