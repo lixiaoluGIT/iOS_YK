@@ -185,9 +185,6 @@
 		C52CA76B2000BFA800ECDC80 /* DDAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C52CA7692000BFA700ECDC80 /* DDAdvertisementVC.m */; };
 		C52D04671FE8E8C600633550 /* MBProgressHUD+CustomSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04651FE8E8C500633550 /* MBProgressHUD+CustomSet.m */; };
 		C52D04681FE8E8C600633550 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04661FE8E8C500633550 /* MBProgressHUD.m */; };
-		C52D04721FE8EA9000633550 /* cat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D046E1FE8EA8F00633550 /* cat@2x.png */; };
-		C52D04731FE8EA9000633550 /* YyxHeaderRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D046F1FE8EA8F00633550 /* YyxHeaderRefresh.m */; };
-		C52D04741FE8EA9000633550 /* YyxCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04701FE8EA8F00633550 /* YyxCircleView.m */; };
 		C52D04781FE8EB5D00633550 /* YKNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C52D04751FE8EB5B00633550 /* YKNoDataView.xib */; };
 		C52D04791FE8EB5D00633550 /* YKNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D04771FE8EB5D00633550 /* YKNoDataView.m */; };
 		C52D047C1FE8F8A400633550 /* YKAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D047B1FE8F8A400633550 /* YKAleartView.m */; };
@@ -740,11 +737,6 @@
 		C52D04641FE8E8C500633550 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C52D04651FE8E8C500633550 /* MBProgressHUD+CustomSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+CustomSet.m"; sourceTree = "<group>"; };
 		C52D04661FE8E8C500633550 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		C52D046D1FE8EA8F00633550 /* YyxCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YyxCircleView.h; sourceTree = "<group>"; };
-		C52D046E1FE8EA8F00633550 /* cat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cat@2x.png"; sourceTree = "<group>"; };
-		C52D046F1FE8EA8F00633550 /* YyxHeaderRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YyxHeaderRefresh.m; sourceTree = "<group>"; };
-		C52D04701FE8EA8F00633550 /* YyxCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YyxCircleView.m; sourceTree = "<group>"; };
-		C52D04711FE8EA8F00633550 /* YyxHeaderRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YyxHeaderRefresh.h; sourceTree = "<group>"; };
 		C52D04751FE8EB5B00633550 /* YKNoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YKNoDataView.xib; sourceTree = "<group>"; };
 		C52D04761FE8EB5C00633550 /* YKNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKNoDataView.h; sourceTree = "<group>"; };
 		C52D04771FE8EB5D00633550 /* YKNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKNoDataView.m; sourceTree = "<group>"; };
@@ -1319,7 +1311,6 @@
 				C50CF1A9200DD48400A717DF /* Tencent */,
 				C59D464A1FF49B38002208BF /* UMSocial */,
 				C534ECC31FEB9123003BB993 /* GeTui */,
-				C52D046C1FE8EA8F00633550 /* Refresh */,
 				C532A76C1FE0CCC70068A31D /* WXPay */,
 				C532A6DF1FDF8A720068A31D /* AliPay */,
 				C525DC791FBAB2A6002802AE /* AFNetworking */,
@@ -2239,18 +2230,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C52D046C1FE8EA8F00633550 /* Refresh */ = {
-			isa = PBXGroup;
-			children = (
-				C52D046D1FE8EA8F00633550 /* YyxCircleView.h */,
-				C52D046E1FE8EA8F00633550 /* cat@2x.png */,
-				C52D046F1FE8EA8F00633550 /* YyxHeaderRefresh.m */,
-				C52D04701FE8EA8F00633550 /* YyxCircleView.m */,
-				C52D04711FE8EA8F00633550 /* YyxHeaderRefresh.h */,
-			);
-			path = Refresh;
-			sourceTree = "<group>";
-		};
 		C53039B91FCBEAC400FB12CE /* CustomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -2781,7 +2760,6 @@
 				C52D0FC01FC7E6BB00B50258 /* YKLoginVC.xib in Resources */,
 				C525DD781FBAB2A9002802AE /* MJRefresh.bundle in Resources */,
 				C525DEBC1FBEADC7002802AE /* YQAlertTableViewCell.xib in Resources */,
-				C52D04721FE8EA9000633550 /* cat@2x.png in Resources */,
 				C53039FC1FCEA97100FB12CE /* YKChongZhiBtn.xib in Resources */,
 				C5929255204FC4A4002ED8DB /* RongCloudKit.strings in Resources */,
 				C52D0FA91FC6D5FC00B50258 /* YKWalletButtom.xib in Resources */,
@@ -3042,7 +3020,6 @@
 				C525DD661FBAB2A8002802AE /* UIRefreshControl+AFNetworking.m in Sources */,
 				C525DD9E1FBAB2A9002802AE /* MLEmojiLabel.m in Sources */,
 				C5E46EAD1FFE3FF2002453EB /* YKShareSuccessView.m in Sources */,
-				C52D04731FE8EA9000633550 /* YyxHeaderRefresh.m in Sources */,
 				C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */,
 				C5DA84B720060692002A12E3 /* YKLinkWebVC.m in Sources */,
 				C525DC781FBAB207002802AE /* ZYCollectionViewCell.m in Sources */,
@@ -3051,7 +3028,6 @@
 				C525DDC31FBAB2A9002802AE /* SDWebImageCompat.m in Sources */,
 				C525DDC81FBAB2A9002802AE /* UIImageView+WebCache.m in Sources */,
 				C525DD811FBAB2A9002802AE /* MJRefreshAutoNormalFooter.m in Sources */,
-				C52D04741FE8EA9000633550 /* YyxCircleView.m in Sources */,
 				C525DD7D1FBAB2A9002802AE /* MJRefreshBackStateFooter.m in Sources */,
 				C571B507202012C0007AB5B8 /* LLGifView.m in Sources */,
 				C525DD8B1FBAB2A9002802AE /* UITableView+SDAutoTableViewCellHeight.m in Sources */,

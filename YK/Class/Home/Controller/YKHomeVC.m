@@ -14,7 +14,6 @@
 #import "YKScrollView.h"
 #import "YKALLBrandVC.h"
 #import "YKRecommentTitleView.h"
-#import "YyxHeaderRefresh.h"
 #import "YKProductDetailVC.h"
 #import "YKBrandDetailVC.h"
 #import "YKMessageVC.h"
@@ -40,8 +39,6 @@
 @property (nonatomic,strong)NSArray *imageClickUrls;
 @property (nonatomic,strong)NSArray *brandArray;
 @property (nonatomic,strong)NSMutableArray *productArray;
-
-@property (strong, nonatomic) YyxHeaderRefresh *refresh;
 @property (nonatomic,strong)YKScrollView *scroll;
 @end
 
@@ -237,12 +234,7 @@
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         return;
     }
-    
-    if (scrollView.contentOffset.y>100) {
-        self.refresh.hidden = YES;
-    }else {
-        self.refresh.hidden = NO;
-    }
+
     
 }
 

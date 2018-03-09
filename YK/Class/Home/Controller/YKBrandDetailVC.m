@@ -12,7 +12,7 @@
 #import "YKScrollView.h"
 #import "YKALLBrandVC.h"
 #import "YKRecommentTitleView.h"
-#import "YyxHeaderRefresh.h"
+
 #import "YKProductDetailHeader.h"
 #import "YKBrandDetailHeader.h"
 #import "CBSegmentView.h"
@@ -39,8 +39,6 @@
 @property (nonatomic,strong)NSDictionary *brand;
 @property (nonatomic,strong)NSMutableArray *secondLevelCategoryList;
 @property (nonatomic,strong)NSMutableArray *productList;
-
-
 
 @end
 

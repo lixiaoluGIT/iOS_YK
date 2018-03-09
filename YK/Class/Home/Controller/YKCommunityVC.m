@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    YKNoDataView *NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
-    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"dingdan"] statusDes:@"社区功能暂无开通" hiddenBtn:YES actionTitle:@"" actionBlock:^{
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"dingdan"] statusDes:@"社区功能暂未开通" hiddenBtn:YES actionTitle:@"" actionBlock:^{
        
         
     }];

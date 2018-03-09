@@ -30,7 +30,6 @@
 #define QQ_APPID @"1106544375"
 #define QQ_APPKEY @"roLPsuRwxLL26kfe"
 
-
 //融云appID(开发环境)
 #define RongAPPID @"25wehl3u2s52w"
 //融云客服ID(即时通讯)

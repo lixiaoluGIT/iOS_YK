@@ -14,30 +14,22 @@
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import <UMSocialCore/UMSocialCore.h>
-
-
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
-
 #import <GTSDK/GeTuiSdk.h> // GetuiSdk头 件应
 // iOS10 及以上需导  UserNotifications.framework
 #import <UMCommon/UMCommon.h>           // 公共组件是所有友盟产品的基础组件，必选
 #import <UMAnalytics/MobClick.h>
-
- #import <UserNotifications/UserNotifications.h>
-
+#import <UserNotifications/UserNotifications.h>
 #import "DDAdvertisementVC.h"
 #import "YKMessageVC.h"
-
 #import <RongIMKit/RongIMKit.h>
 
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate,DXAlertViewDelegate>
 
-
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
@@ -61,7 +53,6 @@
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
            
-            
             NSString *rong = [YKUserManager sharedManager].user.rongToken;
             NSString *rongToken;
             if (rong.length>0) {

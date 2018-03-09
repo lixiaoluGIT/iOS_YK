@@ -13,7 +13,6 @@
 #import "YKScrollView.h"
 #import "YKALLBrandVC.h"
 #import "YKRecommentTitleView.h"
-#import "YyxHeaderRefresh.h"
 #import "YKProductDetailHeader.h"
 #import "YKProductDetailButtom.h"
 #import "YKYifuScanCell.h"
@@ -34,9 +33,6 @@
 @property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong) NSArray *images2;
 @property (nonatomic, assign) CGRect origialFrame;
-
-@property (strong, nonatomic) YyxHeaderRefresh *refresh;
-
 @property (nonatomic,assign)NSString *sizeNum;
 
 //真实数据
@@ -284,7 +280,7 @@
     double delayInSeconds = 1.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.refresh endRefreshing];
+//        [self.refresh endRefreshing];
         [self.collectionView reloadData];
     });
 }
@@ -306,11 +302,11 @@
         self.navigationController.navigationBar.hidden = NO;
     }
     if (scrollView.contentOffset.y>280) {
-        self.refresh.hidden = YES;
+//        self.refresh.hidden = YES;
         self.navigationController.navigationBar.alpha = 1;
         //        self.navigationController.navigationBar.hidden = NO;
     }else {
-        self.refresh.hidden = NO;
+//        self.refresh.hidden = NO;
         self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
         //        self.navigationController.navigationBar.hidden = YES;
     }
