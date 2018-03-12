@@ -190,7 +190,7 @@
         }];
     };
     [self.view addSubview:chongzhi];
-    if (effectiveDay<=7 && effectiveDay!=0) {
+    if (effectiveDay<=7 ) {
         chongzhi.hidden = NO;
     }else {
         chongzhi.hidden = YES;
