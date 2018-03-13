@@ -124,14 +124,16 @@
 - (void)getUserInforOnResponse:(void (^)(NSDictionary *dic))onResponse{
 
     [YKHttpClient Method:@"GET" apiName:GetUserInfor_Url Params:nil Completion:^(NSDictionary *dic) {
+        
                 if ([dic[@"status"] intValue] == 401) {//未登录
-            [UD setObject:@"" forKey:@"token"];
-           
-        }
-       [self getUserInfo:dic[@"data"]];//得到用户基本数据
-            if (onResponse) {
-                onResponse(nil);
-            }
+                    [UD setObject:@"" forKey:@"token"];
+                }
+        
+                [self getUserInfo:dic[@"data"]];//得到用户基本数据
+        
+                if (onResponse) {
+                    onResponse(nil);
+                }
         
     }];
 }
@@ -493,8 +495,7 @@
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信授权成功" delay:1.8];
             [self saveCurrentToken:dict[@"data"][@"token"]];
             
-            //链接融云
-            
+           
             [self getUserInforOnResponse:^(NSDictionary *dic) {
                 //链接融云
                 [self RongCloudConnect];

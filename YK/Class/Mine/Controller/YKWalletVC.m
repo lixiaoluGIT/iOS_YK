@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"我的钱包";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -190,11 +191,10 @@
         }];
     };
     [self.view addSubview:chongzhi];
-    if (effectiveDay<=7 ) {
+    if (effectiveDay<=7 && depositStatus != 4) {
         chongzhi.hidden = NO;
     }else {
         chongzhi.hidden = YES;
-        
     }
     
     //押金状态

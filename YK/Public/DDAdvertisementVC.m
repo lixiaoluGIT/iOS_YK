@@ -10,8 +10,8 @@
 
 #import "AppDelegate.h"
 #import "YKMainVC.h"
-#import "LLGifImageView.h"
-#import "LLGifView.h"
+//#import "LLGifImageView.h"
+//#import "LLGifView.h"
 
 @interface DDAdvertisementVC ()
 {
@@ -19,8 +19,8 @@
 }
 @property (nonatomic,strong)UIButton *jumpBtn;
 
-@property (nonatomic, strong) LLGifView *gifView;
-@property (nonatomic, strong) LLGifImageView *gifImageView;
+//@property (nonatomic, strong) LLGifView *gifView;
+//@property (nonatomic, strong) LLGifImageView *gifImageView;
 @end
 
 @implementation DDAdvertisementVC
@@ -34,26 +34,26 @@
     [self startTimer];
 }
 
-- (void)removeGif {
-    if (_gifView) {
-        [_gifView removeFromSuperview];
-        _gifView = nil;
-    }
-    if (_gifImageView) {
-        [_gifImageView removeFromSuperview];
-        _gifImageView = nil;
-    }
-}
+//- (void)removeGif {
+//    if (_gifView) {
+//        [_gifView removeFromSuperview];
+//        _gifView = nil;
+//    }
+//    if (_gifImageView) {
+//        [_gifImageView removeFromSuperview];
+//        _gifImageView = nil;
+//    }
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self addBottomView];
     
     //加载本地gif图片
-    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ss" ofType:@"gif"]];
-    _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
-//    [self.view addSubview:_gifView];
-    [_gifView startGif];
+//    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ss" ofType:@"gif"]];
+//    _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
+////    [self.view addSubview:_gifView];
+//    [_gifView startGif];
     
     //加载本地图片
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT)];

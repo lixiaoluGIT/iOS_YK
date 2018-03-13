@@ -112,8 +112,8 @@
 //        slider.backgroundColor = _titleSelectedColor;
 //        [self addSubview:slider];
 //        self.slider = slider;
-        self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
-        self.layer.borderWidth = 1;
+//        self.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
+//        self.layer.borderWidth = 1;
     }
     
     [self.titleWidthArray removeAllObjects];
@@ -154,7 +154,7 @@
         }
        
         btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-        btn.frame =  CGRectMake(totalWidth,_HeaderH/4 , btnW, _HeaderH/2);
+        btn.frame =  CGRectMake(totalWidth,15 , btnW, _HeaderH-30);
         btn.contentMode = UIViewContentModeCenter;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.tag = i;

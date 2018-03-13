@@ -9,7 +9,10 @@
 #define w [UIScreen mainScreen].bounds.size.width
 #import "YKHomeVC.h"
 #import "CGQCollectionViewCell.h"
+
 #import "ZYCollectionView.h"
+#import "YKBaseScrollView.h"
+
 #import "WMHCustomScroll.h"
 #import "YKScrollView.h"
 #import "YKALLBrandVC.h"
@@ -23,7 +26,7 @@
 #import "YKSearchVC.h"
 
 
-@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,WMHCustomScrollViewDelegate>
+@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate>
 {
     BOOL hadAppearCheckVersion;
     BOOL hadtitle1;
@@ -86,7 +89,7 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/180);
     
-//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-180*WIDHT/414) collectionViewLayout:layoutView];
+//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-170*WIDHT/414) collectionViewLayout:layoutView];
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
@@ -273,10 +276,15 @@
         headerView.backgroundColor =[UIColor whiteColor];
         
         //banner图
-        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
+//        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
+//        cycleView.imagesArr = self.imagesArr;
+//        cycleView.delegate  = self;
+//        cycleView.placeHolderImageName = @"banner.jpg";
+//        [headerView addSubview:cycleView];
+        
+        YKBaseScrollView *cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
         cycleView.imagesArr = self.imagesArr;
-        cycleView.delegate  = self;
-        cycleView.placeHolderImageName = @"banner.jpg";
+        cycleView.delegate = self;
         [headerView addSubview:cycleView];
         WeakSelf(weakSelf)
         
@@ -364,14 +372,21 @@
     
 }
 
-- (void)ZYCollectionViewClick:(NSInteger)index {
+//- (void)ZYCollectionViewClick:(NSInteger)index {
+//    //跳转到网页
+//    YKLinkWebVC *web =[YKLinkWebVC new];
+//    web.url = self.imageClickUrls[index];
+//    web.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:web animated:YES];
+//    
+//}
+
+- (void)YKBaseScrollViewImageClick:(NSInteger)index{
     //跳转到网页
     YKLinkWebVC *web =[YKLinkWebVC new];
     web.url = self.imageClickUrls[index];
     web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];
-    
 }
-
 
 @end

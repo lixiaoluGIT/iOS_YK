@@ -63,6 +63,7 @@
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 -(NSArray *)logisticsInfoData
 {
     if (!_logisticsInfoData) {

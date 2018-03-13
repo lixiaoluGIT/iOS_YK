@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C5016FF02022B77800E22301 /* YKMineCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */; };
 		C5016FF12022B77800E22301 /* YKMineCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5016FEF2022B77800E22301 /* YKMineCategoryCell.xib */; };
-		C50394932007BDB2004B41C3 /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = C50394922007BDB1004B41C3 /* Default-568.png */; };
 		C50CF1B1200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */; };
 		C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD01FEB924A003BB993 /* Security.framework */; };
 		C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C50CF1B5200DD8C300A717DF /* libiconv.tbd */; };
@@ -268,6 +267,9 @@
 		C53347261FD12753002A08D0 /* YKProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = C53347251FD12753002A08D0 /* YKProduct.m */; };
 		C533A0951FD4EE25000DE949 /* YKUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C533A0941FD4EE25000DE949 /* YKUserManager.m */; };
 		C533A0981FD4EF48000DE949 /* YKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C533A0971FD4EF48000DE949 /* YKUser.m */; };
+		C533EF4B2057801B00A71DBE /* YKBaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C533EF4A2057801B00A71DBE /* YKBaseScrollView.m */; };
+		C533EF4F2057ADF800A71DBE /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = C533EF4E2057ADF800A71DBE /* red.png */; };
+		C533EF512057B83700A71DBE /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = C533EF502057B83600A71DBE /* Default-568.png */; };
 		C5343C741FC526BF00F5132A /* YKNormalQuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5343C731FC526BF00F5132A /* YKNormalQuestionVC.m */; };
 		C5343C7A1FC52E2400F5132A /* YKBrandDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5343C791FC52E2400F5132A /* YKBrandDetailVC.m */; };
 		C5343C7D1FC542FF00F5132A /* YKProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5343C7C1FC542FF00F5132A /* YKProductDetailVC.m */; };
@@ -289,7 +291,6 @@
 		C54B8F8C1FE38015000EAF8E /* YKSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54B8F8B1FE38015000EAF8E /* YKSearchManager.m */; };
 		C55D491A1FC2EAB6000D2056 /* YKMySuitBagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D49191FC2EAB6000D2056 /* YKMySuitBagVC.m */; };
 		C55D491D1FC2EDF8000D2056 /* 白.png in Resources */ = {isa = PBXBuildFile; fileRef = C55D491B1FC2EDF8000D2056 /* 白.png */; };
-		C55D491E1FC2EDF8000D2056 /* 主题红.png in Resources */ = {isa = PBXBuildFile; fileRef = C55D491C1FC2EDF8000D2056 /* 主题红.png */; };
 		C55D49221FC3CE2F000D2056 /* YKMyBagSMSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D49201FC3CE2F000D2056 /* YKMyBagSMSCell.m */; };
 		C55D49231FC3CE2F000D2056 /* YKMyBagSMSCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C55D49211FC3CE2F000D2056 /* YKMyBagSMSCell.xib */; };
 		C55D49261FC3E7C5000D2056 /* BQActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D49251FC3E7C5000D2056 /* BQActivityView.m */; };
@@ -300,8 +301,6 @@
 		C5690F981FE770BD0027EFCE /* YKTotalSMSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5690F961FE770BD0027EFCE /* YKTotalSMSCell.m */; };
 		C5690F991FE770BD0027EFCE /* YKTotalSMSCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5690F971FE770BD0027EFCE /* YKTotalSMSCell.xib */; };
 		C5690F9C1FE773550027EFCE /* YKTotalSMSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5690F9B1FE773550027EFCE /* YKTotalSMSVC.m */; };
-		C571B507202012C0007AB5B8 /* LLGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = C571B505202012BF007AB5B8 /* LLGifView.m */; };
-		C571B508202012C0007AB5B8 /* LLGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C571B506202012BF007AB5B8 /* LLGifImageView.m */; };
 		C571B50E2020155D007AB5B8 /* sss.gif in Resources */ = {isa = PBXBuildFile; fileRef = C571B50D2020155C007AB5B8 /* sss.gif */; };
 		C5742ECC2003548A00BBB882 /* VTingSeaPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5742EC92003548900BBB882 /* VTingSeaPopView.m */; };
 		C5742ECD2003548A00BBB882 /* VTingTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5742ECB2003548A00BBB882 /* VTingTimeView.m */; };
@@ -410,7 +409,6 @@
 		C5016FED2022B77800E22301 /* YKMineCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMineCategoryCell.h; sourceTree = "<group>"; };
 		C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMineCategoryCell.m; sourceTree = "<group>"; };
 		C5016FEF2022B77800E22301 /* YKMineCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKMineCategoryCell.xib; sourceTree = "<group>"; };
-		C50394922007BDB1004B41C3 /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568.png"; sourceTree = "<group>"; };
 		C50CF1B0200DD80200A717DF /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		C50CF1B5200DD8C300A717DF /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		C50CF1B8200DD93300A717DF /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -961,6 +959,10 @@
 		C533A0941FD4EE25000DE949 /* YKUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKUserManager.m; sourceTree = "<group>"; };
 		C533A0961FD4EF48000DE949 /* YKUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKUser.h; sourceTree = "<group>"; };
 		C533A0971FD4EF48000DE949 /* YKUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKUser.m; sourceTree = "<group>"; };
+		C533EF492057801B00A71DBE /* YKBaseScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBaseScrollView.h; sourceTree = "<group>"; };
+		C533EF4A2057801B00A71DBE /* YKBaseScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBaseScrollView.m; sourceTree = "<group>"; };
+		C533EF4E2057ADF800A71DBE /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		C533EF502057B83600A71DBE /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568.png"; sourceTree = "<group>"; };
 		C5343C721FC526BF00F5132A /* YKNormalQuestionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKNormalQuestionVC.h; sourceTree = "<group>"; };
 		C5343C731FC526BF00F5132A /* YKNormalQuestionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKNormalQuestionVC.m; sourceTree = "<group>"; };
 		C5343C781FC52E2400F5132A /* YKBrandDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBrandDetailVC.h; sourceTree = "<group>"; };
@@ -1002,7 +1004,6 @@
 		C55D49181FC2EAB6000D2056 /* YKMySuitBagVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMySuitBagVC.h; sourceTree = "<group>"; };
 		C55D49191FC2EAB6000D2056 /* YKMySuitBagVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMySuitBagVC.m; sourceTree = "<group>"; };
 		C55D491B1FC2EDF8000D2056 /* 白.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "白.png"; sourceTree = "<group>"; };
-		C55D491C1FC2EDF8000D2056 /* 主题红.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主题红.png"; sourceTree = "<group>"; };
 		C55D491F1FC3CE2F000D2056 /* YKMyBagSMSCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMyBagSMSCell.h; sourceTree = "<group>"; };
 		C55D49201FC3CE2F000D2056 /* YKMyBagSMSCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKMyBagSMSCell.m; sourceTree = "<group>"; };
 		C55D49211FC3CE2F000D2056 /* YKMyBagSMSCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKMyBagSMSCell.xib; sourceTree = "<group>"; };
@@ -1265,8 +1266,8 @@
 				C525DC251FBAAFC1002802AE /* AppDelegate.m */,
 				C525DC271FBAAFC1002802AE /* ViewController.h */,
 				C525DC281FBAAFC1002802AE /* ViewController.m */,
+				C533EF502057B83600A71DBE /* Default-568.png */,
 				C525DC2A1FBAAFC1002802AE /* Main.storyboard */,
-				C50394922007BDB1004B41C3 /* Default-568.png */,
 				C5742ED12003872C00BBB882 /* Images.xcassets */,
 				C525DC2D1FBAAFC1002802AE /* Assets.xcassets */,
 				C525DC2F1FBAAFC1002802AE /* LaunchScreen.storyboard */,
@@ -1399,6 +1400,8 @@
 				C525DE081FBABE69002802AE /* CGQCollectionViewCell.xib */,
 				C525DC731FBAB207002802AE /* ZYCollectionView.h */,
 				C525DC741FBAB207002802AE /* ZYCollectionView.m */,
+				C533EF492057801B00A71DBE /* YKBaseScrollView.h */,
+				C533EF4A2057801B00A71DBE /* YKBaseScrollView.m */,
 				C525DC751FBAB207002802AE /* ZYCollectionViewCell.h */,
 				C525DC761FBAB207002802AE /* ZYCollectionViewCell.m */,
 				C525DE1A1FBAD1AF002802AE /* YKScrollView.h */,
@@ -1767,6 +1770,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C533EF4E2057ADF800A71DBE /* red.png */,
 				C5B723DB202D70F100344339 /* s.gif */,
 				C54301F92024495C006F84E0 /* 红.jpg */,
 				C571B50D2020155C007AB5B8 /* sss.gif */,
@@ -1776,7 +1780,6 @@
 				C525DEB61FBEADB1002802AE /* region.json */,
 				C52D0F9D1FC6C43D00B50258 /* liutao.jpg */,
 				C55D491B1FC2EDF8000D2056 /* 白.png */,
-				C55D491C1FC2EDF8000D2056 /* 主题红.png */,
 				C525DE111FBABF81002802AE /* timg.jpg */,
 			);
 			path = Resource;
@@ -2742,8 +2745,8 @@
 				C55D491D1FC2EDF8000D2056 /* 白.png in Resources */,
 				C525DE2E1FBB0320002802AE /* YKSuitCell.xib in Resources */,
 				C5343C8C1FC584FD00F5132A /* YKYifuScanCell.xib in Resources */,
-				C55D491E1FC2EDF8000D2056 /* 主题红.png in Resources */,
 				C5343C931FC69D2400F5132A /* YKBrandDetailHeader.xib in Resources */,
+				C533EF512057B83700A71DBE /* Default-568.png in Resources */,
 				C52D0F9E1FC6C43D00B50258 /* liutao.jpg in Resources */,
 				C525DE231FBAD659002802AE /* YKScrollBtnView.xib in Resources */,
 				C5303A011FCEAE4D00FB12CE /* YKReturnView.xib in Resources */,
@@ -2769,6 +2772,7 @@
 				C59D47511FF4D750002208BF /* README.txt in Resources */,
 				C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */,
 				C5016FF12022B77800E22301 /* YKMineCategoryCell.xib in Resources */,
+				C533EF4F2057ADF800A71DBE /* red.png in Resources */,
 				C525DD631FBAB2A8002802AE /* README.md in Resources */,
 				C52D04781FE8EB5D00633550 /* YKNoDataView.xib in Resources */,
 				C525DE381FBC18AA002802AE /* YKRecommentTitleView.xib in Resources */,
@@ -2779,7 +2783,6 @@
 				C525DDAB1FBAB2A9002802AE /* README.md in Resources */,
 				C5742ED22003872C00BBB882 /* Images.xcassets in Resources */,
 				C5F929B720206E52001D2139 /* CLImageBrowserCell.xib in Resources */,
-				C50394932007BDB2004B41C3 /* Default-568.png in Resources */,
 				C592925A204FC4A4002ED8DB /* RongCloud.bundle in Resources */,
 				C525DD621FBAB2A8002802AE /* LICENSE in Resources */,
 				C525DC2C1FBAAFC1002802AE /* Main.storyboard in Resources */,
@@ -3006,7 +3009,6 @@
 				C52D0FA11FC6CE2800B50258 /* YKWalletVC.m in Sources */,
 				C525DDB41FBAB2A9002802AE /* TZProgressView.m in Sources */,
 				C5690F8D1FE75F840027EFCE /* YKWebVC.m in Sources */,
-				C571B508202012C0007AB5B8 /* LLGifImageView.m in Sources */,
 				C55D491A1FC2EAB6000D2056 /* YKMySuitBagVC.m in Sources */,
 				C525DD6F1FBAB2A8002802AE /* AFURLSessionManager.m in Sources */,
 				C525DED61FC278C7002802AE /* MOFSToolbar.m in Sources */,
@@ -3029,7 +3031,6 @@
 				C525DDC81FBAB2A9002802AE /* UIImageView+WebCache.m in Sources */,
 				C525DD811FBAB2A9002802AE /* MJRefreshAutoNormalFooter.m in Sources */,
 				C525DD7D1FBAB2A9002802AE /* MJRefreshBackStateFooter.m in Sources */,
-				C571B507202012C0007AB5B8 /* LLGifView.m in Sources */,
 				C525DD8B1FBAB2A9002802AE /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				C55D49261FC3E7C5000D2056 /* BQActivityView.m in Sources */,
 				C525DD841FBAB2A9002802AE /* MJRefreshGifHeader.m in Sources */,
@@ -3044,6 +3045,7 @@
 				C525DE1D1FBAD1AF002802AE /* YKScrollView.m in Sources */,
 				C525DD871FBAB2A9002802AE /* MJRefreshBackFooter.m in Sources */,
 				C532A74B1FDF8AAB0068A31D /* RSADataVerifier.m in Sources */,
+				C533EF4B2057801B00A71DBE /* YKBaseScrollView.m in Sources */,
 				C525DDBC1FBAB2A9002802AE /* MKAnnotationView+WebCache.m in Sources */,
 				C525DD901FBAB2A9002802AE /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				C53039F71FCE92A200FB12CE /* WMHCustomScroll.m in Sources */,

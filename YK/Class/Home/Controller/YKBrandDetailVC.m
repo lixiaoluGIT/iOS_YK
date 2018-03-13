@@ -168,7 +168,7 @@
         [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.catrgoryId sortId:@"" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
             [self.collectionView.mj_footer endRefreshing];
             if (array.count==0) {
-                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+                [weakSelf.collectionView.mj_footer endRefreshing];
             }else {
                 [weakSelf.collectionView.mj_footer endRefreshing];
                 for (int i=0; i<array.count; i++) {
@@ -266,7 +266,7 @@
             
             // sliderStyle
             if (_scroll.Lheight!=0) {
-                sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, WIDHT*0.55+100 + 30 + _scroll.Lheight, self.view.frame.size.width, 48)];
+                sliderSegmentView = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, WIDHT*0.55+100 + 30 + _scroll.Lheight, self.view.frame.size.width, 55)];
                 [sliderSegmentView setTitleArray:self.titles categoryIds:self.categotyIds withStyle:CBSegmentStyleSlider];
                 sliderSegmentView.categotyIds = self.categotyIds;
                 sliderSegmentView.titleChooseReturn = ^(NSString  *catrgoryId) {
@@ -345,7 +345,7 @@
         [self.productList removeAllObjects];
         
         if (array.count==0) {
-            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            [self.collectionView.mj_footer endRefreshing];
         }else {
             [self.collectionView.mj_footer endRefreshing];
             for (int i=0; i<array.count; i++) {

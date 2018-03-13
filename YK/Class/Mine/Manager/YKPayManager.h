@@ -28,6 +28,7 @@ typedef enum : NSInteger {
 
 @interface YKPayManager : NSObject
 
+//支付调用(阿里和微信)
 - (void)payWithPayMethod:(NSInteger )payMethod payType:(NSInteger )paytype
                    OnResponse:(void (^)(NSDictionary *dic))onResponse;
 

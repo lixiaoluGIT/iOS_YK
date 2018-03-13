@@ -9,8 +9,8 @@
 #import "YKLoginVC.h"
 #import "WXApi.h"
 
-#import "LLGifImageView.h"
-#import "LLGifView.h"
+//#import "LLGifImageView.h"
+//#import "LLGifView.h"
 #import "YKChangePhoneVC.h"
 
 
@@ -37,35 +37,36 @@
 @property (weak, nonatomic) IBOutlet UIButton *WXLoginBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 
-@property (nonatomic, strong) LLGifView *gifView;
-@property (nonatomic, strong) LLGifImageView *gifImageView;
+//@property (nonatomic, strong) LLGifView *gifView;
+//@property (nonatomic, strong) LLGifImageView *gifImageView;
 
 
 @end
 NSInteger timeNum;
 @implementation YKLoginVC
 
-- (void)removeGif {
-    if (_gifView) {
-        [_gifView removeFromSuperview];
-        _gifView = nil;
-    }
-    if (_gifImageView) {
-        [_gifImageView removeFromSuperview];
-        _gifImageView = nil;
-    }
-}
+//- (void)removeGif {
+//    if (_gifView) {
+//        [_gifView removeFromSuperview];
+//        _gifView = nil;
+//    }
+//    if (_gifImageView) {
+//        [_gifImageView removeFromSuperview];
+//        _gifImageView = nil;
+//    }
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
     //加载本地gif图片
-    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"s" ofType:@"gif"]];
-    _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
+//    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"s" ofType:@"gif"]];
+//    _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
 //    [self.view addSubview:_gifView];
 //    [self.view sendSubviewToBack:_gifView];
-    _gifView.alpha = 0.5;
-    [_gifView startGif];
+//    _gifView.alpha = 0.5;
+//    [_gifView startGif];
 
     //新UI隐藏logo
     [_logo setHighlighted:YES];

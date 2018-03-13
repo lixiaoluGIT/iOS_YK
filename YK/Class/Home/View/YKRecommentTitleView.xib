@@ -39,6 +39,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="eng" destination="KZ9-vw-7kb" id="psQ-dv-HSm"/>
                 <outlet property="title" destination="X1a-GM-9v1" id="GtH-sX-GJX"/>
             </connections>
             <point key="canvasLocation" x="40.5" y="110.5"/>

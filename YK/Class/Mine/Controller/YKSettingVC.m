@@ -55,7 +55,7 @@
     
     self.navigationItem.titleView = title;
     self.exitBtn.layer.masksToBounds = YES;
-    self.exitBtn.layer.cornerRadius = self.exitBtn.frame.size.height/2;
+//    self.exitBtn.layer.cornerRadius = self.exitBtn.frame.size.height/2;
     
     self.cacheLabel.text = [NSString stringWithFormat:@"%.1fM",[[YKCacheManager sharedManager]getFolderSize]];
 
