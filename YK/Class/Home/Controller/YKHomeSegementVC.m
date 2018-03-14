@@ -159,7 +159,7 @@
 //控制器
 - (NSMutableArray *)controllerArr{
     if (!_controllerArr) {
-        NSArray *controllerTittle = @[@"YKHomeVC",@"YKCommunityVC"];
+        NSArray *controllerTittle = @[@"YKHomeVC",@"NewDynamicsViewController"];
         _controllerArr = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < controllerTittle.count; i ++) {
             NSString *controllerName = controllerTittle[i];

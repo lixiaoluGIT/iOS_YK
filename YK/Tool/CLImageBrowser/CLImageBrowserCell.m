@@ -35,7 +35,7 @@
     [_scrollView addSubview:_imageContainerView];
     
     self.imageView = [[UIImageView alloc] init];
-    _imageView.backgroundColor = [UIColor blackColor];
+    _imageView.backgroundColor = [UIColor whiteColor];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.clipsToBounds = YES;
     [_imageContainerView addSubview:_imageView];

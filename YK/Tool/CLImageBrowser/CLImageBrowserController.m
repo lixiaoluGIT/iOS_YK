@@ -128,7 +128,7 @@ static NSString *cellIdentifier = @"ImageBrowserCells";
         [self.view addSubview:_label];
         if (_isCanDel) {
             _delBtn = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 50, 20, 35, 44)];
-            [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
+//            [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
             [_delBtn setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
             _delBtn.titleLabel.font = [UIFont systemFontOfSize:14];
             [_delBtn addTarget:self action:@selector(delBtnAction) forControlEvents:UIControlEventTouchUpInside];
