@@ -61,19 +61,37 @@
     return self;
 }
 
+
+-(NSString*)getCurrentTime {
+    
+    NSDateFormatter*formatter = [[NSDateFormatter alloc]init];[formatter setDateFormat:@"HH"];
+    
+    NSString*dateTime = [formatter stringFromDate:[NSDate date]];
+ 
+    
+    return dateTime;
+}
+
 -(void)timeDate
 {
     //获取一个月之内的时间
     NSMutableArray *pickerData = [NSMutableArray array];
-    for (int i=0;i<3; i++) {
+    int dayNum;
+//    if ([[self getCurrentTime] intValue] >= 16) {//当前小时大于16:00
+//        dayNum = 1;
+//    }else {
+//        dayNum = 0;
+//    }
+    for (int i=0;i<1; i++) {
         NSDate *yesterday = [NSDate dateWithTimeIntervalSinceNow:+(24*60*60)*i];
         NSDateFormatter  *dateformat=[[NSDateFormatter alloc] init];
-        [dateformat setDateFormat:@"YYYY-MM-dd"];
+        [dateformat setDateFormat:@"MM-dd"];
         NSString *  loString=[dateformat stringFromDate:yesterday];
+       
         [pickerData addObject:loString];
     }
     
-   NSMutableArray *pickerHour=[NSMutableArray arrayWithObjects:@"8:00-9:00",@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"12:00-13:00",@"13:00-14:00",@"14:00-15:00",@"15:00-16:00", nil];
+   NSMutableArray *pickerHour=[NSMutableArray arrayWithObjects:@"08:00-10:00",@"10:00-12:00",@"12:00-14:00",@"14:00-16:00", nil];
     self.pickDate = pickerData;
     self.pickHour = pickerHour;
 }

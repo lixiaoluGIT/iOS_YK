@@ -76,29 +76,33 @@
     
     return result;
 }
-
-//物流消息
-- (void)getSMSMessageListOnResponse:(void (^)(NSDictionary *dic))onResponse{
-    
-}
-
 //消息列表
+- (void)getMessageListMsgType:(NSInteger)MsgType OnResponse:(void (^)(NSArray *array))onResponse{
+    
+    NSString *url = [NSString stringWithFormat:@"%@?type=%ld",GetMessageList_Ur,MsgType];
+    [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        NSArray *msgList = [NSArray arrayWithArray:dict[@"data"]];
+        if (msgList.count!=0) {
+            if (onResponse) {
+                onResponse(msgList);
+            }
+        }
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 - (void)getMessageListOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     [YKHttpClient Method:@"GET" URLString:GetMessageList_Ur paramers:nil success:^(NSDictionary *dict) {
         
-        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        
-        if (dict[@"data"] != [NSNull null]) {
-            if (onResponse) {
-                onResponse(dict);
-            }
-        }else {
-            if (onResponse) {
-                onResponse(nil);
-            }
+      
+        NSArray *msgList = [NSArray arrayWithArray:dict[@"data"]];
+        if (msgList.count!=0) {
+            //分组
         }
         
         

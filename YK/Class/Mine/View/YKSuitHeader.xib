@@ -81,6 +81,8 @@
             <connections>
                 <outlet property="orderBack" destination="43D-fy-Bay" id="R6q-19-0Re"/>
                 <outlet property="scanSMS" destination="brx-Rm-FDq" id="wBu-6j-XJh"/>
+                <outlet property="statusLable" destination="SrP-AY-g2v" id="9No-7T-1Zt"/>
+                <outlet property="wuliuImage" destination="uu4-Cb-UC0" id="Wd3-rg-082"/>
                 <outlet property="yuyue" destination="43D-fy-Bay" id="xBo-Q2-s0R"/>
             </connections>
             <point key="canvasLocation" x="69.5" y="-6"/>

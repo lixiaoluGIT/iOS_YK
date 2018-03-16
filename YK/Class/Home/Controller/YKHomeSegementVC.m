@@ -10,6 +10,7 @@
 #import "YKHomeVC.h"
 #import "YKCommunityVC.h"
 #import "YKLoginVC.h"
+#import "YKMessageVC.h"
 
 @interface YKHomeSegementVC ()
 
@@ -77,24 +78,24 @@
     if ([Token length] == 0) {
         YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
         [self presentViewController:login animated:YES completion:^{
-            
+
         }];
         login.hidesBottomBarWhenPushed = YES;
         return;
     }
-    //    YKMessageVC *mes = [YKMessageVC new];
-    //    mes.hidesBottomBarWhenPushed = YES;
-    //    [self.navigationController pushViewController:mes animated:YES];
+        YKMessageVC *mes = [YKMessageVC new];
+        mes.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:mes animated:YES];
     
     
-    YKChatVC *chatService = [[YKChatVC alloc] init];
-    
-    //    chatService.NameStr = @"客服";
-    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-    chatService.targetId = RoundCloudServiceId;
-    //    chatService.title = chatService.NameStr;
-    chatService.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController :chatService animated:YES];
+//    YKChatVC *chatService = [[YKChatVC alloc] init];
+//
+//    //    chatService.NameStr = @"客服";
+//    chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+//    chatService.targetId = RoundCloudServiceId;
+//    //    chatService.title = chatService.NameStr;
+//    chatService.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController :chatService animated:YES];
 }
 - (void)setConfig{
     self.view.backgroundColor = [UIColor whiteColor];

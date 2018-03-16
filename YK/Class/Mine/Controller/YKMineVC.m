@@ -24,7 +24,7 @@
 #import "YKMineCategoryCell.h"
 
 
-@interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
 {
 //    YKMineheader *head;
     YKMyHeaderView *head;
@@ -241,14 +241,19 @@
                     login.hidesBottomBarWhenPushed = YES;
                     return;
                 }
-                YKChatVC *chatService = [[YKChatVC alloc] init];
                 
-                //    chatService.NameStr = @"客服";
-                chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-                chatService.targetId = RoundCloudServiceId;
-                //    chatService.title = chatService.NameStr;
-                chatService.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController :chatService animated:YES];
+                DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"客服服务时间:10:00-19:00" cancelBtnTitle:@"拨打电话" otherBtnTitle:@"在线客服"];
+                alertView.delegate = self;
+                [alertView show];
+                
+//                YKChatVC *chatService = [[YKChatVC alloc] init];
+//
+//                //    chatService.NameStr = @"客服";
+//                chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+//                chatService.targetId = RoundCloudServiceId;
+//                //    chatService.title = chatService.NameStr;
+//                chatService.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController :chatService animated:YES];
 //                if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
 //                    NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
 //                    NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
@@ -279,7 +284,35 @@
     return cell;
 }
 
-
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        YKChatVC *chatService = [[YKChatVC alloc] init];
+        chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+        chatService.targetId = RoundCloudServiceId;
+        chatService.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController :chatService animated:YES];
+    }else {
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
+            NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+            NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+            if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+                /// 大于等于10.0系统使用此openURL方法
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+                } else {
+                    // Fallback on earlier versions
+                }
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+            }
+            return;
+        }
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+        alertview.delegate = self;
+        [alertview show];
+    }
+    
+}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==0) {//取消
         
@@ -299,6 +332,7 @@
         }
     }
 }
+
 
 - (void)Login{
     YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];

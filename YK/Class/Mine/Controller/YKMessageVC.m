@@ -10,8 +10,11 @@
 #import "YKTotalMsgView.h"
 #import "YKTotalSMSVC.h"
 #import "YKMsgDetailVc.h"
-@interface YKMessageVC ()
-
+#import "YKMineCell.h"
+@interface YKMessageVC ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)NSArray *titles;
+@property (nonatomic,strong)NSArray *images;
 @end
 
 @implementation YKMessageVC
@@ -44,29 +47,56 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self getMessageList];
+    [self.view addSubview:self.tableView];
     
-    YKTotalMsgView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKTotalMsgView" owner:self options:nil][0];
-    bagCell.selectionStyle = UITableViewCellEditingStyleNone;
-    bagCell.frame = CGRectMake(0, 64,WIDHT,HEIGHT-64);
-    bagCell.ToMsgBlock = ^(void){
-        [self.navigationController pushViewController:[YKMsgDetailVc new] animated:YES];
-    };
-    bagCell.ToSMSBlock = ^(void){
-        [self.navigationController pushViewController:[YKTotalSMSVC new] animated:YES];
-    };
-    
-    [self.view addSubview:bagCell];
+    self.images = [NSArray array];
+    self.images = @[@"Group Copy",@"Group 2 Copy",@"Group Copy"];
+    self.titles = [NSArray array];
+    self.titles = @[@"消息通知",@"物流通知",@"活动通知"];
 }
 
-- (void)getMessageList{
-    [[YKMessageManager sharedManager]getMessageListOnResponse:^(NSDictionary *dic) {
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor=[UIColor clearColor];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.rowHeight = 50;
         
-    }];
+        
+    }
+    return _tableView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 80*WIDHT/414;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.images.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    YKMineCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKMineCell" owner:self options:nil][0];
+    bagCell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
+    bagCell.title.text = self.titles[indexPath.row];
+    bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return bagCell;
 }
 
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row==0) {
+         [self.navigationController pushViewController:[YKMsgDetailVc new] animated:YES];
+    }
+    if (indexPath.row==1) {
+        [self.navigationController pushViewController:[YKTotalSMSVC new] animated:YES];
+    }
+}
 @end

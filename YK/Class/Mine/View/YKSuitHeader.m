@@ -12,9 +12,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *ensureReceive;
 @property (weak, nonatomic) IBOutlet UILabel *scanSMS;
 @property (weak, nonatomic) IBOutlet UILabel *orderBack;
+@property (weak, nonatomic) IBOutlet UILabel *statusLable;
+@property (weak, nonatomic) IBOutlet UIImageView *wuliuImage;
 
 @end
+
 @implementation YKSuitHeader
+
+- (void)resetUI:(NSInteger)status{
+    _wuliuImage.hidden = YES;
+    _statusLable.text = @"衣箱状态:待归还";
+    if (status) {//已预约归还
+        _scanSMS.text = @"已预约,等待快递小哥取件";
+    }else {//没预约归还
+        _scanSMS.text = @"预约归还";
+    }
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

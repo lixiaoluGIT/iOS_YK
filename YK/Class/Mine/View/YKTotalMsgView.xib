@@ -42,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="HOY-BL-tsH">
-                                <rect key="frame" x="458" y="24.5" width="6" height="12"/>
+                                <rect key="frame" x="454" y="24" width="10" height="14"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -68,22 +68,13 @@
                                 <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="订单已发货!  (您购买的针织衫青年息),最新消息将以推送的形式推送给您" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eri-jP-PbB">
-                                <rect key="frame" x="52" y="49" width="396" height="15"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="ISS-Qe-QaL">
-                                <rect key="frame" x="458" y="24.5" width="6" height="12"/>
+                                <rect key="frame" x="454" y="24" width="10" height="14"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ISS-Qe-QaL" firstAttribute="centerY" secondItem="Sz2-ra-dCw" secondAttribute="centerY" id="Z78-8H-BT5"/>
-                            <constraint firstItem="eri-jP-PbB" firstAttribute="leading" secondItem="Sz2-ra-dCw" secondAttribute="leading" id="hCo-8d-2v1"/>
-                            <constraint firstAttribute="trailing" secondItem="eri-jP-PbB" secondAttribute="trailing" constant="36" id="kWd-IK-Kyl"/>
-                            <constraint firstItem="eri-jP-PbB" firstAttribute="top" secondItem="Sz2-ra-dCw" secondAttribute="bottom" constant="10" id="tNM-bV-x4I"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 2 Copy" translatesAutoresizingMaskIntoConstraints="NO" id="Inz-Jc-8fA">
@@ -104,9 +95,9 @@
                     <constraint firstItem="Sz2-ra-dCw" firstAttribute="leading" secondItem="ovd-ib-6j3" secondAttribute="leading" id="3H2-aa-BL8"/>
                     <constraint firstItem="Inz-Jc-8fA" firstAttribute="centerX" secondItem="luV-ND-tkC" secondAttribute="centerX" id="3pK-VM-P3p"/>
                     <constraint firstItem="Sz2-ra-dCw" firstAttribute="centerY" secondItem="Inz-Jc-8fA" secondAttribute="centerY" id="8By-L5-olg"/>
+                    <constraint firstItem="Kyb-v9-iGP" firstAttribute="top" secondItem="wu3-Es-qBa" secondAttribute="bottom" constant="9" id="CRB-7i-Pfs"/>
                     <constraint firstItem="Kyb-v9-iGP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="CuJ-Dw-yhz"/>
                     <constraint firstItem="wu3-Es-qBa" firstAttribute="leading" secondItem="YDf-02-qbo" secondAttribute="leading" id="G4I-2F-KaZ"/>
-                    <constraint firstItem="Kyb-v9-iGP" firstAttribute="top" secondItem="eri-jP-PbB" secondAttribute="bottom" constant="19" id="Iw4-yn-49z"/>
                     <constraint firstItem="YDf-02-qbo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Kiy-7N-2Wt"/>
                     <constraint firstItem="ISS-Qe-QaL" firstAttribute="centerX" secondItem="HOY-BL-tsH" secondAttribute="centerX" id="MnG-OK-XwT"/>
                     <constraint firstItem="Inz-Jc-8fA" firstAttribute="top" secondItem="wu3-Es-qBa" secondAttribute="top" constant="20" id="R7r-Gz-KoN"/>
@@ -128,6 +119,6 @@
     <resources>
         <image name="Group 2 Copy" width="22" height="22"/>
         <image name="Group Copy" width="22" height="22"/>
-        <image name="right" width="6" height="12"/>
+        <image name="right" width="10" height="14"/>
     </resources>
 </document>

@@ -12,6 +12,7 @@
 
 @interface YKTotalSMSVC ()
 
+@property (nonatomic,strong)NSArray *SMSList;
 @end
 
 @implementation YKTotalSMSVC
@@ -48,8 +49,17 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
 
+    [self getMessageList];
 }
 
+
+- (void)getMessageList{
+    [[YKMessageManager sharedManager]getMessageListMsgType:1 OnResponse:^(NSArray *array) {
+        self.SMSList = [NSArray arrayWithArray:array];
+        
+        [self.tableView reloadData];
+    }];
+}
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }

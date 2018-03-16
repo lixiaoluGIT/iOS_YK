@@ -182,17 +182,17 @@
         [self.orderList removeAllObjects];
         self.orderList = [NSMutableArray arrayWithArray:array];
         if (orderStatus==102) {//待归还,判断是否已预约归还
-            [[YKOrderManager sharedManager]queryReceiveOrderOnResponse:^(NSDictionary *dic) {
-                NSString *s = [NSString stringWithFormat:@"%@",dic[@"data"]];
-                if ([s isEqualToString:@"该订单未预约归还"]) {//未预约归还
-                    isHadOrderreceive = NO;
-                }else {//未预约
-                    isHadOrderreceive = YES;
-                }
-                
+//            [[YKOrderManager sharedManager]queryReceiveOrderOnResponse:^(NSDictionary *dic) {
+//                NSString *s = [NSString stringWithFormat:@"%@",dic[@"data"]];
+//                if ([s isEqualToString:@"该订单未预约归还"]) {//未预约归还
+//                    isHadOrderreceive = NO;
+//                }else {//未预约
+//                    isHadOrderreceive = YES;
+//                }
+//
                 [weakSelf reloadUI];
-                
-            }];
+//
+//            }];
 
         }else {
             [weakSelf reloadUI];
@@ -289,10 +289,10 @@
         //请求成功后
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
-            if ((_bagStatus==toReceive||_bagStatus==toBack)&&self.orderList.count!=0) {
+            if ((_bagStatus==toReceive)&&self.orderList.count!=0) {
                 _buttom.hidden = NO;
                 self.tableView.frame = CGRectMake(24, 64+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375-50);
-                if (_bagStatus==toReceive) {
+                if (_bagStatus==toReceive) {//待归还
                     if ([YKOrderManager sharedManager].isOnRoad) {
                         [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
                         _buttom.userInteractionEnabled = YES;
@@ -302,15 +302,15 @@
                     }
                     
                 }else {
-                    if (!isHadOrderreceive) {
-                        [_buttom setTitle:@"预约归还" forState:UIControlStateNormal];
-                         _buttom.titleLabel.textColor = [UIColor colorWithHexString:@"ffffff"];
-                        _buttom.userInteractionEnabled = YES;
-                    }else {
-                        [_buttom setTitle:@"已预约,等待取件" forState:UIControlStateNormal];
-                        _buttom.titleLabel.textColor = [UIColor colorWithHexString:@"FDDD55"];
-                        _buttom.userInteractionEnabled = NO;
-                    }
+//                    if (!isHadOrderreceive) {
+//                        [_buttom setTitle:@"预约归还" forState:UIControlStateNormal];
+//                         _buttom.titleLabel.textColor = [UIColor colorWithHexString:@"ffffff"];
+//                        _buttom.userInteractionEnabled = YES;
+//                    }else {
+//                        [_buttom setTitle:@"已预约,等待取件" forState:UIControlStateNormal];
+//                        _buttom.titleLabel.textColor = [UIColor colorWithHexString:@"FDDD55"];
+//                        _buttom.userInteractionEnabled = NO;
+//                    }
                     
                 }
             }else {
@@ -345,7 +345,8 @@
         return self.orderList.count+1;
     }
     if (_bagStatus==toBack) {
-        return self.orderList.count;
+        NSArray *array = [NSArray arrayWithArray:self.orderList[section][@"orderDetailsVoList"]];
+        return array.count;
     }
     if (_bagStatus==hadBack) {
         return self.orderList.count;
@@ -359,6 +360,9 @@
         return [YKOrderManager sharedManager].totalOrderList.count;
 
     }
+    if (_bagStatus == toBack) {
+        return self.orderList.count;
+    }
     return 1;
 }
 
@@ -371,6 +375,12 @@
         }
         return 70;
     }
+    
+    if (_bagStatus==toBack) {
+        return 70;
+    }
+    
+    
     return 24;
 }
 
@@ -405,6 +415,32 @@
             [self.navigationController pushViewController:r animated:YES];
         };
          return header;
+    }
+    
+    if (_bagStatus==toBack) {
+        
+         YKSuitHeader *header = [[NSBundle mainBundle] loadNibNamed:@"YKSuitHeader" owner:self options:nil][0];
+   
+        
+        [[YKOrderManager sharedManager]queryReceiveOrderNo:self.orderList[section][@"orderNo"] OnResponse:^(NSDictionary *dic) {
+            NSString *s = [NSString stringWithFormat:@"%@",dic[@"data"]];
+            if ([s isEqualToString:@"该订单未预约归还"]) {//未预约归还
+                [header resetUI:0];
+//                isHadOrderreceive = NO;
+            }else {//未预约
+//                isHadOrderreceive = YES;
+                [header resetUI:1];
+            }
+        }];
+      
+
+        header.SMSBlock = ^(void){
+            [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
+            YKReturnVC *r = [YKReturnVC new];
+            [self.navigationController pushViewController:r animated:YES];
+        };
+
+        return header;
     }
     UIView *view = [[UIView alloc]init];
     view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
@@ -443,8 +479,8 @@
             mycell = [[NSBundle mainBundle] loadNibNamed:@"YKSuitEnsureCell" owner:self options:nil][0];
         }
         YKSuit *suit = [[YKSuit alloc]init];
-        if (indexPath.row<self.orderList.count) {
-            [suit initWithDictionary:self.orderList[indexPath.row]];
+        if (indexPath.section<self.orderList.count) {
+            [suit initWithDictionary:self.orderList[indexPath.section][@"orderDetailsVoList"][indexPath.row]];
         }
         mycell.suit = suit;
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -520,7 +556,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (_bagStatus != totalBag) {
+    if (_bagStatus != totalBag&&_bagStatus!=toBack) {
         return;
     }
     if (scrollView == self.tableView)

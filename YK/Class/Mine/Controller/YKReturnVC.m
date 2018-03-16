@@ -14,7 +14,7 @@
 #import "PickViewSelect.h"
 #import "YKNormalQuestionVC.h"
 
-@interface YKReturnVC ()<UITableViewDelegate,UITableViewDataSource,pickViewStrDelegate>
+@interface YKReturnVC ()<UITableViewDelegate,UITableViewDataSource,pickViewStrDelegate,DXAlertViewDelegate>
 {
     UITableView *tableView;
     UIButton *_buttom;
@@ -166,8 +166,8 @@
     [[YKOrderManager sharedManager]orderReceiveWithOrderNo:@"" addressId:self.address.addressId time:self.timeStr OnResponse:^(NSDictionary *dic) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
         return 70;
@@ -247,14 +247,30 @@
     }
 }
 
--(void)timePickerViewSelected
-{
+-(void)timePickerViewSelected{
+    
+    if ([[self getCurrentTime] intValue] >= 16) {
+        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"16点以后快递小哥下班了,请明天再预约归还!" cancelBtnTitle:@"好的" otherBtnTitle:@"我知道了"];
+        alertView.delegate = self;
+        [alertView show];
+        return;
+    }
+    
     _pickView =[[PickViewSelect alloc]initWithFrame:CGRectMake(0, 0,WIDHT,HEIGHT)];
     _pickView.delegate = self;
     [self.view addSubview:_pickView];
     
 }
 
+-(NSString*)getCurrentTime {
+    
+    NSDateFormatter*formatter = [[NSDateFormatter alloc]init];[formatter setDateFormat:@"HH"];
+    
+    NSString*dateTime = [formatter stringFromDate:[NSDate date]];
+    
+    
+    return dateTime;
+}
 //pick实现的代理
 -(void)pickViewdelegateWith:(NSString *)dateStr AndHourStr:(NSString *)hourStr
 {

@@ -568,6 +568,7 @@
     }
     return _spreadBtn;
 }
+
 -(NewDynamicsGrayView *)grayView
 {
     if (!_grayView) {

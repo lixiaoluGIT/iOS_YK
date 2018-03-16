@@ -8,6 +8,11 @@
 
 #import "YKOrderManager.h"
 
+@interface YKOrderManager()
+{
+    int i;
+}
+@end
 @implementation YKOrderManager
 
 + (YKOrderManager *)sharedManager{
@@ -217,10 +222,12 @@
                             
                             listArray = [NSMutableArray arrayWithArray:totalArray];
                             
-                        }else {//待签收或待归还
-                            listArray = [NSMutableArray arrayWithArray:dic[@"data"][0][@"orderDetailsVoList"]];
-                            _orderNo = dic[@"data"][0][@"orderNo"];
-                            _ID = dic[@"data"][0][@"id"];
+                        }else {//待归还
+                            
+                            listArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+                                _orderNo = dic[@"data"][0][@"orderNo"];
+                                _ID = dic[@"data"][0][@"id"];
+                            
                         }
                     }else {
                         listArray = [NSMutableArray array];
@@ -386,10 +393,10 @@
 }
 
 //有待归还的时候查询是否已预约归还
-- (void)queryReceiveOrderOnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)queryReceiveOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@",isHadOrderReceiveOrder_Url,self.orderNo];
-    //    NSDictionary *dic = @{@"orderId":self.orderNo};
+    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@",isHadOrderReceiveOrder_Url,orderNo];
+    
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         if ([dic[@"status"] integerValue] == 200) {
@@ -408,7 +415,9 @@
     NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"]];
     NSMutableArray *totlaList = [NSMutableArray array];
     NSMutableArray *receiveList = [NSMutableArray array];//存储待签收
-    NSMutableArray *backList = [NSMutableArray array];//存储待归还
+    NSMutableArray *backList = [NSMutableArray array];//存储待归还(di'yi'd)
+    NSMutableArray *backList2 = [NSMutableArray array];//存储待归还(第二单)
+
     NSMutableArray *hadBackList = [NSMutableArray array];//存储已归还
     
     for (NSDictionary *model in currentArray) {
@@ -429,7 +438,18 @@
         }if ([model[@"orderStatus"] intValue] == 4) {//待归还
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
-            [backList addObject:model[@"orderDetailsVoList"]];
+            
+            if (backList.count>0) {//第二个待归还
+                [backList2 addObject:model[@"orderDetailsVoList"]];
+                
+            }else {
+                //第一个待归还
+                [backList addObject:model[@"orderDetailsVoList"]];
+                
+            }
+            
+            
+        
         }else if([model[@"orderStatus"] intValue] == 5 || [model[@"orderStatus"] intValue] == 8) {//已归还
             
             if (hadBackList.count > 0 ) {
@@ -458,9 +478,16 @@
         
         if (backList.count>0&&![totlaList containsObject:backList]) {
             [totlaList insertObject:backList atIndex:0];
-            if (![self.sectionArray containsObject:backSection]) {
+//            if (![self.sectionArray containsObject:backSection]) {
                 [self.sectionArray addObject:backSection];
-            }
+//            }
+        }
+        
+        if (backList2.count>0&&![totlaList containsObject:backList2]) {
+            [totlaList insertObject:backList2 atIndex:0];
+//            if (![self.sectionArray containsObject:backSection]) {
+                [self.sectionArray addObject:backSection];
+//            }
         }
         
         if (hadBackList.count>0&&![totlaList containsObject:hadBackList]) {
