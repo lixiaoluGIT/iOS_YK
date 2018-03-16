@@ -169,7 +169,7 @@
             }];
         }];
 
-        NoDataView.frame = CGRectMake(0, 98+64, WIDHT,HEIGHT-162);
+        NoDataView.frame = CGRectMake(0, 98+BarH, WIDHT,HEIGHT-162);
         self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
         [self.view addSubview:NoDataView];
     }else {
@@ -196,11 +196,10 @@
     }else {
         chongzhi.hidden = YES;
     }
-    
-    //押金状态
+   //押金状态
     YKWalletButtom *buttom = [[NSBundle mainBundle] loadNibNamed:@"YKWalletButtom" owner:self options:nil][0];
     buttom.selectionStyle = UITableViewCellSelectionStyleNone;
-    buttom.frame = CGRectMake(0, HEIGHT-128, WIDHT, 64);
+    buttom.frame = CGRectMake(0, HEIGHT-BarH, WIDHT, BarH);
     [buttom setTitle:validityStatus];
     buttom.scanBlock = ^(NSInteger tag){
         YKDepositVC *deposit = [[YKDepositVC alloc]initWithNibName:@"YKDepositVC" bundle:[NSBundle mainBundle]];

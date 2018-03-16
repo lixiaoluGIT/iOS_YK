@@ -106,7 +106,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="VBC-Fm-lMC">
                         <rect key="frame" x="365" y="137" width="10" height="14"/>
                     </imageView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YBY-JT-jsb">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBY-JT-jsb">
                         <rect key="frame" x="20" y="194" width="351" height="130"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -136,7 +136,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCp-kf-osg">
-                                <rect key="frame" x="335" y="17" width="40" height="22"/>
+                                <rect key="frame" x="337" y="17" width="38" height="22"/>
                                 <state key="normal" image="choose"/>
                                 <state key="selected" image="choose1"/>
                                 <state key="highlighted" image="choose1"/>
@@ -223,8 +223,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="choose" width="40" height="20"/>
-        <image name="choose1" width="40" height="20"/>
+        <image name="choose" width="38" height="22"/>
+        <image name="choose1" width="38" height="22"/>
         <image name="right" width="10" height="14"/>
     </resources>
 </document>

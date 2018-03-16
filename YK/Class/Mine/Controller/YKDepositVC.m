@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if([[UIDevice currentDevice].systemVersion floatValue] < 11.0){
-        _gap.constant = 64+40;
+        _gap.constant = BarH+40;
     }else {
         _gap.constant = 40;
     }

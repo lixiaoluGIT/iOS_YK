@@ -147,12 +147,12 @@
 - (CGFloat)itemWidthForPicPathArray:(NSArray *)array
 {
     if (array.count == 1) {
-        return 120;
+        return 160;
     } else {
         if (_customImgWidth != 0) {
             return _customImgWidth;
         }else{
-            CGFloat w = SCREENWIDTH > 320 ? 80 : 70;
+            CGFloat w = SCREENWIDTH > 320 ? 100 : 80;
             return w;
         }
     }
@@ -171,7 +171,7 @@
 
 + (CGSize)getContainerSizeWithPicPathStringsArray:(NSArray *)picPathStringsArray
 {
-    CGFloat itemW = picPathStringsArray.count == 1 ? 120 : 80;
+    CGFloat itemW = picPathStringsArray.count == 1 ? 160 : 100;
     CGFloat itemH = 0;
     if (picPathStringsArray.count == 1) {
         itemH = itemW;

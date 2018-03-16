@@ -51,6 +51,10 @@
 @property(nonatomic,strong)NewDynamicsGrayView * grayView;
 @property(nonatomic,strong)UIButton * spreadBtn;
 @property(nonatomic,strong)YYLabel * dateLabel;
+@property(nonatomic,strong)UIImageView * pl;
+@property(nonatomic,strong)YYLabel * plNum;
+@property(nonatomic,strong)UIImageView * dz;
+@property(nonatomic,strong)YYLabel * dzNum;
 @property(nonatomic,strong)UIButton * deleteBtn;
 @property(nonatomic,strong)UIButton * menuBtn;
 @property(nonatomic,strong)NewDynamicsThumbCommentView * thumbCommentView;

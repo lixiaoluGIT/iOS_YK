@@ -68,7 +68,7 @@
     self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
     
-    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-64) style:UITableViewStylePlain];
+    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-BarH) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView registerClass:[YKReturnAddressView class] forCellReuseIdentifier:@"address"];

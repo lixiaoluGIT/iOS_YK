@@ -75,7 +75,7 @@
     }
     
     ///< 初始化pageControl
-    self.pageC = [[UIPageControl alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-SYRealValue(perWidth*self.imagesArr.count))/2, SYRealValue(SVHeight)+64-SYRealValue(pageCBottom), SYRealValue(perWidth*self.imagesArr.count), SYRealValue(pageCH))];
+    self.pageC = [[UIPageControl alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-SYRealValue(perWidth*self.imagesArr.count))/2, SYRealValue(SVHeight)+BarH-SYRealValue(pageCBottom), SYRealValue(perWidth*self.imagesArr.count), SYRealValue(pageCH))];
     //  self.pageC.backgroundColor = [UIColor redColor];
     self.pageC.numberOfPages = self.imagesArr.count;
     self.pageC.currentPage = 0;

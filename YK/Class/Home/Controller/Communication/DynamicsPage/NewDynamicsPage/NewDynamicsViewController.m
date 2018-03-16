@@ -10,6 +10,8 @@
 #import "NewDynamicsViewController+Delegate.h"
 #import "NewDynamicsLayout.h"
 #import "DynamicsModel.h"
+#import "YKPublicCell.h"
+#import "TopPublicVC.h"
 
 #import "SDTimeLineRefreshHeader.h"//下拉刷新控件
 
@@ -132,6 +134,16 @@
         _dynamicsTable.dataSource = self;
         _dynamicsTable.delegate = self;
         _dynamicsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        WeakSelf(weakSelf)
+        YKPublicCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKPublicCell" owner:self options:nil][0];
+        bagCell.PublicBlock = ^(void){
+            TopPublicVC *hmpositionVC = [[TopPublicVC alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hmpositionVC];
+                    [weakSelf presentViewController:nav animated:YES completion:nil];
+        };
+        _dynamicsTable.tableHeaderView = bagCell;
+    
         [_dynamicsTable registerClass:[NewDynamicsTableViewCell class] forCellReuseIdentifier:@"NewDynamicsTableViewCell"];
         if ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending) {
             _dynamicsTable.estimatedRowHeight = 0;
@@ -145,6 +157,18 @@
         [_dynamicsTable addGestureRecognizer:tableViewGesture];
     }
     return _dynamicsTable;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+   
+    if (scrollView == self.dynamicsTable)
+    {
+        CGFloat sectionHeaderHeight = 69; //sectionHeaderHeight
+        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        }
+    }
 }
 -(NSMutableArray *)layoutsArr
 {

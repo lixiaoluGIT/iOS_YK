@@ -89,8 +89,8 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/180);
     
-//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-170*WIDHT/414) collectionViewLayout:layoutView];
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-170*WIDHT/414) collectionViewLayout:layoutView];
+//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -384,7 +384,7 @@
 - (void)YKBaseScrollViewImageClick:(NSInteger)index{
     //跳转到网页
     YKLinkWebVC *web =[YKLinkWebVC new];
-    web.url = self.imageClickUrls[index];
+    web.url = self.imageClickUrls[index-1];
     web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];
 }

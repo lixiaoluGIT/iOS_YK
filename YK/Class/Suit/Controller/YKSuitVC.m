@@ -211,7 +211,7 @@
         
     }];
  
-    NoDataView.frame = CGRectMake(0, 98+64, WIDHT,HEIGHT-162);
+    NoDataView.frame = CGRectMake(0, 98+BarH, WIDHT,HEIGHT-162);
     self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
     [self.view addSubview:NoDataView];
     NoDataView.hidden = YES;

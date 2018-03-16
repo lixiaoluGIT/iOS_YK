@@ -41,9 +41,9 @@
     [super viewDidLoad];
     self.title = @"个人资料";
     if([[UIDevice currentDevice].systemVersion floatValue] >= 11.0){
-        _hap.constant = 64;
+        _hap.constant = BarH;
     }else {
-        _hap.constant = 64;
+        _hap.constant = BarH;
     }
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];

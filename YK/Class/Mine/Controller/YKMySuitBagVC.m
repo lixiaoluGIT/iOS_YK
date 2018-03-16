@@ -90,7 +90,7 @@
     
     [self settingButtons];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(24, 64+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;
@@ -115,7 +115,7 @@
         
     }];
   
-    NoDataView.frame = CGRectMake(0, 64+HEIGHT/4, WIDHT,HEIGHT-212);
+    NoDataView.frame = CGRectMake(0, BarH+HEIGHT/4, WIDHT,HEIGHT-212);
     self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
     NoDataView.backgroundColor = self.view.backgroundColor;
     self.tableView.backgroundColor = self.view.backgroundColor;
@@ -123,7 +123,7 @@
 }
 
 -(void)settingButtons{
-    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 64, WIDHT, 50*WIDHT/375)];
+    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, BarH, WIDHT, 50*WIDHT/375)];
     backView.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
     [self.view addSubview:backView];
     
@@ -150,7 +150,7 @@
     
     for (int i = 0; i < 4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(WIDHT/4*i, 64, WIDHT /4, 50*WIDHT/375);
+        button.frame = CGRectMake(WIDHT/4*i, BarH, WIDHT /4, 50*WIDHT/375);
         button.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
         [button setTitle:arr[i] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -265,9 +265,9 @@
             _buttom.hidden = YES;
         }else {
             if ([YKOrderManager sharedManager].sectionArray.count==1&&([[YKOrderManager sharedManager].sectionArray containsObject:@"2"])) {
-                self.tableView.frame = CGRectMake(24, 64+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(24, BarH  +50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375);
             }else {
-                self.tableView.frame = CGRectMake(24, 64+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375);
             }
             self.tableView.hidden = NO;
             _buttom.hidden = YES;
@@ -291,7 +291,7 @@
 
             if ((_bagStatus==toReceive)&&self.orderList.count!=0) {
                 _buttom.hidden = NO;
-                self.tableView.frame = CGRectMake(24, 64+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375-50);
+                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375-50);
                 if (_bagStatus==toReceive) {//待归还
                     if ([YKOrderManager sharedManager].isOnRoad) {
                         [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
@@ -314,7 +314,7 @@
                     
                 }
             }else {
-                self.tableView.frame = CGRectMake(24, 64+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375);
                 _buttom.hidden = YES;
             }
     

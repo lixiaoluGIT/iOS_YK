@@ -257,6 +257,13 @@
     [self.contentView addSubview:self.menuBtn];
     [self.contentView addSubview:self.thumbCommentView];
     [self.contentView addSubview:self.dividingLine];
+    
+    //
+    [self.contentView addSubview:self.pl];
+    [self.contentView addSubview:self.plNum];
+    
+    [self.contentView addSubview:self.dz];
+    [self.contentView addSubview:self.dzNum];
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -376,64 +383,91 @@
     }
     
     //时间
-    _dateLabel.left = _detailLabel.left;
-    _dateLabel.top = lastView.bottom + kDynamicsPortraitNamePadding;
+    _dateLabel.right = self.contentView.right - 20;
+    _dateLabel.top = _portrait.top;
     NSString * newTime = [self formateDate:model.exttime withFormate:@"yyyyMMddHHmmss"];
     _dateLabel.text = newTime;
     CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
     _dateLabel.width = dateSize.width;
     _dateLabel.height = kDynamicsNameHeight;
+    _dateLabel.textAlignment = NSTextAlignmentRight;
     
-        
-    _deleteBtn.left = _dateLabel.right + kDynamicsPortraitNamePadding;
-    _deleteBtn.top = _dateLabel.top;
-    CGSize deleteSize = [_deleteBtn sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
-    _deleteBtn.width = deleteSize.width;
-    _deleteBtn.height = kDynamicsNameHeight;
+    //评论图
+    _pl.left = _detailLabel.left;
+    _pl.top = lastView.bottom + kDynamicsPortraitNamePadding;
+    _pl.width = 15;
+    _pl.height = 15;
     
-    //更多
-    _menuBtn.left = _detailLabel.right - 30 + 5;
-    _menuBtn.top = lastView.bottom + kDynamicsPortraitNamePadding - 8;
-    _menuBtn.size = CGSizeMake(30, 30);
+    //评论数
+    _plNum.left = _pl.right+8;
+    _plNum.top = _pl.top;
+    _plNum.width = 20;
+    _plNum.height = 15;
+    _plNum.text = @"12";
     
-    if (model.likeArr.count != 0 || model.commentArr.count != 0) {
-        _thumbCommentView.hidden = NO;
-        //点赞/评论
-        _thumbCommentView.left = _detailLabel.left;
-        _thumbCommentView.top = _dateLabel.bottom + kDynamicsPortraitNamePadding;
-        _thumbCommentView.width = _detailLabel.width;
-        _thumbCommentView.height = layout.thumbCommentHeight;
-        
-        [_thumbCommentView setWithLikeArr:model.likeArr CommentArr:model.commentArr DynamicsLayout:layout];
-    }else{
-        _thumbCommentView.hidden = YES;
-    }
+    //点赞图
+    _dz.left = _plNum.right + 16;
+    _dz.top = _pl.top;
+    _dz.width = 15;
+    _dz.height = 15;
+    
+    //点赞数
+    _dzNum.left = _dz.right+8;
+    _dzNum.top = _pl.top;
+    _dzNum.width = 20;
+    _dzNum.height = 15;
+    _dzNum.text = @"68";
     
     
-    //分割线
+//    _deleteBtn.left = _dateLabel.right + kDynamicsPortraitNamePadding;
+//    _deleteBtn.top = _dateLabel.top;
+//    CGSize deleteSize = [_deleteBtn sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
+//    _deleteBtn.width = deleteSize.width;
+//    _deleteBtn.height = kDynamicsNameHeight;
+    
+//    //更多
+//    _menuBtn.left = _detailLabel.right - 30 + 5;
+//    _menuBtn.top = lastView.bottom + kDynamicsPortraitNamePadding - 8;
+//    _menuBtn.size = CGSizeMake(30, 30);
+//
+//    if (model.likeArr.count != 0 || model.commentArr.count != 0) {
+//        _thumbCommentView.hidden = NO;
+//        //点赞/评论
+//        _thumbCommentView.left = _detailLabel.left;
+//        _thumbCommentView.top = _dateLabel.bottom + kDynamicsPortraitNamePadding;
+//        _thumbCommentView.width = _detailLabel.width;
+//        _thumbCommentView.height = layout.thumbCommentHeight;
+//
+//        [_thumbCommentView setWithLikeArr:model.likeArr CommentArr:model.commentArr DynamicsLayout:layout];
+//    }else{
+//        _thumbCommentView.hidden = YES;
+//    }
+//
+//
+//    //分割线
     _dividingLine.left = 15;
     _dividingLine.height = .5;
     _dividingLine.width = SCREENWIDTH - 15;
     _dividingLine.bottom = layout.height - .5;
-    
-    WS(weakSelf);
-    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
-            [weakSelf.delegate DynamicsCell:weakSelf didClickUser:userID];
-        }
-    };
-    
-    layout.clickUrlBlock = ^(NSString *url) {
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUrl:PhoneNum:)]) {
-            [weakSelf.delegate DynamicsCell:weakSelf didClickUrl:url PhoneNum:nil];
-        }
-    };
-    
-    layout.clickPhoneNumBlock = ^(NSString *phoneNum) {
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUrl:PhoneNum:)]) {
-            [weakSelf.delegate DynamicsCell:weakSelf didClickUrl:nil PhoneNum:phoneNum];
-        }
-    };
+//
+//    WS(weakSelf);
+//    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
+//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
+//            [weakSelf.delegate DynamicsCell:weakSelf didClickUser:userID];
+//        }
+//    };
+//
+//    layout.clickUrlBlock = ^(NSString *url) {
+//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUrl:PhoneNum:)]) {
+//            [weakSelf.delegate DynamicsCell:weakSelf didClickUrl:url PhoneNum:nil];
+//        }
+//    };
+//
+//    layout.clickPhoneNumBlock = ^(NSString *phoneNum) {
+//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUrl:PhoneNum:)]) {
+//            [weakSelf.delegate DynamicsCell:weakSelf didClickUrl:nil PhoneNum:phoneNum];
+//        }
+//    };
 }
 #pragma mark - 弹出JRMenu
 - (void)presentMenuController
@@ -585,6 +619,43 @@
         _dateLabel.font = [UIFont systemFontOfSize:13];
     }
     return _dateLabel;
+}
+-(UIImageView *)pl {
+    if (!_pl) {
+        _pl = [UIImageView new];
+        _pl.image = [UIImage imageNamed:@"dianzan2"];
+//        _plNum.textColor = [UIColor lightGrayColor];
+//        _plNum.font = [UIFont systemFontOfSize:13];
+    }
+    return _pl;
+}
+-(YYLabel *)plNum
+{
+    if (!_plNum) {
+        _plNum = [YYLabel new];
+        _plNum.textColor = [UIColor lightGrayColor];
+        _plNum.font = [UIFont systemFontOfSize:13];
+    }
+    return _plNum;
+}
+
+-(UIImageView *)dz {
+    if (!_dz) {
+        _dz = [UIImageView new];
+        _dz.image = [UIImage imageNamed:@"dianzan2"];
+        //        _plNum.textColor = [UIColor lightGrayColor];
+        //        _plNum.font = [UIFont systemFontOfSize:13];
+    }
+    return _dz;
+}
+-(YYLabel *)dzNum
+{
+    if (!_dzNum) {
+        _dzNum = [YYLabel new];
+        _dzNum.textColor = [UIColor lightGrayColor];
+        _dzNum.font = [UIFont systemFontOfSize:13];
+    }
+    return _dzNum;
 }
 -(UIButton *)deleteBtn
 {

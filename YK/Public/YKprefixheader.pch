@@ -59,6 +59,13 @@
 #define WIDHT  [[UIScreen mainScreen]bounds].size.width
 #define HEIGHT  [[UIScreen mainScreen]bounds].size.height
 
+////状态栏
+//#define StatusBH [[UIApplication sharedApplication] statusBarFrame].size.height;
+//
+////标题栏
+//#define NBarH 44
+
+#define BarH [[UIApplication sharedApplication] statusBarFrame].size.height+44
 
 #define titleRatio [UIScreen mainScreen].bounds.size.width/320.0  //文字的比例(Iphone6(1.17) Iphone6Plus(1.3))
 
