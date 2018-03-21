@@ -4368,7 +4368,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/apple/iOS_YK/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
@@ -4482,7 +4482,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/apple/iOS_YK/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
