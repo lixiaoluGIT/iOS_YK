@@ -90,7 +90,7 @@
 
     
 #pragma mark - 友盟分享相关
-    [UMConfigure initWithAppkey:@"5a6ae7f7f43e4834a500012e" channel:@"App Store"];
+    [UMConfigure initWithAppkey:USHARE_APPKEY channel:@"App Store"];
     /* appkey: 开发者在友盟后台申请的应用获得（可在统计后台的 “统计分析->设置->应用信息” 页面查看）*/
     
     // 统计组件配置
@@ -101,7 +101,7 @@
     [[UMSocialManager defaultManager] openLog:YES];
     
     /* 设置友盟appkey */
-    [[UMSocialManager defaultManager] setUmSocialAppkey:@"590b1f9b1c5dd07f620000e8"];//USHARE_DEMO_APPKEY
+    [[UMSocialManager defaultManager] setUmSocialAppkey:USHARE_APPKEY];//USHARE_DEMO_APPKEY
     
     [self configUSharePlatforms];
     
@@ -127,7 +127,6 @@
      </dict>
      */
     [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
-    
 }
 
 - (void)configUSharePlatforms
@@ -136,7 +135,7 @@
     /* 设置微信的appKey和appSecret */
 //    [UMSocialWechatHandler setWXAppId:@"wxb4188a08e56b21a0" appSecret:@"h6JQEGRXMPjsA3aydxEXAzyAujzzDZNp" url:@"http://www.umeng.com/social"];
    
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx51c59dc22885c8a8" appSecret:@"52f78604f4aba5a7f3979cdc02846dd3" redirectURL:@"http://mobile.umeng.com/social"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WeChat_APPKEY appSecret:WeChat_Secret redirectURL:@"http://mobile.umeng.com/social"];
     
     [[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];
     /* 设置分享到QQ互联的appID
@@ -376,12 +375,15 @@
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
+    
+    if ([url.scheme isEqualToString:@"openYK"]) {
+        //跳到商品详情
+    }
     //qq登录
     if ([url.host isEqualToString:@"tencent"]) {
         return [TencentOAuth HandleOpenURL:url];
-
     }
-    
+    //支付宝支付
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -392,8 +394,7 @@
 
     }
     
-    
-
+    //微信相关
     if ([options[UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.tencent.xin"]) {
         return [WXApi handleOpenURL:url delegate:self];
     }else{
@@ -484,6 +485,11 @@
         }
     }
     
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

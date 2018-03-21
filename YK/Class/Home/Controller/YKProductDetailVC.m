@@ -21,6 +21,11 @@
 #import "YKSuitVC.h"
 //#import "CLImageTypesetView.h"
 #import "CLImageBrowserController.h"
+#import "YKShareManager.h"
+
+#import <UMSocialCore/UMSocialCore.h>
+#import <Foundation/Foundation.h>
+#import <UShareUI/UShareUI.h>
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate>{
@@ -43,9 +48,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    self.navigationController.navigationBar.hidden = YES;
-    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
-    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
+//    self.navigationController.navigationBar.hidden = YES;
+//    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
+//    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     
 //    self.product = [YKProduct new];
     
@@ -57,7 +62,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.alpha = 1;
     
-    [self.collectionView removeObserver:self forKeyPath:@"contentOffset"];
+//    [self.collectionView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 - (void)getPruductDetail{
@@ -105,6 +110,25 @@
     }
     
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
+    
+    UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
+    btn1.frame = CGRectMake(0, 0, 20, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        btn1.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    }
+    btn1.adjustsImageWhenHighlighted = NO;
+    //    btn.backgroundColor = [UIColor redColor];
+    [btn1 setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [btn1 addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:btn1];
+    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = 0;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+        negativeSpacer.width = -18;
+    }
+    
+    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+    
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;
@@ -117,16 +141,13 @@
     
     //请求数据
     self.images = [NSArray array];
-    //    self.images= @[@"35.jpg",@"36.jpg",@"37.jpg",@"38.jpg",@"39.jpg",@"40.jpg",@"41.jpg",@"42.jpg",@"43.jpg"];
     self.view.backgroundColor =[ UIColor whiteColor];
-    
-    
     
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/180);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, HEIGHT-30) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-30) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -161,12 +182,12 @@
         self.collectionView.hidden = NO;
     });
     
-    UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(3, 20, 44, 44);
-    btn1.adjustsImageWhenHighlighted = NO;
-    [btn1 setImage:[UIImage imageNamed:@"newback"] forState:UIControlStateNormal];
-    [btn1 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn1];
+//    UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
+//    btn1.frame = CGRectMake(3, 20, 44, 44);
+//    btn1.adjustsImageWhenHighlighted = NO;
+//    [btn1 setImage:[UIImage imageNamed:@"newback"] forState:UIControlStateNormal];
+//    [btn1 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:btn1];
     
     WeakSelf(weakSelf)
     YKProductDetailButtom *buttom=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailButtom" owner:self options:nil][0];
@@ -374,7 +395,7 @@
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return CGSizeMake(WIDHT, WIDHT*0.55 +228+100);
+        return CGSizeMake(WIDHT, WIDHT*0.82 +228+100);
     }
     return CGSizeMake(WIDHT, 80);
 }
@@ -389,7 +410,7 @@
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
             
-            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55+100)];
+            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.82+100)];
             cycleView.imagesArr = self.imagesArr;
             cycleView.delegate  = self;
             
@@ -409,7 +430,7 @@
                 
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
-            scroll.frame = CGRectMake(0, WIDHT*0.55+100,WIDHT, 228);
+            scroll.frame = CGRectMake(0, WIDHT*0.82+100,WIDHT, 228);
             
             if (!hadMakeHeader) {
                 [headerView addSubview:scroll];
@@ -501,6 +522,58 @@
     imageBrowser.transitioningDelegate = imageBrowser;
     [self presentViewController:imageBrowser animated:YES completion:nil];
     
+}
+
+- (void)share{
+//    [[YKShareManager sharedManager]YKShareProductClothingId:@""];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
+    
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        NSLog(@"回调");
+        NSLog(@"%ld",(long)platformType);
+        NSLog(@"%@",userInfo);
+        
+        
+        //创建分享消息对象
+        UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+        
+        //创建网页内容对象
+        NSString* thumbUR =  self.imagesArr[0];
+        NSString *thumbURL = [self URLEncodedString:thumbUR];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"%@,我分享出来,就是为了让你更美的",self.product.productDetail.product[@"clothingName"]] descr:@"我在衣库APP看上一件衣服,大家一起来欣赏一下吧" thumImage:thumbURL];
+        //设置网页地址
+        shareObject.webpageUrl = [NSString stringWithFormat:@"http://58.87.68.253/fenxiang/share.html?clothing_id=%@", self.product.productDetail.product[@"clothingId"]];
+        
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject;
+        
+        //调用分享接口
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+            NSLog(@"调用分享接口");
+            
+            if (error) {
+                NSLog(@"调用失败%@",error);
+                UMSocialLogInfo(@"************Share fail with error %@*********",error);
+            }else{
+                NSLog(@"调用成功");
+                //弹出分享成功的提示,告诉后台,成功后getuser
+                
+                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                    UMSocialShareResponse *resp = data;
+                    //分享结果消息
+                    UMSocialLogInfo(@"response message is %@",resp.message);
+                    //第三方原始返回的数据
+                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                    
+                }else{
+                    UMSocialLogInfo(@"response data is %@",data);
+                }
+            }
+            //        [self alertWithError:error];
+        }];
+    }];
 }
 
 @end

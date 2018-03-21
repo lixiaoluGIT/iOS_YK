@@ -52,8 +52,8 @@
     [self getMessageList];
 }
 
-
 - (void)getMessageList{
+    //物流消息
     [[YKMessageManager sharedManager]getMessageListMsgType:1 OnResponse:^(NSArray *array) {
         self.SMSList = [NSArray arrayWithArray:array];
         
@@ -70,7 +70,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 7;
+    return self.SMSList.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -81,16 +81,18 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YKTotalSMSCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKTotalSMSCell" owner:self options:nil][0];
-//    [bagCell initWithDictionary:@""]
+     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.SMSList[indexPath.row]];
+    [bagCell initWithDictionary:dic];
     bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return bagCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YKTotalSMSCell *smsCell = (YKTotalSMSCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.SMSList[indexPath.row]];
     YKSMSInforVC *infor = [YKSMSInforVC new];
-    infor.orderNo = @"238836512256";
-//    infor.orderNo = smsCell.orderNo;
+//    infor.orderNo = @"238836512256";
+    infor.orderNo = smsCell.orderNo;
     [self.navigationController pushViewController:infor animated:YES];
 }
 @end

@@ -7,10 +7,6 @@
 //
 
 #import "YKShareVC.h"
-
-#import <UMSocialCore/UMSocialCore.h>
-#import <Foundation/Foundation.h>
-#import <UShareUI/UShareUI.h>
 #import "YKShareSuccessView.h"
 #import "VTingSeaPopView.h"
 
@@ -127,60 +123,6 @@
     [[UIApplication sharedApplication].keyWindow addSubview:pop];
     pop.delegate = self;
     [pop show];
-    
-//    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
-//
-//    //显示分享面板
-//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-//        // 根据获取的platformType确定所选平台进行下一步操作
-//        NSLog(@"回调");
-//        NSLog(@"%ld",(long)platformType);
-//        NSLog(@"%@",userInfo);
-//
-//
-//        //创建分享消息对象
-//        UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-//
-//        //创建网页内容对象
-//        NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-//        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"共享贡献共荣共衣库" descr:@"哈哈哈哈哈,这是一条测试数据" thumImage:thumbURL];
-//        //设置网页地址
-//        shareObject.webpageUrl = @"http://dingniu8.com/desk/UploadPic/2013-1/201311122394666.jpg";
-//
-//        //分享消息对象设置分享内容对象
-//        messageObject.shareObject = shareObject;
-//
-//        //调用分享接口
-//        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-//            NSLog(@"调用分享接口");
-//
-//            if (error) {
-//                NSLog(@"调用失败%@",error);
-//                UMSocialLogInfo(@"************Share fail with error %@*********",error);
-//            }else{
-//                NSLog(@"调用成功");
-//                //弹出分享成功的提示,告诉后台,成功后getuser
-//
-//                [[YKUserManager sharedManager]shareSuccess];
-//
-//                backView.hidden = NO;
-//                su.hidden = NO;
-//                close.hidden = NO;
-//
-//                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-//                    UMSocialShareResponse *resp = data;
-//                    //分享结果消息
-//                    UMSocialLogInfo(@"response message is %@",resp.message);
-//                    //第三方原始返回的数据
-//                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-//
-//                }else{
-//                    UMSocialLogInfo(@"response data is %@",data);
-//                }
-//            }
-//            //        [self alertWithError:error];
-//        }];
-//    }];
 }
 
 

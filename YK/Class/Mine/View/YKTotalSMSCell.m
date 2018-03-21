@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *orderId;
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *titleLable;
 
 @end
 
@@ -25,9 +27,12 @@
 }
 
 - (void)initWithDictionary:(NSDictionary *)dic{
-    [_image sd_setImageWithURL:[NSURL URLWithString:dic[@""]] placeholderImage:[UIImage imageNamed:@"首页商品图"]];
-    _name.text = dic[@""];
-    _orderId.text = dic[@""];
-    _orderNo = dic[@""];
+    [_image sd_setImageWithURL:[NSURL URLWithString:dic[@""]] placeholderImage:[UIImage imageNamed:@"wuliu-1"]];
+    _titleLable.text  = dic[@"title"];
+    _name.text = dic[@"text"];
+    _orderId.text = [NSString stringWithFormat:@"运单编号:%@",dic[@"pushData"]];
+    _orderNo = dic[@"pushData"];
+    _time.text = dic[@"pushDate"];
 }
+
 @end

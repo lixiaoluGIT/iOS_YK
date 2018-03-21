@@ -71,7 +71,7 @@
 //}
 #pragma mark 创建UIPageControl
 -(void)addPageControl{
-    CGRect rectValue=CGRectMake(0, self.frame.size.height*0.85, WIDHT, 33);
+    CGRect rectValue=CGRectMake(0, self.frame.size.height*0.9, WIDHT, 33);
     UIImage *currentImage=[UIImage imageNamed:@"red"];
     UIImage *pageImage=[UIImage imageNamed:@"white"];
     pageView=[CusPageControlWithView cusPageControlWithView:rectValue pageNum:_imagesArr.count currentPageIndex:0 currentShowImage:currentImage pageIndicatorShowImage:pageImage];

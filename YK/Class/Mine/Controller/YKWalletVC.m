@@ -199,7 +199,7 @@
    //押金状态
     YKWalletButtom *buttom = [[NSBundle mainBundle] loadNibNamed:@"YKWalletButtom" owner:self options:nil][0];
     buttom.selectionStyle = UITableViewCellSelectionStyleNone;
-    buttom.frame = CGRectMake(0, HEIGHT-BarH, WIDHT, BarH);
+    buttom.frame = CGRectMake(0, HEIGHT-([[UIApplication sharedApplication] statusBarFrame].size.height+44)*2, WIDHT, BarH);
     [buttom setTitle:validityStatus];
     buttom.scanBlock = ^(NSInteger tag){
         YKDepositVC *deposit = [[YKDepositVC alloc]initWithNibName:@"YKDepositVC" bundle:[NSBundle mainBundle]];

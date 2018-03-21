@@ -56,9 +56,11 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string>com.lymykapp.com</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>openYK</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
