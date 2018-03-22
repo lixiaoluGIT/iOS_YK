@@ -17,4 +17,6 @@
 
 @property (nonatomic,strong)NSString *titleStr;
 
+@property (nonatomic,assign)BOOL isFromShare;
+
 @end

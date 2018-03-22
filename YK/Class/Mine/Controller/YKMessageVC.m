@@ -10,6 +10,7 @@
 #import "YKTotalMsgView.h"
 #import "YKTotalSMSVC.h"
 #import "YKMsgDetailVc.h"
+#import "YKActivityVC.h"
 #import "YKMineCell.h"
 @interface YKMessageVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView *tableView;
@@ -50,7 +51,7 @@
     [self.view addSubview:self.tableView];
     
     self.images = [NSArray array];
-    self.images = @[@"Group Copy",@"Group 2 Copy",@"Group Copy"];
+    self.images = @[@"Group Copy",@"Group 2 Copy",@"huodong"];
     self.titles = [NSArray array];
     self.titles = @[@"消息通知",@"物流通知",@"活动通知"];
 }
@@ -62,6 +63,7 @@
         _tableView.dataSource = self;
         _tableView.backgroundColor=[UIColor clearColor];
         _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.rowHeight = 50;
         
         
@@ -97,6 +99,9 @@
     }
     if (indexPath.row==1) {
         [self.navigationController pushViewController:[YKTotalSMSVC new] animated:YES];
+    }
+    if (indexPath.row==2) {
+        [self.navigationController pushViewController:[YKActivityVC new] animated:YES];
     }
 }
 @end

@@ -36,12 +36,6 @@
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-fe-Hv3">
-                        <rect key="frame" x="125" y="199" width="82" height="24"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                        <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来自:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjG-xy-sep">
                         <rect key="frame" x="24" y="55.5" width="38" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -75,8 +69,6 @@
                     <constraint firstItem="cB7-E8-rOf" firstAttribute="centerY" secondItem="qmm-GS-Al9" secondAttribute="centerY" id="j7g-kS-lqe"/>
                     <constraint firstItem="rjG-xy-sep" firstAttribute="leading" secondItem="qmm-GS-Al9" secondAttribute="leading" id="qvu-qs-7ou"/>
                     <constraint firstAttribute="trailing" secondItem="RnA-Fq-SWZ" secondAttribute="trailing" id="s7Z-29-Xsl"/>
-                    <constraint firstItem="ei7-fe-Hv3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uuL-Cu-rl9"/>
-                    <constraint firstItem="ei7-fe-Hv3" firstAttribute="top" secondItem="RnA-Fq-SWZ" secondAttribute="bottom" constant="44" id="vqX-E1-csn"/>
                     <constraint firstItem="rjG-xy-sep" firstAttribute="top" secondItem="qmm-GS-Al9" secondAttribute="bottom" constant="14" id="xiR-hm-UAv"/>
                 </constraints>
             </tableViewCellContentView>

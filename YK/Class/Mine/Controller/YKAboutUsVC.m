@@ -46,7 +46,7 @@
     
     _aboutUSView = [[NSBundle mainBundle] loadNibNamed:@"YKAboutView" owner:self options:nil][0];
     _aboutUSView.selectionStyle = UITableViewCellSelectionStyleNone;
-    _aboutUSView.frame = CGRectMake(0, BarH, WIDHT, HEIGHT-BarH);
+    _aboutUSView.frame = CGRectMake(0, 64, WIDHT, HEIGHT-64);
     WeakSelf(weakSelf)
     _aboutUSView.toXieYi = ^(void){
         YKWebVC *web = [YKWebVC new];

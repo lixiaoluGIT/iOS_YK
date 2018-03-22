@@ -1,33 +1,32 @@
 //
-//  YKTotalSMSVC.m
+//  YKActivityVC.m
 //  YK
 //
-//  Created by LXL on 2017/12/18.
-//  Copyright © 2017年 YK. All rights reserved.
+//  Created by EDZ on 2018/3/22.
+//  Copyright © 2018年 YK. All rights reserved.
 //
 
-#import "YKTotalSMSVC.h"
-#import "YKTotalSMSCell.h"
-#import "YKSMSInforVC.h"
+#import "YKActivityVC.h"
+#import "YKWalletDetailCell.h"
 
-@interface YKTotalSMSVC (){
+@interface YKActivityVC (){
     YKNoDataView *NoDataView;
 }
 
-@property (nonatomic,strong)NSArray *SMSList;
+@property (nonatomic,strong)NSMutableArray *dataArray;
 @end
 
-@implementation YKTotalSMSVC
+@implementation YKActivityVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"交易物流信息";
+    self.title = @"活动通知";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
-    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
         btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
     }
     btn.adjustsImageWhenHighlighted = NO;
@@ -35,6 +34,7 @@
     [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    
     negativeSpacer.width = -8;
     if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
         negativeSpacer.width = -18;
@@ -49,10 +49,8 @@
     self.navigationItem.titleView = title;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
-    
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
-    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"xiaoxi"] statusDes:@"暂无物流通知" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"xiaoxi"] statusDes:@"暂无活动通知" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
         
     }];
     
@@ -60,33 +58,27 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
     [self.view addSubview:NoDataView];
     NoDataView.hidden = YES;
-
-    [self getMessageList];
-}
-
-- (void)getMessageList{
-    //物流消息
-    [[YKMessageManager sharedManager]getMessageListMsgType:1 OnResponse:^(NSArray *array) {
-        self.SMSList = [NSArray arrayWithArray:array];
-        if (array.count == 0) {
-            NoDataView.hidden = NO;
-        }else {
-            NoDataView.hidden = YES;
-        }
+    
+    [[YKPayManager sharedManager]getWalletDetailPageOnResponse:^(NSDictionary *dic) {
+        
+        self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
         [self.tableView reloadData];
+        NoDataView.hidden = NO;
     }];
 }
+
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 170;
+    return 85;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.SMSList.count;
+    //    return self.dataArray.count;
+    return 0;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -96,19 +88,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    YKTotalSMSCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKTotalSMSCell" owner:self options:nil][0];
-     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.SMSList[indexPath.row]];
-    [bagCell initWithDictionary:dic];
+    YKWalletDetailCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKWalletDetailCell" owner:self options:nil][0];
+    [bagCell initWithDictionary:self.dataArray[indexPath.row]];
     bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return bagCell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YKTotalSMSCell *smsCell = (YKTotalSMSCell *)[tableView cellForRowAtIndexPath:indexPath];
-    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.SMSList[indexPath.row]];
-    YKSMSInforVC *infor = [YKSMSInforVC new];
-//    infor.orderNo = @"238836512256";
-    infor.orderNo = smsCell.orderNo;
-    [self.navigationController pushViewController:infor animated:YES];
-}
+
 @end

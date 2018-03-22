@@ -74,7 +74,7 @@
     
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layoutView.itemSize = CGSizeMake((w-72)/2, (w-72)/2*240/180);
+    layoutView.itemSize = CGSizeMake((w-72)/2, (w-72)/2*240/150);
     layoutView.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
     //layoutView.footerReferenceSize = CGSizeMake(self.view.bounds.size.width, 150);
     

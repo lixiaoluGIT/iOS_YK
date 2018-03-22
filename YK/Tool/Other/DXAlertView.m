@@ -121,6 +121,9 @@
         [self.alertview addSubview:self.titleLab];
         [self.alertview addSubview:self.messageLab];
 
+        self.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissAlertView)];
+        [self addGestureRecognizer:tap];
 
     }
     return self;

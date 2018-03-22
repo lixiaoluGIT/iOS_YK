@@ -9,7 +9,9 @@
 #import "YKMsgDetailVc.h"
 #import "YKWalletDetailCell.h"
 
-@interface YKMsgDetailVc ()
+@interface YKMsgDetailVc (){
+    YKNoDataView *NoDataView;
+}
 
 @property (nonatomic,strong)NSMutableArray *dataArray;
 @end
@@ -47,11 +49,21 @@
     self.navigationItem.titleView = title;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"xiaoxi"] statusDes:@"暂无消息通知" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
+        
+    }];
+    
+    NoDataView.frame = CGRectMake(0, 98+BarH, WIDHT,HEIGHT-162);
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    [self.view addSubview:NoDataView];
+    NoDataView.hidden = YES;
     
     [[YKPayManager sharedManager]getWalletDetailPageOnResponse:^(NSDictionary *dic) {
         
         self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
         [self.tableView reloadData];
+        NoDataView.hidden = NO;
     }];
 }
 

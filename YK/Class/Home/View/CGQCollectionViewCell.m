@@ -41,6 +41,7 @@
     _detailLabel.text = _goodsName;
     
     _tagimage.hidden = product.isHadStock;
+    _imageView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
 }
 
 @end

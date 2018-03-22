@@ -79,12 +79,18 @@
 //消息列表
 - (void)getMessageListMsgType:(NSInteger)MsgType OnResponse:(void (^)(NSArray *array))onResponse{
     
+     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     NSString *url = [NSString stringWithFormat:@"%@?type=%ld",GetMessageList_Ur,MsgType];
     [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         NSArray *msgList = [NSArray arrayWithArray:dict[@"data"]];
         if (msgList.count!=0) {
             if (onResponse) {
                 onResponse(msgList);
+            }
+        }else {
+            if (onResponse) {
+                onResponse(nil);
             }
         }
         

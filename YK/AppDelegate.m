@@ -24,6 +24,7 @@
 #import "DDAdvertisementVC.h"
 #import "YKMessageVC.h"
 #import <RongIMKit/RongIMKit.h>
+#import "YKProductDetailVC.h"
 
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate,DXAlertViewDelegate>
 
@@ -372,13 +373,64 @@
 //    return [TencentOAuth HandleOpenURL:url];
 //}
 
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    if ([window subviews].count>0) {
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+        id nextResponder = [frontView nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]]){
+            result = nextResponder;
+        }
+        else{
+            result = window.rootViewController;
+        }
+    }
+    else{
+        result = window.rootViewController;
+    }
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [((UITabBarController*)result) selectedViewController];
+    }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [((UINavigationController*)result) visibleViewController];
+    }
+    
+    return result;
+}
+
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
     
-    if ([url.scheme isEqualToString:@"openYK"]) {
+    if ([url.scheme isEqualToString:@"openyk"]) {
+        NSString *l = [NSString stringWithFormat:@"%@",url];
+        NSRange range = NSMakeRange(10, l.length-10);
+        NSString *clothID  = [l substringWithRange:range];
         //跳到商品详情
+        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+        detail.hidesBottomBarWhenPushed = YES;
+        detail.titleS = @"商品详情";
+        detail.productId = clothID;
+        detail.isFromShare = YES;
+        [[self getCurrentVC].navigationController pushViewController:detail animated:YES];
     }
+    
     //qq登录
     if ([url.host isEqualToString:@"tencent"]) {
         return [TencentOAuth HandleOpenURL:url];

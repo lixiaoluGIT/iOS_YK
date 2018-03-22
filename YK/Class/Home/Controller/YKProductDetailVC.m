@@ -26,6 +26,7 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
+#import "YKMainVC.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate>{
@@ -91,7 +92,11 @@
     [self getPruductDetail];
     [super viewDidLoad];
     _sizeNum = 0;
-    self.title = self.titleStr;
+    if (_isFromShare) {
+        self.title = @"商品详情";
+    }else{
+        self.title = self.titleStr;
+    }
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -118,7 +123,7 @@
     }
     btn1.adjustsImageWhenHighlighted = NO;
     //    btn.backgroundColor = [UIColor redColor];
-    [btn1 setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [btn1 setImage:[UIImage imageNamed:@"fenxiang"] forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:btn1];
     UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -145,9 +150,9 @@
     
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layoutView.itemSize = CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/180);
+    layoutView.itemSize = CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/150);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-30) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -206,10 +211,14 @@
             login.hidesBottomBarWhenPushed = YES;
             return;
         }
-        
-        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"客服服务时间:10:00-19:00" cancelBtnTitle:@"拨打电话" otherBtnTitle:@"在线客服"];
-        alertView.delegate = self;
-        [alertView show];
+        YKChatVC *chatService = [[YKChatVC alloc] init];
+        chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+        chatService.targetId = RoundCloudServiceId;
+        chatService.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController :chatService animated:YES];
+//        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"客服服务时间:10:00-19:00" cancelBtnTitle:@"拨打电话" otherBtnTitle:@"在线客服"];
+//        alertView.delegate = self;
+//        [alertView show];
       
         
 //
@@ -277,6 +286,14 @@
     }
 }
 - (void)leftAction{
+    if (_isFromShare) {
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        window.rootViewController = [YKMainVC new];
+        CATransition *anim = [CATransition animation];
+        anim.duration = .3;
+        anim.type = @"fade";
+        [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
+    }
     [self.navigationController popViewControllerAnimated:YES];
     //    [self.tabBarController setSelectedIndex:0];
 }
@@ -356,7 +373,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (section==0) {
-        return self.product.pruductDetailImgs.count;
+//        return self.product.pruductDetailImgs.count;
+        return 0;
     }
     return self.product.productList.count;
 }
@@ -395,7 +413,7 @@
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return CGSizeMake(WIDHT, WIDHT*0.82 +228+100);
+        return CGSizeMake(WIDHT, WIDHT*0.82 +228);
     }
     return CGSizeMake(WIDHT, 80);
 }
@@ -457,7 +475,7 @@
 //设置大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==1) {
-        return CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/180);
+        return CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/150);
     }
     
     return CGSizeMake(WIDHT-48,WIDHT-48);
@@ -542,9 +560,9 @@
         //创建网页内容对象
         NSString* thumbUR =  self.imagesArr[0];
         NSString *thumbURL = [self URLEncodedString:thumbUR];
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"%@,我分享出来,就是为了让你更美的",self.product.productDetail.product[@"clothingName"]] descr:@"我在衣库APP看上一件衣服,大家一起来欣赏一下吧" thumImage:thumbURL];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"%@,我分享出来,就是为了让你更美的!",self.product.productDetail.product[@"clothingName"]] descr:@"我在衣库APP看上一件衣服,大家一起来欣赏一下吧" thumImage:thumbURL];
         //设置网页地址
-        shareObject.webpageUrl = [NSString stringWithFormat:@"http://58.87.68.253/fenxiang/share.html?clothing_id=%@", self.product.productDetail.product[@"clothingId"]];
+        shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/share/share.html?clothing_id=%@", self.product.productDetail.product[@"clothingId"]];
         
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
