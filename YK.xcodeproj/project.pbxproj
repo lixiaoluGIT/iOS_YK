@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBFC362063A1B6001FEC24 /* YKActivityVC.m */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
 		C5016FF02022B77800E22301 /* YKMineCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */; };
@@ -545,6 +546,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00EBFC362063A1B6001FEC24 /* YKActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YKActivityVC.m; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.m; sourceTree = "<group>"; };
+		00EBFC372063A1B6001FEC24 /* YKActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YKActivityVC.h; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.h; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		C500BCCD20591B210075B050 /* WebP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebP.framework; path = Vendor/WebP.framework; sourceTree = "<group>"; };
 		C5016FED2022B77800E22301 /* YKMineCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMineCategoryCell.h; sourceTree = "<group>"; };
@@ -1909,6 +1912,8 @@
 		C525DC641FBAB15D002802AE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				00EBFC372063A1B6001FEC24 /* YKActivityVC.h */,
+				00EBFC362063A1B6001FEC24 /* YKActivityVC.m */,
 				C525DE031FBABBFB002802AE /* YKMineVC.h */,
 				C525DE041FBABBFB002802AE /* YKMineVC.m */,
 				C525DEA61FBD9144002802AE /* YKAddressVC.h */,
@@ -4021,6 +4026,7 @@
 				C525DDC71FBAB2A9002802AE /* NSData+ImageContentType.m in Sources */,
 				C532A74A1FDF8AAB0068A31D /* MD5DataSigner.m in Sources */,
 				C525DDA91FBAB2A9002802AE /* MLLabel.m in Sources */,
+				00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */,
 				C5FB783C205904780076DD6F /* YYTextLayout.m in Sources */,
 				C5FB7847205904780076DD6F /* UIPasteboard+YYText.m in Sources */,
 				C525DD881FBAB2A9002802AE /* MJRefreshAutoFooter.m in Sources */,

@@ -21,7 +21,7 @@
 #import "YKSuitVC.h"
 //#import "CLImageTypesetView.h"
 #import "CLImageBrowserController.h"
-#import "YKShareManager.h"
+//#import "YKShareManager.h"
 
 #import <UMSocialCore/UMSocialCore.h>
 #import <Foundation/Foundation.h>
