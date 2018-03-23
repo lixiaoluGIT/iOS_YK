@@ -426,6 +426,11 @@
             NSString *s = [NSString stringWithFormat:@"%@",dic[@"data"]];
             if ([s isEqualToString:@"该订单未预约归还"]) {//未预约归还
                 [header resetUI:0];
+                header.SMSBlock = ^(void){
+                    [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
+                    YKReturnVC *r = [YKReturnVC new];
+                    [self.navigationController pushViewController:r animated:YES];
+                };
 //                isHadOrderreceive = NO;
             }else {//未预约
 //                isHadOrderreceive = YES;
@@ -434,11 +439,11 @@
         }];
       
 
-        header.SMSBlock = ^(void){
-            [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
-            YKReturnVC *r = [YKReturnVC new];
-            [self.navigationController pushViewController:r animated:YES];
-        };
+//        header.SMSBlock = ^(void){
+//            [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
+//            YKReturnVC *r = [YKReturnVC new];
+//            [self.navigationController pushViewController:r animated:YES];
+//        };
 
         return header;
     }
