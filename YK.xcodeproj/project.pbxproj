@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C392862068B2580068DFC0 /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C392842068B2570068DFC0 /* RSAEncryptor.m */; };
 		00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBFC362063A1B6001FEC24 /* YKActivityVC.m */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
@@ -546,6 +547,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00C392842068B2570068DFC0 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
+		00C392852068B2570068DFC0 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		00EBFC362063A1B6001FEC24 /* YKActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YKActivityVC.m; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.m; sourceTree = "<group>"; };
 		00EBFC372063A1B6001FEC24 /* YKActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YKActivityVC.h; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.h; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -2678,6 +2681,8 @@
 		C53039E41FCC272000FB12CE /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				00C392852068B2570068DFC0 /* RSAEncryptor.h */,
+				00C392842068B2570068DFC0 /* RSAEncryptor.m */,
 				C52D04631FE8E8C400633550 /* MBProgressHUD+CustomSet.h */,
 				C52D04651FE8E8C500633550 /* MBProgressHUD+CustomSet.m */,
 				C525DE8F1FBD28D5002802AE /* smartHUD.h */,
@@ -3630,6 +3635,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -3866,6 +3874,7 @@
 				C525DE221FBAD659002802AE /* YKScrollBtnView.m in Sources */,
 				C525DE021FBABBD1002802AE /* YKSuitVC.m in Sources */,
 				C525DDA31FBAB2A9002802AE /* NSAttributedString+MLLabel.m in Sources */,
+				00C392862068B2580068DFC0 /* RSAEncryptor.m in Sources */,
 				C52D047C1FE8F8A400633550 /* YKAleartView.m in Sources */,
 				C525DDBF1FBAB2A9002802AE /* UIImageView+HighlightedWebCache.m in Sources */,
 				C5FB785A205904780076DD6F /* NSNumber+YYAdd.m in Sources */,

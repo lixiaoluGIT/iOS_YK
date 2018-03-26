@@ -8,6 +8,7 @@
 
 #import "YKLoginVC.h"
 #import "WXApi.h"
+#import "RSAEncryptor.h"
 
 //#import "LLGifImageView.h"
 //#import "LLGifView.h"
@@ -240,17 +241,19 @@ NSInteger timeNum;
     toolbar.items = @[cancel,space, bar];
     return toolbar;
 }
+
 - (IBAction)getCode:(id)sender {
     if (![steyHelper isValidatePhone:self.phoneText.text] ) {
         [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
         return;
     }
     //请求验证码接口,成功后
-    [[YKUserManager sharedManager]getVetifyCodeWithPhone:self.phoneText.text OnResponse:^(NSDictionary *dic) {
+    [[YKUserManager sharedManager]getVetifyCodeWithPhone:[self getRSAStr:self.phoneText.text]  OnResponse:^(NSDictionary *dic) {
         [self timeOrder];
+
     }];
-    
 }
+
 -(void)timeOrder{
     
     timeNum = 30;
@@ -306,6 +309,18 @@ NSInteger timeNum;
         }];
     }];
 }
+
+- (NSString *)getRSAStr:(NSString *)str{
+    
+    //使用字符串格式的公钥私钥加密解密
+    NSString *encryptStr = [RSAEncryptor encryptString:str publicKey:@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCBC5T7S0hhZKF7ri5xV3R0ebGyeXT8fZIgxSbIAI+7MVwxfnL+qOYYqnX3V6BJDw87OEnGcFV2DLcqahUb691XnvS6FQI8kAlL9Xcc5NLKJmxD3GOlxlFpobCNHcCUiyf1TdVOUoSh9Dh2NK1UOiY2YdzllkEAH88Ji03xzvv4XwIDAQAB"];
+    
+    
+    NSLog(@"解密后:%@", [RSAEncryptor decryptString:encryptStr privateKey:@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIELlPtLSGFkoXuuLnFXdHR5sbJ5dPx9kiDFJsgAj7sxXDF+cv6o5hiqdfdXoEkPDzs4ScZwVXYMtypqFRvr3Vee9LoVAjyQCUv1dxzk0sombEPcY6XGUWmhsI0dwJSLJ/VN1U5ShKH0OHY0rVQ6JjZh3OWWQQAfzwmLTfHO+/hfAgMBAAECgYAsrfjoRPmLlw7+RqGX5qLQjS4EUF876LJGnFxAFUmuk3mLPW/NUmdQlPyBJhq+EPPCGkwY494DIIXurooef7zDz7jeFwFTiyAzU3GLOkGuWOSmnNkCrT5lW93fQXeEZtKufdaZaex957I0ldG/YyjDDZkOprvXsf8WtAb5CzOVYQJBAOKtAR8rPv0WJgzKbTcoSYgaBCEC8tCOf8Y33NkAsqfXH5VMNVHi6WRmROcXch4wC48zu+E+fiq78L0zZJeZz/ECQQCRvUWXikRF8/dxO8HPkcm7C5hnI6VuFUm0zi6lUJY8/thPUYrPN7SzhB4w6gWo7bbz36+geJGp56/nWGBP3p1PAkBdEWNQhNUL3LgqsEI/T09Bjkz7sNY5Qwi7PdxzTJINz4msJuoNgPkKu+K2by3vrxJP7ZHKXXo32YpyZFN82y5BAkBgmKD9tklWTEPfq4nkOG8LKL5U7k2Bz15RFq/YJrfNqeRZfmSQwA1nRtRz+0jRFO5EaiiQJhn2EXiH0A3WImkFAkEAwhO00lkrGHyjgitXiyYUqkWGqFLkWc1pVHg3ZTCuTBXIbbbs8YpcntXIGq/0D2rXGSY3AS8/X/LcPF38Lrtc1g=="]);
+
+    return encryptStr;
+}
+
 //qq登录
 - (IBAction)tencentLogin:(id)sender {
     [[YKUserManager sharedManager]loginByTencentOnResponse:^(NSDictionary *dic) {

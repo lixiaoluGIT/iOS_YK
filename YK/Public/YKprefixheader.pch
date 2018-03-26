@@ -71,13 +71,14 @@
 
 /*----------------------------Public--------------------------------*/
 //#define BaseUrl @"http://39.106.70.17"
-#define BaseUrl @"http:39.107.65.143"
+//#define BaseUrl @"http:39.107.65.143"
+#define BaseUrl @"http://api.xykoo.cn/"
 
 //#define BaseUrl @""
 
 /*----------------------------用户模块--------------------------------*/
 //获取验证码
-#define GetVetifyCode_Url @"/tokens/sendSms"
+#define GetVetifyCode_Url @"/encrypted/sendSms"
 //登录
 #define Login_Url @"/tokens/login"
 //微信登录接口

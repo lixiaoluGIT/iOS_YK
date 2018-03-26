@@ -146,4 +146,5 @@
     [self.suitArray removeAllObjects];
     self.suitAccount = 0;
 }
+
 @end
