@@ -211,8 +211,9 @@
 - (void)changePhoneGetVetifyCodeWithPhone:(NSString *)phone
                                OnResponse:(void (^)(NSDictionary *dic))onResponse{
 
-     NSString *url = [NSString stringWithFormat:@"%@?phone=%@",ChangePhoneGetVetifyCode_Url,phone];
-    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+     NSString *url = [NSString stringWithFormat:@"%@?phone=%@",GetVetifyCode_Url,phone];
+    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"#%<>[\\]^`{|}\"]+"].invertedSet];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
 
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
 

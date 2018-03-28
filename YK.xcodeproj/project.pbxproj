@@ -12,6 +12,7 @@
 		00C3928C2069EF7E0068DFC0 /* YKSharebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C3928A2069EF7E0068DFC0 /* YKSharebView.xib */; };
 		00C392902069FD510068DFC0 /* YKCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3928E2069FD510068DFC0 /* YKCouponView.m */; };
 		00C392912069FD510068DFC0 /* YKCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C3928F2069FD510068DFC0 /* YKCouponView.xib */; };
+		00C39294206BB0E20068DFC0 /* YKProductSizeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C39293206BB0E20068DFC0 /* YKProductSizeTable.m */; };
 		00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBFC362063A1B6001FEC24 /* YKActivityVC.m */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
@@ -559,6 +560,8 @@
 		00C3928D2069FD510068DFC0 /* YKCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponView.h; sourceTree = "<group>"; };
 		00C3928E2069FD510068DFC0 /* YKCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponView.m; sourceTree = "<group>"; };
 		00C3928F2069FD510068DFC0 /* YKCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKCouponView.xib; sourceTree = "<group>"; };
+		00C39292206BB0E20068DFC0 /* YKProductSizeTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductSizeTable.h; sourceTree = "<group>"; };
+		00C39293206BB0E20068DFC0 /* YKProductSizeTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductSizeTable.m; sourceTree = "<group>"; };
 		00EBFC362063A1B6001FEC24 /* YKActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YKActivityVC.m; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.m; sourceTree = "<group>"; };
 		00EBFC372063A1B6001FEC24 /* YKActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YKActivityVC.h; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.h; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -1861,6 +1864,8 @@
 				C532766F205B6EAC0082EF2E /* YKPublicCell.xib */,
 				C5F6143C205BA26800A2809D /* PlaceholderTextView.h */,
 				C5F6143B205BA26800A2809D /* PlaceholderTextView.m */,
+				00C39292206BB0E20068DFC0 /* YKProductSizeTable.h */,
+				00C39293206BB0E20068DFC0 /* YKProductSizeTable.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4175,6 +4180,7 @@
 				C525DD701FBAB2A8002802AE /* AFHTTPRequestOperationManager.m in Sources */,
 				C5F929BA20206E53001D2139 /* FYTransitionHelper.m in Sources */,
 				C5FB78D7205908F80076DD6F /* NSMutableSet+BlocksKit.m in Sources */,
+				00C39294206BB0E20068DFC0 /* YKProductSizeTable.m in Sources */,
 				C525DE971FBD59CA002802AE /* YKMineBagCell.m in Sources */,
 				C5FB786E205904780076DD6F /* YYDispatchQueuePool.m in Sources */,
 				C525DD731FBAB2A8002802AE /* AFNetworkReachabilityManager.m in Sources */,

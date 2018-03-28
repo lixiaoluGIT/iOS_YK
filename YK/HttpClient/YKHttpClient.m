@@ -82,12 +82,13 @@
     //头部设置
     NSDictionary *headField = [NSDictionary dictionary];
     if ([Token length] != 0) {
-        headField = @{
+        headField = @{@"accept": @"application/json",
                       @"Content-Type":@"application/json; charset=utf-8",
                                     @"X-Auth-Token":Token
                                     };
     }else {
-    headField = @{
+        headField = @{@"accept": @"application/json",
+
                     @"Content-Type":@"application/json; charset=utf-8"
                                };
     }
