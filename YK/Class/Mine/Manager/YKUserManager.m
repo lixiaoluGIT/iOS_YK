@@ -33,7 +33,7 @@
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     NSString *url = [NSString stringWithFormat:@"%@?phone=%@",GetVetifyCode_Url,phone];
-    
+    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"#%<>[\\]^`{|}\"]+"].invertedSet];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];

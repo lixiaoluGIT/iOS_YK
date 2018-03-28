@@ -34,6 +34,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [self getData];
 }
 
@@ -55,7 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"我的钱包";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -95,6 +96,7 @@
 
 - (void)getData{
     [[YKPayManager sharedManager]getWalletPageOnResponse:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         validityStatus = [dic[@"depositEffective"] integerValue];//押金:0>未交,不是VIP,1>有效,2>退还中,3>无效
         depositStatus = [dic[@"effective"] integerValue];//1>使用中,2>已过期,3>无押金,4>未开通
         cardType = [dic[@"cardType"] integerValue];//会员卡类型 0季卡 1月卡 2年卡
