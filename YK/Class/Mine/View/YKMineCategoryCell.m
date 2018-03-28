@@ -36,10 +36,24 @@
         [btn addSubview:lable];
         
         //布局
+        //Hot标志
+        UIImageView *hotImage = [[UIImageView alloc]init];
+        hotImage.image = [UIImage imageNamed:@"hot"];
+        [hotImage sizeToFit];
+        if (i==2) {
+            [btn addSubview:hotImage];
+            [hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(image.mas_right).offset(7);
+                make.top.equalTo(image.mas_top).offset(-7);
+            }];
+        }
+       
+        
         [image mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(btn.mas_centerX);
             make.top.equalTo(@(26*WIDHT/375));
         }];
+        
         [lable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(image.mas_centerX);
             make.bottom.equalTo(btn.mas_bottom).offset((-26*WIDHT/375));

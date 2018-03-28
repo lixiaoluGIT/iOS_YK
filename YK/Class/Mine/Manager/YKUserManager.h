@@ -79,4 +79,7 @@
 
 //qq登录成功(调server)
 - (void)loginSuccessByTencentDic:(NSDictionary *)Dic OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//使用优惠券
+- (void)useCouponId:(NSString *)couponId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

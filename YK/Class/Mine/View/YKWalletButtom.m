@@ -31,6 +31,9 @@
     }
 }
 
+- (void)setTit{
+    [_scanBtn setTitle:@"缴纳押金" forState:UIControlStateNormal];
+}
 
 - (void)setTitle:(NSInteger)status{
     switch (status) {

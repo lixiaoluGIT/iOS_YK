@@ -22,6 +22,7 @@
 #import "YKDepositVC.h"
 #import "YKMyHeaderView.h"
 #import "YKMineCategoryCell.h"
+#import "YKShareVC.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
@@ -131,9 +132,9 @@
 
     
     self.images = [NSArray array];
-    self.images = @[@"qianbao",@"gerenziliao",@"address",@"question",@"kefu-1",@"setting"];
+    self.images = @[@"qianbao",@"gerenziliao",@"yaoqing",@"question",@"kefu-1",@"setting"];
     self.titles = [NSArray array];
-    self.titles = @[@"我的钱包",@"个人资料",@"收货地址",@"常见问题",@"联系客服",@"设置"];
+    self.titles = @[@"我的钱包",@"个人资料",@"邀请有奖",@"常见问题",@"联系客服",@"设置"];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
 }
@@ -222,9 +223,9 @@
                 
             }
             if (tag==2) {//收货地址
-                YKAddressVC *address = [YKAddressVC new];
-                address.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:address animated:YES];
+                YKShareVC *share = [YKShareVC new];
+                share.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:share animated:YES];
             }
             if (tag==3) {//常见问题
                 YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
@@ -246,32 +247,7 @@
                 alertView.delegate = self;
                 [alertView show];
                 
-//                YKChatVC *chatService = [[YKChatVC alloc] init];
-//
-//                //    chatService.NameStr = @"客服";
-//                chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-//                chatService.targetId = RoundCloudServiceId;
-//                //    chatService.title = chatService.NameStr;
-//                chatService.hidesBottomBarWhenPushed = YES;
-//                [self.navigationController pushViewController :chatService animated:YES];
-//                if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
-//                    NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
-//                    NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
-//                    if (compare == NSOrderedDescending || compare == NSOrderedSame) {
-//                        /// 大于等于10.0系统使用此openURL方法
-//                        if (@available(iOS 10.0, *)) {
-//                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
-//                        } else {
-//                            // Fallback on earlier versions
-//                        }
-//                    } else {
-//                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-//                    }
-//                    return;
-//                }
-//                UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
-//                alertview.delegate = self;
-//                [alertview show];
+               
             }
             if (tag==5) {//设置
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];

@@ -13,5 +13,5 @@
 @property (nonatomic,copy)void (^scanBlock)(NSInteger tag);
 
 - (void)setTitle:(NSInteger)status;
-
+- (void)setTit;
 @end

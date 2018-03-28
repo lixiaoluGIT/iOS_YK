@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		00C392862068B2580068DFC0 /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C392842068B2570068DFC0 /* RSAEncryptor.m */; };
+		00C3928B2069EF7E0068DFC0 /* YKSharebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C392892069EF7E0068DFC0 /* YKSharebView.m */; };
+		00C3928C2069EF7E0068DFC0 /* YKSharebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C3928A2069EF7E0068DFC0 /* YKSharebView.xib */; };
+		00C392902069FD510068DFC0 /* YKCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3928E2069FD510068DFC0 /* YKCouponView.m */; };
+		00C392912069FD510068DFC0 /* YKCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C3928F2069FD510068DFC0 /* YKCouponView.xib */; };
 		00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBFC362063A1B6001FEC24 /* YKActivityVC.m */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
@@ -549,6 +553,12 @@
 /* Begin PBXFileReference section */
 		00C392842068B2570068DFC0 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		00C392852068B2570068DFC0 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		00C392882069EF7E0068DFC0 /* YKSharebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSharebView.h; sourceTree = "<group>"; };
+		00C392892069EF7E0068DFC0 /* YKSharebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSharebView.m; sourceTree = "<group>"; };
+		00C3928A2069EF7E0068DFC0 /* YKSharebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSharebView.xib; sourceTree = "<group>"; };
+		00C3928D2069FD510068DFC0 /* YKCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponView.h; sourceTree = "<group>"; };
+		00C3928E2069FD510068DFC0 /* YKCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponView.m; sourceTree = "<group>"; };
+		00C3928F2069FD510068DFC0 /* YKCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKCouponView.xib; sourceTree = "<group>"; };
 		00EBFC362063A1B6001FEC24 /* YKActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YKActivityVC.m; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.m; sourceTree = "<group>"; };
 		00EBFC372063A1B6001FEC24 /* YKActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YKActivityVC.h; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.h; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -2076,6 +2086,9 @@
 				C5016FED2022B77800E22301 /* YKMineCategoryCell.h */,
 				C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */,
 				C5016FEF2022B77800E22301 /* YKMineCategoryCell.xib */,
+				00C3928D2069FD510068DFC0 /* YKCouponView.h */,
+				00C3928E2069FD510068DFC0 /* YKCouponView.m */,
+				00C3928F2069FD510068DFC0 /* YKCouponView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2187,6 +2200,9 @@
 				C5E97F882018630B0043705B /* YKBaseTableVC.m */,
 				C5929249204E4722002ED8DB /* YKChatVC.h */,
 				C592924A204E4722002ED8DB /* YKChatVC.m */,
+				00C392882069EF7E0068DFC0 /* YKSharebView.h */,
+				00C392892069EF7E0068DFC0 /* YKSharebView.m */,
+				00C3928A2069EF7E0068DFC0 /* YKSharebView.xib */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -3709,10 +3725,12 @@
 				C5690F991FE770BD0027EFCE /* YKTotalSMSCell.xib in Resources */,
 				C53347201FD0F232002A08D0 /* YKSMSStatusView.xib in Resources */,
 				C5303A061FCEAE7900FB12CE /* YKReturnAddressView.xib in Resources */,
+				00C392912069FD510068DFC0 /* YKCouponView.xib in Resources */,
 				C52D0FC01FC7E6BB00B50258 /* YKLoginVC.xib in Resources */,
 				C525DD781FBAB2A9002802AE /* MJRefresh.bundle in Resources */,
 				C525DEBC1FBEADC7002802AE /* YQAlertTableViewCell.xib in Resources */,
 				C5FB78C7205908F70076DD6F /* LICENSE in Resources */,
+				00C3928C2069EF7E0068DFC0 /* YKSharebView.xib in Resources */,
 				C53039FC1FCEA97100FB12CE /* YKChongZhiBtn.xib in Resources */,
 				C5929255204FC4A4002ED8DB /* RongCloudKit.strings in Resources */,
 				C52D0FA91FC6D5FC00B50258 /* YKWalletButtom.xib in Resources */,
@@ -3883,6 +3901,7 @@
 				C532A7781FE0CCEE0068A31D /* ApiXml.mm in Sources */,
 				C5FB786B205904780076DD6F /* YYThreadSafeDictionary.m in Sources */,
 				C525DD8D1FBAB2A9002802AE /* SDWaitingView.m in Sources */,
+				00C392902069FD510068DFC0 /* YKCouponView.m in Sources */,
 				C5E0230B1FD78FEA00C33629 /* YKBrand.m in Sources */,
 				C525DDAC1FBAB2A9002802AE /* TZImageCropManager.m in Sources */,
 				C532A6DE1FDF881E0068A31D /* YKPayManager.m in Sources */,
@@ -3990,6 +4009,7 @@
 				C53039E91FCC272000FB12CE /* ChangeFontWithButton.m in Sources */,
 				C5FB78E7205908F80076DD6F /* NSObject+A2BlockDelegate.m in Sources */,
 				C5FB78E2205908F80076DD6F /* MFMailComposeViewController+BlocksKit.m in Sources */,
+				00C3928B2069EF7E0068DFC0 /* YKSharebView.m in Sources */,
 				C5FB782D205904780076DD6F /* YYFrameImage.m in Sources */,
 				C5FB782E205904780076DD6F /* _YYWebImageSetter.m in Sources */,
 				C525DDAA1FBAB2A9002802AE /* MLLabelLayoutManager.m in Sources */,

@@ -586,7 +586,32 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+- (void)useCouponId:(NSString *)couponId OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
+     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@?couponId=%@",useCoupon_Url,couponId];
+    
+    [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        if ([dict[@"status"] intValue] == 400) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"不是会员或会员卡过期" delay:1.8];
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"优惠券使用成功" delay:1.8];
+            if (onResponse) {
+                onResponse(nil);
+            }
+        }
+        
+        
+       
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 @end

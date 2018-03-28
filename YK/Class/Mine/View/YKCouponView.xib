@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="179" id="KGk-i7-Jjw" customClass="YKCouponView">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="179"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="178.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kaquan" translatesAutoresizingMaskIntoConstraints="NO" id="gPx-Cl-ryu">
+                        <rect key="frame" x="20" y="30" width="22" height="16"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卡券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BJ-lu-wel">
+                        <rect key="frame" x="53" y="26" width="41" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 2 Copy-1" translatesAutoresizingMaskIntoConstraints="NO" id="7kA-4W-iLL">
+                        <rect key="frame" x="20" y="66" width="266" height="60"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yb-mF-z0L">
+                        <rect key="frame" x="304" y="86" width="9" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9V-Z4-c0C">
+                        <rect key="frame" x="337" y="84.5" width="24" height="24"/>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.8666666666666667" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="1XV-1F-gcF"/>
+                            <constraint firstAttribute="height" constant="24" id="xqT-zd-JSW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="y9V-Z4-c0C" secondAttribute="trailing" constant="24" id="79q-M1-0fZ"/>
+                    <constraint firstItem="y9V-Z4-c0C" firstAttribute="leading" secondItem="4Yb-mF-z0L" secondAttribute="trailing" constant="24" id="7I3-qn-dPL"/>
+                    <constraint firstItem="4Yb-mF-z0L" firstAttribute="centerY" secondItem="7kA-4W-iLL" secondAttribute="centerY" id="7zB-qA-7aw"/>
+                    <constraint firstItem="1BJ-lu-wel" firstAttribute="leading" secondItem="gPx-Cl-ryu" secondAttribute="trailing" constant="11" id="CdW-Lo-7wV"/>
+                    <constraint firstItem="gPx-Cl-ryu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Nfz-ab-f3X"/>
+                    <constraint firstItem="y9V-Z4-c0C" firstAttribute="centerY" secondItem="4Yb-mF-z0L" secondAttribute="centerY" id="WWQ-gz-DPi"/>
+                    <constraint firstItem="1BJ-lu-wel" firstAttribute="centerY" secondItem="gPx-Cl-ryu" secondAttribute="centerY" id="X51-DX-5Ah"/>
+                    <constraint firstItem="7kA-4W-iLL" firstAttribute="top" secondItem="gPx-Cl-ryu" secondAttribute="bottom" constant="20" id="YAt-TR-Ilt"/>
+                    <constraint firstItem="gPx-Cl-ryu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="nE1-fu-l9t"/>
+                    <constraint firstItem="7kA-4W-iLL" firstAttribute="leading" secondItem="gPx-Cl-ryu" secondAttribute="leading" id="vwY-un-pVB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="num" destination="y9V-Z4-c0C" id="9iW-im-dVw"/>
+            </connections>
+            <point key="canvasLocation" x="60" y="-72"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="206" id="cyN-UZ-b49" customClass="YKCouponView">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="206"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cyN-UZ-b49" id="gRZ-EV-mAZ">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="205.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kaquan" translatesAutoresizingMaskIntoConstraints="NO" id="vvb-zU-RIM">
+                        <rect key="frame" x="20" y="30" width="22" height="16"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卡券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwa-Gv-5uB">
+                        <rect key="frame" x="53" y="26" width="41" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zanwu" translatesAutoresizingMaskIntoConstraints="NO" id="Fex-4A-OIP">
+                        <rect key="frame" x="175.5" y="86" width="34" height="24"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无卡券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9Q-pn-fsB">
+                        <rect key="frame" x="160" y="124" width="65.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="nwa-Gv-5uB" firstAttribute="centerY" secondItem="vvb-zU-RIM" secondAttribute="centerY" id="3PM-cc-kXo"/>
+                    <constraint firstItem="Fex-4A-OIP" firstAttribute="centerX" secondItem="gRZ-EV-mAZ" secondAttribute="centerX" id="3f1-v5-xny"/>
+                    <constraint firstItem="vvb-zU-RIM" firstAttribute="leading" secondItem="gRZ-EV-mAZ" secondAttribute="leading" constant="20" id="M1D-dW-eGC"/>
+                    <constraint firstItem="Fex-4A-OIP" firstAttribute="top" secondItem="vvb-zU-RIM" secondAttribute="bottom" constant="40" id="UhF-Za-CHg"/>
+                    <constraint firstItem="nwa-Gv-5uB" firstAttribute="leading" secondItem="vvb-zU-RIM" secondAttribute="trailing" constant="11" id="Vu0-MA-9h4"/>
+                    <constraint firstItem="vvb-zU-RIM" firstAttribute="top" secondItem="gRZ-EV-mAZ" secondAttribute="top" constant="30" id="ebX-z1-iJy"/>
+                    <constraint firstItem="Y9Q-pn-fsB" firstAttribute="centerX" secondItem="Fex-4A-OIP" secondAttribute="centerX" id="hEh-EQ-8A6"/>
+                    <constraint firstItem="Y9Q-pn-fsB" firstAttribute="top" secondItem="Fex-4A-OIP" secondAttribute="bottom" constant="14" id="ndx-Wh-OAW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="60" y="166"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Group 2 Copy-1" width="266" height="60"/>
+        <image name="kaquan" width="22" height="16"/>
+        <image name="zanwu" width="34" height="24"/>
+    </resources>
+</document>

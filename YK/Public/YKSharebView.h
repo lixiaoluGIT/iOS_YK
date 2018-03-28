@@ -1,13 +1,13 @@
 //
-//  YKShareVC.h
+//  YKSharebView.h
 //  YK
 //
-//  Created by LXL on 2018/1/4.
+//  Created by EDZ on 2018/3/27.
 //  Copyright © 2018年 YK. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface YKShareVC : YKBaseVC
+@interface YKSharebView : UITableViewCell
 
 @end

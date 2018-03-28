@@ -9,8 +9,8 @@
 #import "DDAleartView.h"
 
 @interface DDAleartView ()
-@property (nonatomic,copy)void (^noBlock)();
-@property (nonatomic,copy)void (^yesBlock)();
+@property (nonatomic,copy)void (^noBlock)(void);
+@property (nonatomic,copy)void (^yesBlock)(void);
 @property (nonatomic,strong)UIImageView *image;
 @property (nonatomic,strong)UILabel *titleLabel;
 @property (nonatomic,strong)UILabel *detailLabel;

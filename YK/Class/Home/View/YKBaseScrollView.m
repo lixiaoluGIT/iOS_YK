@@ -130,7 +130,7 @@
 /** 设置定时器 */
 - (void)setupTimer {
     if (@available(iOS 10.0, *)) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:5.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
             if (_currentPoint.x == 0) {///< 偏移量为0，即将展示真正的第一张图
                 [UIView animateWithDuration:0.3 animations:^{
                     self.pageC.currentPage = 0;

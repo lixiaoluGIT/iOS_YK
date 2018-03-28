@@ -9,6 +9,7 @@
 #import "YKShareVC.h"
 #import "YKShareSuccessView.h"
 #import "VTingSeaPopView.h"
+#import "YKSharebView.h"
 
 @interface YKShareVC ()<VTingPopItemSelectDelegate> {
     NSMutableArray *images;
@@ -26,7 +27,7 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatShareSuccessNotification) name:@"wechatShareSuccessNotification" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"衣库";
+    self.title = @"分享";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -59,10 +60,17 @@
     CGFloat scale = im.frame.size.width/im.frame.size.height;
     im.frame = CGRectMake(20, 84, WIDHT-40, (WIDHT-40)/scale);
     
+    UILabel *des = [[UILabel alloc]initWithFrame:CGRectMake(0, im.frame.size.height+im.frame.origin.y+14, WIDHT, 22)];
+    des.text = @"分享给好友，获取5天会员加时";
+    des.textColor = YKRedColor;
+    des.font = PingFangSC_Semibold(16);
+    des.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:des];
+    
     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(88*WIDHT/414, im.frame.size.height+im.frame.origin.y+40, WIDHT-88*WIDHT/414*2, 40);
+    btn1.frame = CGRectMake(88*WIDHT/414, im.frame.size.height+im.frame.origin.y+50, WIDHT-88*WIDHT/414*2, 40);
     btn1.layer.masksToBounds = YES;
-    btn1.layer.cornerRadius = 20;
+//    btn1.layer.cornerRadius = 20;
     btn1.backgroundColor = mainColor;
     [btn1 setTitle:@"分享这张卡片给好友" forState:UIControlStateNormal];
     
@@ -71,9 +79,14 @@
     [btn1 addTarget:self action:@selector(toShare) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.frame = CGRectMake(0, im.frame.size.height+im.frame.origin.y+40, WIDHT, 100);
+    btn2.frame = CGRectMake(0, im.frame.size.height+im.frame.origin.y+50, WIDHT, 100);
     [btn2 addTarget:self action:@selector(toShare) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn2];
+    
+    //规则说明
+    YKSharebView *buttom = [[NSBundle mainBundle] loadNibNamed:@"YKSharebView" owner:self options:nil][0];
+    buttom.frame = CGRectMake(20, btn2.frame.size.height+btn2.frame.origin.y, WIDHT-40, 200);
+    [self.view addSubview:buttom];
     
     backView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     backView.backgroundColor = [UIColor blackColor];
