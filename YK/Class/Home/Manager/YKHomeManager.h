@@ -37,4 +37,6 @@
 //判断弹框是否弹出
 - (void)showAleartViewToShare;
 
+//
+- (NSArray *)getSizeArray:(NSArray *)array;
 @end

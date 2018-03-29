@@ -13,6 +13,9 @@
 		00C392902069FD510068DFC0 /* YKCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3928E2069FD510068DFC0 /* YKCouponView.m */; };
 		00C392912069FD510068DFC0 /* YKCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C3928F2069FD510068DFC0 /* YKCouponView.xib */; };
 		00C39294206BB0E20068DFC0 /* YKProductSizeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C39293206BB0E20068DFC0 /* YKProductSizeTable.m */; };
+		00C39299206C9B8D0068DFC0 /* DractLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C39295206C9B8C0068DFC0 /* DractLineCell.m */; };
+		00C3929A206C9B8D0068DFC0 /* dractLineTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C39296206C9B8D0068DFC0 /* dractLineTwoCell.m */; };
+		00C3929C206CB69A0068DFC0 /* newka.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C3929B206CB6990068DFC0 /* newka.png */; };
 		00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBFC362063A1B6001FEC24 /* YKActivityVC.m */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
@@ -365,8 +368,6 @@
 		C59D47991FFB6C61002208BF /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59D47971FFB6C61002208BF /* GTSDK.framework */; };
 		C5B2C6CB201B235500688E77 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2C6CA201B235500688E77 /* UMAnalytics.framework */; };
 		C5B2C6CD201B236300688E77 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2C6CC201B236300688E77 /* UMCommon.framework */; };
-		C5B2C6D6201B387F00688E77 /* newka.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D4201B387F00688E77 /* newka.png */; };
-		C5B2C6D7201B387F00688E77 /* newka@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B2C6D5201B387F00688E77 /* newka@3x.png */; };
 		C5B723D7202C3BB700344339 /* YKUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B723D5202C3BB700344339 /* YKUpdateVC.m */; };
 		C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B723D6202C3BB700344339 /* YKUpdateVC.xib */; };
 		C5B723DC202D70F200344339 /* s.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5B723DB202D70F100344339 /* s.gif */; };
@@ -562,6 +563,11 @@
 		00C3928F2069FD510068DFC0 /* YKCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKCouponView.xib; sourceTree = "<group>"; };
 		00C39292206BB0E20068DFC0 /* YKProductSizeTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductSizeTable.h; sourceTree = "<group>"; };
 		00C39293206BB0E20068DFC0 /* YKProductSizeTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductSizeTable.m; sourceTree = "<group>"; };
+		00C39295206C9B8C0068DFC0 /* DractLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DractLineCell.m; sourceTree = "<group>"; };
+		00C39296206C9B8D0068DFC0 /* dractLineTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dractLineTwoCell.m; sourceTree = "<group>"; };
+		00C39297206C9B8D0068DFC0 /* DractLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DractLineCell.h; sourceTree = "<group>"; };
+		00C39298206C9B8D0068DFC0 /* dractLineTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dractLineTwoCell.h; sourceTree = "<group>"; };
+		00C3929B206CB6990068DFC0 /* newka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newka.png; sourceTree = "<group>"; };
 		00EBFC362063A1B6001FEC24 /* YKActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YKActivityVC.m; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.m; sourceTree = "<group>"; };
 		00EBFC372063A1B6001FEC24 /* YKActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YKActivityVC.h; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.h; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -1250,8 +1256,6 @@
 		C59D47971FFB6C61002208BF /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
 		C5B2C6CA201B235500688E77 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		C5B2C6CC201B236300688E77 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
-		C5B2C6D4201B387F00688E77 /* newka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newka.png; sourceTree = "<group>"; };
-		C5B2C6D5201B387F00688E77 /* newka@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newka@3x.png"; sourceTree = "<group>"; };
 		C5B723D4202C3BB700344339 /* YKUpdateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKUpdateVC.h; sourceTree = "<group>"; };
 		C5B723D5202C3BB700344339 /* YKUpdateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKUpdateVC.m; sourceTree = "<group>"; };
 		C5B723D6202C3BB700344339 /* YKUpdateVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKUpdateVC.xib; sourceTree = "<group>"; };
@@ -1823,6 +1827,10 @@
 			isa = PBXGroup;
 			children = (
 				C5343C941FC6A87800F5132A /* CBSegment */,
+				00C39297206C9B8D0068DFC0 /* DractLineCell.h */,
+				00C39295206C9B8C0068DFC0 /* DractLineCell.m */,
+				00C39298206C9B8D0068DFC0 /* dractLineTwoCell.h */,
+				00C39296206C9B8D0068DFC0 /* dractLineTwoCell.m */,
 				C53039F61FCE92A200FB12CE /* WMHCustomScroll.h */,
 				C53039F51FCE92A200FB12CE /* WMHCustomScroll.m */,
 				C525DE071FBABE69002802AE /* CGQCollectionViewCell.h */,
@@ -2215,14 +2223,13 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				00C3929B206CB6990068DFC0 /* newka.png */,
 				C5FB776B205902CE0076DD6F /* moment0.plist */,
 				C5FB776A205902CE0076DD6F /* moment1.plist */,
 				C533EF4E2057ADF800A71DBE /* red.png */,
 				C5B723DB202D70F100344339 /* s.gif */,
 				C54301F92024495C006F84E0 /* 红.jpg */,
 				C571B50D2020155C007AB5B8 /* sss.gif */,
-				C5B2C6D4201B387F00688E77 /* newka.png */,
-				C5B2C6D5201B387F00688E77 /* newka@3x.png */,
 				C534ECD61FEB9311003BB993 /* YK.entitlements */,
 				C525DEB61FBEADB1002802AE /* region.json */,
 				C52D0F9D1FC6C43D00B50258 /* liutao.jpg */,
@@ -3706,7 +3713,6 @@
 				C525DC311FBAAFC1002802AE /* LaunchScreen.storyboard in Resources */,
 				C525DC2E1FBAAFC1002802AE /* Assets.xcassets in Resources */,
 				C5343C821FC5474800F5132A /* YKProductDetailHeader.xib in Resources */,
-				C5B2C6D7201B387F00688E77 /* newka@3x.png in Resources */,
 				C52D0FBB1FC7C6E600B50258 /* YKSettingVC.xib in Resources */,
 				C525DE1E1FBAD1AF002802AE /* YKScrollView.xib in Resources */,
 				C571B50E2020155D007AB5B8 /* sss.gif in Resources */,
@@ -3725,7 +3731,6 @@
 				C525DEAD1FBD97BA002802AE /* YKAddressDetailCell.xib in Resources */,
 				C52D0FAE1FC6D97700B50258 /* YKWalletDetailCell.xib in Resources */,
 				C5B723DC202D70F200344339 /* s.gif in Resources */,
-				C5B2C6D6201B387F00688E77 /* newka.png in Resources */,
 				C525DEA51FBD89F7002802AE /* YKSMSCell.xib in Resources */,
 				C5690F991FE770BD0027EFCE /* YKTotalSMSCell.xib in Resources */,
 				C53347201FD0F232002A08D0 /* YKSMSStatusView.xib in Resources */,
@@ -3788,6 +3793,7 @@
 				C532A7461FDF8AAB0068A31D /* AlipaySDK.bundle in Resources */,
 				C5690F941FE768C70027EFCE /* YKTotalMsgView.xib in Resources */,
 				C525DDB31FBAB2A9002802AE /* TZImagePickerController.bundle in Resources */,
+				00C3929C206CB69A0068DFC0 /* newka.png in Resources */,
 				C525DED01FC278C7002802AE /* province_data.xml in Resources */,
 				C59D475A1FF4D750002208BF /* UMSocialSDKPromptResources.bundle in Resources */,
 			);
@@ -3879,11 +3885,13 @@
 				C5FB78DE205908F80076DD6F /* UIActionSheet+BlocksKit.m in Sources */,
 				C5FB782C205904780076DD6F /* YYImageCoder.m in Sources */,
 				C5327678205B94C20082EF2E /* ZYQAssetPickerController.m in Sources */,
+				00C3929A206C9B8D0068DFC0 /* dractLineTwoCell.m in Sources */,
 				C5343C861FC577AF00F5132A /* YKProductDetailButtom.m in Sources */,
 				C5FB785C205904780076DD6F /* NSObject+YYAdd.m in Sources */,
 				C525DD741FBAB2A8002802AE /* AFSecurityPolicy.m in Sources */,
 				C525DD9F1FBAB2A9002802AE /* TTTAttributedLabel.m in Sources */,
 				C5FB7837205904780076DD6F /* YYTextView.m in Sources */,
+				00C39299206C9B8D0068DFC0 /* DractLineCell.m in Sources */,
 				C5FB78DB205908F80076DD6F /* UIView+BlocksKit.m in Sources */,
 				C5DA84B22005AFE2002A12E3 /* YKAboutUsVC.m in Sources */,
 				C5FB7827205904780076DD6F /* YYMemoryCache.m in Sources */,

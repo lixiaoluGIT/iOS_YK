@@ -27,9 +27,11 @@
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import "YKMainVC.h"
+#import "DractLineCell.h"
+#import "dractLineTwoCell.h"
 
 @interface YKProductDetailVC ()
-<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate>{
+<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>{
     BOOL hadMakeHeader;
     ZYCollectionView * cycleView;
     YKProductDetailHeader *scroll;
@@ -40,6 +42,9 @@
 @property (nonatomic, strong) NSArray *images2;
 @property (nonatomic, assign) CGRect origialFrame;
 @property (nonatomic,assign)NSString *sizeNum;
+
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)NSArray *dataArray;
 
 //真实数据
 
@@ -77,10 +82,17 @@
         scroll.brand = self.product.brand;
         self.imagesArr = [self getImageArray:self.product.bannerImages];
         
+        NSArray *sizeArray = [NSArray arrayWithArray:dic[@"data"][@"sizeTableVos"]];
+        //生成表格需要的数组
+        if (sizeArray.count>0) {
+            self.dataArray = [[YKHomeManager sharedManager]getSizeArray:sizeArray];
+        }
         
         [self.collectionView reloadData];
     }];
 }
+
+
 - (NSMutableArray *)getImageArray:(NSArray *)array{
     NSMutableArray *imageArray = [NSMutableArray array];
     for (NSDictionary *imageModel in array) {
@@ -89,6 +101,15 @@
     return imageArray;
 }
 - (void)viewDidLoad {
+//    self.dataArray = @[
+//
+//                       @[ @"尺码", @"胸围", @"衣长", @"肩宽", @"袖长"],
+//                       @[@"S",@"88",@"99",@"67",@"78",],
+//                       @[@"M",@"78",@"69",@"87",@"98",],
+//                       @[@"L",@"88",@"79",@"69",@"78",],
+//
+//
+//                       ];
     [self getPruductDetail];
     [super viewDidLoad];
     _sizeNum = 0;
@@ -415,7 +436,7 @@
     if (section==0) {
         return CGSizeMake(WIDHT, WIDHT*0.82 +228);
     }
-    return CGSizeMake(WIDHT, 80);
+    return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -460,8 +481,17 @@
         if (indexPath.section==1) {
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView2" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
+            
+            self.tableView.backgroundColor = [UIColor redColor];
+            self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 20, WIDHT, self.dataArray.count*40) style:UITableViewStylePlain];
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            self.tableView.delegate = self;
+            self.tableView.dataSource = self;
+            [headerView addSubview:self.tableView];
+            [self.tableView reloadData];
+            
             YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-            ti.frame = CGRectMake(0, 15,WIDHT, 80);
+            ti.frame = CGRectMake(0, 20+self.dataArray.count*40,WIDHT, 60);
             [ti reSetTitle];
             [headerView addSubview:ti];
             
@@ -592,6 +622,42 @@
             //        [self alertWithError:error];
         }];
     }];
+}
+#pragma mark - Table view data source
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+   
+    return self.dataArray.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+        dractLineTwoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lineCell"];
+        if (!cell) {
+            cell = [[dractLineTwoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"lineCell"];
+        }
+        cell.titleArr = self.dataArray[indexPath.row];
+        [cell setTitleRow:indexPath.row];
+    
+ 
+        cell.selectionStyle = UITableViewCellEditingStyleNone;
+        return cell;
+        
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+ 
+    return 30;
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 @end

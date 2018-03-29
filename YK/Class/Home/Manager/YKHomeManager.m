@@ -263,4 +263,54 @@
     return result;
 }
 
+- (NSArray *)getSizeArray:(NSArray *)array{
+    NSMutableArray *sizeArray = [NSMutableArray array];
+    for (NSDictionary *dic in array) {
+        NSMutableArray *typeArray = [NSMutableArray array];
+        if ([dic[@"type"] intValue] == 1) {//上装（衣长，胸围，肩宽，袖长）
+            
+            [typeArray addObject:dic[@"model"]];
+            [typeArray addObject:dic[@"clothesLength"]];
+            [typeArray addObject:dic[@"chestWidth"]];
+            [typeArray addObject:dic[@"shoulderWidth"]];
+            [typeArray addObject:dic[@"sleeveLength"]];
+            
+            [sizeArray addObject:typeArray];
+        }
+        
+        if ([dic[@"type"] intValue] == 2) {//下装（裤长，腰围，臀围）
+            [typeArray addObject:dic[@"model"]];
+            [typeArray addObject:dic[@"trousersLength"]];
+            [typeArray addObject:dic[@"waistline"]];
+            [typeArray addObject:dic[@"hipline"]];
+            
+            
+            [sizeArray addObject:typeArray];
+        }
+        if ([dic[@"type"] intValue] == 3) {//裙子（裙长，胸围，腰围，肩宽，袖长）
+            [typeArray addObject:dic[@"model"]];
+            [typeArray addObject:dic[@"trousersLength"]];
+            [typeArray addObject:dic[@"chestWidth"]];
+            [typeArray addObject:dic[@"waistline"]];
+            [typeArray addObject:dic[@"shoulderWidth"]];
+            [typeArray addObject:dic[@"sleeveLength"]];
+            
+            [sizeArray addObject:typeArray];
+            
+        }
+    }
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:array[0]];
+    if ([dic[@"type"] intValue] == 1) {
+        [sizeArray insertObject:@[@"尺码",@"胸围",@"衣长",@"肩宽",@"袖长"] atIndex:0];
+    }
+    if ([dic[@"type"] intValue] == 2) {
+        [sizeArray insertObject:@[@"尺码",@"裤长",@"腰围",@"臀围"] atIndex:0];
+    }
+    if ([dic[@"type"] intValue] == 3) {
+        [sizeArray insertObject:@[@"尺码",@"裙长",@"胸围",@"腰围",@"肩宽",@"袖长"] atIndex:0];
+    }
+    
+    return sizeArray;
+}
 @end

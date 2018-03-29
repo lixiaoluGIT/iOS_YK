@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精选推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1a-GM-9v1">
-                        <rect key="frame" x="125.5" y="36" width="82" height="24"/>
+                        <rect key="frame" x="125.5" y="24" width="82" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT RECOMMENDATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZ9-vw-7kb">
-                        <rect key="frame" x="97.5" y="64" width="138" height="12"/>
+                        <rect key="frame" x="97.5" y="52" width="138" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.41309969190140844" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -34,7 +34,7 @@
                 <constraints>
                     <constraint firstItem="KZ9-vw-7kb" firstAttribute="centerX" secondItem="X1a-GM-9v1" secondAttribute="centerX" id="1yG-Na-5KJ"/>
                     <constraint firstItem="KZ9-vw-7kb" firstAttribute="top" secondItem="X1a-GM-9v1" secondAttribute="bottom" constant="4" id="U1z-5p-QNJ"/>
-                    <constraint firstItem="X1a-GM-9v1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="36" id="kNa-Wx-JDL"/>
+                    <constraint firstItem="X1a-GM-9v1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="kNa-Wx-JDL"/>
                     <constraint firstItem="X1a-GM-9v1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="kbG-FZ-bwY"/>
                 </constraints>
             </tableViewCellContentView>
