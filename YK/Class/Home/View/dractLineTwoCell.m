@@ -14,8 +14,7 @@
 {
     [super drawRect:rect];
     [self drawForm];
-    
-    
+
     
 }
 
@@ -24,6 +23,15 @@
 //    [self setTitle];
 //}
 - (void)setTitleRow:(NSInteger)row{
+    
+    UILabel *ba = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, WIDHT-40, 30)];
+   
+    if (row==0) {
+        ba.backgroundColor = mainColor;
+        [self addSubview:ba];
+    }
+    
+    
     for (int i = 0; i < _titleArr.count; i++) {
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20*WIDHT/414 + (WIDHT-20*2)/_titleArr.count*i, 0, 60, 30)];
@@ -32,12 +40,13 @@
         label.font = PingFangSC_Regular(14);
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];
-        //        NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        //        paragraphStyle.alignment = NSTextAlignmentCenter;
-        //
-        //        UIFont * font = [UIFont systemFontOfSize:14];
-        //        NSDictionary * dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
-        //        [_titleArr[i] drawInRect:CGRectMake( 15*WIDHT/414 + (WIDHT-15*2)/_titleArr.count*i, 5 , 60, 30) withAttributes:dic];
+        
+        if (row==0) {
+            label.textColor = [UIColor whiteColor];
+            label.font = PingFangSC_Semibold(14);
+        }
+        
+        
     }
 }
 
@@ -46,8 +55,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //设置区域背景色
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-    CGContextAddRect(context, CGRectMake(0, 0, WIDHT  , 20+100));
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextAddRect(context, CGRectMake(20, 0, WIDHT-40  ,70 ));
     CGContextFillPath(context);
     
     //先画外层大矩形框

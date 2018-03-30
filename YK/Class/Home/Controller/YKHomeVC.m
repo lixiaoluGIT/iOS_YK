@@ -5,6 +5,8 @@
 //  Created by LXL on 2017/11/14.
 //  Copyright © 2017年 YK. All rights reserved.
 //
+
+//640x960、640x1136、750x1334、1242x2208、1125x2436
 #define h [UIScreen mainScreen].bounds.size.height
 #define w [UIScreen mainScreen].bounds.size.width
 #import "YKHomeVC.h"
