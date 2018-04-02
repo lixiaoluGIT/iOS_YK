@@ -26,6 +26,9 @@
 #import <RongIMKit/RongIMKit.h>
 #import "YKProductDetailVC.h"
 
+#import "MTA.h"
+#import "MTAConfig.h"
+
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate,DXAlertViewDelegate>
 
 @end
@@ -107,6 +110,13 @@
     [self configUSharePlatforms];
     
     [self confitUShareSettings];
+    
+    //腾讯统计
+    [[MTAConfig getInstance] setSmartReporting:YES];
+    [[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_INSTANT];
+    [[MTAConfig getInstance] setDebugEnable:YES];
+    [MTA startWithAppkey:@"I1ZY1TVD6W2R"]; //xxxx为注册App时得到的APPKEY
+    [MTA setAccount:@"其它账号" type:AT_OTH];
 
     return YES;
 }

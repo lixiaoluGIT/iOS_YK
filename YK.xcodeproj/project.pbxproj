@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0034CF132071D957002015AE /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0034CF122071D957002015AE /* libmtasdk.a */; };
+		0034CF142071D9D2002015AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A7631FDF8EFA0068A31D /* Foundation.framework */; };
+		0034CF1620720619002015AE /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1520720618002015AE /* top.jpg */; };
 		00C392862068B2580068DFC0 /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C392842068B2570068DFC0 /* RSAEncryptor.m */; };
 		00C3928B2069EF7E0068DFC0 /* YKSharebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C392892069EF7E0068DFC0 /* YKSharebView.m */; };
 		00C3928C2069EF7E0068DFC0 /* YKSharebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C3928A2069EF7E0068DFC0 /* YKSharebView.xib */; };
@@ -553,6 +556,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0034CF102071D956002015AE /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
+		0034CF112071D956002015AE /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
+		0034CF122071D957002015AE /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
+		0034CF1520720618002015AE /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
 		00C392842068B2570068DFC0 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		00C392852068B2570068DFC0 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		00C392882069EF7E0068DFC0 /* YKSharebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSharebView.h; sourceTree = "<group>"; };
@@ -1586,16 +1593,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
+				0034CF142071D9D2002015AE /* Foundation.framework in Frameworks */,
+				C5929244204E429A002ED8DB /* UIKit.framework in Frameworks */,
+				C532A75E1FDF8EB10068A31D /* CoreTelephony.framework in Frameworks */,
+				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
+				C5929233204E4172002ED8DB /* CFNetwork.framework in Frameworks */,
+				C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */,
+				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
+				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
 				C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */,
 				C5929248204E42BD002ED8DB /* SafariServices.framework in Frameworks */,
 				C5929246204E42B2002ED8DB /* Photos.framework in Frameworks */,
-				C5929244204E429A002ED8DB /* UIKit.framework in Frameworks */,
-				C532A75D1FDF8EA50068A31D /* SystemConfiguration.framework in Frameworks */,
-				C532A77F1FE0CD7C0068A31D /* QuartzCore.framework in Frameworks */,
 				C5929243204E426D002ED8DB /* OpenGLES.framework in Frameworks */,
 				C5929241204E4265002ED8DB /* MapKit.framework in Frameworks */,
 				C5929258204FC4A4002ED8DB /* libopencore-amrnb.a in Frameworks */,
-				C532A75A1FDF8B410068A31D /* libz.tbd in Frameworks */,
 				C592923F204E4240002ED8DB /* libxml2.tbd in Frameworks */,
 				C50CF1B9200DD93300A717DF /* libstdc++.tbd in Frameworks */,
 				C534ECCF1FEB923E003BB993 /* libsqlite3.tbd in Frameworks */,
@@ -1603,13 +1615,10 @@
 				C532A7581FDF8B320068A31D /* libc++.tbd in Frameworks */,
 				C592923B204E41C6002ED8DB /* ImageIO.framework in Frameworks */,
 				C592923A204E41BD002ED8DB /* CoreVideo.framework in Frameworks */,
-				C532A75E1FDF8EB10068A31D /* CoreTelephony.framework in Frameworks */,
 				C5929238204E41A2002ED8DB /* CoreMedia.framework in Frameworks */,
 				C5929236204E4196002ED8DB /* CoreLocation.framework in Frameworks */,
 				C5929256204FC4A4002ED8DB /* RongIMKit.framework in Frameworks */,
-				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
 				C5929235204E4180002ED8DB /* CoreAudio.framework in Frameworks */,
-				C5929233204E4172002ED8DB /* CFNetwork.framework in Frameworks */,
 				C5929232204E4169002ED8DB /* AVFoundation.framework in Frameworks */,
 				C5929231204E4161002ED8DB /* AudioToolbox.framework in Frameworks */,
 				C592922F204E414F002ED8DB /* AssetsLibrary.framework in Frameworks */,
@@ -1617,8 +1626,8 @@
 				C532A77E1FE0CD6B0068A31D /* libsqlite3.0.tbd in Frameworks */,
 				C5B2C6CB201B235500688E77 /* UMAnalytics.framework in Frameworks */,
 				C54350AB200F3E1A00B5732D /* TencentOpenAPI.framework in Frameworks */,
+				0034CF132071D957002015AE /* libmtasdk.a in Frameworks */,
 				C50CF1B6200DD8C300A717DF /* libiconv.tbd in Frameworks */,
-				C50CF1B4200DD8A700A717DF /* Security.framework in Frameworks */,
 				C59D47571FF4D750002208BF /* UShareUI.framework in Frameworks */,
 				C59D47501FF4D750002208BF /* libSocialWeChat.a in Frameworks */,
 				C59D47991FFB6C61002208BF /* GTSDK.framework in Frameworks */,
@@ -1656,6 +1665,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0034CF0F2071D931002015AE /* TencentAnalysis */ = {
+			isa = PBXGroup;
+			children = (
+				0034CF122071D957002015AE /* libmtasdk.a */,
+				0034CF102071D956002015AE /* MTA.h */,
+				0034CF112071D956002015AE /* MTAConfig.h */,
+			);
+			path = TencentAnalysis;
+			sourceTree = "<group>";
+		};
 		C50CF1A9200DD48400A717DF /* Tencent */ = {
 			isa = PBXGroup;
 			children = (
@@ -1740,6 +1759,7 @@
 		C525DC571FBAB15C002802AE /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				0034CF0F2071D931002015AE /* TencentAnalysis */,
 				C5FB7878205908F70076DD6F /* BlocksKit */,
 				C5FB776E205904770076DD6F /* YYKit */,
 				C592924C204FC4A4002ED8DB /* RongYun */,
@@ -2223,6 +2243,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0034CF1520720618002015AE /* top.jpg */,
 				00C3929B206CB6990068DFC0 /* newka.png */,
 				C5FB776B205902CE0076DD6F /* moment0.plist */,
 				C5FB776A205902CE0076DD6F /* moment1.plist */,
@@ -3658,7 +3679,7 @@
 				TargetAttributes = {
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3742,6 +3763,7 @@
 				C5FB78C7205908F70076DD6F /* LICENSE in Resources */,
 				00C3928C2069EF7E0068DFC0 /* YKSharebView.xib in Resources */,
 				C53039FC1FCEA97100FB12CE /* YKChongZhiBtn.xib in Resources */,
+				0034CF1620720619002015AE /* top.jpg in Resources */,
 				C5929255204FC4A4002ED8DB /* RongCloudKit.strings in Resources */,
 				C52D0FA91FC6D5FC00B50258 /* YKWalletButtom.xib in Resources */,
 				C54301FA2024495C006F84E0 /* 红.jpg in Resources */,
@@ -4380,8 +4402,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Wang (B93J56XJ62)";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4475,13 +4497,14 @@
 					"$(PROJECT_DIR)/YK/Vender/dongdongcar/Lib",
 					"$(PROJECT_DIR)/YK/Vender/dongdongcar/wxpay",
 					"$(PROJECT_DIR)/YK/Vender/RongYun",
+					"$(PROJECT_DIR)/YK/Vender/TencentAnalysis",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0e3910d0-419f-459d-b103-b7d5bc5ed229";
-				PROVISIONING_PROFILE_SPECIFIER = ykDevelopmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4494,8 +4517,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4589,13 +4612,14 @@
 					"$(PROJECT_DIR)/YK/Vender/dongdongcar/Lib",
 					"$(PROJECT_DIR)/YK/Vender/dongdongcar/wxpay",
 					"$(PROJECT_DIR)/YK/Vender/RongYun",
+					"$(PROJECT_DIR)/YK/Vender/TencentAnalysis",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0b1bda25-0a5c-4122-ade3-190ab066164e";
-				PROVISIONING_PROFILE_SPECIFIER = ykDistributionProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

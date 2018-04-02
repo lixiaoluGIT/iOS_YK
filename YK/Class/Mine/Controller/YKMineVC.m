@@ -69,7 +69,7 @@
 -(UIImageView*)imageview{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
-//        _headImageView.image = [UIImage imageNamed:@"背景.jpg"];
+//        _headImageView.image = [UIImage imageNamed:@"top.jpg"];
         _headImageView.backgroundColor = mainColor;
         self.origialFrame = _headImageView.frame;
     }
