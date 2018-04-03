@@ -10,6 +10,8 @@
 		0034CF132071D957002015AE /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0034CF122071D957002015AE /* libmtasdk.a */; };
 		0034CF142071D9D2002015AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A7631FDF8EFA0068A31D /* Foundation.framework */; };
 		0034CF1620720619002015AE /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1520720618002015AE /* top.jpg */; };
+		0034CF1A20737E58002015AE /* YKHomeDesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0034CF1820737E58002015AE /* YKHomeDesCell.m */; };
+		0034CF1B20737E58002015AE /* YKHomeDesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1920737E58002015AE /* YKHomeDesCell.xib */; };
 		00C392862068B2580068DFC0 /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C392842068B2570068DFC0 /* RSAEncryptor.m */; };
 		00C3928B2069EF7E0068DFC0 /* YKSharebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C392892069EF7E0068DFC0 /* YKSharebView.m */; };
 		00C3928C2069EF7E0068DFC0 /* YKSharebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C3928A2069EF7E0068DFC0 /* YKSharebView.xib */; };
@@ -560,6 +562,9 @@
 		0034CF112071D956002015AE /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
 		0034CF122071D957002015AE /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
 		0034CF1520720618002015AE /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		0034CF1720737E58002015AE /* YKHomeDesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHomeDesCell.h; sourceTree = "<group>"; };
+		0034CF1820737E58002015AE /* YKHomeDesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHomeDesCell.m; sourceTree = "<group>"; };
+		0034CF1920737E58002015AE /* YKHomeDesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKHomeDesCell.xib; sourceTree = "<group>"; };
 		00C392842068B2570068DFC0 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		00C392852068B2570068DFC0 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		00C392882069EF7E0068DFC0 /* YKSharebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSharebView.h; sourceTree = "<group>"; };
@@ -1894,6 +1899,9 @@
 				C5F6143B205BA26800A2809D /* PlaceholderTextView.m */,
 				00C39292206BB0E20068DFC0 /* YKProductSizeTable.h */,
 				00C39293206BB0E20068DFC0 /* YKProductSizeTable.m */,
+				0034CF1720737E58002015AE /* YKHomeDesCell.h */,
+				0034CF1820737E58002015AE /* YKHomeDesCell.m */,
+				0034CF1920737E58002015AE /* YKHomeDesCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3768,6 +3776,7 @@
 				C52D0FA91FC6D5FC00B50258 /* YKWalletButtom.xib in Resources */,
 				C54301FA2024495C006F84E0 /* 红.jpg in Resources */,
 				C5929259204FC4A4002ED8DB /* Emoji.plist in Resources */,
+				0034CF1B20737E58002015AE /* YKHomeDesCell.xib in Resources */,
 				C5FB776C205902CE0076DD6F /* moment1.plist in Resources */,
 				C525DE9D1FBD7FA5002802AE /* YKAddAddressCell.xib in Resources */,
 				C59D47511FF4D750002208BF /* README.txt in Resources */,
@@ -4213,6 +4222,7 @@
 				00C39294206BB0E20068DFC0 /* YKProductSizeTable.m in Sources */,
 				C525DE971FBD59CA002802AE /* YKMineBagCell.m in Sources */,
 				C5FB786E205904780076DD6F /* YYDispatchQueuePool.m in Sources */,
+				0034CF1A20737E58002015AE /* YKHomeDesCell.m in Sources */,
 				C525DD731FBAB2A8002802AE /* AFNetworkReachabilityManager.m in Sources */,
 				C53039FB1FCEA97100FB12CE /* YKChongZhiBtn.m in Sources */,
 				C533A0981FD4EF48000DE949 /* YKUser.m in Sources */,
@@ -4404,7 +4414,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7X87NN8N4W;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4519,7 +4529,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7X87NN8N4W;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

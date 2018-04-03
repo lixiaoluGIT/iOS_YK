@@ -615,4 +615,25 @@
     }];
 }
 
+//下载广告页内容
+- (void)downLoadAdsContentOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [YKHttpClient Method:@"GET" apiName:downLoadAd_Url Params:nil Completion:^(NSDictionary *dic) {
+
+        //保存广告页图片Url
+        [self saveAdImage:dic];
+        
+        if (onResponse) {
+            onResponse(nil);
+        }
+        
+    }];
+}
+
+- (void)saveAdImage:(NSDictionary *)dic{
+    
+    [UD setObject:dic[@""] forKey:Ad_Url];
+    [UD synchronize];
+}
+
 @end

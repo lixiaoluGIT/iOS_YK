@@ -26,6 +26,7 @@
 #import "YKLoginVC.h"
 #import "YKLinkWebVC.h"
 #import "YKSearchVC.h"
+#import "YKHomeDesCell.h"
 
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate>
@@ -252,7 +253,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    return CGSizeMake(WIDHT, WIDHT*0.55 +320 +100);
+    return CGSizeMake(WIDHT, WIDHT*0.55 +320 +100+82);
 }
 
 #pragma mark - scrollViewDelegate
@@ -280,9 +281,14 @@
         [headerView addSubview:cycleView];
         WeakSelf(weakSelf)
         
+        YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
+        desCell.selectionStyle = UITableViewCellEditingStyleNone;
+        desCell.frame = CGRectMake(0, WIDHT*0.55, WIDHT, 82);
+        [headerView addSubview:desCell];
+        
         //品牌
         _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
-        _scroll.frame = CGRectMake(0, WIDHT*0.55,WIDHT, 320);
+        _scroll.frame = CGRectMake(0, WIDHT*0.55+82,WIDHT, 320);
 //        [_scroll resetUI];
 //        if (self.brandArray.count!=0) {
 //            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
@@ -319,7 +325,7 @@
         
         //推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-        ti.frame = CGRectMake(0, WIDHT*0.55+320,WIDHT, 100);
+        ti.frame = CGRectMake(0, WIDHT*0.55+320+82,WIDHT, 100);
         
         if (!hadtitle2) {
             [headerView addSubview:ti];

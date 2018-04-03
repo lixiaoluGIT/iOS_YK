@@ -46,10 +46,17 @@
         _window.rootViewController = [[WelcomeViewController alloc] init];
     }
     else{
-        UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:[DDAdvertisementVC new]];
+        DDAdvertisementVC *ad = [DDAdvertisementVC new];
+        if ([UD objectForKey:Ad_Url]) {
+            ad.url = [UD objectForKey:Ad_Url];
+        }
+        //TODO:请求广告页图片并保存到文件
+        [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
+            ad.url = [UD objectForKey:Ad_Url];
+        }];
+        UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:ad];
         self.window.rootViewController = nvi;
     }
-    //TODO:请求广告页图片并保存到文件
     
     //注册融云服务
     [[RCIM sharedRCIM] initWithAppKey:RongAPPID];

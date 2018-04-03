@@ -12,15 +12,15 @@
 //客服电话
 #define PHONE @"010-52894251"
 
-#ifdef DEBUG//开发环境
+//#ifdef DEBUG//开发环境
 #define kGtAppId @"IUK1udrw6Z5N2S7pOWfAv6"
 #define kGtAppKey @"zqVUHdYjHe6mRq4wFXmHp8"
 #define kGtAppSecret @"Hvg8Emt8g96lGpqLes8hw"
-#else //生产环境
-#define kGtAppId @"2ODogJlGyr9QQLSnhi4316"
-#define kGtAppKey @"REYkiqa1u864kyVaC3IPD7"
-#define kGtAppSecret @"vnVOQu6HYV9Df78fpBqYY3"
-#endif
+//#else //生产环境
+//#define kGtAppId @"2ODogJlGyr9QQLSnhi4316"
+//#define kGtAppKey @"REYkiqa1u864kyVaC3IPD7"
+//#define kGtAppSecret @"vnVOQu6HYV9Df78fpBqYY3"
+//#endif
 
 #define USHARE_APPKEY @"5a445f58f43e48135500000e"
 
@@ -37,6 +37,8 @@
 
 /*----------------------------用户token--------------------------------*/
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
+//广告页Url
+#define Ad_Url @"adurl"
 //登录过期时间 day
 #define Token_PastTime 1
 /*----------------------------&&&&--------------------------------*/
@@ -197,6 +199,8 @@
 #define DownLoad_Url @"https://itunes.apple.com/cn/app/%E8%A1%A3%E5%BA%AB/id1332986434?mt=8"
 //使用优惠券
 #define useCoupon_Url @"/coupon/clipCoupons"
+//下载广告页
+#define downLoadAd_Url @""
 
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"

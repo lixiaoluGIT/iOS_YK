@@ -82,4 +82,7 @@
 
 //使用优惠券
 - (void)useCouponId:(NSString *)couponId OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//下载广告页内容
+- (void)downLoadAdsContentOnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end
