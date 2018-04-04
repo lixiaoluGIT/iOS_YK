@@ -32,7 +32,14 @@
   
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
-       NSString *str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@",AliPay_Url,@(payMethod),@(paytype)];
+    //判断支付来源
+    NSString *str;
+    if ([self isBasePay]) {//主包支付
+        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@",AliPay_Url,@(payMethod),@(paytype)];
+    }else {//马甲包支付
+        str = @"";
+    }
+    
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     [YKHttpClient Method:@"GET" URLString:str paramers:nil success:^(NSDictionary *dict) {
@@ -70,6 +77,19 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+//判断是主包支付还是马甲包支付
+- (BOOL)isBasePay{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSLog(@"%@",app_Name);
+    if ([app_Name isEqualToString:@"衣库"]) {
+        return YES;
+    }
+    return NO;
 }
 
 //调起支付宝支付
