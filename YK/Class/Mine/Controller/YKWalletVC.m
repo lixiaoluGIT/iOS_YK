@@ -171,7 +171,7 @@
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(leftLabel.mas_bottom).offset(10);
         make.right.equalTo(leftLabel.mas_right);
-        make.width.equalTo(@44);
+        make.width.equalTo(@66);
         make.height.equalTo(@21);
     }];
     
