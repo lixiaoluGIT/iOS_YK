@@ -83,7 +83,6 @@
 - (BOOL)isBasePay{
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
-    
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSLog(@"%@",app_Name);
     if ([app_Name isEqualToString:@"衣库"]) {
