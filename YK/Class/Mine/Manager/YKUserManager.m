@@ -391,12 +391,27 @@
     }];
 }
 
+- (BOOL)isBase{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSLog(@"%@",app_Name);
+    if ([app_Name isEqualToString:@"衣库"]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)updateVersion:(NSString *)version{
+    if (![self isBase]) {
+        return;
+    }
     NSString *msg = [NSString stringWithFormat:@"发现有%@版本可以更新!",version];
     DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"升级提示" message:msg cancelBtnTitle:@"暂不更新" otherBtnTitle:@"去更新"];
     alertView.delegate = self;
     [alertView show];
 }
+
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DownLoad_Url]];

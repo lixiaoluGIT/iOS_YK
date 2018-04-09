@@ -35,9 +35,9 @@
     //判断支付来源
     NSString *str;
     if ([self isBasePay]) {//主包支付
-        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@",AliPay_Url,@(payMethod),@(paytype)];
+        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@""];
     }else {//马甲包支付
-        str = @"";
+        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"1"];
     }
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
