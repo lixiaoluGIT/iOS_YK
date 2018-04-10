@@ -21,6 +21,8 @@
 		00C39299206C9B8D0068DFC0 /* DractLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C39295206C9B8C0068DFC0 /* DractLineCell.m */; };
 		00C3929A206C9B8D0068DFC0 /* dractLineTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C39296206C9B8D0068DFC0 /* dractLineTwoCell.m */; };
 		00C3929C206CB69A0068DFC0 /* newka.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C3929B206CB6990068DFC0 /* newka.png */; };
+		00D60D44207C8E140003A71A /* YKSelectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D42207C8E140003A71A /* YKSelectTimeView.m */; };
+		00D60D45207C8E140003A71A /* YKSelectTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D60D43207C8E140003A71A /* YKSelectTimeView.xib */; };
 		00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBFC362063A1B6001FEC24 /* YKActivityVC.m */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
@@ -580,6 +582,9 @@
 		00C39297206C9B8D0068DFC0 /* DractLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DractLineCell.h; sourceTree = "<group>"; };
 		00C39298206C9B8D0068DFC0 /* dractLineTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dractLineTwoCell.h; sourceTree = "<group>"; };
 		00C3929B206CB6990068DFC0 /* newka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newka.png; sourceTree = "<group>"; };
+		00D60D41207C8E140003A71A /* YKSelectTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSelectTimeView.h; sourceTree = "<group>"; };
+		00D60D42207C8E140003A71A /* YKSelectTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSelectTimeView.m; sourceTree = "<group>"; };
+		00D60D43207C8E140003A71A /* YKSelectTimeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSelectTimeView.xib; sourceTree = "<group>"; };
 		00EBFC362063A1B6001FEC24 /* YKActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YKActivityVC.m; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.m; sourceTree = "<group>"; };
 		00EBFC372063A1B6001FEC24 /* YKActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YKActivityVC.h; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.h; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -2130,6 +2135,9 @@
 				00C3928D2069FD510068DFC0 /* YKCouponView.h */,
 				00C3928E2069FD510068DFC0 /* YKCouponView.m */,
 				00C3928F2069FD510068DFC0 /* YKCouponView.xib */,
+				00D60D41207C8E140003A71A /* YKSelectTimeView.h */,
+				00D60D42207C8E140003A71A /* YKSelectTimeView.m */,
+				00D60D43207C8E140003A71A /* YKSelectTimeView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3687,7 +3695,7 @@
 				TargetAttributes = {
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3779,6 +3787,7 @@
 				0034CF1B20737E58002015AE /* YKHomeDesCell.xib in Resources */,
 				C5FB776C205902CE0076DD6F /* moment1.plist in Resources */,
 				C525DE9D1FBD7FA5002802AE /* YKAddAddressCell.xib in Resources */,
+				00D60D45207C8E140003A71A /* YKSelectTimeView.xib in Resources */,
 				C59D47511FF4D750002208BF /* README.txt in Resources */,
 				C5DA84AF2005AB00002A12E3 /* YKAboutView.xib in Resources */,
 				C5327679205B94C20082EF2E /* ZYQAssetPicker.Bundle in Resources */,
@@ -4048,6 +4057,7 @@
 				C5FB7874205904780076DD6F /* YYReachability.m in Sources */,
 				C525DD7C1FBAB2A9002802AE /* MJRefreshBackGifFooter.m in Sources */,
 				C52D04681FE8E8C600633550 /* MBProgressHUD.m in Sources */,
+				00D60D44207C8E140003A71A /* YKSelectTimeView.m in Sources */,
 				C525DDB21FBAB2A9002802AE /* TZPhotoPreviewController.m in Sources */,
 				C532A6D81FDF74E80068A31D /* YKOrderManager.m in Sources */,
 				C53039E91FCC272000FB12CE /* ChangeFontWithButton.m in Sources */,
@@ -4366,8 +4376,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29NXF4787V;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4466,8 +4476,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "af70aa08-c076-491b-ada7-057bea7551a4";
-				PROVISIONING_PROFILE_SPECIFIER = xykootest;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4560,9 +4570,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage_1;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanjin Net Tech Co.,Ltd. (29NXF4787V)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29NXF4787V;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4662,8 +4672,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0f64e436-77e9-41ac-b9df-04b3532a641d";
-				PROVISIONING_PROFILE_SPECIFIER = xykoo;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4813,7 +4823,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4913,8 +4923,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25947105-8f55-4d5d-b57f-3df68e52b7b2";
-				PROVISIONING_PROFILE_SPECIFIER = YKDevelopementProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4928,8 +4938,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage_1;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yang Wang (7X87NN8N4W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5030,8 +5040,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aaa81e58-0976-4f69-ba83-17a988f9d50a";
-				PROVISIONING_PROFILE_SPECIFIER = YKProductionProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

@@ -13,16 +13,20 @@
 #import "YKAddressVC.h"
 #import "PickViewSelect.h"
 #import "YKNormalQuestionVC.h"
+#import "YKSelectTimeView.h"
 
 @interface YKReturnVC ()<UITableViewDelegate,UITableViewDataSource,pickViewStrDelegate,DXAlertViewDelegate>
 {
-    UITableView *tableView;
+    
     UIButton *_buttom;
     BOOL isHadDefaultAddress;
 }
 @property (nonatomic,strong)YKAddress *address;
 @property (nonatomic,strong)PickViewSelect *pickView;
 @property (nonatomic,strong)NSString *timeStr;
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UIView *backView;
+@property (nonatomic,strong)YKSelectTimeView *selectTimeView;
 @end
 
 @implementation YKReturnVC
@@ -68,14 +72,14 @@
     self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
     
-    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-BarH) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [tableView registerClass:[YKReturnAddressView class] forCellReuseIdentifier:@"address"];
-     [tableView registerClass:[YKReturnView class] forCellReuseIdentifier:@"time"];
-    tableView.estimatedRowHeight = 30;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:tableView];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-BarH) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [_tableView registerClass:[YKReturnAddressView class] forCellReuseIdentifier:@"address"];
+     [_tableView registerClass:[YKReturnView class] forCellReuseIdentifier:@"time"];
+    _tableView.estimatedRowHeight = 30;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_tableView];
     
     _buttom = [UIButton buttonWithType:UIButtonTypeCustom];
     _buttom.frame = CGRectMake(0, HEIGHT-50, WIDHT, 50);
@@ -87,6 +91,27 @@
     
     //请求地址
     [self getAddress];
+    
+    WeakSelf(weakSelf)
+    
+    self.backView = [[UIView alloc]initWithFrame:self.view.bounds];
+    self.backView.backgroundColor = mainColor;
+    self.backView.alpha = 0.5;
+    [self.view addSubview:self.backView];
+    self.backView.hidden = YES;
+    
+    _selectTimeView = [[NSBundle mainBundle] loadNibNamed:@"YKSelectTimeView" owner:self options:nil][0];
+    _selectTimeView.frame = CGRectMake(0, HEIGHT, WIDHT, 250);
+    _selectTimeView.backgroundColor = [UIColor whiteColor];
+    _selectTimeView.BtnClickBlock = ^(NSString *timeStr){
+        _timeStr = timeStr;
+        [weakSelf.tableView reloadData];
+        weakSelf.backView.hidden = YES;
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.selectTimeView.frame = CGRectMake(0, HEIGHT, WIDHT, 250);
+        }];
+    };
+    [self.view addSubview:_selectTimeView];
 }
 
 - (void)tel{
@@ -143,7 +168,7 @@
             isHadDefaultAddress = YES;//有默认地址
         }
         
-        [tableView reloadData];
+        [_tableView reloadData];
     }];
 }
 - (void)releaseInfo{
@@ -248,34 +273,36 @@
 }
 
 -(void)timePickerViewSelected{
+    self.backView.hidden = NO;
     
-    if ([[self getCurrentTime] intValue] >= 16) {
-        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"16点以后快递小哥下班了,请明天再预约归还!" cancelBtnTitle:@"好的" otherBtnTitle:@"我知道了"];
-        alertView.delegate = self;
-        [alertView show];
-        return;
-    }
+    [UIView animateWithDuration:0.3 animations:^{
+         _selectTimeView.frame = CGRectMake(0, HEIGHT-250, WIDHT, 250);
+    }];
     
-    _pickView =[[PickViewSelect alloc]initWithFrame:CGRectMake(0, 0,WIDHT,HEIGHT)];
-    _pickView.delegate = self;
-    [self.view addSubview:_pickView];
+//    if ([[self getCurrentTime] intValue] >= 16) {
+//        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"16点以后快递小哥下班了,请明天再预约归还!" cancelBtnTitle:@"好的" otherBtnTitle:@"我知道了"];
+//        alertView.delegate = self;
+//        [alertView show];
+//        return;
+//    }
+//
+//    _pickView =[[PickViewSelect alloc]initWithFrame:CGRectMake(0, 0,WIDHT,HEIGHT)];
+//    _pickView.delegate = self;
+//    [self.view addSubview:_pickView];
     
 }
 
 -(NSString*)getCurrentTime {
     
     NSDateFormatter*formatter = [[NSDateFormatter alloc]init];[formatter setDateFormat:@"HH"];
-    
     NSString*dateTime = [formatter stringFromDate:[NSDate date]];
-    
-    
     return dateTime;
 }
 //pick实现的代理
 -(void)pickViewdelegateWith:(NSString *)dateStr AndHourStr:(NSString *)hourStr
 {
     _timeStr = [NSString stringWithFormat:@"%@!%@",dateStr,hourStr];
-    [tableView reloadData];
+    [_tableView reloadData];
 }
 
 @end

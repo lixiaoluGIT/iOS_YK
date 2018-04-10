@@ -23,6 +23,7 @@
 #import "YKMyHeaderView.h"
 #import "YKMineCategoryCell.h"
 #import "YKShareVC.h"
+#import "YKReturnVC.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
@@ -250,9 +251,10 @@
                
             }
             if (tag==5) {//设置
-                YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
-                set.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:set animated:YES];
+                YKReturnVC *re = [[YKReturnVC alloc]init];
+//                YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
+                re.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:re animated:YES];
             }
             
         
