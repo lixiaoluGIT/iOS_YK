@@ -647,7 +647,7 @@
 
 - (void)saveAdImage:(NSDictionary *)dic{
     
-    [UD setObject:dic[@""] forKey:Ad_Url];
+    [UD setObject:dic[@"data"][@"imgUrl"] forKey:Ad_Url];
     [UD synchronize];
 }
 

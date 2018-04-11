@@ -200,7 +200,7 @@
 //使用优惠券
 #define useCoupon_Url @"/coupon/clipCoupons"
 //下载广告页
-#define downLoadAd_Url @""
+#define downLoadAd_Url @"/start/getStartImg"
 
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"

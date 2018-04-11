@@ -49,13 +49,25 @@
         DDAdvertisementVC *ad = [DDAdvertisementVC new];
         if ([UD objectForKey:Ad_Url]) {
             ad.url = [UD objectForKey:Ad_Url];
-        }
+            UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:ad];
+            self.window.rootViewController = nvi;
+            
+            //请求最新的
+            [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
+                
+            }];
+            
+        }else {
         //TODO:请求广告页图片并保存到文件
         [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
             ad.url = [UD objectForKey:Ad_Url];
+            UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:ad];
+            self.window.rootViewController = nvi;
+            
         }];
-        UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:ad];
-        self.window.rootViewController = nvi;
+            
+        }
+       
     }
     
     //注册融云服务
@@ -122,7 +134,7 @@
     [[MTAConfig getInstance] setSmartReporting:YES];
     [[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_INSTANT];
     [[MTAConfig getInstance] setDebugEnable:YES];
-    [MTA startWithAppkey:@"I1ZY1TVD6W2R"]; //xxxx为注册App时得到的APPKEY
+    [MTA startWithAppkey:@"I3KQ6XQ1J5FT"]; //xxxx为注册App时得到的APPKEY
     [MTA setAccount:@"其它账号" type:AT_OTH];
 
     return YES;
