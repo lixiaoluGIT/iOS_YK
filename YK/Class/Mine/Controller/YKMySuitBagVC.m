@@ -265,9 +265,9 @@
             _buttom.hidden = YES;
         }else {
             if ([YKOrderManager sharedManager].sectionArray.count==1&&([[YKOrderManager sharedManager].sectionArray containsObject:@"2"])) {
-                self.tableView.frame = CGRectMake(24, BarH  +50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(24, BarH  +50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
             }else {
-                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
             }
             self.tableView.hidden = NO;
             _buttom.hidden = YES;
@@ -291,7 +291,7 @@
 
             if ((_bagStatus==toReceive)&&self.orderList.count!=0) {
                 _buttom.hidden = NO;
-                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375-50);
+                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375-50);
                 if (_bagStatus==toReceive) {//待归还
                     if ([YKOrderManager sharedManager].isOnRoad) {
                         [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
@@ -314,7 +314,7 @@
                     
                 }
             }else {
-                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
                 _buttom.hidden = YES;
             }
     
