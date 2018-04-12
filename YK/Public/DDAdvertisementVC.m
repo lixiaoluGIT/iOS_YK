@@ -67,15 +67,16 @@
     
     _jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:_jumpBtn];
-    _jumpBtn.frame = CGRectMake(self.view.frame.size.width-100, 20, 80, 30);
+    _jumpBtn.frame = CGRectMake(WIDHT-70, HEIGHT-50, 46, 20);
     [_jumpBtn setTitle:@"3 跳过" forState:UIControlStateNormal];
     [_jumpBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
     [_jumpBtn addTarget:self action:@selector(jump) forControlEvents:UIControlEventTouchUpInside];
     _jumpBtn.layer.masksToBounds = YES;
-    _jumpBtn.layer.cornerRadius = 10;
-    _jumpBtn.alpha = 0.5;
-    _jumpBtn.backgroundColor = [UIColor blackColor];
+    _jumpBtn.layer.cornerRadius = 4;
+    _jumpBtn.alpha = 1;
+    _jumpBtn.backgroundColor = mainColor;
     _jumpBtn.titleLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:14];
+    _jumpBtn.titleLabel.font = [UIFont systemFontOfSize:12];
 }
 
 - (void)addBottomView{
