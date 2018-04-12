@@ -44,6 +44,10 @@
     if (![UD boolForKey:@"notFirst"]) {
     
         _window.rootViewController = [[WelcomeViewController alloc] init];
+        
+        [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
+            
+        }];
     }
     else{
         DDAdvertisementVC *ad = [DDAdvertisementVC new];

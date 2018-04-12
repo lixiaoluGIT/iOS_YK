@@ -87,24 +87,24 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
-        _liJIan.text = @"-¥200";
+        _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
             _carPrice.text = @"月卡价";
             _yuanJia.text = @"¥299";
             _yaJin.text = @"¥199";
-            _total.text = @"¥298";
+            _total.text = @"¥348";
         }
         if (_payType == SEASON_CARD) {
             _carPrice.text = @"季卡价";
             _yuanJia.text = @"¥807";
             _yaJin.text = @"¥199";
-            _total.text = @"¥806";
+            _total.text = @"¥856";
         }
         if (_payType == YEAR_CARD) {
             _carPrice.text = @"年卡价";
             _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
-            _total.text = @"¥2987";
+            _total.text = @"¥3037";
         }
     }else {
         //新用户并且未分享过,可以分享
@@ -331,24 +331,24 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
       
         _shareBtn.hidden = YES;
-        _liJIan.text = @"-¥200";
+        _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
             _carPrice.text = @"月卡价";
             _yuanJia.text = @"¥299";
             _yaJin.text = @"¥199";
-            _total.text = @"¥298";
+            _total.text = @"¥348";
         }
         if (_payType == SEASON_CARD) {
             _carPrice.text = @"季卡价";
             _yuanJia.text = @"¥807";
             _yaJin.text = @"¥199";
-            _total.text = @"¥806";
+            _total.text = @"¥856";
         }
         if (_payType == YEAR_CARD) {
             _carPrice.text = @"年卡价";
             _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
-            _total.text = @"¥2987";
+            _total.text = @"¥3037";
         }
     }else {
         //新用户并且未分享过,可以分享

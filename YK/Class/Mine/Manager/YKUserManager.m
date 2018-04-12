@@ -9,7 +9,7 @@
 #import "YKUserManager.h"
 #import <RongIMKit/RongIMKit.h>
 
-@interface YKUserManager()<TencentSessionDelegate,DXAlertViewDelegate>
+@interface YKUserManager()<DXAlertViewDelegate>
 {
 //    TencentOAuth *tencentOAuth;
 //    NSArray * permissions;
@@ -646,8 +646,8 @@
 }
 
 - (void)saveAdImage:(NSDictionary *)dic{
-    
-    [UD setObject:dic[@"data"][@"imgUrl"] forKey:Ad_Url];
+//    [@"imgUrl"]
+    [UD setObject:dic[@"data"] forKey:Ad_Url];
     [UD synchronize];
 }
 

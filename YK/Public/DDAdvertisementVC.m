@@ -55,10 +55,10 @@
 ////    [self.view addSubview:_gifView];
 //    [_gifView startGif];
     
-    //加载本地图片
+    
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT)];
 
-    [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:[UIImage imageNamed:@"广告"]];
+    [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:nil];
     [self.view addSubview:image];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toWeb)];
@@ -83,13 +83,13 @@
     [self.view addSubview:bottomView];
     bottomView.backgroundColor = [UIColor whiteColor];
     
-    UIImageView *logoImgView = [[UIImageView alloc] init];
-    [bottomView addSubview:logoImgView];
-    logoImgView.image = [UIImage imageNamed:@"logo"];
-    [logoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view.mas_bottom).offset(-22);
-        make.centerX.equalTo(bottomView.mas_centerX);
-    }];
+//    UIImageView *logoImgView = [[UIImageView alloc] init];
+//    [bottomView addSubview:logoImgView];
+//    logoImgView.image = [UIImage imageNamed:@"logo"];
+//    [logoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.view.mas_bottom).offset(-22);
+//        make.centerX.equalTo(bottomView.mas_centerX);
+//    }];
 }
 
 - (void)startTimer {

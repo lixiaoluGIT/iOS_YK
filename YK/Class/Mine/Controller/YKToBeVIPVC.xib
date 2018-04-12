@@ -313,9 +313,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgt-dI-v9K">
-                            <rect key="frame" x="84" y="234" width="208" height="32"/>
+                            <rect key="frame" x="85" y="234" width="206" height="32"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                            <state key="normal" title="分享APP给好友,立减200元&gt;">
+                            <state key="normal" title="分享APP给好友,立减150元&gt;">
                                 <color key="titleColor" red="0.93333333333333335" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>

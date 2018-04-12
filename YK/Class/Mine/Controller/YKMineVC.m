@@ -251,10 +251,10 @@
                
             }
             if (tag==5) {//设置
-                YKReturnVC *re = [[YKReturnVC alloc]init];
-//                YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
-                re.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:re animated:YES];
+//                YKReturnVC *re = [[YKReturnVC alloc]init];
+                YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
+                set.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:set animated:YES];
             }
             
         
