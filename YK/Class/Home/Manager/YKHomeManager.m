@@ -185,7 +185,7 @@
                 //弹出分享
                 DDAleartView *aleart = [[DDAleartView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
                 
-                [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"" detailTitle:@"分享后立减200元" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
+                [aleart showWithImage:[UIImage imageNamed:@"hongbao"] title:@"" detailTitle:@"分享后立减150元" notitle:@"取消" yestitle:@"查看" color:mainColor type:2 cancelBlock:^{
                     
                 } ensureBlock:^{
                     YKShareVC *share = [YKShareVC new];
