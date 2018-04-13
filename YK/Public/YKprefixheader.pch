@@ -21,8 +21,10 @@
 #define kGtAppKey @"REYkiqa1u864kyVaC3IPD7"
 #define kGtAppSecret @"vnVOQu6HYV9Df78fpBqYY3"
 #endif
+//5a6ae7f7f43e4834a500012e
+#define USHARE_APPKEY @"5a6ae7f7f43e4834a500012e"//衣库
+//#define USHARE_APPKEY @"5ad028c1f43e48592e0000d1"//女神的衣柜
 
-#define USHARE_APPKEY @"5a445f58f43e48135500000e"
 
 #define WeChat_APPKEY @"wx08491f30bacfc1ce"
 #define WeChat_Secret @"51a5ffb7b547d3cb3f1a0d4ecf366dfa"

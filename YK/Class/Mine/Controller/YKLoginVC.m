@@ -121,6 +121,7 @@ NSInteger timeNum;
 - (void)TencentDidLoginNotification:(NSNotification *)notify{
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:notify.userInfo];
     [[YKUserManager sharedManager]loginSuccessByTencentDic:dic[@"code"] OnResponse:^(NSDictionary *dic) {
+        
         [self dismissViewControllerAnimated:YES completion:^{
             if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]]) {
                 YKChangePhoneVC *changePhone = [YKChangePhoneVC new];

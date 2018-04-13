@@ -308,7 +308,16 @@
     
     NSString *s = [UD objectForKey:@"GTID"];
     
-    NSString *url = [NSString stringWithFormat:@"%@?pushId=%@",upLoadPushID_Url,s];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    
+    NSString *channelId;
+    if ([app_Name isEqualToString:@"女神的衣柜"]) {
+        channelId = @"1";
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@?pushId=%@&channel=%@",upLoadPushID_Url,s,channelId];
     [YKHttpClient Method:@"POST" URLString:url paramers:nil success:^(NSDictionary *dict) {
 
     } failure:^(NSError *error) {
@@ -515,6 +524,7 @@
             [self getUserInforOnResponse:^(NSDictionary *dic) {
                 //链接融云
                 [self RongCloudConnect];
+                [self upLoadPushID];//上传推送ID
             }];
             
             if (onResponse) {
@@ -587,6 +597,7 @@
                 
                 //链接融云
                 [self RongCloudConnect];
+                [self upLoadPushID];//上传推送ID
                 
                 if (onResponse) {
                     onResponse(nil);

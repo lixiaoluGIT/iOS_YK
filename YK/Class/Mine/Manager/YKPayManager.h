@@ -45,4 +45,5 @@ typedef enum : NSInteger {
 //更新会员信息
 - (void)updateVIPInforPageOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+
 @end

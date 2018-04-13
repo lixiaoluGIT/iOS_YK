@@ -117,22 +117,26 @@
 
     
 #pragma mark - 友盟分享相关
-    [UMConfigure initWithAppkey:USHARE_APPKEY channel:@"App Store"];
-    /* appkey: 开发者在友盟后台申请的应用获得（可在统计后台的 “统计分析->设置->应用信息” 页面查看）*/
+     // 统计组件配置
+    //TODO:如果是女神的衣柜，走友盟统计
+    if ([self isBasePay]) {
+        [UMConfigure setEncryptEnabled:YES];//打开加密传输
+        [UMConfigure setLogEnabled:YES];//设置打开日志
+        [UMConfigure initWithAppkey:USHARE_APPKEY channel:@"App Store"];
+        [MobClick setScenarioType:E_UM_NORMAL];
+        //
+        [[UMSocialManager defaultManager] openLog:YES];
+        [[UMSocialManager defaultManager] setUmSocialAppkey:USHARE_APPKEY];//USHARE_DEMO_APPKEY
+    }
+
     
-    // 统计组件配置
-    [MobClick setScenarioType:E_UM_NORMAL];
-    // [MobClick setScenarioType:E_UM_GAME];  // optional: 游戏场景设置
     
-    /* 打开调试日志 */
-    [[UMSocialManager defaultManager] openLog:YES];
-    
-    /* 设置友盟appkey */
-    [[UMSocialManager defaultManager] setUmSocialAppkey:USHARE_APPKEY];//USHARE_DEMO_APPKEY
+  
     
     [self configUSharePlatforms];
     
     [self confitUShareSettings];
+    
     
     //腾讯统计
     [[MTAConfig getInstance] setSmartReporting:YES];
@@ -143,7 +147,16 @@
 
     return YES;
 }
-
+- (BOOL)isBasePay{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSLog(@"%@",app_Name);
+    if ([app_Name isEqualToString:@"女神的衣柜"]) {
+        return YES;
+    }
+    return NO;
+}
 #pragma mark - UM
 - (void)confitUShareSettings
 {
