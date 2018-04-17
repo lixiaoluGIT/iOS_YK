@@ -29,26 +29,6 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C525DC381FBAAFC1002802AE"
-               BuildableName = "YKTests.xctest"
-               BlueprintName = "YKTests"
-               ReferencedContainer = "container:YK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C525DC431FBAAFC1002802AE"
-               BuildableName = "YKUITests.xctest"
-               BlueprintName = "YKUITests"
-               ReferencedContainer = "container:YK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -63,7 +43,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug_1"
+      buildConfiguration = "Debug_&#x5171;&#x4eab;&#x8863;&#x6a71;"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
@@ -107,8 +87,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release_1"
-      customArchiveName = "&#x5973;&#x795e;&#x7684;&#x8863;&#x67dc;"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

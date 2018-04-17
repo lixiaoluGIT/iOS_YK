@@ -25,7 +25,6 @@
 #import "YKMessageVC.h"
 #import <RongIMKit/RongIMKit.h>
 #import "YKProductDetailVC.h"
-
 #import "MTA.h"
 #import "MTAConfig.h"
 
@@ -41,6 +40,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    //马甲包去掉了引导页（防止被拒）
     if (![UD boolForKey:@"notFirst"]) {
     
         _window.rootViewController = [[WelcomeViewController alloc] init];
@@ -118,18 +118,29 @@
     
 #pragma mark - 友盟分享相关
      // 统计组件配置
-    //TODO:如果是女神的衣柜，走友盟统计
-    if ([self isBasePay]) {
+    //友盟统计
+    NSString *umKey;
+    if ([[self appName] isEqualToString:@"女神的衣柜"]) {
+        umKey = @"5a6ae7f7f43e4834a500012e";
         [UMConfigure setEncryptEnabled:YES];//打开加密传输
         [UMConfigure setLogEnabled:YES];//设置打开日志
-        [UMConfigure initWithAppkey:USHARE_APPKEY channel:@"App Store"];
+        [UMConfigure initWithAppkey:umKey channel:@"App Store"];
         [MobClick setScenarioType:E_UM_NORMAL];
         //
         [[UMSocialManager defaultManager] openLog:YES];
-        [[UMSocialManager defaultManager] setUmSocialAppkey:USHARE_APPKEY];//USHARE_DEMO_APPKEY
+        [[UMSocialManager defaultManager] setUmSocialAppkey:umKey];
+    }
+    if ([[self appName] isEqualToString:@"共享衣橱"]) {
+        umKey = @"5ad46debf43e48587400001a";
+        [UMConfigure setEncryptEnabled:YES];//打开加密传输
+        [UMConfigure setLogEnabled:YES];//设置打开日志
+        [UMConfigure initWithAppkey:umKey channel:@"App Store"];
+        [MobClick setScenarioType:E_UM_NORMAL];
+        //
+        [[UMSocialManager defaultManager] openLog:YES];
+        [[UMSocialManager defaultManager] setUmSocialAppkey:umKey];
     }
 
-    
     
   
     
@@ -142,20 +153,32 @@
     [[MTAConfig getInstance] setSmartReporting:YES];
     [[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_INSTANT];
     [[MTAConfig getInstance] setDebugEnable:YES];
-    [MTA startWithAppkey:@"I3KQ6XQ1J5FT"]; //xxxx为注册App时得到的APPKEY
+    
+    //总数据
+    [MTA startWithAppkey:@"I3KQ6XQ1J5FT"];
+    
+//    NSString *tencentKey;
+//    //主包
+//    if ([[self appName] isEqualToString:@"衣库"]) {
+//        tencentKey = @"IC4C21RR8IRZ";
+//    }
+//    //CPA-1
+//    if ([[self appName] isEqualToString:@"共享衣橱"]) {
+//        tencentKey = @"I8YF7DJ3F8AX";
+//    }
+//
+//    [MTA startWithAppkey:tencentKey];
+    
     [MTA setAccount:@"其它账号" type:AT_OTH];
 
     return YES;
 }
-- (BOOL)isBasePay{
+- (NSString *)appName{
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSLog(@"%@",app_Name);
-    if ([app_Name isEqualToString:@"女神的衣柜"]) {
-        return YES;
-    }
-    return NO;
+    return app_Name;
 }
 #pragma mark - UM
 - (void)confitUShareSettings

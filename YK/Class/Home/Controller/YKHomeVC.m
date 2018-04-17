@@ -27,7 +27,8 @@
 #import "YKLinkWebVC.h"
 #import "YKSearchVC.h"
 #import "YKHomeDesCell.h"
-
+#import "MTAConfig.h"
+#import "MTA.h"
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate>
 {
@@ -68,13 +69,41 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (NSString *)appName{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSLog(@"%@",app_Name);
+    return app_Name;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
    
     [NC addObserver:self selector:@selector(toSearch) name:@"tosearch" object:nil];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
+    //腾讯统计
+    [[MTAConfig getInstance] setSmartReporting:YES];
+    [[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_INSTANT];
+    [[MTAConfig getInstance] setDebugEnable:YES];
+
+    NSString *tencentKey;
+    //主包
+    if ([[self appName] isEqualToString:@"衣库"]) {
+        tencentKey = @"IC4C21RR8IRZ";
+    }
+    //CPA-1
+    if ([[self appName] isEqualToString:@"共享衣橱"]) {
+        tencentKey = @"I8YF7DJ3F8AX";
+    }
+    //CPS
+    if ([[self appName] isEqualToString:@"女神的衣柜"]) {
+        tencentKey = @"IZR5975UXRWF";
+    }
     
+    [MTA startWithAppkey:tencentKey];
+    
+    [MTA setAccount:@"其它账号" type:AT_OTH];
     //请求数据
     self.images2 = [NSArray array];
 //

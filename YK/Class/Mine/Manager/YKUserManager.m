@@ -9,7 +9,7 @@
 #import "YKUserManager.h"
 #import <RongIMKit/RongIMKit.h>
 
-@interface YKUserManager()<DXAlertViewDelegate>
+@interface YKUserManager()<DXAlertViewDelegate,TencentSessionDelegate>
 {
 //    TencentOAuth *tencentOAuth;
 //    NSArray * permissions;
@@ -524,7 +524,6 @@
             [self getUserInforOnResponse:^(NSDictionary *dic) {
                 //链接融云
                 [self RongCloudConnect];
-                [self upLoadPushID];//上传推送ID
             }];
             
             if (onResponse) {
@@ -597,7 +596,6 @@
                 
                 //链接融云
                 [self RongCloudConnect];
-                [self upLoadPushID];//上传推送ID
                 
                 if (onResponse) {
                     onResponse(nil);
