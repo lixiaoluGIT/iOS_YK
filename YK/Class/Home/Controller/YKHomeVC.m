@@ -29,11 +29,15 @@
 #import "YKHomeDesCell.h"
 #import "MTAConfig.h"
 #import "MTA.h"
+#import "YKWeekNewView.h"
+#import "DCCycleScrollView.h"
 
-@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate>
+@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate>
 {
     BOOL hadAppearCheckVersion;
     BOOL hadtitle1;
+    BOOL hadtitle11;
+    BOOL hadtitle3;
     BOOL hadtitle2;
 }
 @property (nonatomic, assign) NSInteger pageNum;
@@ -47,6 +51,10 @@
 @property (nonatomic,strong)NSArray *brandArray;
 @property (nonatomic,strong)NSMutableArray *productArray;
 @property (nonatomic,strong)YKScrollView *scroll;
+@property (nonatomic,strong)YKScrollView *scroll1;
+
+@property (nonatomic,strong)DCCycleScrollView *banner1;
+@property (nonatomic,strong)DCCycleScrollView *banner2;
 @end
 
 @implementation YKHomeVC
@@ -240,6 +248,8 @@
 //        hadtitle1 = YES;
         if (self.brandArray.count!=0) {
             _scroll.activityArray = [NSMutableArray arrayWithArray:self.brandArray];
+            _scroll1.activityArray = [NSMutableArray arrayWithArray:self.brandArray];
+            _banner1.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         }
         [self.collectionView reloadData];
         
@@ -281,7 +291,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    return CGSizeMake(WIDHT, WIDHT*0.55 +320 +100+82);
+    return CGSizeMake(WIDHT, WIDHT*0.58+82+320*2+92+WIDHT*0.84);
 }
 
 #pragma mark - scrollViewDelegate
@@ -303,20 +313,34 @@
 //        cycleView.placeHolderImageName = @"banner.jpg";
 //        [headerView addSubview:cycleView];
         
-        YKBaseScrollView *cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
+        //轮播图
+        YKBaseScrollView *cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.58)];
         cycleView.imagesArr = self.imagesArr;
         cycleView.delegate = self;
         [headerView addSubview:cycleView];
         WeakSelf(weakSelf)
         
+        //文字miao s
         YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
-        desCell.frame = CGRectMake(0, WIDHT*0.55, WIDHT, 82);
+        desCell.frame = CGRectMake(0, WIDHT*0.58, WIDHT, 82);
         [headerView addSubview:desCell];
         
         //品牌
+//        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, WIDHT*0.58+82,WIDHT, 320) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+////        [DCCycleScrollView cycleScrollViewWithFrame:];
+//        _banner1.autoScrollTimeInterval = 3;
+//        _banner1.autoScroll = YES;
+//        _banner1.isZoom = YES;
+//        _banner1.itemSpace = 0;
+//        _banner1.imgCornerRadius = 10;
+//        _banner1.itemWidth = self.view.frame.size.width - 100;
+//        _banner1.delegate = self;
+//        _banner1.backgroundColor = [UIColor redColor];
+//        [headerView addSubview:_banner1];
+        
         _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
-        _scroll.frame = CGRectMake(0, WIDHT*0.55+82,WIDHT, 320);
+        _scroll.frame = CGRectMake(0, WIDHT*0.58+82,WIDHT, 320);
 //        [_scroll resetUI];
 //        if (self.brandArray.count!=0) {
 //            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
@@ -333,16 +357,7 @@
             web.url = url;
             web.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:web animated:YES];
-//            NSLog(@"所点品牌ID:%@",brandId);
-//            YKBrandDetailVC *brand = [YKBrandDetailVC new];
-//            brand.titleStr = brandName;
-//            brand.hidesBottomBarWhenPushed = YES;
-//            brand.brandId = brandId;
-//
-//            [weakSelf.navigationController pushViewController:brand animated:YES];
         };
-        
-        //
         if (!hadtitle1) {
             [headerView addSubview:_scroll];
             hadtitle1 = YES;
@@ -350,10 +365,45 @@
         
         
         
+        //本周上新
+        YKWeekNewView *weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
+        weekNew.frame = CGRectMake(0, _scroll.frame.origin.y + _scroll.frame.origin.y, WIDHT, WIDHT*0.84);
+        
+        if (!hadtitle3) {
+            [headerView addSubview:weekNew];
+            hadtitle3 = YES;
+        }
+        
+        //热门穿搭
+        _scroll1=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
+        _scroll1.frame = CGRectMake(0, weekNew.frame.size.height + weekNew.frame.origin.y ,WIDHT, 320);
+                [_scroll1 resetUI];
+//                if (self.brandArray.count!=0) {
+//                    _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+//                }
+        
+        _scroll1.clickALLBlock = ^(){
+            YKALLBrandVC *brand = [YKALLBrandVC new];
+            brand.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:brand animated:YES];
+        };
+        
+        _scroll1.toDetailBlock = ^(NSString *url,NSString *brandName){
+            YKLinkWebVC *web =[YKLinkWebVC new];
+            web.url = url;
+            web.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:web animated:YES];
+         };
+//        [headerView addSubview:_scroll1];
+        
+        if (!hadtitle11) {
+            [headerView addSubview:_scroll1];
+            hadtitle11 = YES;
+        }
         
         //推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-        ti.frame = CGRectMake(0, WIDHT*0.55+320+82,WIDHT, 100);
+        ti.frame = CGRectMake(0, _scroll1.frame.size.height + _scroll1.frame.origin.y + 20,WIDHT, 92);
         
         if (!hadtitle2) {
             [headerView addSubview:ti];

@@ -316,6 +316,9 @@
     if ([app_Name isEqualToString:@"女神的衣柜"]) {
         channelId = @"1";
     }
+    if ([app_Name isEqualToString:@"共享衣橱"]) {
+        channelId = @"2";
+    }
     
     NSString *url = [NSString stringWithFormat:@"%@?pushId=%@&channel=%@",upLoadPushID_Url,s,channelId];
     [YKHttpClient Method:@"POST" URLString:url paramers:nil success:^(NSDictionary *dict) {

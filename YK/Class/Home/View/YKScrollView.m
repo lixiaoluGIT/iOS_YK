@@ -195,13 +195,10 @@
 }
 
 - (void)resetUI{
-    self.tuijianImage.image = [UIImage imageNamed:@"shangxin"];
-    self.tuijianLable.text = @"品牌上新";
-    
-//    self.tuijianImage.hidden = YES;
-//    self.allLabel.hidden = YES;
-//    self.youjiantou.hidden = YES;
-//    self.tuijianLable.hidden = YES;
+//    self.tuijianImage.image = [UIImage imageNamed:@"HOT"];
+    self.activity.text = @"热门穿搭";
+    self.english.text = @"HOT";
+
     
 }
 @end

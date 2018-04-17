@@ -34,11 +34,17 @@
 
     //判断支付来源
     NSString *str;
-    if ([self isBasePay]) {//主包支付
+    if ([[self appName] isEqualToString:@"衣库"]) {//主包支付
         str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@""];
-    }else {//马甲包支付
+    }
+    if ([[self appName] isEqualToString:@"女神的衣柜"]) {//主包支付{//马甲包支付
         str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"1"];
     }
+    
+    if ([[self appName] isEqualToString:@"共享衣橱"]) {//主包支付{//马甲包支付
+        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"2"];
+    }
+    
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
@@ -80,15 +86,13 @@
 }
 
 //判断是主包支付还是马甲包支付
-- (BOOL)isBasePay{
+- (NSString *)appName{
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSLog(@"%@",app_Name);
-    if ([app_Name isEqualToString:@"衣库"]) {
-        return YES;
-    }
-    return NO;
+   
+    return app_Name;
 }
 
 //调起支付宝支付
