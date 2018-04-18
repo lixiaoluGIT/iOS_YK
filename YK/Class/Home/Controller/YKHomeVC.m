@@ -30,9 +30,9 @@
 #import "MTAConfig.h"
 #import "MTA.h"
 #import "YKWeekNewView.h"
-//#import "DCCycleScrollView.h"
+#import "DCCycleScrollView.h"
 
-@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate>
+@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate>
 {
     BOOL hadAppearCheckVersion;
     BOOL hadtitle1;
@@ -58,6 +58,7 @@
 
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)DCCycleScrollView *banner2;
+@property (nonatomic,strong)YKWeekNewView *weekNew;
 @end
 
 @implementation YKHomeVC
@@ -256,6 +257,7 @@
             _scroll1.activityArray = [NSMutableArray arrayWithArray:self.brandArray];
 //            _banner1.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         }
+        [_weekNew initWithDic:self.weeknewDic];
         [self.collectionView reloadData];
         
     }];
@@ -382,17 +384,22 @@
         
         
         //本周上新
-        YKWeekNewView *weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
-        weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.84);
-        
+        _weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
+        _weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.84);
+        _weekNew.toDetailBlock = ^(void){
+            YKLinkWebVC *web =[YKLinkWebVC new];
+            web.url = weakSelf.weeknewDic[@"productUrl"];
+            web.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:web animated:YES];
+        };
         if (!hadtitle3) {
-            [headerView addSubview:weekNew];
+            [headerView addSubview:_weekNew];
             hadtitle3 = YES;
         }
         
         //热门穿搭
         _scroll1=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
-        _scroll1.frame = CGRectMake(0, weekNew.frame.size.height + weekNew.frame.origin.y ,WIDHT, 320);
+        _scroll1.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y ,WIDHT, 320);
                 [_scroll1 resetUI];
 //                if (self.brandArray.count!=0) {
 //                    _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
@@ -430,6 +437,21 @@
     }
     
     return nil;
+}
+-(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSDictionary *dic;
+     YKLinkWebVC *web =[YKLinkWebVC new];
+    if (cycleScrollView == _banner1) {//专题活动
+        dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
+        web.url = dic[@"specialLink"];
+    }else {//热门穿搭
+        dic = [NSDictionary dictionaryWithDictionary:self.hotWears[index]];
+        web.url = dic[@"hotWearUrl"];
+    }
+    
+    web.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:web animated:YES];
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

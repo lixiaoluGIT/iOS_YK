@@ -45,6 +45,9 @@
                     <constraint firstItem="IIT-IO-ZpN" firstAttribute="top" secondItem="MTU-8u-X16" secondAttribute="bottom" constant="20" id="p1e-ri-V4N"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="image" destination="IIT-IO-ZpN" id="Ccg-jd-YuN"/>
+            </connections>
             <point key="canvasLocation" x="113.5" y="177"/>
         </tableViewCell>
     </objects>

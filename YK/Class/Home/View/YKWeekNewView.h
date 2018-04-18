@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YKWeekNewView : UITableViewCell
-
+@property (nonatomic,copy)void (^toDetailBlock)(void);
+- (void)initWithDic:(NSDictionary *)dic;
 @end
