@@ -30,15 +30,16 @@
 #import "MTAConfig.h"
 #import "MTA.h"
 #import "YKWeekNewView.h"
-#import "DCCycleScrollView.h"
+//#import "DCCycleScrollView.h"
 
-@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate>
+@interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate>
 {
     BOOL hadAppearCheckVersion;
     BOOL hadtitle1;
     BOOL hadtitle11;
     BOOL hadtitle3;
     BOOL hadtitle2;
+    BOOL hadtitle4;
 }
 @property (nonatomic, assign) NSInteger pageNum;
 
@@ -50,6 +51,8 @@
 @property (nonatomic,strong)NSArray *imageClickUrls;
 @property (nonatomic,strong)NSArray *brandArray;
 @property (nonatomic,strong)NSMutableArray *productArray;
+@property (nonatomic,strong)NSDictionary  *weeknewDic;//每周上新
+@property (nonatomic,strong)NSMutableArray *hotWears;//热门穿搭
 @property (nonatomic,strong)YKScrollView *scroll;
 @property (nonatomic,strong)YKScrollView *scroll1;
 
@@ -238,18 +241,20 @@
                     hadAppearCheckVersion = YES;
                 }
         self.collectionView.hidden = NO;
-        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"imgList"]];
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"loopPic"]];
         self.imagesArr = [self getImageArray:array];
         self.imageClickUrls = [NSArray array];
         self.imageClickUrls = [self getImageClickUrlsArray:array];
-        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"specials"]];
+        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"thematicActivities"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
+        self.weeknewDic = [NSDictionary dictionaryWithDictionary:dic[@"data"][@"weekNewProduct"]];
+        self.hotWears = [NSMutableArray arrayWithArray:dic[@"data"][@"hotWears"]];
 
 //        hadtitle1 = YES;
         if (self.brandArray.count!=0) {
             _scroll.activityArray = [NSMutableArray arrayWithArray:self.brandArray];
             _scroll1.activityArray = [NSMutableArray arrayWithArray:self.brandArray];
-            _banner1.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
+//            _banner1.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         }
         [self.collectionView reloadData];
         
@@ -291,7 +296,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    return CGSizeMake(WIDHT, WIDHT*0.58+82+320*2+92+WIDHT*0.84);
+    return CGSizeMake(WIDHT, WIDHT*0.58+100+320*2+100+WIDHT*0.84);
 }
 
 #pragma mark - scrollViewDelegate
@@ -325,49 +330,60 @@
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
         desCell.frame = CGRectMake(0, WIDHT*0.58, WIDHT, 82);
         [headerView addSubview:desCell];
-        
-        //品牌
-//        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, WIDHT*0.58+82,WIDHT, 320) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
-////        [DCCycleScrollView cycleScrollViewWithFrame:];
-//        _banner1.autoScrollTimeInterval = 3;
-//        _banner1.autoScroll = YES;
-//        _banner1.isZoom = YES;
-//        _banner1.itemSpace = 0;
-//        _banner1.imgCornerRadius = 10;
-//        _banner1.itemWidth = self.view.frame.size.width - 100;
-//        _banner1.delegate = self;
+
+        //活动文字（专题活动）
+        YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
+        ti2.frame = CGRectMake(0, WIDHT*0.58+82,WIDHT, 100);
+//        ti2.backgroundColor = [UIColor redColor];
+        if (!hadtitle4) {
+            [headerView addSubview:ti2];
+            hadtitle4 = YES;
+        }
+        //
+        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.58) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+//        [DCCycleScrollView cycleScrollViewWithFrame:];
+        _banner1.autoScrollTimeInterval = 3;
+        _banner1.autoScroll = YES;
+        _banner1.isZoom = YES;
+        _banner1.itemSpace = 0;
+        _banner1.imgCornerRadius = 0;
+        _banner1.itemWidth = self.view.frame.size.width -100;
+        _banner1.delegate = self;
 //        _banner1.backgroundColor = [UIColor redColor];
-//        [headerView addSubview:_banner1];
+        if (!hadtitle1&&self.brandArray.count>0) {
+                [headerView addSubview:_banner1];
+                hadtitle1 = YES;
+        }
         
-        _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
-        _scroll.frame = CGRectMake(0, WIDHT*0.58+82,WIDHT, 320);
+//        _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
+//        _scroll.frame = CGRectMake(0, WIDHT*0.58+82,WIDHT, 320);
 //        [_scroll resetUI];
 //        if (self.brandArray.count!=0) {
 //            _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
 //        }
-        
-        _scroll.clickALLBlock = ^(){
-            YKALLBrandVC *brand = [YKALLBrandVC new];
-            brand.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:brand animated:YES];
-        };
-     
-        _scroll.toDetailBlock = ^(NSString *url,NSString *brandName){
-            YKLinkWebVC *web =[YKLinkWebVC new];
-            web.url = url;
-            web.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:web animated:YES];
-        };
-        if (!hadtitle1) {
-            [headerView addSubview:_scroll];
-            hadtitle1 = YES;
-        }
+//
+//        _scroll.clickALLBlock = ^(){
+//            YKALLBrandVC *brand = [YKALLBrandVC new];
+//            brand.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:brand animated:YES];
+//        };
+//
+//        _scroll.toDetailBlock = ^(NSString *url,NSString *brandName){
+//            YKLinkWebVC *web =[YKLinkWebVC new];
+//            web.url = url;
+//            web.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:web animated:YES];
+//        };
+//        if (!hadtitle1) {
+//            [headerView addSubview:_scroll];
+//            hadtitle1 = YES;
+//        }
         
         
         
         //本周上新
         YKWeekNewView *weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
-        weekNew.frame = CGRectMake(0, _scroll.frame.origin.y + _scroll.frame.origin.y, WIDHT, WIDHT*0.84);
+        weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.84);
         
         if (!hadtitle3) {
             [headerView addSubview:weekNew];
@@ -382,11 +398,11 @@
 //                    _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
 //                }
         
-        _scroll1.clickALLBlock = ^(){
-            YKALLBrandVC *brand = [YKALLBrandVC new];
-            brand.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:brand animated:YES];
-        };
+//        _scroll1.clickALLBlock = ^(){
+//            YKALLBrandVC *brand = [YKALLBrandVC new];
+//            brand.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:brand animated:YES];
+//        };
         
         _scroll1.toDetailBlock = ^(NSString *url,NSString *brandName){
             YKLinkWebVC *web =[YKLinkWebVC new];
@@ -403,8 +419,8 @@
         
         //推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-        ti.frame = CGRectMake(0, _scroll1.frame.size.height + _scroll1.frame.origin.y + 20,WIDHT, 92);
-        
+        ti.frame = CGRectMake(0, _scroll1.frame.size.height + _scroll1.frame.origin.y,WIDHT, 100);
+//        ti.backgroundColor = [UIColor redColor];
         if (!hadtitle2) {
             [headerView addSubview:ti];
             hadtitle2 = YES;

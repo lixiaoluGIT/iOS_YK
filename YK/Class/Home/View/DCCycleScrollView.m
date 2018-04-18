@@ -78,7 +78,6 @@ static NSString *const cellID = @"cellID";
     [super layoutSubviews];
     
     self.collectionView.frame = self.bounds;
-    self.pageControl.frame = CGRectMake(0, self.bounds.size.height - 30, self.bounds.size.width, 30);
     self.flowLayout.itemSize = CGSizeMake(_itemWidth, self.bounds.size.height);
     self.flowLayout.minimumLineSpacing = self.itemSpace;
     
@@ -109,9 +108,9 @@ static NSString *const cellID = @"cellID";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.collectionView.userInteractionEnabled = NO;
+    self.collectionView.userInteractionEnabled = YES;
     if (!self.imgArr.count) return; // 解决清除timer时偶尔会出现的问题
-    self.pageControl.currentPage = [self currentIndex] % self.imgArr.count;
+//    self.pageControl.currentPage = [self currentIndex] % self.imgArr.count;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -189,7 +188,12 @@ static NSString *const cellID = @"cellID";
     DCCycleScrollViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     long itemIndex = (int) indexPath.item % self.imgArr.count;
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:_imgArr[itemIndex]];
-    NSString *imagePath = dic[@"specialImg"];
+    NSString *imagePath;
+    if (_isSearch) {
+        imagePath = dic[@"brandLargeLogo"];
+    }else {
+        imagePath = dic[@"specialImg"];
+    }
    
         if ([imagePath hasPrefix:@"http"]) {
             [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:imagePath]] placeholderImage:self.cellPlaceholderImage];
@@ -313,7 +317,7 @@ static NSString *const cellID = @"cellID";
     }else
     {
         //不循环
-        self.collectionView.scrollEnabled = NO;
+        self.collectionView.scrollEnabled = YES;
         [self invalidateTimer];
     }
     
@@ -322,13 +326,13 @@ static NSString *const cellID = @"cellID";
 }
 -(void)setAutoScroll:(BOOL)autoScroll
 {
-    _autoScroll = autoScroll;
-    //创建之前，停止定时器
-    [self invalidateTimer];
-    
-    if (_autoScroll) {
-        [self setupTimer];
-    }
+//    _autoScroll = autoScroll;
+//    //创建之前，停止定时器
+//    [self invalidateTimer];
+//
+//    if (_autoScroll) {
+//        [self setupTimer];
+//    }
 }
 -(UICollectionView *)collectionView
 {
@@ -338,7 +342,7 @@ static NSString *const cellID = @"cellID";
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.scrollsToTop = NO;
-        _collectionView.pagingEnabled = YES;
+        _collectionView.pagingEnabled = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor clearColor];
@@ -349,16 +353,7 @@ static NSString *const cellID = @"cellID";
     }
     return _collectionView;
 }
--(UIPageControl *)pageControl
-{
-    if(_pageControl == nil)
-    {
-        _pageControl = [[UIPageControl alloc]init];
-        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-        _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    }
-    return _pageControl;
-}
+
 -(DCCycleScrollViewFlowLayout *)flowLayout
 {
     if(_flowLayout == nil)

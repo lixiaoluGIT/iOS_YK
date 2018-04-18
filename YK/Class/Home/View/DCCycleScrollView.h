@@ -42,7 +42,9 @@
 @property (nonatomic,weak) id<DCCycleScrollViewDelegate> delegate;
 
 
+@property (nonatomic,copy)void (^toDetailBlock)(NSString *brandId,NSString *brandName);
+
 //初始化方法
 +(instancetype)cycleScrollViewWithFrame:(CGRect)frame shouldInfiniteLoop:(BOOL)infiniteLoop imageGroups:(NSArray<NSString *> *)imageGroups;
-@property (nonatomic,strong)NSArray *imageArray;
+@property (nonatomic,assign)BOOL isSearch;
 @end

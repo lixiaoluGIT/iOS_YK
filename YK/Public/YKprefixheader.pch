@@ -106,7 +106,7 @@
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页
-#define GetHomePage_Url @"/product/homePage"
+#define GetHomePage_Url @"/homePage/getHomePage"
 //品牌列表
 #define getBrandList_Url @"/brand/getBrandList"
 //品牌详情

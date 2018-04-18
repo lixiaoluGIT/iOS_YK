@@ -17,13 +17,15 @@
 #import "YKProductDetailVC.h"
 #import "YKBrand.h"
 #import "YKBrandDetailVC.h"
+#import "DCCycleScrollView.h"
 
-@interface YKSearchVC ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface YKSearchVC ()<UICollectionViewDelegate, UICollectionViewDataSource,DCCycleScrollViewDelegate>
 {
     BOOL hadScroll;//已经添加
     BOOL hadButtons;
+    BOOL hadtitle1;
  }
-
+@property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)NSString* categoryId;
 @property (nonatomic,strong)NSString* sortId;
 @property (nonatomic, assign) NSInteger pageNum;
@@ -203,12 +205,21 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
 //
 //    if (section==0) {
-        return CGSizeMake(self.view.frame.size.width, 280 + 190);
+        return CGSizeMake(self.view.frame.size.width, WIDHT*0.5+100+190);
 //    }else {
 //        return CGSizeMake(self.view.frame.size.width, 125);
 //    }
 }
 
+-(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
+    YKBrandDetailVC *brand = [YKBrandDetailVC new];
+    brand.hidesBottomBarWhenPushed = YES;
+    brand.brandId = dic[@"brandId"];
+    brand.titleStr = dic[@"brandName"];
+    [self.navigationController pushViewController:brand animated:YES];
+}
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     WeakSelf(weakSelf)
@@ -218,36 +229,71 @@
         UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         
         //品牌
-        _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
-        _scroll.frame = CGRectMake(0,0,WIDHT, 280);
-        if (self.brandArray.count!=0) {
-             _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
-        }
-       _scroll.clickALLBlock = ^(){
-            YKALLBrandVC *brand = [YKALLBrandVC new];
-            brand.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:brand animated:YES];
-        };
-        _scroll.toDetailBlock = ^(NSString *brandId,NSString *brandName){
-            NSLog(@"所点品牌ID:%@",brandId);
+        YKSearchHeader *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][1];
+        ti.frame = CGRectMake(0, 0, WIDHT, 100);
+        ti.clickALLBlock = ^(){
+                        YKALLBrandVC *brand = [YKALLBrandVC new];
+                        brand.hidesBottomBarWhenPushed = YES;
+                        [weakSelf.navigationController pushViewController:brand animated:YES];
+                    };
+        [head addSubview:ti];
+        
+        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 100,WIDHT, WIDHT*0.5) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+    
+        _banner1.autoScrollTimeInterval = 10;
+        _banner1.autoScroll = YES;
+        _banner1.isZoom = YES;
+        _banner1.itemSpace = 0;
+        _banner1.imgCornerRadius = 8;
+        _banner1.itemWidth = self.view.frame.size.width -100;
+        _banner1.delegate = self;
+        _banner1.isSearch = YES;
+        _banner1.toDetailBlock = ^(NSString *brandId, NSString *brandName) {
             YKBrandDetailVC *brand = [YKBrandDetailVC new];
             brand.hidesBottomBarWhenPushed = YES;
             brand.brandId = brandId;
             brand.titleStr = brandName;
-            
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
-        if (hadScroll) {
-            [head addSubview:_scroll];
+        //        _banner1.backgroundColor = [UIColor redColor];
+        if (hadScroll&&self.brandArray.count>0) {
+            [head addSubview:_banner1];
             hadScroll = NO;
         }
+//        if (hadScroll) {
+            //            [head addSubview:_scroll];
+            //            hadScroll = NO;
+            //        }
+//        _scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][0];
+//        _scroll.frame = CGRectMake(0,0,WIDHT, 280);
+//        if (self.brandArray.count!=0) {
+//             _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
+//        }
+//       _scroll.clickALLBlock = ^(){
+//            YKALLBrandVC *brand = [YKALLBrandVC new];
+//            brand.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:brand animated:YES];
+//        };
+//        _scroll.toDetailBlock = ^(NSString *brandId,NSString *brandName){
+//            NSLog(@"所点品牌ID:%@",brandId);
+//            YKBrandDetailVC *brand = [YKBrandDetailVC new];
+//            brand.hidesBottomBarWhenPushed = YES;
+//            brand.brandId = brandId;
+//            brand.titleStr = brandName;
+//
+//            [weakSelf.navigationController pushViewController:brand animated:YES];
+//        };
+//        if (hadScroll) {
+//            [head addSubview:_scroll];
+//            hadScroll = NO;
+//        }
         
        
       
         
         if (self.titles.count!=0) {
             self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
-            self.titleView.frame = CGRectMake(0, 280,head.frame.size.width, 190);
+            self.titleView.frame = CGRectMake(0, 100+WIDHT*0.5,head.frame.size.width, 190);
             [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
             //筛选
             self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){

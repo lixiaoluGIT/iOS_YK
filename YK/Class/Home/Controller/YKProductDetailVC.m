@@ -490,9 +490,9 @@
             [headerView addSubview:self.tableView];
             [self.tableView reloadData];
             
-            YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-            ti.frame = CGRectMake(0, 20+self.dataArray.count*40,WIDHT, 60);
-            [ti reSetTitle];
+            YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][1];
+            ti.frame = CGRectMake(0, 20+self.dataArray.count*40,WIDHT, 82);
+//            ti.backgroundColor = [UIColor redColor];
             [headerView addSubview:ti];
             
             return headerView;

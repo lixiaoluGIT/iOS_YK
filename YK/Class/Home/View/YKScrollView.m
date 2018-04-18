@@ -188,11 +188,11 @@
 
 
 
-- (void)clickAll{
-    if (self.clickALLBlock) {
-        self.clickALLBlock();
-    }
-}
+//- (void)clickAll{
+//    if (self.clickALLBlock) {
+//        self.clickALLBlock();
+//    }
+//}
 
 - (void)resetUI{
 //    self.tuijianImage.image = [UIImage imageNamed:@"HOT"];

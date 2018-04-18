@@ -17,21 +17,45 @@
 
 @property (nonatomic,strong)NSString *categoryID;
 @property (nonatomic,strong)NSString *sortId;
+@property (weak, nonatomic) IBOutlet UILabel *allLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *TypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *SortLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *allLabel;
+
 @property (weak, nonatomic) IBOutlet UIView *back1View;
 @property (weak, nonatomic) IBOutlet UIView *back2View;
+@property (weak, nonatomic) IBOutlet UIButton *allBtn;
 
 @end
 @implementation YKSearchHeader
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+//    [self setUserInteractionEnabled:YES];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickAll)];
+//    [self addGestureRecognizer:tap];
+    
+//    [self.allBtn setUserInteractionEnabled:YES];
+    
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(WIDHT/2, 0, WIDHT/2, 70);
+//    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(clickAll) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btn];
+    
 }
-
+- (IBAction)clickALl:(id)sender {
+    if (self.clickALLBlock) {
+        self.clickALLBlock();
+    }
+}
+- (void)clickAll{
+    if (self.clickALLBlock) {
+        self.clickALLBlock();
+    }
+}
 - (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList{
     
     self.sortId = @"";

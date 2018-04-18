@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="396" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="396" height="149.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="396" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ii-29-66Z">
@@ -52,7 +52,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="allLabel" destination="Gos-ev-bTd" id="Sr5-oH-7Ry"/>
                 <outlet property="scrollView" destination="4ii-29-66Z" id="CpB-09-QVl"/>
                 <outlet property="scrollView2" destination="AdT-Mu-yRV" id="rAE-h3-nO1"/>
                 <outlet property="tuijianLable" destination="KcJ-RZ-WwQ" id="Tog-Tn-Cfi"/>
@@ -64,7 +63,7 @@
             <rect key="frame" x="0.0" y="0.0" width="396" height="198"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tpy-6k-nfk" id="WTL-NZ-A7z">
-                <rect key="frame" x="0.0" y="0.0" width="396" height="197.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="396" height="198"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专题活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfO-2O-Iv5">
