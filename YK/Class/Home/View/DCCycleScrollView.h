@@ -46,5 +46,5 @@
 
 //初始化方法
 +(instancetype)cycleScrollViewWithFrame:(CGRect)frame shouldInfiniteLoop:(BOOL)infiniteLoop imageGroups:(NSArray<NSString *> *)imageGroups;
-@property (nonatomic,assign)BOOL isSearch;
+@property (nonatomic,assign)NSInteger isSearch;
 @end

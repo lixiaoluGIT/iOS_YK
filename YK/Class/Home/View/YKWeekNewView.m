@@ -39,8 +39,8 @@
 }
 
 - (void)initWithDic:(NSDictionary *)dic{
-//    [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"productImg"]]] placeholderImage:[UIImage imageNamed:@"首页商品图"]];
-//    [_image setContentMode:UIViewContentModeScaleAspectFill];
+    [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"productImg"]]] placeholderImage:[UIImage imageNamed:@"首页商品图"]];
+    [_image setContentMode:UIViewContentModeScaleToFill];
 }
 
 

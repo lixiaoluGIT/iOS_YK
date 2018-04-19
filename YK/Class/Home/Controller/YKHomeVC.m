@@ -40,6 +40,7 @@
     BOOL hadtitle3;
     BOOL hadtitle2;
     BOOL hadtitle4;
+    BOOL hadtitle5;
 }
 @property (nonatomic, assign) NSInteger pageNum;
 
@@ -298,7 +299,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    return CGSizeMake(WIDHT, WIDHT*0.58+100+320*2+100+WIDHT*0.84);
+    return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+100+WIDHT*0.84);
 }
 
 #pragma mark - scrollViewDelegate
@@ -334,7 +335,7 @@
         [headerView addSubview:desCell];
 
         //活动文字（专题活动）
-        YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
+        YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
         ti2.frame = CGRectMake(0, WIDHT*0.58+82,WIDHT, 100);
 //        ti2.backgroundColor = [UIColor redColor];
         if (!hadtitle4) {
@@ -342,15 +343,20 @@
             hadtitle4 = YES;
         }
         //
-        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.58) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
 //        [DCCycleScrollView cycleScrollViewWithFrame:];
         _banner1.autoScrollTimeInterval = 3;
-        _banner1.autoScroll = YES;
+        _banner1.autoScroll = NO;
         _banner1.isZoom = YES;
         _banner1.itemSpace = 0;
         _banner1.imgCornerRadius = 0;
         _banner1.itemWidth = self.view.frame.size.width -100;
+        if (self.brandArray.count==1) {
+            _banner1.itemWidth = self.view.frame.size.width -48;
+            _banner1.userInteractionEnabled = YES;
+        }
         _banner1.delegate = self;
+        _banner1.isSearch = 1;
 //        _banner1.backgroundColor = [UIColor redColor];
         if (!hadtitle1&&self.brandArray.count>0) {
                 [headerView addSubview:_banner1];
@@ -397,10 +403,36 @@
             hadtitle3 = YES;
         }
         
+        YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][3];
+        ti3.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y,WIDHT, 100);
+        //        ti.backgroundColor = [UIColor redColor];
+        if (!hadtitle5) {
+            [headerView addSubview:ti3];
+            hadtitle5 = YES;
+        }
+        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti3.frame.size.height+ ti3.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.hotWears]];
+        //        [DCCycleScrollView cycleScrollViewWithFrame:];
+        _banner2.autoScrollTimeInterval = 3;
+        _banner2.autoScroll = NO;
+        _banner2.isZoom = YES;
+        _banner2.itemSpace = 0;
+        _banner2.imgCornerRadius = 0;
+        _banner2.itemWidth = self.view.frame.size.width -100;
+        if (self.hotWears.count==1) {
+            _banner2.itemWidth = self.view.frame.size.width -48;
+            _banner2.userInteractionEnabled = YES;
+        }
+        _banner2.delegate = self;
+        _banner2.isSearch = 2;
+        //        _banner1.backgroundColor = [UIColor redColor];
+        if (!hadtitle11&&self.brandArray.count>0) {
+            [headerView addSubview:_banner2];
+            hadtitle11 = YES;
+        }
         //热门穿搭
-        _scroll1=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
-        _scroll1.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y ,WIDHT, 320);
-                [_scroll1 resetUI];
+//        _scroll1=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollView" owner:self options:nil][1];
+//        _scroll1.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y ,WIDHT, 320);
+//                [_scroll1 resetUI];
 //                if (self.brandArray.count!=0) {
 //                    _scroll.brandArray = [NSMutableArray arrayWithArray:self.brandArray];
 //                }
@@ -411,22 +443,22 @@
 //            [weakSelf.navigationController pushViewController:brand animated:YES];
 //        };
         
-        _scroll1.toDetailBlock = ^(NSString *url,NSString *brandName){
-            YKLinkWebVC *web =[YKLinkWebVC new];
-            web.url = url;
-            web.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:web animated:YES];
-         };
-//        [headerView addSubview:_scroll1];
-        
-        if (!hadtitle11) {
-            [headerView addSubview:_scroll1];
-            hadtitle11 = YES;
-        }
+//        _scroll1.toDetailBlock = ^(NSString *url,NSString *brandName){
+//            YKLinkWebVC *web =[YKLinkWebVC new];
+//            web.url = url;
+//            web.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:web animated:YES];
+//         };
+////        [headerView addSubview:_scroll1];
+//
+//        if (!hadtitle11) {
+//            [headerView addSubview:_scroll1];
+//            hadtitle11 = YES;
+//        }
         
         //推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-        ti.frame = CGRectMake(0, _scroll1.frame.size.height + _scroll1.frame.origin.y,WIDHT, 100);
+        ti.frame = CGRectMake(0, _banner2.frame.size.height + _banner2.frame.origin.y,WIDHT, 100);
 //        ti.backgroundColor = [UIColor redColor];
         if (!hadtitle2) {
             [headerView addSubview:ti];

@@ -75,7 +75,73 @@
                 <outlet property="eng" destination="SUV-lu-eRL" id="OGb-cs-EG0"/>
                 <outlet property="title" destination="MC9-cm-JKr" id="Xhv-gv-zzn"/>
             </connections>
-            <point key="canvasLocation" x="-35" y="154"/>
+            <point key="canvasLocation" x="-21" y="146"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="101" id="QzH-dA-XuP" customClass="YKRecommentTitleView">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="101"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QzH-dA-XuP" id="XH9-62-apP">
+                <rect key="frame" x="0.0" y="0.0" width="333" height="100.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专题活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XK-xR-QYl">
+                        <rect key="frame" x="125.5" y="40" width="82" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT RECOMMENDATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v56-KA-gPL">
+                        <rect key="frame" x="97.5" y="68" width="138" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.41309969190000001" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7XK-xR-QYl" firstAttribute="centerX" secondItem="XH9-62-apP" secondAttribute="centerX" id="3mF-aA-nOY"/>
+                    <constraint firstItem="v56-KA-gPL" firstAttribute="centerX" secondItem="7XK-xR-QYl" secondAttribute="centerX" id="Nmj-YN-fGu"/>
+                    <constraint firstItem="v56-KA-gPL" firstAttribute="top" secondItem="7XK-xR-QYl" secondAttribute="bottom" constant="4" id="ppv-zu-z6v"/>
+                    <constraint firstItem="7XK-xR-QYl" firstAttribute="top" secondItem="XH9-62-apP" secondAttribute="top" constant="40" id="xHt-D1-SwW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="eng" destination="v56-KA-gPL" id="BoV-gb-sKa"/>
+                <outlet property="title" destination="7XK-xR-QYl" id="vXA-Sh-vQr"/>
+            </connections>
+            <point key="canvasLocation" x="226" y="232"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="101" id="3bH-8p-Z2u" customClass="YKRecommentTitleView">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="101"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3bH-8p-Z2u" id="YXB-d6-n59">
+                <rect key="frame" x="0.0" y="0.0" width="333" height="100.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门穿搭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USp-7Q-BHB">
+                        <rect key="frame" x="125.5" y="40" width="82" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT RECOMMENDATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ER5-ie-OP6">
+                        <rect key="frame" x="97.5" y="68" width="138" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.41309969190000001" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ER5-ie-OP6" firstAttribute="top" secondItem="USp-7Q-BHB" secondAttribute="bottom" constant="4" id="K2N-Mo-XYZ"/>
+                    <constraint firstItem="USp-7Q-BHB" firstAttribute="top" secondItem="YXB-d6-n59" secondAttribute="top" constant="40" id="OXW-Vw-im6"/>
+                    <constraint firstItem="ER5-ie-OP6" firstAttribute="centerX" secondItem="USp-7Q-BHB" secondAttribute="centerX" id="aOQ-3y-bOw"/>
+                    <constraint firstItem="USp-7Q-BHB" firstAttribute="centerX" secondItem="YXB-d6-n59" secondAttribute="centerX" id="qo2-c9-tG8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="eng" destination="ER5-ie-OP6" id="CAs-n8-13L"/>
+                <outlet property="title" destination="USp-7Q-BHB" id="5cJ-bc-3dj"/>
+            </connections>
+            <point key="canvasLocation" x="-242" y="305"/>
         </tableViewCell>
     </objects>
 </document>

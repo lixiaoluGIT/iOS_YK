@@ -240,14 +240,17 @@
         
         _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 100,WIDHT, WIDHT*0.5) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
     
-        _banner1.autoScrollTimeInterval = 10;
+        _banner1.autoScrollTimeInterval =3;
         _banner1.autoScroll = YES;
         _banner1.isZoom = YES;
         _banner1.itemSpace = 0;
         _banner1.imgCornerRadius = 8;
         _banner1.itemWidth = self.view.frame.size.width -100;
+        if (self.brandArray.count==1) {
+            _banner1.itemWidth = self.view.frame.size.width -48;
+        }
         _banner1.delegate = self;
-        _banner1.isSearch = YES;
+        _banner1.isSearch = 3;;
         _banner1.toDetailBlock = ^(NSString *brandId, NSString *brandName) {
             YKBrandDetailVC *brand = [YKBrandDetailVC new];
             brand.hidesBottomBarWhenPushed = YES;

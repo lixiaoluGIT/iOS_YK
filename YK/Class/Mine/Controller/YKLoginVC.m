@@ -267,7 +267,7 @@ NSInteger timeNum;
 
 -(void)timeOrder{
     
-    timeNum = 30;
+    timeNum = 60;
     self.getVetifyBtn.userInteractionEnabled = NO;
     timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countNum) userInfo:nil repeats:YES];
     

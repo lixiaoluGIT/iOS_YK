@@ -123,9 +123,9 @@ static NSString *const cellID = @"cellID";
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (self.autoScroll) {
-        [self setupTimer];
-    }
+//    if (self.autoScroll) {
+//        [self setupTimer];
+//    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -189,14 +189,18 @@ static NSString *const cellID = @"cellID";
     long itemIndex = (int) indexPath.item % self.imgArr.count;
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:_imgArr[itemIndex]];
     NSString *imagePath;
-    if (_isSearch) {
+    if (_isSearch==3) {
         imagePath = dic[@"brandLargeLogo"];
-    }else {
+    }
+    if (_isSearch==2) {
+        imagePath = dic[@"hotWearImg"];
+    }
+    if (_isSearch==1) {
         imagePath = dic[@"specialImg"];
     }
    
         if ([imagePath hasPrefix:@"http"]) {
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:imagePath]] placeholderImage:self.cellPlaceholderImage];
+            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:imagePath]] placeholderImage:[UIImage imageNamed:@"首页焦点图"]];
         } else {
             UIImage *image = [UIImage imageNamed:imagePath];
             if (!image) {
@@ -220,10 +224,10 @@ static NSString *const cellID = @"cellID";
 #pragma mark  - private
 - (void)setupTimer
 {
-    [self invalidateTimer]; // 创建定时器前先停止定时器，不然会出现僵尸定时器，导致轮播频率错误
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollTimeInterval target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    _timer = timer;
+//    [self invalidateTimer]; // 创建定时器前先停止定时器，不然会出现僵尸定时器，导致轮播频率错误
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollTimeInterval target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+//    _timer = timer;
     
 }
 - (void)invalidateTimer
