@@ -10,6 +10,7 @@
 
 @interface CGQCollectionViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *tagimage;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
@@ -19,6 +20,7 @@
     [super awakeFromNib];
     _imageView.contentMode   = UIViewContentModeScaleAspectFill;
     _imageView.clipsToBounds = YES;
+    _tagimage.clipsToBounds = YES;
     _imageView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
 }
 
@@ -40,7 +42,7 @@
     _lable.text = _brandName;
     _detailLabel.text = _goodsName;
     
-    _tagimage.hidden = product.isHadStock;
+    _backView.hidden= _tagimage.hidden = product.isHadStock;
     _imageView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
 }
 

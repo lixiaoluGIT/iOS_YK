@@ -350,9 +350,9 @@
         _banner1.isZoom = YES;
         _banner1.itemSpace = 0;
         _banner1.imgCornerRadius = 0;
-        _banner1.itemWidth = self.view.frame.size.width -100;
+        _banner1.itemWidth = self.view.frame.size.width - 100;
         if (self.brandArray.count==1) {
-            _banner1.itemWidth = self.view.frame.size.width -48;
+            _banner1.itemWidth = self.view.frame.size.width - 48;
             _banner1.userInteractionEnabled = YES;
         }
         _banner1.delegate = self;
