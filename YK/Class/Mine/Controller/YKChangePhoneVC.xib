@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YKChangePhoneVC">
             <connections>
                 <outlet property="ensureBtn" destination="Zrm-Hm-d9L" id="fnp-Da-9sE"/>
+                <outlet property="gap" destination="5BK-br-Icb" id="PDX-0b-KFH"/>
                 <outlet property="getVetifyBtn" destination="WxQ-Bg-0Ws" id="LuB-aZ-P0D"/>
                 <outlet property="phoneLabel" destination="WIE-Kx-ljx" id="M5A-hJ-YDZ"/>
                 <outlet property="phoneText" destination="s8t-Ht-LpH" id="Eyd-Oa-F7Z"/>

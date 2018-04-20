@@ -14,6 +14,7 @@
 {
     NSTimer *timer;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
 @property (weak, nonatomic) IBOutlet UITextField *phoneText;
 @property (weak, nonatomic) IBOutlet UITextField *vetifyText;
 
@@ -35,7 +36,9 @@ NSInteger timeCount;
     }else {
         self.title = @"修改手机号";
     }
-    
+    if (HEIGHT==812) {
+        _gap.constant = 110;
+    }
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);

@@ -25,6 +25,7 @@
 @property (nonatomic,assign) payType payType;
 
 @property (weak, nonatomic) IBOutlet UIButton *agreeImage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleGap;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *height;
@@ -171,6 +172,9 @@
     }
     if (WIDHT==375) {
         
+    }
+    if (HEIGHT==812) {
+        _titleGap.constant = 60;
     }
     self.payType = 4;//给个非0,1,2,3
     _buttomView.hidden = YES;

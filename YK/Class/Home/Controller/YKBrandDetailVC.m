@@ -109,7 +109,8 @@
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
     if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
-        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+        btn.frame = CGRectMake(0, 0, 44, 44);//ios7以后右边距默认值18px，负数相当于右移，正数左移
+       
     }
     btn.adjustsImageWhenHighlighted = NO;
     [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
@@ -186,6 +187,9 @@
     
     UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(3, 20, 44, 44);
+    if (HEIGHT==812) {
+          btn1.frame = CGRectMake(3, 44, 44, 44);
+    }
     btn1.adjustsImageWhenHighlighted = NO;
     [btn1 setImage:[UIImage imageNamed:@"newback"] forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];

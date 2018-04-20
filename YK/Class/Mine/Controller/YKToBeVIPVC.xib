@@ -33,6 +33,7 @@
                 <outlet property="nianka" destination="yd1-ij-QcH" id="Zey-Qp-3BG"/>
                 <outlet property="niankaPrice" destination="F0w-lP-vxO" id="LTq-an-7j6"/>
                 <outlet property="shareBtn" destination="Kgt-dI-v9K" id="e37-pf-UhS"/>
+                <outlet property="titleGap" destination="8lN-fo-i8z" id="AcD-mW-p83"/>
                 <outlet property="total" destination="53E-uR-gkd" id="b7u-Kh-LsH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="2eC-2W-UmC"/>
                 <outlet property="xieyi" destination="Gk7-sr-Tub" id="1xQ-f3-x5e"/>

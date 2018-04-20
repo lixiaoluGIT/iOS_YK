@@ -113,14 +113,28 @@
         return;
     }
     //春节期间物流提示(2月13----2月23)
-    if ([steyHelper validateWithStartTime:@"2018-02-13" withExpireTime:@"2018-02-23"]) {
-        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"小仙女，快递小哥回家过年了，现在下单23号以后才可以正常发货哦!" cancelBtnTitle:@"取消" otherBtnTitle:@"继续确认"];
+//    if ([steyHelper validateWithStartTime:@"2018-02-13" withExpireTime:@"2018-02-23"]) {
+//        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"小仙女，快递小哥回家过年了，现在下单23号以后才可以正常发货哦!" cancelBtnTitle:@"取消" otherBtnTitle:@"继续确认"];
+//        alertView.delegate = self;
+//        [alertView show];
+//        return;
+//    }
+    if ([[self getCurrentTime]intValue]>16) {
+        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"小仙女，当天17点以后下单，快递小哥可能明天才来取件哦，请您耐心等待！" cancelBtnTitle:@"取消" otherBtnTitle:@"继续确认"];
         alertView.delegate = self;
         [alertView show];
         return;
     }
     
+    
     [self order];
+}
+
+-(NSString*)getCurrentTime {
+    
+    NSDateFormatter*formatter = [[NSDateFormatter alloc]init];[formatter setDateFormat:@"HH"];
+    NSString*dateTime = [formatter stringFromDate:[NSDate date]];
+    return dateTime;
 }
 
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

@@ -140,6 +140,16 @@
         [[UMSocialManager defaultManager] openLog:YES];
         [[UMSocialManager defaultManager] setUmSocialAppkey:umKey];
     }
+    if ([[self appName] isEqualToString:@"衣库"]) {
+        umKey = @"5ad95888f29d9859af000115";
+        [UMConfigure setEncryptEnabled:YES];//打开加密传输
+        [UMConfigure setLogEnabled:YES];//设置打开日志
+        [UMConfigure initWithAppkey:umKey channel:@"App Store"];
+        [MobClick setScenarioType:E_UM_NORMAL];
+        //
+        [[UMSocialManager defaultManager] openLog:YES];
+        [[UMSocialManager defaultManager] setUmSocialAppkey:umKey];
+    }
 
     
   

@@ -49,10 +49,14 @@
 #define WeakSelf(weakSelf)  __weak typeof(self) weakSelf = self;
 
 /*----------------------------色号--------------------------------*/
-
+//
 #define mainColor [UIColor colorWithHexString:@"1a1a1a"]
 #define backColo [UIColor colorWithHexString:@"dddddd"]
 #define YKRedColor [UIColor colorWithHexString:@"EE2D2D"]
+
+//#define mainColor [UIColor colorWithHexString:@"fe7310"]
+//#define backColo [UIColor colorWithHexString:@"f1f1f1"]
+//#define YKRedColor [UIColor colorWithHexString:@"EFDDed"]
 
 /*----------------------------字体--------------------------------*/
 #define PingFangTC_Light(fontSize)  [UIFont fontWithName:@"PingFangTC-Light" size:(fontSize)];

@@ -10,6 +10,9 @@
 #import "YKShareSuccessView.h"
 #import "VTingSeaPopView.h"
 #import "YKSharebView.h"
+#import <UMSocialCore/UMSocialCore.h>
+#import <Foundation/Foundation.h>
+#import <UShareUI/UShareUI.h>
 
 @interface YKShareVC ()<VTingPopItemSelectDelegate> {
     NSMutableArray *images;
@@ -76,11 +79,11 @@
     
     btn1.titleLabel.font = PingFangSC_Regular(14);
     [self.view addSubview:btn1];
-    [btn1 addTarget:self action:@selector(toShare) forControlEvents:UIControlEventTouchUpInside];
+    [btn1 addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn2.frame = CGRectMake(0, im.frame.size.height+im.frame.origin.y+50, WIDHT, 100);
-    [btn2 addTarget:self action:@selector(toShare) forControlEvents:UIControlEventTouchUpInside];
+    [btn2 addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn2];
     
     //规则说明
@@ -127,7 +130,59 @@
     [backView removeFromSuperview];
     [close removeFromSuperview];
 }
-
+- (void)share{
+    //    [[YKShareManager sharedManager]YKShareProductClothingId:@""];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
+    
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        NSLog(@"回调");
+        NSLog(@"%ld",(long)platformType);
+        NSLog(@"%@",userInfo);
+        
+        
+        //创建分享消息对象
+        UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+        
+        //创建网页内容对象
+//        NSString* thumbUR =  self.imagesArr[0];
+//        NSString *thumbURL = [self URLEncodedString:thumbUR];
+        UIImage *image = [UIImage imageNamed:@"logo"];
+//        [image setContentMode:UIViewContentModeScaleAspectFit];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"欢迎加入衣库，首月仅需149！"] descr:@"点击领取优惠券，可兑现哦！" thumImage:image];
+        //设置网页地址
+        shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/invite/invite.html?id=%@", [YKUserManager sharedManager].user.userId];
+        
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject;
+        
+        //调用分享接口
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+            NSLog(@"调用分享接口");
+            
+            if (error) {
+                NSLog(@"调用失败%@",error);
+                UMSocialLogInfo(@"************Share fail with error %@*********",error);
+            }else{
+                NSLog(@"调用成功");
+                //弹出分享成功的提示,告诉后台,成功后getuser
+                
+                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                    UMSocialShareResponse *resp = data;
+                    //分享结果消息
+                    UMSocialLogInfo(@"response message is %@",resp.message);
+                    //第三方原始返回的数据
+                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                    
+                }else{
+                    UMSocialLogInfo(@"response data is %@",data);
+                }
+            }
+            //        [self alertWithError:error];
+        }];
+    }];
+}
 - (void)toShare{
     //弹出两种方式
     

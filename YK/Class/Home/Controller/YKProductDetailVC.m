@@ -218,6 +218,10 @@
     WeakSelf(weakSelf)
     YKProductDetailButtom *buttom=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailButtom" owner:self options:nil][0];
     buttom.frame = CGRectMake(0,HEIGHT-50,WIDHT, 51);
+    //iphone x 适配,排除安全区
+    if (HEIGHT == 812) {
+      buttom.frame = CGRectMake(0,HEIGHT-74,WIDHT, 51);
+    }
     buttom.AddToCartBlock = ^(void){//添加到购物车
         [weakSelf addTOCart];
     };

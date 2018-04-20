@@ -27,6 +27,9 @@
     if ([[UIDevice currentDevice].systemVersion floatValue]>= 11) {
         _gap.constant = 84;
     }
+    if (HEIGHT==812) {
+        _gap.constant = 104;
+    }
     self.title = @"设置";
     self.view.backgroundColor = [UIColor whiteColor];
     //    self.title = @"常见问题";

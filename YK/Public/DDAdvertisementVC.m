@@ -57,7 +57,7 @@
     
     
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT)];
-
+    [image setContentMode:UIViewContentModeScaleAspectFit];
     [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:nil];
     [self.view addSubview:image];
     

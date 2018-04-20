@@ -177,6 +177,9 @@
     if (WIDHT==414){
         _btn.frame = CGRectMake(0, self.view.frame.size.height-100*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
     }
+    if (HEIGHT == 812) {
+        _btn.frame = CGRectMake(0, self.view.frame.size.height-148*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+    }
     if (_isFromeProduct) {
         if (WIDHT==320) {
             _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
@@ -187,6 +190,10 @@
         if (WIDHT==414){
             _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
         }
+        if (HEIGHT == 812) {
+              _btn.frame = CGRectMake(0, self.view.frame.size.height-80*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
+        
     }
     [_btn setTitle:@"确认衣袋" forState:UIControlStateNormal];
     [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -357,6 +364,7 @@
         [self resetMasonrys];
         [UIView animateWithDuration:0.3 animations:^{
             self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-50*WIDHT/414);
+            
             [self.view layoutIfNeeded];
         }];
         [self.tableView setEditing:NO animated:YES];
@@ -376,8 +384,18 @@
         
         if (_isFromeProduct) {
             make.bottom.equalTo(self.view).offset(0);
+            
         }else {
             make.bottom.equalTo(self.view).offset(-50);
+        }
+        
+        //iphone x 适配
+        if (HEIGHT == 812) {
+            if (_isFromeProduct) {
+                make.bottom.equalTo(self.view).offset(-24);
+            }else {
+                make.bottom.equalTo(self.view).offset(-83);
+            }
         }
         make.height.mas_equalTo(vH);
     }];
