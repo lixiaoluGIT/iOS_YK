@@ -23,8 +23,8 @@
 #import "CLImageBrowserController.h"
 //#import "YKShareManager.h"
 
-//#import <UMSocialCore/UMSocialCore.h>
-#import <UMShare/UMShare.h>
+#import <UMSocialCore/UMSocialCore.h>
+//#import <UMShare/UMShare.h>
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import "YKMainVC.h"

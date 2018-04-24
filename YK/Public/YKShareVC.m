@@ -10,7 +10,8 @@
 #import "YKShareSuccessView.h"
 #import "VTingSeaPopView.h"
 #import "YKSharebView.h"
-#import <UMShare/UMShare.h>
+//#import <UMShare/UMShare.h>
+//#import "<UMSocialCore/UMSocialCore.h">
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 
