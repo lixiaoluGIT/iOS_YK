@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *QQLoginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *WXLoginBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backH;
 
 //@property (nonatomic, strong) LLGifView *gifView;
 //@property (nonatomic, strong) LLGifImageView *gifImageView;
@@ -220,6 +221,12 @@ NSInteger timeNum;
     self.w1.constant = self.w2.constant = 60*scale;
     self.loginBtn.layer.masksToBounds = YES;
     self.loginBtn.layer.cornerRadius = self.loginBtn.frame.size.height/2;
+    
+    if (HEIGHT==812) {
+        _backH.constant = 60;
+    }else {
+        _backH.constant = 35;
+    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

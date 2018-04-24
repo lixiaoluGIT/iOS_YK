@@ -63,6 +63,9 @@
     [im sizeToFit];
     CGFloat scale = im.frame.size.width/im.frame.size.height;
     im.frame = CGRectMake(0, 64, WIDHT, WIDHT/scale);
+    if (HEIGHT==812) {
+        im.frame = CGRectMake(0, 84, WIDHT, WIDHT/scale);
+    }
     
     UILabel *des = [[UILabel alloc]initWithFrame:CGRectMake(0, im.frame.size.height+im.frame.origin.y+14, WIDHT, 22)];
     des.text = @"分享给好友，获取5天会员加时";
@@ -140,7 +143,9 @@
 
 - (void)paste{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    pboard.string = @"我的邀请码";
+    NSString *Code;
+    Code = [YKUserManager sharedManager].user.inviteCode.length>0?[YKUserManager sharedManager].user.inviteCode:@"我的邀请码";
+    pboard.string = Code;
     
     [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"复制成功" delay:1.5];
 }
@@ -169,9 +174,9 @@
         //创建网页内容对象
 //        NSString* thumbUR =  self.imagesArr[0];
 //        NSString *thumbURL = [self URLEncodedString:thumbUR];
-        UIImage *image = [UIImage imageNamed:@"logo"];
+        UIImage *image = [UIImage imageNamed:@"LOGO-1"];
 //        [image setContentMode:UIViewContentModeScaleAspectFit];
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"欢迎加入衣库，首月仅需149！"] descr:@"点击领取优惠券，可兑现哦！" thumImage:image];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"加入衣库"] descr:@"首月只需¥149 轻奢大牌无限换穿" thumImage:image];
         //设置网页地址
         shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/invite/invite.html?id=%@", [YKUserManager sharedManager].user.userId];
         

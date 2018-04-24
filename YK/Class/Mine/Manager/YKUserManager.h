@@ -85,4 +85,7 @@
 
 //下载广告页内容
 - (void)downLoadAdsContentOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//校验邀请码是否有效
+- (void)checkInviteCode:(NSString *)code OnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

@@ -23,8 +23,8 @@
 #import "CLImageBrowserController.h"
 //#import "YKShareManager.h"
 
-#import <UMSocialCore/UMSocialCore.h>
-//#import <UMShare/UMShare.h>
+//#import <UMSocialCore/UMSocialCore.h>
+#import <UMShare/UMShare.h>
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import "YKMainVC.h"
@@ -175,6 +175,9 @@
     layoutView.itemSize = CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/150);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) collectionViewLayout:layoutView];
+    if (HEIGHT==812) {
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-80) collectionViewLayout:layoutView];
+    }
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -595,7 +598,7 @@
         //创建网页内容对象
         NSString* thumbUR =  self.imagesArr[0];
         NSString *thumbURL = [self URLEncodedString:thumbUR];
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"%@,我分享出来,就是为了让你更美的!",self.product.productDetail.product[@"clothingName"]] descr:@"我在衣库APP看上一件衣服,大家一起来欣赏一下吧" thumImage:thumbURL];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"分享一件高颜值的美衣给你-%@",self.product.productDetail.product[@"clothingName"]] descr:@"衣库家的这件衣服照美哦，忍不住想要分享给你！" thumImage:thumbURL];
         //设置网页地址
         shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/share/share.html?clothing_id=%@", self.product.productDetail.product[@"clothingId"]];
         

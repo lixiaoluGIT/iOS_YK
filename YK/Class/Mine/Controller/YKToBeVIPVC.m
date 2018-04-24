@@ -92,7 +92,7 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
-        _inviteCodeTextField.hidden = YES;
+        _inviteCodeTextField.hidden = NO;
         _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
             _carPrice.text = @"月卡价";
@@ -120,7 +120,10 @@
 //            _inviteCodeTextField.hidden = NO;
         }else {//不是新用户,分享按钮永不显示
             _shareBtn.hidden = YES;
-            _inviteCodeTextField.hidden = YES;
+            if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
+                _inviteCodeTextField.hidden = NO;
+            }
+//            _inviteCodeTextField.hidden = YES;
         }
         
         _liJIan.text = @"立减不可用";
@@ -149,8 +152,13 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
         if (_payType==1||_payType==2||_payType==3) {
             _shareBtn.hidden = NO;
+            _inviteCodeTextField.hidden = NO;
         }else {
             _shareBtn.hidden = YES;
+            if ([[YKUserManager sharedManager].user.effective intValue] == 4){
+                _inviteCodeTextField.hidden = NO;
+            }
+            
         }
     }else {//不是新用户,分享按钮永不显示
         _shareBtn.hidden = YES;
@@ -180,6 +188,9 @@
     _inviteCodeTextField.delegate = self;
     _inviteCodeTextField.keyboardType = UIKeyboardTypeDefault;
     _inviteCodeTextField.returnKeyType = UIReturnKeyDone;
+    
+    [_inviteCodeTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+
     
     [NC addObserver:self selector:@selector(alipayResultCurrent:) name:@"alipayres" object:nil];
     [NC addObserver:self selector:@selector(wxpayresultCurrent:) name:@"wxpaysuc" object:nil];
@@ -212,7 +223,15 @@
     _xieyi.attributedText = str;
 
 }
-
+-(void)textFieldDidChange :(UITextField *)theTextField{
+    NSLog( @"text changed: %@", theTextField.text);
+    if (theTextField.text.length>=6) {
+        //校验邀请码是否有效
+        [[YKUserManager sharedManager]checkInviteCode:theTextField.text OnResponse:^(NSDictionary *dic) {
+            
+        }];
+    }
+}
 - (void)creatPayView{
     WeakSelf(weakSelf)
     _backView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -358,6 +377,7 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
       
         _shareBtn.hidden = YES;
+        _inviteCodeTextField.hidden = NO;
         _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
             _carPrice.text = @"月卡价";
@@ -383,9 +403,13 @@
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
             _shareBtn.hidden = NO;
             _inviteCodeTextField.hidden = NO;
+            
         }else {//不是新用户,分享按钮永不显示
             _shareBtn.hidden = YES;
-            _inviteCodeTextField.hidden = YES;
+            if ([[YKUserManager sharedManager].user.effective intValue] == 4){
+                _inviteCodeTextField.hidden = NO;
+            }
+         
         }
         
         _liJIan.text = @"立减不可用";

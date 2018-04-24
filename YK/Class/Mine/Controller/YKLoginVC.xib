@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="QQLoginBtn" destination="HEq-ez-HuQ" id="LTS-wS-fkh"/>
                 <outlet property="WXLoginBtn" destination="9es-1X-BLe" id="ccy-lq-oeh"/>
+                <outlet property="backH" destination="yih-3J-mts" id="SjT-KE-ZlK"/>
                 <outlet property="getVetifyBtn" destination="Q1k-nE-Y38" id="WJz-DN-NGU"/>
                 <outlet property="h1" destination="6GR-zB-3dT" id="hIW-tU-1F9"/>
                 <outlet property="h2" destination="z78-UO-YpB" id="tVV-56-q1X"/>

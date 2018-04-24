@@ -13,7 +13,8 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 #import "WXApiObject.h"
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
+#import <UMShare/UMShare.h>
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import <GTSDK/GeTuiSdk.h> // GetuiSdk头 件应
