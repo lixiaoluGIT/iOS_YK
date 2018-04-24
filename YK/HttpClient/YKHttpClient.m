@@ -137,7 +137,7 @@
         }
         if (data.length == 0) {
              [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:NO];
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"莫急,后台欧巴正在修复..." delay:2];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"连接失败" delay:2];
             
              NSLog(@"HTTPRespose:%@%@\n%@",BaseUrl,apiName,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
             return ;

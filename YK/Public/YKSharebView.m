@@ -8,17 +8,22 @@
 
 #import "YKSharebView.h"
 
+@interface YKSharebView()
+
+
+@property (weak, nonatomic) IBOutlet UIButton *pasteBtn;
+@property (weak, nonatomic) IBOutlet UILabel *inviteCode;
+@end
+
 @implementation YKSharebView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    _inviteCode.text = [YKUserManager sharedManager].user.inviteCode;
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
+
 
 @end

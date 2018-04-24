@@ -11,13 +11,14 @@
 #import "YKShareVC.h"
 #import "YKWebVC.h"
 
-@interface YKToBeVIPVC ()
+@interface YKToBeVIPVC ()<UITextFieldDelegate>
 {
     BOOL isShareUser;
     BOOL isAgree;
 }
 @property (weak, nonatomic) IBOutlet UILabel *carPrice;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (weak, nonatomic) IBOutlet UITextField *inviteCodeTextField;
 @property (nonatomic,strong)UIButton *Button0;
 @property (nonatomic,strong)UIView *backView;
 @property (nonatomic,strong)YKSelectPayView *payView;
@@ -81,6 +82,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
+    
+    
     self.navigationController.navigationBar.hidden = YES;
     
     //新用户并且分享过享受立减(0未分享过,1分享过)
@@ -88,6 +92,7 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
+        _inviteCodeTextField.hidden = YES;
         _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
             _carPrice.text = @"月卡价";
@@ -112,8 +117,10 @@
         if ([[YKUserManager sharedManager].user.effective intValue] == 4
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
             _shareBtn.hidden = NO;
+//            _inviteCodeTextField.hidden = NO;
         }else {//不是新用户,分享按钮永不显示
             _shareBtn.hidden = YES;
+            _inviteCodeTextField.hidden = YES;
         }
         
         _liJIan.text = @"立减不可用";
@@ -147,18 +154,33 @@
         }
     }else {//不是新用户,分享按钮永不显示
         _shareBtn.hidden = YES;
+        _inviteCodeTextField.hidden = YES;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:self.view.window];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDis:)
+                                                 name:UIKeyboardWillHideNotification object:self.view.window];
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
+    
+       [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
     
     _shareBtn.hidden = YES;
+    _inviteCodeTextField.hidden = YES;
+    _inviteCodeTextField.delegate = self;
+    _inviteCodeTextField.keyboardType = UIKeyboardTypeDefault;
+    _inviteCodeTextField.returnKeyType = UIReturnKeyDone;
+    
     [NC addObserver:self selector:@selector(alipayResultCurrent:) name:@"alipayres" object:nil];
     [NC addObserver:self selector:@selector(wxpayresultCurrent:) name:@"wxpaysuc" object:nil];
     if (WIDHT==320) {
@@ -266,6 +288,7 @@
     }else {//押金有效(只续费)
         _buttomView.hidden = YES;
         _shareBtn.hidden = YES;
+        _inviteCodeTextField.hidden = YES;
     }
     
 
@@ -359,8 +382,10 @@
         if ([[YKUserManager sharedManager].user.effective intValue] == 4
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
             _shareBtn.hidden = NO;
+            _inviteCodeTextField.hidden = NO;
         }else {//不是新用户,分享按钮永不显示
             _shareBtn.hidden = YES;
+            _inviteCodeTextField.hidden = YES;
         }
         
         _liJIan.text = @"立减不可用";
@@ -520,4 +545,84 @@
     
     return result;
 }
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    if ([sender isEqual:_inviteCodeTextField])
+    {
+        //move the main view, so that the keyboard does not hide it.
+        if  (self.view.frame.origin.y >= 0)
+        {
+//            [selfr setViewMovedUp:YES];
+        }
+    }
+}
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= 110;
+        rect.size.height += 110;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += 110;
+        rect.size.height -= 110;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notif
+{
+    //keyboard will be shown now. depending for which textfield is active, move up or move down the view appropriately
+    
+    if ([_inviteCodeTextField isFirstResponder] && self.view.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (![_inviteCodeTextField isFirstResponder])
+    {
+        [self setViewMovedUp:NO];
+    }
+
+}
+
+- (void)keyboardWillDis:(NSNotification *)notif{
+    [self setViewMovedUp:NO];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [_inviteCodeTextField resignFirstResponder];
+//    [self setViewMovedUp:NO];
+}
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    // register for keyboard notifications
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+//                                                 name:UIKeyboardWillShowNotification object:self.view.window];
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    // unregister for keyboard notifications while not visible.
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+//}
+
 @end

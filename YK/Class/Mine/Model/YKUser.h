@@ -25,6 +25,7 @@
 @property (nonatomic,strong)NSString *effective;//会员卡状态 1>使用中,2>已过期,3>无押金,4>未开通
 @property (nonatomic,strong)NSString *validity;//会员剩余天数
 @property (nonatomic,strong)NSString *isShare;//是否分享过 (0,1)
-
+@property (nonatomic,strong)NSString *inviteCode;//我的邀请码
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 @end

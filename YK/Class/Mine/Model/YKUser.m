@@ -21,6 +21,9 @@
         self.gender = Dictionary[@"userInfo"][@"gender"];
         self.photo = Dictionary[@"userInfo"][@"photo"];
         
+        //邀请码
+        self.inviteCode = Dictionary[@"userInfo"][@"inviteCode"];
+        
         self.cardNum = Dictionary[@"cardInfo"][@"cardNum"];
         self.cardType = Dictionary[@"cardInfo"][@"cardType"];
         self.depositEffective = Dictionary[@"cardInfo"][@"depositEffective"];

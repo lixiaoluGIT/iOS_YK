@@ -23,7 +23,8 @@
 #import "CLImageBrowserController.h"
 //#import "YKShareManager.h"
 
-#import <UMSocialCore/UMSocialCore.h>
+//#import <UMSocialCore/UMSocialCore.h>
+#import <UMShare/UMShare.h>
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import "YKMainVC.h"
@@ -578,7 +579,7 @@
 
 - (void)share{
 //    [[YKShareManager sharedManager]YKShareProductClothingId:@""];
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession)]]; // 设置需要分享的平台
     
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {

@@ -10,7 +10,7 @@
 #import "YKShareSuccessView.h"
 #import "VTingSeaPopView.h"
 #import "YKSharebView.h"
-#import <UMSocialCore/UMSocialCore.h>
+#import <UMShare/UMShare.h>
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 
@@ -56,12 +56,12 @@
     
     self.navigationItem.titleView = title;
     
-    UIImageView *im = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"newka"]];
+    UIImageView *im = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"invite"]];
     [self.view addSubview:im];
     
     [im sizeToFit];
     CGFloat scale = im.frame.size.width/im.frame.size.height;
-    im.frame = CGRectMake(20, 84, WIDHT-40, (WIDHT-40)/scale);
+    im.frame = CGRectMake(0, 64, WIDHT, WIDHT/scale);
     
     UILabel *des = [[UILabel alloc]initWithFrame:CGRectMake(0, im.frame.size.height+im.frame.origin.y+14, WIDHT, 22)];
     des.text = @"分享给好友，获取5天会员加时";
@@ -75,20 +75,30 @@
     btn1.layer.masksToBounds = YES;
 //    btn1.layer.cornerRadius = 20;
     btn1.backgroundColor = mainColor;
-    [btn1 setTitle:@"分享这张卡片给好友" forState:UIControlStateNormal];
+    [btn1 setTitle:@"分享给好友" forState:UIControlStateNormal];
     
     btn1.titleLabel.font = PingFangSC_Regular(14);
     [self.view addSubview:btn1];
     [btn1 addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.frame = CGRectMake(0, im.frame.size.height+im.frame.origin.y+50, WIDHT, 100);
+    btn2.frame = CGRectMake(0, im.frame.size.height+im.frame.origin.y+50, WIDHT, 50);
     [btn2 addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn2];
     
+    //我的邀请码
+  
+  YKSharebView *buttom1 = [[NSBundle mainBundle] loadNibNamed:@"YKSharebView" owner:self options:nil][1];
+    buttom1.frame = CGRectMake(20, btn2.frame.size.height+btn2.frame.origin.y+19, WIDHT-40, 42);
+    [self.view addSubview:buttom1];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(paste)];
+    [buttom1 addGestureRecognizer:tap];
+    
     //规则说明
     YKSharebView *buttom = [[NSBundle mainBundle] loadNibNamed:@"YKSharebView" owner:self options:nil][0];
-    buttom.frame = CGRectMake(20, btn2.frame.size.height+btn2.frame.origin.y, WIDHT-40, 200);
+    buttom.frame = CGRectMake(20, buttom1.frame.size.height+buttom1.frame.origin.y+14, WIDHT-40, 260);
+    buttom.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:buttom];
     
     backView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -124,15 +134,25 @@
         }
     }
     
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
 }
+
+- (void)paste{
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    pboard.string = @"我的邀请码";
+    
+    [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"复制成功" delay:1.5];
+}
+
 - (void)close{
     [su removeFromSuperview];
     [backView removeFromSuperview];
     [close removeFromSuperview];
 }
+
 - (void)share{
     //    [[YKShareManager sharedManager]YKShareProductClothingId:@""];
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Twitter)]]; // 设置需要分享的平台
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]]; // 设置需要分享的平台
     
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
@@ -192,7 +212,6 @@
     pop.delegate = self;
     [pop show];
 }
-
 
 #pragma mark delegate
 -(void)itemDidSelected:(NSInteger)index {

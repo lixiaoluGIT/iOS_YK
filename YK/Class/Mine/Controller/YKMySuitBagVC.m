@@ -432,9 +432,15 @@
                     [self.navigationController pushViewController:r animated:YES];
                 };
 //                isHadOrderreceive = NO;
-            }else {//未预约
+            }else {//已预约
 //                isHadOrderreceive = YES;
                 [header resetUI:1];
+                //忘给方法了
+                header.SMSBlock = ^(void){
+                    [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
+                    YKReturnVC *r = [YKReturnVC new];
+                    [self.navigationController pushViewController:r animated:YES];
+                };
             }
         }];
       

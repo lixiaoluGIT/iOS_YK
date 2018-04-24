@@ -258,7 +258,11 @@
         
         
         //最新一条
-        NSArray *arr = [NSArray arrayWithArray:dict[@"data"][@"body"]];
+        NSArray *arr;
+        if (![dict[@"msg"] isEqualToString:@"没有该订单信息"]) {
+           arr = [NSArray arrayWithArray:dict[@"data"][@"body"]];
+        }
+        
         
         if (arr.count == 0) {//未查到物流信息
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"未查到物流信息" delay:2];
