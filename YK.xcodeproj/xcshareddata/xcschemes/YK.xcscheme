@@ -83,6 +83,13 @@
             ReferencedContainer = "container:YK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = ""
+            value = ""
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -107,8 +114,8 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Debug"
-      customArchiveName = "&#x5171;&#x4eab;&#x8863;&#x6a71;"
+      buildConfiguration = "Release"
+      customArchiveName = "yk"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

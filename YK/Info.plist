@@ -72,7 +72,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.3.0</string>
+	<string>1.3.1</string>
 	<key>Get Info stringLaunch screen interface file base name</key>
 	<string>LaunchScreen</string>
 	<key>LSApplicationCategoryType</key>

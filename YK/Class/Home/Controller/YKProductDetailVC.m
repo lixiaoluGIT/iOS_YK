@@ -598,7 +598,7 @@
         //创建网页内容对象
         NSString* thumbUR =  self.imagesArr[0];
         NSString *thumbURL = [self URLEncodedString:thumbUR];
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"分享一件高颜值的美衣给你-%@",self.product.productDetail.product[@"clothingName"]] descr:@"衣库家的这件衣服照美哦，忍不住想要分享给你！" thumImage:thumbURL];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"分享一件高颜值的美衣给你-%@",self.product.productDetail.product[@"clothingName"]] descr:@"衣库家的这件衣服超美哦，忍不住想要分享给你！" thumImage:thumbURL];
         //设置网页地址
         shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/share/share.html?clothing_id=%@", self.product.productDetail.product[@"clothingId"]];
         

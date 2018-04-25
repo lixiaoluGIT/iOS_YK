@@ -42,6 +42,7 @@
     [self.window makeKeyAndVisible];
     
     //马甲包去掉了引导页（防止被拒）
+    
     if (![UD boolForKey:@"notFirst"]) {
     
         _window.rootViewController = [[WelcomeViewController alloc] init];
