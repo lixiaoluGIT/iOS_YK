@@ -205,7 +205,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
 //
 //    if (section==0) {
-        return CGSizeMake(self.view.frame.size.width, WIDHT*0.5+100+190);
+        return CGSizeMake(self.view.frame.size.width, WIDHT*0.5+80+150);
 //    }else {
 //        return CGSizeMake(self.view.frame.size.width, 125);
 //    }
@@ -230,7 +230,7 @@
         
         //品牌
         YKSearchHeader *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][1];
-        ti.frame = CGRectMake(0, 0, WIDHT, 100);
+        ti.frame = CGRectMake(0, 0, WIDHT, 80);
         ti.clickALLBlock = ^(){
                         YKALLBrandVC *brand = [YKALLBrandVC new];
                         brand.hidesBottomBarWhenPushed = YES;
@@ -238,16 +238,16 @@
                     };
         [head addSubview:ti];
         
-        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 100,WIDHT, WIDHT*0.5) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 80,WIDHT, WIDHT*0.5) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
     
         _banner1.autoScrollTimeInterval =3;
         _banner1.autoScroll = YES;
         _banner1.isZoom = YES;
-        _banner1.itemSpace = 0;
-        _banner1.imgCornerRadius = 8;
-        _banner1.itemWidth = self.view.frame.size.width -100;
+        _banner1.itemSpace = -32;
+        _banner1.imgCornerRadius = 0;
+        _banner1.itemWidth = self.view.frame.size.width -48;
         if (self.brandArray.count==1) {
-            _banner1.itemWidth = self.view.frame.size.width -48;
+            _banner1.itemWidth = self.view.frame.size.width - 48;
         }
         _banner1.delegate = self;
         _banner1.isSearch = 3;;
@@ -296,7 +296,7 @@
         
         if (self.titles.count!=0) {
             self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
-            self.titleView.frame = CGRectMake(0, 100+WIDHT*0.5,head.frame.size.width, 190);
+            self.titleView.frame = CGRectMake(0, 80+WIDHT*0.5,head.frame.size.width, 150);
             [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
             //筛选
             self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){

@@ -348,12 +348,12 @@
         _banner1.autoScrollTimeInterval = 3;
         _banner1.autoScroll = NO;
         _banner1.isZoom = YES;
-        _banner1.itemSpace = 0;
+        _banner1.itemSpace = -32;
         _banner1.imgCornerRadius = 0;
-        _banner1.itemWidth = self.view.frame.size.width - 100;
+        _banner1.itemWidth = self.view.frame.size.width - 48;
         if (self.brandArray.count==1) {
             _banner1.itemWidth = self.view.frame.size.width - 48;
-            _banner1.userInteractionEnabled = YES;
+            _banner1.itemSpace = 0;
         }
         _banner1.delegate = self;
         _banner1.isSearch = 1;
@@ -393,10 +393,20 @@
         _weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
         _weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.84);
         _weekNew.toDetailBlock = ^(void){
-            YKLinkWebVC *web =[YKLinkWebVC new];
-            web.url = weakSelf.weeknewDic[@"productUrl"];
-            web.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:web animated:YES];
+            //临时判断，五一之前走这个
+            if ([steyHelper validateWithStartTime:@"2018-04-24" withExpireTime:@"2018-04-30"]) {
+                YKSearchVC *search = [[YKSearchVC alloc] init];
+                search.hidesBottomBarWhenPushed = YES;
+                UINavigationController *nav = weakSelf.tabBarController.viewControllers[1];
+                search.hidesBottomBarWhenPushed = YES;
+                weakSelf.tabBarController.selectedViewController = nav;
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }else {
+                YKLinkWebVC *web = [YKLinkWebVC new];
+                web.url = weakSelf.weeknewDic[@"productUrl"];
+                web.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:web animated:YES];
+            }
         };
         if (!hadtitle3) {
             [headerView addSubview:_weekNew];
@@ -415,12 +425,13 @@
         _banner2.autoScrollTimeInterval = 3;
         _banner2.autoScroll = NO;
         _banner2.isZoom = YES;
-        _banner2.itemSpace = 0;
+        _banner2.itemSpace = -32;
         _banner2.imgCornerRadius = 0;
-        _banner2.itemWidth = self.view.frame.size.width -100;
+        _banner2.itemWidth = self.view.frame.size.width - 48;
         if (self.hotWears.count==1) {
             _banner2.itemWidth = self.view.frame.size.width -48;
             _banner2.userInteractionEnabled = YES;
+            _banner2.itemSpace = 0;
         }
         _banner2.delegate = self;
         _banner2.isSearch = 2;
@@ -480,11 +491,15 @@
     }else {//热门穿搭
         dic = [NSDictionary dictionaryWithDictionary:self.hotWears[index]];
         web.url = dic[@"hotWearUrl"];
+        if (web.url.length == 0) {
+            return;
+        }
     }
     
     web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];
 }
+
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {

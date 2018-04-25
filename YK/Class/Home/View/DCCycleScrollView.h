@@ -16,6 +16,7 @@
 
 
 @interface DCCycleScrollView : UIView
+@property (nonatomic,strong) UICollectionView *collectionView;
 //*是否无线循环，默认yes
 @property (nonatomic,assign) BOOL infiniteLoop;
 //*是否自动滑动，默认yes

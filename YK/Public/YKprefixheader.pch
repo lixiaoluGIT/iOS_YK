@@ -207,6 +207,8 @@
 #define useCoupon_Url @"/coupon/clipCoupons"
 //下载广告页
 #define downLoadAd_Url @"/start/getStartImg"
+//验证码校验
+#define checkInviteCode_Url @"/coupon/authenticationCode"
 
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"

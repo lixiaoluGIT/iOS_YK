@@ -223,9 +223,63 @@
     _xieyi.attributedText = str;
 
 }
+- (BOOL)isLowerLetter:(NSString *)str
+
+{
+    
+    if ([str characterAtIndex:0] >= 'a' && [str characterAtIndex:0] <= 'z') {
+        
+        return YES;
+        
+    }
+    
+    return NO;
+    
+}
+
+
+
+//判断是不是大写字母
+
+- (BOOL)isCatipalLetter:(NSString *)str
+
+{
+    
+    if ([str characterAtIndex:0] >= 'A' && [str characterAtIndex:0] <= 'Z') {
+        
+        return YES;
+        
+    }
+    
+    return NO;
+    
+}
+//判断是不是数字
+- (BOOL)isPureInt:(NSString *)string{
+    NSScanner *scan = [NSScanner scannerWithString:string];
+    int value;
+    return [scan scanInt:&value] && [scan isAtEnd];
+}
 -(void)textFieldDidChange :(UITextField *)theTextField{
+    
+    if (theTextField == _inviteCodeTextField) {
+            if (theTextField.text.length > 6) {
+                theTextField.text = [theTextField.text substringToIndex:6];
+            }
+        }
+    
     NSLog( @"text changed: %@", theTextField.text);
-    if (theTextField.text.length>=6) {
+    if (theTextField.text.length==6) {
+        
+        NSString *temp = nil;
+        for(int i =0; i < [theTextField.text length]; i++)
+        {
+            temp = [theTextField.text substringWithRange:NSMakeRange(i,1)];//得到每一个元素
+            if (![self isCatipalLetter:temp] && ![self isLowerLetter:temp] &&![self isPureInt:temp]) {
+                [smartHUD alertText:self.view alert:@"不能包含非法字符" delay:2];
+                return;
+            }
+        }
         //校验邀请码是否有效
         [[YKUserManager sharedManager]checkInviteCode:theTextField.text OnResponse:^(NSDictionary *dic) {
             

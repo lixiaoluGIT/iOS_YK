@@ -19,5 +19,7 @@
 
 @property (nonatomic,copy)void (^clickALLBlock)(void);
 
+@property (nonatomic,assign)BOOL isFromNew;
+
 - (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList;
 @end

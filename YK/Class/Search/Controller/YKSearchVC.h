@@ -10,4 +10,6 @@
 
 @interface YKSearchVC : UIViewController
 
+@property (nonatomic,assign)BOOL isFromNew;
+
 @end

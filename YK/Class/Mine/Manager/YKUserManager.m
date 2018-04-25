@@ -660,20 +660,26 @@
 //校验邀请码是否有效
 - (void)checkInviteCode:(NSString *)code OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    NSString *url = [NSString stringWithFormat:@"%@?couponId=%@",useCoupon_Url,code];
+    NSString *url = [NSString stringWithFormat:@"%@?code=%@",checkInviteCode_Url,code];
     
     [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-        if ([dict[@"status"] intValue] == 400) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"邀请码无效" delay:1.8];
+       
+        if ([dict[@"status"] intValue] == 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"验证码有效" delay:2.0];
         }else {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"邀请码有效" delay:1.8];
-            if (onResponse) {
-                onResponse(nil);
-            }
+             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2.0];
         }
+//        if ([dict[@"status"] intValue] == 400) {
+////            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.8];
+//        }else {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"邀请码有效" delay:1.8];
+//            if (onResponse) {
+//                onResponse(nil);
+//            }
+//        }
         
         
         

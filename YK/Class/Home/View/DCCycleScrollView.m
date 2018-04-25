@@ -15,7 +15,7 @@
 @interface DCCycleScrollView()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic,strong) UIImageView *backgroundImageView;
 @property (nonatomic,strong) DCCycleScrollViewFlowLayout *flowLayout;
-@property (nonatomic,strong) UICollectionView *collectionView;
+//@property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSArray *imgArr;//图片数组
 @property (nonatomic,assign) NSInteger totalItems;//item总数
 @property (nonatomic,strong) NSTimer *timer;
@@ -321,7 +321,7 @@ static NSString *const cellID = @"cellID";
     }else
     {
         //不循环
-        self.collectionView.scrollEnabled = YES;
+        self.collectionView.scrollEnabled = NO;
         [self invalidateTimer];
     }
     

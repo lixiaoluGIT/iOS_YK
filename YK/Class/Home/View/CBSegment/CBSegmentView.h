@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, CBSegmentStyle) {
 
 @property (nonatomic, copy) titleChooseBlock titleChooseReturn;
 @property (nonatomic,strong)NSArray *categotyIds;//catId
+
+@property (nonatomic,assign)BOOL isFromNew;
 /**
  * Set segment titles and titleColor.
  *
