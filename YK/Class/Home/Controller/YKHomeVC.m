@@ -133,8 +133,8 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/150);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-170*WIDHT/414) collectionViewLayout:layoutView];
-//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-30) collectionViewLayout:layoutView];
+//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-170*WIDHT/414) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-30) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -357,6 +357,37 @@
         }
         _banner1.delegate = self;
         _banner1.isSearch = 1;
+        _banner1.toDetailBlock = ^(NSInteger index){
+            NSDictionary *dic;
+            YKLinkWebVC *web =[YKLinkWebVC new];
+            
+                dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
+                web.url = dic[@"specialLink"];
+                if (web.url.length == 0) {
+                    return;
+                }
+                web.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:web animated:YES];
+        };
+        
+//            if (cycleScrollView == _banner2) {//专题活动
+//                dic = [NSDictionary dictionaryWithDictionary:self.hotWears[index]];
+//                web.url = dic[@"hotWearUrl"];
+//                if (web.url.length == 0) {
+//                    return;
+//                }
+//            }
+            //        dic = [NSDictionary dictionaryWithDictionary:self.hotWears[index]];
+            //        web.url = dic[@"hotWearUrl"];
+            //        if (web.url.length == 0) {
+            //            return;
+            //        }
+            //    }
+            
+//            web.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:web animated:YES];
+//
+//        };
 //        _banner1.backgroundColor = [UIColor redColor];
         if (!hadtitle1&&self.brandArray.count>0) {
                 [headerView addSubview:_banner1];
@@ -435,6 +466,17 @@
         }
         _banner2.delegate = self;
         _banner2.isSearch = 2;
+        _banner2.toDetailBlock = ^(NSInteger index){
+            YKLinkWebVC *web = [[YKLinkWebVC alloc]init];
+        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:weakSelf.hotWears[index]];
+            web.url = dic[@"hotWearUrl"];
+            dic = [NSDictionary dictionaryWithDictionary:weakSelf.hotWears[index]];
+           if (web.url.length == 0) {
+                return;
+            }
+            web.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:web animated:YES];
+        };
         //        _banner1.backgroundColor = [UIColor redColor];
         if (!hadtitle11&&self.brandArray.count>0) {
             [headerView addSubview:_banner2];
@@ -488,13 +530,21 @@
     if (cycleScrollView == _banner1) {//专题活动
         dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
         web.url = dic[@"specialLink"];
-    }else {//热门穿搭
+    }
+   
+    if (cycleScrollView == _banner2) {//专题活动
         dic = [NSDictionary dictionaryWithDictionary:self.hotWears[index]];
         web.url = dic[@"hotWearUrl"];
         if (web.url.length == 0) {
             return;
         }
     }
+//        dic = [NSDictionary dictionaryWithDictionary:self.hotWears[index]];
+//        web.url = dic[@"hotWearUrl"];
+//        if (web.url.length == 0) {
+//            return;
+//        }
+//    }
     
     web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];

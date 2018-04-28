@@ -10,7 +10,8 @@
 #define YKprefixheader_pch
 
 //客服电话
-#define PHONE @"010-52894251"
+#define PHONE @"15512805315"//王阳手机号
+//#define PHONE @"010-52894251"//座机号
 
 #ifdef debug//开发环境
 #define kGtAppId @"IUK1udrw6Z5N2S7pOWfAv6"

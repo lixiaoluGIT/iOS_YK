@@ -42,8 +42,8 @@
 //代理方法
 @property (nonatomic,weak) id<DCCycleScrollViewDelegate> delegate;
 
-
-@property (nonatomic,copy)void (^toDetailBlock)(NSString *brandId,NSString *brandName);
+@property (nonatomic,copy)void (^toDetailBlock)(NSInteger index);
+//@property (nonatomic,copy)void (^toBrandDetailBlock)(NSString *brandId,NSString *brandName);
 
 //初始化方法
 +(instancetype)cycleScrollViewWithFrame:(CGRect)frame shouldInfiniteLoop:(BOOL)infiniteLoop imageGroups:(NSArray<NSString *> *)imageGroups;

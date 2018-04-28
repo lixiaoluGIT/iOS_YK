@@ -71,6 +71,10 @@
         imageView.image=[UIImage imageNamed:strImageName];
         imageView.frame=CGRectMake(i*scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height);
         
+        if (HEIGHT==812) {
+            [imageView setContentMode:UIViewContentModeScaleAspectFit];
+        }
+        
 //        ChangeFontWithLabel *showTitleLabel=[[ChangeFontWithLabel alloc]initWithFrame:CGRectMake(0, screenHeightH*0.7, screenWidthW, showTitleLabelH)];  //在图片上面添加UILabel
 //        showTitleLabel.text=arrTitleName[i];
 //        showTitleLabel.textColor=[UIColor whiteColor];

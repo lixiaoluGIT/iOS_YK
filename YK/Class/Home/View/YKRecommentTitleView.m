@@ -19,6 +19,33 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    _eng.numberOfLines = 0;
+    
+//    _eng.backgroundColor = [UIColor greenColor];
+    
+//    _eng.font = FONT(15);
+    
+    _eng.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    //设置字间距
+    
+    NSDictionary *dic = @{NSKernAttributeName:@4.f
+                          
+                          };
+    
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:_eng.text attributes:dic];
+    
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    
+//    [paragraphStyle setLineSpacing:30];//行间距
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_eng.text length])];
+    
+    [_eng setAttributedText:attributedString];
+    
+    [_eng sizeToFit];
+
 }
 
 - (void)reSetTitle{

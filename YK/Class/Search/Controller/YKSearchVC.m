@@ -211,15 +211,15 @@
 //    }
 }
 
--(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
-{
-    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
-    YKBrandDetailVC *brand = [YKBrandDetailVC new];
-    brand.hidesBottomBarWhenPushed = YES;
-    brand.brandId = dic[@"brandId"];
-    brand.titleStr = dic[@"brandName"];
-    [self.navigationController pushViewController:brand animated:YES];
-}
+//-(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+//{
+//    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
+//    YKBrandDetailVC *brand = [YKBrandDetailVC new];
+//    brand.hidesBottomBarWhenPushed = YES;
+//    brand.brandId = dic[@"brandId"];
+//    brand.titleStr = dic[@"brandName"];
+//    [self.navigationController pushViewController:brand animated:YES];
+//}
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     WeakSelf(weakSelf)
@@ -251,11 +251,12 @@
         }
         _banner1.delegate = self;
         _banner1.isSearch = 3;;
-        _banner1.toDetailBlock = ^(NSString *brandId, NSString *brandName) {
+        _banner1.toDetailBlock = ^(NSInteger index) {
+            NSDictionary *dic = [NSDictionary dictionaryWithDictionary:weakSelf.brandArray[index]];
             YKBrandDetailVC *brand = [YKBrandDetailVC new];
             brand.hidesBottomBarWhenPushed = YES;
-            brand.brandId = brandId;
-            brand.titleStr = brandName;
+            brand.brandId = dic[@"brandId"];
+            brand.titleStr = dic[@"brandName"];
             [weakSelf.navigationController pushViewController:brand animated:YES];
         };
         //        _banner1.backgroundColor = [UIColor redColor];
