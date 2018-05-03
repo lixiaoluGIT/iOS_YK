@@ -283,16 +283,18 @@
     DynamicsModel * model = layout.model;
     
     //头像
-    _portrait.left = kDynamicsNormalPadding;
-    _portrait.top = kDynamicsNormalPadding;
+    _portrait.left = 14;
+    _portrait.top = 24;
     _portrait.size = CGSizeMake(kDynamicsPortraitWidthAndHeight, kDynamicsPortraitWidthAndHeight);
     [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.portrait]]];
+    _portrait.layer.masksToBounds = YES;
+    _portrait.layer.cornerRadius = 20;
     _portrait.backgroundColor = [UIColor whiteColor];
     
     //昵称
     _nameLabel.text = model.nick;
-    _nameLabel.top = kDynamicsNormalPadding;
-    _nameLabel.left = _portrait.right + kDynamicsPortraitNamePadding;
+    _nameLabel.centerY = _portrait.centerY;
+    _nameLabel.left = _portrait.right + 10;
     CGSize nameSize = [_nameLabel sizeThatFits:CGSizeZero];
     _nameLabel.width = nameSize.width;
     _nameLabel.height = kDynamicsNameHeight;
@@ -300,10 +302,12 @@
     
     //描述
     _detailLabel.left = _nameLabel.left;
-    _detailLabel.top = _nameLabel.bottom + kDynamicsNameDetailPadding;
-    _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding * 2 - kDynamicsPortraitNamePadding - kDynamicsPortraitWidthAndHeight;
+    _detailLabel.top = _nameLabel.bottom + 10;
+    _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding*2 - 10 - 40;
     _detailLabel.height = layout.detailLayout.textBoundingSize.height;
     _detailLabel.textLayout = layout.detailLayout;
+    _detailLabel.textColor = mainColor;
+    _detailLabel.font = PingFangSC_Medium(14);
     lastView = _detailLabel;
     
     //展开/收起按钮
@@ -330,7 +334,7 @@
         _picContainerView.hidden = NO;
 
         _picContainerView.left = _nameLabel.left;
-        _picContainerView.top = lastView.bottom + kDynamicsNameDetailPadding;
+        _picContainerView.top = lastView.bottom + 10;
         _picContainerView.width = layout.photoContainerSize.width;
         _picContainerView.height = layout.photoContainerSize.height;
         _picContainerView.picPathStringsArray = model.photocollections;
@@ -391,10 +395,11 @@
     _dateLabel.width = dateSize.width;
     _dateLabel.height = kDynamicsNameHeight;
     _dateLabel.textAlignment = NSTextAlignmentRight;
+    _dateLabel.hidden = YES;
     
     //评论图
     _pl.left = _detailLabel.left;
-    _pl.top = lastView.bottom + kDynamicsPortraitNamePadding;
+    _pl.top = lastView.bottom + 20;
     _pl.width = 15;
     _pl.height = 15;
     
@@ -405,18 +410,20 @@
     _plNum.height = 15;
     _plNum.text = @"12";
     
-    //点赞图
-    _dz.left = _plNum.right + 16;
-    _dz.top = _pl.top;
-    _dz.width = 15;
-    _dz.height = 15;
+    lastView = _plNum;
     
-    //点赞数
-    _dzNum.left = _dz.right+8;
-    _dzNum.top = _pl.top;
-    _dzNum.width = 20;
-    _dzNum.height = 15;
-    _dzNum.text = @"68";
+//    //点赞图
+//    _dz.left = _plNum.right + 16;
+//    _dz.top = _pl.top;
+//    _dz.width = 15;
+//    _dz.height = 15;
+//
+//    //点赞数
+//    _dzNum.left = _dz.right+8;
+//    _dzNum.top = _pl.top;
+//    _dzNum.width = 20;
+//    _dzNum.height = 15;
+//    _dzNum.text = @"68";
     
     
 //    _deleteBtn.left = _dateLabel.right + kDynamicsPortraitNamePadding;
@@ -445,10 +452,10 @@
 //
 //
 //    //分割线
-    _dividingLine.left = 15;
+    _dividingLine.left = 14;
     _dividingLine.height = .5;
     _dividingLine.width = SCREENWIDTH - 15;
-    _dividingLine.bottom = layout.height - .5;
+    _dividingLine.bottom = layout.height - .5+50;
 //
 //    WS(weakSelf);
 //    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
@@ -534,8 +541,8 @@
 {
     if (!_nameLabel) {
         _nameLabel = [YYLabel new];
-        _nameLabel.font = [UIFont systemFontOfSize:15];
-        _nameLabel.textColor = [UIColor colorWithRed:74/255.0 green:90/255.0 blue:133/255.0 alpha:1];
+        _nameLabel.font = PingFangSC_Semibold(16);
+        _nameLabel.textColor = [UIColor colorWithHexString:@"133c66"];
         WS(weakSelf);
         UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
@@ -559,6 +566,8 @@
 //                containerView.backgroundColor = [UIColor clearColor];
 //            }];
         };
+        _detailLabel.textColor = [UIColor redColor];
+        _detailLabel.font = PingFangSC_Regular(14);
     }
     return _detailLabel;
 }

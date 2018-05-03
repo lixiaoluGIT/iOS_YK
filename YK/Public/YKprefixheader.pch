@@ -63,6 +63,7 @@
 #define PingFangTC_Light(fontSize)  [UIFont fontWithName:@"PingFangTC-Light" size:(fontSize)];
 #define PingFangSC_Semibold(fontSize)  [UIFont fontWithName:@"PingFangSC-Semibold" size:(fontSize)];
 #define PingFangSC_Regular(fontSize)  [UIFont fontWithName:@"PingFangSC-Regular" size:(fontSize)];
+#define PingFangSC_Medium(fontSize)  [UIFont fontWithName:@"PingFangSC-Medium" size:(fontSize)];
 
 /*----------------------------宽高--------------------------------*/
 #define WIDHT  [[UIScreen mainScreen]bounds].size.width

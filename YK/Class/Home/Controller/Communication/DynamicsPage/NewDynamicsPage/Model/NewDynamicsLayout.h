@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DynamicsModel.h"
 
-#define kDynamicsNormalPadding 15
-#define kDynamicsPortraitWidthAndHeight 45
+#define kDynamicsNormalPadding 14
+#define kDynamicsPortraitWidthAndHeight 40
 #define kDynamicsPortraitNamePadding 10
 #define kDynamicsNameDetailPadding 8
 #define kDynamicsNameHeight 17

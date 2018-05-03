@@ -44,14 +44,15 @@
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"moment0" ofType:@"plist"];
     NSArray * dataArray = [NSArray arrayWithContentsOfFile:plistPath];
     
-    [self.layoutsArr removeAllObjects];
+//    [self.layoutsArr removeAllObjects];
     for (id dict in dataArray) {
         DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];
         NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
         [self.layoutsArr addObject:layout];
     }
-    [self.dynamicsTable reloadData];
+//    [self.dynamicsTable reloadData];
     
+    [self performSelector:@selector(refresh) afterDelay:3];
     //外观代理
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     
@@ -64,6 +65,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)refresh{
+     [self.dynamicsTable reloadData];
 }
 - (void)keyboardWillHide:(NSNotification *)notification{
     
@@ -142,7 +147,7 @@
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hmpositionVC];
                     [weakSelf presentViewController:nav animated:YES completion:nil];
         };
-        _dynamicsTable.tableHeaderView = bagCell;
+//        _dynamicsTable.tableHeaderView = bagCell;
     
         [_dynamicsTable registerClass:[NewDynamicsTableViewCell class] forCellReuseIdentifier:@"NewDynamicsTableViewCell"];
         if ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending) {

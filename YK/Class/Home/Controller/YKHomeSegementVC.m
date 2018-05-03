@@ -45,6 +45,8 @@
 
 @property (nonatomic, strong) UILabel *theLine;
 
+@property (nonatomic,strong)NSMutableArray *buttonArr;
+
 @end
 
 @implementation YKHomeSegementVC
@@ -55,9 +57,9 @@
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    releaseButton.frame = CGRectMake(0, 25, 25, 25);
+    releaseButton.frame = CGRectMake(0, 25, 20, 20);
     [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
-    [releaseButton setBackgroundImage:[UIImage imageNamed:@"kefu"] forState:UIControlStateNormal];
+    [releaseButton setBackgroundImage:[UIImage imageNamed:@"wuxiaoxi"] forState:UIControlStateNormal];
     UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
     UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -16;
@@ -99,25 +101,23 @@
 }
 - (void)setConfig{
     self.view.backgroundColor = [UIColor whiteColor];
-    NSMutableArray *buttonArr = [NSMutableArray array];
+    _buttonArr = [NSMutableArray array];
     self.theLine = [[UILabel alloc]init];
-    self.theLine.backgroundColor = mainColor;
+    self.theLine.backgroundColor = [UIColor colorWithHexString:@"ee2d2d"];
     UIButton *clickButton = nil;
     for (NSInteger i = 0; i < self.titleArr.count; i ++) {
         UIButton *button = [[UIButton alloc] init];
         button.tag = BtnTag + i;
-        //CGSize size = [[self.titleArr firstObject] sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"ZHSRXT--GBK1-0" size:20]}];
-//        button.layer.cornerRadius = 5;
         button.layer.masksToBounds = YES;
-//        button.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//        button.layer.borderWidth = .5;
         [button setTitle:self.titleArr[i] forState:UIControlStateNormal];
-        [button setTitleColor:mainColor forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateSelected];
         [button setBackgroundColor:[UIColor whiteColor]];
+        button.titleLabel.font = PingFangSC_Semibold(16);
         
         if (i == _currentPageIndex) {
             button.selected = YES;
-//            theLine.frame = CGRectMake(button.frame.origin.x + ((button.frame.size.width)/2 - (size.width)/2),40,size.width, 1);
+            [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
             clickButton = button;
             [self.view addSubview:self.theLine];
 //
@@ -126,17 +126,27 @@
 //                            make.left.right.equalTo(clickButton);
 //                            make.height.mas_equalTo(.5);
 //                        }];
+            
+          
+            
         }
         [button addTarget:self action:@selector(changeControllerClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
-        [buttonArr addObject:button];
+//        button.backgroundColor = [UIColor greenColor];
+        [_buttonArr addObject:button];
+
     }
     //布局
-    [buttonArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:10 tailSpacing:10];
-    [buttonArr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight + 10);
-        make.height.mas_equalTo(40);
+    [_buttonArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:10 tailSpacing:10];
+    [_buttonArr mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight+13);
+        make.height.mas_equalTo(30);
     }];
+    
+    UILabel *Vline = [[UILabel alloc]init];
+    Vline.backgroundColor = mainColor;
+    Vline.frame = CGRectMake(WIDHT/2,64+22,1, 12);
+    [self.view addSubview:Vline];
 }
 //
 - (void)addControllerToArr{
@@ -227,8 +237,15 @@
     _currentPageIndex = newIndex;
     UIButton *button = [self.view viewWithTag:BtnTag + _currentPageIndex];
     button.selected = YES;
+    for (UIButton *btn in _buttonArr) {
+        if (button == btn) {
+            btn.titleLabel.textColor = mainColor;
+        }else {
+            btn.titleLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
+        }
+    }
     __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:.2f animations:^{
+    [UIView animateWithDuration:.1f animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf.theLine removeFromSuperview];
         [strongSelf.view addSubview:strongSelf.theLine];
@@ -237,8 +254,8 @@
             make.top.mas_equalTo(button.mas_bottom);
 //            make.left.right.equalTo(button);
             make.centerX.equalTo(button.mas_centerX);
-            make.width.equalTo(@50);
-            make.height.mas_equalTo(1);
+            make.width.equalTo(@20);
+            make.height.mas_equalTo(2);
         }];
         
 //         [strongSelf.theLine.superview layoutIfNeeded];//强制绘制
@@ -277,7 +294,7 @@
     //CGSize size = [self.titleArr[0] sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:The_titleFont size:20]}];
     NSInteger x = _currentPageIndex;
     UIButton *button = [self.view viewWithTag:BtnTag + x];
-    [UIView animateWithDuration:.2f animations:^{
+    [UIView animateWithDuration:.1f animations:^{
         UIView *line = [self.view viewWithTag:2000];
         CGRect sizeRect = line.frame;
         sizeRect.origin.x = button.frame.origin.x;
