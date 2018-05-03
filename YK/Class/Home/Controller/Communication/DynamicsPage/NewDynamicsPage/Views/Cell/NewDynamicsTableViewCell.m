@@ -264,6 +264,9 @@
     
     [self.contentView addSubview:self.dz];
     [self.contentView addSubview:self.dzNum];
+    
+    [self.contentView addSubview:self.linkImage];
+    [self.contentView addSubview:self.linkBtn];
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -409,6 +412,17 @@
     _plNum.width = 20;
     _plNum.height = 15;
     _plNum.text = @"12";
+    
+    _linkBtn.right = _detailLabel.right;
+    _linkBtn.top = _plNum.top;
+    _linkBtn.width = 70;
+    _linkBtn.height = 20;
+    
+    _linkImage.right = _linkBtn.left-6;
+    _linkImage.centerY = _linkBtn.centerY;
+    [_linkImage sizeToFit];
+ 
+   
     
     lastView = _plNum;
     
@@ -632,7 +646,7 @@
 -(UIImageView *)pl {
     if (!_pl) {
         _pl = [UIImageView new];
-        _pl.image = [UIImage imageNamed:@"dianzan2"];
+        _pl.image = [UIImage imageNamed:@"dianzan"];
 //        _plNum.textColor = [UIColor lightGrayColor];
 //        _plNum.font = [UIFont systemFontOfSize:13];
     }
@@ -651,7 +665,7 @@
 -(UIImageView *)dz {
     if (!_dz) {
         _dz = [UIImageView new];
-        _dz.image = [UIImage imageNamed:@"dianzan2"];
+        _dz.image = [UIImage imageNamed:@"dianzan"];
         //        _plNum.textColor = [UIColor lightGrayColor];
         //        _plNum.font = [UIFont systemFontOfSize:13];
     }
@@ -665,6 +679,36 @@
         _dzNum.font = [UIFont systemFontOfSize:13];
     }
     return _dzNum;
+}
+//linkImage
+-(UIImageView *)linkImage {
+    if (!_linkImage) {
+        _linkImage = [UIImageView new];
+        _linkImage.image = [UIImage imageNamed:@"lianjie"];
+        //        _plNum.textColor = [UIColor lightGrayColor];
+        //        _plNum.font = [UIFont systemFontOfSize:13];
+    }
+    return _linkImage;
+}
+//linkBtn
+-(UIButton *)linkBtn
+{
+    if (!_linkBtn) {
+        _linkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [_linkBtn setTitle:@"商品链接" forState:UIControlStateNormal];
+//        _linkBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+        _linkBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        _linkBtn.titleLabel.font = PingFangSC_Semibold(14);
+        [_linkBtn setTitleColor:[UIColor colorWithHexString:@"FDDD55"] forState:UIControlStateNormal];
+//        _linkBtn.backgroundColor = [UIColor redColor];
+        WS(weakSelf);
+        [_linkBtn bk_addEventHandler:^(id sender) {
+            if (weakSelf.delegate != nil && [weakSelf.delegate respondsToSelector:@selector(DidClickDeleteInDynamicsCell:)]) {
+                [weakSelf.delegate DidClickDeleteInDynamicsCell:weakSelf];
+            }
+        } forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _linkBtn;
 }
 -(UIButton *)deleteBtn
 {

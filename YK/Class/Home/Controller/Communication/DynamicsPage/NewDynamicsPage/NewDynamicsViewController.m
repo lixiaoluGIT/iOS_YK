@@ -52,7 +52,7 @@
     }
 //    [self.dynamicsTable reloadData];
     
-    [self performSelector:@selector(refresh) afterDelay:3];
+    [self performSelector:@selector(refresh) afterDelay:1];
     //外观代理
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     

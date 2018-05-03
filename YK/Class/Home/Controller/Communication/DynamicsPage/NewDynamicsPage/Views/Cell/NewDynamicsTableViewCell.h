@@ -57,6 +57,8 @@
 @property(nonatomic,strong)YYLabel * dzNum;
 @property(nonatomic,strong)UIButton * deleteBtn;
 @property(nonatomic,strong)UIButton * menuBtn;
+@property(nonatomic,strong)UIButton *linkBtn;
+@property(nonatomic,strong)UIImageView *linkImage;
 @property(nonatomic,strong)NewDynamicsThumbCommentView * thumbCommentView;
 @property(nonatomic,strong)UIView * dividingLine;
 
