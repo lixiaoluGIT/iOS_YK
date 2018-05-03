@@ -172,7 +172,7 @@
     
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layoutView.itemSize = CGSizeMake((WIDHT-48)/2, (WIDHT-48)/2*240/150);
+     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/135);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) collectionViewLayout:layoutView];
     if (HEIGHT==812) {
@@ -531,7 +531,7 @@
 //设置大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==1) {
-        return CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/150);
+        return CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/135);
     }
     
     return CGSizeMake(WIDHT-48,WIDHT-48);

@@ -127,11 +127,9 @@
     
     self.view.backgroundColor =[ UIColor whiteColor];
     
-    
-    
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/150);
+    layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/135);
     
 //    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-170*WIDHT/414) collectionViewLayout:layoutView];
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-30) collectionViewLayout:layoutView];
@@ -425,19 +423,19 @@
         _weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.84);
         _weekNew.toDetailBlock = ^(void){
             //临时判断，五一之前走这个
-            if ([steyHelper validateWithStartTime:@"2018-04-24" withExpireTime:@"2018-04-30"]) {
+//            if ([steyHelper validateWithStartTime:@"2018-04-24" withExpireTime:@"2018-04-30"]) {
                 YKSearchVC *search = [[YKSearchVC alloc] init];
                 search.hidesBottomBarWhenPushed = YES;
                 UINavigationController *nav = weakSelf.tabBarController.viewControllers[1];
                 search.hidesBottomBarWhenPushed = YES;
                 weakSelf.tabBarController.selectedViewController = nav;
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-            }else {
-                YKLinkWebVC *web = [YKLinkWebVC new];
-                web.url = weakSelf.weeknewDic[@"productUrl"];
-                web.hidesBottomBarWhenPushed = YES;
-                [weakSelf.navigationController pushViewController:web animated:YES];
-            }
+//            }else {
+//                YKLinkWebVC *web = [YKLinkWebVC new];
+//                web.url = weakSelf.weeknewDic[@"productUrl"];
+//                web.hidesBottomBarWhenPushed = YES;
+//                [weakSelf.navigationController pushViewController:web animated:YES];
+//            }
         };
         if (!hadtitle3) {
             [headerView addSubview:_weekNew];

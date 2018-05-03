@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Home/Controller/YKHomeVC.m"
-            timestampString = "546427609.143852"
+            timestampString = "547013048.478572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "-cycleScrollView:didSelectItemAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Home/Controller/YKHomeVC.m"
-            timestampString = "546427609.144277"
+            timestampString = "547013048.478683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "536"
-            endingLineNumber = "536"
+            startingLineNumber = "534"
+            endingLineNumber = "534"
             landmarkName = "-cycleScrollView:didSelectItemAtIndex:"
             landmarkType = "7">
          </BreakpointContent>

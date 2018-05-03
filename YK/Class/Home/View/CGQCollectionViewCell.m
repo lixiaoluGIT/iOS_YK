@@ -18,10 +18,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _imageView.contentMode   = UIViewContentModeScaleAspectFill;
+    _imageView.contentMode   = UIViewContentModeScaleAspectFit;
     _imageView.clipsToBounds = YES;
     _tagimage.clipsToBounds = YES;
-    _imageView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
 }
 
 - (void)setProduct:(YKProduct *)product{
@@ -43,7 +43,7 @@
     _detailLabel.text = _goodsName;
     
     _backView.hidden= _tagimage.hidden = product.isHadStock;
-    _imageView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
 }
 
 @end
