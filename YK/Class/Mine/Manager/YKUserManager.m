@@ -86,9 +86,15 @@
             //获取当前用户信息
             [self getUserInforOnResponse:^(NSDictionary *dic) {
                  [self RongCloudConnect];
+                //监测登陆成功的事件
+                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
+                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
             }];
             
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"登录成功" delay:1.2];
+            
+            
+            
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
@@ -527,6 +533,9 @@
             [self getUserInforOnResponse:^(NSDictionary *dic) {
                 //链接融云
                 [self RongCloudConnect];
+                //监测登陆成功的事件
+                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
+                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
             }];
             
             if (onResponse) {
@@ -599,6 +608,9 @@
                 
                 //链接融云
                 [self RongCloudConnect];
+                //监测登陆成功的事件
+                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
+                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
                 
                 if (onResponse) {
                     onResponse(nil);

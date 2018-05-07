@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "DynamicsModel.h"
 
-#define kDynamicsNormalPadding 14
-#define kDynamicsPortraitWidthAndHeight 40
-#define kDynamicsPortraitNamePadding 10
-#define kDynamicsNameDetailPadding 8
-#define kDynamicsNameHeight 17
-#define kDynamicsMoreLessButtonHeight 30
+#define kDynamicsNormalPadding 14//间距
+#define kDynamicsPortraitWidthAndHeight 40//头像宽高
+#define kDynamicsPortraitNamePadding 10//头像昵称间距
+#define kDynamicsNameDetailPadding 10
+#define kDynamicsNameHeight 17//昵称高度
+#define kDynamicsMoreLessButtonHeight 30//查看全文
 #define kDynamicsSpreadButtonHeight 20
 #define kDynamicsGrayBgHeight 51
 #define kDynamicsGrayPicHeight 45
@@ -22,7 +22,7 @@
 #define kDynamicsThumbTopPadding 10
 
 
-#define kDynamicsLineSpacing 5
+#define kDynamicsLineSpacing 5//行间距
 
 typedef void(^ClickUserBlock)(NSString * userID);
 typedef void(^ClickUrlBlock)(NSString * url);

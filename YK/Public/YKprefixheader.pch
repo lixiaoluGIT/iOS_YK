@@ -10,8 +10,8 @@
 #define YKprefixheader_pch
 
 //客服电话
-#define PHONE @"15512805315"//王阳手机号
-//#define PHONE @"010-52894251"//座机号
+//#define PHONE @"15512805315"//王阳手机号
+#define PHONE @"010-52894251"//座机号
 
 #ifdef debug//开发环境
 #define kGtAppId @"IUK1udrw6Z5N2S7pOWfAv6"
@@ -249,6 +249,12 @@
 //#import <SVProgressHUD.h>
 #import "UIImageView+WebCache.h"
 #import "YYKit.h"
+
+#import "MTAConfig.h"
+#import "MTA.h"
+#import <UMCommon/UMCommon.h>           // 公共组件是所有友盟产品的基础组件，必选
+#import <UMAnalytics/MobClick.h>
+
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

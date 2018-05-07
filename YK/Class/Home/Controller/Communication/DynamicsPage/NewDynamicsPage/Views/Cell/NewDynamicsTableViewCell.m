@@ -347,59 +347,58 @@
         _picContainerView.hidden = YES;
     }
     //头条
-    if (model.pagetype == 1) {
-        _grayView.hidden = NO;
-        
-        _grayView.left = _nameLabel.left;
-        _grayView.top = lastView.bottom + kDynamicsNameDetailPadding;
-        _grayView.width = _detailLabel.right - _grayView.left;
-        _grayView.height = kDynamicsGrayBgHeight;
-        
-        [_grayView.thumbImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImgHeader,model.thumb]]];
-        _grayView.dspLabel.height = layout.dspLayout.textBoundingSize.height;
-        _grayView.dspLabel.centerY = _grayView.thumbImg.centerY;
-        _grayView.dspLabel.textLayout = layout.dspLayout;
-        
-        lastView = _grayView;
-    }else{
+//    if (model.pagetype == 1) {
+//        _grayView.hidden = NO;
+//
+//        _grayView.left = _nameLabel.left;
+//        _grayView.top = lastView.bottom + kDynamicsNameDetailPadding;
+//        _grayView.width = _detailLabel.right - _grayView.left;
+//        _grayView.height = kDynamicsGrayBgHeight;
+//
+//        [_grayView.thumbImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImgHeader,model.thumb]]];
+//        _grayView.dspLabel.height = layout.dspLayout.textBoundingSize.height;
+//        _grayView.dspLabel.centerY = _grayView.thumbImg.centerY;
+//        _grayView.dspLabel.textLayout = layout.dspLayout;
+//
+//        lastView = _grayView;
+//    }else{
         _grayView.hidden = YES;
-    }
+//    }
     
     //推广
-    _spreadBtn.left = _nameLabel.left;
-    _spreadBtn.top = lastView.bottom + kDynamicsNameDetailPadding;;
-    
-    if (model.spreadparams.count != 0) {
-        _spreadBtn.hidden = NO;
-        [_spreadBtn setTitle:model.spreadparams[@"name"] forState:UIControlStateNormal];
-        CGSize fitSize = [_spreadBtn sizeThatFits:CGSizeZero];
-        _spreadBtn.width = fitSize.width > _detailLabel.size.width ? _detailLabel.size.width : fitSize.width;
-        _spreadBtn.height = kDynamicsSpreadButtonHeight;
-        
-        lastView = _spreadBtn;
-    }else if (model.companyparams.count != 0){
-        _spreadBtn.hidden = NO;
-        [_spreadBtn setTitle:model.companyparams[@"name"] forState:UIControlStateNormal];
-        CGSize fitSize = [_spreadBtn sizeThatFits:CGSizeZero];
-        _spreadBtn.width = fitSize.width > _detailLabel.size.width ? _detailLabel.size.width : fitSize.width;
-        _spreadBtn.height = kDynamicsSpreadButtonHeight;
-        
-        lastView = _spreadBtn;
-    }else{
-        _spreadBtn.hidden = YES;
-    }
-    
-    //时间
-    _dateLabel.right = self.contentView.right - 20;
-    _dateLabel.top = _portrait.top;
-    NSString * newTime = [self formateDate:model.exttime withFormate:@"yyyyMMddHHmmss"];
-    _dateLabel.text = newTime;
-    CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
-    _dateLabel.width = dateSize.width;
-    _dateLabel.height = kDynamicsNameHeight;
-    _dateLabel.textAlignment = NSTextAlignmentRight;
-    _dateLabel.hidden = YES;
-    
+//    _spreadBtn.l÷ameDetailPadding;;
+//
+//    if (model.spreadparams.count != 0) {
+//        _spreadBtn.hidden = NO;
+//        [_spreadBtn setTitle:model.spreadparams[@"name"] forState:UIControlStateNormal];
+//        CGSize fitSize = [_spreadBtn sizeThatFits:CGSizeZero];
+//        _spreadBtn.width = fitSize.width > _detailLabel.size.width ? _detailLabel.size.width : fitSize.width;
+//        _spreadBtn.height = kDynamicsSpreadButtonHeight;
+//
+//        lastView = _spreadBtn;
+//    }else if (model.companyparams.count != 0){
+//        _spreadBtn.hidden = NO;
+//        [_spreadBtn setTitle:model.companyparams[@"name"] forState:UIControlStateNormal];
+//        CGSize fitSize = [_spreadBtn sizeThatFits:CGSizeZero];
+//        _spreadBtn.width = fitSize.width > _detailLabel.size.width ? _detailLabel.size.width : fitSize.width;
+//        _spreadBtn.height = kDynamicsSpreadButtonHeight;
+//
+//        lastView = _spreadBtn;
+//    }else{
+//        _spreadBtn.hidden = YES;
+//    }
+//
+//    //时间
+//    _dateLabel.right = self.contentView.right - 20;
+//    _dateLabel.top = _portrait.top;
+//    NSString * newTime = [self formateDate:model.exttime withFormate:@"yyyyMMddHHmmss"];
+//    _dateLabel.text = newTime;
+//    CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
+//    _dateLabel.width = dateSize.width;
+//    _dateLabel.height = kDynamicsNameHeight;
+//    _dateLabel.textAlignment = NSTextAlignmentRight;
+//    _dateLabel.hidden = YES;
+//
     //评论图
     _pl.left = _detailLabel.left;
     _pl.top = lastView.bottom + 20;
@@ -418,9 +417,9 @@
     _linkBtn.width = 70;
     _linkBtn.height = 20;
     
-    _linkImage.right = _linkBtn.left-6;
-    _linkImage.centerY = _linkBtn.centerY;
-    [_linkImage sizeToFit];
+//    _linkImage.right = _linkBtn.left-6;
+//    _linkImage.centerY = _linkBtn.centerY;
+//    [_linkImage sizeToFit];
  
    
     
@@ -461,7 +460,7 @@
 //
 //        [_thumbCommentView setWithLikeArr:model.likeArr CommentArr:model.commentArr DynamicsLayout:layout];
 //    }else{
-//        _thumbCommentView.hidden = YES;
+        _thumbCommentView.hidden = YES;
 //    }
 //
 //
@@ -490,50 +489,50 @@
 //        }
 //    };
 }
-#pragma mark - 弹出JRMenu
-- (void)presentMenuController
-{
-    DynamicsModel * model = _layout.model;
-    if (!model.isThumb) {//点赞
-        if (!_jrMenuView) {
-            _jrMenuView = [[JRMenuView alloc] init];
-        }
-        [_jrMenuView setTargetView:_menuBtn InView:self.contentView];
-        _jrMenuView.delegate = self;
-        [_jrMenuView setTitleArray:@[@"点赞",@"评论"]];
-        [self.contentView addSubview:_jrMenuView];
-        [_jrMenuView show];
-    }else{//取消点赞
-        if (!_jrMenuView) {
-            _jrMenuView = [[JRMenuView alloc] init];
-        }
-        [_jrMenuView setTargetView:_menuBtn InView:self.contentView];
-        _jrMenuView.delegate = self;
-        [_jrMenuView setTitleArray:@[@"取消点赞",@"评论"]];
-        [self.contentView addSubview:_jrMenuView];
-        [_jrMenuView show];
-    }
-}
-#pragma mark - 点击JRMenu上的Btn
--(void)hasSelectedJRMenuIndex:(NSInteger)jrMenuIndex
-{
-    DynamicsModel * model = _layout.model;
-    if (jrMenuIndex == 0) {
-        if (!model.isThumb) {
-            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
-                [_delegate DidClickThunmbInDynamicsCell:self];
-            }
-        }else{
-            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCancelThunmbInDynamicsCell:)]) {
-                [_delegate DidClickCancelThunmbInDynamicsCell:self];
-            }
-        }
-    }else{
-        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCommentInDynamicsCell:)]) {
-            [_delegate DidClickCommentInDynamicsCell:self];
-        }
-    }
-}
+//#pragma mark - 弹出JRMenu
+//- (void)presentMenuController
+//{
+//    DynamicsModel * model = _layout.model;
+//    if (!model.isThumb) {//点赞
+//        if (!_jrMenuView) {
+//            _jrMenuView = [[JRMenuView alloc] init];
+//        }
+//        [_jrMenuView setTargetView:_menuBtn InView:self.contentView];
+//        _jrMenuView.delegate = self;
+//        [_jrMenuView setTitleArray:@[@"点赞",@"评论"]];
+//        [self.contentView addSubview:_jrMenuView];
+//        [_jrMenuView show];
+//    }else{//取消点赞
+//        if (!_jrMenuView) {
+//            _jrMenuView = [[JRMenuView alloc] init];
+//        }
+//        [_jrMenuView setTargetView:_menuBtn InView:self.contentView];
+//        _jrMenuView.delegate = self;
+//        [_jrMenuView setTitleArray:@[@"取消点赞",@"评论"]];
+//        [self.contentView addSubview:_jrMenuView];
+//        [_jrMenuView show];
+//    }
+//}
+//#pragma mark - 点击JRMenu上的Btn
+//-(void)hasSelectedJRMenuIndex:(NSInteger)jrMenuIndex
+//{
+//    DynamicsModel * model = _layout.model;
+//    if (jrMenuIndex == 0) {
+//        if (!model.isThumb) {
+//            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
+//                [_delegate DidClickThunmbInDynamicsCell:self];
+//            }
+//        }else{
+//            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCancelThunmbInDynamicsCell:)]) {
+//                [_delegate DidClickCancelThunmbInDynamicsCell:self];
+//            }
+//        }
+//    }else{
+//        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCommentInDynamicsCell:)]) {
+//            [_delegate DidClickCommentInDynamicsCell:self];
+//        }
+//    }
+//}
 #pragma mark - getter
 -(UIImageView *)portrait
 {
@@ -736,7 +735,7 @@
         [_menuBtn setImage:[UIImage imageNamed:@"AlbumOperateMore"] forState:UIControlStateNormal];
         WS(weakSelf);
         [_menuBtn bk_addEventHandler:^(id sender) {
-            [weakSelf presentMenuController];
+//            [weakSelf presentMenuController];
         } forControlEvents:UIControlEventTouchUpInside];
     }
     return _menuBtn;

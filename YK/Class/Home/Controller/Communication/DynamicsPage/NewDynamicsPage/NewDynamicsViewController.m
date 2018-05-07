@@ -38,14 +38,15 @@
     // Do any additional setup after loading the view.
     self.title = @"朋友圈";
     [self setup];
-    [self dragUpToLoadMoreData];
-    [self.view addSubview:self.commentInputTF];
+//    [self dragUpToLoadMoreData];
+//    [self.view addSubview:self.commentInputTF];
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"moment0" ofType:@"plist"];
     NSArray * dataArray = [NSArray arrayWithContentsOfFile:plistPath];
     
 //    [self.layoutsArr removeAllObjects];
     for (id dict in dataArray) {
+        //字典转模型
         DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];
         NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
         [self.layoutsArr addObject:layout];
@@ -53,18 +54,18 @@
 //    [self.dynamicsTable reloadData];
     
     [self performSelector:@selector(refresh) afterDelay:1];
-    //外观代理
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    
-    //修改标题颜色
-    NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    [navigationBar setTitleTextAttributes:dict];
-    
-//    navigationBar.barTintColor = [UIColor colorWithRed:64.0/255.0 green:64.0/255.0 blue:64.0/255.0 alpha:1.0];
-//    navigationBar.tintColor = [UIColor whiteColor];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//    //外观代理
+//    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+//
+//    //修改标题颜色
+//    NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+//    [navigationBar setTitleTextAttributes:dict];
+//
+////    navigationBar.barTintColor = [UIColor colorWithRed:64.0/255.0 green:64.0/255.0 blue:64.0/255.0 alpha:1.0];
+////    navigationBar.tintColor = [UIColor whiteColor];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)refresh{

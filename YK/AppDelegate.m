@@ -513,7 +513,7 @@
     }
     
     //qq登录
-    if ([url.host isEqualToString:@"tencent"]) {
+    if ([url.host isEqualToString:@"qzapp"]) {
         return [TencentOAuth HandleOpenURL:url];
     }
     //支付宝支付

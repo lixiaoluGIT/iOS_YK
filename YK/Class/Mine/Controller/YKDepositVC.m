@@ -175,6 +175,9 @@
     NSDictionary *dict = [notify userInfo];
     if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"9000"]) {
         
+        //付费成功，请将示例中的lixiaoming替换成用户的用户id；请将1000556789替换成流水号，如订单号或时间戳;请将” 新手礼包”替换成用户准备购买的装备名称或购买的实际内容；请将180替换成购买的金额。
+         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149+"}];
+                                                         
         [smartHUD alertText:self.view alert:@"支付成功" delay:1.5];
         [UIView animateWithDuration:0.1 animations:^{
             [self diss];
@@ -202,6 +205,10 @@
     if ([[dict objectForKey:@"codeid"]integerValue]==0) {
      
         [smartHUD alertText:self.view alert:@"支付成功" delay:1.5];
+        
+        //付费成功，请将示例中的lixiaoming替换成用户的用户id；请将1000556789替换成流水号，如订单号或时间戳;请将” 新手礼包”替换成用户准备购买的装备名称或购买的实际内容；请将180替换成购买的金额。
+//        [YKUserManager ]
+        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149+"}];
         [UIView animateWithDuration:0.1 animations:^{
             [self diss];
         }completion:^(BOOL finished) {

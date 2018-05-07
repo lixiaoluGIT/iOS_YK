@@ -27,8 +27,7 @@
 #import "YKLinkWebVC.h"
 #import "YKSearchVC.h"
 #import "YKHomeDesCell.h"
-#import "MTAConfig.h"
-#import "MTA.h"
+
 #import "YKWeekNewView.h"
 #import "DCCycleScrollView.h"
 
