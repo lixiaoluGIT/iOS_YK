@@ -39,7 +39,7 @@
         _height += kDynamicsNameDetailPadding;
         _height += kDynamicsMoreLessButtonHeight;
     }
-    if (_model.photocollections.count != 0) {
+    if (_model.articleImages.count != 0) {
         [self layoutPicture];
         _height += kDynamicsNameDetailPadding;
         _height += _photoContainerSize.height;
@@ -49,10 +49,10 @@
         _height += kDynamicsNameDetailPadding;
         _height += kDynamicsGrayBgHeight;
     }
-    if (_model.spreadparams.count != 0 || _model.companyparams != 0) {//显示推广
-        _height += kDynamicsNameDetailPadding;
-        _height += kDynamicsSpreadButtonHeight;
-    }
+//    if (_model.spreadparams.count != 0 || _model.companyparams != 0) {//显示推广
+//        _height += kDynamicsNameDetailPadding;
+//        _height += kDynamicsSpreadButtonHeight;
+//    }
     
     _height += kDynamicsPortraitNamePadding;
     _height += kDynamicsNameHeight;//时间
@@ -75,14 +75,14 @@
 {
     _detailLayout = nil;
     
-    NSMutableAttributedString * text = [[NSMutableAttributedString alloc] initWithString:_model.dsp];
+    NSMutableAttributedString * text = [[NSMutableAttributedString alloc] initWithString:_model.articleContent];
     text.font = [UIFont systemFontOfSize:14];
     text.lineSpacing = kDynamicsLineSpacing;
     
     NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber | NSTextCheckingTypeLink error:nil];
     
     WS(weakSelf);
-    [detector enumerateMatchesInString:_model.dsp
+    [detector enumerateMatchesInString:_model.articleContent
                                options:kNilOptions
                                  range:text.rangeOfAll
                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
@@ -120,18 +120,18 @@
 - (void)layoutPicture
 {
     self.photoContainerSize = CGSizeZero;
-    self.photoContainerSize = [SDWeiXinPhotoContainerView getContainerSizeWithPicPathStringsArray:_model.photocollections];
+    self.photoContainerSize = [SDWeiXinPhotoContainerView getContainerSizeWithPicPathStringsArray:_model.articleImages];
 }
 - (void)layoutGrayDetailView
 {
-    NSMutableAttributedString * text = [[NSMutableAttributedString alloc] initWithString:_model.title];
-    text.font = [UIFont systemFontOfSize:14];
-    text.lineSpacing = 3;
-    
-    YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(SCREENWIDTH - kDynamicsNormalPadding - kDynamicsPortraitWidthAndHeight - kDynamicsPortraitNamePadding - kDynamicsGrayPicPadding - kDynamicsGrayPicHeight - kDynamicsNameDetailPadding*2 - kDynamicsNormalPadding,kDynamicsGrayBgHeight - kDynamicsGrayPicPadding*2)];
-    container.truncationType = YYTextTruncationTypeEnd;
-    
-    _dspLayout = [YYTextLayout layoutWithContainer:container text:text];
+//    NSMutableAttributedString * text = [[NSMutableAttributedString alloc] initWithString:_model.title];
+//    text.font = [UIFont systemFontOfSize:14];
+//    text.lineSpacing = 3;
+//    
+//    YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(SCREENWIDTH - kDynamicsNormalPadding - kDynamicsPortraitWidthAndHeight - kDynamicsPortraitNamePadding - kDynamicsGrayPicPadding - kDynamicsGrayPicHeight - kDynamicsNameDetailPadding*2 - kDynamicsNormalPadding,kDynamicsGrayBgHeight - kDynamicsGrayPicPadding*2)];
+//    container.truncationType = YYTextTruncationTypeEnd;
+//
+//    _dspLayout = [YYTextLayout layoutWithContainer:container text:text];
 }
 - (void)layoutThumb
 {

@@ -198,6 +198,12 @@
 //获取消息列表
 #define GetMessageList_Ur @"/pushMessage/queryMessage"
 
+/*----------------------------社区模块--------------------------------*/
+//发布接口
+#define Public_Url @"/community/publishArticles"
+#define GetCommunicationList_Url @"/community/ArticlesList"
+
+
 /*----------------------------其它接口--------------------------------*/
 //分享成功的回调接口
 #define ShareSuccess_Url @"/user/shareInfo"
@@ -244,6 +250,7 @@
 #import "YKOrderManager.h"
 #import "YKPayManager.h"
 #import "YKMessageManager.h"
+#import "YKCommunicationManager.h"
 
 #import "BlocksKit+UIKit.h"
 //#import <SVProgressHUD.h>

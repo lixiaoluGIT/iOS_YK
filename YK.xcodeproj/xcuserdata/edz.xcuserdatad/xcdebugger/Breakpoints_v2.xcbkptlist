@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Manager/YKUserManager.m"
-            timestampString = "546243624.195912"
+            timestampString = "547442043.55471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "665"
-            endingLineNumber = "665"
+            startingLineNumber = "679"
+            endingLineNumber = "679"
             landmarkName = "-checkInviteCode:OnResponse:"
             landmarkType = "7">
             <Locations>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Manager/YKUserManager.m"
-            timestampString = "546243651.5209939"
+            timestampString = "547442043.555166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "668"
-            endingLineNumber = "668"
+            startingLineNumber = "682"
+            endingLineNumber = "682"
             landmarkName = "-checkInviteCode:OnResponse:"
             landmarkType = "7">
          </BreakpointContent>
@@ -112,32 +112,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YK/Class/Home/Controller/YKHomeVC.m"
-            timestampString = "547038398.331827"
+            filePath = "YK/Class/Mine/Manager/YKUserManager.m"
+            timestampString = "547442043.555259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "529"
-            endingLineNumber = "529"
-            landmarkName = "-cycleScrollView:didSelectItemAtIndex:"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
+            landmarkName = "-upLoadPushID"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YK/Class/Home/Controller/YKHomeVC.m"
-            timestampString = "547038398.331902"
+            filePath = "YK/Class/Communication/Controller/NewDynamicsViewController.m"
+            timestampString = "547469629.76696"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "534"
-            endingLineNumber = "534"
-            landmarkName = "-cycleScrollView:didSelectItemAtIndex:"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "-scrollViewWillBeginDragging:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Communication/Model/NewDynamicsLayout.m"
+            timestampString = "547469629.767465"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-resetLayout"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

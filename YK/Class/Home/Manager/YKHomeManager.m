@@ -24,7 +24,7 @@
 - (void)getMyHomePageDataWithNum:(NSInteger)Num Size:(NSInteger)Size
                       OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url = [NSString stringWithFormat:@"%@?num=1&size=%ld",GetHomePage_Url,Size];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {

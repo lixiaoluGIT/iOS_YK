@@ -22,6 +22,7 @@
     _imageView.clipsToBounds = YES;
     _tagimage.clipsToBounds = YES;
     _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+    _backView.hidden= _tagimage.hidden = YES;
 }
 
 - (void)setProduct:(YKProduct *)product{
@@ -44,6 +45,7 @@
     
     _backView.hidden= _tagimage.hidden = product.isHadStock;
     _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+
 }
 
 @end

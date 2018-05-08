@@ -146,6 +146,9 @@
     UILabel *Vline = [[UILabel alloc]init];
     Vline.backgroundColor = mainColor;
     Vline.frame = CGRectMake(WIDHT/2,64+22,1, 12);
+    if (HEIGHT == 812) {
+        Vline.frame = CGRectMake(WIDHT/2,64+22+25,1, 12);
+    }
     [self.view addSubview:Vline];
 }
 //

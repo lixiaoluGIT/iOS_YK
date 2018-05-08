@@ -72,6 +72,8 @@
         imgV.frame = CGRectMake(i*SCREEN_WIDTH, 0, SCREEN_WIDTH, self.frame.size.height);
         
         [self.SV addSubview:imgV];
+        [imgV setContentMode:UIViewContentModeScaleAspectFill];
+        imgV.layer.masksToBounds = YES;
     }
     
     ///< 初始化pageControl
@@ -87,8 +89,12 @@
     
     ///< 设置定时器
     _currentPoint = CGPointMake(SCREEN_WIDTH, 0);///< 当前偏移量赋初值
-    [self setupTimer];
-    [self setupListen];
+    
+    if (imagesArr.count>1) {
+        [self setupTimer];
+        [self setupListen];
+    }
+    
 
     
     // 如果图片数量小于二 将pageControl隐藏

@@ -289,13 +289,13 @@
     _portrait.left = 14;
     _portrait.top = 24;
     _portrait.size = CGSizeMake(kDynamicsPortraitWidthAndHeight, kDynamicsPortraitWidthAndHeight);
-    [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.portrait]]];
+    [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.headPhoto]]];
     _portrait.layer.masksToBounds = YES;
     _portrait.layer.cornerRadius = 20;
     _portrait.backgroundColor = [UIColor whiteColor];
     
     //昵称
-    _nameLabel.text = model.nick;
+    _nameLabel.text = model.userNickName;
     _nameLabel.centerY = _portrait.centerY;
     _nameLabel.left = _portrait.right + 10;
     CGSize nameSize = [_nameLabel sizeThatFits:CGSizeZero];
@@ -333,14 +333,14 @@
         _moreLessDetailBtn.hidden = YES;
     }
     //图片集
-    if (model.photocollections.count != 0) {
+    if (model.articleImages.count != 0) {
         _picContainerView.hidden = NO;
 
         _picContainerView.left = _nameLabel.left;
         _picContainerView.top = lastView.bottom + 10;
         _picContainerView.width = layout.photoContainerSize.width;
         _picContainerView.height = layout.photoContainerSize.height;
-        _picContainerView.picPathStringsArray = model.photocollections;
+        _picContainerView.picPathStringsArray = model.articleImages;
         
         lastView = _picContainerView;
     }else{
@@ -411,6 +411,12 @@
     _plNum.width = 20;
     _plNum.height = 15;
     _plNum.text = @"12";
+    
+    if (!model.isThumb){
+         _pl.image = [UIImage imageNamed:@"dianzan"];
+    }else {
+         _pl.image = [UIImage imageNamed:@"weidianzan"];
+    }
     
 //    _linkImage.right = _plNum.right+100;
 //    _linkImage.centerY = _plNum.centerY;
@@ -491,7 +497,28 @@
 //            [weakSelf.delegate DynamicsCell:weakSelf didClickUrl:nil PhoneNum:phoneNum];
 //        }
 //    };
+    
+    
+    //添加手势
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (!model.isThumb) {//未点赞
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
+                [_delegate DidClickThunmbInDynamicsCell:self];
+            }
+        }else{//已点赞
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCancelThunmbInDynamicsCell:)]) {
+                [_delegate DidClickCancelThunmbInDynamicsCell:self];
+            }
+        }
+    }];
+    [_pl setUserInteractionEnabled:YES];
+    [_pl addGestureRecognizer:tap];
+    
 }
+
+
+
 //#pragma mark - 弹出JRMenu
 //- (void)presentMenuController
 //{
@@ -546,7 +573,7 @@
         WS(weakSelf);
         UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
-                [weakSelf.delegate DynamicsCell:weakSelf didClickUser:weakSelf.layout.model.userid];
+                [weakSelf.delegate DynamicsCell:weakSelf didClickUser:weakSelf.layout.model.userId];
             }
         }];
         [_portrait addGestureRecognizer:tapGR];
@@ -562,7 +589,7 @@
         WS(weakSelf);
         UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
-                [weakSelf.delegate DynamicsCell:weakSelf didClickUser:weakSelf.layout.model.userid];
+                [weakSelf.delegate DynamicsCell:weakSelf didClickUser:weakSelf.layout.model.userId];
             }
         }];
         [_nameLabel addGestureRecognizer:tapGR];
@@ -668,8 +695,7 @@
     if (!_dz) {
         _dz = [UIImageView new];
         _dz.image = [UIImage imageNamed:@"dianzan"];
-        //        _plNum.textColor = [UIColor lightGrayColor];
-        //        _plNum.font = [UIFont systemFontOfSize:13];
+        
     }
     return _dz;
 }
@@ -677,8 +703,8 @@
 {
     if (!_dzNum) {
         _dzNum = [YYLabel new];
-        _dzNum.textColor = [UIColor lightGrayColor];
-        _dzNum.font = [UIFont systemFontOfSize:13];
+        _dzNum.textColor = mainColor;
+        _dzNum.font = PingFangSC_Semibold(14);
     }
     return _dzNum;
 }

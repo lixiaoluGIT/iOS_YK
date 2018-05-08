@@ -16,14 +16,31 @@
 #import "SDTimeLineRefreshHeader.h"//下拉刷新控件
 #import "YKBaseScrollView.h"
 
+#import "YKSelectClothToPubVC.h"
+
 @interface NewDynamicsViewController ()
+{
+    CGFloat lastContentOffset;
+    
+}
 
 @property(nonatomic,strong)SDTimeLineRefreshHeader * refreshHeader;
 @property(nonatomic,strong)UISegmentedControl * segment;
 
+@property (nonnull,strong)NSMutableArray * dataArray;
+@property (nonatomic, assign) NSInteger pageNum;
+
+
 @end
 
 @implementation NewDynamicsViewController
+
+- (NSMutableArray *)dataArray{
+    if (_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
 
 - (instancetype)init
 {
@@ -43,19 +60,32 @@
     [self dragDownToLoadMoreData];
 //    [self.view addSubview:self.commentInputTF];
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"moment0" ofType:@"plist"];
-    NSArray * dataArray = [NSArray arrayWithContentsOfFile:plistPath];
+//    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"moment0" ofType:@"plist"];
+//    NSArray * dataArray = [NSArray arrayWithContentsOfFile:plistPath];
+    
+    _pageNum = 1;
+    [self refreshData];
+    WeakSelf(weakSelf)
+    self.dynamicsTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _pageNum = 1;
+        [weakSelf refreshData];
+    }];
+    
+    self.dynamicsTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNum++;
+        [weakSelf getMoreData];
+    }];
     
 //    [self.layoutsArr removeAllObjects];
-    for (id dict in dataArray) {
-        //字典转模型
-        DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];
-        NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
-        [self.layoutsArr addObject:layout];
-    }
+//    for (id dict in dataArray) {
+//        //字典转模型
+//        DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];
+//        NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
+//        [self.layoutsArr addObject:layout];
+//    }
 //    [self.dynamicsTable reloadData];
     
-    [self performSelector:@selector(refresh) afterDelay:0.1];
+//    [self performSelector:@selector(refresh) afterDelay:0.1];
 //    //外观代理
 //    UINavigationBar *navigationBar = self.navigationController.navigationBar;
 //
@@ -77,15 +107,77 @@
     [public mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(self.view.mas_bottom).offset(-120);
+        if (HEIGHT==812) {
+            make.top.equalTo(self.view.mas_bottom).offset(-150);
+        }
     }];
     [public addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
+- (void)refreshData{
+    //请求列表信息
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
+        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"]];
+        
+        [self.dynamicsTable.mj_header endRefreshing];
+        [self.layoutsArr removeAllObjects];
+        if (currentArray.count==0) {
+            [self.dynamicsTable.mj_footer endRefreshing];
+        }else {
+            [self.dynamicsTable.mj_footer endRefreshing];
+            _dataArray = [NSMutableArray arrayWithArray:currentArray];
+            
+        }
+        
+        for (id dict in _dataArray) {
+            //字典转模型
+            DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];//字典转模型
+            NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
+            [self.layoutsArr addObject:layout];
+        }
+        
+        [self.dynamicsTable reloadData];
+    }];
+}
+//上拉加载
+- (void)getMoreData{
+    //请求列表信息
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
+        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"]];
+        
+        [self.dynamicsTable.mj_footer endRefreshing];
+        if (currentArray.count==0) {
+            [self.dynamicsTable.mj_footer endRefreshing];
+            return ;
+        }else {
+            [self.dynamicsTable.mj_footer endRefreshing];
+            for (int i=0; i<currentArray.count; i++) {
+                [_dataArray addObject:currentArray[i]];
+            }
+            
+            [self.dynamicsTable reloadData];
+        }
+        
+        for (id dict in _dataArray) {
+            //字典转模型
+            DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];//字典转模型
+            NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
+            [self.layoutsArr addObject:layout];
+        }
+        
+        [self.dynamicsTable reloadData];
+    }];
+}
 - (void)Public{
-    TopPublicVC *hmpositionVC = [[TopPublicVC alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hmpositionVC];
-    [self presentViewController:nav animated:YES completion:nil];
+    YKSelectClothToPubVC *sele = [[YKSelectClothToPubVC alloc]init];
+    sele.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:sele animated:YES];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:sele];
+//        [self presentViewController:nav animated:YES completion:nil];
+//    TopPublicVC *hmpositionVC = [[TopPublicVC alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hmpositionVC];
+//    [self presentViewController:nav animated:YES completion:nil];
 }
 - (void)refresh{
      [self.dynamicsTable reloadData];
@@ -117,27 +209,20 @@
 #pragma mark - 下啦刷新
 - (void)dragDownToLoadMoreData
 {
-    self.dynamicsTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self loadMoreData];
-            }];
-//    [self.dynamicsTable.mj_header beginRefreshing];
-//    // 添加默认的上拉刷新
-//    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-//    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-//
-//    // 设置文字
-//    [footer setTitle:@"点击或上拉加载更多" forState:MJRefreshStateIdle];
-//    [footer setTitle:@"加载中......" forState:MJRefreshStateRefreshing];
-//    [footer setTitle:@"没有更多数据了" forState:MJRefreshStateNoMoreData];
-//
-//    // 设置字体
-//    footer.stateLabel.font = [UIFont systemFontOfSize:14];
-//
-//    // 设置颜色
-//    footer.stateLabel.textColor = [UIColor grayColor];
-//
-//    // 设置footer
-//    self.dynamicsTable.mj_header = footer;
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:2 Size:10 OnResponse:^(NSDictionary *dic) {
+        [self.dynamicsTable.mj_header endRefreshing];
+        NSArray * dataArray = [NSArray arrayWithArray:dic[@"data"]];
+        
+        [self.layoutsArr removeAllObjects];
+        for (id dict in dataArray) {
+            //字典转模型
+            DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];//字典转模型
+            NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
+            [self.layoutsArr addObject:layout];
+        }
+        
+        [self.dynamicsTable reloadData];
+    }];
 }
 #pragma mark - 上拉加载更多数据
 - (void)dragUpToLoadMoreData
@@ -219,6 +304,17 @@
    
     if (scrollView == self.dynamicsTable)
     {
+        
+        if (scrollView.contentOffset.y< lastContentOffset )
+        {
+            //向上
+            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+        } else if (scrollView. contentOffset.y >lastContentOffset )
+        {
+            //向下
+            [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+        }
+        
         CGFloat sectionHeaderHeight = 69; //sectionHeaderHeight
         if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
             scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
@@ -245,19 +341,9 @@
     return _commentInputTF;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+         lastContentOffset = scrollView.contentOffset.y;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

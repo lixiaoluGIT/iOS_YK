@@ -245,10 +245,10 @@
 {
     UILabel *label = [[self alloc] init];
     label.font = MJRefreshLabelFont;
-    label.textColor = [UIColor whiteColor];
+    label.textColor = mainColor;
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     label.textAlignment = NSTextAlignmentCenter;
-    label.backgroundColor = mainColor;
+    label.backgroundColor = [UIColor whiteColor];
     return label;
 }
 

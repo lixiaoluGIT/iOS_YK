@@ -191,31 +191,31 @@
             image.image = [UIImage imageNamed:@"shiyongzhong"];
            
         }
-        if (cardType==3) {//季卡
-            des.text = @"年卡剩余有效期";
-        }
-        if (cardType==1) {//月卡
-            des.text = @"月卡剩余有效期";
-        }
-        if (cardType==2) {//年卡
-            des.text = @"季卡剩余有效期";
-        }
+//        if (cardType==3) {//季卡
+//            des.text = @"年卡剩余有效期";
+//        }
+//        if (cardType==1) {//月卡
+//            des.text = @"月卡剩余有效期";
+//        }
+//        if (cardType==2) {//年卡
+//            des.text = @"季卡剩余有效期";
+//        }
         
         [btn setTitle:@"续费" forState:UIControlStateNormal];
     }
     if (depositStatus == 2 || depositStatus == 3) {//无押金或已过期
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         image.image = [UIImage imageNamed:@"zanting-2"];
-        //判断卡类型
-        if (cardType==3) {//季卡
-            des.text = @"年卡剩余有效期";
-        }
-        if (cardType==1) {//月卡
-            des.text = @"月卡剩余有效期";
-        }
-        if (cardType==2) {//年卡
-            des.text = @"季卡剩余有效期";
-        }
+//        //判断卡类型
+//        if (cardType==3) {//季卡
+//            des.text = @"年卡剩余有效期";
+//        }
+//        if (cardType==1) {//月卡
+//            des.text = @"月卡剩余有效期";
+//        }
+//        if (cardType==2) {//年卡
+//            des.text = @"季卡剩余有效期";
+//        }
         [btn setTitle:@"充值" forState:UIControlStateNormal];
     }
  

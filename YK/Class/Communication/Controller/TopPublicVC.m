@@ -140,19 +140,14 @@
 }
 
 - (void)Public{
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-                [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-                [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"发布成功" delay:1.2];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            [self leftAction];
-            
-        });
-        
-    });
+    if (_imageArray.count==0) {
+        [smartHUD alertText:self.view alert:@"请添加要晒的图片" delay:1.4];
+        return;
+    }
+    
+    [[YKCommunicationManager sharedManager]publicWithImageArray:_imageArray clothingId:@"2" text:textView.text OnResponse:^(NSDictionary *dic) {
+        [self leftAction];
+    }];
 }
 
 #pragma mark - UIbutton event
@@ -214,14 +209,14 @@
         [_editv addSubview:imgv];
         
         UIButton *delete = [UIButton buttonWithType:UIButtonTypeCustom];
-        delete.frame = CGRectMake(width-20,-20, 40, 40);
+        delete.frame = CGRectMake(width-25,0, 25, 25);
 //        delete.backgroundColor = [UIColor greenColor];
         [delete setImage:[UIImage imageNamed:@"jian"] forState:UIControlStateNormal];
         [delete addTarget:self action:@selector(deleteEvent:) forControlEvents:UIControlEventTouchUpInside];
         delete.tag = 10+i;
         [imgv addSubview:delete];
-        [imgv setContentMode:UIViewContentModeScaleAspectFit];
-//        imgv.layer.masksToBounds = YES;
+        [imgv setContentMode:UIViewContentModeScaleAspectFill];
+        imgv.layer.masksToBounds = YES;
         
         if (i == _imageArray.count - 1)
         {

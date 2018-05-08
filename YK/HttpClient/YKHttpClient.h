@@ -52,6 +52,8 @@
  */
 +(void)uploadPicsUrl:(NSString *)url
                token:(NSDictionary *)dict
+          clothingId:(NSString *)clothingId
+                text:(NSString *)text
                  pic:(NSArray *)pics
              success:(void(^)(NSDictionary *dict))success
              failure:(void(^)(NSError *error))failure;

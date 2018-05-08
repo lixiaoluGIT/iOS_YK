@@ -509,7 +509,7 @@
         //推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
         ti.frame = CGRectMake(0, _banner2.frame.size.height + _banner2.frame.origin.y,WIDHT, 100);
-//        ti.backgroundColor = [UIColor redColor];
+        ti.backgroundColor = [UIColor redColor];
         if (!hadtitle2) {
             [headerView addSubview:ti];
             hadtitle2 = YES;

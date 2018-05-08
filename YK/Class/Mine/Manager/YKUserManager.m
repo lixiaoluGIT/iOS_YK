@@ -321,9 +321,11 @@
     NSString *channelId;
     if ([app_Name isEqualToString:@"女神的衣柜"]) {
         channelId = @"1";
-    }
+    }else
     if ([app_Name isEqualToString:@"共享衣橱"]) {
         channelId = @"2";
+    }else {
+        channelId = @"0";
     }
     
     NSString *url = [NSString stringWithFormat:@"%@?pushId=%@&channel=%@",upLoadPushID_Url,s,channelId];

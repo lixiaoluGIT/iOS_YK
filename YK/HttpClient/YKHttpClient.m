@@ -275,45 +275,55 @@
     
 }
 
-
-+(void)uploadPicsUrl:(NSString *)url token:(NSDictionary *)dict pic:(NSArray *)pics success:(void(^)(NSDictionary *dict))success failure:(void(^)(NSError *error))failure{
-    
+//上传图片和文字
++(void)uploadPicsUrl:(NSString *)url
+               token:(NSDictionary *)dict
+          clothingId:(NSString *)clothingId
+                text:(NSString *)text
+                 pic:(NSArray *)pics
+             success:(void(^)(NSDictionary *dict))success
+             failure:(void(^)(NSError *error))failure{
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:Token forHTTPHeaderField:@"X-Auth-Token"];
+    [manager.securityPolicy setAllowInvalidCertificates:YES];
     NSString *api=[NSString stringWithFormat:@"%@%@",BaseUrl,url];
     [manager POST:api parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
-         // 上传 多张图片
+         //文字保存到表单
+         NSData *textData = [text dataUsingEncoding:NSUTF8StringEncoding];
+         NSData *clothingIdData = [@"2" dataUsingEncoding:NSUTF8StringEncoding];
+         //text为后台参数名
+         [formData appendPartWithFormData:clothingIdData name:@"clothingId"];
+         [formData appendPartWithFormData:textData name:@"textContent"];
+         //图片保存到表单
          for(NSInteger i = 0; i <pics.count; i++)
          {
+             //图片转二进制
              NSData * imageData = [SteyUtil imageData:pics[i]];
-             // 上传的参数名
-             NSString * Name = @"files";
              
-             // 上传filename
+             // 上传的参数名，跟后台保持一直
+             NSString * Name = @"imgList";
+             // 上传filename，可以随意写
              NSString * fileName = @"default.jpg";
-             
              [formData appendPartWithFileData:imageData name:Name fileName:fileName mimeType:@"image/jpeg"];
-             
-         }
+            }
          
      }
           success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         
          NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-         //        NSLog(@"%@",result);
-         
+            NSLog(@"%@",result);
          NSDictionary *dict =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-         
-         // NSDictionary *dict = [NSJSONSerialization JSONObjectWithStream:responseObject options:NSJSONReadingAllowFragments error:nil];
          success(dict);
          
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         //         NSLog(@"错误 %@", error.localizedDescription);
+         NSLog(@"错误 %@", error.localizedDescription);
          failure(error);
      }];
 }

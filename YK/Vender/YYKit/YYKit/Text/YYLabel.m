@@ -306,7 +306,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 }
 
 - (UIFont *)_defaultFont {
-    return [UIFont systemFontOfSize:17];
+    return [UIFont boldSystemFontOfSize:17];
 }
 
 - (NSShadow *)_shadowFromProperties {
