@@ -13,6 +13,11 @@
 
 
 @interface NewDynamicsViewController : UIViewController
+{
+    CGFloat lastContentOffset;
+    UIButton *publicBtn;
+    
+}
 
 @property(nonatomic,copy)NSString * dynamicsUserId;
 @property(nonatomic,strong)UITableView * dynamicsTable;

@@ -58,7 +58,7 @@
 //社区列表展示
 - (void)requestCommunicationListWithNum:(NSInteger)Num Size:(NSInteger)Size OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url = [NSString stringWithFormat:@"%@?articleStatus=0&page=%ld&size=%ld",GetCommunicationList_Url,Num,Size];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
@@ -70,9 +70,50 @@
             onResponse(dic);
         }
         
-        
-        
     }];
 }
 
+- (void)setLikeCommunicationWithArticleId:(NSString *)articleId
+                               OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    if ([Token length]==0) {
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:2];
+        return;
+    }
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@?articleId=%@",Like_Url,articleId];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+       
+    [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] intValue] == 200) {
+             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"点赞成功" delay:1.5];
+            if (onResponse) {
+                onResponse(dic);
+            }
+        }
+       
+    }];
+}
+
+//取消点赞
+- (void)cancleLikeCommunicationWithArticleId:(NSString *)articleId
+                                  OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    if ([Token length]==0) {
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:2];
+        return;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@?articleId=%@",Like_Url,articleId];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        if ([dic[@"status"] intValue] == 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"取消点赞" delay:1.5];
+            if (onResponse) {
+                onResponse(dic);
+            }
+        }
+        
+    }];
+}
 @end

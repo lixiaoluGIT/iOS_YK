@@ -50,7 +50,7 @@
 @property(nonatomic,strong)SDWeiXinPhotoContainerView *picContainerView;
 @property(nonatomic,strong)NewDynamicsGrayView * grayView;
 @property(nonatomic,strong)UIButton * spreadBtn;
-@property(nonatomic,strong)YYLabel * dateLabel;
+@property(nonatomic,strong)UILabel * dateLabel;
 @property(nonatomic,strong)UIImageView * pl;
 @property(nonatomic,strong)YYLabel * plNum;
 @property(nonatomic,strong)UIImageView * dz;

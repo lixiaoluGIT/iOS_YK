@@ -19,15 +19,12 @@
 #import "YKSelectClothToPubVC.h"
 
 @interface NewDynamicsViewController ()
-{
-    CGFloat lastContentOffset;
-    
-}
+
 
 @property(nonatomic,strong)SDTimeLineRefreshHeader * refreshHeader;
 @property(nonatomic,strong)UISegmentedControl * segment;
 
-@property (nonnull,strong)NSMutableArray * dataArray;
+@property (nonatomic, nonnull,strong)NSMutableArray * dataArray;
 @property (nonatomic, assign) NSInteger pageNum;
 
 
@@ -51,19 +48,26 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    if ([Token length] == 0) {
+        [self refreshData];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"朋友圈";
     [self setup];
-    [self dragUpToLoadMoreData];
-    [self dragDownToLoadMoreData];
+//    [self dragUpToLoadMoreData];
+//    [self dragDownToLoadMoreData];
 //    [self.view addSubview:self.commentInputTF];
     
 //    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"moment0" ofType:@"plist"];
 //    NSArray * dataArray = [NSArray arrayWithContentsOfFile:plistPath];
     
     _pageNum = 1;
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [self refreshData];
     WeakSelf(weakSelf)
     self.dynamicsTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -101,17 +105,17 @@
     
     //我要晒图按钮
     
-    UIButton *public = [UIButton buttonWithType:UIButtonTypeCustom];
-    [public setBackgroundImage:[UIImage imageNamed:@"anniu"] forState:UIControlStateNormal];
-    [self.view addSubview:public];
-    [public mas_makeConstraints:^(MASConstraintMaker *make) {
+    publicBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [publicBtn setBackgroundImage:[UIImage imageNamed:@"anniu"] forState:UIControlStateNormal];
+    [self.view addSubview:publicBtn];
+    [publicBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(self.view.mas_bottom).offset(-120);
         if (HEIGHT==812) {
             make.top.equalTo(self.view.mas_bottom).offset(-150);
         }
     }];
-    [public addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
+    [publicBtn addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -138,6 +142,7 @@
         }
         
         [self.dynamicsTable reloadData];
+    
     }];
 }
 //上拉加载
@@ -170,6 +175,10 @@
     }];
 }
 - (void)Public{
+    if ([Token length] == 0) {
+        [smartHUD alertText:self.view alert:@"请先登录" delay:1.5];
+        return;
+    }
     YKSelectClothToPubVC *sele = [[YKSelectClothToPubVC alloc]init];
     sele.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sele animated:YES];
@@ -271,14 +280,7 @@
         _dynamicsTable.dataSource = self;
         _dynamicsTable.delegate = self;
         _dynamicsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-//        WeakSelf(weakSelf)
-//        YKPublicCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKPublicCell" owner:self options:nil][0];
-//        bagCell.PublicBlock = ^(void){
-//            TopPublicVC *hmpositionVC = [[TopPublicVC alloc] init];
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hmpositionVC];
-//                    [weakSelf presentViewController:nav animated:YES completion:nil];
-//        };
+
         YKBaseScrollView *cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.58)];
         
         cycleView.imagesArr = @[@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612217&di=f0a200f1da4510619be8ef47cc9cd74c&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0193dd57ad44300000018c1b6ea932.jpg%402o.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612218&di=7e6eadd43105fdd712e9187d5d4f703b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01b5f55780cfca0000018c1b5326f9.jpg%402o.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612215&di=bf7a100c20dca202bd1f2427f6cc229b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01973759a45b87a801211d25e6b311.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612213&di=377404f36aefd024c6a4eec3f3ce8a2b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01649759a8c8f6a8012028a9e6dd1a.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525693155271&di=6c5c0ff1c2de534ef6a90e6e12acc46b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014bcd585e1c14a801219c7738e3c4.png%402o.jpg"];
@@ -291,12 +293,12 @@
             _dynamicsTable.estimatedRowHeight = 0;
         }
 
-        UITapGestureRecognizer * tableViewGesture = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-            [_commentInputTF resignFirstResponder];
-        }];
-        
-        tableViewGesture.cancelsTouchesInView = NO;
-        [_dynamicsTable addGestureRecognizer:tableViewGesture];
+//        UITapGestureRecognizer * tableViewGesture = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+//            [_commentInputTF resignFirstResponder];
+//        }];
+//
+//        tableViewGesture.cancelsTouchesInView = NO;
+//        [_dynamicsTable addGestureRecognizer:tableViewGesture];
     }
     return _dynamicsTable;
 }
@@ -342,7 +344,10 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    if (scrollView==_dynamicsTable) {
          lastContentOffset = scrollView.contentOffset.y;
+    }
+    
 }
 
 

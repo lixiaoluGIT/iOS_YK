@@ -11,6 +11,55 @@
 @implementation NewDynamicsViewController (Delegate)
 
 #pragma mark - TableViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    if (scrollView==self.dynamicsTable) {
+        lastContentOffset = scrollView.contentOffset.y;
+    }
+    
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    [publicBtn setNeedsUpdateConstraints];
+    if (scrollView == self.dynamicsTable)
+    {
+        
+        if (scrollView.contentOffset.y< lastContentOffset )
+        {
+            //向上
+//            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+//            NSLog(@"向上");
+            [UIView animateWithDuration:0.3 animations:^{
+               
+                [publicBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self.view.mas_centerX);
+                    make.top.equalTo(self.view.mas_bottom).offset(-120);
+                    if (HEIGHT==812) {
+                        make.top.equalTo(self.view.mas_bottom).offset(-150);
+                    }
+                }];
+            }];
+            [publicBtn.superview layoutIfNeeded];//强制绘制
+        } else if (scrollView. contentOffset.y >lastContentOffset )
+        {
+            //向下
+//            NSLog(@"向下");
+            [UIView animateWithDuration:0.3 animations:^{
+//                [publicBtn layoutIfNeeded];//这里是关键
+                
+                [publicBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self.view.mas_centerX);
+                    make.top.equalTo(self.view.mas_bottom);
+                    if (HEIGHT==812) {
+                        make.top.equalTo(self.view.mas_bottom);
+                    }
+                }];
+            }];
+            [publicBtn.superview layoutIfNeeded];//强制绘制
+//            [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+        }
+    
+    }
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
@@ -32,13 +81,13 @@
     [JRMenuView dismissAllJRMenu];
 }
 #pragma mark - ScollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [JRMenuView dismissAllJRMenu];//收回JRMenuView
-}
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [self.commentInputTF resignFirstResponder];
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    [JRMenuView dismissAllJRMenu];//收回JRMenuView
+//}
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+//{
+//    [self.commentInputTF resignFirstResponder];
+//}
 #pragma mark - NewDynamiceCellDelegate
 -(void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUser:(NSString *)userId
 {
@@ -68,13 +117,22 @@
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
-
-    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"12345678910",@"userid",@"Andy",@"nick", nil];
-    NSMutableArray * newThumbArr = [NSMutableArray arrayWithArray:model.optthumb];
-    [newThumbArr addObject:dic];
-    model.optthumb = [newThumbArr copy];
-    [layout resetLayout];
-    [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    //点赞
+    [[YKCommunicationManager sharedManager]setLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
+        //把当前userid加入点赞数组
+        [model.fabulous addObject:[YKUserManager sharedManager].user.userId];
+        //刷新当前cell
+        [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+//
+//    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"12345678910",@"userid",@"Andy",@"nick", nil];
+//    NSMutableArray * newThumbArr = [NSMutableArray arrayWithArray:model.fabulous];
+//    [newThumbArr addObject:dic];
+//
+//    model.fabulous = [newThumbArr copy];
+////    [layout resetLayout];
+//    [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 //取消点赞
 -(void)DidClickCancelThunmbInDynamicsCell:(NewDynamicsTableViewCell *)cell
@@ -82,19 +140,26 @@
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
-
-    NSMutableArray * newThumbArr = [NSMutableArray arrayWithArray:model.optthumb];
-    WS(weakSelf);
-    [newThumbArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDictionary * thumbDic = obj;
-        if ([thumbDic[@"userid"] isEqualToString:@"12345678910"]) {
-            [newThumbArr removeObject:obj];
-            model.optthumb = [newThumbArr copy];
-            [layout resetLayout];
-            [weakSelf.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            *stop = YES;
-        }
+    
+    [[YKCommunicationManager sharedManager]cancleLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
+        //把当前userid加入点赞数组
+        [model.fabulous removeObject:[YKUserManager sharedManager].user.userId];
+        //刷新当前cell
+        [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
+
+//    NSMutableArray * newThumbArr = [NSMutableArray arrayWithArray:model.fabulous];
+//    WS(weakSelf);
+//    [newThumbArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSDictionary * thumbDic = obj;
+//        if ([thumbDic[@"userid"] isEqualToString:@"12345678910"]) {
+//            [newThumbArr removeObject:obj];
+//            model.fabulous = [newThumbArr copy];
+//            [layout resetLayout];
+//            [weakSelf.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//            *stop = YES;
+//        }
+//    }];
 }
 -(void)DidClickCommentInDynamicsCell:(NewDynamicsTableViewCell *)cell
 {
@@ -111,6 +176,20 @@
 }
 - (void)DidClickDeleteInDynamicsCell:(NewDynamicsTableViewCell *)cell
 {
+    
+    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
+    NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
+    DynamicsModel * model = layout.model;
+    
+    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+    detail.hidesBottomBarWhenPushed = YES;
+    detail.productId = model.clothingId;
+    detail.titleStr = @"商品详情";
+    detail.productId = @"438";
+    [self.navigationController pushViewController:detail animated:YES];
+    
+    
+    
 //    WS(weakSelf);
 //    [UIAlertView bk_showAlertViewWithTitle:nil message:@"是否确定删除朋友圈" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
 //        if (buttonIndex == 1) {

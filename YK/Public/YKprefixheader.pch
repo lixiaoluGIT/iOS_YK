@@ -201,7 +201,11 @@
 /*----------------------------社区模块--------------------------------*/
 //发布接口
 #define Public_Url @"/community/publishArticles"
+//列表接口
 #define GetCommunicationList_Url @"/community/ArticlesList"
+//点赞接口
+#define Like_Url @"/community/articlesFabulous"
+
 
 
 /*----------------------------其它接口--------------------------------*/

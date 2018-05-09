@@ -19,19 +19,24 @@ extern CGFloat maxContentLabelHeight;
 {
     NSLog(@"DynamicsModel找不到Key----------------------------%@",key);
 }
--(void)setOptthumb:(NSMutableArray *)optthumb
+-(void)setOptthumb:(NSMutableArray *)fabulous
 {
-    _optthumb = optthumb;
-    self.likeArr = optthumb;
+    _fabulous = fabulous;
+//    self.likeArr = optthumb;
     
-    if (optthumb.count != 0 && optthumb != nil) {
+    //未登录不计点赞
+    if ([Token length] == 0) {
+        _isThumb = NO;
+    }
+    
+    if (_fabulous.count != 0 && _fabulous != nil) {
         __block BOOL hasUserID = NO;
-        [optthumb enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_fabulous enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             //这里加入if判断如果存在于点赞列表则显示取消点赞
-            //  if(){
+              if([_fabulous containsObject:[YKUserManager sharedManager].user.userId]){
                 _isThumb = YES;
                 hasUserID = YES;
-            //        }
+                    }
         }];
         if (!hasUserID) {
             _isThumb = NO;
@@ -83,7 +88,7 @@ extern CGFloat maxContentLabelHeight;
     
     YYTextLayout * layout = [YYTextLayout layoutWithContainer:container text:text];
     
-    if (layout.rowCount <= 6) {
+    if (layout.rowCount <= 3) {
         _shouldShowMoreButton = NO;
     }else{
         _shouldShowMoreButton = YES;

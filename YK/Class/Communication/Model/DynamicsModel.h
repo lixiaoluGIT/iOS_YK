@@ -12,12 +12,12 @@
 
 @interface DynamicsModel : NSObject
 
-//@property(nonatomic,strong)NSString * pid;//动态页面ID
+@property(nonatomic,strong)NSString * articleId;//动态页面ID
 //@property(nonatomic,strong)NSString * title;//动态页面标题
 @property(nonatomic,strong)NSString * articleContent;//动态页面描述
 //@property(nonatomic,strong)NSString * thumb;//封面图
 //@property(nonatomic,assign)int auditstatus;//是否打开微信分享(0:隐藏,1:开启)
-//@property(nonatomic,strong)NSString * exttime;//格式化时间1(例:20151024...)
+@property(nonatomic,strong)NSString * articleTime;//格式化时间1(例:20151024...)
 @property(nonatomic,strong)NSString * userId;//用户ID
 @property(nonatomic,strong)NSString * userNickName;//用户昵称
 //@property(nonatomic,strong)NSString * url;//动态页面链接
@@ -27,10 +27,11 @@
 //@property(nonatomic,strong)NSString * remark;//用户个性签名
 //@property(nonatomic,strong)NSString * favorite;//该字段存在,则表示当前登录微赚宝用户已收藏过这个店铺
 @property(nonatomic,strong)NSMutableArray * articleImages;//照片数组
-@property(nonatomic,strong)NSMutableArray * optthumb;//点赞数组
+@property(nonatomic,strong)NSMutableArray * fabulous;//点赞数组
 //@property(nonatomic,strong)NSMutableArray * optcomment;//评论数组
 //@property(nonatomic,strong)NSDictionary * companyparams;//公司信息
 //@property(nonatomic,strong)NSDictionary * spreadparams;//推广内容
+@property (nonatomic,strong)NSString *clothingId;
 @property(nonatomic,strong)NSMutableArray<DynamicsLikeItemModel *> * likeArr;//存放Model点赞数组
 @property(nonatomic,strong)NSMutableArray<DynamicsCommentItemModel *> * commentArr;//存放Model评论数组
 @property(nonatomic,strong)NSData * photocollectionsData;//照片数组(存入数据库)

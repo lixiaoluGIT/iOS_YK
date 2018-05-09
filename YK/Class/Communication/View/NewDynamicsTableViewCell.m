@@ -259,6 +259,9 @@
     [self.contentView addSubview:self.dividingLine];
     
     //
+    
+    
+    
     [self.contentView addSubview:self.pl];
     [self.contentView addSubview:self.plNum];
     
@@ -267,6 +270,8 @@
     
     [self.contentView addSubview:self.linkImage];
     [self.contentView addSubview:self.linkBtn];
+    
+//    [self.contentView addSubview:_dateLabel];
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -388,8 +393,8 @@
 //        _spreadBtn.hidden = YES;
 //    }
 //
-//    //时间
-//    _dateLabel.right = self.contentView.right - 20;
+////    //时间
+//    _dateLabel.right =  - 20;
 //    _dateLabel.top = _portrait.top;
 //    NSString * newTime = [self formateDate:model.exttime withFormate:@"yyyyMMddHHmmss"];
 //    _dateLabel.text = newTime;
@@ -399,20 +404,31 @@
 //    _dateLabel.textAlignment = NSTextAlignmentRight;
 //    _dateLabel.hidden = YES;
 //
-    //评论图
+    //点赞图
     _pl.left = _detailLabel.left;
     _pl.top = lastView.bottom + 20;
     _pl.width = 15;
     _pl.height = 15;
     
-    //评论数
+    //点赞数
     _plNum.left = _pl.right+8;
     _plNum.top = _pl.top;
     _plNum.width = 20;
     _plNum.height = 15;
-    _plNum.text = @"12";
+    _plNum.text = [NSString stringWithFormat:@"%ld",model.fabulous.count];
     
-    if (!model.isThumb){
+    //
+    
+    BOOL hadUserId = NO;
+    if ([Token length] == 0) {
+        hadUserId = NO;
+    }
+    if([model.fabulous containsObject:[YKUserManager sharedManager].user.userId]){
+        hadUserId = YES;
+    }else {
+        hadUserId = NO;
+    }
+    if (hadUserId){
          _pl.image = [UIImage imageNamed:@"dianzan"];
     }else {
          _pl.image = [UIImage imageNamed:@"weidianzan"];
@@ -445,6 +461,17 @@
     _linkBtn.top = _pl.top;
     _linkBtn.width = 60;
     _linkBtn.height = 20;
+    
+    //    //时间
+   
+//    _dateLabel.left = _detailLabel.left;
+//    _dateLabel.top = lastView.bottom+6;
+//    NSString * newTime = [self formateDate:model.articleTime withFormate:@"yyyyMMddHHmmss"];
+//    _dateLabel.text = @"刚刚";
+//    CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
+//    _dateLabel.width = dateSize.width;
+//    _dateLabel.height = kDynamicsNameHeight;
+//    _dateLabel.textAlignment = NSTextAlignmentRight;
  
     
     
@@ -502,7 +529,7 @@
     //添加手势
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        if (!model.isThumb) {//未点赞
+        if (!hadUserId) {//未点赞
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
                 [_delegate DidClickThunmbInDynamicsCell:self];
             }
@@ -512,9 +539,19 @@
             }
         }
     }];
+    
     [_pl setUserInteractionEnabled:YES];
     [_pl addGestureRecognizer:tap];
     
+    UILabel *bigL = [[UILabel alloc]init];
+    bigL.left = _detailLabel.left-20;
+    bigL.top = lastView.top-20 ;
+    bigL.width = 50;
+    bigL.height = 50;
+//    bigL.backgroundColor = [UIColor lightGrayColor];
+    [self.contentView addSubview:bigL];
+    [bigL setUserInteractionEnabled:YES];
+    [bigL addGestureRecognizer:tap];
 }
 
 
@@ -663,10 +700,10 @@
     }
     return _grayView;
 }
--(YYLabel *)dateLabel
+-(UILabel *)dateLabel
 {
     if (!_dateLabel) {
-        _dateLabel = [YYLabel new];
+        _dateLabel = [UILabel new];
         _dateLabel.textColor = [UIColor lightGrayColor];
         _dateLabel.font = [UIFont systemFontOfSize:13];
     }
@@ -797,7 +834,8 @@
     NSDate * nowDate = [NSDate date];
     
     /////  将需要转换的时间转换成 NSDate 对象
-    NSDate * needFormatDate = [dateFormatter dateFromString:dateString];
+//    NSDate * needFormatDate = [dateFormatter dateFromString:dateString];
+    NSDate *needFormatDate = [NSDate dateWithTimeIntervalSince1970:[dateString intValue]];
     /////  取当前时间和转换时间两个日期对象的时间间隔
     /////  这里的NSTimeInterval 并不是对象，是基本型，其实是double类型，是由c定义的:  typedef double NSTimeInterval;
     NSTimeInterval time = [nowDate timeIntervalSinceDate:needFormatDate];
