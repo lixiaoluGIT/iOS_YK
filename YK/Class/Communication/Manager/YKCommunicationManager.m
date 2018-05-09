@@ -96,7 +96,7 @@
     }];
 }
 
-//取消点赞
+//取消点赞  
 - (void)cancleLikeCommunicationWithArticleId:(NSString *)articleId
                                   OnResponse:(void (^)(NSDictionary *dic))onResponse{
     if ([Token length]==0) {

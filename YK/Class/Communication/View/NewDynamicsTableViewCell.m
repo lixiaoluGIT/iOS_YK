@@ -450,7 +450,7 @@
     //链接图
     _linkImage.left = _plNum.right + 200;
     if (WIDHT==375) {
-        _linkImage.left = _plNum.right + 180;
+        _linkImage.left = _plNum.right + 170;
     }
     _linkImage.top = _pl.top;
     _linkImage.width = 15;
