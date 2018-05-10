@@ -136,16 +136,16 @@
 /** 设置定时器 */
 - (void)setupTimer {
     if (@available(iOS 10.0, *)) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:5.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:6.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
             if (_currentPoint.x == 0) {///< 偏移量为0，即将展示真正的第一张图
-                [UIView animateWithDuration:0.3 animations:^{
+                [UIView animateWithDuration:0.6 animations:^{
                     self.pageC.currentPage = 0;
                     [self.SV setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:NO];
                     _currentPoint = self.SV.contentOffset;
                     
                 }];
             } else if (_currentPoint.x == self.SV.contentSize.width-2*SCREEN_WIDTH) {///< 偏移量展示最后一张图，即将展示虚拟的第一张图
-                [UIView animateWithDuration:0.3 animations:^{
+                [UIView animateWithDuration:0.6 animations:^{
                     self.pageC.currentPage = 0;
                     [self.SV setContentOffset:CGPointMake(_currentPoint.x+SCREEN_WIDTH, 0) animated:NO];
                 } completion:^(BOOL finished) {///< 动画结束偷偷的把偏移量设置为真正的第一张图

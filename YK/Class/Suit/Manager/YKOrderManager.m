@@ -372,7 +372,7 @@
 - (void)orderReceiveWithOrderNo:(NSString *)orderNo addressId:(NSString *)addressId time:(NSString *)time OnResponse:(void (^)(NSDictionary *dic))onResponse{
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@?orderNo=%@&addressId=%@&time=%@",orderReceiveOrder_Url,self.orderNo,addressId,time];
+    NSString *url = [NSString stringWithFormat:@"%@?orderNo=%@&addressId=%@",orderReceiveOrder_Url,self.orderNo,addressId];
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];

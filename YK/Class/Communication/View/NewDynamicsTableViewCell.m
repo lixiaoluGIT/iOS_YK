@@ -407,14 +407,14 @@
     //点赞图
     _pl.left = _detailLabel.left;
     _pl.top = lastView.bottom + 20;
-    _pl.width = 15;
-    _pl.height = 15;
+    _pl.width = 18;
+    _pl.height = 18;
     
     //点赞数
     _plNum.left = _pl.right+8;
-    _plNum.top = _pl.top;
-    _plNum.width = 20;
-    _plNum.height = 15;
+    _plNum.top = lastView.bottom + 20;
+    _plNum.width = 25;
+    _plNum.height = 18;
     _plNum.text = [NSString stringWithFormat:@"%ld",model.fabulous.count];
     
     //
@@ -543,15 +543,15 @@
     [_pl setUserInteractionEnabled:YES];
     [_pl addGestureRecognizer:tap];
     
-    UILabel *bigL = [[UILabel alloc]init];
-    bigL.left = _detailLabel.left-20;
-    bigL.top = lastView.top-20 ;
-    bigL.width = 50;
-    bigL.height = 50;
+//    UILabel *bigL = [[UILabel alloc]init];
+//    bigL.left = _detailLabel.left-20;
+//    bigL.top = lastView.top-20 ;
+//    bigL.width = 50;
+//    bigL.height = 50;
 //    bigL.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:bigL];
-    [bigL setUserInteractionEnabled:YES];
-    [bigL addGestureRecognizer:tap];
+//    [self.contentView addSubview:bigL];
+//    [bigL setUserInteractionEnabled:YES];
+//    [bigL addGestureRecognizer:tap];
 }
 
 
@@ -722,8 +722,8 @@
 {
     if (!_plNum) {
         _plNum = [YYLabel new];
-        _plNum.textColor = [UIColor lightGrayColor];
-        _plNum.font = [UIFont systemFontOfSize:13];
+        _plNum.textColor = mainColor;
+        _plNum.font = PingFangSC_Semibold(14);
     }
     return _plNum;
 }
@@ -760,7 +760,7 @@
 {
     if (!_linkBtn) {
         _linkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                [_linkBtn setTitle:@"商品链接" forState:UIControlStateNormal];
+                [_linkBtn setTitle:@"查看商品" forState:UIControlStateNormal];
 //        _linkBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         _linkBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         _linkBtn.titleLabel.font = PingFangSC_Semibold(14);

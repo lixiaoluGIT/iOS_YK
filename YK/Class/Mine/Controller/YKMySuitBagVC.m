@@ -436,11 +436,11 @@
 //                isHadOrderreceive = YES;
                 [header resetUI:1];
                 //忘给方法了
-                header.SMSBlock = ^(void){
-                    [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
-                    YKReturnVC *r = [YKReturnVC new];
-                    [self.navigationController pushViewController:r animated:YES];
-                };
+//                header.SMSBlock = ^(void){
+//                    [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
+//                    YKReturnVC *r = [YKReturnVC new];
+//                    [self.navigationController pushViewController:r animated:YES];
+//                };
             }
         }];
       

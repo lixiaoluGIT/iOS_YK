@@ -9,6 +9,7 @@
 #import "TopPublicVC.h"
 #import "ZYQAssetPickerController.h"
 #import "PlaceholderTextView.h"
+#import "YKHomeVC.h"
 
 #define ScreenHeight    [[UIScreen mainScreen] bounds].size.height
 #define ScreenWidth     [[UIScreen mainScreen] bounds].size.width
@@ -134,9 +135,14 @@
 }
 
 - (void)leftAction{
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//        YKHomeVC *chatVC = [[YKHomeVC alloc] init];
+//        chatVC.hidesBottomBarWhenPushed = YES;
+//        UINavigationController *nav = self.tabBarController.viewControllers[0];
+//        chatVC.hidesBottomBarWhenPushed = YES;
+//        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popViewControllerAnimated:YES];
+//    }];
 }
 
 - (void)Public{
@@ -145,8 +151,13 @@
         return;
     }
     
-    [[YKCommunicationManager sharedManager]publicWithImageArray:_imageArray clothingId:@"2" text:textView.text OnResponse:^(NSDictionary *dic) {
-        [self leftAction];
+    [[YKCommunicationManager sharedManager]publicWithImageArray:_imageArray clothingId:_clothingId text:textView.text OnResponse:^(NSDictionary *dic) {
+        
+//        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [UD setBool:YES forKey:@"hadNews"];
+            [self.navigationController popToRootViewControllerAnimated:NO];
+//        }];
+       
     }];
 }
 

@@ -9,17 +9,30 @@
 #import "YKSelectClothToPubVC.h"
 #import "CGQCollectionViewCell.h"
 #import "TopPublicVC.h"
+#import "YKNoDataView.h"
 
 @interface YKSelectClothToPubVC ()<UICollectionViewDelegate, UICollectionViewDataSource>
+{
+    YKNoDataView *NoDataView;
+    NSInteger _pageNum;
+}
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *productArray;
 @end
 
 @implementation YKSelectClothToPubVC
 
+- (NSMutableArray *)productArray{
+    if (!_productArray) {
+        _productArray = [NSMutableArray array];
+    }
+    return _productArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
- 
+    [self getData];
     self.title = @"选择衣服";
     
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -50,15 +63,64 @@
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self.collectionView reloadData  ];
+   
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CGQCollectionViewCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"CGQCollectionViewCell"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
-//    self.collectionView.hidden = YES;
-    // Do any additional setup after loading the view.
+    self.collectionView.hidden = YES;
+    WeakSelf(weakSelf)
+    _pageNum = 1;
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNum ++;
+        //请求更多商品
+        [[YKCommunicationManager sharedManager]getHistoryOrderToPublicWithNum:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
+            [self.collectionView.mj_footer endRefreshing];
+            NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+            if (array.count==0) {
+                [weakSelf.collectionView.mj_footer endRefreshing];
+            }else {
+                [weakSelf.collectionView.mj_footer endRefreshing];
+                for (int i=0; i<array.count; i++) {
+                    [self.productArray addObject:array[i]];
+                }
+                
+                [self.collectionView reloadData];
+            }
+        }];
+        
+    }];
+    
+    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"wuyifu"] statusDes:@"租过衣服才可以晒图哦～" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
+        
+    }];
+    
+    NoDataView.frame = CGRectMake(0, 120+BarH, WIDHT,HEIGHT-162);
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    [self.view addSubview:NoDataView];
+    NoDataView.hidden = YES;
+    
+    self.collectionView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
 }
 
+- (void)getData{
+    [[YKCommunicationManager sharedManager]getHistoryOrderToPublicWithNum:1 Size:10 OnResponse:^(NSDictionary *dic) {
+        _productArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+        if (_productArray.count == 0) {
+            //
+//            [smartHUD alertText:self.view alert:@"没有衣服可晒" delay:1.5];
+            NoDataView.hidden = NO;
+            self.collectionView.hidden = YES;
+            self.collectionView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+        }else {
+            [self.collectionView reloadData];
+            NoDataView.hidden = YES;
+            self.collectionView.hidden = NO;
+            self.collectionView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+        }
+    }];
+}
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -69,14 +131,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 8;
+    return _productArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CGQCollectionViewCell" forIndexPath:indexPath];
     YKProduct *procuct = [[YKProduct alloc]init];
-//    [procuct initWithDictionary:self.productArray[indexPath.row]];
-//    cell.product = procuct;
+    [procuct initWithDictionary:_productArray[indexPath.row]];
+    cell.product = procuct;
     return cell;
 }
 
@@ -102,8 +164,11 @@
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     
     TopPublicVC *hmpositionVC = [[TopPublicVC alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hmpositionVC];
-    [self presentViewController:nav animated:YES completion:nil];
+    hmpositionVC.clothingId = cell.goodsId;
+    hmpositionVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:hmpositionVC animated:YES];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hmpositionVC];
+//    [self presentViewController:nav animated:YES completion:nil];
 
 //    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
 //    detail.productId = cell.goodsId;

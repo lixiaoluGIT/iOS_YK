@@ -274,8 +274,6 @@
                 set.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:set animated:YES];
             }
-            
-        
     };
     return cell;
 }

@@ -76,7 +76,7 @@ extern CGFloat maxContentLabelHeight;
     
     _commentArr = commentArr;
 }
--(NSString *)dsp
+-(NSString *)articleContent
 {
     if (_articleContent == nil) {
         _articleContent = @"";
@@ -88,7 +88,7 @@ extern CGFloat maxContentLabelHeight;
     
     YYTextLayout * layout = [YYTextLayout layoutWithContainer:container text:text];
     
-    if (layout.rowCount <= 3) {
+    if (layout.rowCount <= 2) {
         _shouldShowMoreButton = NO;
     }else{
         _shouldShowMoreButton = YES;

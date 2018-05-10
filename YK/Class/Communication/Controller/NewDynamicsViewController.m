@@ -17,13 +17,17 @@
 #import "YKBaseScrollView.h"
 
 #import "YKSelectClothToPubVC.h"
+#import "YKLinkWebVC.h"
 
-@interface NewDynamicsViewController ()
+@interface NewDynamicsViewController ()<YKBaseScrollViewDelete>
 
 
 @property(nonatomic,strong)SDTimeLineRefreshHeader * refreshHeader;
 @property(nonatomic,strong)UISegmentedControl * segment;
 
+@property (nonatomic,strong)YKBaseScrollView *cycleView;
+@property (nonatomic,strong)NSMutableArray *imageArray;
+@property (nonatomic,strong)NSMutableArray *clickImageUrls;
 @property (nonatomic, nonnull,strong)NSMutableArray * dataArray;
 @property (nonatomic, assign) NSInteger pageNum;
 
@@ -31,6 +35,20 @@
 @end
 
 @implementation NewDynamicsViewController
+
+- (NSMutableArray *)imageArray{
+    if (_imageArray) {
+        _imageArray = [NSMutableArray array];
+    }
+    return _imageArray;
+}
+
+- (NSMutableArray *)clickImageUrls{
+    if (_clickImageUrls) {
+        _clickImageUrls = [NSMutableArray array];
+    }
+    return _clickImageUrls;
+}
 
 - (NSMutableArray *)dataArray{
     if (_dataArray) {
@@ -50,8 +68,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    if ([Token length] == 0) {
+    //有新的数据自动刷新
+    if ([UD boolForKey:@"hadNews"] == YES) {
+        _pageNum = 1;
         [self refreshData];
+        [UD setBool:NO forKey:@"hadNews"];
     }
 }
 - (void)viewDidLoad {
@@ -67,7 +88,9 @@
 //    NSArray * dataArray = [NSArray arrayWithContentsOfFile:plistPath];
     
     _pageNum = 1;
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    //请求数据
+    [self getData];
     [self refreshData];
     WeakSelf(weakSelf)
     self.dynamicsTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -118,11 +141,53 @@
     [publicBtn addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
     
 }
+- (NSMutableArray *)getImageArray:(NSArray *)array{
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (NSDictionary *imageModel in array) {
+        [imageArray addObject:imageModel[@"loopPicUrl"]];
+    }
+    return imageArray;
+}
+- (NSMutableArray *)getImageClickArray:(NSArray *)array{
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (NSDictionary *imageModel in array) {
+        [imageArray addObject:imageModel[@"loopPicLinkUrl"]];
+    }
+    return imageArray;
+}
+
+- (void)getData{
+    [[YKCommunicationManager sharedManager]requestCommunicationImgListOnResponse:^(NSDictionary *dic) {
+//        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"articleVOs"]];
+        NSMutableArray *totalArray = [NSMutableArray arrayWithArray:dic[@"data"][@"articleLoopPicVOS"]];
+        _imageArray = [self getImageArray:totalArray];
+        _clickImageUrls = [self getImageClickArray:totalArray];
+        _cycleView.imagesArr = _imageArray;
+        [self.dynamicsTable.mj_header endRefreshing];
+//        [self.layoutsArr removeAllObjects];
+//        if (currentArray.count==0) {
+//            [self.dynamicsTable.mj_footer endRefreshing];
+//        }else {
+//            [self.dynamicsTable.mj_footer endRefreshing];
+//            _dataArray = [NSMutableArray arrayWithArray:currentArray];
+//
+//        }
+//
+//        for (id dict in _dataArray) {
+//            //字典转模型
+//            DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];//字典转模型
+//            NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
+//            [self.layoutsArr addObject:layout];
+//        }
+//
+//        [self.dynamicsTable reloadData];
+    }];
+}
 
 - (void)refreshData{
     //请求列表信息
     [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
-        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"]];
+        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"articleVOS"]];
         
         [self.dynamicsTable.mj_header endRefreshing];
         [self.layoutsArr removeAllObjects];
@@ -149,22 +214,24 @@
 - (void)getMoreData{
     //请求列表信息
     [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
-        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"]];
+        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"articleVOS"]];
         
         [self.dynamicsTable.mj_footer endRefreshing];
+        
+        NSMutableArray *array = [NSMutableArray array];
         if (currentArray.count==0) {
             [self.dynamicsTable.mj_footer endRefreshing];
             return ;
         }else {
             [self.dynamicsTable.mj_footer endRefreshing];
             for (int i=0; i<currentArray.count; i++) {
-                [_dataArray addObject:currentArray[i]];
+                [array addObject:currentArray[i]];
             }
             
-            [self.dynamicsTable reloadData];
+//            [self.dynamicsTable reloadData];
         }
         
-        for (id dict in _dataArray) {
+        for (id dict in array) {
             //字典转模型
             DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];//字典转模型
             NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
@@ -281,12 +348,13 @@
         _dynamicsTable.delegate = self;
         _dynamicsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-        YKBaseScrollView *cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.58)];
+        _cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.58)];
         
-        cycleView.imagesArr = @[@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612217&di=f0a200f1da4510619be8ef47cc9cd74c&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0193dd57ad44300000018c1b6ea932.jpg%402o.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612218&di=7e6eadd43105fdd712e9187d5d4f703b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01b5f55780cfca0000018c1b5326f9.jpg%402o.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612215&di=bf7a100c20dca202bd1f2427f6cc229b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01973759a45b87a801211d25e6b311.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612213&di=377404f36aefd024c6a4eec3f3ce8a2b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01649759a8c8f6a8012028a9e6dd1a.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525693155271&di=6c5c0ff1c2de534ef6a90e6e12acc46b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014bcd585e1c14a801219c7738e3c4.png%402o.jpg"];
-//        cycleView.delegate = self;
+//        _cycleView.imagesArr = @[@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612217&di=f0a200f1da4510619be8ef47cc9cd74c&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0193dd57ad44300000018c1b6ea932.jpg%402o.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612218&di=7e6eadd43105fdd712e9187d5d4f703b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01b5f55780cfca0000018c1b5326f9.jpg%402o.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612215&di=bf7a100c20dca202bd1f2427f6cc229b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01973759a45b87a801211d25e6b311.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525692612213&di=377404f36aefd024c6a4eec3f3ce8a2b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01649759a8c8f6a8012028a9e6dd1a.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525693155271&di=6c5c0ff1c2de534ef6a90e6e12acc46b&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014bcd585e1c14a801219c7738e3c4.png%402o.jpg"];
+        _cycleView.imagesArr = _imageArray;
+        _cycleView.delegate = self;
         
-        _dynamicsTable.tableHeaderView = cycleView;
+        _dynamicsTable.tableHeaderView = _cycleView;
     
         [_dynamicsTable registerClass:[NewDynamicsTableViewCell class] forCellReuseIdentifier:@"NewDynamicsTableViewCell"];
         if ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending) {
@@ -301,6 +369,14 @@
 //        [_dynamicsTable addGestureRecognizer:tableViewGesture];
     }
     return _dynamicsTable;
+}
+
+- (void)YKBaseScrollViewImageClick:(NSInteger)index{
+    //跳转到网页
+    YKLinkWebVC *web =[YKLinkWebVC new];
+    web.url = _clickImageUrls[index-1];
+    web.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:web animated:YES];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
    

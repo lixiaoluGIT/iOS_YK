@@ -19,6 +19,20 @@
     return sharedAccountManagerInstance;
 }
 
+- (void)requestCommunicationImgListOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [YKHttpClient Method:@"GET" apiName:CommunicationImgList_Url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        
+        if (onResponse) {
+            onResponse(dic);
+        }
+        
+    }];
+}
 //社区发布
 - (void)publicWithImageArray:(NSArray *)imageArray
                   clothingId:(NSString *)clothingId
@@ -72,7 +86,7 @@
         
     }];
 }
-
+//点赞
 - (void)setLikeCommunicationWithArticleId:(NSString *)articleId
                                OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
@@ -116,4 +130,30 @@
         
     }];
 }
+
+- (void)getHistoryOrderToPublicWithNum:(NSInteger)Num
+                                  Size:(NSInteger)Size
+                            OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&size=%ld",historyOrder_Url,Num,Size];
+    
+    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] intValue] == 200) {
+           
+            if (onResponse) {
+                onResponse(dic);
+            }
+        }else {
+            if (onResponse) {
+                onResponse(dic);
+            }
+        }
+        
+    }];
+}
+
 @end

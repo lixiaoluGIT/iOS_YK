@@ -295,7 +295,7 @@
      {
          //文字保存到表单
          NSData *textData = [text dataUsingEncoding:NSUTF8StringEncoding];
-         NSData *clothingIdData = [@"2" dataUsingEncoding:NSUTF8StringEncoding];
+         NSData *clothingIdData = [clothingId dataUsingEncoding:NSUTF8StringEncoding];
          //text为后台参数名
          [formData appendPartWithFormData:clothingIdData name:@"clothingId"];
          [formData appendPartWithFormData:textData name:@"textContent"];

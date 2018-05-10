@@ -45,7 +45,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="Efd-Jg-wOJ">
-                        <rect key="frame" x="380" y="63" width="6" height="12"/>
+                        <rect key="frame" x="376" y="62" width="10" height="14"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -78,8 +78,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="471" height="378.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="圆通快递人员将会和您联系确认取件信息" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3s-MW-W2c">
-                        <rect key="frame" x="106.5" y="61" width="258" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快递人员将会和您联系确认取件信息" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3s-MW-W2c">
+                        <rect key="frame" x="121" y="61" width="229" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -139,6 +139,6 @@
     </objects>
     <resources>
         <image name="question" width="26" height="26"/>
-        <image name="right" width="6" height="12"/>
+        <image name="right" width="10" height="14"/>
     </resources>
 </document>

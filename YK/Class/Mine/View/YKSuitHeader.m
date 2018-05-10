@@ -23,8 +23,8 @@
     _wuliuImage.hidden = YES;
     _statusLable.text = @"衣箱状态:待归还";
     if (status) {//已预约归还
-        _scanSMS.text = @"预约成功，重新预约";
-        _orderBack.userInteractionEnabled = YES;
+        _scanSMS.text = @"预约成功，等待快递员上门取件";
+        _orderBack.userInteractionEnabled = NO;
     }else {//没预约归还
         _scanSMS.text = @"预约归还";
         _orderBack.userInteractionEnabled = YES;

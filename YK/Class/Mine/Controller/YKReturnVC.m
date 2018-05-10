@@ -179,10 +179,10 @@
 }
 - (void)btnClick{
     //确认预约
-    if ([self.timeStr isEqualToString:@"请选择归还时间"]) {
-        [smartHUD alertText:self.view alert:@"请选择归还时间" delay:1.2];
-        return;
-    }
+//    if ([self.timeStr isEqualToString:@"请选择归还时间"]) {
+//        [smartHUD alertText:self.view alert:@"请选择归还时间" delay:1.2];
+//        return;
+//    }
     if (!self.address) {
         [smartHUD alertText:self.view alert:@"请选择取件地址" delay:1.2];
         return;
@@ -194,10 +194,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.row==0) {
+//        return 70;
+//    }
     if (indexPath.row==0) {
-        return 70;
-    }
-    if (indexPath.row==1) {
         if (indexPath.section==0) {
             if (isHadDefaultAddress) {
                 return 110;
@@ -210,7 +210,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+    return 2;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -220,14 +220,14 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //时间
-    if (indexPath.row == 0) {
-        YKReturnView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKReturnView" owner:self options:nil][0];
-        bagCell.selectionStyle = UITableViewCellEditingStyleNone;
-        bagCell.time = self.timeStr;
-        return bagCell;
-    }
+//    if (indexPath.row == 0) {
+//        YKReturnView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKReturnView" owner:self options:nil][0];
+//        bagCell.selectionStyle = UITableViewCellEditingStyleNone;
+//        bagCell.time = self.timeStr;
+//        return bagCell;
+//    }
     
-    if (indexPath.row == 2) {
+    if (indexPath.row == 1) {
         YKReturnAddressView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKReturnAddressView" owner:self options:nil][1];
 
          bagCell.selectionStyle = UITableViewCellEditingStyleNone;
@@ -254,10 +254,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //如果没默认地址.添加地址
+//    if (indexPath.row == 0) {
+//        [self timePickerViewSelected];
+//    }
     if (indexPath.row == 0) {
-        [self timePickerViewSelected];
-    }
-    if (indexPath.row == 1) {
         YKAddressVC *address = [YKAddressVC new];
         address.selectAddressBlock = ^(YKAddress *address){
             isHadDefaultAddress = YES;
@@ -266,7 +266,7 @@
         };
         [self.navigationController pushViewController:address animated:YES];
     }
-    if (indexPath.row == 2) {
+    if (indexPath.row == 1) {
         YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
         [self.navigationController pushViewController:normal animated:YES];
     }

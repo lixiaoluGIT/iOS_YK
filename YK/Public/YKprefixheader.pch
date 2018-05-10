@@ -168,7 +168,7 @@
 //确认收货...更新订单
 #define ensureReceiveOrder_Url @"/order/updateOrder"
 //预约归还(下圆通订单)
-#define orderReceiveOrder_Url @"/yt/creatYTOrder"
+#define orderReceiveOrder_Url @"/sendback/makeAppointment"
 //查询待归还订单是否预约归还
 #define isHadOrderReceiveOrder_Url @"/yt/getYTTrackResult"
 //生成顺风定单
@@ -199,14 +199,16 @@
 #define GetMessageList_Ur @"/pushMessage/queryMessage"
 
 /*----------------------------社区模块--------------------------------*/
+//轮播图接口（里边包含列表数据）（暂这样用）
+#define CommunicationImgList_Url @"/community/articlesHomePage"
 //发布接口
 #define Public_Url @"/community/publishArticles"
 //列表接口
 #define GetCommunicationList_Url @"/community/ArticlesList"
 //点赞接口
 #define Like_Url @"/community/articlesFabulous"
-
-
+//历史订单
+#define historyOrder_Url @"/community/chooseClothes"
 
 /*----------------------------其它接口--------------------------------*/
 //分享成功的回调接口

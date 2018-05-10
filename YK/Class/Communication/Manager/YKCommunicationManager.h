@@ -23,6 +23,9 @@ imageArray 照片数组
                         text:(NSString *)text
                   OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//轮播图接口
+- (void)requestCommunicationImgListOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 //社区列表展示
 - (void)requestCommunicationListWithNum:(NSInteger)Num
                                    Size:(NSInteger)Size
@@ -36,5 +39,9 @@ imageArray 照片数组
 - (void)cancleLikeCommunicationWithArticleId:(NSString *)articleId
                                OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//获取可晒衣服
+- (void)getHistoryOrderToPublicWithNum:(NSInteger)Num
+                                  Size:(NSInteger)Size
+                            OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 @end

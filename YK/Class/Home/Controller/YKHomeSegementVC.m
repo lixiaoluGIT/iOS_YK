@@ -143,6 +143,11 @@
         make.height.mas_equalTo(30);
     }];
     
+    UILabel *line = [[UILabel alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    [self.view addSubview:line];
+    line.frame = CGRectMake(0,kNavgationBarHeight + 15 + 40-1 , WIDHT, 1);
+    
     UILabel *Vline = [[UILabel alloc]init];
     Vline.backgroundColor = mainColor;
     Vline.frame = CGRectMake(WIDHT/2,64+22,1, 12);

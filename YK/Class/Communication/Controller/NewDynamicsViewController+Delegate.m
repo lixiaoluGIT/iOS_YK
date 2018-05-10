@@ -185,7 +185,7 @@
     detail.hidesBottomBarWhenPushed = YES;
     detail.productId = model.clothingId;
     detail.titleStr = @"商品详情";
-    detail.productId = @"438";
+//    detail.productId = @"438";
     [self.navigationController pushViewController:detail animated:YES];
     
     
