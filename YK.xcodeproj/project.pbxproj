@@ -629,6 +629,7 @@
 		00B9EF3920A0576000A7422B /* YKCommunicationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCommunicationManager.m; sourceTree = "<group>"; };
 		00B9EF3B20A18FB800A7422B /* YKSelectClothToPubVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSelectClothToPubVC.h; sourceTree = "<group>"; };
 		00B9EF3C20A18FB800A7422B /* YKSelectClothToPubVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSelectClothToPubVC.m; sourceTree = "<group>"; };
+		00B9EF3E20A45AC000A7422B /* DDAleartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAleartView.h; path = YK/Public/DDAleartView.h; sourceTree = SOURCE_ROOT; };
 		00C392842068B2570068DFC0 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		00C392852068B2570068DFC0 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		00C392882069EF7E0068DFC0 /* YKSharebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSharebView.h; sourceTree = "<group>"; };
@@ -1279,7 +1280,6 @@
 		C5742ECF2003661800BBB882 /* STPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPageControl.m; sourceTree = "<group>"; };
 		C5742ED12003872C00BBB882 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C57505371FFB853500F7E07A /* DDAleartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAleartView.m; sourceTree = "<group>"; };
-		C575053C1FFB8AC100F7E07A /* DDAleartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAleartView.h; path = ../../../Desktop/QCX/dongdongcar/Views/DDAleartView.h; sourceTree = "<group>"; };
 		C57A53AD1FCBAFF70090E372 /* YKEditInforVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKEditInforVC.h; sourceTree = "<group>"; };
 		C57A53AE1FCBAFF70090E372 /* YKEditInforVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKEditInforVC.m; sourceTree = "<group>"; };
 		C57A53AF1FCBAFF70090E372 /* YKEditInforVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKEditInforVC.xib; sourceTree = "<group>"; };
@@ -2391,7 +2391,7 @@
 				C525DDD51FBAB40D002802AE /* YKMainVC.m */,
 				C52D047A1FE8F8A400633550 /* YKAleartView.h */,
 				C52D047B1FE8F8A400633550 /* YKAleartView.m */,
-				C575053C1FFB8AC100F7E07A /* DDAleartView.h */,
+				00B9EF3E20A45AC000A7422B /* DDAleartView.h */,
 				C57505371FFB853500F7E07A /* DDAleartView.m */,
 				C5E46EA71FFE307F002453EB /* YKShareVC.h */,
 				C5E46EA81FFE307F002453EB /* YKShareVC.m */,
