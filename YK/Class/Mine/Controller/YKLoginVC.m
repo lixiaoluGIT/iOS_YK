@@ -72,13 +72,13 @@ NSInteger timeNum;
 //    [_gifView startGif];
 
     //动态图
-//    UIImageView *imgv = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    [self.view addSubview:imgv];
-//    [self.view sendSubviewToBack:imgv];
-//    imgv.backgroundColor = [UIColor clearColor];
-//    NSString *str = [[NSBundle mainBundle]pathForResource:@"sss" ofType:@"gif"];
-//    NSData *data = [NSData dataWithContentsOfFile:str];
-//    imgv.image = [UIImage sd_animatedGIFWithData:data];
+    UIImageView *imgv = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    [self.view addSubview:imgv];
+    [self.view sendSubviewToBack:imgv];
+    imgv.backgroundColor = [UIColor clearColor];
+    NSString *str = [[NSBundle mainBundle]pathForResource:@"sss" ofType:@"gif"];
+    NSData *data = [NSData dataWithContentsOfFile:str];
+    imgv.image = [UIImage sd_animatedGIFWithData:data];
     
     //新UI隐藏logo
     [_logo setHighlighted:YES];

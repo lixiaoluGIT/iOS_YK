@@ -32,10 +32,19 @@ imageArray 照片数组
                              OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //点赞
+
+/*
+ articleId 列表ID
+ onResponse 请求回掉
+ */
 - (void)setLikeCommunicationWithArticleId:(NSString *)articleId
                                OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //取消点赞
+/*
+ articleId 列表ID
+ onResponse 请求回掉
+ */
 - (void)cancleLikeCommunicationWithArticleId:(NSString *)articleId
                                OnResponse:(void (^)(NSDictionary *dic))onResponse;
 

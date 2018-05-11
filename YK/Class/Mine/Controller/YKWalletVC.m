@@ -130,7 +130,7 @@
     WeakSelf(weakSelf)
     
     //会员卡状态
-    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nianka"]];
+    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shiyongzhong"]];
   
     [self.view addSubview:image];
     CGFloat scale = image.frame.size.width/image.frame.size.height;

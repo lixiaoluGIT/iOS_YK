@@ -21,7 +21,7 @@
 
 - (void)requestCommunicationImgListOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [YKHttpClient Method:@"GET" apiName:CommunicationImgList_Url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
