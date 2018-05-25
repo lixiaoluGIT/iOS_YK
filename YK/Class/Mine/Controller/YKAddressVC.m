@@ -89,7 +89,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [UIView new];
-    view.backgroundColor = [UIColor colorWithHexString:@"F8F8F8"];
+    view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     return view;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

@@ -709,4 +709,67 @@
     [UD synchronize];
 }
 
+- (void)addbust:(NSString *)bust hipline:(NSString *)hipline shoulderWidth:(NSString *)shoulderWidth theWaist:(NSString *)theWaist OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSDictionary *d = @{@"bust":bust,@"hipline":hipline,@"shoulderWidth":shoulderWidth,@"theWaist":theWaist};
+    
+    [YKHttpClient Method:@"POST" URLString:upLoadUserSize_Url paramers:d success:^(NSDictionary *dict) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dict[@"status"] intValue] != 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
+            
+            if (onResponse) {
+                onResponse(dict);
+            }
+            return ;
+        }
+        
+        
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"保存成功" delay:1.2];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                if (onResponse) {
+                    onResponse(dict);
+                }
+                
+            });
+            
+        });
+    } failure:^(NSError *error) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"servier error" delay:2];
+    }];
+}
+
+- (void)getUserSizeOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+
+    [YKHttpClient Method:@"POST" URLString:getUserSize_Url paramers:nil success:^(NSDictionary *dict) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dict[@"status"] intValue] != 200) {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
+            
+            if (onResponse) {
+                onResponse(dict);
+            }
+            return ;
+        }
+        
+        if (onResponse) {
+            onResponse(dict);
+        }
+
+    
+    } failure:^(NSError *error) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"servier error" delay:2];
+    }];
+}
 @end

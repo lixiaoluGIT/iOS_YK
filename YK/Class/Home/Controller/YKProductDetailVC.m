@@ -31,11 +31,23 @@
 #import "DractLineCell.h"
 #import "dractLineTwoCell.h"
 
+#import "YKHomeDesCell.h"
+#import "DynamicsModel.h"
+#import "NewDynamicsLayout.h"
+#import "NewDynamicsTableViewCell.h"
+#import "YKNoDataView.h"
+#import "YKProductCommentVC.h"
+#import "YKEditSizeVC.h"
+
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>{
     BOOL hadMakeHeader;
     ZYCollectionView * cycleView;
     YKProductDetailHeader *scroll;
+    NewDynamicsLayout * layout;
+    BOOL hadLoadCommentCell;
+    YKNoDataView *NoDataView;
+    CGFloat totalHeight;
 }
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -45,13 +57,25 @@
 @property (nonatomic,assign)NSString *sizeNum;
 
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UITableView *mySizeTable;
 @property (nonatomic,strong)NSArray *dataArray;
+@property (nonatomic,strong)NSArray *userSizeArray;
+
+@property (nonatomic,strong)NSMutableArray *commentsArray;//评论数组
+@property (nonatomic,strong)NSMutableArray *layoutsArr;
 
 //真实数据
 
 @end
 
 @implementation YKProductDetailVC
+
+- (NSMutableArray *)layoutsArr{
+    if (!_layoutsArr) {
+        _layoutsArr = [NSMutableArray array];
+    }
+    return _layoutsArr;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -62,6 +86,10 @@
 //    self.product = [YKProduct new];
     
 //    [self getPruductDetail];
+    if ([UD boolForKey:@"hadNewSize"]) {
+        [self getPruductDetail];
+        [UD setBool:NO forKey:@"hadNewSize"];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -81,12 +109,33 @@
         self.product.productDetail = productDetail;
         scroll.product = self.product.product;
         scroll.brand = self.product.brand;
+        scroll.recomment = productDetail.product[@"clothingExplain"];
+//        scroll.recomment = @"生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组";
         self.imagesArr = [self getImageArray:self.product.bannerImages];
         
         NSArray *sizeArray = [NSArray arrayWithArray:dic[@"data"][@"sizeTableVos"]];
+        NSDictionary *userSizeDic = [NSDictionary dictionaryWithDictionary:dic[@"data"][@"userSizeTable"]];
         //生成表格需要的数组
         if (sizeArray.count>0) {
             self.dataArray = [[YKHomeManager sharedManager]getSizeArray:sizeArray];
+        }
+        //用户尺码表
+       self.userSizeArray = [[YKHomeManager sharedManager]getUserSizeArray:userSizeDic];
+        
+        //评论
+        NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"article"]];
+ 
+        if (currentArray.count==0) {
+            //无评论
+            
+        }else {
+            _commentsArray = [NSMutableArray arrayWithArray:currentArray];
+        }
+        for (id dict in _commentsArray) {
+            //字典转模型
+            DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];//字典转模型
+             layout = [[NewDynamicsLayout alloc] initWithModel:model];
+            [self.layoutsArr addObject:layout];
         }
         
         [self.collectionView reloadData];
@@ -111,8 +160,12 @@
 //
 //
 //                       ];
-    [self getPruductDetail];
+    
+    
+   
     [super viewDidLoad];
+     [self getPruductDetail];
+    
     _sizeNum = 0;
     if (_isFromShare) {
         self.title = @"商品详情";
@@ -460,11 +513,17 @@
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return CGSizeMake(WIDHT, WIDHT*0.82 +228);
+        return CGSizeMake(WIDHT, WIDHT*0.82+330);
     }
-    return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40);
+    if (self.layoutsArr.count>0){
+        return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40+170+layout.height+75+80);
+    }
+    else {
+        return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40+170+150+80);
+    }
 }
 
+//TODO:此处代码需优化
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -495,7 +554,8 @@
                 
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
-            scroll.frame = CGRectMake(0, WIDHT*0.82+100,WIDHT, 228);
+            scroll.frame = CGRectMake(0, WIDHT*0.82+100,WIDHT, 330);
+//            scroll.backgroundColor = [UIColor redColor];
             
             if (!hadMakeHeader) {
                 [headerView addSubview:scroll];
@@ -508,18 +568,117 @@
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView2" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
             
+            YKHomeDesCell  *ti0 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][1];
+            ti0.frame = CGRectMake(0, 0,WIDHT, 50);
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toEdit)];
+            [ti0 addGestureRecognizer:tap];
+
+            [headerView addSubview:ti0];
+            
+            //tableView内存需优化
+            self.mySizeTable.backgroundColor = [UIColor redColor];
+            self.mySizeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, WIDHT, 40*2) style:UITableViewStylePlain];
+            self.mySizeTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+            self.mySizeTable.delegate = self;
+            self.mySizeTable.dataSource = self;
+            [headerView addSubview:self.mySizeTable];
+            [self.mySizeTable reloadData];
+            
+            
+            YKHomeDesCell  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][2];
+            ti2.frame = CGRectMake(0, 120,WIDHT, 50);
+            [headerView addSubview:ti2];
+           
+            
             self.tableView.backgroundColor = [UIColor redColor];
-            self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 20, WIDHT, self.dataArray.count*40) style:UITableViewStylePlain];
+            self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 170, WIDHT, self.dataArray.count*40) style:UITableViewStylePlain];
             self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             self.tableView.delegate = self;
             self.tableView.dataSource = self;
             [headerView addSubview:self.tableView];
             [self.tableView reloadData];
             
-            YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][1];
-            ti.frame = CGRectMake(0, 20+self.dataArray.count*40,WIDHT, 82);
+            //灰线
+            UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height+self.tableView.frame.origin.y, WIDHT, 10)];
+            line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+            [headerView addSubview:line];
+            
+            YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][4];
+            ti.frame = CGRectMake(0,self.dataArray.count*40+170+10,WIDHT, 64);
 //            ti.backgroundColor = [UIColor redColor];
             [headerView addSubview:ti];
+            
+            //评论Cell
+            //TODO:优化
+            
+            UIView *lastView = [[UIView alloc]init];
+            NewDynamicsTableViewCell * cell = [[NewDynamicsTableViewCell alloc]init];
+            cell.isShowInProductDetail = YES;
+//            cell.plNum.hidden = YES;
+//            cell.pl.hidden = YES;
+//            cell.linkImage.hidden = YES;
+//            cell.dateLabel.hidden = YES;
+//            cell.dividingLine.hidden = YES;
+            
+            if (self.layoutsArr.count>0) {
+                NoDataView.hidden = YES;
+                cell.hidden = NO;
+                cell.layout = self.layoutsArr[0];
+                layout = self.layoutsArr[0];
+                cell.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT, layout.height);
+                
+                cell.plNum.hidden = YES;
+                cell.pl.hidden = YES;
+                cell.linkImage.hidden = YES;
+                cell.dateLabel.hidden = YES;
+                cell.dividingLine.hidden = YES;
+                
+                lastView = cell;
+                
+                //查看更多评论
+                UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [moreBtn setBackgroundImage:[UIImage imageNamed:@"chakangengduo"] forState:UIControlStateNormal];
+                moreBtn.frame = CGRectMake(WIDHT/2-54, lastView.frame.size.height + lastView.frame.origin.y + 25, 108, 25);
+                [headerView addSubview:moreBtn];
+                [moreBtn addTarget:self action:@selector(toMore) forControlEvents:UIControlEventTouchUpInside];
+                lastView = moreBtn;
+//                totalHeight = 20+60+self.dataArray.count*40+170+layout.height;
+            }else {
+                cell.hidden = YES;
+                //无评论图
+                NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+                [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"pinglun"] statusDes:@"暂无评论" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
+                    
+                }];
+                NoDataView.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT,150);
+                NoDataView.backgroundColor = [UIColor whiteColor];
+                [headerView addSubview:NoDataView];
+                NoDataView.hidden = NO;
+                lastView = NoDataView;
+//                totalHeight = 20+60+self.dataArray.count*40+170+150;
+            }
+            
+            
+            if (!hadLoadCommentCell) {
+                [headerView addSubview:cell];
+                hadLoadCommentCell = YES;
+            }
+
+            UILabel *line2 = [[UILabel alloc]init];
+           
+            if (self.layoutsArr.count>0) {
+                 line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y+25, WIDHT, 10);
+            }else {
+                 line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y, WIDHT, 10);
+            }
+            line2.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+            [headerView addSubview:line2];
+            lastView = line2;
+            
+            YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][1];
+            ti3.frame = CGRectMake(0,lastView.frame.size.height + lastView.frame.origin.y,WIDHT, 70);
+//                        ti3.backgroundColor = [UIColor redColor];
+            [headerView addSubview:ti3];
             
             return headerView;
         }
@@ -527,6 +686,22 @@
     }
     
     return nil;
+}
+- (void)toEdit{
+    if ([Token length] == 0) {
+        [smartHUD alertText:self.view alert:@"请先登录" delay:1.5];
+        return;
+    }
+    YKEditSizeVC *edit = [[YKEditSizeVC alloc]init];
+    edit.mySizeArray = _userSizeArray[1];
+    [self.navigationController pushViewController:edit animated:YES];
+}
+
+- (void)toMore{
+ 
+    YKProductCommentVC *comment = [[YKProductCommentVC alloc]init];
+    comment.clothingId = self.product.productDetail.product[@"clothingId"];
+    [self.navigationController pushViewController:comment animated:YES];
 }
 //设置大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -654,7 +829,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    
-    return self.dataArray.count;
+    if (tableView == self.mySizeTable) {
+        return self.userSizeArray.count;
+    }else {
+        return self.dataArray.count;
+        
+    }
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -667,8 +848,13 @@
         if (!cell) {
             cell = [[dractLineTwoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"lineCell"];
         }
+    if (tableView==self.mySizeTable) {
+        cell.titleArr = self.userSizeArray[indexPath.row];
+        [cell setTitleRow:indexPath.row];
+    }else {
         cell.titleArr = self.dataArray[indexPath.row];
         [cell setTitleRow:indexPath.row];
+    }
     
  
         cell.selectionStyle = UITableViewCellEditingStyleNone;

@@ -90,8 +90,8 @@
     _pageNum = 1;
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     //请求数据
-    [self getData];
-    [self refreshData];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [self performSelector:@selector(loadData) withObject:nil afterDelay:0.3];
     WeakSelf(weakSelf)
     self.dynamicsTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _pageNum = 1;
@@ -133,13 +133,17 @@
     [self.view addSubview:publicBtn];
     [publicBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_bottom).offset(-120);
+        make.top.equalTo(self.view.mas_bottom).offset(-100);
         if (HEIGHT==812) {
             make.top.equalTo(self.view.mas_bottom).offset(-150);
         }
     }];
     [publicBtn addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
     
+}
+- (void)loadData{
+    [self getData];
+    [self refreshData];
 }
 - (NSMutableArray *)getImageArray:(NSArray *)array{
     NSMutableArray *imageArray = [NSMutableArray array];
@@ -186,7 +190,7 @@
 
 - (void)refreshData{
     //请求列表信息
-    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 clothingId:@"-1" OnResponse:^(NSDictionary *dic) {
         NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"articleVOS"]];
         
         [self.dynamicsTable.mj_header endRefreshing];
@@ -213,7 +217,7 @@
 //上拉加载
 - (void)getMoreData{
     //请求列表信息
-    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 clothingId:@"-1" OnResponse:^(NSDictionary *dic) {
         NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"articleVOS"]];
         
         [self.dynamicsTable.mj_footer endRefreshing];
@@ -285,7 +289,7 @@
 #pragma mark - 下啦刷新
 - (void)dragDownToLoadMoreData
 {
-    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:2 Size:10 OnResponse:^(NSDictionary *dic) {
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:2 Size:10 clothingId:@"-1" OnResponse:^(NSDictionary *dic) {
         [self.dynamicsTable.mj_header endRefreshing];
         NSArray * dataArray = [NSArray arrayWithArray:dic[@"data"]];
         

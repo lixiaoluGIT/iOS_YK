@@ -10,6 +10,8 @@
 #import "YKSelectPayView.h"
 #import "YKShareVC.h"
 #import "YKWebVC.h"
+#import <Foundation/Foundation.h>
+#import <UShareUI/UShareUI.h>
 
 @interface YKToBeVIPVC ()<UITextFieldDelegate>
 {
@@ -576,11 +578,55 @@
     }];
 }
 
+- (void)share{
+    
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    UIImage *image = [UIImage imageNamed:@"LOGO-1"];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"快来和我一起尝试\"包月换衣\""] descr:@"衣库共享衣橱，首月149元，上万件大牌时装无限换穿！" thumImage:image];
+//    [NSStringstringWithFormat:@"\"%@\"",123456];
+    //设置网页地址
+    shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/invite/invite.html?id=%@", [YKUserManager sharedManager].user.userId];
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    
+    //设置分享平台
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]]; // 设置需要分享的平台
+    
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        
+        //调用分享接口
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+            
+            if (error) {
+                UMSocialLogInfo(@"************Share fail with error %@*********",error);
+            }else{
+                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                    UMSocialShareResponse *resp = data;
+                    //分享结果消息
+                    UMSocialLogInfo(@"response message is %@",resp.message);
+                    //第三方原始返回的数据
+                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                }else{
+                    UMSocialLogInfo(@"response data is %@",data);
+                }
+            }
+        }];
+    }];
+}
 - (IBAction)toShare:(id)sender {
-    YKShareVC *share = [YKShareVC new];
-    share.hidesBottomBarWhenPushed = YES;
-    [[self getCurrentVC].navigationController pushViewController:share animated:YES];
-//    [self.navigationController pushViewController:[YKShareVC new] animated:YES];
+    [self share];
+//    YKShareVC *share = [YKShareVC new];
+//    share.hidesBottomBarWhenPushed = YES;
+//    [[self getCurrentVC].navigationController pushViewController:share animated:YES];
+////    [self.navigationController pushViewController:[YKShareVC new] animated:YES];
+    
 }
 
 - (UIViewController *)getCurrentVC
@@ -690,17 +736,6 @@
 //    [self setViewMovedUp:NO];
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    // register for keyboard notifications
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
-//                                                 name:UIKeyboardWillShowNotification object:self.view.window];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    // unregister for keyboard notifications while not visible.
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-//}
+
 
 @end

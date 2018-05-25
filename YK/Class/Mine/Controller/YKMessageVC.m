@@ -10,7 +10,7 @@
 #import "YKTotalMsgView.h"
 #import "YKTotalSMSVC.h"
 #import "YKMsgDetailVc.h"
-#import "YKActivityVC.h"
+//#import "YKActivityVC.h"
 #import "YKMineCell.h"
 @interface YKMessageVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView *tableView;
@@ -101,7 +101,7 @@
         [self.navigationController pushViewController:[YKTotalSMSVC new] animated:YES];
     }
     if (indexPath.row==2) {
-        [self.navigationController pushViewController:[YKActivityVC new] animated:YES];
+//        [self.navigationController pushViewController:[YKActivityVC new] animated:YES];
     }
 }
 @end

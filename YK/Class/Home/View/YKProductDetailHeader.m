@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *tishiLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *tishiImage;
 
+@property (weak, nonatomic) IBOutlet UILabel *recommentWords;
+
 @end
 
 @implementation YKProductDetailHeader
@@ -31,6 +33,16 @@
     [_brandName setUserInteractionEnabled:YES];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail)];
     [_brandName addGestureRecognizer:tap];
+    
+    //
+     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle  setLineSpacing:4];
+    self.recommentWords.text = @"这件衣服很好，黄金时代剋建行卡接受的；卡还是打卡好看的哈剋就是打卡机浑善达克借记卡很多事";
+    
+    NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
+    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
+    // 设置Label要显示的text
+    [self.recommentWords  setAttributedText:setString];
 }
 
 - (void)toDetail{
@@ -62,6 +74,22 @@
 - (void)setBrand:(NSDictionary *)brand{
     _brand = brand;
      [_brandImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:brand[@"brandDetailLogo"]]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+}
+
+- (void)setRecomment:(NSString *)recomment{
+    
+    _recomment = [recomment isEqual:[NSNull null]] ? @"暂无买手推荐语～" : recomment;
+    _recommentWords.text = _recomment;
+    
+    NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle  setLineSpacing:4];
+    self.recommentWords.text = _recomment;
+    
+    NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
+    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
+    // 设置Label要显示的text
+    [self.recommentWords  setAttributedText:setString];
+    
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -96,6 +124,7 @@
 @implementation YKSizeView
 
 - (void)initViewWithArray:(NSArray *)array{
+    
     self.stockArray = [NSArray arrayWithArray:array];
     self.stockStatusLabelArray = [NSMutableArray array];
     self.typeBtnArray = [NSMutableArray array];

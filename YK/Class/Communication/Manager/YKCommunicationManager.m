@@ -21,7 +21,7 @@
 
 - (void)requestCommunicationImgListOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [YKHttpClient Method:@"GET" apiName:CommunicationImgList_Url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -70,11 +70,11 @@
 }
 
 //社区列表展示
-- (void)requestCommunicationListWithNum:(NSInteger)Num Size:(NSInteger)Size OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)requestCommunicationListWithNum:(NSInteger)Num Size:(NSInteger)Size clothingId:(NSString *)clothingId OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@?articleStatus=0&page=%ld&size=%ld",GetCommunicationList_Url,Num,Size];
+    NSString *url = [NSString stringWithFormat:@"%@?articleStatus=0&page=%ld&size=%ld&clothingId=%@",GetCommunicationList_Url,Num,Size,clothingId];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];

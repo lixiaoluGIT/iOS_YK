@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="66" id="KGk-i7-Jjw" customClass="YKPublicCell">
-            <rect key="frame" x="0.0" y="0.0" width="347" height="66"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="KGk-i7-Jjw" customClass="YKPublicCell">
+            <rect key="frame" x="0.0" y="0.0" width="352" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="347" height="65.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="352" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Something With Others ~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkg-0w-ruQ">
-                        <rect key="frame" x="26" y="22" width="249" height="21"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="从试穿过的衣服时装中选择" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfL-sY-tgP">
+                        <rect key="frame" x="24" y="24" width="196" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fabu" translatesAutoresizingMaskIntoConstraints="NO" id="qRB-Mr-4yh">
-                        <rect key="frame" x="312" y="25" width="15" height="15"/>
-                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每次只能选择单品服装进行晒图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrh-PF-UqE">
+                        <rect key="frame" x="24" y="52" width="186" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="qRB-Mr-4yh" secondAttribute="trailing" constant="20" id="6wd-MR-tS4"/>
-                    <constraint firstItem="qRB-Mr-4yh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AR5-Ns-c8s"/>
-                    <constraint firstItem="hkg-0w-ruQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="TNm-iZ-n99"/>
-                    <constraint firstItem="hkg-0w-ruQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZBa-zw-jSe"/>
+                    <constraint firstItem="Qrh-PF-UqE" firstAttribute="top" secondItem="cfL-sY-tgP" secondAttribute="bottom" constant="8" id="U6K-ew-9Mx"/>
+                    <constraint firstItem="Qrh-PF-UqE" firstAttribute="leading" secondItem="cfL-sY-tgP" secondAttribute="leading" id="adt-GC-onF"/>
+                    <constraint firstItem="cfL-sY-tgP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="dX3-Qm-RIs"/>
+                    <constraint firstItem="cfL-sY-tgP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="w90-h2-4Kf"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="111.5" y="121"/>
+            <point key="canvasLocation" x="114" y="132"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="fabu" width="15" height="15"/>
-    </resources>
 </document>

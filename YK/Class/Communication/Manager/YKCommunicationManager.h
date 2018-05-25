@@ -27,9 +27,7 @@ imageArray 照片数组
 - (void)requestCommunicationImgListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //社区列表展示
-- (void)requestCommunicationListWithNum:(NSInteger)Num
-                                   Size:(NSInteger)Size
-                             OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)requestCommunicationListWithNum:(NSInteger)Num Size:(NSInteger)Size clothingId:(NSString *)clothingId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //点赞
 

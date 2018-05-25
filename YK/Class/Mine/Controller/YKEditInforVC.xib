@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,6 +21,7 @@
                 <outlet property="view2" destination="qVF-wt-SYR" id="a99-XP-d75"/>
                 <outlet property="view3" destination="ePK-ba-pw6" id="WUx-Nx-XDV"/>
                 <outlet property="view4" destination="Qbq-9I-fdv" id="Gw9-tm-tGa"/>
+                <outlet property="view5" destination="dXM-My-ZSB" id="Goo-Vz-pMn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -173,18 +174,41 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXM-My-ZSB">
+                    <rect key="frame" x="0.0" y="336" width="375" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="OiI-P1-sNE"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尺码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6c9-eN-xFZ">
+                    <rect key="frame" x="20" y="351" width="33" height="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="QiI-mq-y5A">
+                    <rect key="frame" x="345" y="354" width="10" height="14"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="6c9-eN-xFZ" firstAttribute="leading" secondItem="Axf-DH-52Q" secondAttribute="leading" id="3D1-iO-4S0"/>
                 <constraint firstItem="TAa-7y-egd" firstAttribute="width" secondItem="2hV-0t-yN2" secondAttribute="width" id="3dO-so-1Pu"/>
+                <constraint firstItem="QiI-mq-y5A" firstAttribute="centerY" secondItem="6c9-eN-xFZ" secondAttribute="centerY" id="AMy-e6-fJK"/>
+                <constraint firstItem="dXM-My-ZSB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DoO-qE-WUP"/>
                 <constraint firstItem="TAa-7y-egd" firstAttribute="bottom" secondItem="qVF-wt-SYR" secondAttribute="bottom" id="NtE-Hg-49m"/>
                 <constraint firstItem="bY6-lQ-Vij" firstAttribute="leading" secondItem="WMo-SH-1Un" secondAttribute="leading" id="S5L-2y-ebs"/>
+                <constraint firstAttribute="trailing" secondItem="dXM-My-ZSB" secondAttribute="trailing" id="Txm-td-MRU"/>
+                <constraint firstItem="dXM-My-ZSB" firstAttribute="top" secondItem="Qbq-9I-fdv" secondAttribute="bottom" constant="10" id="ZaK-bW-PTm"/>
                 <constraint firstItem="WMo-SH-1Un" firstAttribute="leading" secondItem="KeD-Zz-6hM" secondAttribute="leading" id="a69-mq-StX"/>
                 <constraint firstItem="ELm-Bg-SE3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="akg-XM-ARj"/>
                 <constraint firstItem="qVF-wt-SYR" firstAttribute="width" secondItem="ELm-Bg-SE3" secondAttribute="width" id="azU-Ij-08K"/>
                 <constraint firstItem="ePK-ba-pw6" firstAttribute="width" secondItem="qVF-wt-SYR" secondAttribute="width" id="dGe-6h-Wpb"/>
                 <constraint firstItem="qVF-wt-SYR" firstAttribute="top" secondItem="ELm-Bg-SE3" secondAttribute="bottom" id="dVn-WE-TCj"/>
+                <constraint firstItem="QiI-mq-y5A" firstAttribute="centerX" secondItem="g6I-qG-4MC" secondAttribute="centerX" id="dWo-xk-eWR"/>
                 <constraint firstItem="ELm-Bg-SE3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="drW-c2-FTT"/>
+                <constraint firstItem="6c9-eN-xFZ" firstAttribute="centerY" secondItem="dXM-My-ZSB" secondAttribute="centerY" id="dw8-hg-ZhN"/>
                 <constraint firstItem="hXv-uU-FkR" firstAttribute="width" secondItem="TAa-7y-egd" secondAttribute="width" id="hyF-Ik-RjQ"/>
                 <constraint firstItem="Qbq-9I-fdv" firstAttribute="centerX" secondItem="ELm-Bg-SE3" secondAttribute="centerX" id="mOl-6t-DhS"/>
                 <constraint firstItem="qVF-wt-SYR" firstAttribute="leading" secondItem="ELm-Bg-SE3" secondAttribute="leading" id="nPf-5j-ObG"/>

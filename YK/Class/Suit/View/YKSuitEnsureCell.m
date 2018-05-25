@@ -33,6 +33,7 @@
     _suit = suit;
     
     [self.myImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:suit.clothingImgUrl]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+    [self.myImage setContentMode:UIViewContentModeScaleAspectFill];
     self.myDes.text = [NSString stringWithFormat:@"%@",suit.clothingName];
     self.myBrand.text = suit.clothingBrandName;
     self.mySize.text = suit.clothingStockType;

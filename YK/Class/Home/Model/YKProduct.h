@@ -28,6 +28,10 @@
 
 @property (nonatomic,assign)BOOL isHadStock;//有无库存
 
+//上新是否超过48小时，后台判断返回状态，或后台返回时间戳，前端自己判断
+@property (nonatomic,strong)NSString *onLineTime;
+@property (nonatomic,assign)BOOL isNew;//是否是刚上新
+
 //
 
 @property (nonatomic,strong)NSMutableArray *bannerImages;//轮播图

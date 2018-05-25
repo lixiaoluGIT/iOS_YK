@@ -178,6 +178,7 @@
     _suit = suit;
     self.suitImage.autoresizingMask = NO;
     [self.suitImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:suit.clothingImgUrl]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+//    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
     self.suitName.text = suit.clothingName;
     self.suitBrand.text = suit.clothingBrandName;
     self.suitType.text = suit.clothingStockType;

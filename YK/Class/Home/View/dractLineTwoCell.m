@@ -35,7 +35,8 @@
     for (int i = 0; i < _titleArr.count; i++) {
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20*WIDHT/414 + (WIDHT-20*2)/_titleArr.count*i, 0, 60, 30)];
-        label.text = _titleArr[i];
+        label.text = [_titleArr[i] isEqual:[NSNull null]] ? @"*":[NSString stringWithFormat:@"%@",_titleArr[i]];
+//        label.text = ;
         label.textColor = mainColor;
         label.font = PingFangSC_Regular(14);
         label.textAlignment = NSTextAlignmentCenter;

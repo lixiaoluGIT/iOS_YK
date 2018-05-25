@@ -17,6 +17,8 @@
 @property (nonatomic,strong)NSDictionary *product;
 
 @property (nonatomic,strong)NSDictionary *brand;
+
+@property (nonatomic,strong)NSString *recomment;
 @end
 
 @interface YKSizeView : UIView

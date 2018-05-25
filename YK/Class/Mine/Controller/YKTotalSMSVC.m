@@ -49,7 +49,7 @@
     self.navigationItem.titleView = title;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
     [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"xiaoxi"] statusDes:@"暂无物流通知" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
@@ -57,7 +57,7 @@
     }];
     
     NoDataView.frame = CGRectMake(0, 98+BarH, WIDHT,HEIGHT-162);
-    self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     [self.view addSubview:NoDataView];
     NoDataView.hidden = YES;
 

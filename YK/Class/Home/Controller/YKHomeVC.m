@@ -299,7 +299,7 @@
     return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+100+WIDHT*0.84);
 }
 
-#pragma mark - scrollViewDelegate
+#pragma mark - scrollViewDelegatea
 -(void)scrollViewImageClick:(WMHCustomScroll *)WMHView{
     NSLog(@"%.f",WMHView.WMHScroll.contentOffset.x / WIDHT - 1);
 }

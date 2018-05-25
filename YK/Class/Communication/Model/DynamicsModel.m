@@ -88,7 +88,7 @@ extern CGFloat maxContentLabelHeight;
     
     YYTextLayout * layout = [YYTextLayout layoutWithContainer:container text:text];
     
-    if (layout.rowCount <= 2) {
+    if (layout.rowCount <= 4) {
         _shouldShowMoreButton = NO;
     }else{
         _shouldShowMoreButton = YES;

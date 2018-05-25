@@ -426,7 +426,7 @@
     
     for (NSDictionary *model in currentArray) {
         
-        //不是3,5,8的状态全部放入待签收
+        //不是4,5,8的状态全部放入待签收
         if ([model[@"orderStatus"] intValue] != 5 && [model[@"orderStatus"] intValue] != 4 && [model[@"orderStatus"] intValue] != 8 ){
             
             //如果状态有1或2,存在待配货或待发货的订单
@@ -436,6 +436,7 @@
                 _isOnRoad = YES;
             }
             
+            self.orderNo = model[@"orderNo"];
             self.orderNo = model[@"orderNo"];
             self.ID = model[@"id"];
             receiveList = [NSMutableArray arrayWithArray:model[@"orderDetailsVoList"]];
@@ -452,6 +453,7 @@
                 
             }
             
+           
             
         
         }else if([model[@"orderStatus"] intValue] == 5 || [model[@"orderStatus"] intValue] == 8) {//已归还
@@ -471,10 +473,10 @@
             }
         }
         
-        
-        //分数组添加到总数组里
+//        [hadBackList addObject:model[@"orderDetailsVoList"];
+        //分数组添加到总数组里分数组添加到总数组里，是否给这个一个正好的
         if (receiveList.count>0&&![totlaList containsObject:receiveList]) {
-            [totlaList insertObject:receiveList atIndex:0];
+            [totlaList insertObject:receiveList atIndex:0];   
             if (![self.sectionArray containsObject:receiveSection]) {
                 [self.sectionArray addObject:receiveSection];
             }

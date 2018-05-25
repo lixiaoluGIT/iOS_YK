@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopPublicVC : UIViewController
+@interface TopPublicVC : YKBaseVC
 
 @property (nonatomic,strong)NSString *clothingId;
 

@@ -32,7 +32,7 @@
                
                 [publicBtn mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.centerX.equalTo(self.view.mas_centerX);
-                    make.top.equalTo(self.view.mas_bottom).offset(-120);
+                    make.top.equalTo(self.view.mas_bottom).offset(-100);
                     if (HEIGHT==812) {
                         make.top.equalTo(self.view.mas_bottom).offset(-150);
                     }
@@ -63,7 +63,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
-    return layout.height+50;
+    return layout.height+75;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

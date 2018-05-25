@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,20 +43,14 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.通过APP内部注册的用户在首次充值的时候可以填入邀请码，充值成功后可获得一张5天会员加时卡；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vu-JR-FwI">
-                        <rect key="frame" x="20" y="163.5" width="305" height="50.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.本活动最终解释权归衣库APP所有。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-3H-GiB">
+                        <rect key="frame" x="20" y="163.5" width="239.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.新人礼包和邀请码不可同时生效；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOl-N6-Zgo">
-                        <rect key="frame" x="20" y="218" width="305" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.本活动最终解释权归衣库APP所有。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-3H-GiB">
-                        <rect key="frame" x="20" y="239" width="305" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.如有疑问，请拨打客服电话：010-52894251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPW-V8-yX0">
+                        <rect key="frame" x="20" y="184.5" width="294.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -65,23 +59,18 @@
                 <constraints>
                     <constraint firstItem="WfU-MH-dpO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="0vF-p2-oJ3"/>
                     <constraint firstItem="fMh-Ld-2sH" firstAttribute="leading" secondItem="0MY-H4-vk9" secondAttribute="leading" id="921-4O-vcl"/>
+                    <constraint firstItem="RPW-V8-yX0" firstAttribute="leading" secondItem="jq3-3H-GiB" secondAttribute="leading" id="AeI-8l-L3N"/>
                     <constraint firstItem="0MY-H4-vk9" firstAttribute="top" secondItem="ytq-X0-3yV" secondAttribute="bottom" constant="4" id="Aog-yU-3gb"/>
                     <constraint firstItem="WfU-MH-dpO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="C3Q-N2-7bZ"/>
-                    <constraint firstItem="6Vu-JR-FwI" firstAttribute="leading" secondItem="fMh-Ld-2sH" secondAttribute="leading" id="DC3-kh-6Sy"/>
-                    <constraint firstItem="6Vu-JR-FwI" firstAttribute="trailing" secondItem="fMh-Ld-2sH" secondAttribute="trailing" id="DND-rq-9hp"/>
+                    <constraint firstItem="RPW-V8-yX0" firstAttribute="top" secondItem="jq3-3H-GiB" secondAttribute="bottom" constant="4" id="DjL-iY-LiY"/>
+                    <constraint firstItem="jq3-3H-GiB" firstAttribute="top" secondItem="fMh-Ld-2sH" secondAttribute="bottom" constant="4" id="L5Q-c9-2rv"/>
                     <constraint firstItem="ytq-X0-3yV" firstAttribute="top" secondItem="WfU-MH-dpO" secondAttribute="bottom" constant="7" id="OpG-qK-DUr"/>
-                    <constraint firstItem="jq3-3H-GiB" firstAttribute="top" secondItem="DOl-N6-Zgo" secondAttribute="bottom" constant="4" id="RbK-4O-OT7"/>
                     <constraint firstAttribute="trailing" secondItem="ytq-X0-3yV" secondAttribute="trailing" constant="20" id="S3P-OV-x59"/>
-                    <constraint firstItem="DOl-N6-Zgo" firstAttribute="top" secondItem="6Vu-JR-FwI" secondAttribute="bottom" constant="4" id="Stu-CQ-c2T"/>
                     <constraint firstItem="0MY-H4-vk9" firstAttribute="leading" secondItem="ytq-X0-3yV" secondAttribute="leading" id="Vz4-ms-jwd"/>
-                    <constraint firstItem="6Vu-JR-FwI" firstAttribute="top" secondItem="fMh-Ld-2sH" secondAttribute="bottom" constant="4" id="WTO-0b-pY8"/>
                     <constraint firstItem="fMh-Ld-2sH" firstAttribute="trailing" secondItem="0MY-H4-vk9" secondAttribute="trailing" id="Wix-vM-duV"/>
-                    <constraint firstItem="jq3-3H-GiB" firstAttribute="leading" secondItem="DOl-N6-Zgo" secondAttribute="leading" id="cXr-sr-oU3"/>
-                    <constraint firstItem="DOl-N6-Zgo" firstAttribute="leading" secondItem="6Vu-JR-FwI" secondAttribute="leading" id="cvc-el-vT5"/>
                     <constraint firstItem="0MY-H4-vk9" firstAttribute="trailing" secondItem="ytq-X0-3yV" secondAttribute="trailing" id="eUm-ss-pz7"/>
-                    <constraint firstItem="jq3-3H-GiB" firstAttribute="trailing" secondItem="DOl-N6-Zgo" secondAttribute="trailing" id="kXt-We-Pr8"/>
                     <constraint firstItem="fMh-Ld-2sH" firstAttribute="top" secondItem="0MY-H4-vk9" secondAttribute="bottom" constant="4" id="nLR-md-zUY"/>
-                    <constraint firstItem="DOl-N6-Zgo" firstAttribute="trailing" secondItem="6Vu-JR-FwI" secondAttribute="trailing" id="r8L-oA-mJU"/>
+                    <constraint firstItem="jq3-3H-GiB" firstAttribute="leading" secondItem="fMh-Ld-2sH" secondAttribute="leading" id="uEE-ye-gfb"/>
                     <constraint firstItem="ytq-X0-3yV" firstAttribute="leading" secondItem="WfU-MH-dpO" secondAttribute="leading" id="zvN-DA-03p"/>
                 </constraints>
             </tableViewCellContentView>

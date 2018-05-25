@@ -93,15 +93,15 @@
     //我的邀请码
   
   YKSharebView *buttom1 = [[NSBundle mainBundle] loadNibNamed:@"YKSharebView" owner:self options:nil][1];
-    buttom1.frame = CGRectMake(20, btn2.frame.size.height+btn2.frame.origin.y+19, WIDHT-40, 42);
-    [self.view addSubview:buttom1];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(paste)];
-    [buttom1 addGestureRecognizer:tap];
+//    buttom1.frame = CGRectMake(20, btn2.frame.size.height+btn2.frame.origin.y+19, WIDHT-40, 42);
+//    [self.view addSubview:buttom1];
+//
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(paste)];
+//    [buttom1 addGestureRecognizer:tap];
     
     //规则说明
     YKSharebView *buttom = [[NSBundle mainBundle] loadNibNamed:@"YKSharebView" owner:self options:nil][0];
-    buttom.frame = CGRectMake(20, buttom1.frame.size.height+buttom1.frame.origin.y+14, WIDHT-40, 260);
+    buttom.frame = CGRectMake(20, btn2.frame.size.height+btn2.frame.origin.y+14, WIDHT-40, 260);
     buttom.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:buttom];
     
@@ -163,7 +163,8 @@
     
     //创建网页内容对象
     UIImage *image = [UIImage imageNamed:@"LOGO-1"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"加入衣库"] descr:@"首月只需¥149 轻奢大牌无限换穿" thumImage:image];
+    
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"快来和我一起尝试\"包月换衣\""] descr:@"衣库共享衣橱，首月149元，上万件大牌时装无限换穿！" thumImage:image];
     //设置网页地址
     shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/invite/invite.html?id=%@", [YKUserManager sharedManager].user.userId];
     

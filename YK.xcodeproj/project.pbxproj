@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE59E20B5344300554AB3 /* YKProductCommentVC.m */; };
+		002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */; };
+		002FE5A420B54CA200554AB3 /* YKEditSizeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002FE5A220B54CA200554AB3 /* YKEditSizeVC.xib */; };
+		002FE5A820B681F900554AB3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FE5A720B681F900554AB3 /* StoreKit.framework */; };
 		0034CF132071D957002015AE /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0034CF122071D957002015AE /* libmtasdk.a */; };
 		0034CF142071D9D2002015AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A7631FDF8EFA0068A31D /* Foundation.framework */; };
 		0034CF1620720619002015AE /* top1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1520720618002015AE /* top1.jpg */; };
@@ -32,6 +36,9 @@
 		00A0CC4E2090265D001205A1 /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC462090265C001205A1 /* UMShare.framework */; };
 		00A0CC4F2090265D001205A1 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00A0CC482090265C001205A1 /* UMSocialSDKResources.bundle */; };
 		00A0CC502090265D001205A1 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC492090265C001205A1 /* UShareUI.framework */; };
+		00B7F22F20B684E80086EFBB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B7F22E20B684E80086EFBB /* GameKit.framework */; };
+		00B7F23320B6BA460086EFBB /* YKProductAdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7F23120B6BA460086EFBB /* YKProductAdCell.m */; };
+		00B7F23420B6BA460086EFBB /* YKProductAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B7F23220B6BA460086EFBB /* YKProductAdCell.xib */; };
 		00B9EF2820A0535800A7422B /* SDBaseRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B9EF0920A0535700A7422B /* SDBaseRefreshView.m */; };
 		00B9EF2920A0535800A7422B /* SDTimeLineRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B9EF0C20A0535700A7422B /* SDTimeLineRefreshHeader.m */; };
 		00B9EF2A20A0535800A7422B /* JRMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B9EF0F20A0535700A7422B /* JRMenuView.m */; };
@@ -56,7 +63,6 @@
 		00C3929A206C9B8D0068DFC0 /* dractLineTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C39296206C9B8D0068DFC0 /* dractLineTwoCell.m */; };
 		00D60D44207C8E140003A71A /* YKSelectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D42207C8E140003A71A /* YKSelectTimeView.m */; };
 		00D60D45207C8E140003A71A /* YKSelectTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D60D43207C8E140003A71A /* YKSelectTimeView.xib */; };
-		00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EBFC362063A1B6001FEC24 /* YKActivityVC.m */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
 		C5016FF02022B77800E22301 /* YKMineCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */; };
@@ -567,6 +573,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		002FE59D20B5344300554AB3 /* YKProductCommentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductCommentVC.h; sourceTree = "<group>"; };
+		002FE59E20B5344300554AB3 /* YKProductCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductCommentVC.m; sourceTree = "<group>"; };
+		002FE5A020B54CA200554AB3 /* YKEditSizeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKEditSizeVC.h; sourceTree = "<group>"; };
+		002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKEditSizeVC.m; sourceTree = "<group>"; };
+		002FE5A220B54CA200554AB3 /* YKEditSizeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKEditSizeVC.xib; sourceTree = "<group>"; };
+		002FE5A720B681F900554AB3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0034CF102071D956002015AE /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
 		0034CF112071D956002015AE /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
 		0034CF122071D957002015AE /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
@@ -601,6 +613,10 @@
 		00A0CC462090265C001205A1 /* UMShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMShare.framework; sourceTree = "<group>"; };
 		00A0CC482090265C001205A1 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		00A0CC492090265C001205A1 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		00B7F22E20B684E80086EFBB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		00B7F23020B6BA450086EFBB /* YKProductAdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductAdCell.h; sourceTree = "<group>"; };
+		00B7F23120B6BA460086EFBB /* YKProductAdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductAdCell.m; sourceTree = "<group>"; };
+		00B7F23220B6BA460086EFBB /* YKProductAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKProductAdCell.xib; sourceTree = "<group>"; };
 		00B9EF0820A0535700A7422B /* SDBaseRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseRefreshView.h; sourceTree = "<group>"; };
 		00B9EF0920A0535700A7422B /* SDBaseRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseRefreshView.m; sourceTree = "<group>"; };
 		00B9EF0B20A0535700A7422B /* SDTimeLineRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTimeLineRefreshHeader.h; sourceTree = "<group>"; };
@@ -647,8 +663,6 @@
 		00D60D41207C8E140003A71A /* YKSelectTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSelectTimeView.h; sourceTree = "<group>"; };
 		00D60D42207C8E140003A71A /* YKSelectTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSelectTimeView.m; sourceTree = "<group>"; };
 		00D60D43207C8E140003A71A /* YKSelectTimeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSelectTimeView.xib; sourceTree = "<group>"; };
-		00EBFC362063A1B6001FEC24 /* YKActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YKActivityVC.m; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.m; sourceTree = "<group>"; };
-		00EBFC372063A1B6001FEC24 /* YKActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YKActivityVC.h; path = ../../../../../iOS_YK/YK/Class/Mine/Controller/YKActivityVC.h; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		C500BCCD20591B210075B050 /* WebP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebP.framework; path = Vendor/WebP.framework; sourceTree = "<group>"; };
 		C5016FED2022B77800E22301 /* YKMineCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMineCategoryCell.h; sourceTree = "<group>"; };
@@ -1638,6 +1652,7 @@
 				C5929241204E4265002ED8DB /* MapKit.framework in Frameworks */,
 				C5929258204FC4A4002ED8DB /* libopencore-amrnb.a in Frameworks */,
 				C592923F204E4240002ED8DB /* libxml2.tbd in Frameworks */,
+				002FE5A820B681F900554AB3 /* StoreKit.framework in Frameworks */,
 				00A0CC4A2090265C001205A1 /* libSocialWeChat.a in Frameworks */,
 				C50CF1B9200DD93300A717DF /* libstdc++.tbd in Frameworks */,
 				005D2CCF2080A44F00AEBDA0 /* TencentOpenAPI.framework in Frameworks */,
@@ -1670,6 +1685,7 @@
 				C5929257204FC4A4002ED8DB /* RongIMLib.framework in Frameworks */,
 				C532A7531FDF8AAC0068A31D /* libcrypto.a in Frameworks */,
 				C532A7521FDF8AAC0068A31D /* libssl.a in Frameworks */,
+				00B7F22F20B684E80086EFBB /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,6 +1991,8 @@
 				C525DDF81FBABB68002802AE /* YKHomeVC.m */,
 				C5343C7B1FC542FF00F5132A /* YKProductDetailVC.h */,
 				C5343C7C1FC542FF00F5132A /* YKProductDetailVC.m */,
+				002FE59D20B5344300554AB3 /* YKProductCommentVC.h */,
+				002FE59E20B5344300554AB3 /* YKProductCommentVC.m */,
 				C525DE241FBAEA58002802AE /* YKALLBrandVC.h */,
 				C525DE251FBAEA58002802AE /* YKALLBrandVC.m */,
 				C5343C781FC52E2400F5132A /* YKBrandDetailVC.h */,
@@ -2020,6 +2038,9 @@
 				C525DE071FBABE69002802AE /* CGQCollectionViewCell.h */,
 				C525DE061FBABE69002802AE /* CGQCollectionViewCell.m */,
 				C525DE081FBABE69002802AE /* CGQCollectionViewCell.xib */,
+				00B7F23020B6BA450086EFBB /* YKProductAdCell.h */,
+				00B7F23120B6BA460086EFBB /* YKProductAdCell.m */,
+				00B7F23220B6BA460086EFBB /* YKProductAdCell.xib */,
 				C525DC731FBAB207002802AE /* ZYCollectionView.h */,
 				C525DC741FBAB207002802AE /* ZYCollectionView.m */,
 				C533EF492057801B00A71DBE /* YKBaseScrollView.h */,
@@ -2134,8 +2155,6 @@
 		C525DC641FBAB15D002802AE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				00EBFC372063A1B6001FEC24 /* YKActivityVC.h */,
-				00EBFC362063A1B6001FEC24 /* YKActivityVC.m */,
 				C525DE031FBABBFB002802AE /* YKMineVC.h */,
 				C525DE041FBABBFB002802AE /* YKMineVC.m */,
 				C525DEA61FBD9144002802AE /* YKAddressVC.h */,
@@ -2185,6 +2204,9 @@
 				C5B723D4202C3BB700344339 /* YKUpdateVC.h */,
 				C5B723D5202C3BB700344339 /* YKUpdateVC.m */,
 				C5B723D6202C3BB700344339 /* YKUpdateVC.xib */,
+				002FE5A020B54CA200554AB3 /* YKEditSizeVC.h */,
+				002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */,
+				002FE5A220B54CA200554AB3 /* YKEditSizeVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2854,6 +2876,8 @@
 		C525DEDB1FC27915002802AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00B7F22E20B684E80086EFBB /* GameKit.framework */,
+				002FE5A720B681F900554AB3 /* StoreKit.framework */,
 				C500BCCB205918A60075B050 /* WebKit.framework */,
 				C5929247204E42BD002ED8DB /* SafariServices.framework */,
 				C5929245204E42B2002ED8DB /* Photos.framework */,
@@ -3671,6 +3695,12 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.GameCenter.iOS = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 0;
 							};
@@ -3780,6 +3810,7 @@
 				C5F929B720206E52001D2139 /* CLImageBrowserCell.xib in Resources */,
 				C592925A204FC4A4002ED8DB /* RongCloud.bundle in Resources */,
 				C5FB78C8205908F80076DD6F /* README.md in Resources */,
+				002FE5A420B54CA200554AB3 /* YKEditSizeVC.xib in Resources */,
 				C525DD621FBAB2A8002802AE /* LICENSE in Resources */,
 				C525DC2C1FBAAFC1002802AE /* Main.storyboard in Resources */,
 				C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */,
@@ -3802,6 +3833,7 @@
 				C53039DC1FCC0A0A00FB12CE /* YKChangePhoneVC.xib in Resources */,
 				C5FB7876205904780076DD6F /* README.md in Resources */,
 				00A0CC4F2090265D001205A1 /* UMSocialSDKResources.bundle in Resources */,
+				00B7F23420B6BA460086EFBB /* YKProductAdCell.xib in Resources */,
 				005D2CD02080A44F00AEBDA0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				C52D0FC51FC80D3B00B50258 /* YKToBeVIPVC.xib in Resources */,
 				C525DE0A1FBABE69002802AE /* CGQCollectionViewCell.xib in Resources */,
@@ -3958,6 +3990,7 @@
 				00B9EF3020A0535800A7422B /* NewDynamicsTableViewCell.m in Sources */,
 				C525DDA11FBAB2A9002802AE /* NSMutableAttributedString+MLLabel.m in Sources */,
 				C5F929BC20206E53001D2139 /* FYTransitionData.m in Sources */,
+				00B7F23320B6BA460086EFBB /* YKProductAdCell.m in Sources */,
 				C533470A1FCFFE58002A08D0 /* LogisticsInfo.m in Sources */,
 				C592925D204FD9D7002ED8DB /* YKHomeSegementVC.m in Sources */,
 				C525DDB51FBAB2A9002802AE /* TZImageManager.m in Sources */,
@@ -4088,7 +4121,6 @@
 				C525DDC71FBAB2A9002802AE /* NSData+ImageContentType.m in Sources */,
 				C532A74A1FDF8AAB0068A31D /* MD5DataSigner.m in Sources */,
 				C525DDA91FBAB2A9002802AE /* MLLabel.m in Sources */,
-				00EBFC382063A1B6001FEC24 /* YKActivityVC.m in Sources */,
 				C5FB783C205904780076DD6F /* YYTextLayout.m in Sources */,
 				C5FB7847205904780076DD6F /* UIPasteboard+YYText.m in Sources */,
 				C525DD881FBAB2A9002802AE /* MJRefreshAutoFooter.m in Sources */,
@@ -4099,6 +4131,7 @@
 				C525DD7A1FBAB2A9002802AE /* NSBundle+MJRefresh.m in Sources */,
 				C5FB78E8205908F80076DD6F /* A2DynamicDelegate.m in Sources */,
 				C5FB78CF205908F80076DD6F /* NSSet+BlocksKit.m in Sources */,
+				002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */,
 				005D2CF62085F9D600AEBDA0 /* DCCycleScrollViewFlowLayout.m in Sources */,
 				C5FB784A205904780076DD6F /* YYTextRubyAnnotation.m in Sources */,
 				C5E46EA91FFE307F002453EB /* YKShareVC.m in Sources */,
@@ -4127,6 +4160,7 @@
 				C525DDCA1FBAB2A9002802AE /* UIButton+WebCache.m in Sources */,
 				C525DD971FBAB2A9002802AE /* MASConstraint.m in Sources */,
 				C525DD661FBAB2A8002802AE /* UIRefreshControl+AFNetworking.m in Sources */,
+				002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */,
 				C5FB7844205904780076DD6F /* NSParagraphStyle+YYText.m in Sources */,
 				C5FB7845205904780076DD6F /* YYTextParser.m in Sources */,
 				C525DD9E1FBAB2A9002802AE /* MLEmojiLabel.m in Sources */,
@@ -4357,7 +4391,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_1;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage_1;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 29NXF4787V;
@@ -4398,7 +4432,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = "/Users/edz/Desktop/iOS_YK-master/YK/Public/YKprefixheader.pch";
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
@@ -4560,7 +4594,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_1;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage_1;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanjin Net Tech Co.,Ltd. (29NXF4787V)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 29NXF4787V;
@@ -4601,7 +4635,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = "/Users/edz/Desktop/iOS_YK-master/YK/Public/YKprefixheader.pch";
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
@@ -4768,7 +4802,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon_共享衣橱";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage_共享衣橱";
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6R5JPDBPPU;
@@ -4809,7 +4843,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = "/Users/edz/Desktop/iOS_YK-master/YK/Public/YKprefixheader.pch";
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
@@ -4971,7 +5005,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon_共享衣橱";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage_共享衣橱";
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanjin Net Tech Co.,Ltd. (29NXF4787V)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6R5JPDBPPU;
@@ -5012,7 +5046,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = "/Users/edz/Desktop/iOS_YK-master/YK/Public/YKprefixheader.pch";
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
@@ -5231,7 +5265,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Wang (B93J56XJ62)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
@@ -5264,7 +5298,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = "/Users/edz/Desktop/iOS_YK-master/YK/Public/YKprefixheader.pch";
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
@@ -5331,7 +5365,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25947105-8f55-4d5d-b57f-3df68e52b7b2";
+				PROVISIONING_PROFILE = "6bc2a4d9-4e9d-49b1-886a-a2350f7cbddb";
 				PROVISIONING_PROFILE_SPECIFIER = YKDevelopementProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5345,7 +5379,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Clothing Point Technology Co., Ltd. (22F9ZLB38V)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
@@ -5386,7 +5420,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/edz/Desktop/yikukkkka/YK/Public/YKprefixheader.pch;
+				GCC_PREFIX_HEADER = "/Users/edz/Desktop/iOS_YK-master/YK/Public/YKprefixheader.pch";
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"\"$(SRCROOT)/YK/Vender/AliPay\"",
@@ -5453,8 +5487,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "afd5d247-48a6-4de7-997a-8cba3ed90d64";
-				PROVISIONING_PROFILE_SPECIFIER = YKProductionProfile;
+				PROVISIONING_PROFILE = "e330248a-2712-48e3-a1d9-deef542b0d15";
+				PROVISIONING_PROFILE_SPECIFIER = YKCurrentProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

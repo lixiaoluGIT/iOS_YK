@@ -27,7 +27,7 @@
     return [emailTest evaluateWithObject:email];
 }
 
-#pragma mark 判断身份证号是否合法
+#pragma mark 判断身份证号是否合法                                
 + (BOOL)isValidateIDNumber:(NSString *)IDNumber
 {
     if (IDNumber.length!=18) {

@@ -41,6 +41,9 @@
 
 @interface NewDynamicsTableViewCell : UITableViewCell<JRMenuDelegate>
 
+@property (nonatomic,assign)BOOL isShowInProductDetail;//在商品详情页
+@property (nonatomic,assign)BOOL isShowOnComments;//在所有评论界面
+
 @property(nonatomic,strong)NewDynamicsLayout * layout;
 
 @property(nonatomic,strong)UIImageView * portrait;
@@ -61,6 +64,8 @@
 @property(nonatomic,strong)UIImageView *linkImage;
 @property(nonatomic,strong)NewDynamicsThumbCommentView * thumbCommentView;
 @property(nonatomic,strong)UIView * dividingLine;
+
+@property (nonatomic,strong)UILabel *bigL;
 
 @property(nonatomic,strong)JRMenuView * jrMenuView;
 

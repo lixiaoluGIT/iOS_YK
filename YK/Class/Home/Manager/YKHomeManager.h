@@ -37,6 +37,10 @@
 //判断弹框是否弹出
 - (void)showAleartViewToShare;
 
-//
+//衣库尺码表
 - (NSArray *)getSizeArray:(NSArray *)array;
+
+//得到用户尺码表
+- (NSArray *)getUserSizeArray:(NSDictionary *)dic;
+
 @end

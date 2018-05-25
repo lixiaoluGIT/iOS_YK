@@ -1,17 +1,17 @@
 //
 //  YKEditInforVC.m
 //  YK
-//
+///Users/edz/Downloads/SourceTree.app
 //  Created by LXL on 2017/11/27.
 //  Copyright © 2017年 YK. All rights reserved.
 //
-
 #import "YKEditInforVC.h"
 #import "CustomSheetView.h"
 #import "YLAwesomeData.h"
 #import "YLDataConfiguration.h"
 #import "YLAwesomeSheetController.h"
 #import "YKChangePhoneVC.h"
+#import "YKEditSizeVC.h"
 
 @interface YKEditInforVC ()<UIImagePickerControllerDelegate,UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,CustomSheetViewDelegate>
 {
@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sexLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hap;
+@property (weak, nonatomic) IBOutlet UIView *view5;
 
 @end
 
@@ -77,6 +78,7 @@
     self.view2.tag = 102;
     self.view3.tag = 103;
     self.view4.tag = 104;
+    self.view5.tag = 105;
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeImage)];
     [self.view1 addGestureRecognizer:tap1];
     
@@ -88,6 +90,9 @@
     
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeSex)];
     [self.view4 addGestureRecognizer:tap4];
+    
+    UITapGestureRecognizer *tap5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toSize)];
+    [self.view5 addGestureRecognizer:tap5];
     
     [self setUI];
     
@@ -205,7 +210,11 @@
         self.sexLabel.text = [NSString stringWithFormat:@"%@",str];
     }];
     [sheet showInController:self];
-    
-
 }
+
+- (void)toSize{
+    YKEditSizeVC *edit = [[YKEditSizeVC alloc]init];
+    [self.navigationController pushViewController:edit animated:YES];
+}
+
 @end

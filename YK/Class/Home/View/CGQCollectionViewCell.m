@@ -9,22 +9,34 @@
 #import "CGQCollectionViewCell.h"
 
 @interface CGQCollectionViewCell()
-@property (weak, nonatomic) IBOutlet UIImageView *tagimage;
-@property (weak, nonatomic) IBOutlet UIView *backView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *shangxinImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *qiangkongImage;
+
 
 @end
 
 @implementation CGQCollectionViewCell
 
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _imageView.contentMode   = UIViewContentModeScaleAspectFit;
-    _imageView.clipsToBounds = YES;
-    _tagimage.clipsToBounds = YES;
-    _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-    _backView.hidden= _tagimage.hidden = YES;
+//    _imageView.contentMode   = UIViewContentModeScaleAspectFit;
+//    _imageView.clipsToBounds = YES;
+//    _tagimage.clipsToBounds = YES;
+//    _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+//    _backView.hidden= _tagimage.hidden = YES;
+    
+//    qiangkongImgae = [UIImageView alloc]in
+    _qiangkongImage.hidden = _shangxinImage.hidden = YES;
+    
 }
 
+- (void)setQiangKongImage{
+    
+}
 - (void)setProduct:(YKProduct *)product{
     _product = product;
     
@@ -38,14 +50,17 @@
      _imageDetails = product.imageDetails;
      _imageMaster = product.imageMaster;
     _clothingPrice = product.clothingPrice;
-    
     [_imageView sd_setImageWithURL:[NSURL URLWithString:_imageAttach] placeholderImage:[UIImage imageNamed:@"商品图"]];
-    _lable.text = _brandName;
-    _detailLabel.text = _goodsName;
-    
-    _backView.hidden= _tagimage.hidden = product.isHadStock;
+    _lable.text = _goodsName;
+    _detailLabel.text = _brandName;
+    _qiangkongImage.hidden = product.isHadStock;
+    _shangxinImage.hidden = !product.isNew;
+    //已抢空，不显示上新
+    if (!product.isHadStock) {
+        _shangxinImage.hidden = YES;
+    }
     _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-
+    
 }
 
 @end

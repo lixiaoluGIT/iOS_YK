@@ -99,6 +99,10 @@
 #define GetUserInfor_Url @"/user/getUserInfo"
 //更新用户信息
 #define UpdateUserInfor_Url @"/user/updateInfo"
+//上传尺码
+#define upLoadUserSize_Url @"/sizeTable/addUserSizeTable"
+//获取尺码
+#define getUserSize_Url @"/sizeTable/getUserSizeTable"
 //上传头像
 #define  UploadImage_Url @"/user/upload"
 //更新手机号获取验证码
@@ -167,10 +171,10 @@
 #define queryOrderSMSInfor_Url @"/sf/orderSFTrackQuery"
 //确认收货...更新订单
 #define ensureReceiveOrder_Url @"/order/updateOrder"
-//预约归还(下圆通订单)
+//预约归还(下圆通订单) POST /sendback/makeAppointment
 #define orderReceiveOrder_Url @"/sendback/makeAppointment"
-//查询待归还订单是否预约归还
-#define isHadOrderReceiveOrder_Url @"/yt/getYTTrackResult"
+//查询待归还订单是否预约归还 POST /sendback/getTrackResult ///yt/getYTTrackResult
+#define isHadOrderReceiveOrder_Url @"/sendback/getTrackResult"
 //生成顺风定单
 #define creatSFOrder_Url @"/sf/creatSFOrder"
 

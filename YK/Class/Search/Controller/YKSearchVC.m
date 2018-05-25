@@ -18,6 +18,8 @@
 #import "YKBrand.h"
 #import "YKBrandDetailVC.h"
 #import "DCCycleScrollView.h"
+#import "YKProductAdCell.h"
+#import "YKLinkWebVC.h"
 
 @interface YKSearchVC ()<UICollectionViewDelegate, UICollectionViewDataSource,DCCycleScrollViewDelegate>
 {
@@ -86,6 +88,8 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CGQCollectionViewCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"CGQCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([YKProductAdCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"YKProductAdCell"];
+//    YKProductAdCell
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
@@ -194,10 +198,20 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CGQCollectionViewCell" forIndexPath:indexPath];
-    YKProduct *procuct = [[YKProduct alloc]init];
-    [procuct initWithDictionary:self.productList[indexPath.row]];
-    cell.product = procuct;
+    
+    //加广告位
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.productList[indexPath.row] ];
+    if ([dic[@"adUrl"] isEqual:[NSNull null]]) {//正常商品
+        CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CGQCollectionViewCell" forIndexPath:indexPath];
+        YKProduct *procuct = [[YKProduct alloc]init];
+        [procuct initWithDictionary:self.productList[indexPath.row]];
+        cell.product = procuct;
+        return cell;
+    }//展示广告
+    YKProductAdCell *cell = (YKProductAdCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"YKProductAdCell" forIndexPath:indexPath];
+    [cell.imageC sd_setImageWithURL:[NSURL URLWithString:dic[@"clothingImgUrl"]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+    [cell.imageC setContentMode:UIViewContentModeScaleAspectFill];
+    
     return cell;
 }
 
@@ -337,14 +351,26 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%ld", (long)indexPath.row);
-    CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     
-    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-    detail.productId = cell.goodsId;
-    detail.titleStr = cell.goodsName;
-    detail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detail animated:YES];
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.productList[indexPath.row] ];
+    if ([dic[@"adUrl"] isEqual:[NSNull null]]) {//正常商品
+    NSLog(@"%ld", (long)indexPath.row);
+  
+        CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+        detail.productId = cell.goodsId;
+        detail.titleStr = cell.goodsName;
+        detail.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detail animated:YES];
+    
+    }else {//广告，到h5
+        //跳转到网页
+        YKLinkWebVC *web =[YKLinkWebVC new];
+        web.url = dic[@"clothingImgUrl"];
+        web.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:web animated:YES];
+        
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -363,7 +389,7 @@
         [self.productList removeAllObjects];
 
         if (array.count==0) {
-            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            [self.collectionView.mj_footer endRefreshing];
         }else {
             [self.collectionView.mj_footer endRefreshing];
             for (int i=0; i<array.count; i++) {

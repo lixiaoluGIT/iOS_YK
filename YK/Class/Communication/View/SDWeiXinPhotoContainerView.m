@@ -88,7 +88,7 @@
     CGFloat itemW = [self itemWidthForPicPathArray:_picPathStringsArray];
     CGFloat itemH = 0;
     if (_picPathStringsArray.count == 1) {
-           itemH = itemW;
+           itemH = 180;
     } else {
         itemH = itemW;
     }
@@ -102,7 +102,7 @@
         imageView.hidden = NO;
 
         NSURL * url = [NSURL URLWithString:[self URLEncodedString:_picPathStringsArray[idx]]];
-        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeHolderImg"] options:SDWebImageRetryFailed];
+        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"商品图"] options:SDWebImageRetryFailed];
         imageView.frame = CGRectMake(columnIndex * (itemW + margin), rowIndex * (itemH + margin), itemW, itemH);
     }];
     
@@ -147,7 +147,7 @@
 - (CGFloat)itemWidthForPicPathArray:(NSArray *)array
 {
     if (array.count == 1) {
-        return 160;
+        return WIDHT-90;
     } else {
         if (_customImgWidth != 0) {
             return _customImgWidth;
@@ -171,10 +171,10 @@
 
 + (CGSize)getContainerSizeWithPicPathStringsArray:(NSArray *)picPathStringsArray
 {
-    CGFloat itemW = picPathStringsArray.count == 1 ? 160 : 105*WIDHT/414;
+    CGFloat itemW = picPathStringsArray.count == 1 ? WIDHT-90 : 105*WIDHT/414;
     CGFloat itemH = 0;
     if (picPathStringsArray.count == 1) {
-        itemH = itemW;
+        itemH = 180;
     } else {
         itemH = itemW;
     }

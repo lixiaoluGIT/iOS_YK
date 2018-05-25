@@ -295,7 +295,8 @@
      {
          //文字保存到表单
          NSData *textData = [text dataUsingEncoding:NSUTF8StringEncoding];
-         NSData *clothingIdData = [clothingId dataUsingEncoding:NSUTF8StringEncoding];
+         NSString *cId = [NSString stringWithFormat:@"%@",clothingId];
+         NSData *clothingIdData = [cId dataUsingEncoding:NSUTF8StringEncoding];
          //text为后台参数名
          [formData appendPartWithFormData:clothingIdData name:@"clothingId"];
          [formData appendPartWithFormData:textData name:@"textContent"];
@@ -304,7 +305,6 @@
          {
              //图片转二进制
              NSData * imageData = [SteyUtil imageData:pics[i]];
-             
              // 上传的参数名，跟后台保持一直
              NSString * Name = @"imgList";
              // 上传filename，可以随意写

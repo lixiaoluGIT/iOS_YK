@@ -10,4 +10,6 @@
 
 @interface YKHomeDesCell : UITableViewCell
 
+@property (nonatomic,copy)void (^toEditSizeBlock)(NSDictionary *dic);
+
 @end

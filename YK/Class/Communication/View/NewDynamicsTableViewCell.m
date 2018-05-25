@@ -265,13 +265,15 @@
     [self.contentView addSubview:self.pl];
     [self.contentView addSubview:self.plNum];
     
+    [self.contentView addSubview:self.bigL];
+    
     [self.contentView addSubview:self.dz];
     [self.contentView addSubview:self.dzNum];
     
     [self.contentView addSubview:self.linkImage];
     [self.contentView addSubview:self.linkBtn];
     
-//    [self.contentView addSubview:_dateLabel];
+    [self.contentView addSubview:_dateLabel];
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -295,13 +297,21 @@
     _portrait.top = 24;
     _portrait.size = CGSizeMake(kDynamicsPortraitWidthAndHeight, kDynamicsPortraitWidthAndHeight);
     [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.headPhoto]]];
+    [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.headPhoto]] placeholderImage:[UIImage imageNamed:@"商品图"]];
     _portrait.layer.masksToBounds = YES;
     _portrait.layer.cornerRadius = 20;
     _portrait.backgroundColor = [UIColor whiteColor];
     
     //昵称
     _nameLabel.text = model.userNickName;
-    _nameLabel.centerY = _portrait.centerY;
+    if ([model.userNickName isEqualToString:@"衣库用户3204"]) {
+        _nameLabel.text = @"衣库一哥！";
+    }
+    if (_isShowInProductDetail) {
+        _nameLabel.centerY = _portrait.centerY-7;
+    }else {
+        _nameLabel.centerY = _portrait.centerY;
+    }
     _nameLabel.left = _portrait.right + 10;
     CGSize nameSize = [_nameLabel sizeThatFits:CGSizeZero];
     _nameLabel.width = nameSize.width;
@@ -410,14 +420,7 @@
     _pl.width = 18;
     _pl.height = 18;
     
-    //点赞数
-    _plNum.left = _pl.right+8;
-    _plNum.top = lastView.bottom + 20;
-    _plNum.width = 25;
-    _plNum.height = 18;
-    _plNum.text = [NSString stringWithFormat:@"%ld",model.fabulous.count];
-    
-    //
+    //添加手势
     
     BOOL hadUserId = NO;
     if ([Token length] == 0) {
@@ -429,10 +432,56 @@
         hadUserId = NO;
     }
     if (hadUserId){
-         _pl.image = [UIImage imageNamed:@"dianzan"];
+        _pl.image = [UIImage imageNamed:@"dianzan"];
     }else {
-         _pl.image = [UIImage imageNamed:@"weidianzan"];
+        _pl.image = [UIImage imageNamed:@"weidianzan"];
     }
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (!hadUserId) {//未点赞
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
+                [_delegate DidClickThunmbInDynamicsCell:self];
+            }
+        }else{//已点赞
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCancelThunmbInDynamicsCell:)]) {
+                [_delegate DidClickCancelThunmbInDynamicsCell:self];
+            }
+        }
+    }];
+    
+    [_pl setUserInteractionEnabled:YES];
+    [_pl addGestureRecognizer:tap];
+    
+ 
+    _bigL.centerX = _pl.centerX;
+    _bigL.centerY = _pl.centerY;
+    _bigL.width=_bigL.height = 50;
+//    _bigL.backgroundColor = [UIColor lightGrayColor];
+    [_bigL setUserInteractionEnabled:YES];
+    [_bigL addGestureRecognizer:tap];
+    
+    //点赞数
+    _plNum.left = _pl.right+8;
+    _plNum.top = lastView.bottom + 20;
+    _plNum.width = 25;
+    _plNum.height = 18;
+    _plNum.text = [NSString stringWithFormat:@"%ld",model.fabulous.count];
+    
+    //
+    
+//    BOOL hadUserId = NO;
+//    if ([Token length] == 0) {
+//        hadUserId = NO;
+//    }
+//    if([model.fabulous containsObject:[YKUserManager sharedManager].user.userId]){
+//        hadUserId = YES;
+//    }else {
+//        hadUserId = NO;
+//    }
+//    if (hadUserId){
+//         _pl.image = [UIImage imageNamed:@"dianzan"];
+//    }else {
+//         _pl.image = [UIImage imageNamed:@"weidianzan"];
+//    }
     
 //    _linkImage.right = _plNum.right+100;
 //    _linkImage.centerY = _plNum.centerY;
@@ -448,30 +497,46 @@
     lastView = _plNum;
     
     //链接图
-    _linkImage.left = _plNum.right + 200;
+    _linkImage.left = _plNum.right + 195;
     if (WIDHT==375) {
-        _linkImage.left = _plNum.right + 170;
+        _linkImage.left = _plNum.right + 160;
     }
     _linkImage.top = _pl.top;
-    _linkImage.width = 15;
-    _linkImage.height = 15;
+    [_linkImage sizeToFit];
+    
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToPro)];
+    [_linkImage setUserInteractionEnabled:YES];
+    [_linkImage addGestureRecognizer:tap1];
+    if (_isShowOnComments) {
+        _linkImage.hidden = YES ;
+    }else {
+        //衣库官方社区置顶，不显示链接按钮
+        if ([model.clothingId intValue] == 0) {
+            _linkImage.hidden = YES;
+        }else {
+            _linkImage.hidden = NO;
+        }
+    }
 
-    //链接按钮
-    _linkBtn.left = _linkImage.right+8;
-    _linkBtn.top = _pl.top;
-    _linkBtn.width = 60;
-    _linkBtn.height = 20;
+//    _linkImage.width = 15;
+//    _linkImage.height = 15;
+
+//    //链接按钮
+//    _linkBtn.left = _linkImage.right+8;
+//    _linkBtn.top = _pl.top;
+//    _linkBtn.width = 60;
+//    _linkBtn.height = 20;
     
     //    //时间
    
-//    _dateLabel.left = _detailLabel.left;
-//    _dateLabel.top = lastView.bottom+6;
-//    NSString * newTime = [self formateDate:model.articleTime withFormate:@"yyyyMMddHHmmss"];
-//    _dateLabel.text = @"刚刚";
-//    CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
-//    _dateLabel.width = dateSize.width;
-//    _dateLabel.height = kDynamicsNameHeight;
-//    _dateLabel.textAlignment = NSTextAlignmentRight;
+    _dateLabel.left = _detailLabel.left;
+    _dateLabel.top = lastView.bottom+12;
+    NSString * newTime = [self formateDate:model.articleTime withFormate:@"yyyyMMddHHmmss"];
+    _dateLabel.text = newTime;
+    CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
+    _dateLabel.width = dateSize.width;
+    _dateLabel.height = kDynamicsNameHeight;
+    _dateLabel.textAlignment = NSTextAlignmentRight;
  
     
     
@@ -501,10 +566,10 @@
 //
 //
 //    //分割线
-    _dividingLine.left = 14;
-    _dividingLine.height = .5;
-    _dividingLine.width = SCREENWIDTH - 15;
-    _dividingLine.bottom = layout.height - .5+50;
+    _dividingLine.left = 0;
+    _dividingLine.height = 1;
+    _dividingLine.width = SCREENWIDTH ;
+    _dividingLine.bottom = layout.height - 1 +75;
 //
 //    WS(weakSelf);
 //    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
@@ -526,26 +591,10 @@
 //    };
     
     
-    //添加手势
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        if (!hadUserId) {//未点赞
-            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
-                [_delegate DidClickThunmbInDynamicsCell:self];
-            }
-        }else{//已点赞
-            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCancelThunmbInDynamicsCell:)]) {
-                [_delegate DidClickCancelThunmbInDynamicsCell:self];
-            }
-        }
-    }];
-    
-    [_pl setUserInteractionEnabled:YES];
-    [_pl addGestureRecognizer:tap];
+   
     
 //    UILabel *bigL = [[UILabel alloc]init];
-//    bigL.left = _detailLabel.left-20;
-//    bigL.top = lastView.top-20 ;
+//    bigL.center = _pl.center;
 //    bigL.width = 50;
 //    bigL.height = 50;
 //    bigL.backgroundColor = [UIColor lightGrayColor];
@@ -554,7 +603,11 @@
 //    [bigL addGestureRecognizer:tap];
 }
 
-
+- (void)jumpToPro{
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickDeleteInDynamicsCell:)]) {
+        [self.delegate DidClickDeleteInDynamicsCell:self];
+    }
+}
 
 //#pragma mark - 弹出JRMenu
 //- (void)presentMenuController
@@ -704,7 +757,7 @@
 {
     if (!_dateLabel) {
         _dateLabel = [UILabel new];
-        _dateLabel.textColor = [UIColor lightGrayColor];
+        _dateLabel.textColor = [UIColor colorWithHexString:@"999999"];
         _dateLabel.font = [UIFont systemFontOfSize:13];
     }
     return _dateLabel;
@@ -727,7 +780,16 @@
     }
     return _plNum;
 }
-
+-(UILabel *)bigL
+{
+    if (!_bigL) {
+        _bigL = [UILabel  new];
+//        _bigL.backgroundColor = [UIColor lightGrayColor];
+//        _bigL.textColor = mainColor;
+//        _bigL.font = PingFangSC_Semibold(14);
+    }
+    return _bigL;
+}
 -(UIImageView *)dz {
     if (!_dz) {
         _dz = [UIImageView new];
@@ -749,7 +811,7 @@
 -(UIImageView *)linkImage {
     if (!_linkImage) {
         _linkImage = [UIImageView new];
-        _linkImage.image = [UIImage imageNamed:@"lianjie"];
+        _linkImage.image = [UIImage imageNamed:@"查看商品"];
         //        _plNum.textColor = [UIColor lightGrayColor];
         //        _plNum.font = [UIFont systemFontOfSize:13];
     }
@@ -818,8 +880,8 @@
 {
     if (!_dividingLine) {
         _dividingLine = [UIView new];
-        _dividingLine.backgroundColor = [UIColor lightGrayColor];
-        _dividingLine.alpha = .3;
+        _dividingLine.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+//        _dividingLine.alpha = .3;
     }
     return _dividingLine;
 }
@@ -833,10 +895,8 @@
     
     NSDate * nowDate = [NSDate date];
     
-    /////  将需要转换的时间转换成 NSDate 对象
-//    NSDate * needFormatDate = [dateFormatter dateFromString:dateString];
-    NSDate *needFormatDate = [NSDate dateWithTimeIntervalSince1970:[dateString intValue]];
-    /////  取当前时间和转换时间两个日期对象的时间间隔
+    NSTimeInterval interval    =[dateString doubleValue] / 1000.0;
+    NSDate *needFormatDate               = [NSDate dateWithTimeIntervalSince1970:interval];
     /////  这里的NSTimeInterval 并不是对象，是基本型，其实是double类型，是由c定义的:  typedef double NSTimeInterval;
     NSTimeInterval time = [nowDate timeIntervalSinceDate:needFormatDate];
     
@@ -873,10 +933,10 @@
         
         if ([yearStr isEqualToString:nowYear]) {
             ////  在同一年
-            [dateFormatter setDateFormat:@"MM月dd日"];
+            [dateFormatter setDateFormat:@"MM月dd日 HH:mm"];
             dateStr = [dateFormatter stringFromDate:needFormatDate];
         }else{
-            [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+            [dateFormatter setDateFormat:@"yyyy/MM/dd HH:ss"];
             dateStr = [dateFormatter stringFromDate:needFormatDate];
         }
     }

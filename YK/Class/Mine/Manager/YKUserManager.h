@@ -88,4 +88,10 @@
 
 //校验邀请码是否有效
 - (void)checkInviteCode:(NSString *)code OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//添加用户尺码表
+- (void)addbust:(NSString *)bust hipline:(NSString *)hipline shoulderWidth:(NSString *)shoulderWidth theWaist:(NSString *)theWaist OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//获取用户尺码表
+- (void)getUserSizeOnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

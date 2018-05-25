@@ -107,7 +107,8 @@
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@?clothing_id=%ld",GetProductDetail_Url,ProductId];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?clothing_id=%ld&userId=%@",GetProductDetail_Url,ProductId,[Token length]>0 ? [YKUserManager sharedManager].user.userId : @""];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
@@ -144,7 +145,8 @@
 
 //弹出分享提示框
 - (void)showAleartViewToShare{
-    [self appear];
+    //暂时取消掉
+//    [self appear];
 }
 
 - (NSString *)getTimeNow{
@@ -313,4 +315,33 @@
     
     return sizeArray;
 }
+
+//得到用户尺码表
+- (NSArray *)getUserSizeArray:(NSDictionary *)dic{
+    NSMutableArray *sizeArray = [NSMutableArray array];
+//    for (NSDictionary *dic in array) {
+        NSMutableArray *typeArray = [NSMutableArray array];
+//        if ([dic[@"type"] intValue] == 1) {//上装（衣长，胸围，肩宽，袖长）
+            [typeArray addObject:@"我的"];
+            [typeArray addObject:dic[@"shoulderWidth"]];
+            [typeArray addObject:dic[@"bust"]];
+            [typeArray addObject:dic[@"hipline"]];
+            [typeArray addObject:dic[@"theWaist"]];
+//            [typeArray addObject:dic[@"shoulderWidth"]];
+    
+    
+            [sizeArray addObject:typeArray];
+//        }
+    
+    
+            
+//        }
+//    }
+
+        [sizeArray insertObject:@[@"尺码",@"肩宽",@"胸围",@"腰围",@"臀围"] atIndex:0];
+
+    
+    return sizeArray;
+}
+
 @end

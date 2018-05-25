@@ -116,7 +116,7 @@
     }];
   
     NoDataView.frame = CGRectMake(0, BarH+HEIGHT/4, WIDHT,HEIGHT-212);
-    self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     NoDataView.backgroundColor = self.view.backgroundColor;
     self.tableView.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:NoDataView];
