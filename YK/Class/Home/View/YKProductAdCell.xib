@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="YKProductAdCell">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="377"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="374" height="377"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yVW-8k-mNq">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="377"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="yVW-8k-mNq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8Md-QI-xgP"/>
+                <constraint firstItem="yVW-8k-mNq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fnp-9K-Lxf"/>
+                <constraint firstAttribute="bottom" secondItem="yVW-8k-mNq" secondAttribute="bottom" id="nDN-H9-h9i"/>
+                <constraint firstAttribute="trailing" secondItem="yVW-8k-mNq" secondAttribute="trailing" id="rjg-T2-hle"/>
+            </constraints>
+            <size key="customSize" width="374" height="377"/>
+            <connections>
+                <outlet property="imageC" destination="yVW-8k-mNq" id="d0M-6F-vxv"/>
+            </connections>
+            <point key="canvasLocation" x="196" y="248.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="timg.jpg" width="925" height="992"/>
+    </resources>
+</document>
