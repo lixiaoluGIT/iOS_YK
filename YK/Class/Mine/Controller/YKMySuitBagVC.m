@@ -329,18 +329,17 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+   
     if (_bagStatus==totalBag) {
-        
-         NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[section]];
+        NSArray *array = [NSArray arrayWithArray:[YKOrderManager sharedManager].totalOrderList[section]];
         if (section==0&&([[YKOrderManager sharedManager].sectionArray containsObject:@"0"])) {
             return array.count;
         }else {
             NSArray *a = [NSArray arrayWithArray:array[0]];
             return a.count;
         }
-        
-        
     }
+    
     if (_bagStatus==toReceive) {
         return self.orderList.count+1;
     }
@@ -384,6 +383,15 @@
     return 24;
 }
 
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
+            
+          [self searchOrders:100];
+        }];
+    }
+    
+}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (_bagStatus==totalBag) {
@@ -399,9 +407,10 @@
         };
         //确认收货
         header.ensureReceiveBlock = ^(void){
-            [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
-                 [self searchOrders:100];
-            }];
+            DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"您是否确认已收到衣袋？" cancelBtnTitle:@"还没收到" otherBtnTitle:@"已签收"];
+            alertView.delegate = self;
+            [alertView show];
+            
         };
         //预约归还
 //        if (!isHadOrderreceive) {
@@ -476,9 +485,6 @@
                 [suit initWithDictionary:array[0][indexPath.row]];
             }
         }
-        
-      
-        
         mycell.suit = suit;
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
