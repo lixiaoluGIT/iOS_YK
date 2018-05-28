@@ -68,12 +68,9 @@
 }
 
 - (void)ensure{
-    
-        if (_ensureReceiveBlock) {
-            _ensureReceiveBlock();
-        }
-    
-   
+    if (_ensureReceiveBlock) {
+        _ensureReceiveBlock();
+    }
 }
 
 - (void)order{

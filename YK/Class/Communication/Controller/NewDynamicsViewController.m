@@ -21,7 +21,6 @@
 
 @interface NewDynamicsViewController ()<YKBaseScrollViewDelete>
 
-
 @property(nonatomic,strong)SDTimeLineRefreshHeader * refreshHeader;
 @property(nonatomic,strong)UISegmentedControl * segment;
 

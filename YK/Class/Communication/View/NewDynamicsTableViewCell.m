@@ -664,11 +664,25 @@
         UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
                 [weakSelf.delegate DynamicsCell:weakSelf didClickUser:weakSelf.layout.model.userId];
+                [weakSelf.delegate DynamicsCell:weakSelf didClickUser:_portrait];
             }
+            //点击查看大图
+            
         }];
         [_portrait addGestureRecognizer:tapGR];
     }
     return _portrait;
+}
+
+//放大过程中出现的缓慢动画
+- (void) shakeToShow:(UIView*)aView{
+    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.duration = 0.5;
+    NSMutableArray *values = [NSMutableArray array];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
+    animation.values = values;
+    [aView.layer addAnimation:animation forKey:nil];
 }
 -(YYLabel *)nameLabel
 {

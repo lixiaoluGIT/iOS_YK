@@ -79,7 +79,8 @@
 
  @param userId 用户ID
  */
-- (void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUser:(NSString *)userId;
+//- (void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUser:(NSString *)userId;
+- (void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUser:(UIImageView *)image;
 
 /**
  点击了全文/收回

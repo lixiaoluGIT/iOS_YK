@@ -8,12 +8,19 @@
 
 #import "YKLinkWebVC.h"
 #import "YKMainVC.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
-@interface YKLinkWebVC ()<UIWebViewDelegate>{
+@protocol JSObjectDelegate <JSExport>
+-(void)callme:(NSString *)string;
+-(void)share:(NSString *)shareUrl;
+@end
+
+@interface YKLinkWebVC ()<UIWebViewDelegate,JSObjectDelegate>{
     UILabel *title;
 }
 
 @property (nonatomic,strong)UIWebView *webView;
+@property(nonatomic, strong) JSContext *context;
 @property (nonatomic,strong)UIActivityIndicatorView *indicatorView;
 
 //关闭按钮
@@ -80,9 +87,6 @@
     }
 }
 
-
-
-
 - (void)creatWeb{
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, WIDHT, HEIGHT-64)];
     _webView.scalesPageToFit = YES;
@@ -123,16 +127,55 @@
         title.text = @"衣库";
     }else {
         title.text = htmlTitle;
-        
     }
 
-    
     _indicatorView.hidden = YES;
     
+    //TEST
+    
+    //捕捉异常回调
+    self.context.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) {
+        context.exception = exceptionValue;
+        NSLog(@"异常信息: %@",exceptionValue);
+    };
+    //通过JSExport协议关联Native的方法
+    self.context[@"Native"] = self;
+    
+    //通过block形式关联JavaScript中的函数
+    __weak typeof(self) weakSelf = self;
+    
+    self.context[@"deliverValue"] = ^(NSString *message) {
+        
+        __strong typeof(self) strongSelf = weakSelf;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"this is a message" message:message preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertControl addAction:cancelAction];
+            [strongSelf.navigationController presentViewController:alertControl animated:YES completion:nil];
+        });
+        };
 }
+
+#pragma mark - JSExport Methods
+-(void)callme:(NSString *)string
+{
+    NSLog(@"%@",string);
+}
+
+-(void)share:(NSString *)shareUrl
+{
+    NSLog(@"分享的url=%@",shareUrl);
+    JSValue *shareCallBack = self.context[@"shareCallBack"];
+    [shareCallBack callWithArguments:nil];
+}
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
-    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //NSLog(@"requestString : %@",requestString);
    
         return YES;

@@ -208,12 +208,10 @@
     [self.tableView setContentOffset:CGPointMake(0, 0)];
     
     if (button.tag == 100) {
-        
         _bagStatus = totalBag;
     }
     if (button.tag == 101) {
         _bagStatus = toReceive;
-        
     }
     if (button.tag == 102) {
         _bagStatus = toBack;
@@ -396,7 +394,6 @@
     
     if (_bagStatus==totalBag) {
         NSInteger headerSection = [[YKOrderManager sharedManager].sectionArray[section] integerValue];
-        
         YKSuitHeader *header = [[NSBundle mainBundle] loadNibNamed:@"YKSuitHeader" owner:self options:nil][headerSection];
        //物流信息
         header.SMSBlock = ^(void){
@@ -413,10 +410,8 @@
             
         };
         //预约归还
-//        if (!isHadOrderreceive) {
-            header.yuyue.text = @"等待取件";
-//        }
-        header.orderBackBlock = ^(void){
+        header.yuyue.text = @"等待取件";
+        header.orderBackBlock = ^(void){//
             if (isHadOrderreceive) {
                 return ;
             }
@@ -429,8 +424,6 @@
     if (_bagStatus==toBack) {
         
          YKSuitHeader *header = [[NSBundle mainBundle] loadNibNamed:@"YKSuitHeader" owner:self options:nil][0];
-   
-        
         [[YKOrderManager sharedManager]queryReceiveOrderNo:self.orderList[section][@"orderNo"] OnResponse:^(NSDictionary *dic) {
             NSString *s = [NSString stringWithFormat:@"%@",dic[@"data"]];
             if ([s isEqualToString:@"该订单未预约归还"]) {//未预约归还
@@ -440,26 +433,11 @@
                     YKReturnVC *r = [YKReturnVC new];
                     [self.navigationController pushViewController:r animated:YES];
                 };
-//                isHadOrderreceive = NO;
+
             }else {//已预约
-//                isHadOrderreceive = YES;
                 [header resetUI:1];
-                //忘给方法了
-//                header.SMSBlock = ^(void){
-//                    [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
-//                    YKReturnVC *r = [YKReturnVC new];
-//                    [self.navigationController pushViewController:r animated:YES];
-//                };
             }
         }];
-      
-
-//        header.SMSBlock = ^(void){
-//            [YKOrderManager sharedManager].orderNo = self.orderList[section][@"orderNo"];
-//            YKReturnVC *r = [YKReturnVC new];
-//            [self.navigationController pushViewController:r animated:YES];
-//        };
-
         return header;
     }
     UIView *view = [[UIView alloc]init];
@@ -526,8 +504,6 @@
         }
         mycell.scanSMSBlock = ^(void){
             YKSMSInforVC *sms = [YKSMSInforVC new];
-            //测试数据
-//            sms.orderNo = @"238836512256";
             sms.orderNo = [YKOrderManager sharedManager].orderNo;
             [self.navigationController pushViewController:sms animated:YES];
         };
@@ -568,8 +544,6 @@
         }
         
     }];
-    
-
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -586,6 +560,7 @@
         }
     }
 }
+
 - (void)leftAction{
     if (_isFromSuccess) {
         YKHomeVC *chatVC = [[YKHomeVC alloc] init];

@@ -26,5 +26,8 @@
 @property(nonatomic,assign)NSIndexPath * commentIndexPath;
 @property(nonatomic,strong)UITextField * commentInputTF;
 
+@property(nonatomic,strong)UIView *background;
+
+
 
 @end

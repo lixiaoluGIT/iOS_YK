@@ -50,10 +50,7 @@
              shoppingCartIdList:(NSMutableArray *)shoppingCartIdList
                      OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    
-    
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    
     
     NSDictionary *dic = @{@"addressId":address.addressId,@"shoppingCartIdList":[self handleArrayWithArry:shoppingCartIdList]};
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -62,14 +59,11 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] != 200) {
-            //            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
-            
             if (onResponse) {
                 onResponse(dict);
             }
             return ;
         }
-        
         
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"订单提交成功" delay:1.2];
         
@@ -89,6 +83,7 @@
     }];
 }
 
+//此接口后台返回的数据太乱（TODO：优化接口）
 - (void)searchOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSMutableArray *array))onResponse{
     
     switch (status) {
@@ -110,7 +105,7 @@
     
     //待签收:包括待配货,待发货和待签收>>>查询3待签收,先查看1待配货 2,待发货
     if (status==3) {
-                 [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
         NSInteger s = 1;
         NSString *str = [NSString stringWithFormat:@"%@?orderStatus=%ld",queryOrder_Url,(long)s];
         [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
@@ -167,7 +162,6 @@
                                     onResponse(listArray);
                                 }
                             }
-                            
                             
                             
                         }];
@@ -256,18 +250,17 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-        
         //最新一条
         NSArray *arr;
         if (![dict[@"msg"] isEqualToString:@"没有该订单信息"]) {
            arr = [NSArray arrayWithArray:dict[@"data"][@"body"]];
         }
         
-        
         if (arr.count == 0) {//未查到物流信息
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"未查到物流信息" delay:2];
             return ;
         }
+        
         NSDictionary *model;
         if (arr.count>0) {
             model = [NSDictionary dictionaryWithDictionary:arr[0]];
@@ -328,15 +321,13 @@
     
     [self clear];
     
-    //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    
     NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,orderNo,@"4"];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
         if ([dic[@"status"] integerValue] == 200) {//成功确认收货
-            //            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"" delay:2];
+        
             if (onResponse) {
                 onResponse(dic);
             }
@@ -377,7 +368,6 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-        
         if ([dic[@"status"] integerValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"预约成功" delay:2];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -393,6 +383,7 @@
             });
             
         }
+        
     }];
 }
 
@@ -450,13 +441,9 @@
             }else {
                 //第一个待归还
                 [backList addObject:model[@"orderDetailsVoList"]];
-                
             }
             
-           
-            
-        
-        }else if([model[@"orderStatus"] intValue] == 5 || [model[@"orderStatus"] intValue] == 8) {//已归还
+           }else if([model[@"orderStatus"] intValue] == 5 || [model[@"orderStatus"] intValue] == 8) {//已归还
             
             if (hadBackList.count > 0 ) {
                 [totlaList removeObject:hadBackList];
@@ -473,8 +460,6 @@
             }
         }
         
-//        [hadBackList addObject:model[@"orderDetailsVoList"];
-        //分数组添加到总数组里分数组添加到总数组里，是否给这个一个正好的
         if (receiveList.count>0&&![totlaList containsObject:receiveList]) {
             [totlaList insertObject:receiveList atIndex:0];   
             if (![self.sectionArray containsObject:receiveSection]) {
@@ -484,16 +469,12 @@
         
         if (backList.count>0&&![totlaList containsObject:backList]) {
             [totlaList insertObject:backList atIndex:0];
-//            if (![self.sectionArray containsObject:backSection]) {
-                [self.sectionArray addObject:backSection];
-//            }
+            [self.sectionArray addObject:backSection];
         }
         
         if (backList2.count>0&&![totlaList containsObject:backList2]) {
             [totlaList insertObject:backList2 atIndex:0];
-//            if (![self.sectionArray containsObject:backSection]) {
                 [self.sectionArray addObject:backSection];
-//            }
         }
         
         if (hadBackList.count>0&&![totlaList containsObject:hadBackList]) {

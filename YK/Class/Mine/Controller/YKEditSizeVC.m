@@ -22,9 +22,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-//    if (_mySizeArray.count>0) {
-//        return;
-//    }
+
     [[YKUserManager sharedManager]getUserSizeOnResponse:^(NSDictionary *dic) {
         _mySizeArray = [NSMutableArray array];
         
@@ -35,16 +33,12 @@
             [_mySizeArray addObject:dic[@"data"][@"bust"]];//胸围
             [_mySizeArray addObject:dic[@"data"][@"hipline"]];//腰围
             [_mySizeArray addObject:dic[@"data"][@"theWaist"]];//臀围
-//            [_mySizeArray addObject:dic[@"data"][@"shoulderWidth"]];//肩宽
         }else {
             [_mySizeArray addObject:@""];//肩宽
             [_mySizeArray addObject:@""];//胸围
             [_mySizeArray addObject:@""];//腰围
             [_mySizeArray addObject:@""];//臀围
-//            [_mySizeArray addObject:@""];//肩宽
         }
-        
-        
         
         _xiongweiText.text = ![_mySizeArray[0] isEqual:[NSNull null]]? [NSString stringWithFormat:@"%@",_mySizeArray[0]] : @"";//肩宽
         _yaoweiText.text = ![_mySizeArray[1] isEqual:[NSNull null]]? [NSString stringWithFormat:@"%@",_mySizeArray[1]] : @"";//胸围
@@ -71,13 +65,7 @@
     _yaoweiText.keyboardType = UIKeyboardTypeNumberPad;
     _tunweiText.keyboardType = UIKeyboardTypeNumberPad;
     _jiankuanText.keyboardType = UIKeyboardTypeNumberPad;
-    
-    
-//    _xiongweiText.text = ![_mySizeArray[1] isEqual:[NSNull null]]? [NSString stringWithFormat:@"%@",_mySizeArray[1]] : @"";
-//    _yaoweiText.text = ![_mySizeArray[2] isEqual:[NSNull null]]? [NSString stringWithFormat:@"%@",_mySizeArray[2]] : @"";
-//    _tunweiText.text = ![_mySizeArray[3] isEqual:[NSNull null]]? [NSString stringWithFormat:@"%@",_mySizeArray[3]] : @"";
-//    _jiankuanText.text = ![_mySizeArray[4] isEqual:[NSNull null]]? [NSString stringWithFormat:@"%@",_mySizeArray[4]] : @"";
-    
+
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -85,7 +73,6 @@
         btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
     }
     btn.adjustsImageWhenHighlighted = NO;
-    //    btn.backgroundColor = [UIColor redColor];
     [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];

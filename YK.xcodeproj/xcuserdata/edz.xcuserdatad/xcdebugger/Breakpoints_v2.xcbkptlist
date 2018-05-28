@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Communication/Controller/NewDynamicsViewController.m"
-            timestampString = "548927691.812436"
+            timestampString = "549197137.316859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
             landmarkName = "-scrollViewWillBeginDragging:"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Communication/Controller/NewDynamicsViewController.m"
-            timestampString = "548927691.812553"
+            timestampString = "549197137.3169481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "-scrollViewWillBeginDragging:"
             landmarkType = "7">
          </BreakpointContent>
@@ -75,69 +75,6 @@
             endingLineNumber = "149"
             landmarkName = "-order"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Suit/Manager/YKOrderManager.m"
-            timestampString = "549102790.59822"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "-releaseOrderWithAddress:shoppingCartIdList:OnResponse:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[YKOrderManager releaseOrderWithAddress:shoppingCartIdList:OnResponse:]"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edz/Desktop/iOS_YK-master/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "548315854.444581"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "724">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__72-[YKOrderManager releaseOrderWithAddress:shoppingCartIdList:OnResponse:]_block_invoke"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edz/Desktop/iOS_YK-master/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "548315854.448074"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.54"
-                  moduleName = "YK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edz/Desktop/iOS_YK-master/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "548315854.450606"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

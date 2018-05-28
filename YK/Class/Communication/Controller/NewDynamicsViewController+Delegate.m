@@ -88,9 +88,65 @@
 //{
 //    [self.commentInputTF resignFirstResponder];
 //}
+//点击图片后的方法(即图片的放大全屏效果)
+- (void) tapAction{
+//    //创建一个黑色背景
+//    //初始化一个用来当做背景的View。我这里为了省时间计算，宽高直接用的5s的尺寸
+//    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 600)];
+//    self.background = bgView;
+//    [bgView setBackgroundColor:[UIColor blackColor]];
+//    [self.view addSubview:bgView];
+//
+//    //创建显示图像的视图
+//    //初始化要显示的图片内容的imageView（这里位置继续偷懒...没有计算）
+//    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, WIDHT , HEIGHT)];
+//    //要显示的图片，即要放大的图片
+//    [imgView setImage:[UIImage imageNamed:@"dog"]];
+//    [bgView addSubview:imgView];
+//
+//    imgView.userInteractionEnabled = YES;
+//    //添加点击手势（即点击图片后退出全屏）
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeView)];
+//    [imgView addGestureRecognizer:tapGesture];
+//
+//    [self shakeToShow:bgView];//放大过程中的动画
+}
+-(void)closeView{
+    [self.background removeFromSuperview];
+}
+
+- (void) shakeToShow:(UIView*)aView{
+    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.duration = 0.5;
+    NSMutableArray *values = [NSMutableArray array];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
+    animation.values = values;
+    [aView.layer addAnimation:animation forKey:nil];
+}
 #pragma mark - NewDynamiceCellDelegate
--(void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUser:(NSString *)userId
+-(void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUser:(UIImageView *)image
 {
+//    //创建一个黑色背景
+//    //初始化一个用来当做背景的View。我这里为了省时间计算，宽高直接用的5s的尺寸
+//    UIView *bgView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+//    self.background = bgView;
+//    [bgView setBackgroundColor:[UIColor blackColor]];
+//    [self.view addSubview:bgView];
+//    
+//    //创建显示图像的视图
+//    //初始化要显示的图片内容的imageView（这里位置继续偷懒...没有计算）
+//    UIImageView *imgView = [[UIImageView alloc] initWithFrame:bgView.bounds];
+//    //要显示的图片，即要放大的图片
+//    imgView.image = [UIImage imageNamed:@"dianzan"];
+//    [bgView addSubview:imgView];
+//    
+//    imgView.userInteractionEnabled = YES;
+//    //添加点击手势（即点击图片后退出全屏）
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeView)];
+//    [imgView addGestureRecognizer:tapGesture];
+//    
+//    [self shakeToShow:bgView];//放大过程中的动画
     NSLog(@"点击了用户");
 }
 -(void)DidClickMoreLessInDynamicsCell:(NewDynamicsTableViewCell *)cell

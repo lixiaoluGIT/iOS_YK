@@ -93,9 +93,6 @@
             
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"登录成功" delay:1.2];
             
-            
-            
-            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 [smartHUD  Hide];
@@ -131,16 +128,14 @@
 
     [YKHttpClient Method:@"GET" apiName:GetUserInfor_Url Params:nil Completion:^(NSDictionary *dic) {
         
-                if ([dic[@"status"] intValue] == 401) {//未登录
-                    [UD setObject:@"" forKey:@"token"];
-                }
+        if ([dic[@"status"] intValue] == 401) {//未登录
+            [UD setObject:@"" forKey:@"token"];
+        }
         
-                [self getUserInfo:dic[@"data"]];//得到用户基本数据
-        
-                if (onResponse) {
-                    onResponse(nil);
-                }
-        
+        [self getUserInfo:dic[@"data"]];//得到用户基本数据
+            if (onResponse) {
+                onResponse(nil);
+            }
     }];
 }
 
@@ -471,8 +466,6 @@
             {
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
                                                                     options:NSJSONReadingMutableContainers error:nil];
-                
-                NSLog(@"%@",dic);
                 NSString *accessToken = dic[@"access_token"];
                 NSString *openId = dic[@"openid"];
                 
@@ -602,12 +595,8 @@
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"qq授权成功" delay:1.8];
 
             [self saveCurrentToken:dict[@"data"][@"token"]];
-            
-            //链接融云
-//            [self RongCloudConnect:dic];
-            
+
             [self getUserInforOnResponse:^(NSDictionary *dic) {
-                
                 //链接融云
                 [self RongCloudConnect];
                 //监测登陆成功的事件
@@ -619,8 +608,6 @@
                     
                 }
             }];
-            
-           
         }else {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"message"] delay:1.8];
         }
@@ -647,9 +634,6 @@
                 onResponse(nil);
             }
         }
-        
-        
-       
         
     } failure:^(NSError *error) {
         
@@ -686,25 +670,13 @@
         }else {
              [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2.0];
         }
-//        if ([dict[@"status"] intValue] == 400) {
-////            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.8];
-//        }else {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"邀请码有效" delay:1.8];
-//            if (onResponse) {
-//                onResponse(nil);
-//            }
-//        }
-        
-        
-        
-        
+
     } failure:^(NSError *error) {
         
     }];
 }
 
 - (void)saveAdImage:(NSDictionary *)dic{
-//    [@"imgUrl"]
     [UD setObject:dic[@"data"][@"imgUrl"] forKey:Ad_Url];
     [UD synchronize];
 }
@@ -726,7 +698,6 @@
             }
             return ;
         }
-        
         
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"保存成功" delay:1.2];
         
