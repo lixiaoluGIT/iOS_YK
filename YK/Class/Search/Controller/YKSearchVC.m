@@ -366,7 +366,7 @@
     }else {//广告，到h5
         //跳转到网页
         YKLinkWebVC *web =[YKLinkWebVC new];
-        web.url = dic[@"clothingImgUrl"];
+        web.url = dic[@"adUrl"];
         web.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:web animated:YES];
         

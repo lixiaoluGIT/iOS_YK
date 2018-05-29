@@ -133,19 +133,19 @@
 //    self.background = bgView;
 //    [bgView setBackgroundColor:[UIColor blackColor]];
 //    [self.view addSubview:bgView];
-//    
+//
 //    //创建显示图像的视图
 //    //初始化要显示的图片内容的imageView（这里位置继续偷懒...没有计算）
 //    UIImageView *imgView = [[UIImageView alloc] initWithFrame:bgView.bounds];
 //    //要显示的图片，即要放大的图片
-//    imgView.image = [UIImage imageNamed:@"dianzan"];
+//    imgView.image = [UIImage imageNamed:@"dianzan"]
 //    [bgView addSubview:imgView];
-//    
+//
 //    imgView.userInteractionEnabled = YES;
 //    //添加点击手势（即点击图片后退出全屏）
 //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeView)];
 //    [imgView addGestureRecognizer:tapGesture];
-//    
+//
 //    [self shakeToShow:bgView];//放大过程中的动画
     NSLog(@"点击了用户");
 }

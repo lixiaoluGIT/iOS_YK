@@ -37,7 +37,7 @@
     //
      NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle  setLineSpacing:4];
-    self.recommentWords.text = @"这件衣服很好，黄金时代剋建行卡接受的；卡还是打卡好看的哈剋就是打卡机浑善达克借记卡很多事";
+    self.recommentWords.text = @"正在请求数据...";
     
     NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
