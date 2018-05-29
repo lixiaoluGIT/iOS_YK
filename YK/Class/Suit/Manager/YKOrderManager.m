@@ -239,7 +239,7 @@
     
 }
 
-//物流信息
+//物流信息(顺丰)
 - (void)searchForSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -314,6 +314,11 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+//查询物流信息(中通)
+- (void)searchForZTSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse{
+    
 }
 
 //确认收货

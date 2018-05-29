@@ -11,10 +11,8 @@
 #define w [UIScreen mainScreen].bounds.size.width
 #import "YKHomeVC.h"
 #import "CGQCollectionViewCell.h"
-
 #import "ZYCollectionView.h"
 #import "YKBaseScrollView.h"
-
 #import "WMHCustomScroll.h"
 #import "YKScrollView.h"
 #import "YKALLBrandVC.h"
@@ -42,7 +40,6 @@
     BOOL hadtitle5;
 }
 @property (nonatomic, assign) NSInteger pageNum;
-
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong) NSArray *images2;
@@ -55,7 +52,6 @@
 @property (nonatomic,strong)NSMutableArray *hotWears;//热门穿搭
 @property (nonatomic,strong)YKScrollView *scroll;
 @property (nonatomic,strong)YKScrollView *scroll1;
-
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)DCCycleScrollView *banner2;
 @property (nonatomic,strong)YKWeekNewView *weekNew;

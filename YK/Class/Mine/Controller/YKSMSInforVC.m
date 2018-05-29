@@ -73,11 +73,13 @@
         NSMutableArray *marr = [NSMutableArray new];
         
         //得到arr
+        //查询顺丰物流信息 || 查询中通物流信息（todo:中通的话需把数据字段和格式转化与模型统一）
         [[YKOrderManager sharedManager]searchForSMSInforWithOrderNo:self.orderNo OnResponse:^(NSArray *array) {
             
             arr = [NSArray arrayWithArray:array];
             
            for (NSDictionary *dict in arr) {
+               //模型
                 LogisticsInfo *logisticsInfo = [LogisticsInfo logisticsWithDict:dict];
                 LogisticsTableViewCellFrame *cellFrame = [[LogisticsTableViewCellFrame alloc]init];
                 cellFrame.logisticsInfo = logisticsInfo;

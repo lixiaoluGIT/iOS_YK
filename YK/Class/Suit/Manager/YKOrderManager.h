@@ -45,8 +45,11 @@ typedef enum : NSInteger {
  */
 - (void)searchOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSMutableArray *array))onResponse;
 
-//查询物流信息
+//查询物流信息(顺丰)
 - (void)searchForSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse;
+
+//查询物流信息(中通)
+- (void)searchForZTSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse;
 
 //确认收货
 - (void)ensureReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
