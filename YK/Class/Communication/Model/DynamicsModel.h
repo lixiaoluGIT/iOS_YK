@@ -2,8 +2,8 @@
 //  DynamicsModel.h
 //  LooyuEasyBuy
 //
-//  Created by Andy on 15/11/20.
-//  Copyright © 2015年 Doyoo. All rights reserved.
+//  Created by LXL on 18/5/3.
+//  Copyright © 2018年 YK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -2,8 +2,8 @@
 //  NewDynamicsTableViewCell.m
 //  LooyuEasyBuy
 //
-//  Created by Andy on 2017/9/27.
-//  Copyright © 2017年 Doyoo. All rights reserved.
+//  Created by LXL on 2018/5/3.
+//  Copyright © 2017年 YK. All rights reserved.
 //
 
 #import "NewDynamicsTableViewCell.h"
