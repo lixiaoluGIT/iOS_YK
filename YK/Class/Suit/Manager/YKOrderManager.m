@@ -319,6 +319,78 @@
 //查询物流信息(中通)
 - (void)searchForZTSMSInforWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSArray *array))onResponse{
     
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?orderNo=%@",queryOrderZTSMSInfor_Url,orderNo];
+    
+    [YKHttpClient Method:@"POST" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        //最新一条
+        NSArray *arr;
+        if (![dict[@"data"][@"msg"] isEqualToString:@"暂无运单信息"]) {
+            arr = [NSArray arrayWithArray:dict[@"data"][@"data"]];
+        }
+        
+        if (arr.count == 0) {//未查到物流信息
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"未查到物流信息" delay:2];
+            return ;
+        }
+        
+        NSDictionary *model;
+        if (arr.count>0) {
+            model = [NSDictionary dictionaryWithDictionary:arr[0]];
+            _sfOrderId = model[@"mailNo"];
+        }
+        
+        NSInteger SMSStatus = [model[@"opcode"] integerValue];
+        
+        switch (SMSStatus) {
+            case 50:
+                self.SMSStatus = @"已收件";
+                break;
+            case 30:
+                self.SMSStatus = @"运输中";
+                break;
+            case 31:
+                self.SMSStatus = @"运输中";
+                break;
+            case 44:
+                self.SMSStatus = @"正在派件";
+                break;
+            case 70:
+                self.SMSStatus = @"派件不成功";
+                break;
+            case 80:
+                self.SMSStatus = @"派件成功";
+                break;
+            case 8000:
+                self.SMSStatus = @"已签收";
+                break;
+            case 123:
+                self.SMSStatus = @"便利店出仓";
+                break;
+            case 130:
+                self.SMSStatus = @"便利店交接";
+                break;
+            case 607:
+                self.SMSStatus = @"代理收件";
+                break;
+                
+            default:
+                self.SMSStatus = @"未知";
+                break;
+        }
+        
+        if (onResponse) {
+            onResponse(arr);
+        }
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 //确认收货

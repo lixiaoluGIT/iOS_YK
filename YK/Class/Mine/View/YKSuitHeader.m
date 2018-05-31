@@ -22,15 +22,15 @@
 
 - (void)resetUI:(NSInteger)status{
     _wuliuImage.hidden = YES;
-    _statusLable.text = @"衣箱状态:待归还";
+//    _statusLable.text = @"衣箱状态:待归还";
     if (status) {//已预约归还
-        _scanSMS.text = @"归还中";
-        _orderBack.userInteractionEnabled = NO;
-        _guihuanStatus.text = @"衣箱状体：归还中";
+        _scanSMS.text = @"查看物流";
+        _orderBack.userInteractionEnabled = YES;
+        _statusLable.text = @"衣箱状态：归还中";
     }else {//没预约归还
         _scanSMS.text = @"预约归还";
         _orderBack.userInteractionEnabled = YES;
-        _guihuanStatus.text = @"衣箱状体：待归还";
+        _statusLable.text = @"衣箱状态：待归还";
     }
 }
 

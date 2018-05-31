@@ -14,6 +14,7 @@
 //#import "LLGifView.h"
 #import "YKChangePhoneVC.h"
 #import "UIImage+GIF.h"
+#import "YKRegisterVC.h"
 
 
 @interface YKLoginVC ()<UITextFieldDelegate>{
@@ -59,6 +60,14 @@ NSInteger timeNum;
 //    }
 //}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    if ( [Token length] > 0) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -219,8 +228,8 @@ NSInteger timeNum;
     self.h8.constant = 55*scale;
     self.h9.constant = 55*scale;
     self.w1.constant = self.w2.constant = 60*scale;
-    self.loginBtn.layer.masksToBounds = YES;
-    self.loginBtn.layer.cornerRadius = self.loginBtn.frame.size.height/2;
+//    self.loginBtn.layer.masksToBounds = YES;
+//    self.loginBtn.layer.cornerRadius = self.loginBtn.frame.size.height/2;
     
     if (HEIGHT==812) {
         _backH.constant = 60;
@@ -349,6 +358,13 @@ NSInteger timeNum;
     [[YKUserManager sharedManager]loginByWeChatOnResponse:^(NSDictionary *dic) {
         
     }];
+}
+- (IBAction)register:(id)sender {
+    YKRegisterVC *login = [[YKRegisterVC alloc]initWithNibName:@"YKRegisterVC" bundle:[NSBundle mainBundle]];
+    [self presentViewController:login animated:YES completion:^{
+        
+    }];
+    
 }
 
 

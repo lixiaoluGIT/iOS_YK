@@ -26,8 +26,20 @@
     [[YKUserManager sharedManager]getUserSizeOnResponse:^(NSDictionary *dic) {
         _mySizeArray = [NSMutableArray array];
         
+//        if ([dic[@"data"] isEqualToString:@"没有尺码表"]) {
+//            [_mySizeArray addObject:@""];//肩宽
+//            [_mySizeArray addObject:@""];//胸围
+//            [_mySizeArray addObject:@""];//腰围
+//            [_mySizeArray addObject:@""];//臀围
+//        }else {
+////            NSDictionary *Dic = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
+//            [_mySizeArray addObject:dic[@"data"][@"shoulderWidth"]];//肩宽
+//            [_mySizeArray addObject:dic[@"data"][@"bust"]];//胸围
+//            [_mySizeArray addObject:dic[@"data"][@"hipline"]];//腰围
+//            [_mySizeArray addObject:dic[@"data"][@"theWaist"]];//臀围
+//        }
         NSDictionary *Dic = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
-        
+
         if (Dic.allKeys>0) {//data
             [_mySizeArray addObject:dic[@"data"][@"shoulderWidth"]];//肩宽
             [_mySizeArray addObject:dic[@"data"][@"bust"]];//胸围
@@ -50,6 +62,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"尺码资料";
+    
+    [_mySizeArray addObject:@""];//肩宽
+    [_mySizeArray addObject:@""];//胸围
+    [_mySizeArray addObject:@""];//腰围
+    [_mySizeArray addObject:@""];//臀围
     
     if([[UIDevice currentDevice].systemVersion floatValue] >= 11.0){
         _height.constant = BarH+15;

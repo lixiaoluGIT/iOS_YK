@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -104,7 +104,7 @@
                         <constraint firstAttribute="height" constant="40" id="fnT-bi-csb"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="登录/注册">
+                    <state key="normal" title="登录">
                         <color key="titleColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -177,6 +177,20 @@
                     <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7M-SU-sE7">
+                    <rect key="frame" x="60" y="416" width="255" height="40"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="s76-Tc-Qgr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="注册">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="register:" destination="-1" eventType="touchUpInside" id="TMs-wb-mOs"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -192,6 +206,7 @@
                 <constraint firstItem="XLN-Er-sx9" firstAttribute="leading" secondItem="TPd-ot-sMB" secondAttribute="leading" id="KMx-he-Mle"/>
                 <constraint firstItem="Qu5-yc-hTs" firstAttribute="leading" secondItem="eup-Cv-eco" secondAttribute="trailing" constant="26" id="Kd3-Dt-KJ8"/>
                 <constraint firstItem="HEq-ez-HuQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="130" id="LUP-Vx-xkm"/>
+                <constraint firstItem="a7M-SU-sE7" firstAttribute="width" secondItem="8EF-lI-RW7" secondAttribute="width" id="Lh2-5r-Ksk"/>
                 <constraint firstAttribute="trailing" secondItem="9es-1X-BLe" secondAttribute="trailing" constant="130" id="MMs-bd-iUc"/>
                 <constraint firstAttribute="bottom" secondItem="HEq-ez-HuQ" secondAttribute="bottom" constant="64" id="Mdw-s0-LP1"/>
                 <constraint firstItem="9es-1X-BLe" firstAttribute="centerY" secondItem="HEq-ez-HuQ" secondAttribute="centerY" id="QRF-jI-gGp"/>
@@ -208,7 +223,9 @@
                 <constraint firstItem="HEq-ez-HuQ" firstAttribute="firstBaseline" secondItem="eup-Cv-eco" secondAttribute="baseline" constant="40" id="kZi-N8-3nI"/>
                 <constraint firstItem="TPd-ot-sMB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="lGv-u5-Nfu"/>
                 <constraint firstItem="Qu5-yc-hTs" firstAttribute="width" secondItem="yot-5Q-NTG" secondAttribute="width" id="n99-rL-6wb"/>
+                <constraint firstItem="a7M-SU-sE7" firstAttribute="top" secondItem="8EF-lI-RW7" secondAttribute="bottom" constant="16" id="nXC-HO-yKB"/>
                 <constraint firstItem="xhL-zH-29m" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="o8G-rt-dy7"/>
+                <constraint firstItem="a7M-SU-sE7" firstAttribute="leading" secondItem="8EF-lI-RW7" secondAttribute="leading" id="sLZ-9Z-MaD"/>
                 <constraint firstItem="SpT-WC-AJF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tJp-aF-ZR0"/>
                 <constraint firstItem="D9V-GS-GMe" firstAttribute="width" secondItem="TPd-ot-sMB" secondAttribute="width" id="u38-kq-Rb4"/>
                 <constraint firstItem="Hxw-ak-6Hb" firstAttribute="width" secondItem="D9V-GS-GMe" secondAttribute="width" id="u7p-se-k0C"/>

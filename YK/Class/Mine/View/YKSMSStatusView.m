@@ -23,7 +23,7 @@
 - (void)initWithOrderId:(NSString *)orderId orderStatus:(NSString *)orderStatus phone:(NSString *)phone{
     _smsStatus.text = orderStatus;
     if (orderId.length == 0) {
-        _orderId.text = @"未查到顺风订单号";
+        _orderId.text = @"未查到订单号";
     }else {
         _orderId.text = [NSString stringWithFormat:@"顺风查询编号:%@",orderId];
     }

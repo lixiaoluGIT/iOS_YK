@@ -11,6 +11,8 @@
 		002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */; };
 		002FE5A420B54CA200554AB3 /* YKEditSizeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002FE5A220B54CA200554AB3 /* YKEditSizeVC.xib */; };
 		002FE5A820B681F900554AB3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FE5A720B681F900554AB3 /* StoreKit.framework */; };
+		0032BDA020BFE7F200332855 /* YKRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0032BD9E20BFE7F200332855 /* YKRegisterVC.m */; };
+		0032BDA120BFE7F200332855 /* YKRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0032BD9F20BFE7F200332855 /* YKRegisterVC.xib */; };
 		0034CF132071D957002015AE /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0034CF122071D957002015AE /* libmtasdk.a */; };
 		0034CF142071D9D2002015AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C532A7631FDF8EFA0068A31D /* Foundation.framework */; };
 		0034CF1620720619002015AE /* top1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1520720618002015AE /* top1.jpg */; };
@@ -579,6 +581,9 @@
 		002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKEditSizeVC.m; sourceTree = "<group>"; };
 		002FE5A220B54CA200554AB3 /* YKEditSizeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKEditSizeVC.xib; sourceTree = "<group>"; };
 		002FE5A720B681F900554AB3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0032BD9D20BFE7F200332855 /* YKRegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKRegisterVC.h; sourceTree = "<group>"; };
+		0032BD9E20BFE7F200332855 /* YKRegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKRegisterVC.m; sourceTree = "<group>"; };
+		0032BD9F20BFE7F200332855 /* YKRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKRegisterVC.xib; sourceTree = "<group>"; };
 		0034CF102071D956002015AE /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
 		0034CF112071D956002015AE /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
 		0034CF122071D957002015AE /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
@@ -2178,6 +2183,9 @@
 				C52D0FBC1FC7E6BB00B50258 /* YKLoginVC.h */,
 				C52D0FBD1FC7E6BB00B50258 /* YKLoginVC.m */,
 				C52D0FBE1FC7E6BB00B50258 /* YKLoginVC.xib */,
+				0032BD9D20BFE7F200332855 /* YKRegisterVC.h */,
+				0032BD9E20BFE7F200332855 /* YKRegisterVC.m */,
+				0032BD9F20BFE7F200332855 /* YKRegisterVC.xib */,
 				C52D0FC11FC80D3B00B50258 /* YKToBeVIPVC.h */,
 				C52D0FC21FC80D3B00B50258 /* YKToBeVIPVC.m */,
 				C52D0FC31FC80D3B00B50258 /* YKToBeVIPVC.xib */,
@@ -3814,6 +3822,7 @@
 				C525DD621FBAB2A8002802AE /* LICENSE in Resources */,
 				C525DC2C1FBAAFC1002802AE /* Main.storyboard in Resources */,
 				C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */,
+				0032BDA120BFE7F200332855 /* YKRegisterVC.xib in Resources */,
 				C5327677205B94C20082EF2E /* add.png in Resources */,
 				C50E58D71FE1117F0063F377 /* YKSuitHeader.xib in Resources */,
 				C525DE981FBD59CA002802AE /* YKMineBagCell.xib in Resources */,
@@ -4245,6 +4254,7 @@
 				C525DD701FBAB2A8002802AE /* AFHTTPRequestOperationManager.m in Sources */,
 				C5F929BA20206E53001D2139 /* FYTransitionHelper.m in Sources */,
 				C5FB78D7205908F80076DD6F /* NSMutableSet+BlocksKit.m in Sources */,
+				0032BDA020BFE7F200332855 /* YKRegisterVC.m in Sources */,
 				00C39294206BB0E20068DFC0 /* YKProductSizeTable.m in Sources */,
 				C525DE971FBD59CA002802AE /* YKMineBagCell.m in Sources */,
 				00B9EF3A20A0576000A7422B /* YKCommunicationManager.m in Sources */,

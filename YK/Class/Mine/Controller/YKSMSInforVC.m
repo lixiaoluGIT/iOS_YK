@@ -18,6 +18,7 @@
 @property(nonatomic,strong) UITableView *logisticsTableView;
 
 @property(nonatomic,strong) NSArray *logisticsInfoData;
+@property(nonatomic,strong)NSString *recManName;
 
 @end
 
@@ -73,11 +74,13 @@
         NSMutableArray *marr = [NSMutableArray new];
         
         //得到arr
-        //查询顺丰物流信息 || 查询中通物流信息（todo:中通的话需把数据字段和格式转化与模型统一）
-        [[YKOrderManager sharedManager]searchForSMSInforWithOrderNo:self.orderNo OnResponse:^(NSArray *array) {
-            
+        //查询顺丰物流信息
+        //来查顺丰信息的
+        if (_isFromeSF) {
+            [[YKOrderManager sharedManager]searchForSMSInforWithOrderNo:self.orderNo OnResponse:^(NSArray *array) {
+
             arr = [NSArray arrayWithArray:array];
-            
+
            for (NSDictionary *dict in arr) {
                //模型
                 LogisticsInfo *logisticsInfo = [LogisticsInfo logisticsWithDict:dict];
@@ -88,6 +91,30 @@
             _logisticsInfoData = marr;
             [_logisticsTableView reloadData];
         }];
+        }else {
+        //来查中通信息的  查询中通物流信息（todo:中通的话需把数据字段和格式转化与模型统一）
+        [[YKOrderManager sharedManager]searchForZTSMSInforWithOrderNo:self.orderNo OnResponse:^(NSArray *array) {
+
+            arr = [NSArray arrayWithArray:array];
+
+            NSDictionary *dic = [NSDictionary dictionaryWithDictionary:arr[0]];
+            NSArray *dataArray = [NSArray arrayWithArray:dic[@"traces"]];
+            for (NSDictionary *dict in dataArray) {
+              NSMutableDictionary *myModel = [NSMutableDictionary dictionary];
+                NSString *str = [NSString stringWithFormat:@"%@%@%@",dict[@"scanProv"],dict[@"scanCity"],dict[@"scanSite"]];
+                [myModel setObject:dict[@"desc"] forKey:@"remark"];
+                [myModel setObject:str forKey:@"acceptAddress"];
+                [myModel setObject:dict[@"scanDate"] forKey:@"acceptTime"];
+                //模型
+                LogisticsInfo *logisticsInfo = [LogisticsInfo logisticsWithDict:myModel];
+                LogisticsTableViewCellFrame *cellFrame = [[LogisticsTableViewCellFrame alloc]init];
+                cellFrame.logisticsInfo = logisticsInfo;
+                [marr addObject:cellFrame];
+            }
+            _logisticsInfoData = marr;
+            [_logisticsTableView reloadData];
+        }];
+        }
     }
     return _logisticsInfoData;
 }
@@ -106,6 +133,7 @@
     if (indexPath.row == 1) {
         YKSMSStatusView *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKSMSStatusView" owner:self options:nil][1];
         bagCell.selectionStyle = UITableViewCellEditingStyleNone;
+        bagCell.recMan.text = self.recManName;
         return bagCell;
     }
     LogisticsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];

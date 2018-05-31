@@ -231,12 +231,26 @@
     [self searchOrders:button.tag];
 }
 
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
+                [self searchOrders:101];
+            
+        }];
+    }
+    
+}
+
+
 - (void)btnClick{
     if (_bagStatus==toReceive) {
 
-        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
-            [self searchOrders:101];
-        }];
+//        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
+//            [self searchOrders:101];
+            DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"您是否确认已收到衣袋？" cancelBtnTitle:@"还没收到" otherBtnTitle:@"已签收"];
+            alertView.delegate = self;
+            [alertView show];
+//        }];
     }
     if (_bagStatus==toBack) {
         
@@ -381,15 +395,6 @@
     return 24;
 }
 
-- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==1) {
-        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
-            
-          [self searchOrders:100];
-        }];
-    }
-    
-}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (_bagStatus==totalBag) {
@@ -398,11 +403,12 @@
        //物流信息
         header.SMSBlock = ^(void){
             YKSMSInforVC *sms = [YKSMSInforVC new];
+            sms.isFromeSF = YES;
             sms.orderNo = [YKOrderManager sharedManager].orderNo;
  
              [self.navigationController pushViewController:sms animated:YES];
         };
-        //确认收货
+        //确认收货(未用)
         header.ensureReceiveBlock = ^(void){
             DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"您是否确认已收到衣袋？" cancelBtnTitle:@"还没收到" otherBtnTitle:@"已签收"];
             alertView.delegate = self;
@@ -436,6 +442,13 @@
 
             }else {//已预约
                 [header resetUI:1];
+                header.SMSBlock = ^(void){//返件物流信息
+                    YKSMSInforVC *sms = [YKSMSInforVC new];
+                    sms.isFromeSF = NO;
+                    sms.orderNo = self.orderList[section][@"orderNo"];
+//                    sms.orderNo = @"2018050398314";
+                    [self.navigationController pushViewController:sms animated:YES];
+                };
             }
         }];
         return header;
@@ -496,7 +509,7 @@
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
     }
-    if (indexPath.row==0&&_bagStatus == toReceive) {
+    if (indexPath.row==0&&_bagStatus == toReceive) {//代签收
         static NSString *ID = @"SMScell";
         YKMyBagSMSCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (mycell == nil) {
@@ -504,6 +517,7 @@
         }
         mycell.scanSMSBlock = ^(void){
             YKSMSInforVC *sms = [YKSMSInforVC new];
+            sms.isFromeSF = YES;
             sms.orderNo = [YKOrderManager sharedManager].orderNo;
             [self.navigationController pushViewController:sms animated:YES];
         };

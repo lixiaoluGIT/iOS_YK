@@ -95,6 +95,8 @@
 #define GetVetifyCode_Url @"/encrypted/sendSms"
 //登录
 #define Login_Url @"/tokens/login"
+//注册
+#define Register_Url @"/user/register"
 //微信登录接口
 #define WeChatLogin_Url @"/user/wxLogin"
 //qq登录接口
@@ -173,6 +175,8 @@
 #define queryOrder_Url @"/order/queryOrder"
 //查询订单物流信息
 #define queryOrderSMSInfor_Url @"/sf/orderSFTrackQuery"
+//查询物流信息
+#define queryOrderZTSMSInfor_Url @"/sendback/getExpressTrack"
 //确认收货...更新订单
 #define ensureReceiveOrder_Url @"/order/updateOrder"
 //预约归还(下圆通订单) POST /sendback/makeAppointment

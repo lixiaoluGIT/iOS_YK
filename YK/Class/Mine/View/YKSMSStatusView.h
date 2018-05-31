@@ -10,5 +10,6 @@
 
 @interface YKSMSStatusView : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *recMan;
 - (void)initWithOrderId:(NSString *)orderId orderStatus:(NSString *)orderStatus phone:(NSString *)phone;
 @end

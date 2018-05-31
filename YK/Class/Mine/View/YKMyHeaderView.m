@@ -32,7 +32,7 @@
     _headPho.clipsToBounds=YES;
     [self addSubview:_headPho];
     
-    _name=[[UILabel alloc]initWithFrame:CGRectMake(WIDHT /2-100, 160,200, 20)];
+    _name=[[UILabel alloc]initWithFrame:CGRectMake(0, 160,WIDHT, 20)];
     _name.font = PingFangSC_Semibold(20);
     _name.textColor = [UIColor colorWithHexString:@"ffffff"];
     _name.textAlignment=1;

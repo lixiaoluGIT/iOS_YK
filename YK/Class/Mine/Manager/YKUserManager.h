@@ -24,6 +24,12 @@
             VetifyCode:(NSString *)vetifiCode
             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//注册
+- (void)RegisterWithPhone:(NSString *)phone
+            VetifyCode:(NSString *)vetifiCode
+               InviteCode:(NSString *)inviteCode
+            OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 //获取用户信息
 - (void)getUserInforOnResponse:(void (^)(NSDictionary *dic))onResponse;
 

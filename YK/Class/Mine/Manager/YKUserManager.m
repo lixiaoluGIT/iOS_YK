@@ -109,7 +109,62 @@
         }
     }];
 }
-
+//注册
+- (void)RegisterWithPhone:(NSString *)phone
+               VetifyCode:(NSString *)vetifiCode
+               InviteCode:(NSString *)inviteCode
+               OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@&code=%@",Register_Url,phone,vetifiCode,inviteCode];
+    
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        if ([dic[@"status"] integerValue] != 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+        }
+        
+        if ([dic[@"status"] integerValue] == 200) {
+            
+            //登录成功数据处理
+            //            [self saveCurrentTime];//保存登录时间z
+            //上传pushID
+            
+            [self saveCurrentToken:dic[@"data"]];//保存token
+            
+            [self upLoadPushID];//上传推送ID
+            
+            //链接融云
+            //            [self RongCloudConnect:dic];
+            
+            //获取当前用户信息
+            [self getUserInforOnResponse:^(NSDictionary *dic) {
+                [self RongCloudConnect];
+                //监测登陆成功的事件
+                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
+                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+            }];
+            
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"注册成功" delay:1.2];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [smartHUD  Hide];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    if (onResponse) {
+                        onResponse(dic);
+                    }
+                    
+                });
+                
+            });
+        }
+    }];
+}
 -(void)RongCloudConnect{
 
     NSString *rongToken = self.user.rongToken;
@@ -724,12 +779,12 @@
     [YKHttpClient Method:@"POST" URLString:getUserSize_Url paramers:nil success:^(NSDictionary *dict) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        if ([dict[@"status"] intValue] != 200) {
+        if ([dict[@"status"] intValue] == 400) {
 //            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
             
-            if (onResponse) {
-                onResponse(dict);
-            }
+//            if (onResponse) {
+//                onResponse(dict);
+//            }
             return ;
         }
         
