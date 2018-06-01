@@ -417,7 +417,7 @@
     //点赞图
     _pl.left = _detailLabel.left;
     _pl.top = lastView.bottom + 20;
-    _pl.width = 18;
+    _pl.width = 20;
     _pl.height = 18;
     
     //添加手势

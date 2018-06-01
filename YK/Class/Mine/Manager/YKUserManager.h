@@ -49,7 +49,9 @@
 
 //更新手机号
 - (void)changePhoneWithPhone:(NSString *)phone
-                  VetifyCode:(NSString *)vetifiCode status:(NSInteger)status
+                  VetifyCode:(NSString *)vetifiCode
+                      status:(NSInteger)status
+                  inviteCode:(NSString *)inviteCode
             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //退出登录

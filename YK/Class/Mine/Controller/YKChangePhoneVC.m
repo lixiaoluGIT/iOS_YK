@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *ensureBtn;
 @property (weak, nonatomic) IBOutlet UIButton *getVetifyBtn;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UITextField *inviteCodeText;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *h;
 
 @end
 
@@ -31,14 +34,22 @@ NSInteger timeCount;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.isFromThirdLogin) {
-        self.title = @"绑定手机号";
-    }else {
-        self.title = @"修改手机号";
-    }
     if (HEIGHT==812) {
         _gap.constant = 110;
     }
+
+    if (self.isFromThirdLogin) {
+        self.title = @"绑定手机号";
+        _h.constant = 210;
+        self.inviteCodeText.hidden = NO;
+    }else {
+        self.title = @"修改手机号";
+         _h.constant = 140;
+        self.inviteCodeText.hidden = YES;
+    }
+//    if (HEIGHT==812) {
+//        _gap.constant = 140;
+//    }
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -72,9 +83,10 @@ NSInteger timeCount;
     self.ensureBtn.layer.cornerRadius = self.ensureBtn.frame.size.height/2;
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.vetifyText.keyboardType = UIKeyboardTypeNumberPad;
-
+    self.inviteCodeText.keyboardType = UIKeyboardTypeNumberPad;
     [self.vetifyText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.phoneText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [self.inviteCodeText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.getVetifyBtn.userInteractionEnabled = NO;
 }
 - (void) textFieldDidChange:(id) sender {
@@ -96,6 +108,7 @@ NSInteger timeCount;
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.vetifyText resignFirstResponder];
     [self.phoneText resignFirstResponder];
+    [self.inviteCodeText resignFirstResponder];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -106,6 +119,7 @@ NSInteger timeCount;
 - (void)textFieldDone{
     [self.vetifyText resignFirstResponder];
     [self.phoneText resignFirstResponder];
+    [self.inviteCodeText resignFirstResponder];
 }
 //获取验证码
 - (IBAction)getCode:(id)sender {
@@ -187,8 +201,7 @@ NSInteger timeCount;
         status = 1;
     }
     
-    [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text status:status OnResponse:^(NSDictionary *dic) {
-        
+    [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text status:status inviteCode:self.inviteCodeText.text OnResponse:^(NSDictionary *dic) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

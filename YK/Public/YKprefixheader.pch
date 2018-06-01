@@ -226,9 +226,9 @@
 //分享成功的回调接口
 #define ShareSuccess_Url @"/user/shareInfo"
 //检查更新
- #define CheckVer @"/user/checkTheLatestVersion"/
+ #define CheckVer @"/user/checkTheLatestVersio n"/
 //商店下载链接
-#define DownLoad_Url @"             "
+#define DownLoad_Url @"https://itunes.apple.com/cn/app/%E8%A1%A3%E5%BA%AB/id1332986434?mt=8"
 //使用优惠券
 #define useCoupon_Url @"/coupon/clipCoupons"
 //下载广告页

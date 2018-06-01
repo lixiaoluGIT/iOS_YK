@@ -26,6 +26,8 @@ NSInteger timeNum;
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.getCode.layer.masksToBounds = YES;
+    self.getCode.layer.cornerRadius  = 5;
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.vetifyCodeText.keyboardType = UIKeyboardTypeNumberPad;
     self.inviteCode.keyboardType = UIKeyboardTypeNumberPad;

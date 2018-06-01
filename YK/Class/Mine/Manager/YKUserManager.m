@@ -289,20 +289,25 @@
 }
 
 - (void)changePhoneWithPhone:(NSString *)phone
-                  VetifyCode:(NSString *)vetifiCode status:(NSInteger)status
-                  OnResponse:(void (^)(NSDictionary *dic))onResponse;{
+                  VetifyCode:(NSString *)vetifiCode
+                      status:(NSInteger)status
+                  inviteCode:(NSString *)inviteCode
+                  OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
 //    NSDictionary *dic = @{@"phone":phone,@"captcha":vetifiCode};
     
     NSString *urlStr;
+    NSString *url =nil;
     if (status==0) {
         urlStr = BindPhone_Url;
+        url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@&code=%@",BindPhone_Url,phone,vetifiCode,inviteCode];
     }
     if (status==1) {
         urlStr = ChangePhone_Url;
+        url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@",ChangePhone_Url,phone,vetifiCode];
     }
     
-     NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@",urlStr,phone,vetifiCode];
+//     NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@",urlStr,phone,vetifiCode];
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];

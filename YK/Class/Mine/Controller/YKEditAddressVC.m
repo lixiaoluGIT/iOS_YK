@@ -60,6 +60,9 @@
     _editView = [[NSBundle mainBundle] loadNibNamed:@"YKEditAddressView" owner:self options:nil][0];
     _editView.selectionStyle = UITableViewCellSelectionStyleNone;
     _editView.frame = CGRectMake(0, 64, WIDHT, HEIGHT);
+    if (HEIGHT == 812) {
+        _editView.frame = CGRectMake(0, 110, WIDHT, HEIGHT);
+    }
     _editView.addressModel = self.address;
     [self.view addSubview:_editView];
  

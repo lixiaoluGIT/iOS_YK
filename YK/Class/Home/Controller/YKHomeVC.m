@@ -291,8 +291,13 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+ 
     
-    return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+100+WIDHT*0.84);
+    if(WIDHT == 414){
+        return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+100+WIDHT*0.84);
+    }else {
+        return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+100+WIDHT*0.84-40);
+    }
 }
 
 #pragma mark - scrollViewDelegatea
