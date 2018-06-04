@@ -48,6 +48,8 @@
     BOOL hadLoadCommentCell;
     YKNoDataView *NoDataView;
     CGFloat totalHeight;
+    BOOL hadUserTable;
+    BOOL hadTabel;
 }
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -576,12 +578,16 @@
             [headerView addSubview:ti0];
             
             //tableView内存需优化
-            self.mySizeTable.backgroundColor = [UIColor redColor];
+//            self.mySizeTable.backgroundColor = [UIColor redColor];
             self.mySizeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, WIDHT, 40*2) style:UITableViewStylePlain];
             self.mySizeTable.separatorStyle = UITableViewCellSeparatorStyleNone;
             self.mySizeTable.delegate = self;
             self.mySizeTable.dataSource = self;
-            [headerView addSubview:self.mySizeTable];
+            if (!hadUserTable) {
+                [headerView addSubview:self.mySizeTable];
+                hadUserTable = YES;
+            }
+           
             [self.mySizeTable reloadData];
             
             
@@ -590,12 +596,15 @@
             [headerView addSubview:ti2];
            
             
-            self.tableView.backgroundColor = [UIColor redColor];
+//            self.tableView.backgroundColor = [UIColor redColor];
             self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 170, WIDHT, self.dataArray.count*40) style:UITableViewStylePlain];
             self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             self.tableView.delegate = self;
             self.tableView.dataSource = self;
-            [headerView addSubview:self.tableView];
+            if (!hadTabel) {
+                [headerView addSubview:self.tableView];
+                hadTabel = YES;
+            }
             [self.tableView reloadData];
             
             //灰线

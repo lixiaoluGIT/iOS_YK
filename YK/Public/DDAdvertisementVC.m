@@ -122,7 +122,7 @@
         window.rootViewController = [YKMainVC new];
     
     CATransition *anim = [CATransition animation];
-    anim.duration = 1.5;
+    anim.duration = 2;
     anim.type = @"fade";
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
 }
