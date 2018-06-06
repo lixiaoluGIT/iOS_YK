@@ -86,7 +86,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+
     [NC addObserver:self selector:@selector(toSearch) name:@"tosearch" object:nil];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     

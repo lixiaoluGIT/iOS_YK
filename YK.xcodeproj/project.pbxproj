@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,10 @@
 		005D2CF52085F9D600AEBDA0 /* DCCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D2CF02085F9D400AEBDA0 /* DCCycleScrollView.m */; };
 		005D2CF62085F9D600AEBDA0 /* DCCycleScrollViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D2CF22085F9D500AEBDA0 /* DCCycleScrollViewFlowLayout.m */; };
 		00698505207F3C57006F774E /* newka.png in Resources */ = {isa = PBXBuildFile; fileRef = 00698504207F3C57006F774E /* newka.png */; };
+		007B703120C6626500096731 /* YKSelectColedgeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B702F20C6626500096731 /* YKSelectColedgeVC.m */; };
+		007B703220C6626500096731 /* YKSelectColedgeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007B703020C6626500096731 /* YKSelectColedgeVC.xib */; };
+		007B703620C6675500096731 /* YKSelectColedgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B703420C6675500096731 /* YKSelectColedgeCell.m */; };
+		007B703720C6675500096731 /* YKSelectColedgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007B703520C6675500096731 /* YKSelectColedgeCell.xib */; };
 		00A0CC4A2090265C001205A1 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC3F2090265C001205A1 /* libSocialWeChat.a */; };
 		00A0CC4C2090265D001205A1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC432090265C001205A1 /* libWeChatSDK.a */; };
 		00A0CC4D2090265D001205A1 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00A0CC442090265C001205A1 /* README.txt */; };
@@ -609,6 +613,12 @@
 		005D2CF22085F9D500AEBDA0 /* DCCycleScrollViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCycleScrollViewFlowLayout.m; sourceTree = "<group>"; };
 		005D2CF32085F9D500AEBDA0 /* DCCycleScrollViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCycleScrollViewCell.h; sourceTree = "<group>"; };
 		00698504207F3C57006F774E /* newka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newka.png; path = YK/Assets.xcassets/icon/newka.imageset/newka.png; sourceTree = SOURCE_ROOT; };
+		007B702E20C6626500096731 /* YKSelectColedgeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSelectColedgeVC.h; sourceTree = "<group>"; };
+		007B702F20C6626500096731 /* YKSelectColedgeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSelectColedgeVC.m; sourceTree = "<group>"; };
+		007B703020C6626500096731 /* YKSelectColedgeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSelectColedgeVC.xib; sourceTree = "<group>"; };
+		007B703320C6675500096731 /* YKSelectColedgeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSelectColedgeCell.h; sourceTree = "<group>"; };
+		007B703420C6675500096731 /* YKSelectColedgeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSelectColedgeCell.m; sourceTree = "<group>"; };
+		007B703520C6675500096731 /* YKSelectColedgeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSelectColedgeCell.xib; sourceTree = "<group>"; };
 		00A0CC3F2090265C001205A1 /* libSocialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWeChat.a; sourceTree = "<group>"; };
 		00A0CC402090265C001205A1 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
 		00A0CC422090265C001205A1 /* libSocialOfficialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialOfficialWeChat.a; sourceTree = "<group>"; };
@@ -2186,6 +2196,9 @@
 				0032BD9D20BFE7F200332855 /* YKRegisterVC.h */,
 				0032BD9E20BFE7F200332855 /* YKRegisterVC.m */,
 				0032BD9F20BFE7F200332855 /* YKRegisterVC.xib */,
+				007B702E20C6626500096731 /* YKSelectColedgeVC.h */,
+				007B702F20C6626500096731 /* YKSelectColedgeVC.m */,
+				007B703020C6626500096731 /* YKSelectColedgeVC.xib */,
 				C52D0FC11FC80D3B00B50258 /* YKToBeVIPVC.h */,
 				C52D0FC21FC80D3B00B50258 /* YKToBeVIPVC.m */,
 				C52D0FC31FC80D3B00B50258 /* YKToBeVIPVC.xib */,
@@ -2331,6 +2344,9 @@
 				00D60D41207C8E140003A71A /* YKSelectTimeView.h */,
 				00D60D42207C8E140003A71A /* YKSelectTimeView.m */,
 				00D60D43207C8E140003A71A /* YKSelectTimeView.xib */,
+				007B703320C6675500096731 /* YKSelectColedgeCell.h */,
+				007B703420C6675500096731 /* YKSelectColedgeCell.m */,
+				007B703520C6675500096731 /* YKSelectColedgeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3698,7 +3714,6 @@
 				TargetAttributes = {
 					C525DC201FBAAFC1002802AE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3730,7 +3745,7 @@
 				};
 			};
 			buildConfigurationList = C525DC1C1FBAAFC1002802AE /* Build configuration list for PBXProject "YK" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -3774,6 +3789,7 @@
 				C5303A011FCEAE4D00FB12CE /* YKReturnView.xib in Resources */,
 				C5327671205B6EAC0082EF2E /* YKPublicCell.xib in Resources */,
 				C525DD9D1FBAB2A9002802AE /* MLEmoji_ExpressionImage.plist in Resources */,
+				007B703720C6675500096731 /* YKSelectColedgeCell.xib in Resources */,
 				C525DE121FBABF81002802AE /* timg.jpg in Resources */,
 				C5FB776D205902CE0076DD6F /* moment0.plist in Resources */,
 				C525DEAD1FBD97BA002802AE /* YKAddressDetailCell.xib in Resources */,
@@ -3791,6 +3807,7 @@
 				C5FB78C7205908F70076DD6F /* LICENSE in Resources */,
 				00C3928C2069EF7E0068DFC0 /* YKSharebView.xib in Resources */,
 				C53039FC1FCEA97100FB12CE /* YKChongZhiBtn.xib in Resources */,
+				007B703220C6626500096731 /* YKSelectColedgeVC.xib in Resources */,
 				00A0CC4D2090265D001205A1 /* README.txt in Resources */,
 				0034CF1620720619002015AE /* top1.jpg in Resources */,
 				C5929255204FC4A4002ED8DB /* RongCloudKit.strings in Resources */,
@@ -4028,6 +4045,7 @@
 				C53347111FCFFE6E002A08D0 /* LogisticsTableViewCell.m in Sources */,
 				C532A76A1FDFD8BB0068A31D /* YKSelectPayView.m in Sources */,
 				C525DD641FBAB2A8002802AE /* UIAlertView+AFNetworking.m in Sources */,
+				007B703620C6675500096731 /* YKSelectColedgeCell.m in Sources */,
 				C5FB7841205904780076DD6F /* YYLabel.m in Sources */,
 				C5FB7843205904780076DD6F /* YYTextUtilities.m in Sources */,
 				C5FB78D0205908F80076DD6F /* NSMutableOrderedSet+BlocksKit.m in Sources */,
@@ -4220,6 +4238,7 @@
 				C5FB7867205904780076DD6F /* YYCGUtilities.m in Sources */,
 				C5E97F7F20174BFC0043705B /* YKProductType.m in Sources */,
 				C5303A0F1FCFA4D500FB12CE /* YKSuit.m in Sources */,
+				007B703120C6626500096731 /* YKSelectColedgeVC.m in Sources */,
 				C5FB78E9205908F80076DD6F /* NSObject+A2DynamicDelegate.m in Sources */,
 				C525DD7F1FBAB2A9002802AE /* MJRefreshAutoStateFooter.m in Sources */,
 				C5FB7834205904780076DD6F /* YYWebImageOperation.m in Sources */,
@@ -4403,8 +4422,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29NXF4787V;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4449,7 +4468,10 @@
 				);
 				INFOPLIST_FILE = YK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
@@ -4509,8 +4531,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "90d3ec60-dcb2-4714-a596-a9acd3002c45";
-				PROVISIONING_PROFILE_SPECIFIER = xykootest;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4524,7 +4546,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4538,7 +4564,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4606,8 +4636,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29NXF4787V;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4652,7 +4682,10 @@
 				);
 				INFOPLIST_FILE = YK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
@@ -4712,8 +4745,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0f64e436-77e9-41ac-b9df-04b3532a641d";
-				PROVISIONING_PROFILE_SPECIFIER = xykoo;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4727,7 +4760,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4741,7 +4778,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4814,8 +4855,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 6R5JPDBPPU;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4860,7 +4901,10 @@
 				);
 				INFOPLIST_FILE = YK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
@@ -4920,8 +4964,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.share.yc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b1c0702b-7eb7-4028-a3c1-1f1af39e1a36";
-				PROVISIONING_PROFILE_SPECIFIER = dev_yichu0413;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4935,7 +4979,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4949,7 +4997,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5017,8 +5069,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 6R5JPDBPPU;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5063,7 +5115,10 @@
 				);
 				INFOPLIST_FILE = YK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
@@ -5123,8 +5178,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.share.yc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "355503be-fdff-41f5-b2bb-7e6037eac8ef";
-				PROVISIONING_PROFILE_SPECIFIER = dis_yichu0413;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5138,7 +5193,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5152,7 +5211,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5277,7 +5340,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5315,7 +5378,10 @@
 				);
 				INFOPLIST_FILE = YK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
@@ -5375,8 +5441,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6bc2a4d9-4e9d-49b1-886a-a2350f7cbddb";
-				PROVISIONING_PROFILE_SPECIFIER = YKDevelopementProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5391,7 +5457,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5437,7 +5503,10 @@
 				);
 				INFOPLIST_FILE = YK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YK/Vender/AliPay",
@@ -5497,8 +5566,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e330248a-2712-48e3-a1d9-deef542b0d15";
-				PROVISIONING_PROFILE_SPECIFIER = YKCurrentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5512,7 +5581,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5527,7 +5600,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5541,7 +5618,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5555,7 +5636,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7X87NN8N4W;
 				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

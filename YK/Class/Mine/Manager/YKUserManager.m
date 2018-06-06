@@ -116,9 +116,13 @@
                OnResponse:(void (^)(NSDictionary *dic))onResponse{
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@&code=%@",Register_Url,phone,vetifiCode,inviteCode];
+    NSString *colledgeId = inviteCode;
+    if (colledgeId==nil) {
+        colledgeId = @"0";
+    }
+    NSString *url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@&schoolId=%d",Register_Url,phone,vetifiCode,[colledgeId intValue]];
     
-    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+    [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
@@ -300,7 +304,11 @@
     NSString *url =nil;
     if (status==0) {
         urlStr = BindPhone_Url;
-        url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@&code=%@",BindPhone_Url,phone,vetifiCode,inviteCode];
+        NSString *colledgeId = inviteCode;
+        if (colledgeId==nil) {
+            colledgeId = @"0";
+        }
+        url = [NSString stringWithFormat:@"%@?phone=%@&captcha=%@&schoolId=%@",BindPhone_Url,phone,vetifiCode,colledgeId];
     }
     if (status==1) {
         urlStr = ChangePhone_Url;
@@ -801,6 +809,23 @@
     } failure:^(NSError *error) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"servier error" delay:2];
+    }];
+}
+
+//获取大学列表
+- (void)getColedgeListOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    [YKHttpClient Method:@"GET" apiName:getColedge_Url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        
+        if (onResponse) {
+            onResponse(dic);
+        }
+        
     }];
 }
 @end

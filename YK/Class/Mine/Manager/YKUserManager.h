@@ -102,4 +102,7 @@
 
 //获取用户尺码表
 - (void)getUserSizeOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//获取大学列表
+- (void)getColedgeListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

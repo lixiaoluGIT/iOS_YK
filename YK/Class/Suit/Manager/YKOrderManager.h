@@ -54,7 +54,7 @@ typedef enum : NSInteger {
 //确认收货
 - (void)ensureReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
-//模拟归还>>>>>>>>>>>测试用
+//模拟归还>>>>>>>>>>>测试用2018053179302
 - (void)toReceiveWithOrderNo:(NSString *)orderNo OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //预约归还

@@ -88,10 +88,10 @@
 //    self.product = [YKProduct new];
     
 //    [self getPruductDetail];
-    if ([UD boolForKey:@"hadNewSize"]) {
-        [self getPruductDetail];
-        [UD setBool:NO forKey:@"hadNewSize"];
-    }
+//    if ([UD boolForKey:@"hadNewSize"]) {
+//        [self getPruductDetail];
+//        [UD setBool:NO forKey:@"hadNewSize"];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

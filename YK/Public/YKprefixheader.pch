@@ -96,7 +96,7 @@
 //登录
 #define Login_Url @"/tokens/login"
 //注册
-#define Register_Url @"/user/register"
+#define Register_Url @"/user/schoolRegister"
 //微信登录接口
 #define WeChatLogin_Url @"/user/wxLogin"
 //qq登录接口
@@ -114,7 +114,7 @@
 //更新手机号获取验证码
 #define ChangePhone_Url @"/user/checkCaptcha"
 //绑定手机号
-#define BindPhone_Url @"/user/bindingPhone"
+#define BindPhone_Url @"/user/newBindingPhone"
 //更新手机号验证验证码
 #define ChangePhoneGetVetifyCode_Url @"/user/updatePhone"
 //上传推送ID
@@ -235,6 +235,8 @@
 #define downLoadAd_Url @"/start/getStartImg"
 //验证码校验
 #define checkInviteCode_Url @"/coupon/authenticationCode"
+//获取大学列表
+#define getColedge_Url @"/school/schoolList"
 
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"

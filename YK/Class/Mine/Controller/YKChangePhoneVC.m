@@ -9,6 +9,7 @@
 #import "YKChangePhoneVC.h"
 #import "YKLoginVC.h"
 #import "RSAEncryptor.h"
+#import "YKSelectColedgeVC.h"
 
 @interface YKChangePhoneVC ()
 {
@@ -24,16 +25,33 @@
 @property (weak, nonatomic) IBOutlet UITextField *inviteCodeText;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *h;
+@property (weak, nonatomic) IBOutlet UILabel *colledge;
+@property (nonatomic,strong)NSString *colledgeId;
+@property (weak, nonatomic) IBOutlet UIButton *Btn;
+@property (weak, nonatomic) IBOutlet UIImageView *rightImage;
 
 @end
 
 NSInteger timeCount;
 @implementation YKChangePhoneVC
 
+- (IBAction)selectColledge:(id)sender {
+    
+    YKSelectColedgeVC *cole = [[YKSelectColedgeVC alloc]init];
+    //
+    cole.selectColedgeBlock = ^(NSString *coledge,NSString *colledgeId){
+        _colledge.text = coledge;
+        _colledgeId = colledgeId;
+    };
+    [self presentViewController:cole animated:YES completion:^{
+        
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.isFromThirdLogin = YES;
     if (HEIGHT==812) {
         _gap.constant = 110;
     }
@@ -42,10 +60,17 @@ NSInteger timeCount;
         self.title = @"绑定手机号";
         _h.constant = 210;
         self.inviteCodeText.hidden = NO;
+        _Btn.hidden = NO;
+        _rightImage.hidden = NO;
+        _colledge.hidden = NO;
+        
     }else {
         self.title = @"修改手机号";
          _h.constant = 140;
         self.inviteCodeText.hidden = YES;
+        _Btn.hidden = YES;
+        _rightImage.hidden = YES;
+        _colledge.hidden = YES;
     }
 //    if (HEIGHT==812) {
 //        _gap.constant = 140;
@@ -201,7 +226,7 @@ NSInteger timeCount;
         status = 1;
     }
     
-    [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text status:status inviteCode:self.inviteCodeText.text OnResponse:^(NSDictionary *dic) {
+    [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text status:status inviteCode:_colledgeId OnResponse:^(NSDictionary *dic) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

@@ -8,6 +8,7 @@
 
 #import "YKRegisterVC.h"
 #import "RSAEncryptor.h"
+#import "YKSelectColedgeVC.h"
 
 @interface YKRegisterVC ()
 <UITextFieldDelegate>{
@@ -18,10 +19,25 @@
 @property (weak, nonatomic) IBOutlet UITextField *inviteCode;
 @property (weak, nonatomic) IBOutlet UIButton *getCode;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *addSchool;
+@property (weak, nonatomic) IBOutlet UILabel *collegeLabel;
+@property (nonatomic,strong)NSString *colledgeId;
 
 @end
 NSInteger timeNum;
 @implementation YKRegisterVC
+
+- (IBAction)toSelectColedge:(id)sender {
+    YKSelectColedgeVC *cole = [[YKSelectColedgeVC alloc]init];
+    //
+    cole.selectColedgeBlock = ^(NSString *coledge,NSString *colledgeId){
+        _collegeLabel.text = coledge;
+        _colledgeId = colledgeId;
+    };
+    [self presentViewController:cole animated:YES completion:^{
+        
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,14 +46,15 @@ NSInteger timeNum;
     self.getCode.layer.cornerRadius  = 5;
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.vetifyCodeText.keyboardType = UIKeyboardTypeNumberPad;
-    self.inviteCode.keyboardType = UIKeyboardTypeDefault;
+//    self.inviteCode.keyboardType = UIKeyboardTypeDefault;
     self.phoneText.inputAccessoryView = [self addToolbar];
     self.vetifyCodeText.inputAccessoryView = [self addToolbar];
 //    self.inviteCode.inputAccessoryView = [self addToolbar];
     [self.vetifyCodeText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.phoneText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.inviteCode addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+//    [self.inviteCode addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.getCode.userInteractionEnabled = NO;
+    _collegeLabel.textAlignment = NSTextAlignmentLeft;
 }
 
 - (void) textFieldDidChange:(id) sender {
@@ -61,7 +78,7 @@ NSInteger timeNum;
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.vetifyCodeText resignFirstResponder];
     [self.phoneText resignFirstResponder];
-    [self.inviteCode resignFirstResponder];
+//    [self.inviteCode resignFirstResponder];
 }
 - (IBAction)close:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
@@ -92,12 +109,12 @@ NSInteger timeNum;
 - (void)textFieldDone{
     [self.vetifyCodeText resignFirstResponder];
     [self.phoneText resignFirstResponder];
-    [self.inviteCode resignFirstResponder];
+//    [self.inviteCode resignFirstResponder];
 }
 - (void)cancel{
     [self.vetifyCodeText resignFirstResponder];
     [self.phoneText resignFirstResponder];
-    [self.inviteCode resignFirstResponder];
+//    [self.inviteCode resignFirstResponder];
 }
 - (UIToolbar *)addToolbar
 {
@@ -159,7 +176,8 @@ NSInteger timeNum;
         [smartHUD alertText:self.view alert:@"验证码不能为空" delay:1];
         return;
     }
-    [[YKUserManager sharedManager] RegisterWithPhone:self.phoneText.text VetifyCode:self.vetifyCodeText.text InviteCode:self.inviteCode.text OnResponse:^(NSDictionary *dic) {
+    
+    [[YKUserManager sharedManager] RegisterWithPhone:self.phoneText.text VetifyCode:self.vetifyCodeText.text InviteCode:_colledgeId  OnResponse:^(NSDictionary *dic) {
         [self dismissViewControllerAnimated:YES completion:^{
             
                     }];
