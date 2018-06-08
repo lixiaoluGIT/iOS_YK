@@ -51,13 +51,12 @@
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
  ;
     self.tableView.backgroundColor = self.view.backgroundColor;
     
-
-    
     self.images = [NSArray array];
-    self.images = @[@"zuyi",@"huanyi",@"wuliu-1",@"dingdanwenti",@"shangpinwenti",@"qitawenti",@"qingxi"];
+    self.images = @[@"zuyi",@"huanyi",@"wuliu-1",@"dingdanwenti",@"qingxi"];
     self.titles = [NSArray array];
     self.titles = @[@"租衣规则",@"还衣规则",@"物流配送",@"订单问题",@"清洗服务"];
     

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2320" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,26 +20,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDE-vv-4eq">
-                        <rect key="frame" x="44" y="30" width="102" height="102"/>
+                        <rect key="frame" x="34" y="30" width="102" height="102"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="PDE-vv-4eq" secondAttribute="height" id="WAr-Wp-bFT"/>
                             <constraint firstAttribute="width" constant="102" id="x8T-Ev-NyI"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字母玫瑰印花连帽卫衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Uw-iY-C0n">
-                        <rect key="frame" x="175" y="30" width="235" height="19.5"/>
+                        <rect key="frame" x="150" y="30" width="260" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Superme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuE-Q6-pOp">
-                        <rect key="frame" x="173" y="73" width="60" height="17"/>
+                        <rect key="frame" x="150" y="73" width="60" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9w-eI-NVs">
-                        <rect key="frame" x="173" y="115" width="12.5" height="17"/>
+                        <rect key="frame" x="150" y="115" width="12.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥228" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPw-YJ-tdo">
                         <rect key="frame" x="371.5" y="115" width="35.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfF-mt-l1G">
@@ -63,10 +63,10 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tishi" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-Pq-4wO">
-                        <rect key="frame" x="170.5" y="152" width="18" height="18"/>
+                        <rect key="frame" x="147.5" y="152" width="18" height="18"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待返架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBj-TB-bjD">
-                        <rect key="frame" x="196.5" y="152.5" width="43" height="17"/>
+                        <rect key="frame" x="173.5" y="152.5" width="43" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <color key="textColor" red="0.93333333333333335" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -98,8 +98,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="cBj-TB-bjD" firstAttribute="leading" secondItem="9lg-Pq-4wO" secondAttribute="trailing" constant="8" id="3e5-aC-VBC"/>
-                    <constraint firstItem="U9w-eI-NVs" firstAttribute="leading" secondItem="PDE-vv-4eq" secondAttribute="trailing" constant="27" id="3kf-lr-tWB"/>
-                    <constraint firstItem="fuE-Q6-pOp" firstAttribute="leading" secondItem="PDE-vv-4eq" secondAttribute="trailing" constant="27" id="4TD-x1-9T2"/>
+                    <constraint firstItem="U9w-eI-NVs" firstAttribute="leading" secondItem="PDE-vv-4eq" secondAttribute="trailing" constant="14" id="3kf-lr-tWB"/>
+                    <constraint firstItem="fuE-Q6-pOp" firstAttribute="leading" secondItem="PDE-vv-4eq" secondAttribute="trailing" constant="14" id="4TD-x1-9T2"/>
                     <constraint firstItem="7Uw-iY-C0n" firstAttribute="top" secondItem="PDE-vv-4eq" secondAttribute="top" id="BXD-SA-8tT"/>
                     <constraint firstItem="fuE-Q6-pOp" firstAttribute="centerY" secondItem="PDE-vv-4eq" secondAttribute="centerY" id="Bkg-RI-GOa"/>
                     <constraint firstAttribute="trailing" secondItem="Omw-xA-XEa" secondAttribute="trailing" id="Ftn-1o-h0S"/>
@@ -113,11 +113,11 @@
                     <constraint firstAttribute="bottom" secondItem="Omw-xA-XEa" secondAttribute="bottom" id="fci-Rn-sbJ"/>
                     <constraint firstItem="Ob6-bG-DzY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="-2" id="gDN-mV-uIj"/>
                     <constraint firstItem="kfF-mt-l1G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hQX-hw-KeT"/>
-                    <constraint firstItem="7Uw-iY-C0n" firstAttribute="leading" secondItem="PDE-vv-4eq" secondAttribute="trailing" constant="29" id="hil-0i-g43"/>
+                    <constraint firstItem="7Uw-iY-C0n" firstAttribute="leading" secondItem="PDE-vv-4eq" secondAttribute="trailing" constant="14" id="hil-0i-g43"/>
                     <constraint firstAttribute="trailing" secondItem="rPw-YJ-tdo" secondAttribute="trailing" constant="15" id="lzG-Qf-1wx"/>
                     <constraint firstItem="9lg-Pq-4wO" firstAttribute="top" secondItem="U9w-eI-NVs" secondAttribute="bottom" constant="20" id="oXv-yT-bPK"/>
                     <constraint firstItem="9lg-Pq-4wO" firstAttribute="centerX" secondItem="U9w-eI-NVs" secondAttribute="centerX" id="ptI-cG-1sG"/>
-                    <constraint firstItem="PDE-vv-4eq" firstAttribute="leading" secondItem="kfF-mt-l1G" secondAttribute="trailing" constant="24" id="sKx-xi-baP"/>
+                    <constraint firstItem="PDE-vv-4eq" firstAttribute="leading" secondItem="kfF-mt-l1G" secondAttribute="trailing" constant="14" id="sKx-xi-baP"/>
                     <constraint firstItem="cBj-TB-bjD" firstAttribute="centerY" secondItem="9lg-Pq-4wO" secondAttribute="centerY" id="sge-rG-TJL"/>
                 </constraints>
             </tableViewCellContentView>

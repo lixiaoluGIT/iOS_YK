@@ -94,7 +94,8 @@
 //获取验证码
 #define GetVetifyCode_Url @"/encrypted/sendSms"
 //登录
-#define Login_Url @"/tokens/login"
+//#define Login_Url @"/tokens/login"
+#define Login_Url @"/user/signIn"
 //注册
 #define Register_Url @"/user/schoolRegister"
 //微信登录接口
@@ -119,6 +120,8 @@
 #define ChangePhoneGetVetifyCode_Url @"/user/updatePhone"
 //上传推送ID
 #define upLoadPushID_Url @"/user/uploadPushId"
+//上传学校
+#define upLoadColledge_Url @"/school/selectSchool"
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页
@@ -226,7 +229,7 @@
 //分享成功的回调接口
 #define ShareSuccess_Url @"/user/shareInfo"
 //检查更新
- #define CheckVer @"/user/checkTheLatestVersio n"/
+ #define CheckVer @"/user/checkTheLatestVersion"
 //商店下载链接
 #define DownLoad_Url @"https://itunes.apple.com/cn/app/%E8%A1%A3%E5%BA%AB/id1332986434?mt=8"
 //使用优惠券

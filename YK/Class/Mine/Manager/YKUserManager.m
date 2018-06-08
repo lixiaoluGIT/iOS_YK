@@ -67,7 +67,8 @@
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
          if ([dic[@"status"] integerValue] != 200) {
-         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"验证码错误" delay:1.2];
+         
+             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
          }
         
         if ([dic[@"status"] integerValue] == 200) {
@@ -76,8 +77,8 @@
 //            [self saveCurrentTime];//保存登录时间z
             //上传pushID
             
-            [self saveCurrentToken:dic[@"data"][@"token"] ];//保存token
-            
+//            [self saveCurrentToken:dic[@"data"][@"token"] ];//保存token
+            [self saveCurrentToken:dic[@"data"]];//保存token
             [self upLoadPushID];//上传推送ID
             
             //链接融云
@@ -85,7 +86,7 @@
             
             //获取当前用户信息
             [self getUserInforOnResponse:^(NSDictionary *dic) {
-                 [self RongCloudConnect];
+//                 [self RongCloudConnect];
                 //监测登陆成功的事件
                 [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
                 [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
@@ -145,10 +146,10 @@
             
             //获取当前用户信息
             [self getUserInforOnResponse:^(NSDictionary *dic) {
-                [self RongCloudConnect];
-                //监测登陆成功的事件
-                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
-                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+//                [self RongCloudConnect];
+//                //监测登陆成功的事件
+//                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
+//                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
             }];
             
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"注册成功" delay:1.2];
@@ -813,14 +814,13 @@
 }
 
 //获取大学列表
-- (void)getColedgeListOnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)getColedgeListStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    
+    if (status==1) {
+        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    }
     [YKHttpClient Method:@"GET" apiName:getColedge_Url Params:nil Completion:^(NSDictionary *dic) {
-        
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        
         
         if (onResponse) {
             onResponse(dic);
@@ -828,4 +828,27 @@
         
     }];
 }
+
+//上传学校
+- (void)postColledgeInforColledgeId:(NSString *)colledgeId OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@?schoolId=%@",upLoadColledge_Url,colledgeId];
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] intValue] == 200)  {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"上传成功" delay:1.5];
+            [self getUserInforOnResponse:^(NSDictionary *dic) {
+                
+            }];
+            if (onResponse) {
+                onResponse(dic);
+            }
+        }else{
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.5];
+        }
+      
+        
+    }];
+}
+
 @end

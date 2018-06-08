@@ -26,6 +26,9 @@
 @property (nonatomic,strong)NSString *validity;//会员剩余天数
 @property (nonatomic,strong)NSString *isShare;//是否分享过 (0,1)
 @property (nonatomic,strong)NSString *inviteCode;//我的邀请码
+//学校信息
+@property (nonatomic,strong)NSString *colledgeId;//学校Id
+@property (nonatomic,strong)NSString *colledgeName;//学校名
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

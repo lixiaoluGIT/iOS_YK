@@ -8,6 +8,7 @@
 
 #import "NewDynamicsLayout.h"
 #import "SDWeiXinPhotoContainerView.h"
+#import "YKCommunicationImageView.h"
 
 @implementation NewDynamicsLayout
 
@@ -119,8 +120,8 @@
 }
 - (void)layoutPicture
 {
-    self.photoContainerSize = CGSizeZero;
-    self.photoContainerSize = [SDWeiXinPhotoContainerView getContainerSizeWithPicPathStringsArray:_model.articleImages];
+//    self.photoContainerSize = CGSizeZero;
+    self.photoContainerSize = [YKCommunicationImageView getContainerSizeWithPicPathStringsArray:_model.articleImages];
 }
 - (void)layoutGrayDetailView
 {

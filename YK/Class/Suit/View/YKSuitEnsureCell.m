@@ -23,21 +23,22 @@
     [super awakeFromNib];
     // Initialization code
     [self.ima setContentMode:UIViewContentModeScaleAspectFit];
-    self.ima.clipsToBounds = YES;
-    self.ima.layer.masksToBounds = YES;
-    self.ima.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
-    self.ima.layer.borderWidth = 1;
+//    self.ima.clipsToBounds = YES;
+//    self.ima.layer.masksToBounds = YES;
+//    self.ima.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
+//    self.ima.layer.borderWidth = 1;
 }
 
 - (void)setSuit:(YKSuit *)suit{
     _suit = suit;
     
     [self.myImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:suit.clothingImgUrl]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-    [self.myImage setContentMode:UIViewContentModeScaleAspectFill];
+//    self.myImage.backgroundColor = [UIColor redColor];
+//    [self.myImage setContentMode:UIViewContentModeScaleAspectFill];
     self.myDes.text = [NSString stringWithFormat:@"%@",suit.clothingName];
     self.myBrand.text = suit.clothingBrandName;
-    self.mySize.text = suit.clothingStockType;
-    self.myPrice.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];
+    self.mySize.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];
+    self.myPrice.text = suit.clothingStockType;
 }
 
 - (NSString *)URLEncodedString:(NSString *)str

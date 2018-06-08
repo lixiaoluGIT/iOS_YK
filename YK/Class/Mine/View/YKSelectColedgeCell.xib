@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ood-H8-Tcd">
-                        <rect key="frame" x="24" y="77" width="297" height="1"/>
+                        <rect key="frame" x="24" y="78.5" width="297" height="1"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="dNN-GI-gLp"/>
@@ -40,7 +40,7 @@
                     <constraint firstItem="BqA-Yv-xuF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3gg-yr-W0M"/>
                     <constraint firstItem="Ood-H8-Tcd" firstAttribute="leading" secondItem="BqA-Yv-xuF" secondAttribute="leading" id="F4d-Y5-EoU"/>
                     <constraint firstAttribute="trailing" secondItem="Ood-H8-Tcd" secondAttribute="trailing" constant="24" id="ca8-Rz-voq"/>
-                    <constraint firstAttribute="bottom" secondItem="Ood-H8-Tcd" secondAttribute="bottom" constant="1" id="xgQ-ia-mu7"/>
+                    <constraint firstAttribute="bottom" secondItem="Ood-H8-Tcd" secondAttribute="bottom" id="xgQ-ia-mu7"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

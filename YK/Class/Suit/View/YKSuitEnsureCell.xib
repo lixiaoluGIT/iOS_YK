@@ -20,32 +20,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="7Aq-nD-nOn">
-                        <rect key="frame" x="24" y="14" width="120" height="120"/>
+                        <rect key="frame" x="24" y="14" width="90" height="120"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="Tp0-au-sz1"/>
+                            <constraint firstAttribute="width" constant="90" id="Tp0-au-sz1"/>
                             <constraint firstAttribute="height" constant="120" id="bdx-JR-47F"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Superme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23z-lD-7IG">
-                        <rect key="frame" x="173" y="65.5" width="60" height="17"/>
+                        <rect key="frame" x="128" y="65.5" width="60" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgk-vr-fKP">
-                        <rect key="frame" x="173" y="117" width="60" height="17"/>
+                        <rect key="frame" x="128" y="117" width="60" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥228" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckz-oL-f8N">
-                        <rect key="frame" x="336.5" y="117" width="35.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="332" y="114.5" width="40" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字母玫瑰印花连帽卫衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dr5-5i-qvZ">
-                        <rect key="frame" x="173" y="14" width="163.5" height="19.5"/>
+                        <rect key="frame" x="128" y="14" width="163.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                     <constraint firstItem="7Aq-nD-nOn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="TSn-MW-2Pn"/>
                     <constraint firstItem="23z-lD-7IG" firstAttribute="centerX" secondItem="Hgk-vr-fKP" secondAttribute="centerX" id="Y7o-AK-NJm"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ckz-oL-f8N" secondAttribute="trailing" constant="20" id="gMG-oT-yiy"/>
-                    <constraint firstItem="Dr5-5i-qvZ" firstAttribute="leading" secondItem="7Aq-nD-nOn" secondAttribute="trailing" constant="29" id="l0c-lg-6Xa"/>
+                    <constraint firstItem="Dr5-5i-qvZ" firstAttribute="leading" secondItem="7Aq-nD-nOn" secondAttribute="trailing" constant="14" id="l0c-lg-6Xa"/>
                     <constraint firstItem="23z-lD-7IG" firstAttribute="leading" secondItem="Dr5-5i-qvZ" secondAttribute="leading" id="o4x-NG-AM0"/>
                     <constraint firstItem="23z-lD-7IG" firstAttribute="centerY" secondItem="7Aq-nD-nOn" secondAttribute="centerY" id="pBE-gX-N5p"/>
                     <constraint firstItem="23z-lD-7IG" firstAttribute="leading" secondItem="Dr5-5i-qvZ" secondAttribute="leading" id="pMa-nW-s3P"/>

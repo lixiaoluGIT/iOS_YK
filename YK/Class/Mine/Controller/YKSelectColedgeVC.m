@@ -11,47 +11,66 @@
 
 @interface YKSelectColedgeVC ()<UITableViewDataSource,UITableViewDelegate>
 {
-    NSMutableArray *_searchBtnArr;
+    NSArray *_searchBtnArr;
 }
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSArray *coledgeLists;//原数据源
-@property (nonatomic,strong)NSMutableArray *sections;//分好组的数据源
+@property (nonatomic,strong)NSArray *sections;//分好组的数据源
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
 
 @end
 
 @implementation YKSelectColedgeVC
 
-- (NSMutableArray *)sections{
+- (NSArray *)sections{
     if (!_sections) {
-        _sections = [NSMutableArray array];
+        _sections = [NSArray array];
     }
     return _sections;
 }
 
-- (NSMutableArray *)_searchBtnArr{
+- (NSArray *)_searchBtnArr{
     if (!_searchBtnArr) {
-        _searchBtnArr = [NSMutableArray array];
+        _searchBtnArr = [NSArray array];
     }
     return _searchBtnArr;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-//    if ([UD objectForKey:@"sections"]) {
-//        self.sections = [NSMutableArray arrayWithObject:[UD objectForKey:@"sections"]];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView reloadData];
-//        });
-//    }
-    [[YKUserManager sharedManager]getColedgeListOnResponse:^(NSDictionary *dic) {
+    if ([UD objectForKey:@"colledges"]) {
+        self.sections = [NSArray arrayWithArray:[UD objectForKey:@"colledges"]];
+        _searchBtnArr = [NSArray arrayWithArray:[UD objectForKey:@"_searchBtnArr"]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+            [self.tableView reloadData];
+        });
+
+        [[YKUserManager sharedManager]getColedgeListStatus:0 OnResponse:^(NSDictionary *dic) {
+            self.coledgeLists = [NSMutableArray arrayWithArray:dic[@"data"]];
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                // 处理耗时操作在此次添加
+                [self group:self.coledgeLists];
+                
+            });
+            
+        }];
+        return;
+    }
+    [[YKUserManager sharedManager]getColedgeListStatus:1 OnResponse:^(NSDictionary *dic) {
         self.coledgeLists = [NSMutableArray arrayWithArray:dic[@"data"]];
-        [self group:self.coledgeLists];
+        
+            // 处理耗时操作在此次添加
+            [self group:self.coledgeLists];
+            
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
     }];
 }
+
+
 - (IBAction)backAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -98,29 +117,33 @@
 }
 - (void)group:(NSArray *)array{
     
+    NSLog(@"进来了");
+    
+    NSMutableArray *indexArray = [NSMutableArray array];
     for (NSDictionary *blacker in array) {
         if (blacker[@"schoolName"] == [NSNull null] || blacker[@"schoolName"] == nil){
             break;
         }
         NSString *firstChar = [self firstCharactor:blacker[@"schoolName"]];
         if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
-            if (![_searchBtnArr containsObject:@"#"]) {
-                [_searchBtnArr addObject:@"#"];
+            if (![indexArray containsObject:@"#"]) {
+                [indexArray addObject:@"#"];
             }
         }else {
-            if (![_searchBtnArr containsObject:firstChar]) {
-                [_searchBtnArr addObject:[NSString stringWithFormat:@"%@",firstChar]];
+            if (![indexArray containsObject:firstChar]) {
+                [indexArray addObject:[NSString stringWithFormat:@"%@",firstChar]];
             
             }
         }
     }
     
-    NSArray *result = [_searchBtnArr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+    NSArray *result = [indexArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         return [obj1 compare:obj2];
     }];
     
-    _searchBtnArr = [NSMutableArray arrayWithArray:result];
+    _searchBtnArr = [NSArray arrayWithArray:result];
     
+    NSMutableArray *totalSections = [NSMutableArray array];
     for (NSString *cha in _searchBtnArr) {
         NSMutableArray *sections = [NSMutableArray array];
         for (NSDictionary *blacker in self.coledgeLists) {
@@ -133,23 +156,14 @@
                 [sections addObject:blacker];
             }
         }
-        [self.sections addObject:sections];
-        //保存数组
-        [UD setObject:self.sections forKey:@"sections"];
+        [totalSections addObject:sections];
     }
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        // 处理耗时操作的代码块...
-//
-//        //通知主线程刷新
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            //回调或者说是通知主线程刷新，
-//                [self.tableView reloadData];
-////             [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-//        });
-//
-//    });
-
-
+    self.sections = [NSArray arrayWithArray:totalSections];
+    //保存数组
+   
+    [UD setObject: self.sections forKey:@"colledges"];
+    [UD setObject: _searchBtnArr forKey:@"_searchBtnArr"];
+    NSLog(@"出去啊");
 }
 
 - (NSString *)firstCharactor:(NSString *)aString
@@ -175,14 +189,12 @@
     CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
     NSString *pinYin = [str capitalizedString];//转大写
     
-    
-    
     return [pinYin substringToIndex:1];
 }
+
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *array = [NSArray arrayWithArray:self.sections[section]];
@@ -201,7 +213,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
      YKSelectColedgeCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKSelectColedgeCell" owner:self options:nil][0];
-
     bagCell.selectionStyle = UITableViewCellSeparatorStyleNone;
     [bagCell initWithDic:self.sections[indexPath.section][indexPath.row]];
     return bagCell;

@@ -12,6 +12,7 @@
 #import "YLAwesomeSheetController.h"
 #import "YKChangePhoneVC.h"
 #import "YKEditSizeVC.h"
+#import "YKSelectColedgeVC.h"
 
 @interface YKEditInforVC ()<UIImagePickerControllerDelegate,UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,CustomSheetViewDelegate>
 {
@@ -29,6 +30,10 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hap;
 @property (weak, nonatomic) IBOutlet UIView *view5;
+@property (weak, nonatomic) IBOutlet UIView *view6;
+@property (weak, nonatomic) IBOutlet UILabel *colledgeLabel;
+@property (nonatomic,strong)NSString *colledgeId;
+
 
 @end
 
@@ -91,8 +96,11 @@
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeSex)];
     [self.view4 addGestureRecognizer:tap4];
     
-    UITapGestureRecognizer *tap5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toSize)];
+    UITapGestureRecognizer *tap5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectColedge)];
     [self.view5 addGestureRecognizer:tap5];
+    
+    UITapGestureRecognizer *tap6 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toSize)];
+    [self.view6 addGestureRecognizer:tap6];
     
     [self setUI];
     
@@ -124,6 +132,13 @@
         _sexLabel.text = @"男";
     }else {
         _sexLabel.text = @"女";
+    }
+    
+    if ([YKUserManager sharedManager].user.colledgeName != [NSNull null]) {
+        self.colledgeLabel.text = [YKUserManager sharedManager].user.colledgeName;
+        self.colledgeId = [YKUserManager sharedManager].user.colledgeId;
+    }else {
+        self.colledgeLabel.text = @"选择院校";
     }
 }
 - (void)save{
@@ -210,6 +225,20 @@
         self.sexLabel.text = [NSString stringWithFormat:@"%@",str];
     }];
     [sheet showInController:self];
+}
+
+- (void)selectColedge{
+    YKSelectColedgeVC *select = [[YKSelectColedgeVC alloc]init];
+    select.selectColedgeBlock = ^(NSString *colledge,NSString *colledgeId){
+        _colledgeLabel.text = colledge;
+        _colledgeId = colledgeId;
+        [[YKUserManager sharedManager]postColledgeInforColledgeId:_colledgeId OnResponse:^(NSDictionary *dic) {
+            
+        }];
+    };
+    [self presentViewController:select animated:YES completion:^{
+        
+    }];
 }
 
 - (void)toSize{

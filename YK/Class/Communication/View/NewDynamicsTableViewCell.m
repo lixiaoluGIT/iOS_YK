@@ -293,7 +293,7 @@
     DynamicsModel * model = layout.model;
     
     //头像
-    _portrait.left = 14;
+    _portrait.left = 24;
     _portrait.top = 24;
     _portrait.size = CGSizeMake(kDynamicsPortraitWidthAndHeight, kDynamicsPortraitWidthAndHeight);
     [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.headPhoto]]];
@@ -319,8 +319,8 @@
     
     
     //描述
-    _detailLabel.left = _nameLabel.left;
-    _detailLabel.top = _nameLabel.bottom + 10;
+    _detailLabel.left = _portrait.left;
+    _detailLabel.top = _portrait.bottom + 10;
     _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding*2 - 10 - 40;
     _detailLabel.height = layout.detailLayout.textBoundingSize.height;
     _detailLabel.textLayout = layout.detailLayout;
@@ -329,7 +329,7 @@
     lastView = _detailLabel;
     
     //展开/收起按钮
-    _moreLessDetailBtn.left = _nameLabel.left;
+    _moreLessDetailBtn.left = _portrait.left;
     _moreLessDetailBtn.top = _detailLabel.bottom + kDynamicsNameDetailPadding;
     _moreLessDetailBtn.height = kDynamicsMoreLessButtonHeight;
     [_moreLessDetailBtn sizeToFit];
@@ -351,10 +351,11 @@
     if (model.articleImages.count != 0) {
         _picContainerView.hidden = NO;
 
-        _picContainerView.left = _nameLabel.left;
+        _picContainerView.left = _portrait.left;
         _picContainerView.top = lastView.bottom + 10;
         _picContainerView.width = layout.photoContainerSize.width;
         _picContainerView.height = layout.photoContainerSize.height;
+        [_picContainerView removeAllSubviews];
         _picContainerView.picPathStringsArray = model.articleImages;
         
         lastView = _picContainerView;
@@ -497,9 +498,9 @@
     lastView = _plNum;
     
     //链接图
-    _linkImage.left = _plNum.right + 195;
+    _linkImage.left = _plNum.right + 233;
     if (WIDHT==375) {
-        _linkImage.left = _plNum.right + 160;
+        _linkImage.left = _plNum.right + 196;
     }
     _linkImage.top = _pl.top;
     [_linkImage sizeToFit];
@@ -569,7 +570,7 @@
     _dividingLine.left = 0;
     _dividingLine.height = 1;
     _dividingLine.width = SCREENWIDTH ;
-    _dividingLine.bottom = layout.height - 1 +75;
+    _dividingLine.bottom = layout.height - 1 +85;
 //
 //    WS(weakSelf);
 //    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
@@ -734,10 +735,10 @@
     }
     return _moreLessDetailBtn;
 }
--(SDWeiXinPhotoContainerView *)picContainerView
+-(YKCommunicationImageView *)picContainerView
 {
     if (!_picContainerView) {
-        _picContainerView = [SDWeiXinPhotoContainerView new];
+        _picContainerView = [YKCommunicationImageView new];
         _picContainerView.hidden = YES;
     }
     return _picContainerView;

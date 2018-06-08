@@ -10,6 +10,7 @@
 #import "NewDynamicsLayout.h"
 #import "SDWeiXinPhotoContainerView.h"
 #import "JRMenuView.h"
+#import "YKCommunicationImageView.h"
 @class NewDynamicsTableViewCell;
 @protocol NewDynamicsCellDelegate;
 
@@ -50,7 +51,9 @@
 @property(nonatomic,strong)YYLabel * nameLabel;
 @property(nonatomic,strong)YYLabel * detailLabel;
 @property(nonatomic,strong)UIButton * moreLessDetailBtn;
-@property(nonatomic,strong)SDWeiXinPhotoContainerView *picContainerView;
+//@property(nonatomic,strong)SDWeiXinPhotoContainerView *picContainerView;
+//
+@property(nonatomic,strong)YKCommunicationImageView *picContainerView;
 @property(nonatomic,strong)NewDynamicsGrayView * grayView;
 @property(nonatomic,strong)UIButton * spreadBtn;
 @property(nonatomic,strong)UILabel * dateLabel;

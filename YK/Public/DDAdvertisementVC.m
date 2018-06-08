@@ -67,7 +67,7 @@
     
     _jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:_jumpBtn];
-    _jumpBtn.frame = CGRectMake(WIDHT-70, HEIGHT-50, 46, 20);
+    _jumpBtn.frame = CGRectMake(WIDHT-84, HEIGHT-54, 60, 30);
     [_jumpBtn setTitle:@"3 跳过" forState:UIControlStateNormal];
     [_jumpBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
     [_jumpBtn addTarget:self action:@selector(jump) forControlEvents:UIControlEventTouchUpInside];

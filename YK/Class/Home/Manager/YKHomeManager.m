@@ -85,9 +85,11 @@
 }
 
 //获取品牌列表
-- (void)getBrandListOnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)getBrandListStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    if (status==0) {
+        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    }
     
     [YKHttpClient Method:@"GET" apiName:getBrandList_Url Params:nil Completion:^(NSDictionary *dic) {
         

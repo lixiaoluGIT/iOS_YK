@@ -212,8 +212,10 @@ NSInteger timeNum;
         self.loginBtn.backgroundColor = mainColor;
         [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }else {
-        self.loginBtn.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
-        [self.loginBtn setTitleColor:[UIColor colorWithHexString:@"afafaf"] forState:UIControlStateNormal];
+        self.loginBtn.backgroundColor = mainColor;
+        [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        self.loginBtn.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+//        [self.loginBtn setTitleColor:[UIColor colorWithHexString:@"afafaf"] forState:UIControlStateNormal];
     }
 }
 - (void)setAutoLayoutMargin{

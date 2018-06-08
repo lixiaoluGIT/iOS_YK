@@ -178,11 +178,12 @@
     _suit = suit;
     self.suitImage.autoresizingMask = NO;
     [self.suitImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:suit.clothingImgUrl]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-//    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
+    self.suitImage.backgroundColor = [UIColor redColor];
+    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
     self.suitName.text = suit.clothingName;
     self.suitBrand.text = suit.clothingBrandName;
-    self.suitType.text = suit.clothingStockType;
-    self.price.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];
+    self.suitType.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];
+    self.price.text = suit.clothingStockType;
     self.suitStatus = suit.clothingStockNum;//剩余库存数量
     self.suitId = suit.clothingId;
     

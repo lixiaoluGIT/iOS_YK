@@ -29,7 +29,7 @@
                             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //获取品牌列表
-- (void)getBrandListOnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)getBrandListStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //请求更多商品
 - (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse;

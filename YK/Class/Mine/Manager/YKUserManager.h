@@ -103,6 +103,9 @@
 //获取用户尺码表
 - (void)getUserSizeOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
-//获取大学列表
-- (void)getColedgeListOnResponse:(void (^)(NSDictionary *dic))onResponse;
+//获取大学列表(同步操作)
+- (void)getColedgeListStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//上传学校信息
+- (void)postColledgeInforColledgeId:(NSString *)colledgeId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

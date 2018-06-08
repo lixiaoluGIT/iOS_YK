@@ -18,6 +18,7 @@
 		0034CF1620720619002015AE /* top1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1520720618002015AE /* top1.jpg */; };
 		0034CF1A20737E58002015AE /* YKHomeDesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0034CF1820737E58002015AE /* YKHomeDesCell.m */; };
 		0034CF1B20737E58002015AE /* YKHomeDesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1920737E58002015AE /* YKHomeDesCell.xib */; };
+		0048BA1120C922F000D4699D /* YKCommunicationImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0048BA1020C922F000D4699D /* YKCommunicationImageView.m */; };
 		005D2CCF2080A44F00AEBDA0 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005D2CCD2080A44E00AEBDA0 /* TencentOpenAPI.framework */; };
 		005D2CD02080A44F00AEBDA0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 005D2CCE2080A44E00AEBDA0 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		005D2CD42084576F00AEBDA0 /* NewAPIList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 005D2CD12084576E00AEBDA0 /* NewAPIList.plist */; };
@@ -595,6 +596,8 @@
 		0034CF1720737E58002015AE /* YKHomeDesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHomeDesCell.h; sourceTree = "<group>"; };
 		0034CF1820737E58002015AE /* YKHomeDesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHomeDesCell.m; sourceTree = "<group>"; };
 		0034CF1920737E58002015AE /* YKHomeDesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKHomeDesCell.xib; sourceTree = "<group>"; };
+		0048BA0F20C922F000D4699D /* YKCommunicationImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCommunicationImageView.h; sourceTree = "<group>"; };
+		0048BA1020C922F000D4699D /* YKCommunicationImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCommunicationImageView.m; sourceTree = "<group>"; };
 		005D2CCD2080A44E00AEBDA0 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		005D2CCE2080A44E00AEBDA0 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		005D2CD12084576E00AEBDA0 /* NewAPIList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewAPIList.plist; sourceTree = "<group>"; };
@@ -1857,6 +1860,8 @@
 				00B9EF2220A0535700A7422B /* SDWeiXinPhotoContainerView.m */,
 				00B9EF1E20A0535700A7422B /* NewDynamicsTableViewCell.h */,
 				00B9EF1F20A0535700A7422B /* NewDynamicsTableViewCell.m */,
+				0048BA0F20C922F000D4699D /* YKCommunicationImageView.h */,
+				0048BA1020C922F000D4699D /* YKCommunicationImageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4088,6 +4093,7 @@
 				C525DDA41FBAB2A9002802AE /* MLLinkLabel.m in Sources */,
 				C5FB7831205904780076DD6F /* MKAnnotationView+YYWebImage.m in Sources */,
 				C525DD711FBAB2A8002802AE /* AFURLRequestSerialization.m in Sources */,
+				0048BA1120C922F000D4699D /* YKCommunicationImageView.m in Sources */,
 				C5FB7857205904780076DD6F /* UIControl+YYAdd.m in Sources */,
 				C5FB78D3205908F80076DD6F /* NSArray+BlocksKit.m in Sources */,
 				C525DDD61FBAB40D002802AE /* YKMainVC.m in Sources */,
@@ -4422,8 +4428,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29NXF4787V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4531,8 +4537,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "90d3ec60-dcb2-4714-a596-a9acd3002c45";
+				PROVISIONING_PROFILE_SPECIFIER = xykootest;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4636,8 +4642,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29NXF4787V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4745,8 +4751,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0f64e436-77e9-41ac-b9df-04b3532a641d";
+				PROVISIONING_PROFILE_SPECIFIER = xykoo;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4855,8 +4861,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6R5JPDBPPU;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4964,8 +4970,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.share.yc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "b1c0702b-7eb7-4028-a3c1-1f1af39e1a36";
+				PROVISIONING_PROFILE_SPECIFIER = dev_yichu0413;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5069,8 +5075,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6R5JPDBPPU;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5178,8 +5184,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.share.yc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "355503be-fdff-41f5-b2bb-7e6037eac8ef";
+				PROVISIONING_PROFILE_SPECIFIER = dis_yichu0413;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5340,7 +5346,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5441,8 +5447,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6bc2a4d9-4e9d-49b1-886a-a2350f7cbddb";
+				PROVISIONING_PROFILE_SPECIFIER = YKDevelopementProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5457,7 +5463,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5566,8 +5572,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e330248a-2712-48e3-a1d9-deef542b0d15";
+				PROVISIONING_PROFILE_SPECIFIER = YKCurrentProfile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

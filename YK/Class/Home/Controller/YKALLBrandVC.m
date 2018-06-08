@@ -14,13 +14,13 @@
 
 @interface YKALLBrandVC ()<ZYCollectionViewDelegate>
 {
-    NSMutableArray *_searchBtnArr;
+    NSArray *_searchBtnArr;
     UIImageView *noMessageView;
 }
 
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic,strong)NSArray *blackLists;//原数据源
-@property (nonatomic,strong)NSMutableArray *sections;//分好组的数据源
+@property (nonatomic,strong)NSArray *sections;//分好组的数据源
 @property (nonatomic,strong)NSArray *imageClickUrls;
 //@property (nonatomic,strong)DDIndicatorView *indicatorView;
 @end
@@ -38,11 +38,18 @@
     [super viewWillAppear:animated];
     
 }
-- (NSMutableArray *)sections{
+- (NSArray *)sections{
     if (!_sections) {
-        _sections = [NSMutableArray array];
+        _sections = [NSArray array];
     }
     return _sections;
+}
+
+- (NSArray *)_searchBtnArr{
+    if (!_searchBtnArr) {
+        _searchBtnArr = [NSArray array];
+    }
+    return _searchBtnArr;
 }
 
 - (void)viewDidLoad {
@@ -93,26 +100,27 @@
 
 - (void)getBrandList{
     
-    if ([UD objectForKey:@"brandFile"]) {
+    if ([UD objectForKey:@"AAA"]) {
         
-        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:[UD objectForKey:@"brandFile"]];
-        self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
-        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"brandBannerImgList"]];
-        
-        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
-        cycleView.imagesArr =  [self getImageArray:array];;
-        cycleView.delegate  = self;
-        cycleView.placeHolderImageName = @"";
-        self.tableView.tableHeaderView = cycleView;
-        [self group:self.blackLists];
+        self.sections = [NSArray arrayWithArray:[UD objectForKey:@"AAA"]];
+        _searchBtnArr = [NSArray arrayWithArray:[UD objectForKey:@"BBB"]];
+    
         [self.tableView reloadData];
+        
+        [[YKHomeManager sharedManager]getBrandListStatus:1 OnResponse:^(NSDictionary *dic) {
+            self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                // 处理耗时操作在此次添加
+                [self group:self.blackLists];
+                
+            });
+       
+        }];
+       
         return;
     }
-    [[YKHomeManager sharedManager]getBrandListOnResponse:^(NSDictionary *dic) {
-        
-        //缓存dic
-        //        [UD setObject:dic forKey:@"brandFile"];
-        //        [UD synchronize];
+    [[YKHomeManager sharedManager]getBrandListStatus:0 OnResponse:^(NSDictionary *dic) {
+
         
         self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
         
@@ -120,15 +128,12 @@
         
         self.imageClickUrls = [NSArray array];
         self.imageClickUrls = [self getImageUrlsArray:array];
-        
-        
-        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.width*0.5)];
-        cycleView.imagesArr =  [self getImageArray:array];;
-        cycleView.delegate  = self;
-        cycleView.placeHolderImageName = @"";
-        //        self.tableView.tableHeaderView = cycleView;
+
         [self group:self.blackLists];
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
     }];
 }
 
@@ -151,28 +156,30 @@
 
 - (void)group:(NSArray *)array{
     
+    NSMutableArray *indexArray = [NSMutableArray array];
     for (NSDictionary *blacker in self.blackLists) {
         if (blacker[@"brandName"] == [NSNull null] || blacker[@"brandName"] == nil){
             break;
         }
         NSString *firstChar = [self firstCharactor:blacker[@"brandName"]];
         if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
-            if (![_searchBtnArr containsObject:@"#"]) {
-                [_searchBtnArr addObject:@"#"];
+            if (![indexArray containsObject:@"#"]) {
+                [indexArray addObject:@"#"];
             }
         }else {
-            if (![_searchBtnArr containsObject:firstChar]) {
-                [_searchBtnArr addObject:[NSString stringWithFormat:@"%@",firstChar]];
+            if (![indexArray containsObject:firstChar]) {
+                [indexArray addObject:[NSString stringWithFormat:@"%@",firstChar]];
             }
         }
     }
     
-    NSArray *result = [_searchBtnArr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+    NSArray *result = [indexArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         return [obj1 compare:obj2];
     }];
     
-    _searchBtnArr = [NSMutableArray arrayWithArray:result];
+    _searchBtnArr = [NSArray arrayWithArray:result];
     
+    NSMutableArray *totalSections = [NSMutableArray array];
     for (NSString *cha in _searchBtnArr) {
         NSMutableArray *sections = [NSMutableArray array];
         for (NSDictionary *blacker in self.blackLists) {
@@ -185,9 +192,15 @@
                 [sections addObject:blacker];
             }
         }
-        [self.sections addObject:sections];
+        [totalSections addObject:sections];
     }
-    [self.tableView reloadData];
+    
+    self.sections = [NSArray arrayWithArray:totalSections];
+    //保存数组
+//    [UD setObject:self.sections forKey:@"AAA"];
+//    [UD setObject:_searchBtnArr forKey:@"BBB"];
+    
+    
 }
 
 - (NSString *)firstCharactor:(NSString *)aString
