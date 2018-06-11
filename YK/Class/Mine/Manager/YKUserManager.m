@@ -435,11 +435,13 @@
 }
 
 //通知server已分享
-- (void)shareSuccess{
+- (void)shareSuccessOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [YKHttpClient Method:@"POST" apiName:ShareSuccess_Url Params:nil Completion:^(NSDictionary *dic) {
         [self getUserInforOnResponse:^(NSDictionary *dic) {
-            
+            if (onResponse) {
+                onResponse(nil);
+            }
         }];
     }];
 }

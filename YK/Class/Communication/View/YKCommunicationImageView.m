@@ -41,7 +41,7 @@
 - (void)setup
 {
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, WIDHT-48, 286);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, WIDHT-24, 286);
 //    NSMutableArray *temp = [NSMutableArray new];
     
 //    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, 286)];
@@ -161,7 +161,7 @@
 }
 
 + (CGSize)getContainerSizeWithPicPathStringsArray:(NSArray *)picPathStringsArray{
-    return CGSizeMake(WIDHT-48, 286*WIDHT/414);
+    return CGSizeMake(WIDHT-24, 286*WIDHT/414);
 }
 
 @end

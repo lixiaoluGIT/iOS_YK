@@ -234,13 +234,14 @@
         req.scene   = WXSceneTimeline ;
     }
    
-    
     [WXApi sendReq:req];
 }
 
 //接收分享成功的通知
 - (void)wechatShareSuccessNotification{
-    [[YKUserManager sharedManager]shareSuccess];
+    [[YKUserManager sharedManager]shareSuccessOnResponse:^(NSDictionary *dic) {
+        
+    }];
     backView.hidden = NO;
     su.hidden = NO;
     close.hidden = NO;

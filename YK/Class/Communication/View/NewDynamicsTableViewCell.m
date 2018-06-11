@@ -245,6 +245,8 @@
 }
 - (void)setup
 {
+    
+//    self.contentView.backgroundColor = [UIColor redColor]
     [self.contentView addSubview:self.portrait];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.detailLabel];
@@ -257,11 +259,10 @@
     [self.contentView addSubview:self.menuBtn];
     [self.contentView addSubview:self.thumbCommentView];
     [self.contentView addSubview:self.dividingLine];
-    
+    [self.contentView addSubview:self.dLine];
+    [self.contentView addSubview:self.Line1];
+    [self.contentView addSubview:self.Line2];
     //
-    
-    
-    
     [self.contentView addSubview:self.pl];
     [self.contentView addSubview:self.plNum];
     
@@ -317,15 +318,15 @@
     _nameLabel.width = nameSize.width;
     _nameLabel.height = kDynamicsNameHeight;
     
-    
     //描述
     _detailLabel.left = _portrait.left;
     _detailLabel.top = _portrait.bottom + 10;
-    _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding*2 - 10 - 40;
-    _detailLabel.height = layout.detailLayout.textBoundingSize.height;
+//    _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding*2 - 10 - 40;
+    _detailLabel.width = SCREENWIDTH - 48;
+    _detailLabel.height = layout.detailLayout.textBoundingSize.height+15;
     _detailLabel.textLayout = layout.detailLayout;
     _detailLabel.textColor = mainColor;
-//    _detailLabel.font = PingFangSC_Medium(17);
+    _detailLabel.font = PingFangSC_Medium(14);
     lastView = _detailLabel;
     
     //展开/收起按钮
@@ -415,9 +416,37 @@
 //    _dateLabel.textAlignment = NSTextAlignmentRight;
 //    _dateLabel.hidden = YES;
 //
-    //点赞图
-    _pl.left = _detailLabel.left;
-    _pl.top = lastView.bottom + 20;
+    
+    //分割线
+    _dLine.left = 0;
+    _dLine.height = 1;
+    _dLine.width = SCREENWIDTH ;
+    _dLine.bottom = lastView.bottom + 14;
+    
+    //分享图标
+    _dz.left = _detailLabel.left;
+    _dz.top = lastView.bottom + 27;
+    [_dz sizeToFit];
+     //分享文字
+    _dzNum.left = _dz.right + 8;
+    _dzNum.top = lastView.bottom+27;
+    _dzNum.text = @"分享";
+    _dzNum.width = 40;
+    _dzNum.height=20;
+    //线1
+    _Line1.left = _dzNum.right + 44;
+    if (WIDHT!=414) {
+        _Line1.left = _dzNum.right + 36;
+    }
+    _Line1.top = lastView.bottom+27;
+    _Line1.width = 1;
+    _Line1.height = 16;
+   //点赞图
+    _pl.centerX = _dzNum.right + 96;
+    if (WIDHT!=414) {
+        _pl.centerX = _dzNum.right + 80;
+    }
+    _pl.top = lastView.bottom + 27;
     _pl.width = 20;
     _pl.height = 18;
     
@@ -462,12 +491,19 @@
     
     //点赞数
     _plNum.left = _pl.right+8;
-    _plNum.top = lastView.bottom + 20;
+    _plNum.top = lastView.bottom + 27;
     _plNum.width = 25;
     _plNum.height = 18;
     _plNum.text = [NSString stringWithFormat:@"%ld",model.fabulous.count];
     
-    //
+    //线2
+    _Line2.left = _plNum.right + 32;
+    if (WIDHT!=414) {
+        _Line2.left = _plNum.right + 22;
+    }
+    _Line2.top = lastView.bottom+27;
+    _Line2.width = 1;
+    _Line2.height = 16;
     
 //    BOOL hadUserId = NO;
 //    if ([Token length] == 0) {
@@ -484,38 +520,82 @@
 //         _pl.image = [UIImage imageNamed:@"weidianzan"];
 //    }
     
-//    _linkImage.right = _plNum.right+100;
-//    _linkImage.centerY = _plNum.centerY;
-//    [_linkImage sizeToFit];
-//
-//    _linkBtn.right = _linkImage.right+6;
-//    _linkBtn.top = _linkImage.top;
-//    _linkBtn.width = 70;
-//    _linkBtn.height = 20;
+    _linkImage.left = _plNum.right+74;
+    if (WIDHT!=414) {
+        _linkImage.left = _plNum.right+54;
+    }
+    _linkImage.top = lastView.bottom+27;
+    [_linkImage sizeToFit];
+
+    _linkBtn.left = _linkImage.right+8;
+    _linkBtn.top = _linkImage.top-1;
+    _linkBtn.width = 70;
+    _linkBtn.height = 20;
+//    _linkBtn.backgroundColor=[UIColor redColor];
  
-   
-    
     lastView = _plNum;
     
     //链接图
-    _linkImage.left = _plNum.right + 233;
-    if (WIDHT==375) {
-        _linkImage.left = _plNum.right + 196;
-    }
-    _linkImage.top = _pl.top;
-    [_linkImage sizeToFit];
+//    _linkImage.left = _plNum.right + 233;
+//    if (WIDHT==375) {
+//        _linkImage.left = _plNum.right + 196;
+//    }
+//    _linkImage.top = _pl.top;
+//    [_linkImage sizeToFit];
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToPro)];
     [_linkImage setUserInteractionEnabled:YES];
     [_linkImage addGestureRecognizer:tap1];
+    //全部评论界面
     if (_isShowOnComments) {
         _linkImage.hidden = YES ;
+        _linkBtn.hidden = YES;
+        _Line2.hidden = YES;
+        _pl.centerX = _dzNum.right + 260;
+        if (WIDHT!=414) {
+            _pl.centerX = _dzNum.right + 230;
+        }
+        _Line1.left = _dzNum.right + 120;
+        if (WIDHT!=414) {
+            _Line1.left = _dzNum.right + 100;
+        }
+        _plNum.left = _pl.right+8;
+        _bigL.centerX = _pl.centerX;
+        _bigL.centerY = _pl.centerY;
+        
     }else {
+      
         //衣库官方社区置顶，不显示链接按钮
         if ([model.clothingId intValue] == 0) {
             _linkImage.hidden = YES;
+            _linkBtn.hidden = YES;
+            _Line2.hidden = YES;
+            _pl.centerX = _dzNum.right + 250;
+            if (WIDHT!=414) {
+                _pl.centerX = _dzNum.right + 220;
+            }
+            _Line1.left = _dzNum.right + 115;
+            if (WIDHT!=414) {
+                _Line1.left = _dzNum.right + 90;
+            }
+            _plNum.left = _pl.right+8;
+            _bigL.centerX = _pl.centerX;
+            _bigL.centerY = _pl.centerY;
+            
         }else {
+            _pl.centerX = _dzNum.right + 96;
+            if (WIDHT!=414) {
+                _pl.centerX = _dzNum.right + 80;
+            }
             _linkImage.hidden = NO;
+            _linkBtn.hidden = NO;
+            _Line2.hidden = NO;
+            _bigL.centerX = _pl.centerX;
+            _bigL.centerY = _pl.centerY;
+            _Line1.left = _dzNum.right + 44;
+            if (WIDHT!=414) {
+                _Line1.left = _dzNum.right + 36;
+            }
         }
     }
 
@@ -531,7 +611,7 @@
     //    //时间
    
     _dateLabel.left = _detailLabel.left;
-    _dateLabel.top = lastView.bottom+12;
+    _dateLabel.top = lastView.bottom+18;
     NSString * newTime = [self formateDate:model.articleTime withFormate:@"yyyyMMddHHmmss"];
     _dateLabel.text = newTime;
     CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
@@ -568,9 +648,9 @@
 //
 //    //分割线
     _dividingLine.left = 0;
-    _dividingLine.height = 1;
+    _dividingLine.height = 10;
     _dividingLine.width = SCREENWIDTH ;
-    _dividingLine.bottom = layout.height - 1 +85;
+    _dividingLine.bottom = layout.height - 10 +130;
 //
 //    WS(weakSelf);
 //    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
@@ -715,7 +795,7 @@
 //            }];
         };
         _detailLabel.textColor = [UIColor redColor];
-        _detailLabel.font = PingFangSC_Regular(14);
+        _detailLabel.font = PingFangSC_Medium(14);
     }
     return _detailLabel;
 }
@@ -772,7 +852,7 @@
 {
     if (!_dateLabel) {
         _dateLabel = [UILabel new];
-        _dateLabel.textColor = [UIColor colorWithHexString:@"999999"];
+        _dateLabel.textColor = [UIColor colorWithHexString:@"999998"];
         _dateLabel.font = [UIFont systemFontOfSize:13];
     }
     return _dateLabel;
@@ -808,7 +888,7 @@
 -(UIImageView *)dz {
     if (!_dz) {
         _dz = [UIImageView new];
-        _dz.image = [UIImage imageNamed:@"dianzan"];
+        _dz.image = [UIImage imageNamed:@"fenxiang-1"];
         
     }
     return _dz;
@@ -826,7 +906,7 @@
 -(UIImageView *)linkImage {
     if (!_linkImage) {
         _linkImage = [UIImageView new];
-        _linkImage.image = [UIImage imageNamed:@"查看商品"];
+        _linkImage.image = [UIImage imageNamed:@"shangpin-1"];
         //        _plNum.textColor = [UIColor lightGrayColor];
         //        _plNum.font = [UIFont systemFontOfSize:13];
     }
@@ -841,7 +921,7 @@
 //        _linkBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         _linkBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         _linkBtn.titleLabel.font = PingFangSC_Semibold(14);
-        [_linkBtn setTitleColor:[UIColor colorWithHexString:@"FDDD55"] forState:UIControlStateNormal];
+        [_linkBtn setTitleColor:mainColor forState:UIControlStateNormal];
 //        _linkBtn.backgroundColor = [UIColor redColor];
         WS(weakSelf);
         [_linkBtn bk_addEventHandler:^(id sender) {
@@ -890,6 +970,30 @@
         _thumbCommentView.cell = self;
     }
     return _thumbCommentView;
+}
+-(UIView *)Line1
+{
+    if (!_Line1) {
+        _Line1 = [UIView new];
+        _Line1.backgroundColor = [UIColor colorWithHexString:@"cccccc"];
+    }
+    return _Line1;
+}
+-(UIView *)Line2
+{
+    if (!_Line2) {
+        _Line2 = [UIView new];
+        _Line2.backgroundColor = [UIColor colorWithHexString:@"cccccc"];
+    }
+    return _Line2;
+}
+-(UIView *)dLine
+{
+    if (!_dLine) {
+        _dLine = [UIView new];
+        _dLine.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    }
+    return _dLine;
 }
 -(UIView *)dividingLine
 {
@@ -948,7 +1052,7 @@
         
         if ([yearStr isEqualToString:nowYear]) {
             ////  在同一年
-            [dateFormatter setDateFormat:@"MM月dd日 HH:mm"];
+            [dateFormatter setDateFormat:@"MM-dd HH:mm"];
             dateStr = [dateFormatter stringFromDate:needFormatDate];
         }else{
             [dateFormatter setDateFormat:@"yyyy/MM/dd HH:ss"];

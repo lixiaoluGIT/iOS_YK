@@ -67,6 +67,10 @@
 @property(nonatomic,strong)UIImageView *linkImage;
 @property(nonatomic,strong)NewDynamicsThumbCommentView * thumbCommentView;
 @property(nonatomic,strong)UIView * dividingLine;
+@property(nonatomic,strong)UIView * dLine;
+
+@property(nonatomic,strong)UIView * Line1;
+@property(nonatomic,strong)UIView * Line2;
 
 @property (nonatomic,strong)UILabel *bigL;
 

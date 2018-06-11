@@ -182,8 +182,80 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)wechatShareSuccessNotification{
+    [[YKUserManager sharedManager]shareSuccessOnResponse:^(NSDictionary *dic) {
+        
+        //新用户并且分享过享受立减(0未分享过,1分享过)
+        if ([[YKUserManager sharedManager].user.effective intValue] == 4
+            && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
+            
+            _shareBtn.hidden = YES;
+            _inviteCodeTextField.hidden = NO;
+            _liJIan.text = @"-¥150";
+            if (_payType == MONTH_CARD) {
+                _carPrice.text = @"月卡价";
+                _yuanJia.text = @"¥299";
+                _yaJin.text = @"¥199";
+                _total.text = @"¥348";
+            }
+            if (_payType == SEASON_CARD) {
+                _carPrice.text = @"季卡价";
+                _yuanJia.text = @"¥807";
+                _yaJin.text = @"¥199";
+                _total.text = @"¥856";
+            }
+            if (_payType == YEAR_CARD) {
+                _carPrice.text = @"年卡价";
+                _yuanJia.text = @"¥2988";
+                _yaJin.text = @"¥199";
+                _total.text = @"¥3037";
+            }
+        }else {
+            //新用户并且未分享过,可以分享
+            if ([[YKUserManager sharedManager].user.effective intValue] == 4
+                && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
+                _shareBtn.hidden = NO;
+                _inviteCodeTextField.hidden = NO;
+                
+            }else {//不是新用户,分享按钮永不显示
+                _shareBtn.hidden = YES;
+                if ([[YKUserManager sharedManager].user.effective intValue] == 4){
+                    _inviteCodeTextField.hidden = NO;
+                }
+                
+            }
+            
+            _liJIan.text = @"立减不可用";
+            _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
+            
+            if (_payType == MONTH_CARD) {
+                _carPrice.text = @"月卡价";
+                _yuanJia.text = @"¥299";
+                _yaJin.text = @"¥199";
+                _total.text = @"¥498";
+            }
+            if (_payType == SEASON_CARD) {
+                _carPrice.text = @"季卡价";
+                _yuanJia.text = @"¥807";
+                _yaJin.text = @"¥199";
+                _total.text = @"¥1006";
+            }
+            if (_payType == YEAR_CARD) {
+                _carPrice.text = @"年卡价";
+                _yuanJia.text = @"¥2988";
+                _yaJin.text = @"¥199";
+                _total.text = @"¥3187";
+            }
+        }
+    }];
+    
+    
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatShareSuccessNotification) name:@"wechatShareSuccessNotification" object:nil];
     
     _shareBtn.hidden = YES;
     _inviteCodeTextField.hidden = YES;

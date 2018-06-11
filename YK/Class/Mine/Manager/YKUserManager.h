@@ -70,7 +70,7 @@
 - (void)exitPushForGeTui;
 
 //用户分享成功的回调
-- (void)shareSuccess;
+- (void)shareSuccessOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //检查更新
 - (void)checkVersion;

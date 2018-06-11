@@ -641,13 +641,18 @@
                 cell.linkImage.hidden = YES;
                 cell.dateLabel.hidden = YES;
                 cell.dividingLine.hidden = YES;
+                cell.linkBtn.hidden = YES;
+                cell.dz.hidden = YES;
+                cell.dzNum.hidden = YES;
+                cell.Line1.hidden = YES;
+                cell.Line2.hidden = YES;
                 
                 lastView = cell;
                 
                 //查看更多评论
                 UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 [moreBtn setBackgroundImage:[UIImage imageNamed:@"chakangengduo"] forState:UIControlStateNormal];
-                moreBtn.frame = CGRectMake(WIDHT/2-54, lastView.frame.size.height + lastView.frame.origin.y + 25, 108, 25);
+                moreBtn.frame = CGRectMake(WIDHT/2-54, lastView.frame.size.height + lastView.frame.origin.y + 45, 108, 25);
                 [headerView addSubview:moreBtn];
                 [moreBtn addTarget:self action:@selector(toMore) forControlEvents:UIControlEventTouchUpInside];
                 lastView = moreBtn;
