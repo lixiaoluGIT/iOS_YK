@@ -205,7 +205,7 @@
     [cell initWithTitleArray:self.titles ImageArray:self.images];
     cell.clickBlock = ^(NSInteger tag){
         if ([Token length] == 0) {
-            if (tag!=3&&tag!=4) {
+            if (tag!=3&&tag!=4&&tag!=5) {
                 [self Login];
                 return;
             }

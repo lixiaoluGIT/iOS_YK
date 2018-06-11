@@ -24,6 +24,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([Token length] == 0) {
+        _exitBtn.hidden = YES;
+    }else {
+        _exitBtn.hidden = NO;
+    }
+    
     if ([[UIDevice currentDevice].systemVersion floatValue]>= 11) {
         _gap.constant = 84;
     }

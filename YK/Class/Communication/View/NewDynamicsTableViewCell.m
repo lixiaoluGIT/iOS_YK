@@ -323,10 +323,10 @@
     _detailLabel.top = _portrait.bottom + 10;
 //    _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding*2 - 10 - 40;
     _detailLabel.width = SCREENWIDTH - 48;
-    _detailLabel.height = layout.detailLayout.textBoundingSize.height+15;
+    _detailLabel.height = layout.detailLayout.textBoundingSize.height;
     _detailLabel.textLayout = layout.detailLayout;
     _detailLabel.textColor = mainColor;
-    _detailLabel.font = PingFangSC_Medium(14);
+//    _detailLabel.font = PingFangSC_Medium(14);
     lastView = _detailLabel;
     
     //展开/收起按钮
@@ -423,16 +423,26 @@
     _dLine.width = SCREENWIDTH ;
     _dLine.bottom = lastView.bottom + 14;
     
+    //手势
+    UITapGestureRecognizer *T = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"分享功能即将开通" delay:2.0];
+        
+    }];
     //分享图标
     _dz.left = _detailLabel.left;
     _dz.top = lastView.bottom + 27;
     [_dz sizeToFit];
-     //分享文字
+    
+    //分享文字
     _dzNum.left = _dz.right + 8;
     _dzNum.top = lastView.bottom+27;
     _dzNum.text = @"分享";
     _dzNum.width = 40;
     _dzNum.height=20;
+    [_dz setUserInteractionEnabled:YES];
+    [_dzNum setUserInteractionEnabled:YES];
+    [_dz addGestureRecognizer:T];
+    [_dzNum addGestureRecognizer:T];
     //线1
     _Line1.left = _dzNum.right + 44;
     if (WIDHT!=414) {
@@ -650,7 +660,7 @@
     _dividingLine.left = 0;
     _dividingLine.height = 10;
     _dividingLine.width = SCREENWIDTH ;
-    _dividingLine.bottom = layout.height - 10 +130;
+    _dividingLine.bottom = layout.height - 10 +115;
 //
 //    WS(weakSelf);
 //    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
@@ -795,7 +805,7 @@
 //            }];
         };
         _detailLabel.textColor = [UIColor redColor];
-        _detailLabel.font = PingFangSC_Medium(14);
+        _detailLabel.font = [UIFont systemFontOfSize:14];
     }
     return _detailLabel;
 }

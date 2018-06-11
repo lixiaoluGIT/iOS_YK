@@ -216,7 +216,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
-    return layout.height+115;
+    return layout.height+100;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

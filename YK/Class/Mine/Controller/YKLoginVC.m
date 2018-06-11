@@ -43,6 +43,7 @@
 
 //@property (nonatomic, strong) LLGifView *gifView;
 //@property (nonatomic, strong) LLGifImageView *gifImageView;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 
 @end
@@ -89,6 +90,8 @@ NSInteger timeNum;
 //    NSData *data = [NSData dataWithContentsOfFile:str];
 //    imgv.image = [UIImage sd_animatedGIFWithData:data];
     
+    NSString *localVersion = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
+    _versionLabel.text = localVersion;
     //新UI隐藏logo
     [_logo setHighlighted:YES];
     
