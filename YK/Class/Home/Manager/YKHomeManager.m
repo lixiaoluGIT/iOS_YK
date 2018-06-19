@@ -91,11 +91,13 @@
         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     
+//    self.brandList = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
+    
     [YKHttpClient Method:@"GET" apiName:getBrandList_Url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-        
+        self.brandList = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
         if (onResponse) {
             onResponse(dic);
         }
@@ -104,15 +106,19 @@
 }
 
 //获取商品详情
-- (void)getProductDetailInforWithProductId:(NSInteger )ProductId
+- (void)getProductDetailInforWithProductId:(NSInteger )ProductId type:(NSInteger)type
                                 OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    
-    NSString *url = [NSString stringWithFormat:@"%@?clothing_id=%ld&userId=%@",GetProductDetail_Url,ProductId,[Token length]>0 ? [YKUserManager sharedManager].user.userId : @""];
-    
-    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+    NSString *url;
+    if (type==0) {//衣服
+        url = [NSString stringWithFormat:@"%@?clothing_id=%ld&userId=%@",GetProductDetail_Url,ProductId,[Token length]>0 ? [YKUserManager sharedManager].user.userId : @""];
+    }else {//配饰
+        url = [NSString stringWithFormat:@"%@?ornamentId=%ld&userId=%@",PSDetail_Url,ProductId,[Token length]>0 ? [YKUserManager sharedManager].user.userId : @""];
+    }
+
+        [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
@@ -125,9 +131,9 @@
 }
 
 //分页请求商品
-- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse{
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId sytleId:(NSString *)sytleId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse{
     
-    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&size=%d&typeId=%@&sortId=%@&brandId=%@",GetMoreProduct_Url,numPage,10,typeId,sortId,brandId];
+    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&size=%d&typeId=%@&sortId=%@&styleId=%@&brandId=%@",GetMoreProduct_Url,numPage,10,typeId,sortId,sytleId,brandId];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         

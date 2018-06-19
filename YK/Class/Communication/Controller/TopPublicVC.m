@@ -151,14 +151,20 @@
         return;
     }
     
-    [[YKCommunicationManager sharedManager]publicWithImageArray:_imageArray clothingId:_clothingId text:textView.text OnResponse:^(NSDictionary *dic) {
-        
-//        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+    [[YKCommunicationManager sharedManager]publicWithImageArray:_imageArray clothingId:_clothingId text:textView.text activityId:_activityId OnResponse:^(NSDictionary *dic) {
+        //        [self.navigationController dismissViewControllerAnimated:YES completion:^{
         [UD setBool:YES forKey:@"hadNews"];
-            [self.navigationController popToRootViewControllerAnimated:NO];
-//        }];
-       
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        //        }];
     }];
+//    [[YKCommunicationManager sharedManager]publicWithImageArray:_imageArray clothingId:_clothingId  activityId:_activityId text:textView.text OnResponse:^(NSDictionary *dic) {
+//        
+////        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//        [UD setBool:YES forKey:@"hadNews"];
+//            [self.navigationController popToRootViewControllerAnimated:NO];
+////        }];
+//       
+//    }];
 }
 
 #pragma mark - UIbutton event

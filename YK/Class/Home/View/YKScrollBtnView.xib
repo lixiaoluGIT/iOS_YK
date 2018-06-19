@@ -1,49 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="KGk-i7-Jjw" customClass="YKScrollBtnView">
-            <rect key="frame" x="0.0" y="0.0" width="124" height="115"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="355" id="KGk-i7-Jjw" customClass="YKScrollBtnView">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="355"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="124" height="114.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="458" height="354.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="timg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uwL-SI-jnB">
-                        <rect key="frame" x="29" y="10" width="66" height="66"/>
+                        <rect key="frame" x="184" y="14" width="90" height="84"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="66" id="KzP-2h-KfY"/>
-                            <constraint firstAttribute="width" constant="66" id="bip-nH-NgQ"/>
+                            <constraint firstAttribute="height" constant="84" id="K5S-YF-DwS"/>
+                            <constraint firstAttribute="width" constant="90" id="Kfz-UC-8Fb"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supreme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaK-cU-JeA">
-                        <rect key="frame" x="37" y="84" width="51" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="199.5" y="106" width="59.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="uwL-SI-jnB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="1bz-g1-Hdq"/>
+                    <constraint firstItem="uwL-SI-jnB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="1bz-g1-Hdq"/>
                     <constraint firstItem="DaK-cU-JeA" firstAttribute="centerX" secondItem="uwL-SI-jnB" secondAttribute="centerX" id="3L6-Tj-gW7"/>
                     <constraint firstItem="DaK-cU-JeA" firstAttribute="top" secondItem="uwL-SI-jnB" secondAttribute="bottom" constant="8" id="Pvo-YM-kZv"/>
                     <constraint firstItem="uwL-SI-jnB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Wag-o3-5b5"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="hhh" destination="K5S-YF-DwS" id="m0u-V6-7zJ"/>
                 <outlet property="image" destination="uwL-SI-jnB" id="wfa-Ki-pMe"/>
                 <outlet property="title" destination="DaK-cU-JeA" id="bay-hL-jsD"/>
+                <outlet property="www" destination="Kfz-UC-8Fb" id="MyK-j2-Lrf"/>
             </connections>
-            <point key="canvasLocation" x="-7" y="115.5"/>
+            <point key="canvasLocation" x="-126" y="47.5"/>
         </tableViewCell>
     </objects>
     <resources>

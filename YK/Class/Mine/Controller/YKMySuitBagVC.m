@@ -14,6 +14,7 @@
 #import "YKSuitHeader.h"
 #import "YKProductDetailVC.h"
 #import "YKHomeVC.h"
+#import "YKSPDetailVC.h"
 
 @interface YKMySuitBagVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
 {
@@ -544,17 +545,27 @@
      YKSuitEnsureCell*cell = (YKSuitEnsureCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
     //请求商品信息,判断是否下架
-    [[YKHomeManager sharedManager]getProductDetailInforWithProductId:[cell.suit.clothingId intValue] OnResponse:^(NSDictionary *dic) {
+    [[YKHomeManager sharedManager]getProductDetailInforWithProductId:[cell.suit.clothingId intValue] type:1 OnResponse:^(NSDictionary *dic) {
 
         if ([dic[@"status"] intValue] == 400) {
             [smartHUD alertText:self.view alert:dic[@"msg"] delay:2];
            
         }else {
-            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-            detail.productId = cell.suit.clothingId;
-            detail.titleStr = cell.suit.clothingName;
-            detail.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:detail animated:YES];
+            
+            if (cell.suit.classify==1) {
+                YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+                detail.productId = cell.suit.clothingId;
+                detail.titleStr = cell.suit.clothingName;
+                detail.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:detail animated:YES];
+            }else {
+                YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+                detail.productId = cell.suit.clothingId;
+                detail.titleStr = cell.suit.clothingName;
+                detail.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:detail animated:YES];
+            }
+            
         }
         
     }];

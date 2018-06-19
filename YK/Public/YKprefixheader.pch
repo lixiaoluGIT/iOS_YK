@@ -142,6 +142,10 @@
 #define filterCloth_Url @"/product/selectClothBySortIdAndTypeId"
 //选衣界面
 #define selectClothPage_Url @"/product/selectClothPage"
+//配饰列表
+#define PSList_Url @"/ornament/getOrnamentPage"
+//配饰详情
+#define PSDetail_Url @"/ornament/getOrnamentInfo"
 
 /*----------------------------购物车模块--------------------------------*/
 //添加到购物车
@@ -218,10 +222,16 @@
 #define CommunicationImgList_Url @"/community/articlesHomePage"
 //发布接口
 #define Public_Url @"/community/publishArticles"
+////晒图首页
+//#define GetCommunicationHomeList_Url @"/community/articlesHomePage"
 //列表接口
 #define GetCommunicationList_Url @"/community/ArticlesList"
 //点赞接口
 #define Like_Url @"/community/articlesFabulous"
+//关注接口
+#define Concern_Url @"/community/personal/attention"
+//关注列表
+#define ConcernList_Url @"/community/personal/getAttentionList"
 //历史订单
 #define historyOrder_Url @"/community/chooseClothes"
 

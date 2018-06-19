@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *tishiImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *recommentWords;
+@property (weak, nonatomic) IBOutlet UILabel *selectText;
+@property (weak, nonatomic) IBOutlet UIImageView *yellowImage;
 
 @end
 
@@ -84,6 +86,7 @@
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle  setLineSpacing:4];
     self.recommentWords.text = _recomment;
+   
     
     NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
@@ -101,6 +104,13 @@
                                                               NULL,
                                                               kCFStringEncodingUTF8));
     return encodedString;
+}
+
+- (void)resetUI{
+    _yellowImage.hidden = YES;
+    _scrollView.hidden = YES;
+    _selectText.hidden = YES;
+    _sizeView.hidden = YES;
 }
 
 @end

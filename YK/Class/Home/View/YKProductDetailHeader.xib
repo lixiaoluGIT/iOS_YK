@@ -53,9 +53,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="---------------------------------" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qd-4P-ucH">
-                        <rect key="frame" x="26" y="95" width="427" height="40"/>
+                        <rect key="frame" x="26" y="89" width="427" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="bq5-Hd-7xG"/>
+                            <constraint firstAttribute="height" constant="60" id="bq5-Hd-7xG"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,7 +100,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Zb8-4U-aYb" firstAttribute="centerY" secondItem="rjG-xy-sep" secondAttribute="centerY" id="6ck-2i-QaW"/>
-                    <constraint firstItem="tnm-GL-ol0" firstAttribute="top" secondItem="0qd-4P-ucH" secondAttribute="bottom" constant="16" id="8lQ-XJ-t3R"/>
+                    <constraint firstItem="tnm-GL-ol0" firstAttribute="top" secondItem="0qd-4P-ucH" secondAttribute="bottom" constant="2" id="8lQ-XJ-t3R"/>
                     <constraint firstAttribute="trailing" secondItem="tnm-GL-ol0" secondAttribute="trailing" id="9Xp-Ex-SJk"/>
                     <constraint firstItem="UzO-s0-RXw" firstAttribute="width" secondItem="tnm-GL-ol0" secondAttribute="width" id="9nl-DN-CV0"/>
                     <constraint firstItem="CYq-4Q-jak" firstAttribute="centerY" secondItem="mAD-kC-OL8" secondAttribute="centerY" id="BO9-H4-fht"/>
@@ -121,7 +121,7 @@
                     <constraint firstItem="UzO-s0-RXw" firstAttribute="leading" secondItem="RnA-Fq-SWZ" secondAttribute="leading" id="dkn-sJ-GzB"/>
                     <constraint firstItem="Zb8-4U-aYb" firstAttribute="leading" secondItem="rjG-xy-sep" secondAttribute="trailing" constant="8" id="enF-Vc-hCd"/>
                     <constraint firstItem="CYq-4Q-jak" firstAttribute="leading" secondItem="ShF-Hn-eAM" secondAttribute="leading" id="f8l-Jh-6XM"/>
-                    <constraint firstItem="0qd-4P-ucH" firstAttribute="top" secondItem="ShF-Hn-eAM" secondAttribute="bottom" constant="8" id="i1G-9b-vAT"/>
+                    <constraint firstItem="0qd-4P-ucH" firstAttribute="top" secondItem="ShF-Hn-eAM" secondAttribute="bottom" constant="2" id="i1G-9b-vAT"/>
                     <constraint firstItem="UzO-s0-RXw" firstAttribute="top" secondItem="RnA-Fq-SWZ" secondAttribute="bottom" constant="4" id="iDA-Zj-Zaw"/>
                     <constraint firstItem="ShF-Hn-eAM" firstAttribute="centerY" secondItem="Vja-BE-5ge" secondAttribute="centerY" id="lj6-Uc-mBM"/>
                     <constraint firstItem="Fdr-4M-Ggp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="p5w-IG-pJM"/>
@@ -135,7 +135,9 @@
                 <outlet property="productPrice" destination="cB7-E8-rOf" id="yxj-HL-8lG"/>
                 <outlet property="recommentWords" destination="0qd-4P-ucH" id="DhM-nR-CZP"/>
                 <outlet property="scrollView" destination="RnA-Fq-SWZ" id="e1K-Or-s2e"/>
+                <outlet property="selectText" destination="CYq-4Q-jak" id="2Yc-N0-IbY"/>
                 <outlet property="tishiImage" destination="RnA-Fq-SWZ" id="CUu-Jb-Ffm"/>
+                <outlet property="yellowImage" destination="mAD-kC-OL8" id="pkZ-H7-Pg9"/>
             </connections>
             <point key="canvasLocation" x="13.5" y="30"/>
         </tableViewCell>

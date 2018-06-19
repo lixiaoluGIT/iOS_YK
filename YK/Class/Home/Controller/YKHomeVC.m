@@ -38,6 +38,7 @@
     BOOL hadtitle2;
     BOOL hadtitle4;
     BOOL hadtitle5;
+    CGFloat lastContentOffset;
 }
 @property (nonatomic, assign) NSInteger pageNum;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -154,7 +155,7 @@
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
         //请求更多商品
-        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:@"" sortId:@"2" brandId:@"" OnResponse:^(NSArray *array) {
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:@"" sortId:@"2" sytleId:@"0" brandId:@"" OnResponse:^(NSArray *array) {
             [self.collectionView.mj_footer endRefreshing];
             if (array.count==0) {
                 [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
@@ -581,21 +582,48 @@
     
 }
 
-//- (void)ZYCollectionViewClick:(NSInteger)index {
-//    //跳转到网页
-//    YKLinkWebVC *web =[YKLinkWebVC new];
-//    web.url = self.imageClickUrls[index];
-//    web.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:web animated:YES];
-//    
-//}
-
 - (void)YKBaseScrollViewImageClick:(NSInteger)index{
     //跳转到网页
     YKLinkWebVC *web =[YKLinkWebVC new];
     web.url = self.imageClickUrls[index-1];
     web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  
+//    if (scrollView == self.collectionView)
+//    {
+//        
+//        if (scrollView.contentOffset.y< lastContentOffset )
+//        {
+//            //向上
+//            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+//                        NSLog(@"向上");
+//            [UIView animateWithDuration:0.3 animations:^{
+//                
+//                
+//            }];
+//         
+//        } else if (scrollView. contentOffset.y >lastContentOffset )
+//        {
+//            //向下
+//            //            NSLog(@"向下");
+//            [UIView animateWithDuration:0.3 animations:^{
+//                //                [publicBtn layoutIfNeeded];//这里是关键
+//           
+//            }];
+//           
+//                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+//        }
+//        
+//    }
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+//    if (scrollView==self.collectionView) {
+//        lastContentOffset = scrollView.contentOffset.y;
+//    }
+    
 }
 
 @end

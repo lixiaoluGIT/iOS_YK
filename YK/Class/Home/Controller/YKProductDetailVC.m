@@ -103,7 +103,7 @@
 }
 
 - (void)getPruductDetail{
-    [[YKHomeManager sharedManager]getProductDetailInforWithProductId:[self.productId intValue] OnResponse:^(NSDictionary *dic) {
+    [[YKHomeManager sharedManager]getProductDetailInforWithProductId:[self.productId intValue] type:_isSP  OnResponse:^(NSDictionary *dic) {
         
         self.product  = [YKProduct new];
         YKProductDetail *productDetail = [YKProductDetail new];
@@ -112,11 +112,12 @@
         scroll.product = self.product.product;
         scroll.brand = self.product.brand;
         scroll.recomment = productDetail.product[@"clothingExplain"];
-//        scroll.recomment = @"生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组生成表格需要的数组";
         self.imagesArr = [self getImageArray:self.product.bannerImages];
-        
         NSArray *sizeArray = [NSArray arrayWithArray:dic[@"data"][@"sizeTableVos"]];
         NSDictionary *userSizeDic = [NSDictionary dictionaryWithDictionary:dic[@"data"][@"userSizeTable"]];
+        if (_isSP) {//pei s
+            _sizeNum = scroll.product[@"clothingStockDTOS"][0][@"clothingStockId"];
+        }
         //生成表格需要的数组
         if (sizeArray.count>0) {
             self.dataArray = [[YKHomeManager sharedManager]getSizeArray:sizeArray];
@@ -153,21 +154,11 @@
     return imageArray;
 }
 - (void)viewDidLoad {
-//    self.dataArray = @[
-//
-//                       @[ @"尺码", @"胸围", @"衣长", @"肩宽", @"袖长"],
-//                       @[@"S",@"88",@"99",@"67",@"78",],
-//                       @[@"M",@"78",@"69",@"87",@"98",],
-//                       @[@"L",@"88",@"79",@"69",@"78",],
-//
-//
-//                       ];
-    
-    
-   
+
     [super viewDidLoad];
-     [self getPruductDetail];
-    
+    _isSP = NO;
+    [self getPruductDetail];
+            
     _sizeNum = 0;
     if (_isFromShare) {
         self.title = @"商品详情";
@@ -218,8 +209,6 @@
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.font = PingFangSC_Semibold(20);
     self.navigationItem.titleView = title;
-    
-    
     
     //请求数据
     self.images = [NSArray array];
@@ -411,7 +400,7 @@
         login.hidesBottomBarWhenPushed = YES;
         return;
     }
-    if (_sizeNum==0) {
+    if (_sizeNum==0 && !_isSP) {
         [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
         return ;
     }
@@ -515,12 +504,16 @@
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return CGSizeMake(WIDHT, WIDHT*0.82+330);
+       
+            return CGSizeMake(WIDHT, WIDHT*0.82+330);
+        
     }
     if (self.layoutsArr.count>0){
+   
         return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40+170+layout.height+75+80);
     }
     else {
+    
         return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40+170+150+80);
     }
 }
@@ -535,11 +528,10 @@
         if (indexPath.section==0) {
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
-            
+            //轮播图
             cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.82+100)];
             cycleView.imagesArr = self.imagesArr;
             cycleView.delegate  = self;
-            
             self.origialFrame = cycleView.frame;
             [headerView addSubview:cycleView];
             
@@ -557,8 +549,7 @@
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
             scroll.frame = CGRectMake(0, WIDHT*0.82+100,WIDHT, 330);
-//            scroll.backgroundColor = [UIColor redColor];
-            
+        
             if (!hadMakeHeader) {
                 [headerView addSubview:scroll];
                 hadMakeHeader = YES;
@@ -594,9 +585,7 @@
             YKHomeDesCell  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][2];
             ti2.frame = CGRectMake(0, 120,WIDHT, 50);
             [headerView addSubview:ti2];
-           
-            
-//            self.tableView.backgroundColor = [UIColor redColor];
+ 
             self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 170, WIDHT, self.dataArray.count*40) style:UITableViewStylePlain];
             self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             self.tableView.delegate = self;
@@ -612,9 +601,11 @@
             line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
             [headerView addSubview:line];
             
+            
             YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][4];
             ti.frame = CGRectMake(0,self.dataArray.count*40+170+10,WIDHT, 64);
 //            ti.backgroundColor = [UIColor redColor];
+         
             [headerView addSubview:ti];
             
             //评论Cell
@@ -623,12 +614,7 @@
             UIView *lastView = [[UIView alloc]init];
             NewDynamicsTableViewCell * cell = [[NewDynamicsTableViewCell alloc]init];
             cell.isShowInProductDetail = YES;
-//            cell.plNum.hidden = YES;
-//            cell.pl.hidden = YES;
-//            cell.linkImage.hidden = YES;
-//            cell.dateLabel.hidden = YES;
-//            cell.dividingLine.hidden = YES;
-            
+
             if (self.layoutsArr.count>0) {
                 NoDataView.hidden = YES;
                 cell.hidden = NO;
@@ -646,6 +632,7 @@
                 cell.dzNum.hidden = YES;
                 cell.Line1.hidden = YES;
                 cell.Line2.hidden = YES;
+                cell.guanzhuImage.hidden = YES;
                 
                 lastView = cell;
                 
@@ -879,9 +866,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
     return 30;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

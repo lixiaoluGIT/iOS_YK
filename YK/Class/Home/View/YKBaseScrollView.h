@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-// item图片的点击协议
-
 @protocol YKBaseScrollViewDelete <NSObject>
 - (void)YKBaseScrollViewImageClick:(NSInteger)index;
 @end
@@ -18,6 +16,7 @@
 @property (nonatomic, weak) id<YKBaseScrollViewDelete>delegate;
 @property (nonatomic, strong) NSArray  * imagesArr;
 @property (nonatomic, strong) NSArray  * imageClickUrls;
+@property (nonatomic, assign) BOOL isSmall;
 @end
 
 

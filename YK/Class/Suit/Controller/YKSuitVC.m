@@ -12,6 +12,7 @@
 #import "YKLoginVC.h"
 #import "YKProductDetailVC.h"
 #import "YKSearchVC.h"
+#import "YKSPDetailVC.h"
 
 #define vH  56*WIDHT/414
 
@@ -522,11 +523,22 @@
         //非编辑状态下
         YKSuitCell *mycell = (YKSuitCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         
-        YKProductDetailVC *detail = [YKProductDetailVC new];
-        detail.productId = mycell.suitId;
-        detail.titleStr = mycell.suit.clothingName;
-        detail.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:detail animated:YES];
+        if (mycell.suit.classify==1) {
+            YKProductDetailVC *detail = [YKProductDetailVC new];
+            detail.productId = mycell.suitId;
+            detail.titleStr = mycell.suit.clothingName;
+            detail.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detail animated:YES];
+        }else {
+            YKSPDetailVC *detail = [YKSPDetailVC new];
+            detail.productId = mycell.suitId;
+            detail.titleStr = mycell.suit.clothingName;
+            detail.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detail animated:YES];
+        }
+        
+        
+        
     }
 }
 

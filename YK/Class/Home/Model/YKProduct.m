@@ -27,6 +27,13 @@
     self.imageDetails = [NSString stringWithFormat:@"%@",dic[@"imageDetails"]];
     self.imageMaster = [NSString stringWithFormat:@"%@",dic[@"imageMaster"]];
     self.clothingPrice = [NSString stringWithFormat:@"%@",dic[@"clothingPrice"]];
+    if ( [[NSString stringWithFormat:@"%@",dic[@"classify"]] isEqual:@"1"]) {
+        self.classify = 1;//衣服
+    }
+    if ( [[NSString stringWithFormat:@"%@",dic[@"classify"]] isEqual:@"2"]) {
+        self.classify = 2;//配饰
+    }
+   
     
     //存储商品的不同型号模型
     NSArray *clothingStockArray = [NSArray arrayWithArray:dic[@"clothingStockDTOS"]];

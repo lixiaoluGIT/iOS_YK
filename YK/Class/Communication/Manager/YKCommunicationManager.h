@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YKComheader.h"
 
 @interface YKCommunicationManager : NSObject
 
+@property (nonatomic,strong)NSMutableArray *concernArray;//关注数组
 + (YKCommunicationManager *)sharedManager;
 
 //晒图发布
@@ -21,13 +23,14 @@ imageArray 照片数组
 - (void)publicWithImageArray:(NSArray *)imageArray
                   clothingId:(NSString *)clothingId
                         text:(NSString *)text
+                  activityId:(NSString *)activityId
                   OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //轮播图接口
 - (void)requestCommunicationImgListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //社区列表展示
-- (void)requestCommunicationListWithNum:(NSInteger)Num Size:(NSInteger)Size clothingId:(NSString *)clothingId OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)requestCommunicationListWithCommunicationType:(CommunicationType)CommunicationType Num:(NSInteger)Num Size:(NSInteger)Size clothingId:(NSString *)clothingId activityId:(NSString *)activityId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //点赞
 
@@ -51,4 +54,23 @@ imageArray 照片数组
                                   Size:(NSInteger)Size
                             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//关注
+
+/*
+ userId 用户ID
+ onResponse 请求回掉
+ */
+- (void)setConcernWithUserId:(NSString *)userId
+                               OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//取消关注
+/*
+ userId 用户ID
+ onResponse 请求回掉
+ */
+- (void)cancleConcernWithUserId:(NSString *)userId
+                     OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//用户关注列表
+- (void)getUserConcernListOnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

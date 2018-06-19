@@ -17,6 +17,7 @@
 #import "YKBrandDetailHeader.h"
 #import "CBSegmentView.h"
 #import "YKProductDetailVC.h"
+#import "YKSPDetailVC.h"
 
 @interface YKBrandDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,UINavigationControllerDelegate>{
@@ -166,7 +167,7 @@
         _pageNum ++;
         //         [weakSelf getCategoryListByBrandId:weakSelf.scroll.brand.brandId categoryId:weakSelf.catrgoryId];
         //请求更多商品
-        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.catrgoryId sortId:@"" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.catrgoryId sortId:@"" sytleId:@"0" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
             [self.collectionView.mj_footer endRefreshing];
             if (array.count==0) {
                 [weakSelf.collectionView.mj_footer endRefreshing];
@@ -325,11 +326,20 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     
-    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-    detail.productId = cell.goodsId;
-    detail.titleStr = cell.goodsName;
-    detail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detail animated:YES];
+    if (cell.product.classify==1) {
+        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+        detail.productId = cell.goodsId;
+        detail.titleStr = cell.goodsName;
+        detail.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detail animated:YES];
+    }else {
+        YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+        detail.productId = cell.goodsId;
+        detail.titleStr = cell.goodsName;
+        detail.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detail animated:YES];
+    }
+ 
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -344,7 +354,7 @@
 - (void)getCategoryListByBrandId:(NSString *)brand categoryId:(NSString *)categoryId{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:categoryId sortId:@"" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
+    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:categoryId sortId:@"" sytleId:@"0" brandId:self.scroll.brand.brandId OnResponse:^(NSArray *array) {
         
         [self.productList removeAllObjects];
         

@@ -41,7 +41,7 @@
 - (void)setup
 {
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, WIDHT-24, 286);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, WIDHT, 286);
 //    NSMutableArray *temp = [NSMutableArray new];
     
 //    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, 286)];
@@ -117,14 +117,14 @@
         
         NSURL * url = [NSURL URLWithString:[self URLEncodedString:_picPathStringsArray[idx]]];
         [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"商品图"] options:SDWebImageRetryFailed];
-        imageView.frame = CGRectMake((itemW + margin)*idx,0,itemW, itemH);
+        imageView.frame = CGRectMake(24+(itemW + margin)*idx,0,itemW, itemH);
         imageView.backgroundColor = [UIColor redColor];
         [self addSubview:imageView];
     }];
 
 //    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, WIDHT-48, itemH);
 //    self.backgroundColor = [UIColor greenColor];
-    self.contentSize = CGSizeMake(_picPathStringsArray.count*(itemW+margin), itemH);
+    self.contentSize = CGSizeMake(_picPathStringsArray.count*(itemW+margin)+24, itemH);
     self.contentOffset = CGPointMake(0, 0);
 }
 
@@ -161,7 +161,7 @@
 }
 
 + (CGSize)getContainerSizeWithPicPathStringsArray:(NSArray *)picPathStringsArray{
-    return CGSizeMake(WIDHT-24, 286*WIDHT/414);
+    return CGSizeMake(WIDHT, 286*WIDHT/414);
 }
 
 @end

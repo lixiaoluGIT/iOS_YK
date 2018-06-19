@@ -9,6 +9,7 @@
 #import "NewDynamicsViewController.h"
 #import "NewDynamicsTableViewCell.h"
 #import "YKProductDetailVC.h"
+#import "YKSPDetailVC.h"
 
 @interface NewDynamicsViewController (Delegate)<UITableViewDataSource,UITableViewDelegate,NewDynamicsCellDelegate,UITextFieldDelegate>
 

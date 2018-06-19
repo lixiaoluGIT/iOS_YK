@@ -28,6 +28,9 @@
 //@property(nonatomic,strong)NSString * favorite;//该字段存在,则表示当前登录微赚宝用户已收藏过这个店铺
 @property(nonatomic,strong)NSMutableArray * articleImages;//照片数组
 @property(nonatomic,strong)NSMutableArray * fabulous;//点赞数组
+//@property(nonatomic,strong)NSMutableArray *concernArray;
+@property(nonatomic,assign)BOOL isConcern;//是否关注
+@property(nonatomic,strong)NSString *classify;
 //@property(nonatomic,strong)NSMutableArray * optcomment;//评论数组
 //@property(nonatomic,strong)NSDictionary * companyparams;//公司信息
 //@property(nonatomic,strong)NSDictionary * spreadparams;//推广内容

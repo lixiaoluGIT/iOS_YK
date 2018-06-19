@@ -103,7 +103,7 @@
 }
 - (void)refreshData{
     //请求列表信息
-    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 clothingId:self.clothingId OnResponse:^(NSDictionary *dic) {
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithCommunicationType:0 Num:_pageNum Size:10 clothingId:self.clothingId activityId:@"" OnResponse:^(NSDictionary *dic) {
         NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"articleVOS"]];
         
         [self.dynamicsTable.mj_header endRefreshing];
@@ -131,7 +131,7 @@
 //上拉加载
 - (void)getMoreData{
     //请求列表信息
-    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:_pageNum Size:10 clothingId:self.clothingId OnResponse:^(NSDictionary *dic) {
+   [[YKCommunicationManager sharedManager]requestCommunicationListWithCommunicationType:0 Num:_pageNum Size:10 clothingId:self.clothingId activityId:@"" OnResponse:^(NSDictionary *dic) {
         NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"articleVOS"]];
         
         [self.dynamicsTable.mj_footer endRefreshing];
@@ -176,7 +176,7 @@
 #pragma mark - 下啦刷新
 - (void)dragDownToLoadMoreData
 {
-    [[YKCommunicationManager sharedManager]requestCommunicationListWithNum:2 Size:10 clothingId:self.clothingId OnResponse:^(NSDictionary *dic) {
+    [[YKCommunicationManager sharedManager]requestCommunicationListWithCommunicationType:0 Num:_pageNum Size:10 clothingId:self.clothingId activityId:@"" OnResponse:^(NSDictionary *dic) {
         [self.dynamicsTable.mj_header endRefreshing];
         NSArray * dataArray = [NSArray arrayWithArray:dic[@"data"]];
         
@@ -261,9 +261,15 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     
+    if ([Token length]==0) {
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:2];
+        return;
+    }
+    cell.pl.userInteractionEnabled = NO;
     //点赞
     [[YKCommunicationManager sharedManager]setLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
         //把当前userid加入点赞数组
+        cell.pl.userInteractionEnabled = YES;
         [model.fabulous addObject:[YKUserManager sharedManager].user.userId];
         //刷新当前cell
         [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -277,8 +283,14 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     
+    if ([Token length]==0) {
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:2];
+        return;
+    }
+    cell.pl.userInteractionEnabled = NO;
     [[YKCommunicationManager sharedManager]cancleLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
         //把当前userid加入点赞数组
+        cell.pl.userInteractionEnabled = YES;
         [model.fabulous removeObject:[YKUserManager sharedManager].user.userId];
         //刷新当前cell
         [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];

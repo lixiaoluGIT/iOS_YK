@@ -54,6 +54,15 @@
     if (dic[@"clothingImgUrl"] != [NSNull null]) {
         _clothingImgUrl = [NSString stringWithFormat:@"%@",dic[@"clothingImgUrl"]];
     }
+    
+    if (dic[@"classify"] != [NSNull null]) {
+        if ( [[NSString stringWithFormat:@"%@",dic[@"classify"]] isEqual:@"1"]) {
+            self.classify = 1;//衣服
+        }
+        if ( [[NSString stringWithFormat:@"%@",dic[@"classify"]] isEqual:@"2"]) {
+            self.classify = 2;//配饰
+        }
+    }
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "YKSuitVC.h"
 #import "YKMineVC.h"
 #import "YKHomeSegementVC.h"
+#import "YKSearchSegmentVC.h"
 
 @interface YKMainVC ()<UITabBarControllerDelegate>
 {
@@ -57,7 +58,7 @@
         home = [[UINavigationController alloc] initWithRootViewController:homeVC];
         //homeVC.tabBarItem
         
-        YKSearchVC *orderVC = [[YKSearchVC alloc]init];
+        YKSearchSegmentVC *orderVC = [[YKSearchSegmentVC alloc]init];
         orderVC.tabBarItem.image = [UIImage imageNamed:@"xuanyi"];
         orderVC.tabBarItem.selectedImage = [UIImage imageNamed:@"xuanyi1"];
         orderVC.tabBarItem.title = @"选衣";

@@ -19,10 +19,14 @@
 @property (nonatomic,strong)NSDictionary *brand;
 
 @property (nonatomic,strong)NSString *recomment;
+- (void)resetUI;
 @end
 
 @interface YKSizeView : UIView
 
 - (void)initViewWithArray:(NSArray *)array;
 @property (nonatomic,copy)void (^selectBlock)(NSString *clothingStockType);
+
+
+
 @end

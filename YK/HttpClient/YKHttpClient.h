@@ -55,6 +55,7 @@
           clothingId:(NSString *)clothingId
                 text:(NSString *)text
                  pic:(NSArray *)pics
+          activityId:(NSString *)activityId
              success:(void(^)(NSDictionary *dict))success
              failure:(void(^)(NSError *error))failure;
 

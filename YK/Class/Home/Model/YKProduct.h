@@ -25,6 +25,7 @@
 @property (nonatomic,copy)NSString *imageDetails;
 @property (nonatomic,copy)NSString *imageMaster;
 @property (nonatomic,copy)NSString *clothingPrice;//推荐价格
+@property (nonatomic,assign)NSInteger classify;//商品种类1:衣服，2:配饰
 
 @property (nonatomic,assign)BOOL isHadStock;//有无库存
 

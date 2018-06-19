@@ -275,6 +275,7 @@
     [self.contentView addSubview:self.linkBtn];
     
     [self.contentView addSubview:_dateLabel];
+    [self.contentView addSubview:self.guanzhuImage];
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -352,7 +353,7 @@
     if (model.articleImages.count != 0) {
         _picContainerView.hidden = NO;
 
-        _picContainerView.left = _portrait.left;
+        _picContainerView.left = 0;
         _picContainerView.top = lastView.bottom + 10;
         _picContainerView.width = layout.photoContainerSize.width;
         _picContainerView.height = layout.photoContainerSize.height;
@@ -429,32 +430,30 @@
         
     }];
     //分享图标
-    _dz.left = _detailLabel.left;
+    _dz.left = _detailLabel.left+20;
     _dz.top = lastView.bottom + 27;
     [_dz sizeToFit];
     
     //分享文字
+//    _dzNum.backgroundColor = [UIColor redColor];
     _dzNum.left = _dz.right + 8;
     _dzNum.top = lastView.bottom+27;
     _dzNum.text = @"分享";
     _dzNum.width = 40;
-    _dzNum.height=20;
+    _dzNum.height=18;
     [_dz setUserInteractionEnabled:YES];
     [_dzNum setUserInteractionEnabled:YES];
     [_dz addGestureRecognizer:T];
     [_dzNum addGestureRecognizer:T];
     //线1
-    _Line1.left = _dzNum.right + 44;
-    if (WIDHT!=414) {
-        _Line1.left = _dzNum.right + 36;
-    }
+    _Line1.left = WIDHT/3;
     _Line1.top = lastView.bottom+27;
     _Line1.width = 1;
     _Line1.height = 16;
    //点赞图
-    _pl.centerX = _dzNum.right + 96;
+    _pl.left = _Line1.right + 50;
     if (WIDHT!=414) {
-        _pl.centerX = _dzNum.right + 80;
+        _pl.left = _Line1.right + 43;
     }
     _pl.top = lastView.bottom + 27;
     _pl.width = 20;
@@ -472,11 +471,16 @@
         hadUserId = NO;
     }
     if (hadUserId){
-        _pl.image = [UIImage imageNamed:@"dianzan"];
+        _pl.image = [UIImage imageNamed:@"yidianzan"];
+        
     }else {
-        _pl.image = [UIImage imageNamed:@"weidianzan"];
+        _pl.image = [UIImage imageNamed:@"dianzan"];
     }
+    
+    //TODO:设置点击间隔，否则连续点会崩
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        NSLog(@"oooooo");
+//        [_pl setUserInteractionEnabled:NO];
         if (!hadUserId) {//未点赞
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
                 [_delegate DidClickThunmbInDynamicsCell:self];
@@ -507,68 +511,90 @@
     _plNum.text = [NSString stringWithFormat:@"%ld",model.fabulous.count];
     
     //线2
-    _Line2.left = _plNum.right + 32;
-    if (WIDHT!=414) {
-        _Line2.left = _plNum.right + 22;
-    }
+    _Line2.left = WIDHT/3*2;
+
     _Line2.top = lastView.bottom+27;
     _Line2.width = 1;
     _Line2.height = 16;
     
-//    BOOL hadUserId = NO;
-//    if ([Token length] == 0) {
-//        hadUserId = NO;
-//    }
-//    if([model.fabulous containsObject:[YKUserManager sharedManager].user.userId]){
-//        hadUserId = YES;
-//    }else {
-//        hadUserId = NO;
-//    }
-//    if (hadUserId){
-//         _pl.image = [UIImage imageNamed:@"dianzan"];
-//    }else {
-//         _pl.image = [UIImage imageNamed:@"weidianzan"];
-//    }
-    
-    _linkImage.left = _plNum.right+74;
+    _linkImage.left = _Line2.right + 40;
     if (WIDHT!=414) {
-        _linkImage.left = _plNum.right+54;
+        _linkImage.left = _Line2.right + 34;
     }
     _linkImage.top = lastView.bottom+27;
     [_linkImage sizeToFit];
 
     _linkBtn.left = _linkImage.right+8;
-    _linkBtn.top = _linkImage.top-1;
+    _linkBtn.top = _linkImage.top;
     _linkBtn.width = 70;
-    _linkBtn.height = 20;
+    _linkBtn.height = 18;
 //    _linkBtn.backgroundColor=[UIColor redColor];
  
     lastView = _plNum;
+
+    //关注图片
+   if (WIDHT!=414) {
+        _guanzhuImage.left = _linkImage.left+10;
+    }else {
+         _guanzhuImage.left = _linkImage.left+16;
+    }
+    _guanzhuImage.top = 30;
+    [_guanzhuImage sizeToFit];
+    _guanzhuImage.width = 55;
+    _guanzhuImage.height = 26;
+
     
-    //链接图
-//    _linkImage.left = _plNum.right + 233;
-//    if (WIDHT==375) {
-//        _linkImage.left = _plNum.right + 196;
+    __block BOOL hadConcern = NO;
+    if ([Token length] == 0) {
+        hadConcern = NO;
+    }
+  
+    [[YKCommunicationManager sharedManager].concernArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *s = [NSString stringWithFormat:@"%@",obj];
+        NSString *s1 = [NSString stringWithFormat:@"%@",model.userId];
+        if ([s isEqual:s1]) {
+            hadConcern = YES;
+            NSLog(@"%@-索引%d",obj, (int)idx);
+        }
+    }];
+    NSLog(@"关注列表===%@,当前ID=%@",[YKCommunicationManager sharedManager].concernArray,model.userId);
+//    if([[YKCommunicationManager sharedManager].concernArray containsObject:model.userId]){
+//        hadConcern = YES;
+//    }else {
+//        hadConcern = NO;
 //    }
-//    _linkImage.top = _pl.top;
-//    [_linkImage sizeToFit];
+
+    if (hadConcern) {//已关注
+        _guanzhuImage.image = [UIImage imageNamed:@"yiguanzhu"];
+    }else {//未关注
+        _guanzhuImage.image = [UIImage imageNamed:@"guanzhu"];
+    }
+    
+    UITapGestureRecognizer *TT = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (!hadConcern) {//未关注
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidConcernInDynamicsCell:)]) {
+                [_delegate DidConcernInDynamicsCell:self];
+            }
+        }else{//已关注
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidCancelConcernInDynamicsCell:)]) {
+                [_delegate DidCancelConcernInDynamicsCell:self];
+            }
+        }
+    }];
+    [_guanzhuImage setUserInteractionEnabled:YES];
+    [_guanzhuImage addGestureRecognizer:TT];
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToPro)];
     [_linkImage setUserInteractionEnabled:YES];
     [_linkImage addGestureRecognizer:tap1];
     //全部评论界面
     if (_isShowOnComments) {
-        _linkImage.hidden = YES ;
+        _guanzhuImage.hidden = YES;
+        _linkImage.hidden = YES;
         _linkBtn.hidden = YES;
         _Line2.hidden = YES;
-        _pl.centerX = _dzNum.right + 260;
-        if (WIDHT!=414) {
-            _pl.centerX = _dzNum.right + 230;
-        }
-        _Line1.left = _dzNum.right + 120;
-        if (WIDHT!=414) {
-            _Line1.left = _dzNum.right + 100;
-        }
+        _Line1.left = WIDHT/2;
+        _pl.left = _Line1.right + 110;
         _plNum.left = _pl.right+8;
         _bigL.centerX = _pl.centerX;
         _bigL.centerY = _pl.centerY;
@@ -577,49 +603,35 @@
       
         //衣库官方社区置顶，不显示链接按钮
         if ([model.clothingId intValue] == 0) {
+//            _guanzhuImage.hidden = YES;
             _linkImage.hidden = YES;
             _linkBtn.hidden = YES;
             _Line2.hidden = YES;
-            _pl.centerX = _dzNum.right + 250;
-            if (WIDHT!=414) {
-                _pl.centerX = _dzNum.right + 220;
-            }
-            _Line1.left = _dzNum.right + 115;
-            if (WIDHT!=414) {
-                _Line1.left = _dzNum.right + 90;
-            }
+            _Line1.left = WIDHT/2;
+            _pl.left = _Line1.right + 110;
             _plNum.left = _pl.right+8;
             _bigL.centerX = _pl.centerX;
             _bigL.centerY = _pl.centerY;
             
         }else {
-            _pl.centerX = _dzNum.right + 96;
+            _pl.left = _Line1.right + 48;
+            _plNum.left = _pl.right + 8;
             if (WIDHT!=414) {
-                _pl.centerX = _dzNum.right + 80;
+                _pl.left = _Line1.right + 43;
+                _plNum.left = _pl.right + 8;
             }
             _linkImage.hidden = NO;
             _linkBtn.hidden = NO;
             _Line2.hidden = NO;
             _bigL.centerX = _pl.centerX;
             _bigL.centerY = _pl.centerY;
-            _Line1.left = _dzNum.right + 44;
-            if (WIDHT!=414) {
-                _Line1.left = _dzNum.right + 36;
-            }
+            _Line1.left = WIDHT/3;
+            _Line2.left = WIDHT/3*2;
+
         }
     }
-
-//    _linkImage.width = 15;
-//    _linkImage.height = 15;
-
-//    //链接按钮
-//    _linkBtn.left = _linkImage.right+8;
-//    _linkBtn.top = _pl.top;
-//    _linkBtn.width = 60;
-//    _linkBtn.height = 20;
     
     //    //时间
-   
     _dateLabel.left = _detailLabel.left;
     _dateLabel.top = lastView.bottom+18;
     NSString * newTime = [self formateDate:model.articleTime withFormate:@"yyyyMMddHHmmss"];
@@ -791,6 +803,12 @@
     }
     return _nameLabel;
 }
+- (UIImageView *)guanzhuImage{
+    if (!_guanzhuImage) {
+        _guanzhuImage = [[UIImageView alloc]init];
+    }
+    return _guanzhuImage;
+}
 -(YYLabel *)detailLabel
 {
     if (!_detailLabel) {
@@ -916,7 +934,7 @@
 -(UIImageView *)linkImage {
     if (!_linkImage) {
         _linkImage = [UIImageView new];
-        _linkImage.image = [UIImage imageNamed:@"shangpin-1"];
+        _linkImage.image = [UIImage imageNamed:@"chakanshangpin"];
         //        _plNum.textColor = [UIColor lightGrayColor];
         //        _plNum.font = [UIFont systemFontOfSize:13];
     }
@@ -927,7 +945,7 @@
 {
     if (!_linkBtn) {
         _linkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                [_linkBtn setTitle:@"查看商品" forState:UIControlStateNormal];
+                [_linkBtn setTitle:@"查看" forState:UIControlStateNormal];
 //        _linkBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         _linkBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         _linkBtn.titleLabel.font = PingFangSC_Semibold(14);

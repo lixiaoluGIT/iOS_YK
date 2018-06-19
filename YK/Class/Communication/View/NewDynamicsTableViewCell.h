@@ -68,11 +68,10 @@
 @property(nonatomic,strong)NewDynamicsThumbCommentView * thumbCommentView;
 @property(nonatomic,strong)UIView * dividingLine;
 @property(nonatomic,strong)UIView * dLine;
-
 @property(nonatomic,strong)UIView * Line1;
 @property(nonatomic,strong)UIView * Line2;
-
-@property (nonatomic,strong)UILabel *bigL;
+@property(nonatomic,strong)UILabel *bigL;
+@property(nonatomic,strong)UIImageView *guanzhuImage;
 
 @property(nonatomic,strong)JRMenuView * jrMenuView;
 
@@ -118,6 +117,18 @@
 - (void)DidClickCancelThunmbInDynamicsCell:(NewDynamicsTableViewCell *)cell;
 
 /**
+ 关注
+ 
+ */
+- (void)DidConcernInDynamicsCell:(NewDynamicsTableViewCell *)cell;
+
+/**
+ 取消关注
+ 
+ */
+- (void)DidCancelConcernInDynamicsCell:(NewDynamicsTableViewCell *)cell;
+
+/**
  评论
 
  */
@@ -152,6 +163,7 @@
  @param phoneNum 电话号
  */
 - (void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUrl:(NSString *)url PhoneNum:(NSString *)phoneNum;
+
 @end
 
 

@@ -192,7 +192,7 @@
 //标题
 - (NSMutableArray *)titleArr{
     if (!_titleArr) {
-        _titleArr = [[NSMutableArray alloc] initWithObjects:@"首页", @"社区", nil];
+        _titleArr = [[NSMutableArray alloc] initWithObjects:@"推荐", @"晒图", nil];
         //        [_titleArr addObject:@"待收货"];
         //        [_titleArr addObject:@"待发货"];
         //        [_titleArr addObject:@"已收货"];

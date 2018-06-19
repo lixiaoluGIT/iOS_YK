@@ -45,25 +45,17 @@
 }
 - (void)setImagesArr:(NSArray *)imagesArr {
     _imagesArr = imagesArr;
-    
-    ///< 测试数据
-//    self.imagesArr = [NSMutableArray arrayWithObjects:@"00.jpg",@"01.jpg",@"02.jpg",@"03.jpg",@"04.jpg", nil];
-    //self.images = [NSMutableArray arrayWithObjects:@"00.jpg",@"01.jpg",@"02.jpg",@"03.jpg",@"04.jpg",@"IMG_0298.jpg",@"IMG_0299.jpg", nil];///< 可改变数据源，动态添加
+    NSString *imageName = _isSmall==YES ? @"zhanwei" :@"首页品牌图";
     self.SV.contentSize = CGSizeMake(SCREEN_WIDTH*(self.imagesArr.count+2), SYRealValue(SVHeight));
     self.SV.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
-    ///< 循环创建imgV
     for (int i = 0; i<self.imagesArr.count+2; i++) {
         UIImageView *imgV = [[UIImageView alloc]init];
-        if (i == 0) {///< SV最左边的图其实是最后一张，通过设置contentoffset为SCREEN_WIDTH隐藏在最左边
-//            imgV.image = [UIImage imageNamed:self.imagesArr[self.imagesArr.count-1]];
-            
-            [imgV sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.imagesArr[self.imagesArr.count-1]]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
-        } else if (i == self.imagesArr.count + 1) {///< SV最右边的图其实是第一张
-//            imgV.image = [UIImage imageNamed:self.imagesArr[0]];
-            [imgV sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.imagesArr[0]]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+        if (i == 0) {
+            [imgV sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.imagesArr[self.imagesArr.count-1]]] placeholderImage:[UIImage imageNamed:imageName]];
+        } else if (i == self.imagesArr.count + 1) {
+            [imgV sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.imagesArr[0]]] placeholderImage:[UIImage imageNamed:imageName]];
         } else {
-//            imgV.image = [UIImage imageNamed:self.imagesArr[i-1]];
-            [imgV sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.imagesArr[i-1]]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
+            [imgV sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.imagesArr[i-1]]] placeholderImage:[UIImage imageNamed:imageName]];
             imgV.userInteractionEnabled = YES;
             imgV.tag = i;
 
@@ -74,11 +66,11 @@
         [self.SV addSubview:imgV];
         [imgV setContentMode:UIViewContentModeScaleAspectFill];
         imgV.layer.masksToBounds = YES;
+        if (imagesArr.count==1) {
+            [self.SV setScrollEnabled:NO];
+        }
     }
-    
-    ///< 初始化pageControl
     self.pageC = [[UIPageControl alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-SYRealValue(perWidth*self.imagesArr.count))/2, SYRealValue(SVHeight)+64-SYRealValue(pageCBottom), SYRealValue(perWidth*self.imagesArr.count), SYRealValue(pageCH))];
-    //  self.pageC.backgroundColor = [UIColor redColor];
     self.pageC.numberOfPages = self.imagesArr.count;
     self.pageC.currentPage = 0;
     self.pageC.pageIndicatorTintColor = [UIColor whiteColor];
@@ -93,10 +85,9 @@
     if (imagesArr.count>1) {
         [self setupTimer];
         [self setupListen];
+    }else {
+        [self removeTimer];
     }
-    
-
-    
     // 如果图片数量小于二 将pageControl隐藏
     if (imagesArr.count < 2) {
         self.pageC.hidden = YES;
@@ -105,8 +96,6 @@
 
 /** 图片点击事件 */
 - (void)imgVClickAction:(UIGestureRecognizer *)tap {
-    NSLog(@"点击了第:%ld张图片", tap.view.tag);
-    
     if ([self.delegate respondsToSelector:@selector(YKBaseScrollViewImageClick:)]) {
         [self.delegate YKBaseScrollViewImageClick:tap.view.tag];
     }

@@ -10,6 +10,8 @@
 
 @interface YKHomeManager : NSObject
 
+@property (nonatomic,strong)NSMutableArray *brandList;
+
 + (YKHomeManager *)sharedManager;
 
 //获取首页数据
@@ -25,14 +27,14 @@
 - (void)getBrandPageByCategoryWithBrandId:(NSString *)brandId categoryId:(NSString *)categoryId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //获取商品详情
-- (void)getProductDetailInforWithProductId:(NSInteger )ProductId
+- (void)getProductDetailInforWithProductId:(NSInteger )ProductId type:(NSInteger)type
                             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //获取品牌列表
 - (void)getBrandListStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //请求更多商品
-- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse;
+- (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId sytleId:(NSString *)sytleId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse;
 
 //判断弹框是否弹出
 - (void)showAleartViewToShare;

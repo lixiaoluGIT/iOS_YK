@@ -11,5 +11,6 @@
 @interface TopPublicVC : YKBaseVC
 
 @property (nonatomic,strong)NSString *clothingId;
+@property (nonatomic,strong)NSString *activityId;
 
 @end

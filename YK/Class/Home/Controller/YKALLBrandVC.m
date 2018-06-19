@@ -95,28 +95,16 @@
     
     
     
-    [self getBrandList];
+//    [self getBrandList];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [self getBrandList];
+}
 - (void)getBrandList{
     
-    if ([UD objectForKey:@"AAA"]) {
+    if ([UD boolForKey:@"hadLoad"]) {
         
-        self.sections = [NSArray arrayWithArray:[UD objectForKey:@"AAA"]];
-        _searchBtnArr = [NSArray arrayWithArray:[UD objectForKey:@"BBB"]];
-    
-        [self.tableView reloadData];
-        
-        [[YKHomeManager sharedManager]getBrandListStatus:1 OnResponse:^(NSDictionary *dic) {
-            self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                // 处理耗时操作在此次添加
-                [self group:self.blackLists];
-                
-            });
-       
-        }];
-       
         return;
     }
     [[YKHomeManager sharedManager]getBrandListStatus:0 OnResponse:^(NSDictionary *dic) {
@@ -155,6 +143,7 @@
 
 
 - (void)group:(NSArray *)array{
+    NSLog(@"进来了》〉》〉》〉》〉》〉》〉》〉");
     
     NSMutableArray *indexArray = [NSMutableArray array];
     for (NSDictionary *blacker in self.blackLists) {
@@ -200,6 +189,9 @@
 //    [UD setObject:self.sections forKey:@"AAA"];
 //    [UD setObject:_searchBtnArr forKey:@"BBB"];
     
+    [UD setBool:YES forKey:@"hadLoad"];
+    
+    NSLog(@"出去了》〉》〉》〉》〉》〉》〉》〉");
     
 }
 

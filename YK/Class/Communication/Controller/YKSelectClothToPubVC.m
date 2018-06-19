@@ -217,8 +217,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-   [self getData];
+    
+    [self getData];
     self.title = @"选择衣服";
 
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -369,6 +369,7 @@
     YKSuitEnsureCell *mycell = (YKSuitEnsureCell *)[tableView cellForRowAtIndexPath:indexPath];
     TopPublicVC *hmpositionVC = [[TopPublicVC alloc] init];
     hmpositionVC.clothingId = mycell.suit.clothingId;
+    hmpositionVC.activityId = _activityId;
     hmpositionVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:hmpositionVC animated:YES];
 

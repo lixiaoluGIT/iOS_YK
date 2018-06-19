@@ -20,6 +20,7 @@
 @property (nonatomic,strong)NSString *clothingStockId;//商品库存Id
 @property (nonatomic,strong)NSString *clothingStockType;//商品型号(X,XL..)
 @property (nonatomic,strong)NSString *clothingImgUrl;//商品图标
+@property (nonatomic,assign)NSInteger classify;
 
 
 - (void)initWithDictionary:(NSDictionary *)dic;

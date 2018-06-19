@@ -9,5 +9,7 @@
 #import "YKBaseVC.h"
 
 @interface YKSelectClothToPubVC : YKBaseVC
+@property (nonatomic,strong)NSString *activityId;
+@property (nonatomic,strong)NSString *activityName;
 
 @end

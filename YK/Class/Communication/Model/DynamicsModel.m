@@ -44,7 +44,23 @@ extern CGFloat maxContentLabelHeight;
     }else{
         _isThumb = NO;
     }
-    
+//    
+//    _concernArray = [NSMutableArray arrayWithArray:[YKCommunicationManager sharedManager].concernArray];
+//    if (_concernArray!= 0 && _concernArray != nil) {
+//        __block BOOL hasConcern = NO;
+//        [_concernArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            //这里加入if判断如果存在于点赞列表则显示取消点赞
+//            if([_concernArray containsObject:[YKUserManager sharedManager].user.userId]){
+//                _isConcern = YES;
+//                hasConcern = YES;
+//            }
+//        }];
+//        if (!hasConcern) {
+//            _isConcern  = NO;
+//        }
+//    }else{
+//        _isConcern = NO;
+//    }
 }
 - (void)setLikeArr:(NSMutableArray<DynamicsLikeItemModel *> *)likeArr
 {

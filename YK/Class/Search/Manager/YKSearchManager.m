@@ -64,4 +64,28 @@
         
     }];
 }
+
+- (void)getPSListWithPage:(NSInteger)page Size:(NSInteger)size OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&size=%ld",PSList_Url,page,size];
+    
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if (onResponse) {
+            onResponse(dic);
+        }
+    }];
+}
+
+- (void)getPSDetailWithPSId:(NSString *)PSId UserId:(NSString *)userId OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    NSString *url = [NSString stringWithFormat:@"%@?ornamentId=%@&userId=%@",PSDetail_Url,PSId,userId];
+    
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if (onResponse) {
+            onResponse(dic);
+        }
+    }];
+}
 @end

@@ -12,11 +12,9 @@
 @interface YKProductDetailVC : YKBaseVC
 
 @property (nonatomic,strong)YKProduct *product;
-
 @property (nonatomic,strong)NSString *productId;
-
 @property (nonatomic,strong)NSString *titleStr;
-
 @property (nonatomic,assign)BOOL isFromShare;
+@property (nonatomic,assign)BOOL isSP;
 
 @end

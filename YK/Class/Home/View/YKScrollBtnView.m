@@ -8,17 +8,34 @@
 
 #import "YKScrollBtnView.h"
 
+@interface YKScrollBtnView()
+@property (nonatomic,assign)BOOL isSelected;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hhh;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *www;
+
+@end
 @implementation YKScrollBtnView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail)];
     [self addGestureRecognizer:tap];
+    
+    _hhh.constant = 84*WIDHT/414-10;
+    _www.constant = 90*WIDHT/414-10;
+//    [_image setContentMode:UIViewContentModeScaleAspectFit];
     // Initialization code
 }
 - (void)toDetail{
+    _isSelected  = !_isSelected;
+    if (_isSelected) {
+        _title.textColor = YKRedColor;
+    }else {
+        _title.textColor = mainColor;
+        self.styleId = @"0";
+    }
     if (self.clickDetailBlock) {
-        self.clickDetailBlock(self.brandId,nil);
+        self.clickDetailBlock(self.styleId,nil);
     }
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

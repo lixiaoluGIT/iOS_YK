@@ -281,6 +281,7 @@
           clothingId:(NSString *)clothingId
                 text:(NSString *)text
                  pic:(NSArray *)pics
+          activityId:(NSString *)activityId
              success:(void(^)(NSDictionary *dict))success
              failure:(void(^)(NSError *error))failure{
     
@@ -297,9 +298,14 @@
          NSData *textData = [text dataUsingEncoding:NSUTF8StringEncoding];
          NSString *cId = [NSString stringWithFormat:@"%@",clothingId];
          NSData *clothingIdData = [cId dataUsingEncoding:NSUTF8StringEncoding];
+         NSString *actId = [NSString stringWithFormat:@"%@",activityId];
+         NSData *activityData = [actId dataUsingEncoding:NSUTF8StringEncoding];
          //text为后台参数名
          [formData appendPartWithFormData:clothingIdData name:@"clothingId"];
          [formData appendPartWithFormData:textData name:@"textContent"];
+         [formData appendPartWithFormData:activityData name:@"activityId"];
+         //activityId
+         
          //图片保存到表单
          for(NSInteger i = 0; i <pics.count; i++)
          {

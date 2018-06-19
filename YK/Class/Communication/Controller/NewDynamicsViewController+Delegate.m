@@ -25,6 +25,7 @@
         
         if (scrollView.contentOffset.y< lastContentOffset )
         {
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"NavigationBarHadAppear" object:self userInfo:nil];
             //向上
 //            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
 //            NSLog(@"向上");
@@ -41,8 +42,7 @@
             [publicBtn.superview layoutIfNeeded];//强制绘制
         } else if (scrollView. contentOffset.y >lastContentOffset )
         {
-            //向下
-//            NSLog(@"向下");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"NavigationBarHadDisappear" object:self userInfo:nil];
             [UIView animateWithDuration:0.3 animations:^{
 //                [publicBtn layoutIfNeeded];//这里是关键
                 
@@ -174,12 +174,36 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     
+    
+    if ([Token length]==0) {
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:2];
+        return;
+    }
+    cell.pl.image = [UIImage imageNamed:@"yidianzan"];
+    [cell.pl setUserInteractionEnabled:NO];
     //点赞
     [[YKCommunicationManager sharedManager]setLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
+        [cell.pl setUserInteractionEnabled:YES];
         //把当前userid加入点赞数组
         [model.fabulous addObject:[YKUserManager sharedManager].user.userId];
         //刷新当前cell
-        [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [UIView animateKeyframesWithDuration:0.5 delay:0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
+            /*
+             参数1:关键帧开始时间
+             参数2:关键帧占用时间比例
+             参数3:到达该关键帧时的属性值
+             */
+            [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1/2.0 animations:^{
+                cell.pl.transform = CGAffineTransformMakeScale(2.1, 2.1);
+            }];
+            
+            [UIView addKeyframeWithRelativeStartTime:1/2.0 relativeDuration:1/2.0 animations:^{
+                cell.pl.transform = CGAffineTransformIdentity;
+            }];
+        } completion:^(BOOL finished) {
+            [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        }];
+        
     }];
 //
 //    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"12345678910",@"userid",@"Andy",@"nick", nil];
@@ -196,8 +220,9 @@
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
-    
+    cell.pl.userInteractionEnabled = NO;
     [[YKCommunicationManager sharedManager]cancleLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
+        cell.pl.userInteractionEnabled = YES;
         //把当前userid加入点赞数组
         [model.fabulous removeObject:[YKUserManager sharedManager].user.userId];
         //刷新当前cell
@@ -237,14 +262,30 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     
-    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-    detail.hidesBottomBarWhenPushed = YES;
-    detail.productId = model.clothingId;
-    detail.titleStr = @"商品详情";
-//    detail.productId = @"438";
-    [self.navigationController pushViewController:detail animated:YES];
+    if ([model.classify isEqual:@"1"]) {
+        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+        detail.hidesBottomBarWhenPushed = YES;
+        detail.productId = model.clothingId;
+        detail.titleStr = @"商品详情";
+        //    detail.productId = @"438";
+        [self.navigationController pushViewController:detail animated:YES];
+    } else  if ([model.classify isEqual:@"2"]) {
+        YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+        detail.hidesBottomBarWhenPushed = YES;
+        detail.productId = model.clothingId;
+        detail.titleStr = @"商品详情";
+        //    detail.productId = @"438";
+        [self.navigationController pushViewController:detail animated:YES];
+    } else {
+        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+        detail.hidesBottomBarWhenPushed = YES;
+        detail.productId = model.clothingId;
+        detail.titleStr = @"商品详情";
+        //    detail.productId = @"438";
+        [self.navigationController pushViewController:detail animated:YES];
+    }
     
-    
+
     
 //    WS(weakSelf);
 //    [UIAlertView bk_showAlertViewWithTitle:nil message:@"是否确定删除朋友圈" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -293,5 +334,55 @@
 //            [self.commentInputTF resignFirstResponder];
 //        }
     return YES;
+}
+
+//关注
+- (void)DidConcernInDynamicsCell:(NewDynamicsTableViewCell *)cell{
+    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
+    NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
+    DynamicsModel * model = layout.model;
+    [[YKCommunicationManager sharedManager]setConcernWithUserId:model.userId OnResponse:^(NSDictionary *dic) {
+       __block BOOL isContain = NO;
+        [[YKCommunicationManager sharedManager].concernArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSString *s = [NSString stringWithFormat:@"%@",obj];
+            NSString *s1 = [NSString stringWithFormat:@"%@",model.userId];
+            if ([s isEqual:s1]) {
+                isContain = YES;
+                NSLog(@"%@-索引%d",obj, (int)idx);
+            }
+        }];
+        if (!isContain) {
+            [[YKCommunicationManager sharedManager].concernArray addObject:model.userId];
+        }
+        [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+//取消关注
+- (void)DidCancelConcernInDynamicsCell:(NewDynamicsTableViewCell *)cell{
+    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
+    NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
+    DynamicsModel * model = layout.model;
+    [[YKCommunicationManager sharedManager]cancleConcernWithUserId:model.userId OnResponse:^(NSDictionary *dic) {
+//        if ([[YKCommunicationManager sharedManager].concernArray containsObject:model.userId]) {
+//            for (NSString *i in [YKCommunicationManager sharedManager].concernArray) {
+//                if ([i isEqual:model.userId]) {
+//                    [[YKCommunicationManager sharedManager].concernArray removeObject:i];
+//                }
+//            }
+//        }
+    __block  NSMutableArray *cArray = [NSMutableArray array];
+        [[YKCommunicationManager sharedManager].concernArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSString *s = [NSString stringWithFormat:@"%@",obj];
+            NSString *s1 = [NSString stringWithFormat:@"%@",model.userId];
+            [cArray addObject:s];
+            if ([s isEqual:s1]) {
+                [cArray removeObject:s1];
+                NSLog(@"%@-索引%d",obj, (int)idx);
+            }
+            [YKCommunicationManager sharedManager].concernArray = [NSMutableArray arrayWithArray:cArray];
+        }];
+        
+        [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }];
 }
 @end

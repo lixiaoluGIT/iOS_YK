@@ -20,6 +20,7 @@
 #import "DCCycleScrollView.h"
 #import "YKProductAdCell.h"
 #import "YKLinkWebVC.h"
+#import "YKStyleView.h"
 
 @interface YKSearchVC ()<UICollectionViewDelegate, UICollectionViewDataSource,DCCycleScrollViewDelegate>
 {
@@ -30,6 +31,7 @@
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)NSString* categoryId;
 @property (nonatomic,strong)NSString* sortId;
+@property (nonatomic,strong)NSString*styleId;
 @property (nonatomic, assign) NSInteger pageNum;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong)YKScrollView *scroll;
@@ -45,6 +47,8 @@
 //三级
 @property (nonatomic, strong) NSMutableArray *sortTitles;
 @property (nonatomic, strong) NSMutableArray *sortIds;
+
+@property (nonatomic,strong)NSMutableArray *styleArray;
 
 @property (nonatomic,strong)NSMutableArray *imagesArr;
 @property (nonatomic,strong)NSDictionary *brand;
@@ -70,6 +74,7 @@
      [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     self.categoryId = @"";
     self.sortId = @"";
+    self.styleId = @"0";
     self.cellDic = [[NSMutableDictionary alloc] init];
 
        self.view.backgroundColor =[ UIColor whiteColor];
@@ -82,7 +87,7 @@
     layoutView.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
     //layoutView.footerReferenceSize = CGSizeMake(self.view.bounds.size.width, 150);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-120) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -105,7 +110,7 @@
         _pageNum ++;
         //请求更多商品
         
-        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.categoryId sortId:self.sortId brandId:@"" OnResponse:^(NSArray *array) {
+        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.categoryId sortId:self.sortId sytleId:self.styleId brandId:@"" OnResponse:^(NSArray *array) {
             
             NSLog(@"--%@,---%@,---%@",self.categoryId,self.sortId,array);
             if (array.count==0) {
@@ -135,6 +140,8 @@
         
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
+        //配饰数组
+        self.styleArray = [NSMutableArray arrayWithArray:dic[@"data"][@"clothingStyles"]];
         //品牌
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
         
@@ -217,12 +224,9 @@
 
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-//
-//    if (section==0) {
-        return CGSizeMake(self.view.frame.size.width, WIDHT*0.5+80+150);
-//    }else {
-//        return CGSizeMake(self.view.frame.size.width, 125);
-//    }
+
+    return CGSizeMake(self.view.frame.size.width, (WIDHT-48)/3*2+50+170);
+//    return CGSizeMake(self.view.frame.size.width, (WIDHT-48)/3*(self.styleArray.count/3)+50+170);
 }
 
 //-(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
@@ -242,42 +246,57 @@
         
         UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         
-        //品牌
-        YKSearchHeader *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][1];
-        ti.frame = CGRectMake(0, 0, WIDHT, 80);
-        ti.clickALLBlock = ^(){
-                        YKALLBrandVC *brand = [YKALLBrandVC new];
-                        brand.hidesBottomBarWhenPushed = YES;
-                        [weakSelf.navigationController pushViewController:brand animated:YES];
-                    };
-        [head addSubview:ti];
-        
-        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 80,WIDHT, WIDHT*0.5) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
-    
-        _banner1.autoScrollTimeInterval =3;
-        _banner1.autoScroll = YES;
-        _banner1.isZoom = YES;
-        _banner1.itemSpace = -32;
-        _banner1.imgCornerRadius = 0;
-        _banner1.itemWidth = self.view.frame.size.width -48;
-        if (self.brandArray.count==1) {
-            _banner1.itemWidth = self.view.frame.size.width - 48;
-        }
-        _banner1.delegate = self;
-        _banner1.isSearch = 3;;
-        _banner1.toDetailBlock = ^(NSInteger index) {
-            NSDictionary *dic = [NSDictionary dictionaryWithDictionary:weakSelf.brandArray[index]];
-            YKBrandDetailVC *brand = [YKBrandDetailVC new];
-            brand.hidesBottomBarWhenPushed = YES;
-            brand.brandId = dic[@"brandId"];
-            brand.titleStr = dic[@"brandName"];
-            [weakSelf.navigationController pushViewController:brand animated:YES];
-        };
-        //        _banner1.backgroundColor = [UIColor redColor];
-        if (hadScroll&&self.brandArray.count>0) {
-            [head addSubview:_banner1];
+        //风格
+        YKStyleView *styleView = [[YKStyleView alloc]init];
+        styleView.styleArray = self.styleArray;
+        styleView.frame = CGRectMake(0, 0, WIDHT, (WIDHT-48)/3*2+50);
+        if (hadScroll) {
+            [head addSubview:styleView];
             hadScroll = NO;
         }
+        styleView.toDetailBlock = ^(NSString *styleId,NSString *styleName){//筛选风格
+            weakSelf.styleId = styleId;
+            NSLog(@"传过来的Id==%@",styleId);
+            weakSelf.pageNum = 1;
+            [weakSelf filterProductWithCategoryId:_categoryId sortId:_sortId styleId:styleId];
+        };
+        
+        //品牌
+//        YKSearchHeader *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][1];
+//        ti.frame = CGRectMake(0, 0, WIDHT, 80);
+//        ti.clickALLBlock = ^(){
+//                        YKALLBrandVC *brand = [YKALLBrandVC new];
+//                        brand.hidesBottomBarWhenPushed = YES;
+//                        [weakSelf.navigationController pushViewController:brand animated:YES];
+//                    };
+//        [head addSubview:ti];
+//
+//        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 80,WIDHT, WIDHT*0.5) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+//
+//        _banner1.autoScrollTimeInterval =3;
+//        _banner1.autoScroll = YES;
+//        _banner1.isZoom = YES;
+//        _banner1.itemSpace = -32;
+//        _banner1.imgCornerRadius = 0;
+//        _banner1.itemWidth = self.view.frame.size.width -48;
+//        if (self.brandArray.count==1) {
+//            _banner1.itemWidth = self.view.frame.size.width - 48;
+//        }
+//        _banner1.delegate = self;
+//        _banner1.isSearch = 3;;
+//        _banner1.toDetailBlock = ^(NSInteger index) {
+//            NSDictionary *dic = [NSDictionary dictionaryWithDictionary:weakSelf.brandArray[index]];
+//            YKBrandDetailVC *brand = [YKBrandDetailVC new];
+//            brand.hidesBottomBarWhenPushed = YES;
+//            brand.brandId = dic[@"brandId"];
+//            brand.titleStr = dic[@"brandName"];
+//            [weakSelf.navigationController pushViewController:brand animated:YES];
+//        };
+//        //        _banner1.backgroundColor = [UIColor redColor];
+//        if (hadScroll&&self.brandArray.count>0) {
+//            [head addSubview:_banner1];
+//            hadScroll = NO;
+//        }
 //        if (hadScroll) {
             //            [head addSubview:_scroll];
             //            hadScroll = NO;
@@ -311,14 +330,14 @@
         
         if (self.titles.count!=0) {
             self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
-            self.titleView.frame = CGRectMake(0, 80+WIDHT*0.5,head.frame.size.width, 150);
+            self.titleView.frame = CGRectMake(0,styleView.frame.size.height + styleView.frame.origin.y,head.frame.size.width, 170);
             [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
             //筛选
             self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){
                 _pageNum = 1;
                 _sortId = sortId;
                 _categoryId = categoryId;
-                [weakSelf filterProductWithCategoryId:categoryId sortId:sortId];
+                [weakSelf filterProductWithCategoryId:categoryId sortId:sortId styleId:weakSelf.styleId];
             };
             if (!hadButtons) {
                 [head addSubview:self.titleView];
@@ -381,10 +400,10 @@
     NSLog(@"%ld", index);
 }
 
-- (void)filterProductWithCategoryId:(NSString *)CategoryId sortId:(NSString *)sortId{
+- (void)filterProductWithCategoryId:(NSString *)CategoryId sortId:(NSString *)sortId styleId:(NSString *)styleId{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:CategoryId sortId:sortId brandId:@"" OnResponse:^(NSArray *array) {
+    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:CategoryId sortId:sortId sytleId:styleId  brandId:@"" OnResponse:^(NSArray *array) {
         
         [self.productList removeAllObjects];
 
