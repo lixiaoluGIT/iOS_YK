@@ -479,7 +479,7 @@
     
     //TODO:设置点击间隔，否则连续点会崩
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        NSLog(@"oooooo");
+//        NSLog(@"oooooo");
 //        [_pl setUserInteractionEnabled:NO];
         if (!hadUserId) {//未点赞
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
@@ -554,10 +554,10 @@
         NSString *s1 = [NSString stringWithFormat:@"%@",model.userId];
         if ([s isEqual:s1]) {
             hadConcern = YES;
-            NSLog(@"%@-索引%d",obj, (int)idx);
+//            NSLog(@"%@-索引%d",obj, (int)idx);
         }
     }];
-    NSLog(@"关注列表===%@,当前ID=%@",[YKCommunicationManager sharedManager].concernArray,model.userId);
+//    NSLog(@"关注列表===%@,当前ID=%@",[YKCommunicationManager sharedManager].concernArray,model.userId);
 //    if([[YKCommunicationManager sharedManager].concernArray containsObject:model.userId]){
 //        hadConcern = YES;
 //    }else {

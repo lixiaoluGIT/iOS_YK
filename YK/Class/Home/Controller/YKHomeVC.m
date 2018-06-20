@@ -594,29 +594,24 @@
   
 //    if (scrollView == self.collectionView)
 //    {
-//        
+//
 //        if (scrollView.contentOffset.y< lastContentOffset )
 //        {
 //            //向上
 //            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
 //                        NSLog(@"向上");
-//            [UIView animateWithDuration:0.3 animations:^{
-//                
-//                
-//            }];
-//         
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
+//
 //        } else if (scrollView. contentOffset.y >lastContentOffset )
 //        {
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];
 //            //向下
-//            //            NSLog(@"向下");
-//            [UIView animateWithDuration:0.3 animations:^{
-//                //                [publicBtn layoutIfNeeded];//这里是关键
-//           
-//            }];
-//           
-//                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+//                        NSLog(@"向下");
+//
+//
+////                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
 //        }
-//        
+//
 //    }
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
