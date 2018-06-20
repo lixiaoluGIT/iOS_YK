@@ -321,13 +321,14 @@
     
     //描述
     _detailLabel.left = _portrait.left;
-    _detailLabel.top = _portrait.bottom + 10;
+    _detailLabel.top = _portrait.bottom + 14;
 //    _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding*2 - 10 - 40;
     _detailLabel.width = SCREENWIDTH - 48;
     _detailLabel.height = layout.detailLayout.textBoundingSize.height;
     _detailLabel.textLayout = layout.detailLayout;
     _detailLabel.textColor = mainColor;
 //    _detailLabel.font = PingFangSC_Medium(14);
+//    _detailLabel.backgroundColor = [UIColor redColor];
     lastView = _detailLabel;
     
     //展开/收起按钮
@@ -354,7 +355,7 @@
         _picContainerView.hidden = NO;
 
         _picContainerView.left = 0;
-        _picContainerView.top = lastView.bottom + 10;
+        _picContainerView.top = lastView.bottom + 14;
         _picContainerView.width = layout.photoContainerSize.width;
         _picContainerView.height = layout.photoContainerSize.height;
         [_picContainerView removeAllSubviews];
@@ -822,8 +823,8 @@
 //                containerView.backgroundColor = [UIColor clearColor];
 //            }];
         };
-        _detailLabel.textColor = [UIColor redColor];
-        _detailLabel.font = [UIFont systemFontOfSize:14];
+        _detailLabel.textColor = mainColor;
+        _detailLabel.font = PingFangSC_Medium(14);
     }
     return _detailLabel;
 }

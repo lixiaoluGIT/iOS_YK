@@ -146,7 +146,7 @@
     if (!_controllerArr) {
 //#import "YKSearchVC.h"
 //#import "YKALLBrandVC.h"
-        NSArray *controllerTittle = @[@"YKSearchVC",@"YKALLBrandVC"];
+        NSArray *controllerTittle = @[@"YKSearchVC",@"YKSPVC",@"YKALLBrandVC"];
         _controllerArr = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < controllerTittle.count; i ++) {
             NSString *controllerName = controllerTittle[i];
@@ -160,7 +160,7 @@
 //标题
 - (NSMutableArray *)titleArr{
     if (!_titleArr) {
-        _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"品牌",nil];
+        _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"配饰",@"品牌",nil];
     }
     return _titleArr;
 }

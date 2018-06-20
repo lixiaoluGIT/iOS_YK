@@ -111,7 +111,7 @@
                             }];
     
     NSInteger lineCount = 3;
-    YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(SCREENWIDTH - kDynamicsNormalPadding - kDynamicsPortraitWidthAndHeight - kDynamicsPortraitNamePadding - kDynamicsNormalPadding, _model.isOpening ? CGFLOAT_MAX : 16 * lineCount + kDynamicsLineSpacing * (lineCount - 1))];
+    YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(SCREENWIDTH - 48, _model.isOpening ? CGFLOAT_MAX : 16 * lineCount + kDynamicsLineSpacing * (lineCount - 1))];
     
     container.truncationType = YYTextTruncationTypeEnd;
     

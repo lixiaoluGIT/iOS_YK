@@ -87,6 +87,8 @@
 //#define BaseUrl @"http://39.106.70.17"
 //#define BaseUrl @"http:39.107.65.143"
 #define BaseUrl @"http://api.xykoo.cn/"
+//#define BaseUrl @"http:192.168.1.115:8080"
+//192.168.1.115:8080
 
 //#define BaseUrl @""
 

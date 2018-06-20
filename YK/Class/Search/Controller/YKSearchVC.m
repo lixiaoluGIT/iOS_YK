@@ -106,6 +106,12 @@
 //    }];
     _pageNum = 1;
     WeakSelf(weakSelf)
+//    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        _pageNum=1;
+//        //下拉shua xi
+////        [weakSelf getData];
+//    }];
+    
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
         //请求更多商品
