@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00027F9C20D36C74005BF684 /* YKSPDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00027F9B20D36C74005BF684 /* YKSPDetailVC.m */; };
 		00027FDC20D91185005BF684 /* brand.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00027FDB20D91185005BF684 /* brand.plist */; };
+		002DF71720DBA6AA00560C60 /* tt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 002DF71620DBA6A900560C60 /* tt.jpg */; };
 		002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE59E20B5344300554AB3 /* YKProductCommentVC.m */; };
 		002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */; };
 		002FE5A420B54CA200554AB3 /* YKEditSizeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002FE5A220B54CA200554AB3 /* YKEditSizeVC.xib */; };
@@ -594,6 +595,7 @@
 		00027F9A20D36C74005BF684 /* YKSPDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSPDetailVC.h; sourceTree = "<group>"; };
 		00027F9B20D36C74005BF684 /* YKSPDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSPDetailVC.m; sourceTree = "<group>"; };
 		00027FDB20D91185005BF684 /* brand.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = brand.plist; sourceTree = "<group>"; };
+		002DF71620DBA6A900560C60 /* tt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tt.jpg; sourceTree = "<group>"; };
 		002FE59D20B5344300554AB3 /* YKProductCommentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductCommentVC.h; sourceTree = "<group>"; };
 		002FE59E20B5344300554AB3 /* YKProductCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductCommentVC.m; sourceTree = "<group>"; };
 		002FE5A020B54CA200554AB3 /* YKEditSizeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKEditSizeVC.h; sourceTree = "<group>"; };
@@ -2521,6 +2523,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				002DF71620DBA6A900560C60 /* tt.jpg */,
 				005D2CEA2085E10B00AEBDA0 /* top111.jpg */,
 				005D2CE82085E0AA00AEBDA0 /* top2.jpg */,
 				005D2CD22084576F00AEBDA0 /* LocalAPIList.plist */,
@@ -3837,6 +3840,7 @@
 				005D2CD42084576F00AEBDA0 /* NewAPIList.plist in Resources */,
 				C5343C8C1FC584FD00F5132A /* YKYifuScanCell.xib in Resources */,
 				C5343C931FC69D2400F5132A /* YKBrandDetailHeader.xib in Resources */,
+				002DF71720DBA6AA00560C60 /* tt.jpg in Resources */,
 				C533EF512057B83700A71DBE /* Default-568.png in Resources */,
 				C52D0F9E1FC6C43D00B50258 /* liutao.jpg in Resources */,
 				C525DE231FBAD659002802AE /* YKScrollBtnView.xib in Resources */,
@@ -4486,10 +4490,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_1;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage_1;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29NXF4787V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4597,8 +4601,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "90d3ec60-dcb2-4714-a596-a9acd3002c45";
+				PROVISIONING_PROFILE_SPECIFIER = xykootest;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4702,8 +4706,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29NXF4787V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4811,8 +4815,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0f64e436-77e9-41ac-b9df-04b3532a641d";
+				PROVISIONING_PROFILE_SPECIFIER = xykoo;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4921,8 +4925,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6R5JPDBPPU;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5030,8 +5034,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.share.yc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "b1c0702b-7eb7-4028-a3c1-1f1af39e1a36";
+				PROVISIONING_PROFILE_SPECIFIER = dev_yichu0413;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5135,8 +5139,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6R5JPDBPPU;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5244,8 +5248,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.share.yc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "355503be-fdff-41f5-b2bb-7e6037eac8ef";
+				PROVISIONING_PROFILE_SPECIFIER = dis_yichu0413;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5404,9 +5408,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5507,8 +5511,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "fa10b410-a26d-4812-a2bd-3e1b86545d1a";
+				PROVISIONING_PROFILE_SPECIFIER = YKDevFile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -5523,7 +5527,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5632,8 +5636,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a98be9ff-688d-4df1-a535-adc5de2c3991";
+				PROVISIONING_PROFILE_SPECIFIER = YKDisFile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

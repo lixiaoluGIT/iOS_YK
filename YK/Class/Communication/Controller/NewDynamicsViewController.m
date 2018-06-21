@@ -92,7 +92,8 @@
     _pageNum = 1;
 
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    [self performSelector:@selector(loadData) withObject:nil afterDelay:0.3];
+    self.dynamicsTable.hidden = YES;
+    [self performSelector:@selector(loadData) withObject:nil afterDelay:0];
     WeakSelf(weakSelf)
     self.dynamicsTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 //        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -147,6 +148,7 @@
 
 - (void)getData{
     [[YKCommunicationManager sharedManager]requestCommunicationImgListOnResponse:^(NSDictionary *dic) {
+        self.dynamicsTable.hidden = NO;
         NSMutableArray *totalArray = [NSMutableArray arrayWithArray:dic[@"data"][@"articleLoopPicVOS"]];
         _headerActivity = [NSDictionary dictionaryWithDictionary:dic[@"data"][@"communityActivity"]];
         _imageArray = [self getImageArray:totalArray];

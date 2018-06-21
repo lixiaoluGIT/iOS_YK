@@ -23,8 +23,9 @@
     
     _hhh.constant = 84*WIDHT/414-10;
     _www.constant = 90*WIDHT/414-10;
-//    [_image setContentMode:UIViewContentModeScaleAspectFit];
-    // Initialization code
+//    self.backgroundColor = [UIColor yellowColor];
+//    self.image.backgroundColor = [UIColor greenColor];
+//    self.title.backgroundColor =[UIColor blueColor];
 }
 - (void)toDetail{
     _isSelected  = !_isSelected;

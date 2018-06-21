@@ -18,6 +18,7 @@
 /*
 imageArray 照片数组
  text   编辑的文字
+ activityId 活动Id
  onResponse 请求回掉
  */
 - (void)publicWithImageArray:(NSArray *)imageArray
@@ -55,7 +56,6 @@ imageArray 照片数组
                             OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //关注
-
 /*
  userId 用户ID
  onResponse 请求回掉

@@ -117,15 +117,22 @@
     }else {//配饰
         url = [NSString stringWithFormat:@"%@?ornamentId=%ld&userId=%@",PSDetail_Url,ProductId,[Token length]>0 ? [YKUserManager sharedManager].user.userId : @""];
     }
-
+    NSLog(@"url ============================== %@",url);
+   
+    
         [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-        
-        if (onResponse) {
-            onResponse(dic);
-        }
+         NSLog(@"dic ============================== %@",dic);
+            if ([dic[@"status"] intValue] == 200) {
+                if (onResponse) {
+                    onResponse(dic);
+                }
+            }else {
+                [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请求出错了" delay:1.5];
+            }
+       
         
     }];
 }

@@ -749,6 +749,8 @@
 
 - (void)saveAdImage:(NSDictionary *)dic{
     [UD setObject:dic[@"data"][@"imgUrl"] forKey:Ad_Url];
+    [UD setObject:dic[@"data"][@"jumpUrl"] forKey:Ad_linkUrl];
+    [UD setObject:dic[@"data"][@"showTime"] forKey:@"showTime"];
     [UD synchronize];
 }
 

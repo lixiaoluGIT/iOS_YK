@@ -55,6 +55,7 @@
         DDAdvertisementVC *ad = [DDAdvertisementVC new];
         if ([UD objectForKey:Ad_Url]) {
             ad.url = [UD objectForKey:Ad_Url];
+            ad.click_url = [UD objectForKey:Ad_linkUrl];
             UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:ad];
             self.window.rootViewController = nvi;
             
@@ -67,6 +68,7 @@
         //TODO:请求广告页图片并保存到文件
         [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
             ad.url = [UD objectForKey:Ad_Url];
+            ad.click_url = [UD objectForKey:Ad_linkUrl];
             UINavigationController *nvi = [[UINavigationController alloc]initWithRootViewController:ad];
             self.window.rootViewController = nvi;
             

@@ -127,26 +127,6 @@
 #pragma mark - NewDynamiceCellDelegate
 -(void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUser:(UIImageView *)image
 {
-//    //创建一个黑色背景
-//    //初始化一个用来当做背景的View。我这里为了省时间计算，宽高直接用的5s的尺寸
-//    UIView *bgView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
-//    self.background = bgView;
-//    [bgView setBackgroundColor:[UIColor blackColor]];
-//    [self.view addSubview:bgView];
-//
-//    //创建显示图像的视图
-//    //初始化要显示的图片内容的imageView（这里位置继续偷懒...没有计算）
-//    UIImageView *imgView = [[UIImageView alloc] initWithFrame:bgView.bounds];
-//    //要显示的图片，即要放大的图片
-//    imgView.image = [UIImage imageNamed:@"dianzan"]
-//    [bgView addSubview:imgView];
-//
-//    imgView.userInteractionEnabled = YES;
-//    //添加点击手势（即点击图片后退出全屏）
-//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeView)];
-//    [imgView addGestureRecognizer:tapGesture];
-//
-//    [self shakeToShow:bgView];//放大过程中的动画
     NSLog(@"点击了用户");
 }
 -(void)DidClickMoreLessInDynamicsCell:(NewDynamicsTableViewCell *)cell
@@ -174,7 +154,6 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     
-    
     if ([Token length]==0) {
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:2];
         return;
@@ -188,11 +167,6 @@
         [model.fabulous addObject:[YKUserManager sharedManager].user.userId];
         //刷新当前cell
         [UIView animateKeyframesWithDuration:0.5 delay:0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
-            /*
-             参数1:关键帧开始时间
-             参数2:关键帧占用时间比例
-             参数3:到达该关键帧时的属性值
-             */
             [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1/2.0 animations:^{
                 cell.pl.transform = CGAffineTransformMakeScale(2.1, 2.1);
             }];
@@ -205,14 +179,6 @@
         }];
         
     }];
-//
-//    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"12345678910",@"userid",@"Andy",@"nick", nil];
-//    NSMutableArray * newThumbArr = [NSMutableArray arrayWithArray:model.fabulous];
-//    [newThumbArr addObject:dic];
-//
-//    model.fabulous = [newThumbArr copy];
-////    [layout resetLayout];
-//    [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 //取消点赞
 -(void)DidClickCancelThunmbInDynamicsCell:(NewDynamicsTableViewCell *)cell
@@ -363,13 +329,6 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     [[YKCommunicationManager sharedManager]cancleConcernWithUserId:model.userId OnResponse:^(NSDictionary *dic) {
-//        if ([[YKCommunicationManager sharedManager].concernArray containsObject:model.userId]) {
-//            for (NSString *i in [YKCommunicationManager sharedManager].concernArray) {
-//                if ([i isEqual:model.userId]) {
-//                    [[YKCommunicationManager sharedManager].concernArray removeObject:i];
-//                }
-//            }
-//        }
     __block  NSMutableArray *cArray = [NSMutableArray array];
         [[YKCommunicationManager sharedManager].concernArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSString *s = [NSString stringWithFormat:@"%@",obj];
@@ -377,11 +336,9 @@
             [cArray addObject:s];
             if ([s isEqual:s1]) {
                 [cArray removeObject:s1];
-                NSLog(@"%@-索引%d",obj, (int)idx);
             }
             [YKCommunicationManager sharedManager].concernArray = [NSMutableArray arrayWithArray:cArray];
         }];
-        
         [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }

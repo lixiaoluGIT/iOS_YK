@@ -35,7 +35,7 @@
     title.top = 24;
     title.left = image.right + 6;
     title.width = 100;
-    title.height =20;
+    title.height =18;
     title.text = @"风格选择";
     title.textColor = mainColor;
     title.font = PingFangSC_Semibold(16);
@@ -63,17 +63,12 @@
         num = _styleArray.count;
     }
     for (int i = 0; i<num; i++) {
-       YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
+      __weak YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
                 NSString *s = [NSString stringWithFormat:@"%@",styleArray[i][@"styleImage"]];
                 [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
                 btn.title.text = [NSString stringWithFormat:@"%@",styleArray[i][@"styleName"]];
                 btn.styleId = styleArray[i][@"styleId"];
-        
-        
                 btn.clickDetailBlock = ^(NSString *brandId,NSString *brandName){
-//                    if (weakSelf.toDetailBlock) {
-//                        weakSelf.toDetailBlock(brandId, styleArray[i][@"brandName"]);
-//                    }
                     [weakSelf btnViewClick:btn];
                 };
                 btn.image.contentMode   = UIViewContentModeScaleAspectFit;
@@ -84,12 +79,8 @@
         btn.tag = i;
         [self addSubview:btn];
         [_btnArray addObject:btn];
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnViewClick:)];
-//        [btn addGestureRecognizer:tap];
         
-//                btn.backgroundColor = [UIColor colorWithHexString:@"fe7310"];
-
-            }
+    }
 }
 
 - (void)btnViewClick:(YKScrollBtnView *)btnView{

@@ -103,11 +103,6 @@
 //    [self getBrandList];
 }
 - (void)getBrandList{
-    
-//    if ([UD boolForKey:@"hadLoad"]) {
-//
-//        return;
-//    }
     NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/myJson.json"];//获取json文件保存的路径
     
     NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
@@ -115,7 +110,6 @@
     if (data!=nil) {
         json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典
     }
-    
     
     NSArray *arr = [json objectForKey:@"arr"];//获取指定key值的value，是一个数组
     NSArray *a = [json objectForKey:@"a"];
@@ -184,23 +178,6 @@
     //得到角标
     _searchBtnArr = [NSArray arrayWithArray:result];
     NSLog(@"索引栏==%@",_searchBtnArr);
-//}
-//    NSMutableArray *totalSections = [NSMutableArray array];
-//    for (NSString *cha in _searchBtnArr) {
-//        NSLog(@"首字母%@",cha);
-//        NSMutableArray *sections = [NSMutableArray array];
-//        for (NSDictionary *blacker in self.blackLists) {
-//
-//            if (![cha isEqualToString:@"#"] && [[self firstCharactor:blacker[@"brandName"]] isEqualToString:cha]) {
-//                [sections addObject:blacker];
-//            }
-//
-//            if (([cha isEqualToString:@"#"] && [[self firstCharactor:blacker[@"brandName"]] characterAtIndex:0] < 'A') || [[self firstCharactor:blacker[@"brandName"]] characterAtIndex:0] > 'Z'){
-//                [sections addObject:blacker];
-//            }
-//        }
-//        [totalSections addObject:sections];
-//    }
 
     NSMutableArray *totalSections = [NSMutableArray array];
     for (NSString *cha in _searchBtnArr) {
@@ -221,41 +198,15 @@
 }
 //    [totalSections addObject:sections];
     self.sections = [NSArray arrayWithArray:totalSections];
-
-//    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/myJson.json"];//获取json文件保存的路径
-//
-//    NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
-//
-//    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
-//
-//    NSArray *arr = [json objectForKey:@"arr"];//获取指定key值的value，是一个数组
-//
-//                    for (NSDictionary *dic in arr) {
-//
-//                        NSLog(@"%@",[dic objectForKey:@"key1"]);//遍历数组
-//
-//                    }
     NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/myJson.json"];
-
     NSLog(@"%@",filePath);
-
     NSDictionary *json_dic = @{@"arr":self.sections,@"a":_searchBtnArr};//key为arr value为arr数组的字典
-
 //    第三步.封包数据
     NSData *json_data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
 
 //    第四步.写入数据
     [json_data writeToFile:filePath atomically:YES];
-    
-//    经过这四步，就在本地指定路径filePath创建了一个json文件。（根目录是一个字典 key为arr value为arr数组的字典）
-//    保存数组
-//    [UD setObject:self.sections forKey:@"AAA"];
-//    [UD setObject:_searchBtnArr forKey:@"BBB"];
-    
-//    [UD setBool:YES forKey:@"hadLoad"];
-    
     NSLog(@"出去了》〉》〉》〉》〉》〉》〉》〉");
-    
 }
 
 - (NSString *)firstCharactor:(NSString *)aString

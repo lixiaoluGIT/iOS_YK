@@ -144,9 +144,14 @@
 //控制器
 - (NSMutableArray *)controllerArr{
     if (!_controllerArr) {
-//#import "YKSearchVC.h"
-//#import "YKALLBrandVC.h"
-        NSArray *controllerTittle = @[@"YKSearchVC",@"YKSPVC",@"YKALLBrandVC"];
+        NSString *s = [UD objectForKey:@"showTime"];
+        NSArray *controllerTittle;
+        if ([s intValue] != 3) {
+            controllerTittle = @[@"YKSearchVC",@"YKSPVC",@"YKALLBrandVC"];
+        }else {
+            controllerTittle = @[@"YKSearchVC",@"YKALLBrandVC"];
+        }
+       
         _controllerArr = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < controllerTittle.count; i ++) {
             NSString *controllerName = controllerTittle[i];
@@ -160,7 +165,14 @@
 //标题
 - (NSMutableArray *)titleArr{
     if (!_titleArr) {
-        _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"配饰",@"品牌",nil];
+        NSString *s = [UD objectForKey:@"showTime"];
+        
+        if ([s intValue] != 3) {
+            _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"配饰",@"品牌",nil];
+        }else {
+            _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"品牌",nil];
+        }
+        
     }
     return _titleArr;
 }

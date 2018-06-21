@@ -10,7 +10,7 @@
 
 @interface YKStyleView : UIView
 
-@property (nonatomic,strong)NSMutableArray *styleArray;//数据源 品牌
-@property (nonatomic,strong)NSMutableArray *activityArray;//活动
+@property (nonatomic,strong)NSMutableArray *styleArray;
+@property (nonatomic,strong)NSMutableArray *activityArray;
 @property (nonatomic,copy)void (^toDetailBlock)(NSString *styleId,NSString *styleName);
 @end

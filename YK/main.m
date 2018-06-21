@@ -1,9 +1,8 @@
 //
 //  main.m
-//  generateSpamCode
 //
-//  Created by 柯磊 on 2017/7/5.
-//  Copyright © 2017年 GAEA. All rights reserved.
+//  Created by LXL on 2017/11/14.
+//  Copyright © 2017年 YK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

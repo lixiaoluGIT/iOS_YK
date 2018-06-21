@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "YKMainVC.h"
+#import "YKLinkWebVC.h"
 //#import "LLGifImageView.h"
 //#import "LLGifView.h"
 
@@ -34,28 +35,11 @@
     [self startTimer];
 }
 
-//- (void)removeGif {
-//    if (_gifView) {
-//        [_gifView removeFromSuperview];
-//        _gifView = nil;
-//    }
-//    if (_gifImageView) {
-//        [_gifImageView removeFromSuperview];
-//        _gifImageView = nil;
-//    }
-//}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self addBottomView];
-    
-    //加载本地gif图片
-//    NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ss" ofType:@"gif"]];
-//    _gifView = [[LLGifView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) data:localData];
-////    [self.view addSubview:_gifView];
-//    [_gifView startGif];
-    
-    
+
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT)];
     [image setContentMode:UIViewContentModeScaleAspectFit];
     [image sd_setImageWithURL:[NSURL URLWithString:self.url] placeholderImage:nil];
@@ -128,6 +112,12 @@
 }
 
 - (void)toWeb{
+    dispatch_source_cancel(_timer);
+    YKLinkWebVC *web =[YKLinkWebVC new];
+    web.url = _click_url;
+    web.status = 1;
+    web.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:web animated:YES];
 
 }
 

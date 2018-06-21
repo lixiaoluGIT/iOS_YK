@@ -42,6 +42,7 @@
 #define Token  [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
 //广告页Url
 #define Ad_Url @"adurl"
+#define Ad_linkUrl @"ad_linkUrl"
 //登录过期时间 day
 #define Token_PastTime 1
 /*----------------------------&&&&--------------------------------*/
@@ -87,7 +88,6 @@
 //#define BaseUrl @"http://39.106.70.17"
 //#define BaseUrl @"http:39.107.65.143"
 #define BaseUrl @"http://api.xykoo.cn/"
-//#define BaseUrl @"http:192.168.1.115:8080"
 //192.168.1.115:8080
 
 //#define BaseUrl @""

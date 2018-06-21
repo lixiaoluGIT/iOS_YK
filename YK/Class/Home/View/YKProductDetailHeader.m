@@ -80,7 +80,7 @@
 
 - (void)setRecomment:(NSString *)recomment{
     
-    _recomment = [recomment isEqual:[NSNull null]] ? @"暂无买手推荐语～" : recomment;
+    _recomment = [recomment isEqual:[NSNull null]]  ? @"暂无买手推荐语～" : recomment;
     _recommentWords.text = _recomment;
     
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

@@ -303,7 +303,6 @@
     _portrait.layer.masksToBounds = YES;
     _portrait.layer.cornerRadius = 20;
     _portrait.backgroundColor = [UIColor whiteColor];
-    
     //昵称
     _nameLabel.text = model.userNickName;
     if ([model.userNickName isEqualToString:@"衣库用户3204"]) {
@@ -318,19 +317,14 @@
     CGSize nameSize = [_nameLabel sizeThatFits:CGSizeZero];
     _nameLabel.width = nameSize.width;
     _nameLabel.height = kDynamicsNameHeight;
-    
     //描述
     _detailLabel.left = _portrait.left;
     _detailLabel.top = _portrait.bottom + 14;
-//    _detailLabel.width = SCREENWIDTH - kDynamicsNormalPadding*2 - 10 - 40;
     _detailLabel.width = SCREENWIDTH - 48;
     _detailLabel.height = layout.detailLayout.textBoundingSize.height;
     _detailLabel.textLayout = layout.detailLayout;
     _detailLabel.textColor = mainColor;
-//    _detailLabel.font = PingFangSC_Medium(14);
-//    _detailLabel.backgroundColor = [UIColor redColor];
     lastView = _detailLabel;
-    
     //展开/收起按钮
     _moreLessDetailBtn.left = _portrait.left;
     _moreLessDetailBtn.top = _detailLabel.bottom + kDynamicsNameDetailPadding;
@@ -365,60 +359,8 @@
     }else{
         _picContainerView.hidden = YES;
     }
-    //头条
-//    if (model.pagetype == 1) {
-//        _grayView.hidden = NO;
-//
-//        _grayView.left = _nameLabel.left;
-//        _grayView.top = lastView.bottom + kDynamicsNameDetailPadding;
-//        _grayView.width = _detailLabel.right - _grayView.left;
-//        _grayView.height = kDynamicsGrayBgHeight;
-//
-//        [_grayView.thumbImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImgHeader,model.thumb]]];
-//        _grayView.dspLabel.height = layout.dspLayout.textBoundingSize.height;
-//        _grayView.dspLabel.centerY = _grayView.thumbImg.centerY;
-//        _grayView.dspLabel.textLayout = layout.dspLayout;
-//
-//        lastView = _grayView;
-//    }else{
+ 
         _grayView.hidden = YES;
-//    }
-    
-    //推广
-//    _spreadBtn.l÷ameDetailPadding;;
-//
-//    if (model.spreadparams.count != 0) {
-//        _spreadBtn.hidden = NO;
-//        [_spreadBtn setTitle:model.spreadparams[@"name"] forState:UIControlStateNormal];
-//        CGSize fitSize = [_spreadBtn sizeThatFits:CGSizeZero];
-//        _spreadBtn.width = fitSize.width > _detailLabel.size.width ? _detailLabel.size.width : fitSize.width;
-//        _spreadBtn.height = kDynamicsSpreadButtonHeight;
-//
-//        lastView = _spreadBtn;
-//    }else if (model.companyparams.count != 0){
-//        _spreadBtn.hidden = NO;
-//        [_spreadBtn setTitle:model.companyparams[@"name"] forState:UIControlStateNormal];
-//        CGSize fitSize = [_spreadBtn sizeThatFits:CGSizeZero];
-//        _spreadBtn.width = fitSize.width > _detailLabel.size.width ? _detailLabel.size.width : fitSize.width;
-//        _spreadBtn.height = kDynamicsSpreadButtonHeight;
-//
-//        lastView = _spreadBtn;
-//    }else{
-//        _spreadBtn.hidden = YES;
-//    }
-//
-////    //时间
-//    _dateLabel.right =  - 20;
-//    _dateLabel.top = _portrait.top;
-//    NSString * newTime = [self formateDate:model.exttime withFormate:@"yyyyMMddHHmmss"];
-//    _dateLabel.text = newTime;
-//    CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
-//    _dateLabel.width = dateSize.width;
-//    _dateLabel.height = kDynamicsNameHeight;
-//    _dateLabel.textAlignment = NSTextAlignmentRight;
-//    _dateLabel.hidden = YES;
-//
-    
     //分割线
     _dLine.left = 0;
     _dLine.height = 1;
@@ -480,8 +422,6 @@
     
     //TODO:设置点击间隔，否则连续点会崩
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-//        NSLog(@"oooooo");
-//        [_pl setUserInteractionEnabled:NO];
         if (!hadUserId) {//未点赞
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
                 [_delegate DidClickThunmbInDynamicsCell:self];
@@ -529,8 +469,7 @@
     _linkBtn.top = _linkImage.top;
     _linkBtn.width = 70;
     _linkBtn.height = 18;
-//    _linkBtn.backgroundColor=[UIColor redColor];
- 
+
     lastView = _plNum;
 
     //关注图片
@@ -555,15 +494,8 @@
         NSString *s1 = [NSString stringWithFormat:@"%@",model.userId];
         if ([s isEqual:s1]) {
             hadConcern = YES;
-//            NSLog(@"%@-索引%d",obj, (int)idx);
         }
     }];
-//    NSLog(@"关注列表===%@,当前ID=%@",[YKCommunicationManager sharedManager].concernArray,model.userId);
-//    if([[YKCommunicationManager sharedManager].concernArray containsObject:model.userId]){
-//        hadConcern = YES;
-//    }else {
-//        hadConcern = NO;
-//    }
 
     if (hadConcern) {//已关注
         _guanzhuImage.image = [UIImage imageNamed:@"yiguanzhu"];
@@ -642,69 +574,13 @@
     _dateLabel.height = kDynamicsNameHeight;
     _dateLabel.textAlignment = NSTextAlignmentRight;
  
-    
-    
-//    _deleteBtn.left = _dateLabel.right + kDynamicsPortraitNamePadding;
-//    _deleteBtn.top = _dateLabel.top;
-//    CGSize deleteSize = [_deleteBtn sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
-//    _deleteBtn.width = deleteSize.width;
-//    _deleteBtn.height = kDynamicsNameHeight;
-    
-//    //更多
-//    _menuBtn.left = _detailLabel.right - 30 + 5;
-//    _menuBtn.top = lastView.bottom + kDynamicsPortraitNamePadding - 8;
-//    _menuBtn.size = CGSizeMake(30, 30);
-//
-//    if (model.likeArr.count != 0 || model.commentArr.count != 0) {
-//        _thumbCommentView.hidden = NO;
-//        //点赞/评论
-//        _thumbCommentView.left = _detailLabel.left;
-//        _thumbCommentView.top = _dateLabel.bottom + kDynamicsPortraitNamePadding;
-//        _thumbCommentView.width = _detailLabel.width;
-//        _thumbCommentView.height = layout.thumbCommentHeight;
-//
-//        [_thumbCommentView setWithLikeArr:model.likeArr CommentArr:model.commentArr DynamicsLayout:layout];
-//    }else{
-        _thumbCommentView.hidden = YES;
-//    }
-//
-//
+    _thumbCommentView.hidden = YES;
+
 //    //分割线
     _dividingLine.left = 0;
     _dividingLine.height = 10;
     _dividingLine.width = SCREENWIDTH ;
     _dividingLine.bottom = layout.height - 10 +115;
-//
-//    WS(weakSelf);
-//    layout.clickUserBlock = ^(NSString *userID) {//点赞评论区域点击用户昵称操作
-//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
-//            [weakSelf.delegate DynamicsCell:weakSelf didClickUser:userID];
-//        }
-//    };
-//
-//    layout.clickUrlBlock = ^(NSString *url) {
-//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUrl:PhoneNum:)]) {
-//            [weakSelf.delegate DynamicsCell:weakSelf didClickUrl:url PhoneNum:nil];
-//        }
-//    };
-//
-//    layout.clickPhoneNumBlock = ^(NSString *phoneNum) {
-//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUrl:PhoneNum:)]) {
-//            [weakSelf.delegate DynamicsCell:weakSelf didClickUrl:nil PhoneNum:phoneNum];
-//        }
-//    };
-    
-    
-   
-    
-//    UILabel *bigL = [[UILabel alloc]init];
-//    bigL.center = _pl.center;
-//    bigL.width = 50;
-//    bigL.height = 50;
-//    bigL.backgroundColor = [UIColor lightGrayColor];
-//    [self.contentView addSubview:bigL];
-//    [bigL setUserInteractionEnabled:YES];
-//    [bigL addGestureRecognizer:tap];
 }
 
 - (void)jumpToPro{
