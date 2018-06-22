@@ -225,48 +225,12 @@
         des.text = @"";
         leftLabel.text = @"您还不是会员";
         image.image = [UIImage imageNamed:@"weishengxiao"];
-//        image.hidden = YES;
-//        leftLabel.hidden = YES;
-       
-       //去开通
-//        WeakSelf(weakSelf)
-//        NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
-//        [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"huiyuan-1"] statusDes:@"您还不是会员" hiddenBtn:NO actionTitle:@"去购买" actionBlock:^{
-//            YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//            //            [weakSelf presentViewController:nav animated:YES completion:NULL];
-//            [self presentViewController:nav animated:YES completion:^{
-//
-//            }];
-//        }];
-//
-//        NoDataView.frame = CGRectMake(0, 98+BarH, WIDHT,HEIGHT-162);
-//        self.view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
-//        [self.view addSubview:NoDataView];
     }else {
         UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
         self.navigationItem.rightBarButtonItem = rightBarItem;
         self.navigationItem.rightBarButtonItem.tintColor = mainColor;
         [NoDataView removeFromSuperview];
     }
-
-    //若会员快到期
-//   __block YKChongZhiBtn *chongzhi = [[NSBundle mainBundle] loadNibNamed:@"YKChongZhiBtn" owner:self options:nil][0];
-//    chongzhi.frame = CGRectMake(20, image.frame.origin.y+image.frame.size.height+20,WIDHT-40,40);
-//    chongzhi.chongzhi = ^(void){
-//        YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//        //            [weakSelf presentViewController:nav animated:YES completion:NULL];
-//        [self presentViewController:nav animated:YES completion:^{
-//
-//        }];
-//    };
-//    [self.view addSubview:chongzhi];
-//    if (effectiveDay<=7 && depositStatus != 4) {
-//        chongzhi.hidden = NO;
-//    }else {
-//        chongzhi.hidden = YES;
-//    }
    //押金状态
     YKWalletButtom *buttom = [[NSBundle mainBundle] loadNibNamed:@"YKWalletButtom" owner:self options:nil][0];
     buttom.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -284,7 +248,6 @@
     };
     if (depositStatus != 4) {//未开通
         [self.view addSubview:buttom];
-
     }
     
     //背景条

@@ -61,18 +61,7 @@
     _editv = [[UIView alloc] initWithFrame:CGRectMake(0, BarH, ScreenWidth, 0)];
     _editv.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_editv];
-    
-    // 评论 UITextView
-//    _textView = [[UITextView alloc] initWithFrame:CGRectMake(15, 15, CGRectGetWidth(_editv.frame)-15*2, 70)];
-//    _textView.backgroundColor = [UIColor lightGrayColor];
-//    _textView.delegate = self;
-//    [_textView becomeFirstResponder];
-//    _textView.text = @"说点什么吧";
-//    [_editv addSubview:_textView];
-//    _textView = [[UITextView alloc]initWithFrame:CGRectMake(15, 15, _editv.frame.size.width-30, 100)];
-//    _textView.delegate = self;
-//    _textView.text = @"说点什么吧";
-//    [_editv addSubview:_textView];
+
     textView = [[PlaceholderTextView alloc]init];
     textView.placeholderLabel.font = [UIFont systemFontOfSize:15];
     textView.placeholder = @"说点什么吧";
@@ -81,7 +70,7 @@
     textView.maxLength = 140;
     textView.layer.cornerRadius = 5.f;
     textView.layer.borderColor = [[UIColor grayColor]colorWithAlphaComponent:0.3].CGColor;
-//    textView.layer.borderWidth = 0.5f;
+
     [_editv addSubview:textView];
     
     [textView didChangeText:^(PlaceholderTextView *textView) {
@@ -135,14 +124,7 @@
 }
 
 - (void)leftAction{
-//    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//        YKHomeVC *chatVC = [[YKHomeVC alloc] init];
-//        chatVC.hidesBottomBarWhenPushed = YES;
-//        UINavigationController *nav = self.tabBarController.viewControllers[0];
-//        chatVC.hidesBottomBarWhenPushed = YES;
-//        self.tabBarController.selectedViewController = nav;
-        [self.navigationController popViewControllerAnimated:YES];
-//    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)Public{
@@ -157,14 +139,6 @@
         [self.navigationController popToRootViewControllerAnimated:NO];
         //        }];
     }];
-//    [[YKCommunicationManager sharedManager]publicWithImageArray:_imageArray clothingId:_clothingId  activityId:_activityId text:textView.text OnResponse:^(NSDictionary *dic) {
-//        
-////        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//        [UD setBool:YES forKey:@"hadNews"];
-//            [self.navigationController popToRootViewControllerAnimated:NO];
-////        }];
-//       
-//    }];
 }
 
 #pragma mark - UIbutton event

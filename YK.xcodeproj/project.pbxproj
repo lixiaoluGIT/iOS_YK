@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00027F9C20D36C74005BF684 /* YKSPDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00027F9B20D36C74005BF684 /* YKSPDetailVC.m */; };
 		00027FDC20D91185005BF684 /* brand.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00027FDB20D91185005BF684 /* brand.plist */; };
+		002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 002423AF20DCF64E00AB493D /* register_guide_video.mp4 */; };
 		002DF71720DBA6AA00560C60 /* tt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 002DF71620DBA6A900560C60 /* tt.jpg */; };
 		002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE59E20B5344300554AB3 /* YKProductCommentVC.m */; };
 		002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */; };
@@ -595,6 +596,7 @@
 		00027F9A20D36C74005BF684 /* YKSPDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSPDetailVC.h; sourceTree = "<group>"; };
 		00027F9B20D36C74005BF684 /* YKSPDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSPDetailVC.m; sourceTree = "<group>"; };
 		00027FDB20D91185005BF684 /* brand.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = brand.plist; sourceTree = "<group>"; };
+		002423AF20DCF64E00AB493D /* register_guide_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = register_guide_video.mp4; sourceTree = "<group>"; };
 		002DF71620DBA6A900560C60 /* tt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tt.jpg; sourceTree = "<group>"; };
 		002FE59D20B5344300554AB3 /* YKProductCommentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductCommentVC.h; sourceTree = "<group>"; };
 		002FE59E20B5344300554AB3 /* YKProductCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductCommentVC.m; sourceTree = "<group>"; };
@@ -1686,6 +1688,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5929232204E4169002ED8DB /* AVFoundation.framework in Frameworks */,
 				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
 				0034CF142071D9D2002015AE /* Foundation.framework in Frameworks */,
 				C5929244204E429A002ED8DB /* UIKit.framework in Frameworks */,
@@ -1715,7 +1718,6 @@
 				C5929236204E4196002ED8DB /* CoreLocation.framework in Frameworks */,
 				C5929256204FC4A4002ED8DB /* RongIMKit.framework in Frameworks */,
 				C5929235204E4180002ED8DB /* CoreAudio.framework in Frameworks */,
-				C5929232204E4169002ED8DB /* AVFoundation.framework in Frameworks */,
 				C5929231204E4161002ED8DB /* AudioToolbox.framework in Frameworks */,
 				00A0CC502090265D001205A1 /* UShareUI.framework in Frameworks */,
 				C592922F204E414F002ED8DB /* AssetsLibrary.framework in Frameworks */,
@@ -2523,6 +2525,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				002423AF20DCF64E00AB493D /* register_guide_video.mp4 */,
 				002DF71620DBA6A900560C60 /* tt.jpg */,
 				005D2CEA2085E10B00AEBDA0 /* top111.jpg */,
 				005D2CE82085E0AA00AEBDA0 /* top2.jpg */,
@@ -3911,6 +3914,7 @@
 				C5E023151FD95DCD00C33629 /* YKSuitEnsureCell.xib in Resources */,
 				005D2CD62084576F00AEBDA0 /* Name.plist in Resources */,
 				C525DD9C1FBAB2A9002802AE /* MLEmoji_Expression.bundle in Resources */,
+				002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */,
 				C55D49231FC3CE2F000D2056 /* YKMyBagSMSCell.xib in Resources */,
 				C525DD9A1FBAB2A9002802AE /* Info.plist in Resources */,
 				C525DEB71FBEADB1002802AE /* region.json in Resources */,

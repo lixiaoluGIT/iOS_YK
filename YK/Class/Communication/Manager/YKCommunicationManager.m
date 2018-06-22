@@ -20,12 +20,10 @@
 }
 
 - (void)requestCommunicationImgListOnResponse:(void (^)(NSDictionary *dic))onResponse{
-    
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+
     [YKHttpClient Method:@"GET" apiName:CommunicationImgList_Url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        
         
         if (onResponse) {
             onResponse(dic);
@@ -73,8 +71,6 @@
 //社区列表展示
 - (void)requestCommunicationListWithCommunicationType:(CommunicationType)CommunicationType Num:(NSInteger)Num Size:(NSInteger)Size clothingId:(NSString *)clothingId activityId:(NSString *)activityId OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     NSString *url;
     if (CommunicationType == 2) {
      url = [NSString stringWithFormat:@"%@?articleStatus=0&page=%ld&size=%ld&clothingId=%@&activityId=%@&userId=%@",GetCommunicationList_Url,Num,Size,clothingId,activityId,[Token length]>0 ? [YKUserManager sharedManager].user.userId : @""];
@@ -95,16 +91,13 @@
 //点赞
 - (void)setLikeCommunicationWithArticleId:(NSString *)articleId
                                OnResponse:(void (^)(NSDictionary *dic))onResponse{
-    
-  
-    
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+ 
     NSString *url = [NSString stringWithFormat:@"%@?articleId=%@",Like_Url,articleId];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
        
     [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dic[@"status"] intValue] == 200) {
-//             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已点赞" delay:1.5];
+
             if (onResponse) {
                 onResponse(dic);
             }
@@ -125,7 +118,7 @@
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         if ([dic[@"status"] intValue] == 200) {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"取消点赞" delay:1.5];
+
             if (onResponse) {
                 onResponse(dic);
             }
@@ -159,7 +152,6 @@
     }];
 }
 
-
 - (void)setConcernWithUserId:(NSString *)userId
                   OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
@@ -169,7 +161,7 @@
     }
     
     NSString *url = [NSString stringWithFormat:@"%@?articleUserId=%@",Concern_Url,userId];
-//    NSDictionary *d = @{@"articleUserId":userId};
+
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         if ([dic[@"status"] intValue] == 200) {
@@ -191,11 +183,11 @@
     }
     
     NSString *url = [NSString stringWithFormat:@"%@?articleUserId=%@",Concern_Url,userId];
-//    NSDictionary *d = @{@"articleUserId":userId};
+
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         if ([dic[@"status"] intValue] == 200) {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"取消关注" delay:1.5];
+
             if (onResponse) {
                 onResponse(dic);
             }
@@ -222,4 +214,5 @@
         
     }];
 }
+
 @end
