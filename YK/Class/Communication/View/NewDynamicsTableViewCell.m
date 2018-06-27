@@ -264,6 +264,7 @@
     [self.contentView addSubview:self.Line2];
     //
     [self.contentView addSubview:self.pl];
+//    [self.contentView addSubview:self.plLabel];
     [self.contentView addSubview:self.plNum];
     
     [self.contentView addSubview:self.bigL];
@@ -287,6 +288,21 @@
                                                               NULL,
                                                               kCFStringEncodingUTF8));
     return encodedString;
+}
+
+- (void)reSetUI{
+    _plNum.hidden = YES;
+    _pl.hidden = YES;
+    _linkImage.hidden = YES;
+    _dateLabel.hidden = YES;
+    _dividingLine.hidden = YES;
+    _linkBtn.hidden = YES;
+    _dz.hidden = YES;
+    _dzNum.hidden = YES;
+    _Line1.hidden = YES;
+    _Line2.hidden = YES;
+    _guanzhuImage.hidden = YES;
+    [_moreLessDetailBtn setTitle:@"..." forState:UIControlStateNormal];
 }
 -(void)setLayout:(NewDynamicsLayout *)layout
 {
@@ -415,18 +431,30 @@
     }
     if (hadUserId){
         _pl.image = [UIImage imageNamed:@"yidianzan"];
-        
     }else {
         _pl.image = [UIImage imageNamed:@"dianzan"];
     }
     
     //TODO:设置点击间隔，否则连续点会崩
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (_isReporting) {
+            NSLog(@"请求中");
+            return ;
+            
+        }
+        _isReporting = YES;
+        NSLog(@"去请求");
         if (!hadUserId) {//未点赞
+            [_pl setUserInteractionEnabled:NO];
+            _plLabel.hidden = NO;
+            [self performSelector:@selector(changeStatus) withObject:nil afterDelay:3];
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
                 [_delegate DidClickThunmbInDynamicsCell:self];
             }
         }else{//已点赞
+            [_pl setUserInteractionEnabled:NO];
+            _plLabel.hidden = NO;
+            [self performSelector:@selector(changeStatus) withObject:nil afterDelay:3];
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickCancelThunmbInDynamicsCell:)]) {
                 [_delegate DidClickCancelThunmbInDynamicsCell:self];
             }
@@ -436,7 +464,6 @@
     [_pl setUserInteractionEnabled:YES];
     [_pl addGestureRecognizer:tap];
     
- 
     _bigL.centerX = _pl.centerX;
     _bigL.centerY = _pl.centerY;
     _bigL.width=_bigL.height = 50;
@@ -504,11 +531,19 @@
     }
     
     UITapGestureRecognizer *TT = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (_isReporting) {
+            NSLog(@"请求中");
+            return ;
+            
+        }
+        _isReporting = YES;
         if (!hadConcern) {//未关注
+            [self performSelector:@selector(changeStatus) withObject:nil afterDelay:3];
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidConcernInDynamicsCell:)]) {
                 [_delegate DidConcernInDynamicsCell:self];
             }
         }else{//已关注
+            [self performSelector:@selector(changeStatus) withObject:nil afterDelay:3];
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidCancelConcernInDynamicsCell:)]) {
                 [_delegate DidCancelConcernInDynamicsCell:self];
             }
@@ -560,6 +595,15 @@
             _bigL.centerY = _pl.centerY;
             _Line1.left = WIDHT/3;
             _Line2.left = WIDHT/3*2;
+            _plLabel.frame = _pl.frame;
+            [self.contentView bringSubviewToFront:_plLabel];
+            _plLabel.hidden = YES;
+            
+            [_plLabel setUserInteractionEnabled:YES];
+            UITapGestureRecognizer *aa = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+                
+            }];
+            [_plLabel addGestureRecognizer:aa];
 
         }
     }
@@ -583,6 +627,11 @@
     _dividingLine.bottom = layout.height - 10 +115;
 }
 
+- (void)changeStatus{
+//    [_pl setUserInteractionEnabled:YES];
+//    _plLabel.hidden = YES;
+    _isReporting = NO;
+}
 - (void)jumpToPro{
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickDeleteInDynamicsCell:)]) {
         [self.delegate DidClickDeleteInDynamicsCell:self];
@@ -701,6 +750,7 @@
         };
         _detailLabel.textColor = mainColor;
         _detailLabel.font = PingFangSC_Medium(14);
+//        _detailLabel.font = [UIFont fontWithName:@"Marion" size:17];
     }
     return _detailLabel;
 }
@@ -762,10 +812,18 @@
     }
     return _dateLabel;
 }
+- (UIView *)plLabel{
+    if (!_plLabel) {
+        _plLabel = [[UIView alloc]init];
+        _plLabel.backgroundColor = [UIColor greenColor];
+    }
+    return _plLabel;
+}
 -(UIImageView *)pl {
     if (!_pl) {
         _pl = [UIImageView new];
         _pl.image = [UIImage imageNamed:@"dianzan"];
+//        [_pl setBackgroundImage:[UIImage imageNamed:@"dianzan"] forState:UIControlStateNormal];
 //        _plNum.textColor = [UIColor lightGrayColor];
 //        _plNum.font = [UIFont systemFontOfSize:13];
     }

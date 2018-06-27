@@ -236,7 +236,7 @@
     buttom.selectionStyle = UITableViewCellSelectionStyleNone;
     buttom.frame = CGRectMake(0, HEIGHT-([[UIApplication sharedApplication] statusBarFrame].size.height+44)*2, WIDHT, BarH);
     
-    if (validityStatus==0 ||validityStatus==3) {//未交押金或押金无效
+    if (validityStatus==0 || validityStatus==3) {//未交押金或押金无效
         [buttom setTit];
     }
     

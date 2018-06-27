@@ -24,13 +24,13 @@
 @implementation YKActivityDetailVC
 
 - (void)viewWillDisappear:(BOOL)animated{
-//    [self.navigationController hi];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"活动详情";
+    self.title = [self.activity.activityTitle stringByReplacingOccurrencesOfString:@"#" withString:@""];
     
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];

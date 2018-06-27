@@ -16,7 +16,7 @@
 {
     CGFloat lastContentOffset;
     UIButton *publicBtn;
-    
+    BOOL isReporting;
 }
 
 @property(nonatomic,copy)NSString * dynamicsUserId;

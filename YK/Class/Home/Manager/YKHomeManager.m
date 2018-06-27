@@ -302,7 +302,7 @@
         }
         if ([dic[@"type"] intValue] == 3) {//裙子（裙长，胸围，腰围，肩宽，袖长）
             [typeArray addObject:dic[@"model"]];
-            [typeArray addObject:dic[@"trousersLength"]];
+            [typeArray addObject:dic[@"skirtLength"]];
             [typeArray addObject:dic[@"chestWidth"]];
             [typeArray addObject:dic[@"waistline"]];
             [typeArray addObject:dic[@"shoulderWidth"]];

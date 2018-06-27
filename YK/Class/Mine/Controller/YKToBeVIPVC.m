@@ -790,7 +790,6 @@
     {
         [self setViewMovedUp:NO];
     }
-
 }
 
 - (void)keyboardWillDis:(NSNotification *)notif{

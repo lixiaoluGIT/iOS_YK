@@ -69,18 +69,18 @@ NSInteger timeNum;
 {
     if (!_player) {
         //1 创建一个播放item
-        NSString *path = [[NSBundle mainBundle]pathForResource:@"register_guide_video.mp4" ofType:nil];
-        NSURL *url = [NSURL fileURLWithPath:path];
-        AVPlayerItem *playItem = [AVPlayerItem playerItemWithURL:url];
-        // 2 播放的设置
-        _player = [AVPlayer playerWithPlayerItem:playItem];
-        _player.actionAtItemEnd = AVPlayerActionAtItemEndNone;// 永不暂停
-        // 3 将图层嵌入到0层
-        AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:_player];
-        layer.frame = [UIApplication sharedApplication].keyWindow.bounds;
-        [self.view.layer insertSublayer:layer atIndex:0];
-        // 4 播放到头循环播放
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playToEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+//        NSString *path = [[NSBundle mainBundle]pathForResource:@"register_guide_video.mp4" ofType:nil];
+//        NSURL *url = [NSURL fileURLWithPath:path];
+//        AVPlayerItem *playItem = [AVPlayerItem playerItemWithURL:url];
+//        // 2 播放的设置
+//        _player = [AVPlayer playerWithPlayerItem:playItem];
+//        _player.actionAtItemEnd = AVPlayerActionAtItemEndNone;// 永不暂停
+//        // 3 将图层嵌入到0层
+//        AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:_player];
+//        layer.frame = [UIApplication sharedApplication].keyWindow.bounds;
+//        [self.view.layer insertSublayer:layer atIndex:0];
+//        // 4 播放到头循环播放
+//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playToEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     }
     return _player;
 }

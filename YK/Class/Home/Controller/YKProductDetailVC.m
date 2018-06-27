@@ -40,7 +40,7 @@
 #import "YKEditSizeVC.h"
 
 @interface YKProductDetailVC ()
-<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>{
+<UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource,NewDynamicsCellDelegate>{
     BOOL hadMakeHeader;
     ZYCollectionView * cycleView;
     YKProductDetailHeader *scroll;
@@ -50,6 +50,7 @@
     CGFloat totalHeight;
     BOOL hadUserTable;
     BOOL hadTabel;
+    NewDynamicsTableViewCell * cell;
 }
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -612,8 +613,9 @@
             //TODO:优化
             
             UIView *lastView = [[UIView alloc]init];
-            NewDynamicsTableViewCell * cell = [[NewDynamicsTableViewCell alloc]init];
+            cell = [[NewDynamicsTableViewCell alloc]init];
             cell.isShowInProductDetail = YES;
+            cell.delegate = self;
 
             if (self.layoutsArr.count>0) {
                 NoDataView.hidden = YES;
@@ -621,18 +623,20 @@
                 cell.layout = self.layoutsArr[0];
                 layout = self.layoutsArr[0];
                 cell.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT, layout.height);
+                [cell reSetUI];
                 
-                cell.plNum.hidden = YES;
-                cell.pl.hidden = YES;
-                cell.linkImage.hidden = YES;
-                cell.dateLabel.hidden = YES;
-                cell.dividingLine.hidden = YES;
-                cell.linkBtn.hidden = YES;
-                cell.dz.hidden = YES;
-                cell.dzNum.hidden = YES;
-                cell.Line1.hidden = YES;
-                cell.Line2.hidden = YES;
-                cell.guanzhuImage.hidden = YES;
+//                cell.plNum.hidden = YES;
+//                cell.pl.hidden = YES;
+//                cell.linkImage.hidden = YES;
+//                cell.dateLabel.hidden = YES;
+//                cell.dividingLine.hidden = YES;
+//                cell.linkBtn.hidden = YES;
+//                cell.dz.hidden = YES;
+//                cell.dzNum.hidden = YES;
+//                cell.Line1.hidden = YES;
+//                cell.Line2.hidden = YES;
+//                cell.guanzhuImage.hidden = YES;
+//                cell.moreLessDetailBtn.hidden = YES;
                 
                 lastView = cell;
                 
@@ -687,6 +691,21 @@
     }
     
     return nil;
+}
+
+-(void)DidClickMoreLessInDynamicsCell:(NewDynamicsTableViewCell *)cell
+{
+////    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
+//    NewDynamicsLayout * layout = self.layoutsArr[0];
+//    layout.model.isOpening = !layout.model.isOpening;
+//    [layout resetLayout];
+////    CGRect cellRect = [self.collectionView rectForRowAtIndexPath:indexPath];
+//    
+//    [self.collectionView reloadData];
+//
+//    if (cellRect.origin.y < self.collectionView.contentOffset.y + 64) {
+//        [self.collectionView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//    }
 }
 - (void)toEdit{
     if ([Token length] == 0) {

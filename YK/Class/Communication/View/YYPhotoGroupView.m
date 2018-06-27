@@ -114,7 +114,6 @@
     _item = item;
     _itemDidLoad = NO;
     
-    
     [self setZoomScale:1.0 animated:NO];
     self.maximumZoomScale = 3;
     

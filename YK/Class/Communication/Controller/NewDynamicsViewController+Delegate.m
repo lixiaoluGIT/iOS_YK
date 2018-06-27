@@ -150,6 +150,10 @@
 //点赞
 -(void)DidClickThunmbInDynamicsCell:(NewDynamicsTableViewCell *)cell
 {
+//    if (isReporting) {
+//        return;
+//    }
+    isReporting = YES;
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
@@ -163,14 +167,16 @@
     //点赞
     [[YKCommunicationManager sharedManager]setLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
         [cell.pl setUserInteractionEnabled:YES];
+        isReporting = NO;
         //把当前userid加入点赞数组
         [model.fabulous addObject:[YKUserManager sharedManager].user.userId];
         //刷新当前cell
         [UIView animateKeyframesWithDuration:0.5 delay:0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
+
             [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1/2.0 animations:^{
                 cell.pl.transform = CGAffineTransformMakeScale(2.1, 2.1);
             }];
-            
+
             [UIView addKeyframeWithRelativeStartTime:1/2.0 relativeDuration:1/2.0 animations:^{
                 cell.pl.transform = CGAffineTransformIdentity;
             }];
@@ -183,11 +189,17 @@
 //取消点赞
 -(void)DidClickCancelThunmbInDynamicsCell:(NewDynamicsTableViewCell *)cell
 {
+//    if (isReporting) {
+//        return;
+//    }
+    isReporting = YES;
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     cell.pl.userInteractionEnabled = NO;
+    cell.pl.image = [UIImage imageNamed:@"dianzan"];
     [[YKCommunicationManager sharedManager]cancleLikeCommunicationWithArticleId:model.articleId OnResponse:^(NSDictionary *dic) {
+        isReporting = NO;
         cell.pl.userInteractionEnabled = YES;
         //把当前userid加入点赞数组
         [model.fabulous removeObject:[YKUserManager sharedManager].user.userId];

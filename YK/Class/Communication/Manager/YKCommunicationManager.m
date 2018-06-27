@@ -165,7 +165,7 @@
     [YKHttpClient Method:@"POST" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         if ([dic[@"status"] intValue] == 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已关注" delay:1.5];
+        
             if (onResponse) {
                 onResponse(dic);
             }

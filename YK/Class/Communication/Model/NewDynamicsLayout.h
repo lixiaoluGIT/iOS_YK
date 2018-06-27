@@ -22,7 +22,7 @@
 #define kDynamicsThumbTopPadding 10
 
 
-#define kDynamicsLineSpacing 5
+#define kDynamicsLineSpacing 8
 
 typedef void(^ClickUserBlock)(NSString * userID);
 typedef void(^ClickUrlBlock)(NSString * url);

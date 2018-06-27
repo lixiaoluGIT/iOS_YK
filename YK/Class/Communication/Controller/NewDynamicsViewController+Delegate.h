@@ -13,5 +13,4 @@
 
 @interface NewDynamicsViewController (Delegate)<UITableViewDataSource,UITableViewDelegate,NewDynamicsCellDelegate,UITextFieldDelegate>
 
-
 @end

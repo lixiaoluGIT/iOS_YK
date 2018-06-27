@@ -58,6 +58,7 @@
 - (void)setTotalH:(CGFloat)totalH{
     _totalH = _headH.constant+_btnH.constant+10;
 }
+
 - (IBAction)btnClick:(id)sender {
     UIButton * button = (UIButton *)sender;
     switch (button.tag) {

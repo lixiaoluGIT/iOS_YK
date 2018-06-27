@@ -234,9 +234,7 @@ NSInteger timeCount;
 - (void)leftAction{
     if (self.isFromThirdLogin) {
         [[YKUserManager sharedManager]exitLoginWithPhone:@"" VetifyCode:@"" OnResponse:^(NSDictionary *dic) {
-          
-            
-            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+          YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
             [self presentViewController:login animated:YES completion:^{
                 [self.navigationController popViewControllerAnimated:YES];
             }];

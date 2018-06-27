@@ -41,7 +41,7 @@
 @end
 
 @interface NewDynamicsTableViewCell : UITableViewCell<JRMenuDelegate>
-
+- (void)reSetUI;
 @property (nonatomic,assign)BOOL isShowInProductDetail;//在商品详情页
 @property (nonatomic,assign)BOOL isShowOnComments;//在所有评论界面
 
@@ -58,6 +58,8 @@
 @property(nonatomic,strong)UIButton * spreadBtn;
 @property(nonatomic,strong)UILabel * dateLabel;
 @property(nonatomic,strong)UIImageView * pl;
+@property(nonatomic,strong)UIView *plLabel;
+//@property(nonatomic,strong)UIButton *pl;
 @property(nonatomic,strong)YYLabel * plNum;
 @property(nonatomic,strong)UIImageView * dz;
 @property(nonatomic,strong)YYLabel * dzNum;
@@ -72,6 +74,7 @@
 @property(nonatomic,strong)UIView * Line2;
 @property(nonatomic,strong)UILabel *bigL;
 @property(nonatomic,strong)UIImageView *guanzhuImage;
+@property(nonatomic,assign)BOOL isReporting;
 
 @property(nonatomic,strong)JRMenuView * jrMenuView;
 
@@ -80,6 +83,7 @@
 @end
 
 @protocol NewDynamicsCellDelegate <NSObject>
+
 /**
  点击了用户头像或名称
 
