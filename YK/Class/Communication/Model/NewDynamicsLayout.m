@@ -110,8 +110,8 @@
                                 }
                             }];
     
-    NSInteger lineCount = 3;
-    YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(SCREENWIDTH - 48, _model.isOpening ? CGFLOAT_MAX : 10 * lineCount + kDynamicsLineSpacing * (lineCount - 1))];
+    NSInteger lineCount = 4;
+    YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(SCREENWIDTH - 48, _model.isOpening ? CGFLOAT_MAX : 14 * lineCount + kDynamicsLineSpacing * (lineCount - 1))];
     
     container.truncationType = YYTextTruncationTypeEnd;
     

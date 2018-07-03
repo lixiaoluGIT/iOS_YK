@@ -9,6 +9,8 @@
 #import "YKLinkWebVC.h"
 #import "YKMainVC.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "YKToBeVIPVC.h"
+#import "YKLoginVC.h"
 
 @protocol JSObjectDelegate <JSExport>
 -(void)callme:(NSString *)string;
@@ -144,7 +146,7 @@
     //通过block形式关联JavaScript中的函数
     __weak typeof(self) weakSelf = self;
     
-    self.context[@"deliverValue"] = ^(NSString *message) {
+    self.context[@"GoToPayPage"] = ^(NSString *message) {
         
         __strong typeof(self) strongSelf = weakSelf;
         
@@ -159,7 +161,61 @@
         });
         };
 }
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    NSString *requestString = [[[request URL] absoluteString]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    if ([requestString containsString:@"next:"]){
+        NSLog(@"=====================");
+        if ([Token length] == 0) {
+            YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+            
+            [self presentViewController:nav animated:YES completion:^{
+                
+            }];
+            return YES;
+        }
+        YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+        
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
+        
+        
+    };
+              
+    NSLog(@"requestString : %@",requestString);
 
+
+    NSArray *components = [requestString componentsSeparatedByString:@"|"];
+    NSLog(@"=components=====%@",components);
+
+
+    NSString *str1 = [components objectAtIndex:0];
+    NSLog(@"str1:::%@",str1);
+
+
+    NSArray *array2 = [str1 componentsSeparatedByString:@"/"];
+    NSLog(@"array2:====%@",array2);
+
+
+    NSInteger coun = array2.count;
+    NSString *method = array2[coun-1];
+    NSLog(@"method:===%@",method);
+
+    if ([method isEqualToString:@"active.html"])
+    {
+        NSLog(@"h5点击事件1");
+        
+   
+    }else if ([method isEqualToString:@"InviteBtn2"]){
+   
+        NSLog(@"h5点击事件2");
+    }
+        return YES;
+}
 #pragma mark - JSExport Methods
 -(void)callme:(NSString *)string
 {
@@ -173,15 +229,6 @@
     [shareCallBack callWithArguments:nil];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    
-//    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    //NSLog(@"requestString : %@",requestString);
-   
-        return YES;
-    
-    
-}
 -(void)webView:(UIWebView*)webView DidFailLoadWithError:(NSError*)error{
     _indicatorView.hidden = YES;
 }

@@ -65,7 +65,7 @@
         _HeaderH = frame.size.height;
         _SegmentStyle = CBSegmentStyleSlider;
         _titleColor = mainColor;
-        _titleSelectedColor = YKRedColor;
+        _titleSelectedColor = [UIColor whiteColor];
         _titleFont = 14;
         [self setContentSize:CGSizeMake(WIDHT, 0)];
 //        self.backgroundColor = [UIColor redColor];
@@ -154,7 +154,7 @@
         }
        
         btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-        btn.frame =  CGRectMake(totalWidth,8, btnW, _HeaderH-16);
+        btn.frame =  CGRectMake(totalWidth,10, btnW, _HeaderH-20);
         btn.contentMode = UIViewContentModeCenter;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.tag = i;
@@ -162,11 +162,14 @@
         [btn setTitleColor:_titleColor forState:UIControlStateNormal];
         [btn setTitleColor:_titleSelectedColor forState:UIControlStateSelected];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:_titleFont]];
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = 4;
         
 //        if (style == CBSegmentStyleZoom) {
-            [btn setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-            btn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+        [btn setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        btn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+//        btn.backgroundColor = mainColor;
 //            btn.layer.borderWidth = 1;
         
 //        }
@@ -180,11 +183,11 @@
                 self.slider.cb_Width = titleWidth;
                 self.slider.cb_CenterX = btn.cb_CenterX;
                 self.selectedBtn.transform = CGAffineTransformMakeScale(1,1);
-//                self.selectedBtn.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+                self.selectedBtn.backgroundColor = mainColor;
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }else if (_SegmentStyle == CBSegmentStyleZoom) {
                 self.selectedBtn.transform = CGAffineTransformMakeScale(1,1);
-//                self.selectedBtn.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+                self.selectedBtn.backgroundColor = mainColor;
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }
         }
@@ -239,7 +242,7 @@
                 self.selectedBtn.transform = CGAffineTransformIdentity;
                 
                 btn.transform = CGAffineTransformMakeScale(1, 1);
-//                btn.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+                btn.backgroundColor = mainColor;
                 [btn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
                 
                 self.selectedBtn.backgroundColor = [UIColor whiteColor];

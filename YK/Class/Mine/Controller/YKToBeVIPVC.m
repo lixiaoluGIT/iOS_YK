@@ -26,6 +26,7 @@
 @property (nonatomic,strong)YKSelectPayView *payView;
 @property (nonatomic,assign) payMethod payMethod;
 @property (nonatomic,assign) payType payType;
+@property (nonatomic,assign) NSInteger newUserType;
 
 @property (weak, nonatomic) IBOutlet UIButton *agreeImage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleGap;
@@ -40,8 +41,12 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap5;
 @property (weak, nonatomic) IBOutlet UIView *buttomView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomH;
 @property (weak, nonatomic) IBOutlet UILabel *yuanJia;
 @property (weak, nonatomic) IBOutlet UILabel *liJIan;
+@property (weak, nonatomic) IBOutlet UILabel *znegyi;
+@property (weak, nonatomic) IBOutlet UILabel *zengday;
+
 @property (weak, nonatomic) IBOutlet UILabel *yaJin;
 @property (weak, nonatomic) IBOutlet UILabel *total;
 
@@ -65,6 +70,23 @@
 @property (weak, nonatomic) IBOutlet UILabel *nianka;
 @property (weak, nonatomic) IBOutlet UILabel *niankaPrice;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *ljLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *yj;
+
+@property (nonatomic,strong)UIButton *Button1;
+@property (weak, nonatomic) IBOutlet UIButton *btn4;
+@property (weak, nonatomic) IBOutlet UIButton *btn5;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ljW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zengW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zengGap;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *yjGap;
+@property (weak, nonatomic) IBOutlet UIImageView *xianshiImage;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *xianshiImageGap;
+
 @end
 
 @implementation YKToBeVIPVC
@@ -85,8 +107,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    
-    
     self.navigationController.navigationBar.hidden = YES;
     
     //新用户并且分享过享受立减(0未分享过,1分享过)
@@ -94,6 +114,8 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
+        _ljLabel.hidden = YES;
+        _liJIan.hidden = YES;
         _inviteCodeTextField.hidden = NO;
         _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
@@ -118,16 +140,21 @@
         //新用户并且未分享过,可以分享
         if ([[YKUserManager sharedManager].user.effective intValue] == 4
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            _shareBtn.hidden = NO;
+//            _shareBtn.hidden = NO;
 //            _inviteCodeTextField.hidden = NO;
         }else {//不是新用户,分享按钮永不显示
             _shareBtn.hidden = YES;
+            _ljLabel.hidden = NO;
+            _liJIan.hidden = NO;
             if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
                 _inviteCodeTextField.hidden = NO;
             }
 //            _inviteCodeTextField.hidden = YES;
         }
         
+        //会员用户
+        _ljLabel.hidden = YES;
+        _liJIan.hidden = YES;
         _liJIan.text = @"立减不可用";
         _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
         
@@ -153,7 +180,7 @@
     if ([[YKUserManager sharedManager].user.effective intValue] == 4
         && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
         if (_payType==1||_payType==2||_payType==3) {
-            _shareBtn.hidden = NO;
+//            _shareBtn.hidden = NO;
             _inviteCodeTextField.hidden = NO;
         }else {
             _shareBtn.hidden = YES;
@@ -166,6 +193,8 @@
         _shareBtn.hidden = YES;
         _inviteCodeTextField.hidden = YES;
     }
+    
+    [self resetUI];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:self.view.window];
@@ -192,6 +221,8 @@
             _shareBtn.hidden = YES;
             _inviteCodeTextField.hidden = NO;
             _liJIan.text = @"-¥150";
+            _ljLabel.hidden = NO;
+            _liJIan.hidden = NO;
             if (_payType == MONTH_CARD) {
                 _carPrice.text = @"月卡价";
                 _yuanJia.text = @"¥299";
@@ -212,9 +243,11 @@
             }
         }else {
             //新用户并且未分享过,可以分享
+            _ljLabel.hidden = NO;
+            _liJIan.hidden = NO;
             if ([[YKUserManager sharedManager].user.effective intValue] == 4
                 && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-                _shareBtn.hidden = NO;
+//                _shareBtn.hidden = NO;
                 _inviteCodeTextField.hidden = NO;
                 
             }else {//不是新用户,分享按钮永不显示
@@ -225,6 +258,9 @@
                 
             }
             
+            //会员用户
+            _ljLabel.hidden = YES;
+            _liJIan.hidden = YES;
             _liJIan.text = @"立减不可用";
             _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
             
@@ -248,8 +284,6 @@
             }
         }
     }];
-    
-    
 }
 
 - (void)viewDidLoad{
@@ -285,6 +319,9 @@
     }
     self.payType = 4;//给个非0,1,2,3
     _buttomView.hidden = YES;
+    _newUserType = 1;
+    _btn4.selected = YES;
+    self.Button1 = _btn4;
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"阅读并同意充值说明和押金说明"];
     
@@ -295,6 +332,10 @@
     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial" size:12.0] range:NSMakeRange(0, 5)]; //设置字体字号和字体类别
     
     _xieyi.attributedText = str;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(share)];
+    [_liJIan setUserInteractionEnabled:YES];
+    [_liJIan addGestureRecognizer:tap];
 
 }
 - (BOOL)isLowerLetter:(NSString *)str
@@ -430,10 +471,14 @@
     
     if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
         _buttomView.hidden = NO;
-        _shareBtn.hidden = NO;
+//        _shareBtn.hidden = NO;
+        _yaJin.hidden = NO;
+        _yj.hidden = NO;
         
     }else {//押金有效(只续费)
-        _buttomView.hidden = YES;
+        _yaJin.hidden = YES;
+        _yj.hidden = YES;
+        _buttomView.hidden = NO;
         _shareBtn.hidden = YES;
         _inviteCodeTextField.hidden = YES;
     }
@@ -505,6 +550,8 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
       
         _shareBtn.hidden = YES;
+        _ljLabel.hidden = NO;
+        _liJIan.hidden = NO;
         _inviteCodeTextField.hidden = NO;
         _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
@@ -527,9 +574,11 @@
         }
     }else {
         //新用户并且未分享过,可以分享
+        _ljLabel.hidden = NO;
+        _liJIan.hidden = NO;
         if ([[YKUserManager sharedManager].user.effective intValue] == 4
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            _shareBtn.hidden = NO;
+//            _shareBtn.hidden = NO;
             _inviteCodeTextField.hidden = NO;
             
         }else {//不是新用户,分享按钮永不显示
@@ -540,6 +589,9 @@
          
         }
         
+        //会员用户
+        _ljLabel.hidden = YES;
+        _liJIan.hidden = YES;
         _liJIan.text = @"立减不可用";
         _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
         
@@ -562,7 +614,153 @@
             _total.text = @"¥3187";
         }
     }
+    
+    //resetUI
+    [UIView animateWithDuration:0.3 animations:^{
+         [self resetUI];
+    }];
 }
+
+- (void)resetUI{
+    //如果押金有效
+    
+    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
+      
+        _yaJin.hidden = NO;
+        _yj.hidden = NO;
+        
+    }else {//押金有效(只续费)
+        _yaJin.hidden = YES;
+        _yj.hidden = YES;
+    }
+    
+    //首次续费
+    //（新用户||体验卡）&月卡(显示选择框)
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4) && _payType == MONTH_CARD) {
+        //显示选择框
+        _btn4.hidden = NO;
+        _btn5.hidden = NO;
+        _ljW.constant = 44;
+        _zengW.constant = 44;
+        _znegyi.hidden = NO;
+        _zengday.hidden = NO;
+        _xianshiImage.hidden = NO;
+        _yjGap.constant = 60;
+         _buttomH.constant = 230;
+        _liJIan.hidden = NO;
+        _ljLabel.hidden = NO;
+        
+        //未分享过
+        if ([[YKUserManager sharedManager].user.isShare intValue] == 0) {
+            _liJIan.text = @"分享立减¥150 >";
+        }else {
+            _liJIan.text = @"-¥150";
+            [_liJIan setUserInteractionEnabled:NO];
+        }
+    }
+    
+    //（新用户||体验卡）& !月卡(无选择框)
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4) && _payType != MONTH_CARD) {
+        //只显示立减
+        _btn4.hidden = YES;
+        _btn5.hidden = YES;
+        _ljW.constant = 20;
+        _zengW.constant = 20;
+        _yjGap.constant = 20;
+        _btn5.hidden = YES;
+        _znegyi.hidden = YES;
+        _xianshiImage.hidden = YES;
+        _zengday.hidden = YES;
+        _buttomH.constant = 190;
+        _liJIan.hidden = NO;
+        _ljLabel.hidden = NO;
+        
+        //未分享过
+        if ([[YKUserManager sharedManager].user.isShare intValue] == 0) {
+            _liJIan.text = @"分享立减¥150 >";
+        }else {
+            _liJIan.text = @"-¥150";
+            [_liJIan setUserInteractionEnabled:NO];
+        }
+    }
+    
+    //老用户续费
+    if (([[YKUserManager sharedManager].user.effective intValue] != 4 && [[YKUserManager sharedManager].user.cardType intValue] != 4&& [[YKUserManager sharedManager].user.cardType intValue] != 0)){
+        
+        if (_payType == MONTH_CARD) {//月卡
+            //显示买一赠一
+            _btn4.hidden = YES;
+            _btn5.hidden = YES;
+            _ljLabel.hidden = YES;
+            _liJIan.hidden = YES;
+            _btn5.hidden = YES;
+            _znegyi.hidden = NO;
+            _xianshiImage.hidden = NO;
+            _xianshiImageGap.constant = -24;
+            _zengday.hidden = NO;
+            _ljW.constant = 20;
+            _zengW.constant = 20;
+            _zengGap.constant = -24;
+            _yjGap.constant = 12;
+            _buttomH.constant = 180;
+        }else {//不是月卡
+            //不显示买一赠一
+            _btn4.hidden = YES;
+            _btn5.hidden = YES;
+            _ljLabel.hidden = YES;
+            _liJIan.hidden = YES;
+            _znegyi.hidden = YES;
+            _xianshiImage.hidden = YES;
+            _zengday.hidden = YES;
+            _ljW.constant = 20;
+            _zengW.constant = 20;
+            _zengGap.constant = -24;
+            _yjGap.constant = -24;
+            _buttomH.constant = 150;
+        }
+        
+    }
+
+    
+}
+- (IBAction)newUserSelect:(id)sender {
+    
+    UIButton * button = (UIButton *)sender;
+    
+    if (self.Button1 != button) {
+        self.Button1.selected = NO;
+        button.selected = YES;
+    }
+    self.Button1 = button;
+    
+  
+    switch (button.tag) {
+        case 104:
+            _newUserType = 1;
+            _btn4.selected = self.Button1.selected;
+            _btn5.selected = !self.Button1.selected;
+            break;
+        case 105:
+            _newUserType = 2;
+            _btn4.selected = !self.Button1.selected;
+            _btn5.selected = self.Button1.selected;
+            
+            break;
+        default:
+            
+            break;
+    }
+    
+    if (_newUserType == 2) {//买一赠一
+        _total.text = [NSString stringWithFormat:@"¥498"];
+    }
+    if (_newUserType == 1) {//立减
+         _total.text = [NSString stringWithFormat:@"¥348"];
+    }
+    
+    
+}
+
 
 - (void)reSetBtnUI:(UIButton *)btn{
     if (btn.tag == 1001 || btn.tag == 101) {//月卡
@@ -701,111 +899,6 @@
     
 }
 
-- (UIViewController *)getCurrentVC
-{
-    UIViewController *result = nil;
-    
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    if (window.windowLevel != UIWindowLevelNormal)
-    {
-        NSArray *windows = [[UIApplication sharedApplication] windows];
-        for(UIWindow * tmpWin in windows)
-        {
-            if (tmpWin.windowLevel == UIWindowLevelNormal)
-            {
-                window = tmpWin;
-                break;
-            }
-        }
-    }
-    if ([window subviews].count>0) {
-        UIView *frontView = [[window subviews] objectAtIndex:0];
-        id nextResponder = [frontView nextResponder];
-        
-        if ([nextResponder isKindOfClass:[UIViewController class]]){
-            result = nextResponder;
-        }
-        else{
-            result = window.rootViewController;
-        }
-    }
-    else{
-        result = window.rootViewController;
-    }
-    if ([result isKindOfClass:[UITabBarController class]]) {
-        result = [((UITabBarController*)result) selectedViewController];
-    }
-    if ([result isKindOfClass:[UINavigationController class]]) {
-        result = [((UINavigationController*)result) visibleViewController];
-    }
-    
-    return result;
-}
--(void)textFieldDidBeginEditing:(UITextField *)sender
-{
-    if ([sender isEqual:_inviteCodeTextField])
-    {
-        //move the main view, so that the keyboard does not hide it.
-        if  (self.view.frame.origin.y >= 0)
-        {
-//            [selfr setViewMovedUp:YES];
-        }
-    }
-}
-
-//method to move the view up/down whenever the keyboard is shown/dismissed
--(void)setViewMovedUp:(BOOL)movedUp
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5]; // if you want to slide up the view
-    
-    CGRect rect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= 110;
-        rect.size.height += 110;
-    }
-    else
-    {
-        // revert back to the normal state.
-        rect.origin.y += 110;
-        rect.size.height -= 110;
-    }
-    self.view.frame = rect;
-    
-    [UIView commitAnimations];
-}
-
-- (void)keyboardWillShow:(NSNotification *)notif
-{
-    //keyboard will be shown now. depending for which textfield is active, move up or move down the view appropriately
-    
-    if ([_inviteCodeTextField isFirstResponder] && self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (![_inviteCodeTextField isFirstResponder])
-    {
-        [self setViewMovedUp:NO];
-    }
-}
-
-- (void)keyboardWillDis:(NSNotification *)notif{
-    [self setViewMovedUp:NO];
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [_inviteCodeTextField resignFirstResponder];
-//    [self setViewMovedUp:NO];
-}
 
 
 

@@ -198,6 +198,11 @@
 #define WXCallBack_Url @"/pay/callback"
 //支付
 #define AliPay_Url  @"/pay/payment"
+//带押金
+#define AliPayYj_Url  @"/pay/depositPayment"
+//不带押金
+#define AliPayNoYj_Url  @"/pay/nonDepositPayment"
+
 //申请退押金
 #define refundApply_Url @"/pay/refundApply"
 //退押金

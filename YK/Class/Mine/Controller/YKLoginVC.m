@@ -86,6 +86,7 @@ NSInteger timeNum;
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    self.navigationController.navigationBar.hidden = YES;
     //视频播放
     [self.player play];
     if ( [Token length] > 0) {

@@ -23,6 +23,8 @@
     
     _hhh.constant = 84*WIDHT/414-10;
     _www.constant = 90*WIDHT/414-10;
+    _title.layer.masksToBounds = YES;
+    _title.layer.cornerRadius = 4;
 //    self.backgroundColor = [UIColor yellowColor];
 //    self.image.backgroundColor = [UIColor greenColor];
 //    self.title.backgroundColor =[UIColor blueColor];

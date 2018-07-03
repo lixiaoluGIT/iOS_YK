@@ -99,14 +99,13 @@
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         validityStatus = [dic[@"depositEffective"] integerValue];//押金:0>未交,不是VIP,1>有效,2>退还中,3>无效
         depositStatus = [dic[@"effective"] integerValue];//1>使用中,2>已过期,3>无押金,4>未开通
-        cardType = [dic[@"cardType"] integerValue];//会员卡类型 0季卡 1月卡 2年卡
+        cardType = [dic[@"cardType"] integerValue];//会员卡类型 1季卡 2月卡 3年卡 4体验卡 5助力卡
         effectiveDay = [dic[@"validity"] integerValue];//会员卡剩余天数
         
         couponVoList = [NSArray arrayWithArray:dic[@"couponVoList"]];
         _couponIdList = [self getcouponIdList:couponVoList];
          [self setUI];
     }];
-   
 }
 
 - (NSMutableArray *)getcouponIdList:(NSArray *)array{
@@ -149,6 +148,7 @@
     }];
     UILabel *leftLabel = [[UILabel alloc]init];
     leftLabel.text = @"20天";//剩余多少天
+   
     leftLabel.font = PingFangSC_Semibold(20);
     leftLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:leftLabel];
@@ -178,6 +178,9 @@
     
     if (depositStatus == 1) {//使用中
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
+        if (cardType==4) {
+            leftLabel.text = [NSString stringWithFormat:@"体验卡剩余%ld天",(long)effectiveDay];
+        }
         //判断卡类型
         if (cardType==2) {//季卡
             image.image = [UIImage imageNamed:@"shiyongzhong"];
@@ -206,6 +209,9 @@
     if (depositStatus == 2 || depositStatus == 3) {//无押金或已过期
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         image.image = [UIImage imageNamed:@"zanting-2"];
+        if (cardType==4) {
+            leftLabel.text = [NSString stringWithFormat:@"体验卡剩余%ld天",(long)effectiveDay];
+        }
 //        //判断卡类型
 //        if (cardType==3) {//季卡
 //            des.text = @"年卡剩余有效期";

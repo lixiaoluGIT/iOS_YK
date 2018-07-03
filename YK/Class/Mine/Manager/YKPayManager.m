@@ -35,7 +35,16 @@
     //判断支付来源
     NSString *str;
     if ([[self appName] isEqualToString:@"衣库"]) {//主包支付
-        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@""];
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] == 1) {//押金有效，单独充会员卡
+            str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPayNoYj_Url,@(payMethod),@(paytype),@""];
+        }else {//押金无效，会员卡押金一起交
+            str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPayYj_Url,@(payMethod),@(paytype),@""];
+        }
+        
+        if (paytype==0) {//单独充押金
+              str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPayNoYj_Url,@(payMethod),@(paytype),@""];
+        }
+        
     }
     if ([[self appName] isEqualToString:@"女神的衣柜"]) {//主包支付{//马甲包支付
         str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"1"];
