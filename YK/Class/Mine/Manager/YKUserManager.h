@@ -108,4 +108,7 @@
 
 //上传学校信息
 - (void)postColledgeInforColledgeId:(NSString *)colledgeId OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//app启动上传idfa
+- (void)uploadIdfa:(NSString *)idfa OnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

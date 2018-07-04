@@ -8,6 +8,7 @@
 
 #import "YKUserManager.h"
 #import <RongIMKit/RongIMKit.h>
+#import <AdSupport/AdSupport.h>
 
 @interface YKUserManager()<DXAlertViewDelegate,TencentSessionDelegate>
 {
@@ -851,7 +852,30 @@
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"上传失败" delay:1.5];
         }
       
+    }];
+}
+
+//上传设备idfa
+- (void)uploadIdfa:(NSString *)idfa OnResponse:(void (^)(NSDictionary *dic))onResponse{
+
+    NSString *url = [NSString stringWithFormat:@"%@?idfa=%@",upLoadIdfa_Url,[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]];
+    
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+       
+        //后台返回是否属于哪个渠道
+        //如果不属于
+//        return ;
         
+        //如果属于，返回渠道及渠道的回调地址，再调渠道的回调地址，通知渠道，该用户属于你们的流量
+        NSString *url = [NSString stringWithFormat:@"%@?idfa=%@",dic[@"url"],[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]];
+        
+        [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+            
+            //后台返回是否属于哪个渠道
+            
+            //如果属于，返回渠道的回调地址，再调渠道的回调地址，通知渠道，该用户属于你们的流量
+            
+        }];
     }];
 }
 

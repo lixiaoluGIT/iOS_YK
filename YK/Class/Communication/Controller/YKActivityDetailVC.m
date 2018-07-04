@@ -310,13 +310,7 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     [[YKCommunicationManager sharedManager]cancleConcernWithUserId:model.userId OnResponse:^(NSDictionary *dic) {
-        //        if ([[YKCommunicationManager sharedManager].concernArray containsObject:model.userId]) {
-        //            for (NSString *i in [YKCommunicationManager sharedManager].concernArray) {
-        //                if ([i isEqual:model.userId]) {
-        //                    [[YKCommunicationManager sharedManager].concernArray removeObject:i];
-        //                }
-        //            }
-        //        }
+  
         __block  NSMutableArray *cArray = [NSMutableArray array];
         [[YKCommunicationManager sharedManager].concernArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSString *s = [NSString stringWithFormat:@"%@",obj];
@@ -362,19 +356,5 @@
         //    detail.productId = @"438";
         [self.navigationController pushViewController:detail animated:YES];
     }
-    
-    
-    
-    //    WS(weakSelf);
-    //    [UIAlertView bk_showAlertViewWithTitle:nil message:@"是否确定删除朋友圈" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //        if (buttonIndex == 1) {
-    //            NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
-    ////            [SVProgressHUD showSuccessWithStatus:@"删除成功!"];
-    //            [weakSelf.dynamicsTable beginUpdates];
-    //            [weakSelf.layoutsArr removeObjectAtIndex:indexPath.row];
-    //            [weakSelf.dynamicsTable deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    //            [weakSelf.dynamicsTable endUpdates];
-    //        }
-    //    }];
 }
 @end

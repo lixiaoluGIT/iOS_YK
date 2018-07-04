@@ -254,6 +254,12 @@
 //获取大学列表
 #define getColedge_Url @"/school/schoolList"
 
+//CPA
+//上传idfa
+#define upLoadIdfa_Url @""
+
+//通知渠道
+
 /*----------------------------Public--------------------------------*/
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"

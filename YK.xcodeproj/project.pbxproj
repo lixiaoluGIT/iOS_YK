@@ -10,6 +10,7 @@
 		00027F9C20D36C74005BF684 /* YKSPDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00027F9B20D36C74005BF684 /* YKSPDetailVC.m */; };
 		00027FDC20D91185005BF684 /* brand.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00027FDB20D91185005BF684 /* brand.plist */; };
 		002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 002423AF20DCF64E00AB493D /* register_guide_video.mp4 */; };
+		002D6F4E20ECC64F00C70FFE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD51FEB92B1003BB993 /* AdSupport.framework */; };
 		002DF71720DBA6AA00560C60 /* tt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 002DF71620DBA6A900560C60 /* tt.jpg */; };
 		002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE59E20B5344300554AB3 /* YKProductCommentVC.m */; };
 		002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE5A120B54CA200554AB3 /* YKEditSizeVC.m */; };
@@ -1688,6 +1689,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002D6F4E20ECC64F00C70FFE /* AdSupport.framework in Frameworks */,
 				C5929232204E4169002ED8DB /* AVFoundation.framework in Frameworks */,
 				C50CF1B7200DD8E600A717DF /* CoreGraphics.framework in Frameworks */,
 				0034CF142071D9D2002015AE /* Foundation.framework in Frameworks */,

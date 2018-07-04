@@ -114,8 +114,8 @@
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
-        _ljLabel.hidden = YES;
-        _liJIan.hidden = YES;
+//        _ljLabel.hidden = YES;
+//        _liJIan.hidden = YES;
         _inviteCodeTextField.hidden = NO;
         _liJIan.text = @"-¥150";
         if (_payType == MONTH_CARD) {
@@ -245,8 +245,8 @@
         }
         
         //会员用户
-        _ljLabel.hidden = YES;
-        _liJIan.hidden = YES;
+//        _ljLabel.hidden = YES;
+//        _liJIan.hidden = YES;
         _liJIan.text = @"立减不可用";
         _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
         
@@ -320,7 +320,7 @@
     [[YKUserManager sharedManager]shareSuccessOnResponse:^(NSDictionary *dic) {
         
         //新用户并且分享过享受立减(0未分享过,1分享过)
-        if ([[YKUserManager sharedManager].user.effective intValue] == 4
+        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5)
             && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
             
             _shareBtn.hidden = YES;
@@ -350,7 +350,7 @@
             //新用户并且未分享过,可以分享
             _ljLabel.hidden = NO;
             _liJIan.hidden = NO;
-            if ([[YKUserManager sharedManager].user.effective intValue] == 4
+            if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5)
                 && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
 //                _shareBtn.hidden = NO;
                 _inviteCodeTextField.hidden = NO;
@@ -391,7 +391,7 @@
     }];
     
     //新用户并且分享过享受立减(0未分享过,1分享过)
-    if ([[YKUserManager sharedManager].user.effective intValue] == 4
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5)
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
@@ -454,7 +454,7 @@
         //新用户并且未分享过,可以分享
         _ljLabel.hidden = NO;
         _liJIan.hidden = NO;
-        if ([[YKUserManager sharedManager].user.effective intValue] == 4
+        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5)
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
             //            _shareBtn.hidden = NO;
             _inviteCodeTextField.hidden = NO;
@@ -961,6 +961,8 @@
     
     //（新用户||体验卡）& !月卡(无选择框)
     if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==5) && _payType != MONTH_CARD) {
+        
+         _newUserType = 1;//分享立减
         //只显示立减
         _btn4.hidden = YES;
         _btn5.hidden = YES;
