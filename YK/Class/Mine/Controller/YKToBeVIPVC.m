@@ -110,7 +110,7 @@
     self.navigationController.navigationBar.hidden = YES;
     
     //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4)
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue] == 5)
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
@@ -138,7 +138,7 @@
         }
     }else {
         //新用户并且未分享过,可以分享
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4)
+        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue] ==5)
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
 //            _shareBtn.hidden = NO;
 //            _inviteCodeTextField.hidden = NO;
@@ -178,7 +178,7 @@
         }
     }
     //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4)
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5)
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
         
         _shareBtn.hidden = YES;
@@ -785,7 +785,7 @@
     //TODO:添加固定算法
     
     //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4)
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5)
         && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
       
         _shareBtn.hidden = YES;
@@ -848,7 +848,7 @@
         //新用户并且未分享过,可以分享
         _ljLabel.hidden = NO;
         _liJIan.hidden = NO;
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4)
+        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5)
             && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
 //            _shareBtn.hidden = NO;
             _inviteCodeTextField.hidden = NO;
@@ -936,7 +936,7 @@
     
     //首次续费
     //（新用户||体验卡）&月卡(显示选择框)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4) && _payType == MONTH_CARD) {
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==5) && _payType == MONTH_CARD) {
         //显示选择框
         _btn4.hidden = NO;
         _btn5.hidden = NO;
@@ -960,7 +960,7 @@
     }
     
     //（新用户||体验卡）& !月卡(无选择框)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4) && _payType != MONTH_CARD) {
+    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==5) && _payType != MONTH_CARD) {
         //只显示立减
         _btn4.hidden = YES;
         _btn5.hidden = YES;
@@ -985,7 +985,7 @@
     }
     
     //老用户续费
-    if (([[YKUserManager sharedManager].user.effective intValue] != 4 && [[YKUserManager sharedManager].user.cardType intValue] != 4&& [[YKUserManager sharedManager].user.cardType intValue] != 0)){
+    if (([[YKUserManager sharedManager].user.effective intValue] != 4 && [[YKUserManager sharedManager].user.cardType intValue] != 4&&[[YKUserManager sharedManager].user.cardType intValue] != 5&& [[YKUserManager sharedManager].user.cardType intValue] != 0)){
         
         if (_payType == MONTH_CARD) {//月卡
             _newUserType = 2;//买一赠一

@@ -848,7 +848,7 @@
                 onResponse(dic);
             }
         }else{
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.5];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"上传失败" delay:1.5];
         }
       
         
