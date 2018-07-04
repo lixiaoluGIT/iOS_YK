@@ -27,32 +27,34 @@
     return [[NSString alloc] initWithData:dataDecoded encoding:NSUTF8StringEncoding];
 }
 
-- (void)payWithPayMethod:(NSInteger )payMethod payType:(NSInteger )paytype
-              OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)payWithPayMethod:(NSInteger )payMethod
+                 payType:(NSInteger )paytype
+                activity:(NSInteger)activity
+              OnResponse:(void (^)(NSDictionary *dic))onResponse;{
   
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
     //判断支付来源
     NSString *str;
     if ([[self appName] isEqualToString:@"衣库"]) {//主包支付
-        if ([[YKUserManager sharedManager].user.depositEffective intValue] == 1) {//押金有效，单独充会员卡
-            str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPayNoYj_Url,@(payMethod),@(paytype),@""];
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] == 1) {//押金有效，不交押金
+            str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@",AliPay_Url,@(payMethod),@(paytype),2,@(activity)];
         }else {//押金无效，会员卡押金一起交
-            str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPayYj_Url,@(payMethod),@(paytype),@""];
+            str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@",AliPay_Url,@(payMethod),@(paytype),1,@(activity)];
         }
         
         if (paytype==0) {//单独充押金
-              str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPayNoYj_Url,@(payMethod),@(paytype),@""];
+              str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@",AliPay_Url,@(payMethod),@(paytype),1,@(activity)];
         }
         
     }
-    if ([[self appName] isEqualToString:@"女神的衣柜"]) {//主包支付{//马甲包支付
-        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"1"];
-    }
-    
-    if ([[self appName] isEqualToString:@"共享衣橱"]) {//主包支付{//马甲包支付
-        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"2"];
-    }
+//    if ([[self appName] isEqualToString:@"女神的衣柜"]) {//主包支付{//马甲包支付
+//        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"1"];
+//    }
+//
+//    if ([[self appName] isEqualToString:@"共享衣橱"]) {//主包支付{//马甲包支付
+//        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"2"];
+//    }
     
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];

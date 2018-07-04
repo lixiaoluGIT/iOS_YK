@@ -129,7 +129,7 @@
     _payView.frame = CGRectMake(0, HEIGHT, WIDHT, 236);
     _payView.selectPayBlock = ^(payMethod payMethod){
         
-        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:0 OnResponse:^(NSDictionary *dic) {
+        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:0 activity:0 OnResponse:^(NSDictionary *dic) {
             
         }];
     };
