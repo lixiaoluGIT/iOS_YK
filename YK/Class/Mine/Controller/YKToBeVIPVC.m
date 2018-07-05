@@ -193,10 +193,20 @@
                 _yuanJia.text = @"¥299";
                 _yaJin.text = @"¥199";
                 _total.text = @"¥348";
+                if (_newUserType==1) {
+                    _total.text = @"¥348";
+                }else {
+                    _total.text = @"¥498";
+                }
             }else {//押金有效(只续费)
                 _yuanJia.text = @"¥299";
                 _yaJin.text = @"¥0";
                 _total.text = @"¥299";
+                if (_newUserType==1) {
+                    _total.text = @"¥149";
+                }else {
+                    _total.text = @"¥299";
+                }
             }
         }
         if (_payType == SEASON_CARD) {
@@ -258,10 +268,20 @@
                 _yuanJia.text = @"¥299";
                 _yaJin.text = @"¥199";
                 _total.text = @"¥498";
+                if (_newUserType==1) {
+                    _total.text = @"¥348";
+                }else {
+                    _total.text = @"¥498";
+                }
             }else {//押金有效(只续费)
                 _yuanJia.text = @"¥299";
                 _yaJin.text = @"¥199";
                 _total.text = @"¥299";
+                if (_newUserType==1) {
+                    _total.text = @"¥149";
+                }else {
+                    _total.text = @"¥299";
+                }
             }
         }
         if (_payType == SEASON_CARD) {
@@ -333,6 +353,11 @@
                 _yuanJia.text = @"¥299";
                 _yaJin.text = @"¥199";
                 _total.text = @"¥348";
+                if (_newUserType==1) {
+                    _total.text = @"¥348";
+                }else {
+                    _total.text = @"¥498";
+                }
             }
             if (_payType == SEASON_CARD) {
                 _carPrice.text = @"季卡价";
@@ -481,10 +506,20 @@
                 _yuanJia.text = @"¥299";
                 _yaJin.text = @"¥199";
                 _total.text = @"¥498";
+                if (_newUserType==1) {
+                    _total.text = @"¥348";
+                }else {
+                    _total.text = @"¥498";
+                }
             }else {//押金有效(只续费)
                 _yuanJia.text = @"¥299";
                 _yaJin.text = @"¥199";
                 _total.text = @"¥299";
+                if (_newUserType==1) {
+                    _total.text = @"¥149";
+                }else {
+                    _total.text = @"¥299";
+                }
             }
         }
         if (_payType == SEASON_CARD) {
