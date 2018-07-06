@@ -41,9 +41,18 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+//    [[YKUserManager sharedManager]uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
+//        
+//    }];
     //马甲包去掉了引导页（防止被拒）
     
     if (![UD boolForKey:@"notFirst"]) {
+        
+        //第一次安装的时候上传idfa
+        //idfa
+//        [[YKUserManager sharedManager]uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
+//
+//        }];
     
         _window.rootViewController = [[WelcomeViewController alloc] init];
         

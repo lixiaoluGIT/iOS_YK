@@ -74,6 +74,7 @@
         
         if ([dic[@"status"] integerValue] == 200) {
             
+          
             //登录成功数据处理
 //            [self saveCurrentTime];//保存登录时间z
             //上传pushID
@@ -81,6 +82,11 @@
 //            [self saveCurrentToken:dic[@"data"][@"token"] ];//保存token
             [self saveCurrentToken:dic[@"data"]];//保存token
             [self upLoadPushID];//上传推送ID
+            
+            //上传idfa
+            [self uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
+                
+            }];
             
             //链接融云
 //            [self RongCloudConnect:dic];
@@ -134,6 +140,8 @@
         
         if ([dic[@"status"] integerValue] == 200) {
             
+           
+            
             //登录成功数据处理
             //            [self saveCurrentTime];//保存登录时间z
             //上传pushID
@@ -141,6 +149,11 @@
             [self saveCurrentToken:dic[@"data"]];//保存token
             
             [self upLoadPushID];//上传推送ID
+            
+            //上传idfa
+            [self uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
+                
+            }];
             
             //链接融云
             //            [self RongCloudConnect:dic];
@@ -324,11 +337,18 @@
         
         if ([dic[@"status"] integerValue] == 200) {
             
+           
+            
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"绑定成功" delay:1.2];
             
             if (status==0) {
                 [self saveCurrentToken:dic[@"data"][@"token"]];
             }
+            
+            //上传idfa
+            [self uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
+                
+            }];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
@@ -664,6 +684,7 @@
     [YKHttpClient Method:@"POST" URLString:TencentLogin_Url paramers:dic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
+            
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"qq授权成功" delay:1.8];
 
             [self saveCurrentToken:dict[@"data"][@"token"]];
@@ -857,26 +878,28 @@
 
 //上传设备idfa
 - (void)uploadIdfa:(NSString *)idfa OnResponse:(void (^)(NSDictionary *dic))onResponse{
-
-    NSString *url = [NSString stringWithFormat:@"%@?idfa=%@",upLoadIdfa_Url,[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]];
+//
     
+    //聚告测试 2D7507F6-2CDD-47E0-92A7-D3DF811E67B1
+    //省广畅思测试 3ABD0FF1-3A5C-4E75-B9E5-1AA3DE2C8DD0
+    //木桐测试 305E26E8-9767-45D1-AEDF-DC947FA1D5A2
+    //正式数据
+    NSString *ia = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    NSString *url = [NSString stringWithFormat:@"%@?IDFA=%@",upLoadIdfa_Url,ia];
+
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
-       
-        //后台返回是否属于哪个渠道
-        //如果不属于
-//        return ;
-        
-        //如果属于，返回渠道及渠道的回调地址，再调渠道的回调地址，通知渠道，该用户属于你们的流量
-        NSString *url = [NSString stringWithFormat:@"%@?idfa=%@",dic[@"url"],[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]];
-        
-        [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
-            
-            //后台返回是否属于哪个渠道
-            
-            //如果属于，返回渠道的回调地址，再调渠道的回调地址，通知渠道，该用户属于你们的流量
-            
-        }];
+
+
+
     }];
+    
+//    NSString *url = [NSString stringWithFormat:@"%@?pcid=%@&idfa=%@&callback=%@",upLoadIdfa_Url,@"YJHT",[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString],@"http://api.hutong18.cn/active"];
+//
+//    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+//
+//
+//
+//    }];
 }
 
 @end

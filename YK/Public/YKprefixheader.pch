@@ -256,7 +256,8 @@
 
 //CPA
 //上传idfa
-#define upLoadIdfa_Url @""
+#define upLoadIdfa_Url @"/channel/addIDFA"
+//#define upLoadIdfa_Url @"/channel/cpaNotice"
 
 //通知渠道
 

@@ -56,6 +56,7 @@
 @property (nonatomic,strong)NSMutableArray *secondLevelCategoryList;
 @property (nonatomic,strong)NSMutableArray *thirdLevelCategoryList;
 @property (nonatomic,strong)NSMutableArray *productList;
+@property (nonatomic,strong)UIButton *upBtn;
 
 
 @end
@@ -111,10 +112,41 @@
         }];
   
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
     [self getData];
+    [self initUpBtn];
     
 }
 
+- (void)initUpBtn{
+    self.upBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-200, 35, 35);
+    [self.upBtn setBackgroundImage:[UIImage imageNamed:@"置顶图标"] forState:UIControlStateNormal];
+    [self.view addSubview:self.upBtn];
+    [self.view bringSubviewToFront:self.upBtn];
+    [self.upBtn addTarget:self action:@selector(up) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+- (void)up{
+    [self.collectionView scrollToTopAnimated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+        if (scrollView == self.collectionView&&HEIGHT!=814)
+        {
+            if (self.collectionView.contentOffset.y>360) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.upBtn.frame = CGRectMake(WIDHT-60, HEIGHT-200, 35, 35);
+                }];
+            }else {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-183, 0, 0);
+                }];
+            }
+        }
+  
+}
 - (void)getData{
     [[YKSearchManager sharedManager]getSelectClothPageDataWithNum:1 Size:2 OnResponse:^(NSDictionary *dic) {
         [self.collectionView.mj_header endRefreshing];
