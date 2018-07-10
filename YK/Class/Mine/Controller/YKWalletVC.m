@@ -252,9 +252,9 @@
         deposit.validityStatus = validityStatus;
         [self.navigationController pushViewController:deposit animated:YES];
     };
-    if (depositStatus != 4) {//未开通
+//    if (depositStatus != 4) {//未开通
         [self.view addSubview:buttom];
-    }
+//    }
     
     //背景条
     UILabel *label = [[UILabel alloc]init];

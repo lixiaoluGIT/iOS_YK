@@ -227,7 +227,7 @@
     }//展示广告
     YKProductAdCell *cell = (YKProductAdCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"YKProductAdCell" forIndexPath:indexPath];
     [cell.imageC sd_setImageWithURL:[NSURL URLWithString:dic[@"clothingImgUrl"]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-    [cell.imageC setContentMode:UIViewContentModeScaleAspectFill];
+    [cell.imageC setContentMode:UIViewContentModeScaleAspectFit];
     
     return cell;
 }

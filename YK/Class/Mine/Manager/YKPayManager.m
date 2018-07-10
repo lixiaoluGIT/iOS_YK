@@ -34,6 +34,9 @@
   
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
+    if (paytype==2||paytype==3) {
+        activity = 1;
+    }
     //判断支付来源
     NSString *str;
     if ([[self appName] isEqualToString:@"衣库"]) {//主包支付
