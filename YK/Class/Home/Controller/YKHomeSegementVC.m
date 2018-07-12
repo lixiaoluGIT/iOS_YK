@@ -55,6 +55,8 @@
     [super viewDidLoad];
     
     
+    [NC addObserver:self selector:@selector(navigationBarHidden) name:@"NavigationHidden" object:nil];
+    [NC addObserver:self selector:@selector(navigationBarNotHidden:) name:@"NavigationNotHidden" object:nil];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
     releaseButton.frame = CGRectMake(0, 25, 20, 20);
@@ -308,6 +310,15 @@
         sizeRect.origin.x = button.frame.origin.x;
 //        line.frame = CGRectMake(button.frame.origin.x, ((button.frame.size.width)/2 - (size.width)/2), size.width, .5);
     }];
+}
+
+- (void)navigationBarHidden{
+    NSLog(@"hidden");
+    
+}
+
+- (void)navigationBarNotHidden{
+    NSLog(@"nothidden");
 }
 
 @end

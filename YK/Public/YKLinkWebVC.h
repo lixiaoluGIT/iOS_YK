@@ -12,4 +12,5 @@
 
 @property (nonatomic,strong)NSString *url;
 @property (nonatomic,assign)NSInteger status;
+@property (nonatomic,assign)BOOL needShare;
 @end

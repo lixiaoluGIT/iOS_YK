@@ -359,6 +359,7 @@
         _banner1.toDetailBlock = ^(NSInteger index){
             NSDictionary *dic;
             YKLinkWebVC *web =[YKLinkWebVC new];
+            web.needShare = YES;
             
                 dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
                 web.url = dic[@"specialLink"];
@@ -467,6 +468,7 @@
         _banner2.isSearch = 2;
         _banner2.toDetailBlock = ^(NSInteger index){
             YKLinkWebVC *web = [[YKLinkWebVC alloc]init];
+            web.needShare = YES;
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:weakSelf.hotWears[index]];
             web.url = dic[@"hotWearUrl"];
             dic = [NSDictionary dictionaryWithDictionary:weakSelf.hotWears[index]];
@@ -526,6 +528,7 @@
 {
     NSDictionary *dic;
      YKLinkWebVC *web =[YKLinkWebVC new];
+    web.needShare = YES;
     if (cycleScrollView == _banner1) {//专题活动
         dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
         web.url = dic[@"specialLink"];
@@ -585,6 +588,7 @@
 - (void)YKBaseScrollViewImageClick:(NSInteger)index{
     //跳转到网页
     YKLinkWebVC *web =[YKLinkWebVC new];
+    web.needShare = YES;
     web.url = self.imageClickUrls[index-1];
     web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];
@@ -609,7 +613,7 @@
 //                        NSLog(@"向下");
 //
 //
-////                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+//                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
 //        }
 //
 //    }

@@ -52,9 +52,16 @@
 
 /*----------------------------色号--------------------------------*/
 //
+//#ifdef release//开发环境
 #define mainColor [UIColor colorWithHexString:@"1a1a1a"]
 #define backColo [UIColor colorWithHexString:@"dddddd"]
 #define YKRedColor [UIColor colorWithHexString:@"EE2D2D"]
+//#else //生产环境
+//#define mainColor [UIColor colorWithHexString:@"fe7310"]
+//#define backColo [UIColor colorWithHexString:@"f4f4f4"]
+//#define YKRedColor [UIColor colorWithHexString:@"000000"]
+//#endif
+
 
 /*----------------------------字体--------------------------------*/
 #define PingFangTC_Light(fontSize)  [UIFont fontWithName:@"PingFangTC-Light" size:(fontSize)];

@@ -11,6 +11,9 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "YKToBeVIPVC.h"
 #import "YKLoginVC.h"
+#import <UMShare/UMShare.h>
+#import <Foundation/Foundation.h>
+#import <UShareUI/UShareUI.h>
 
 @protocol JSObjectDelegate <JSExport>
 -(void)callme:(NSString *)string;
@@ -30,6 +33,8 @@
 // 返回按钮
 @property (nonatomic, strong) UIBarButtonItem *backItem;
 @property (nonatomic, strong) UIBarButtonItem *flexSpacer;
+@property (nonatomic, strong) NSString *shareUrl;
+@property (nonatomic,strong)NSString *shareTitle;
 
 @end
 
@@ -73,6 +78,26 @@
 
     self.navigationItem.titleView = title;
     [self creatWeb];
+    
+    if (self.needShare) {
+        UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
+        btn1.frame = CGRectMake(0, 0, 20, 44);
+        if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+            btn1.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+        }
+        btn1.adjustsImageWhenHighlighted = NO;
+        //    btn.backgroundColor = [UIColor redColor];
+        [btn1 setImage:[UIImage imageNamed:@"fenxiang"] forState:UIControlStateNormal];
+        [btn1 addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:btn1];
+        UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        negativeSpacer.width = 0;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+        if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+            negativeSpacer.width = -18;
+        }
+        
+        self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+    }
 }
 
 - (void)leftAction{
@@ -124,7 +149,7 @@
     //获取网页title
     
     NSString *htmlTitle = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-
+    self.shareTitle = htmlTitle;
     if ([htmlTitle length] == 0) {
         title.text = @"衣库";
     }else {
@@ -164,7 +189,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *requestString = [[[request URL] absoluteString]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    
+    self.shareUrl = requestString;
     if ([requestString containsString:@"next:"]){
         NSLog(@"=====================");
         if ([Token length] == 0) {
@@ -240,6 +265,57 @@
 //    self.navigationController.navigationBarHidden = YES;
 }
 
-
+- (void)share{
+    //    [[YKShareManager sharedManager]YKShareProductClothingId:@""];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession)]]; // 设置需要分享的平台
+    
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        NSLog(@"回调");
+        NSLog(@"%ld",(long)platformType);
+        NSLog(@"%@",userInfo);
+        
+        
+        //创建分享消息对象
+        UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+        
+        //创建网页内容对象
+        UIImage *image = [UIImage imageNamed:@"LOGO-1"];
+        
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.shareTitle descr:@"我正在穿衣库家的衣服，小仙女们快到碗里来！" thumImage:image];
+        //设置网页地址
+       
+        shareObject.webpageUrl = self.shareUrl;
+        
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject;
+        
+        //调用分享接口
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+            NSLog(@"调用分享接口");
+            
+            if (error) {
+                NSLog(@"调用失败%@",error);
+                UMSocialLogInfo(@"************Share fail with error %@*********",error);
+            }else{
+                NSLog(@"调用成功");
+                //弹出分享成功的提示,告诉后台,成功后getuser
+                
+                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                    UMSocialShareResponse *resp = data;
+                    //分享结果消息
+                    UMSocialLogInfo(@"response message is %@",resp.message);
+                    //第三方原始返回的数据
+                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                    
+                }else{
+                    UMSocialLogInfo(@"response data is %@",data);
+                }
+            }
+            //        [self alertWithError:error];
+        }];
+    }];
+}
 
 @end

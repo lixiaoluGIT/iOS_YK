@@ -155,8 +155,20 @@
         // ZXMainScrollViewWidth < self.frame.size.width    这样的 说明是 图片有间距 卡片 翻页效果那种布局
         self.mainScrollView.scrollEnabled = ZXMainScrollViewWidth < self.frame.size.width ?YES : NO;
     }
-    
     [self createPageControl];
+    
+   
+    if (self.data.count==0) {
+        return;
+    }else {
+    self.centerIV.image = [UIImage imageNamed:self.data[0]];
+
+    self.leftIV.image = [UIImage imageNamed:self.data[2]];
+ 
+    self.rightIV.image = [UIImage imageNamed:self.data[1]];
+   
+    _pageControl.currentPage = 0;
+    }
 }
 
 - (void)setInfoByCurrentImageIndex:(NSUInteger)currentImageIndex {
@@ -296,10 +308,10 @@
 }
 
 -(void)setPlaceHolderImage:(UIImage *)placeHolderImage {
-    _placeHolderImage = placeHolderImage;
-    self.centerIV.image = placeHolderImage;
-    self.leftIV.image = placeHolderImage;
-    self.rightIV.image = placeHolderImage;
+//    _placeHolderImage = placeHolderImage;
+//    self.centerIV.image = placeHolderImage;
+//    self.leftIV.image = placeHolderImage;
+//    self.rightIV.image = placeHolderImage;
 }
 
 -(void)setShowPageControl:(BOOL)showPageControl{
