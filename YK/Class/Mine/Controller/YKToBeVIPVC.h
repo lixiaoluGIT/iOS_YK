@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YKToBeVIPVC : UIViewController
-
+@property (nonatomic,assign)NSInteger CouponNum;
+@property (nonatomic,assign)int CouponId;
 @end

@@ -14,7 +14,7 @@
 #import "YKToBeVIPVC.h"
 #import "YKCouponView.h"
 
-@interface YKWalletVC ()
+@interface YKWalletVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger validityStatus;//押金状态
     NSInteger depositStatus;//会员卡状态
@@ -26,8 +26,12 @@
     YKNoDataView *NoDataView;
     YKCouponView *co;
     YKCouponView *co1;
+    YKWalletButtom *buttom;
+    
+    BOOL ishad;
 }
 @property (nonatomic,strong)__block NSArray *couponIdList;
+@property (nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation YKWalletVC
@@ -38,6 +42,9 @@
     [self getData];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+//    [buttom removeFromSuperview];
+}
 - (NSArray *)couponVoList{
     
     if (!couponVoList) {
@@ -90,7 +97,10 @@
 //    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
 //    self.navigationItem.rightBarButtonItem = rightBarItem;
 //    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"ff6d6a"];
-    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-BarH-44-50) style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -102,9 +112,14 @@
         cardType = [dic[@"cardType"] integerValue];//会员卡类型 1季卡 2月卡 3年卡 4体验卡 5助力卡
         effectiveDay = [dic[@"validity"] integerValue];//会员卡剩余天数
         
-        couponVoList = [NSArray arrayWithArray:dic[@"couponVoList"]];
-        _couponIdList = [self getcouponIdList:couponVoList];
-         [self setUI];
+      
+        [[YKUserManager sharedManager]getWalletDetailPageOnResponse:^(NSDictionary *dic) {
+            couponVoList = [NSArray arrayWithArray:dic[@"data"]];
+//            _couponIdList = [self getcouponIdList:couponVoList];
+            [self.tableView reloadData];
+            [self setUI];
+        }];
+//         [self setUI];
     }];
 }
 
@@ -129,9 +144,16 @@
     WeakSelf(weakSelf)
     
     //会员卡状态
+    //header
+    UIView *header = [[UIView alloc]init];
+    header.frame =CGRectMake(0, 0, WIDHT, 320);
+    if (WIDHT==414) {
+        header.frame =CGRectMake(0, 0, WIDHT, 340);
+    }
+    
     UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shiyongzhong"]];
   
-    [self.view addSubview:image];
+    [header addSubview:image];
     CGFloat scale = image.frame.size.width/image.frame.size.height;
     image.frame = CGRectMake(20, 20, WIDHT-40, (WIDHT-40)/scale);
     
@@ -141,7 +163,7 @@
     des.text = @"";//剩余多少天
     des.font = PingFangSC_Regular(14);
     des.textColor = [UIColor whiteColor];
-    [self.view addSubview:des];
+    [header addSubview:des];
     [des mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(image.mas_bottom).offset(-81);
         make.right.equalTo(image.mas_right).offset(-20);
@@ -151,7 +173,7 @@
    
     leftLabel.font = PingFangSC_Semibold(20);
     leftLabel.textColor = [UIColor whiteColor];
-    [self.view addSubview:leftLabel];
+    [header addSubview:leftLabel];
     [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(des.mas_bottom).offset(6);
         make.right.equalTo(image.mas_right).offset(-20);
@@ -165,7 +187,7 @@
     btn.backgroundColor = YKRedColor;
     btn.layer.cornerRadius = 4;
     btn.titleLabel.font = PingFangSC_Semibold(12);
-    [self.view addSubview:btn];
+    [header addSubview:btn];
     [btn addTarget:self action:@selector(Chongzhi) forControlEvents:UIControlEventTouchUpInside];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -179,7 +201,7 @@
     if (depositStatus == 1) {//使用中
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         if (cardType==4) {
-            leftLabel.text = [NSString stringWithFormat:@"体验卡剩余%ld天",(long)effectiveDay];
+            leftLabel.text = [NSString stringWithFormat:@"会员卡剩余%ld天",(long)effectiveDay];
         }
         //判断卡类型
         if (cardType==2) {//季卡
@@ -210,7 +232,7 @@
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         image.image = [UIImage imageNamed:@"zanting-2"];
         if (cardType==4) {
-            leftLabel.text = [NSString stringWithFormat:@"体验卡剩余%ld天",(long)effectiveDay];
+            leftLabel.text = [NSString stringWithFormat:@"会员卡剩余%ld天",(long)effectiveDay];
         }
 //        //判断卡类型
 //        if (cardType==3) {//季卡
@@ -238,10 +260,9 @@
         [NoDataView removeFromSuperview];
     }
    //押金状态
-    YKWalletButtom *buttom = [[NSBundle mainBundle] loadNibNamed:@"YKWalletButtom" owner:self options:nil][0];
+   buttom = [[NSBundle mainBundle] loadNibNamed:@"YKWalletButtom" owner:self options:nil][0];
     buttom.selectionStyle = UITableViewCellSelectionStyleNone;
-    buttom.frame = CGRectMake(0, HEIGHT-([[UIApplication sharedApplication] statusBarFrame].size.height+44)*2, WIDHT, BarH);
-    
+    buttom.frame = CGRectMake(0, HEIGHT-([[UIApplication sharedApplication] statusBarFrame].size.height+44), WIDHT, BarH);
     if (validityStatus==0 || validityStatus==3) {//未交押金或押金无效
         [buttom setTit];
     }
@@ -253,42 +274,56 @@
         [self.navigationController pushViewController:deposit animated:YES];
     };
 //    if (depositStatus != 4) {//未开通
-        [self.view addSubview:buttom];
+//    if (!ishad) {
+         [self.view addSubview:buttom];
+//    }
+    
 //    }
     
     //背景条
     UILabel *label = [[UILabel alloc]init];
     label.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-    [self.view addSubview:label];
+    [header addSubview:label];
     label.frame = CGRectMake(0, image.frame.size.height+image.frame.origin.y+20, WIDHT, 10);
     
+    self.tableView.tableHeaderView = header;
     //优惠券
     //有无优惠券
-    [co removeFromSuperview];
-    [co1 removeFromSuperview];
-    co = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][0];
-    [self.view addSubview:co];
-    co.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 200);
-    
-    
+//    [co removeFromSuperview];
+//    [co1 removeFromSuperview];
+//    co = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][0];
+//    [self.view addSubview:co];
+//    co.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 200);
+//
+//
     co1 = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][1];
-    [self.view addSubview:co1];
-    co1.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 200);
+    [header addSubview:co1];
+    co1.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 180);
+    
+   YKCouponView *co2 = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][2];
+    [header addSubview:co2];
+    co2.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 180  );
+    [header addSubview:co1];
     if (couponVoList.count>0) {
-//        [co1 removeFromSuperview];
-        co.hidden = NO;
         co1.hidden = YES;
-        co.toUse = ^(void){
-            [[YKUserManager sharedManager]useCouponId:weakSelf.couponIdList[0]  OnResponse:^(NSDictionary *dic) {
-                [weakSelf getData];//刷新数据
-            }];
-        };
-        [co resetNum:couponVoList.count];
+        co2.hidden = NO;
+//        [co1 removeFromSuperview];
+        
+//        co1.hidden = YES;
+//        co.toUse = ^(void){
+//            [[YKUserManager sharedManager]useCouponId:weakSelf.couponIdList[0]  OnResponse:^(NSDictionary *dic) {
+//                [weakSelf getData];//刷新数据
+//            }];
+//        };
+//        [co resetNum:couponVoList.count];
     }else {
-//        [co removeFromSuperview];
-        co.hidden = YES;
         co1.hidden = NO;
+        co2.hidden = YES;
+//        [co removeFromSuperview];
+//        co.hidden = YES;
+//        co1.hidden = NO;
     }
+//    [self.tableView reloadData];
 }
 
 - (void)Chongzhi{
@@ -302,4 +337,50 @@
             }];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return couponVoList.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 78;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YKCouponView *cell = (YKCouponView *)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell.couponStatus==2) {
+        [smartHUD alertText:self.view alert:@"已使用" delay:1.5];
+        return;
+    }
+    if (cell.couponStatus==3) {
+        [smartHUD alertText:self.view alert:@"已过期" delay:1.5];
+        return;
+    }
+    if (cell.couponType==1) {//加时卡
+        [[YKUserManager sharedManager]useCouponId:[[NSNumber numberWithInteger:cell.couponID]stringValue] OnResponse:^(NSDictionary *dic) {
+            [self getData];//刷新数据
+        }];
+        return;
+    }
+    if (cell.couponType==2) {//优惠劵
+//        [buttom removeFromSuperview];
+        YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+        [YKUserManager sharedManager].couponNum = cell.couponNum;
+        [YKUserManager sharedManager].couponID = cell.couponID;
+        [YKUserManager sharedManager].isFromCoupon = YES;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
+      }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YKCouponView *co = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][0];
+    [co initWithDic:couponVoList[indexPath.row]];
+    return co;
+}
 @end

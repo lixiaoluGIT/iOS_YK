@@ -14,6 +14,9 @@
 @property (nonatomic,strong)YKUser *user;
 
 + (YKUserManager *)sharedManager;
+@property (nonatomic,assign)NSInteger couponNum;//价钱
+@property (nonatomic,assign)int couponID;//id
+@property (nonatomic,assign)BOOL isFromCoupon;
 
 //获取验证码
 - (void)getVetifyCodeWithPhone:(NSString *)phone
@@ -111,4 +114,7 @@
 
 //app启动上传idfa
 - (void)uploadIdfa:(NSString *)idfa OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//获取优惠券
+- (void)getWalletDetailPageOnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

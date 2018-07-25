@@ -53,6 +53,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [MobClick event:@"__cust_event_5"];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"确认衣袋";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];

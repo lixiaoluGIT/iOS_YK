@@ -84,7 +84,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
+    [MobClick event:@"__cust_event_2"];
+    
     self.title = @"朋友圈";
     [self setup];
     _CommunicationType = SELECTED;

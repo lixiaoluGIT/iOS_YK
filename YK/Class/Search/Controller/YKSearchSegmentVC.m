@@ -61,7 +61,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [MobClick event:@"__cust_event_3"];
+  
     UIImage *titleImages = [UIImage imageNamed:@"title"];
     UIImageView *newTitleView = [[UIImageView alloc] initWithImage:titleImages];
     self.navigationItem.titleView = newTitleView;

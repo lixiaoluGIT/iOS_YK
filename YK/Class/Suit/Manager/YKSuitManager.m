@@ -31,6 +31,8 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
 
+        [MobClick event:@"__add_cart" attributes:@{@"item":@"衣库服饰",@"amount":@"200"}];
+        
         if ([dic[@"status"] integerValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.2];
             if (onResponse) {

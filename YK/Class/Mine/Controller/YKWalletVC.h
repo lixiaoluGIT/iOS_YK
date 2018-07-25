@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKWalletVC : YKBaseTableVC
+@interface YKWalletVC : YKBaseVC
 
 @end

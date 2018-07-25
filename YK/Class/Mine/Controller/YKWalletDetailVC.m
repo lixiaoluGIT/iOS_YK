@@ -71,7 +71,6 @@
     return 1;
 }
 
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
         YKWalletDetailCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKWalletDetailCell" owner:self options:nil][0];

@@ -32,6 +32,7 @@ typedef enum : NSInteger {
 - (void)payWithPayMethod:(NSInteger )payMethod
                  payType:(NSInteger )paytype
                 activity:(NSInteger)activity
+               channelId:(int)couponId
               OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 + (YKPayManager *)sharedManager;

@@ -407,8 +407,10 @@
     if ([app_Name isEqualToString:@"女神的衣柜"]) {
         channelId = @"1";
     }else
-    if ([app_Name isEqualToString:@"共享衣橱"]) {
+    if ([app_Name isEqualToString:@"衣橱共享"]) {
         channelId = @"2";
+    }if ([app_Name isEqualToString:@"女神新衣"]) {
+        channelId = @"4";
     }else {
         channelId = @"0";
     }
@@ -722,7 +724,7 @@
         if ([dict[@"status"] intValue] == 400) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"不是会员或会员卡过期" delay:1.8];
         }else {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"优惠券使用成功" delay:1.8];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"使用成功" delay:1.8];
             if (onResponse) {
                 onResponse(nil);
             }
@@ -902,4 +904,19 @@
 //    }];
 }
 
+- (void)getWalletDetailPageOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [YKHttpClient Method:@"GET" apiName:CouponList_Url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] integerValue] == 200) {
+            
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }
+    }];
+}
 @end

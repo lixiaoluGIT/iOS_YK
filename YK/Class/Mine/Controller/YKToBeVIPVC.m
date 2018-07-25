@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import "HW3DBannerView.h"
-
+#import "YKCouponListVC.h"
 
 #define KScreenWidth self.view.frame.size.width
 #define KScreenHeight self.view.frame.size.height
@@ -33,7 +33,7 @@
 @property (nonatomic,strong)YKSelectPayView *payView;
 @property (nonatomic,assign) payMethod payMethod;
 @property (nonatomic,assign) payType payType;
-@property (nonatomic,assign) NSInteger newUserType;//参与活动类型 1 分享立减 2买一赠一
+@property (nonatomic,assign) NSInteger newUserType;//参与活动类型 1 分享立减 2买一赠一 0无活动
 
 @property (weak, nonatomic) IBOutlet UIButton *agreeImage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleGap;
@@ -50,7 +50,7 @@
 @property (weak, nonatomic) IBOutlet UIView *buttomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomH;
 @property (weak, nonatomic) IBOutlet UILabel *yuanJia;
-@property (weak, nonatomic) IBOutlet UILabel *liJIan;
+@property (weak, nonatomic) IBOutlet UILabel *liJIan;//价钱
 @property (weak, nonatomic) IBOutlet UILabel *znegyi;
 @property (weak, nonatomic) IBOutlet UILabel *zengday;
 
@@ -63,22 +63,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *xieyi;
 
-//
-@property (weak, nonatomic) IBOutlet UIButton *Lbtn1;
-@property (weak, nonatomic) IBOutlet UIButton *Lbtn2;
-@property (weak, nonatomic) IBOutlet UIButton *Lbtn3;
-@property (weak, nonatomic) IBOutlet UILabel *yueka;
-
-@property (weak, nonatomic) IBOutlet UILabel *yuekaPrice;
-
-@property (weak, nonatomic) IBOutlet UILabel *jika;
-@property (weak, nonatomic) IBOutlet UILabel *jikaPrice;
-
-@property (weak, nonatomic) IBOutlet UILabel *nianka;
-@property (weak, nonatomic) IBOutlet UILabel *niankaPrice;
-
-
-@property (weak, nonatomic) IBOutlet UILabel *ljLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ljLabel;//文字
 
 @property (weak, nonatomic) IBOutlet UILabel *yj;
 
@@ -115,470 +100,93 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     self.navigationController.navigationBar.hidden = YES;
-    
-    //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue] == 5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-        && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
-        
-        _shareBtn.hidden = YES;
-//        _ljLabel.hidden = YES;
-//        _liJIan.hidden = YES;
-        _inviteCodeTextField.hidden = NO;
-        _liJIan.text = @"-¥150";
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-            _yuanJia.text = @"¥299";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥348";
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            _yuanJia.text = @"¥807";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥856";
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-            _yuanJia.text = @"¥2988";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥3037";
-        }
-    }else {
-        //新用户并且未分享过,可以分享
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue] ==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-            && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-//            _shareBtn.hidden = NO;
-//            _inviteCodeTextField.hidden = NO;
-        }else {//不是新用户,分享按钮永不显示
-            _shareBtn.hidden = YES;
-            _ljLabel.hidden = NO;
-            _liJIan.hidden = NO;
-            if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
-                _inviteCodeTextField.hidden = NO;
-            }
-//            _inviteCodeTextField.hidden = YES;
-        }
-        
-        //会员用户
-        _ljLabel.hidden = YES;
-        _liJIan.hidden = YES;
-        _liJIan.text = @"立减不可用";
-        _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
-        
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-            _yuanJia.text = @"¥299";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥498";
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            _yuanJia.text = @"¥807";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥1006";
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-            _yuanJia.text = @"¥2988";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥3187";
-        }
+//    
+    if ([YKUserManager sharedManager].isFromCoupon == YES) {
+        _CouponId = [YKUserManager sharedManager].couponID;
+        _CouponNum = [YKUserManager sharedManager].couponNum;
+        _liJIan.text = [NSString stringWithFormat:@"-¥%ld",_CouponNum];
     }
-    //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-        && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
-        
-        _shareBtn.hidden = YES;
-        _ljLabel.hidden = NO;
-        _liJIan.hidden = NO;
-        _inviteCodeTextField.hidden = NO;
-        _liJIan.text = @"-¥150";
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-            
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥348";
-                if (_newUserType==1) {
-                    _total.text = @"¥348";
-                }else {
-                    _total.text = @"¥498";
-                }
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥299";
-                if (_newUserType==1) {
-                    _total.text = @"¥149";
-                }else {
-                    _total.text = @"¥299";
-                }
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            
-//            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥856";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥149";
-            }
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-            
-//            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3037";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥2838";
-            }
-        }
-    }else {
-        //新用户并且未分享过,可以分享
-        _ljLabel.hidden = NO;
-        _liJIan.hidden = NO;
-        if ([[YKUserManager sharedManager].user.effective intValue] == 4
-            && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            //            _shareBtn.hidden = NO;
-            _inviteCodeTextField.hidden = NO;
-            
-        }else {//不是新用户,分享按钮永不显示
-            _shareBtn.hidden = YES;
-            if ([[YKUserManager sharedManager].user.effective intValue] == 4){
-                _inviteCodeTextField.hidden = NO;
-            }
-            
-        }
-        
-        //会员用户
-//        _ljLabel.hidden = YES;
-//        _liJIan.hidden = YES;
-        _liJIan.text = @"立减不可用";
-        _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
-        
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-            
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥498";
-                if (_newUserType==1) {
-                    _total.text = @"¥348";
-                }else {
-                    _total.text = @"¥498";
-                }
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥299";
-                if (_newUserType==1) {
-                    _total.text = @"¥149";
-                }else {
-                    _total.text = @"¥299";
-                }
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            _yuanJia.text = @"¥807";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥1006";
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥1006";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥807";
-            }
-//            _newUserType = 2;
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-            
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3187";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥2988";
-            }
-//            _newUserType = 2;
-        }
-    }
-    
-    
-    [self resetUI];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification object:self.view.window];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDis:)
-                                                 name:UIKeyboardWillHideNotification object:self.view.window];
-    
+    [YKUserManager sharedManager].isFromCoupon = NO;
+ 
+    [self resetPrice];
+//    [self resetUI];
 }
-
+- (void)resetPrice{
+    if (_payType == MONTH_CARD) {
+        _carPrice.text = @"月卡价";
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
+            _yuanJia.text = @"¥299";
+            _yaJin.text = @"¥199";
+            NSInteger total = 498 - _CouponNum;
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+        }else {//押金有效(只续费)
+            _yuanJia.text = @"¥299";
+            _yaJin.text = @"¥0";
+            NSInteger total = 299 - _CouponNum;
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+            
+        }
+    }
+    if (_payType == SEASON_CARD) {
+        _carPrice.text = @"季卡价";
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
+            _yuanJia.text = @"¥807";
+            _yaJin.text = @"¥199";
+            NSInteger total = 1006 - _CouponNum;
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+        }else {//押金有效(只续费)
+            _yuanJia.text = @"¥807";
+            _yaJin.text = @"¥0";
+            NSInteger total = 807 - _CouponNum;
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+        }
+    }
+    if (_payType == YEAR_CARD) {
+        _carPrice.text = @"年卡价";
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
+            _yuanJia.text = @"¥2988";
+            _yaJin.text = @"¥199";
+            NSInteger total = 3187 - _CouponNum;
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+        }else {//押金有效(只续费)
+            _yuanJia.text = @"¥2988";
+            _yaJin.text = @"¥0";
+            NSInteger total = 2988 - _CouponNum;
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+        }
+    }
+    
+    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
+        _yaJin.hidden = NO;
+        _yj.hidden = NO;
+        
+    }else {//押金有效(只续费)
+        _yaJin.hidden = YES;
+        _yj.hidden = YES;
+    }
+}
 - (void)viewWillDisappear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
-    
-       [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)wechatShareSuccessNotification{
-    [[YKUserManager sharedManager]shareSuccessOnResponse:^(NSDictionary *dic) {
-        
-        //新用户并且分享过享受立减(0未分享过,1分享过)
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-            && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
-            
-            _shareBtn.hidden = YES;
-            _inviteCodeTextField.hidden = NO;
-            _liJIan.text = @"-¥150";
-            _ljLabel.hidden = NO;
-            _liJIan.hidden = NO;
-            if (_payType == MONTH_CARD) {
-                _carPrice.text = @"月卡价";
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥348";
-                if (_newUserType==1) {
-                    _total.text = @"¥348";
-                }else {
-                    _total.text = @"¥498";
-                }
-            }
-            if (_payType == SEASON_CARD) {
-                _carPrice.text = @"季卡价";
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥856";
-            }
-            if (_payType == YEAR_CARD) {
-                _carPrice.text = @"年卡价";
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3037";
-            }
-        }else {
-            //新用户并且未分享过,可以分享
-            _ljLabel.hidden = NO;
-            _liJIan.hidden = NO;
-            if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-                && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-//                _shareBtn.hidden = NO;
-                _inviteCodeTextField.hidden = NO;
-                
-            }else {//不是新用户,分享按钮永不显示
-                _shareBtn.hidden = YES;
-                if ([[YKUserManager sharedManager].user.effective intValue] == 4){
-                    _inviteCodeTextField.hidden = NO;
-                }
-                
-            }
-            
-            //会员用户
-            _ljLabel.hidden = YES;
-            _liJIan.hidden = YES;
-            _liJIan.text = @"立减不可用";
-            _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
-            
-            if (_payType == MONTH_CARD) {
-                _carPrice.text = @"月卡价";
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥498";
-            }
-            if (_payType == SEASON_CARD) {
-                _carPrice.text = @"季卡价";
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥1006";
-            }
-            if (_payType == YEAR_CARD) {
-                _carPrice.text = @"年卡价";
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3187";
-            }
-        }
-    }];
-    
-    //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-        && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
-        
-        _shareBtn.hidden = YES;
-        _ljLabel.hidden = NO;
-        _liJIan.hidden = NO;
-        _inviteCodeTextField.hidden = NO;
-        _liJIan.text = @"-¥150";
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-            
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥348";
-                if (_newUserType==1) {
-                    _total.text = @"¥348";
-                }else {
-                    _total.text = @"¥498";
-                }
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥299";
-                if (_newUserType==1) {
-                    _total.text = @"¥149";
-                }else {
-                    _total.text = @"¥299";
-                }
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            
-            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥856";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥149";
-            }
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-            
-            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3037";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥2838";
-            }
-        }
-    }else {
-        //新用户并且未分享过,可以分享
-        _ljLabel.hidden = NO;
-        _liJIan.hidden = NO;
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-            && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            //            _shareBtn.hidden = NO;
-            _inviteCodeTextField.hidden = NO;
-            
-        }else {//不是新用户,分享按钮永不显示
-            _shareBtn.hidden = YES;
-            if ([[YKUserManager sharedManager].user.effective intValue] == 4){
-                _inviteCodeTextField.hidden = NO;
-            }
-            
-        }
-        
-        //会员用户
-        _ljLabel.hidden = YES;
-        _liJIan.hidden = YES;
-        _liJIan.text = @"立减不可用";
-        _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
-        
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-            
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥498";
-                if (_newUserType==1) {
-                    _total.text = @"¥348";
-                }else {
-                    _total.text = @"¥498";
-                }
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥299";
-                if (_newUserType==1) {
-                    _total.text = @"¥149";
-                }else {
-                    _total.text = @"¥299";
-                }
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            _yuanJia.text = @"¥807";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥1006";
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥1006";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥807";
-            }
-//            _newUserType = 2;
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-            
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3187";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥2988";
-            }
-//            _newUserType = 2;
-        }
-    }
     
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    [MobClick event:@"__submit_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatShareSuccessNotification) name:@"wechatShareSuccessNotification" object:nil];
     
+    _buttomView.layer.cornerRadius = 10;
+    _buttomView.layer.masksToBounds = YES;
+//    _buttomView.layer.borderColor = mainColor.CGColor;
+//    _buttomView.layer.borderWidth = 1;
+    
     _shareBtn.hidden = YES;
-    _inviteCodeTextField.hidden = YES;
-    _inviteCodeTextField.delegate = self;
-    _inviteCodeTextField.keyboardType = UIKeyboardTypeDefault;
-    _inviteCodeTextField.returnKeyType = UIReturnKeyDone;
-    
-    [_inviteCodeTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 
-    
     [NC addObserver:self selector:@selector(alipayResultCurrent:) name:@"alipayres" object:nil];
     [NC addObserver:self selector:@selector(wxpayresultCurrent:) name:@"wxpaysuc" object:nil];
     if (WIDHT==320) {
@@ -597,10 +205,9 @@
         _titleGap.constant = 60;
     }
     self.payType = 4;//给个非0,1,2,3
-    _buttomView.hidden = YES;
-    _newUserType = 1;
-    _btn4.selected = YES;
-    self.Button1 = _btn4;
+    _buttomView.hidden = NO;
+
+  
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"阅读并同意充值说明和押金说明"];
     
@@ -617,320 +224,25 @@
     [_liJIan addGestureRecognizer:tap];
     
     WeakSelf(weakSelf)
-    _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, 100, WIDHT, 200) imageSpacing:10 imageWidth:WIDHT - 50];
+    _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, BarH+24, WIDHT, 200) imageSpacing:10 imageWidth:WIDHT - 50];
     _scrollView.initAlpha = 0.5; // 设置两边卡片的透明度
     _scrollView.imageRadius = 10; // 设置卡片圆角
-    _scrollView.imageHeightPoor = 10; // 设置中间卡片与两边卡片的高度差
+    _scrollView.imageHeightPoor = 20; // 设置中间卡片与两边卡片的高度差
     // 设置要加载的图片
-    self.scrollView.data = @[@"yueka",@"jika",@"nianka"];
+    self.scrollView.data = @[@"yueka1",@"jika1",@"nianka1"];
     _scrollView.placeHolderImage = [UIImage imageNamed:@"商品图"]; // 设置占位图片
     [self.view addSubview:self.scrollView];
     _scrollView.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
         NSLog(@"%ld",currentIndex);
         _payType = currentIndex+1;
-        
-        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-            weakSelf.buttomView.hidden = NO;
-            //        _shareBtn.hidden = NO;
-            weakSelf.yaJin.hidden = NO;
-            weakSelf.yj.hidden = NO;
-            
-        }else {//押金有效(只续费)
-            weakSelf.yaJin.hidden = YES;
-            weakSelf.yj.hidden = YES;
-            weakSelf.buttomView.hidden = NO;
-            weakSelf.shareBtn.hidden = YES;
-           
-        }
-        
-        
-        
-        
-        //TODO:添加固定算法
-        
-        //新用户并且分享过享受立减(0未分享过,1分享过)
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-            && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
-       
-            weakSelf.ljLabel.hidden = NO;
-            weakSelf.liJIan.hidden = NO;
-            weakSelf.liJIan.text = @"-¥150";
-            if (_payType == MONTH_CARD) {
-                weakSelf.carPrice.text = @"月卡价";
-                
-                if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                    weakSelf.yuanJia.text = @"¥299";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥348";
-                    if (_newUserType==1) {
-                        weakSelf.total.text = @"¥348";
-                    }else {
-                        weakSelf.total.text = @"¥498";
-                    }
-                }else {//押金有效(只续费)
-                    weakSelf.yuanJia.text = @"¥299";
-                    weakSelf.yaJin.text = @"¥0";
-                    weakSelf.total.text = @"¥299";
-                    if (_newUserType==1) {
-                        weakSelf.total.text = @"¥149";
-                    }else {
-                        weakSelf.total.text = @"¥299";
-                    }
-                }
-            }
-            if (_payType == SEASON_CARD) {
-                weakSelf.carPrice.text = @"季卡价";
-                
-                //            _newUserType = 2;
-                if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                    weakSelf.yuanJia.text = @"¥807";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥856";
-                }else {//押金有效(只续费)
-                    weakSelf.yuanJia.text = @"¥807";
-                    weakSelf.yaJin.text = @"¥0";
-                    weakSelf.total.text = @"¥657";
-                }
-            }
-            if (_payType == YEAR_CARD) {
-                weakSelf.carPrice.text = @"年卡价";
-                
-                //            _newUserType = 2;
-                if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                    weakSelf.yuanJia.text = @"¥2988";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥3037";
-                }else {//押金有效(只续费)
-                    weakSelf.yuanJia.text = @"¥2988";
-                    weakSelf.yaJin.text = @"¥0";
-                    weakSelf.total.text = @"¥2838";
-                }
-            }
-        }else {
-            //新用户并且未分享过,可以分享
-            weakSelf.ljLabel.hidden = NO;
-            weakSelf.liJIan.hidden = NO;
-            if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-                && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-                //            _shareBtn.hidden = NO;
-                
-                
-            }else {//不是新用户,分享按钮永不显示
-                weakSelf.shareBtn.hidden = YES;
-                if ([[YKUserManager sharedManager].user.effective intValue] == 4){
-                    weakSelf.inviteCodeTextField.hidden = NO;
-                }
-                
-            }
-            
-            //会员用户
-            weakSelf.ljLabel.hidden = YES;
-            weakSelf.liJIan.hidden = YES;
-            weakSelf.liJIan.text = @"立减不可用";
-            weakSelf.liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
-            
-            if (_payType == MONTH_CARD) {
-                weakSelf.carPrice.text = @"月卡价";
-                
-                if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                    
-                    weakSelf.yuanJia.text = @"¥299";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥498";
-                }else {//押金有效(只续费)
-                    weakSelf.yuanJia.text = @"¥299";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥299";
-                }
-            }
-            if (_payType == SEASON_CARD) {
-                weakSelf.carPrice.text = @"季卡价";
-                weakSelf.yuanJia.text = @"¥807";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥1006";
-                if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                    
-                    weakSelf.yuanJia.text = @"¥807";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥1006";
-                }else {//押金有效(只续费)
-                    weakSelf.yuanJia.text = @"¥807";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥807";
-                }
-                //            _newUserType = 2;
-            }
-            if (_payType == YEAR_CARD) {
-                weakSelf.carPrice.text = @"年卡价";
-                
-                if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                    
-                    weakSelf.yuanJia.text = @"¥2988";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥3187";
-                }else {//押金有效(只续费)
-                    weakSelf.yuanJia.text = @"¥2988";
-                    weakSelf.yaJin.text = @"¥199";
-                    weakSelf.total.text = @"¥2988";
-                }
-                //            _newUserType = 2;
-            }
-        }
-        
-        //resetUI
-        [UIView animateWithDuration:0.3 animations:^{
-            [weakSelf resetUI];
-        }];
+        [weakSelf resetPrice];
     };
     _payType = MONTH_CARD;
-    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-        weakSelf.buttomView.hidden = NO;
-        //        _shareBtn.hidden = NO;
-        weakSelf.yaJin.hidden = NO;
-        weakSelf.yj.hidden = NO;
-
-    }else {//押金有效(只续费)
-        weakSelf.yaJin.hidden = YES;
-        weakSelf.yj.hidden = YES;
-        weakSelf.buttomView.hidden = NO;
-        weakSelf.shareBtn.hidden = YES;
-
-    }
-
-
-
-
-    //TODO:添加固定算法
-
-    //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-        && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
-
-        weakSelf.ljLabel.hidden = NO;
-        weakSelf.liJIan.hidden = NO;
-        weakSelf.liJIan.text = @"-¥150";
-        if (_payType == MONTH_CARD) {
-            weakSelf.carPrice.text = @"月卡价";
-
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                weakSelf.yuanJia.text = @"¥299";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥348";
-                if (_newUserType==1) {
-                    weakSelf.total.text = @"¥348";
-                }else {
-                    weakSelf.total.text = @"¥498";
-                }
-            }else {//押金有效(只续费)
-                weakSelf.yuanJia.text = @"¥299";
-                weakSelf.yaJin.text = @"¥0";
-                weakSelf.total.text = @"¥299";
-                if (_newUserType==1) {
-                    weakSelf.total.text = @"¥149";
-                }else {
-                    weakSelf.total.text = @"¥299";
-                }
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            weakSelf.carPrice.text = @"季卡价";
-
-            //            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                weakSelf.yuanJia.text = @"¥807";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥856";
-            }else {//押金有效(只续费)
-                weakSelf.yuanJia.text = @"¥299";
-                weakSelf.yaJin.text = @"¥0";
-                weakSelf.total.text = @"¥149";
-            }
-        }
-        if (_payType == YEAR_CARD) {
-            weakSelf.carPrice.text = @"年卡价";
-
-            //            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                weakSelf.yuanJia.text = @"¥2988";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥3037";
-            }else {//押金有效(只续费)
-                weakSelf.yuanJia.text = @"¥2988";
-                weakSelf.yaJin.text = @"¥0";
-                weakSelf.total.text = @"¥2848";
-            }
-        }
-    }else {
-        //新用户并且未分享过,可以分享
-        weakSelf.ljLabel.hidden = NO;
-        weakSelf.liJIan.hidden = NO;
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-            && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            //            _shareBtn.hidden = NO;
-
-
-        }else {//不是新用户,分享按钮永不显示
-            weakSelf.shareBtn.hidden = YES;
-            if ([[YKUserManager sharedManager].user.effective intValue] == 4){
-                weakSelf.inviteCodeTextField.hidden = NO;
-            }
-
-        }
-
-        //会员用户
-        weakSelf.ljLabel.hidden = YES;
-        weakSelf.liJIan.hidden = YES;
-        weakSelf.liJIan.text = @"立减不可用";
-        weakSelf.liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
-
-        if (_payType == MONTH_CARD) {
-            weakSelf.carPrice.text = @"月卡价";
-
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-
-                weakSelf.yuanJia.text = @"¥299";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥498";
-            }else {//押金有效(只续费)
-                weakSelf.yuanJia.text = @"¥299";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥299";
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            weakSelf.carPrice.text = @"季卡价";
-            weakSelf.yuanJia.text = @"¥807";
-            weakSelf.yaJin.text = @"¥199";
-            weakSelf.total.text = @"¥1006";
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-
-                weakSelf.yuanJia.text = @"¥807";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥1006";
-            }else {//押金有效(只续费)
-                weakSelf.yuanJia.text = @"¥807";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥807";
-            }
-            //            _newUserType = 2;
-        }
-        if (_payType == YEAR_CARD) {
-            weakSelf.carPrice.text = @"年卡价";
-
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-
-                weakSelf.yuanJia.text = @"¥2988";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥3187";
-            }else {//押金有效(只续费)
-                weakSelf.yuanJia.text = @"¥2988";
-                weakSelf.yaJin.text = @"¥199";
-                weakSelf.total.text = @"¥2988";
-            }
-            //            _newUserType = 2;
-        }
-    }
-    [weakSelf resetUI];
+    self.CouponId = 0;
+    self.CouponNum = 0;
+    [self resetPrice];
+    
+//    [weakSelf resetUI];
 }
 
 - (BOOL)isLowerLetter:(NSString *)str
@@ -1008,13 +320,19 @@
     [self.view addSubview:_backView];
     _payView = [[NSBundle mainBundle] loadNibNamed:@"YKSelectPayView" owner:self options:nil][0];
     _payView.frame = CGRectMake(0, HEIGHT, WIDHT, 236);
-    _payView.selectPayBlock = ^(payMethod payMethod){
+    
+    //新老用户无活动
+    _newUserType = 0;
+    
         
-
-       
-        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType OnResponse:^(NSDictionary *dic) {
+    _payView.selectPayBlock = ^(payMethod payMethod){
+    
+        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:weakSelf.CouponId OnResponse:^(NSDictionary *dic) {
             
         }];
+//        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:_CouponId OnResponse:^(NSDictionary *dic) {
+//
+//        }];
     };
     _payView.cancleBlock = ^(void){
         [weakSelf diss];
@@ -1066,423 +384,13 @@
 //选择会员种类
 - (IBAction)select:(id)sender {
     
-    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-        _buttomView.hidden = NO;
-//        _shareBtn.hidden = NO;
-        _yaJin.hidden = NO;
-        _yj.hidden = NO;
-        
-    }else {//押金有效(只续费)
-        _yaJin.hidden = YES;
-        _yj.hidden = YES;
-        _buttomView.hidden = NO;
-        _shareBtn.hidden = YES;
-        _inviteCodeTextField.hidden = YES;
-    }
     
-
-    UIButton * button = (UIButton *)sender;
- 
-    if (self.Button0 != button) {
-        self.Button0.selected = NO;
-        button.selected = YES;
-    }
-    self.Button0 = button;
-    
-    [self reSetBtnUI:button];
-    
-    switch (button.tag) {
-        case 1001:
-            _payType = MONTH_CARD;
-            _Btn1.selected = button.selected;
-             _btn2.selected = !button.selected;
-             _btn3.selected = !button.selected;
-            
-            break;
-        case 1002:
-            _payType = SEASON_CARD;
-            _Btn1.selected = !button.selected;
-            _btn2.selected = button.selected;
-            _btn3.selected = !button.selected;
-           
-            break;
-        case 1003:
-            _payType = YEAR_CARD;
-            _Btn1.selected = !button.selected;
-            _btn2.selected = !button.selected;
-            _btn3.selected = button.selected;
-            
-            break;
-            
-        case 101:
-            _payType = MONTH_CARD;
-            _Btn1.selected = button.selected;
-            _btn2.selected = !button.selected;
-            _btn3.selected = !button.selected;
-            
-            break;
-        case 102:
-            _payType = SEASON_CARD;
-            _Btn1.selected = !button.selected;
-            _btn2.selected = button.selected;
-            _btn3.selected = !button.selected;
-            
-            break;
-        case 103:
-            _payType = YEAR_CARD;
-            _Btn1.selected = !button.selected;
-            _btn2.selected = !button.selected;
-            _btn3.selected = button.selected;
-            
-            break;
-        default:
-            
-            break;
-    }
-    
-    //TODO:添加固定算法
-    
-    //新用户并且分享过享受立减(0未分享过,1分享过)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue] == 0)
-        && [[YKUserManager sharedManager].user.isShare intValue] == 1) {
-      
-        _shareBtn.hidden = YES;
-        _ljLabel.hidden = NO;
-        _liJIan.hidden = NO;
-        _inviteCodeTextField.hidden = NO;
-        _liJIan.text = @"-¥150";
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-           
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥348";
-                if (_newUserType==1) {
-                    _total.text = @"¥348";
-                }else {
-                    _total.text = @"¥498";
-                }
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥299";
-                if (_newUserType==1) {
-                    _total.text = @"¥149";
-                }else {
-                    _total.text = @"¥299";
-                }
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            
-//            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥856";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥657";
-            }
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-            
-//            _newUserType = 2;
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3037";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥0";
-                _total.text = @"¥2838";
-            }
-        }
-    }else {
-        //新用户并且未分享过,可以分享
-        _ljLabel.hidden = NO;
-        _liJIan.hidden = NO;
-        if (([[YKUserManager sharedManager].user.effective intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue]==0)
-            && [[YKUserManager sharedManager].user.isShare intValue] == 0) {
-//            _shareBtn.hidden = NO;
-            _inviteCodeTextField.hidden = NO;
-            
-        }else {//不是新用户,分享按钮永不显示
-            _shareBtn.hidden = YES;
-            if ([[YKUserManager sharedManager].user.effective intValue] == 4){
-                _inviteCodeTextField.hidden = NO;
-            }
-         
-        }
-        
-        //会员用户
-        _ljLabel.hidden = YES;
-        _liJIan.hidden = YES;
-        _liJIan.text = @"立减不可用";
-        _liJIan.textColor = [UIColor colorWithHexString:@"ff6d6a"];
-        
-        if (_payType == MONTH_CARD) {
-            _carPrice.text = @"月卡价";
-          
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥498";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥299";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥299";
-            }
-        }
-        if (_payType == SEASON_CARD) {
-            _carPrice.text = @"季卡价";
-            _yuanJia.text = @"¥807";
-            _yaJin.text = @"¥199";
-            _total.text = @"¥1006";
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥1006";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥807";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥807";
-            }
-//            _newUserType = 2;
-        }
-        if (_payType == YEAR_CARD) {
-            _carPrice.text = @"年卡价";
-          
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-                
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥3187";
-            }else {//押金有效(只续费)
-                _yuanJia.text = @"¥2988";
-                _yaJin.text = @"¥199";
-                _total.text = @"¥2988";
-            }
-//            _newUserType = 2;
-        }
-    }
-    
-    //resetUI
-    [UIView animateWithDuration:0.3 animations:^{
-         [self resetUI];
-    }];
 }
 
 - (void)resetUI{
     //如果押金有效
     
-    if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
-      
-        _yaJin.hidden = NO;
-        _yj.hidden = NO;
-        
-    }else {//押金有效(只续费)
-        _yaJin.hidden = YES;
-        _yj.hidden = YES;
-    }
     
-    //首次续费
-    //（新用户||体验卡）&月卡(显示选择框)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue]==0) && _payType == MONTH_CARD) {
-        //显示选择框
-        _btn4.hidden = NO;
-        _btn5.hidden = NO;
-        _ljW.constant = 44;
-        _zengW.constant = 44;
-        _znegyi.hidden = NO;
-        _zengday.hidden = NO;
-        _xianshiImage.hidden = NO;
-        _yjGap.constant = 60;
-         _buttomH.constant = 230;
-        _liJIan.hidden = NO;
-        _ljLabel.hidden = NO;
-        
-        //未分享过
-        if ([[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            _liJIan.text = @"分享立减¥150 >";
-        }else {
-            _liJIan.text = @"-¥150";
-            [_liJIan setUserInteractionEnabled:NO];
-        }
-    }
-    
-    //（新用户||体验卡）& !月卡(无选择框)
-    if (([[YKUserManager sharedManager].user.effective intValue] == 4 || [[YKUserManager sharedManager].user.cardType intValue] == 4||[[YKUserManager sharedManager].user.cardType intValue]==5||[[YKUserManager sharedManager].user.cardType intValue]==0) && _payType != MONTH_CARD) {
-        
-//         _newUserType = 1;//分享立减
-        //只显示立减
-        _btn4.hidden = YES;
-        _btn5.hidden = YES;
-        _ljW.constant = 20;
-        _zengW.constant = 20;
-        _yjGap.constant = 20;
-        _btn5.hidden = YES;
-        _znegyi.hidden = YES;
-        _xianshiImage.hidden = YES;
-        _zengday.hidden = YES;
-        _buttomH.constant = 190;
-        _liJIan.hidden = NO;
-        _ljLabel.hidden = NO;
-        
-        //未分享过
-        if ([[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            _liJIan.text = @"分享立减¥150 >";
-        }else {
-            _liJIan.text = @"-¥150";
-            [_liJIan setUserInteractionEnabled:NO];
-        }
-    }
-    
-    //老用户续费
-    if (([[YKUserManager sharedManager].user.effective intValue] != 4 && [[YKUserManager sharedManager].user.cardType intValue] != 4&&[[YKUserManager sharedManager].user.cardType intValue] != 5&& [[YKUserManager sharedManager].user.cardType intValue] != 0)){
-        
-        if (_payType == MONTH_CARD) {//月卡
-            _newUserType = 2;//买一赠一
-            //显示买一赠一
-            _btn4.hidden = YES;
-            _btn5.hidden = YES;
-            _ljLabel.hidden = YES;
-            _liJIan.hidden = YES;
-            _btn5.hidden = YES;
-            _znegyi.hidden = NO;
-            _xianshiImage.hidden = NO;
-            _xianshiImageGap.constant = -24;
-            _zengday.hidden = NO;
-            _ljW.constant = 20;
-            _zengW.constant = 20;
-            _zengGap.constant = -24;
-            _yjGap.constant = 12;
-            _buttomH.constant = 180;
-        }else {//不是月卡
-            //不显示买一赠一
-            _newUserType = 0;//无活动
-            _btn4.hidden = YES;
-            _btn5.hidden = YES;
-            _ljLabel.hidden = YES;
-            _liJIan.hidden = YES;
-            _znegyi.hidden = YES;
-            _xianshiImage.hidden = YES;
-            _zengday.hidden = YES;
-            _ljW.constant = 20;
-            _zengW.constant = 20;
-            _zengGap.constant = -24;
-            _yjGap.constant = -24;
-            _buttomH.constant = 150;
-        }
-        
-    }
-
-    
-}
-- (IBAction)newUserSelect:(id)sender {
-    
-    UIButton * button = (UIButton *)sender;
-    
-    if (self.Button1 != button) {
-        self.Button1.selected = NO;
-        button.selected = YES;
-    }
-    self.Button1 = button;
-    
-  
-    switch (button.tag) {
-        case 104:
-            _newUserType = 1;
-            _btn4.selected = self.Button1.selected;
-            _btn5.selected = !self.Button1.selected;
-            break;
-        case 105:
-            _newUserType = 2;
-            _btn4.selected = !self.Button1.selected;
-            _btn5.selected = self.Button1.selected;
-            
-            break;
-        default:
-            
-            break;
-    }
-    
-    if (_newUserType == 2) {//买一赠一
-        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效
-            _total.text = [NSString stringWithFormat:@"¥498"];
-            
-        }else {//押金有效
-            _total.text = [NSString stringWithFormat:@"¥299"];
-        }
-    }
-    if (_newUserType == 1) {//立减
-        
-        if ([[YKUserManager sharedManager].user.isShare intValue] == 0) {
-            _liJIan.text = @"分享立减¥150 >";
-            
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效
-            _total.text = [NSString stringWithFormat:@"¥498"];
-                
-            }else {//押金有效
-                _total.text = [NSString stringWithFormat:@"¥299"];
-            }
-            
-        }else {
-            _liJIan.text = @"-¥150";
-            if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效
-                _total.text = [NSString stringWithFormat:@"¥348"];
-                
-            }else {//押金有效
-                _total.text = [NSString stringWithFormat:@"¥149"];
-            }
-            [_liJIan setUserInteractionEnabled:NO];
-        }
-    }
-}
-
-
-- (void)reSetBtnUI:(UIButton *)btn{
-    if (btn.tag == 1001 || btn.tag == 101) {//月卡
-        _Lbtn1.backgroundColor = mainColor;
-        _Lbtn2.backgroundColor = [UIColor whiteColor];
-        _Lbtn3.backgroundColor = [UIColor whiteColor];
-        _yueka.textColor = [UIColor whiteColor];
-        _yuekaPrice.textColor = [UIColor whiteColor];
-        _jika.textColor = mainColor;
-        _jikaPrice.textColor = mainColor;
-        _nianka.textColor = mainColor;
-        _niankaPrice.textColor = mainColor;
-    }
-    
-    if (btn.tag == 1002 || btn.tag == 102) {//季卡
-        _Lbtn1.backgroundColor = [UIColor whiteColor];
-        _Lbtn2.backgroundColor = mainColor;
-        _Lbtn3.backgroundColor = [UIColor whiteColor];
-        _yueka.textColor = mainColor;
-        _yuekaPrice.textColor = mainColor;
-        _jika.textColor = [UIColor whiteColor];
-        _jikaPrice.textColor = [UIColor whiteColor];
-        _nianka.textColor = mainColor;
-        _niankaPrice.textColor = mainColor;
-    }
-    
-    if (btn.tag == 1003 || btn.tag == 103) {//年卡
-        _Lbtn1.backgroundColor = [UIColor whiteColor];
-        _Lbtn2.backgroundColor = [UIColor whiteColor];
-        _Lbtn3.backgroundColor = mainColor;
-        _yueka.textColor = mainColor;
-        _yuekaPrice.textColor = mainColor;
-        _jika.textColor = mainColor;
-        _jikaPrice.textColor = mainColor;
-        _nianka.textColor = [UIColor whiteColor];
-        _niankaPrice.textColor = [UIColor whiteColor];
-    }
 }
 
 - (IBAction)close:(id)sender {
@@ -1498,6 +406,7 @@
     if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"9000"]) {
         
         [self getData];
+        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
         
     }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
         
@@ -1516,6 +425,7 @@
     
     if ([[dict objectForKey:@"codeid"]integerValue]==0) {
         
+         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
         [self getData];
         
     }else{
@@ -1534,52 +444,57 @@
 }
 
 - (void)share{
+    YKCouponListVC *Coupon = [YKCouponListVC new];
+    Coupon.selectCoupon = ^(NSInteger ConponNum,int CouponId){
+        _CouponNum = ConponNum;
+        _CouponId = CouponId;
+        _liJIan.text = [NSString stringWithFormat:@"-¥%ld",ConponNum];
+        [self resetPrice];
+    };
+    [[self getCurrentVC].navigationController pushViewController:Coupon animated:YES];
+}
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
     
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    
-    //创建网页内容对象
-    UIImage *image = [UIImage imageNamed:@"LOGO-1"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"快来和我一起尝试\"包月换衣\""] descr:@"衣库共享衣橱，首月149元，上万件大牌时装无限换穿！" thumImage:image];
-//    [NSStringstringWithFormat:@"\"%@\"",123456];
-    //设置网页地址
-    shareObject.webpageUrl = [NSString stringWithFormat:@"http://img-cdn.xykoo.cn/appHtml/invite/invite.html?id=%@", [YKUserManager sharedManager].user.userId];
-    
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
-    
-    //调用分享接口
-    
-    //设置分享平台
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]]; // 设置需要分享的平台
-    
-    //显示分享面板
-    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-        
-        //调用分享接口
-        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-            
-            if (error) {
-                UMSocialLogInfo(@"************Share fail with error %@*********",error);
-            }else{
-                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-                    UMSocialShareResponse *resp = data;
-                    //分享结果消息
-                    UMSocialLogInfo(@"response message is %@",resp.message);
-                    //第三方原始返回的数据
-                    UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-                }else{
-                    UMSocialLogInfo(@"response data is %@",data);
-                }
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
             }
-        }];
-    }];
+        }
+    }
+    if ([window subviews].count>0) {
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+        id nextResponder = [frontView nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]]){
+            result = nextResponder;
+        }
+        else{
+            result = window.rootViewController;
+        }
+    }
+    else{
+        result = window.rootViewController;
+    }
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [((UITabBarController*)result) selectedViewController];
+    }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [((UINavigationController*)result) visibleViewController];
+    }
+    
+    return result;
 }
 - (IBAction)toShare:(id)sender {
     [self share];
 }
-
-
-
 
 @end

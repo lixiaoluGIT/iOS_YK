@@ -265,6 +265,8 @@
 //上传idfa
 #define upLoadIdfa_Url @"/channel/addIDFA"
 //#define upLoadIdfa_Url @"/channel/cpaNotice"
+//优惠劵列表
+#define CouponList_Url @"/coupon/getUserCouponsList"
 
 //通知渠道
 

@@ -30,27 +30,39 @@
 - (void)payWithPayMethod:(NSInteger )payMethod
                  payType:(NSInteger )paytype
                 activity:(NSInteger)activity
-              OnResponse:(void (^)(NSDictionary *dic))onResponse;{
+               channelId:(int)couponId
+              OnResponse:(void (^)(NSDictionary *dic))onResponse{
   
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
-    if (paytype==2||paytype==3) {
-        activity = 1;
-    }
+//    if (paytype==2||paytype==3) {
+//        activity = 1;
+//    }
     //判断支付来源
     NSString *str;
-    if ([[self appName] isEqualToString:@"衣库"]) {//主包支付
+    if ([[self appName] isEqualToString:@"衣库"]){
+        if (couponId==0) {
+            if ([[YKUserManager sharedManager].user.depositEffective intValue] == 1) {//押金有效，不交押金
+                str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=0",AliPay_Url,@(payMethod),@(paytype),2,@(activity)];
+            }else {//押金无效，会员卡押金一起交
+                str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=0",AliPay_Url,@(payMethod),@(paytype),1,@(activity)];
+            }
+            
+            if (paytype==0) {//单独充押金
+                str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=0",AliPay_Url,@(payMethod),@(paytype),1,@(activity)];
+            }
+        }else {
         if ([[YKUserManager sharedManager].user.depositEffective intValue] == 1) {//押金有效，不交押金
-            str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@",AliPay_Url,@(payMethod),@(paytype),2,@(activity)];
+            str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=%@",AliPay_Url,@(payMethod),@(paytype),2,@(activity),@(couponId)];
         }else {//押金无效，会员卡押金一起交
-            str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@",AliPay_Url,@(payMethod),@(paytype),1,@(activity)];
+            str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=%@",AliPay_Url,@(payMethod),@(paytype),1,@(activity),@(couponId)];
         }
         
         if (paytype==0) {//单独充押金
-              str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@",AliPay_Url,@(payMethod),@(paytype),1,@(activity)];
-        }
-        
+            str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=%@",AliPay_Url,@(payMethod),@(paytype),1,@(activity),@(couponId)];
+        }}
     }
+    
 //    if ([[self appName] isEqualToString:@"女神的衣柜"]) {//主包支付{//马甲包支付
 //        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"1"];
 //    }
@@ -60,7 +72,7 @@
 //    }
     
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     [YKHttpClient Method:@"GET" URLString:str paramers:nil success:^(NSDictionary *dict) {
         
@@ -69,6 +81,9 @@
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2];
             return ;
         }
+        
+        //预fu fei
+        [MobClick event:@"__cust_event_4"];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

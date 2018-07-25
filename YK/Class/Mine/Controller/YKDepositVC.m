@@ -129,7 +129,7 @@
     _payView.frame = CGRectMake(0, HEIGHT, WIDHT, 236);
     _payView.selectPayBlock = ^(payMethod payMethod){
         
-        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:0 activity:0 OnResponse:^(NSDictionary *dic) {
+        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:0 activity:0 channelId:0 OnResponse:^(NSDictionary *dic) {
             
         }];
     };
@@ -208,7 +208,7 @@
         
         //付费成功，请将示例中的lixiaoming替换成用户的用户id；请将1000556789替换成流水号，如订单号或时间戳;请将” 新手礼包”替换成用户准备购买的装备名称或购买的实际内容；请将180替换成购买的金额。
 //        [YKUserManager ]
-        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149+"}];
+        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
         [UIView animateWithDuration:0.1 animations:^{
             [self diss];
         }completion:^(BOOL finished) {

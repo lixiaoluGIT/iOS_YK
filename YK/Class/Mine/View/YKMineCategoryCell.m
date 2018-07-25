@@ -48,14 +48,14 @@
             }];
         }
         
-        if (i==0) {
-            [btn addSubview:hotImage];
-            hotImage.image = [UIImage imageNamed:@"xianshi"];
-            [hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(image.mas_right).offset(7);
-                make.top.equalTo(image.mas_top).offset(-7);
-            }];
-        }
+//        if (i==0) {
+//            [btn addSubview:hotImage];
+//            hotImage.image = [UIImage imageNamed:@"xianshi"];
+//            [hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(image.mas_right).offset(7);
+//                make.top.equalTo(image.mas_top).offset(-7);
+//            }];
+//        }
        
         
         [image mas_makeConstraints:^(MASConstraintMaker *make) {

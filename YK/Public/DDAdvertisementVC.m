@@ -112,6 +112,8 @@
 }
 
 - (void)toWeb{
+    [MobClick event:@"__cust_event_1"];
+    
     dispatch_source_cancel(_timer);
     YKLinkWebVC *web =[YKLinkWebVC new];
     web.url = _click_url;
