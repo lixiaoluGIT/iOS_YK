@@ -16,7 +16,7 @@
         _brandId = dictionary[@"brandId"];
         _brandName = dictionary[@"brandName"];
         _brandDesc = dictionary[@"brandDesc"];
-        _brandLogo = dictionary[@"brandDetailLogo"];
+        _brandLogo = dictionary[@"brandLargeLogo"];
     }
 }
 @end

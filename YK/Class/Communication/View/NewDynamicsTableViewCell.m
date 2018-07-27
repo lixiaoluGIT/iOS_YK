@@ -304,6 +304,7 @@
     _guanzhuImage.hidden = YES;
     [_moreLessDetailBtn setTitle:@"..." forState:UIControlStateNormal];
 }
+
 -(void)setLayout:(NewDynamicsLayout *)layout
 {
     UIView * lastView;
@@ -341,6 +342,35 @@
     _detailLabel.textLayout = layout.detailLayout;
     _detailLabel.textColor = mainColor;
     lastView = _detailLabel;
+
+//
+//    NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc]initWithString:_detailLabel.text];
+//
+//    //得到第二个#号的角标
+//     NSString *tmpStr = _detailLabel.text;
+//
+//       NSRange range;
+//
+//    range = [tmpStr rangeOfString:@"#"];
+//    NSString *ok;
+//    if (range.location != NSNotFound) {
+//
+//               NSLog(@"found at location = %lu, length = %lu",(unsigned long)range.location,(unsigned long)range.length);
+//
+//         ok = [tmpStr substringFromIndex:range.location];
+//
+//               NSLog(@"=======%@",ok);
+//
+//           }else{
+//
+//                   NSLog(@"Not Found");
+//
+//               }
+//
+//    [str2 addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#fe7310"] range:NSMakeRange(0,[ok integerValue])];
+////
+////
+//    _detailLabel.attributedText = str2;
     //展开/收起按钮
     _moreLessDetailBtn.left = _portrait.left;
     _moreLessDetailBtn.top = _detailLabel.bottom + kDynamicsNameDetailPadding;

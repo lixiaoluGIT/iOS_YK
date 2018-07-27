@@ -75,8 +75,8 @@
         [smartHUD alertText:self.view alert:@"请输入收货人姓名" delay:1.2];
         return;
     }
-    if (_editView.phoneText.text.length==0) {
-        [smartHUD alertText:self.view alert:@"请输入联系电话" delay:1.2];
+    if (![steyHelper isValidatePhone:_editView.phoneText.text] ) {
+        [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
         return;
     }
     if (_editView.address.text.length==0) {

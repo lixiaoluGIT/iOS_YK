@@ -15,7 +15,7 @@
     CGFloat h = WIDHT/3*108/124;
     
     
-    for (int i=0; i<6; i++) {
+    for (int i=0; i<imageArray.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(WIDHT/3*(i%3),h*(i/3) , WIDHT/3, h);
         [self addSubview:btn];
@@ -40,7 +40,7 @@
         UIImageView *hotImage = [[UIImageView alloc]init];
         hotImage.image = [UIImage imageNamed:@"hot"];
         [hotImage sizeToFit];
-        if (i==2) {
+        if (i==3) {
             [btn addSubview:hotImage];
             [hotImage mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(image.mas_right).offset(7);
@@ -72,14 +72,17 @@
     
     //竖线
     for (int i=0; i<2; i++) {
-        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(WIDHT/3*(i+1), 0, 1,h*2)];
+        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(WIDHT/3*(i+1), 0, 1,h*3)];
         line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
         [self addSubview:line];
     }
     //横线
-    UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, h, WIDHT,1)];
-    line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-    [self addSubview:line];
+    for (int i=0; i<2; i++) {
+        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, h*(i+1), WIDHT,1)];
+        line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+        [self addSubview:line];
+    }
+   
 }
 
 - (void)initWithTitleArray:(NSArray *)title ImageArray:(NSArray *)imageArray{

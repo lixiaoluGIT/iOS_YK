@@ -176,6 +176,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    //拍下订单
     [MobClick event:@"__submit_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatShareSuccessNotification) name:@"wechatShareSuccessNotification" object:nil];
@@ -406,6 +407,7 @@
     if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"9000"]) {
         
         [self getData];
+        //完成付费
         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
         
     }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
@@ -425,6 +427,7 @@
     
     if ([[dict objectForKey:@"codeid"]integerValue]==0) {
         
+        //完成付费
          [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
         [self getData];
         

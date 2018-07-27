@@ -906,10 +906,10 @@
 
 - (void)getWalletDetailPageOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [YKHttpClient Method:@"GET" apiName:CouponList_Url Params:nil Completion:^(NSDictionary *dic) {
         
-        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dic[@"status"] integerValue] == 200) {
             
             if (onResponse) {

@@ -132,9 +132,9 @@
 
     
     self.images = [NSArray array];
-    self.images = @[@"qianbao",@"gerenziliao",@"yaoqing",@"question",@"kefu-1",@"setting"];
+    self.images = @[@"qianbao",@"gerenziliao",@"address",@"yaoqing",@"question",@"kefu-1",@"setting"];
     self.titles = [NSArray array];
-    self.titles = @[@"我的钱包",@"个人资料",@"邀请有奖",@"常见问题",@"联系客服",@"设置"];
+    self.titles = @[@"我的钱包",@"个人资料",@"我的地址",@"邀请有奖",@"常见问题",@"联系客服",@"设置"];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
 }
@@ -163,7 +163,7 @@
     if (indexPath.section==0) {
         return 106*WIDHT/414;
     }
-    return WIDHT/3*2*108/124;
+    return WIDHT/3*3*108/124;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -223,16 +223,21 @@
                 
             }
             if (tag==2) {//收货地址
-                YKShareVC *share = [YKShareVC new];
-                share.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:share animated:YES];
+                YKAddressVC *address = [YKAddressVC new];
+                address.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:address animated:YES];
             }
-            if (tag==3) {//常见问题
+        if (tag==3) {//分享
+            YKShareVC *share = [YKShareVC new];
+            share.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:share animated:YES];
+        }
+            if (tag==4) {//常见问题
                 YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
             }
-            if (tag==4) {//联系客服
+            if (tag==5) {//联系客服
                 if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
                     NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
                     NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
@@ -267,7 +272,7 @@
                 
                
             }
-            if (tag==5) {//设置
+            if (tag==6) {//设置
 //                YKReturnVC *re = [[YKReturnVC alloc]init];
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
                 set.hidesBottomBarWhenPushed = YES;
