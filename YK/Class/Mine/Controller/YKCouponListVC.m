@@ -8,8 +8,12 @@
 
 #import "YKCouponListVC.h"
 #import "YKCouponView.h"
+#import "YKToBeVIPVC.h"
+#import "YKCouponCodeView.h"
 
-@interface YKCouponListVC ()
+@interface YKCouponListVC (){
+    NSInteger couponType;
+}
 @property (nonatomic,strong)NSArray *dataArray;
 @property (nonatomic,strong)YKNoDataView *NoDataView;
 
@@ -17,10 +21,20 @@
 
 @implementation YKCouponListVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
+}
+- (void)viewDidAppear:(BOOL)animated{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     self.title = @"衣库优惠券";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -54,15 +68,34 @@
     }];
     
     _NoDataView.frame = CGRectMake(0, 98+BarH, WIDHT,HEIGHT-162);
-    self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+//    self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     [self.view addSubview:_NoDataView];
     _NoDataView.hidden = YES;
-    [self getData];
-
 }
 
 - (void)getData{
+    //可使用,显示兑换码
+    if ([UD boolForKey:@"effectiveCoupun"] == YES) {
+        couponType = 1;//可使用
+        YKCouponCodeView *headView = [[NSBundle mainBundle] loadNibNamed:@"YKCouponCodeView" owner:self options:nil][0];
+        headView.selectionStyle = UITableViewCellSelectionStyleNone;
+        headView.frame = CGRectMake(0, 0, WIDHT, 100);
+//        headView.userInteractionEnabled = NO;
+        UIView * view = [[UIView alloc] initWithFrame:headView.frame];
+        headView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [view addSubview:headView];
+ 
+        self.tableView.tableHeaderView = view;
+    }else {
+        couponType = 2;//不可使用
+    }
+    
+    if (_isFromPay) {
+        couponType = 1;//可使用
+    }
+    
     [[YKUserManager sharedManager]getWalletDetailPageOnResponse:^(NSDictionary *dic) {
+        [self.tableView.mj_header endRefreshing];
         self.dataArray = [NSArray arrayWithArray:dic[@"data"]];
         if (self.dataArray.count == 0) {
             _NoDataView.hidden = NO;
@@ -71,6 +104,7 @@
         }
         [self.tableView reloadData];
     }];
+    
 }
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
@@ -100,11 +134,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YKCouponView *cell = (YKCouponView *)[tableView cellForRowAtIndexPath:indexPath];
     if (cell.couponStatus==2) {
-        [smartHUD alertText:self.view alert:@"已使用" delay:1.5];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已使用" delay:1.5];
         return;
     }
     if (cell.couponStatus==3) {
-        [smartHUD alertText:self.view alert:@"已过期" delay:1.5];
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已过期" delay:1.5];
         return;
     }
     if (cell.couponType==1) {//加时卡
@@ -114,10 +148,21 @@
         return;
     }
     if (cell.couponType==2) {//优惠劵
-        if (self.selectCoupon) {
-            self.selectCoupon(cell.couponNum,cell.couponID);
+        if (_isFromPay) {
+            if (self.selectCoupon) {
+                self.selectCoupon(cell.couponNum,cell.couponID);
+            }
+            [self leftAction];
+            return;
         }
-        [self leftAction];
+        YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+        [YKUserManager sharedManager].couponNum = cell.couponNum;
+        [YKUserManager sharedManager].couponID = cell.couponID;
+        [YKUserManager sharedManager].isFromCoupon = YES;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
     }
    
 }

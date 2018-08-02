@@ -97,6 +97,8 @@
                 //监测登陆成功的事件
                 [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
                 [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+                //主包监测
+                [MobClick event:@"register"];
             }];
             
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"登录成功" delay:1.2];
@@ -161,9 +163,11 @@
             //获取当前用户信息
             [self getUserInforOnResponse:^(NSDictionary *dic) {
 //                [self RongCloudConnect];
-//                //监测登陆成功的事件
-//                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
-//                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+                //监测登陆成功的事件
+                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
+                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+                //主包监测
+                [MobClick event:@"register"];
             }];
             
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"注册成功" delay:1.2];
@@ -610,7 +614,15 @@
 - (void)loginWithOpenId:(NSString *)openId memNickName:(NSString *)memNickName memSex:(NSString *)memSex dic:(NSMutableDictionary *)dic OnResponse:(void (^)(NSDictionary *dic))onResponse{
 
     [dic removeObjectForKey:@"privilege"];
-
+//    city = Haidian;
+//    country = CN;
+//    headimgurl = "http://thirdwx.qlogo.cn/mmopen/vi_32/GlIcUX1eK6DhzGLtZiat03CW0ibG4j1nVWaszqCUcQvznDaHdZumcIs9kvRibZScic0LiavPQ887vVIibg8BRbDnKCNA/132";
+//    language = "zh_CN";
+//    nickname = "\U8d5b";
+//    openid = "oxxn91EVOYUNWeaAJ_QjshamSPmU";
+//    province = Beijing;
+//    sex = 1;
+//    unionid = oMTz10QphHKC3BLL7eWst4nWxGqY;
       [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [YKHttpClient Method:@"POST" URLString:WeChatLogin_Url paramers:dic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -625,6 +637,8 @@
                 //监测登陆成功的事件
                 [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
                 [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+                //主包监测
+                [MobClick event:@"register"];
             }];
             
             if (onResponse) {
@@ -697,6 +711,8 @@
                 //监测登陆成功的事件
                 [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
                 [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+                //主包监测
+                [MobClick event:@"register"];
                 
                 if (onResponse) {
                     onResponse(nil);

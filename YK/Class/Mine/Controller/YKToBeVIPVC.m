@@ -100,14 +100,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     self.navigationController.navigationBar.hidden = YES;
-//    
     if ([YKUserManager sharedManager].isFromCoupon == YES) {
         _CouponId = [YKUserManager sharedManager].couponID;
         _CouponNum = [YKUserManager sharedManager].couponNum;
         _liJIan.text = [NSString stringWithFormat:@"-¥%ld",_CouponNum];
     }
     [YKUserManager sharedManager].isFromCoupon = NO;
- 
+
     [self resetPrice];
 //    [self resetUI];
 }
@@ -183,8 +182,8 @@
     
     _buttomView.layer.cornerRadius = 10;
     _buttomView.layer.masksToBounds = YES;
-//    _buttomView.layer.borderColor = mainColor.CGColor;
-//    _buttomView.layer.borderWidth = 1;
+//    _buttomView.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+//    _buttomView.layer.borderWidth = 0.5;
     
     _shareBtn.hidden = YES;
 
@@ -328,12 +327,17 @@
         
     _payView.selectPayBlock = ^(payMethod payMethod){
     
+        
+//        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:0 OnResponse:^(NSDictionary *dic) {
+//
+//        }];
         [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:weakSelf.CouponId OnResponse:^(NSDictionary *dic) {
-            
+
         }];
 //        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:_CouponId OnResponse:^(NSDictionary *dic) {
 //
 //        }];
+     
     };
     _payView.cancleBlock = ^(void){
         [weakSelf diss];
@@ -409,6 +413,8 @@
         [self getData];
         //完成付费
         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
+        //监测
+        [MobClick event:@"pay"];
         
     }else if ([[dict objectForKey:@"resultStatus"] isEqualToString:@"6001"]) {
         
@@ -429,6 +435,8 @@
         
         //完成付费
          [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
+        //主包监测
+        [MobClick event:@"pay"];
         [self getData];
         
     }else{
@@ -448,6 +456,7 @@
 
 - (void)share{
     YKCouponListVC *Coupon = [YKCouponListVC new];
+    Coupon.isFromPay = YES;
     Coupon.selectCoupon = ^(NSInteger ConponNum,int CouponId){
         _CouponNum = ConponNum;
         _CouponId = CouponId;

@@ -88,7 +88,7 @@
 - (void)getBrandListStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     if (status==0) {
-        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     
 //    self.brandList = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
@@ -98,6 +98,10 @@
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
         self.brandList = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
+        NSThread *thread=[[NSThread alloc]initWithTarget:self selector:@selector(groupArray) object:nil];
+        thread.name=[NSString stringWithFormat:@"group"];//设置线程名称
+        [thread start];
+//        [self group:self.brandList];
         if (onResponse) {
             onResponse(dic);
         }
@@ -105,6 +109,89 @@
     }];
 }
 
+- (NSMutableArray *)getImageArray:(NSArray *)array{
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (NSDictionary *imageModel in array) {
+        [imageArray addObject:imageModel[@"brandImgUrl"]];
+    }
+    return imageArray;
+}
+
+- (NSMutableArray *)getImageUrlsArray:(NSArray *)array{
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for (NSDictionary *imageModel in array) {
+        [imageArray addObject:imageModel[@"brandLinkUrl"]];
+    }
+    return imageArray;
+}
+
+
+- (void)groupArray{
+    NSLog(@"进来了》〉》〉》〉》〉》〉》〉》〉");
+    
+    NSMutableArray *indexArray = [NSMutableArray array];
+    for (NSDictionary *blacker in self.brandList) {
+        NSString *firstChar = [self firstCharactor:blacker[@"brandName"]];
+        if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
+            if (![indexArray containsObject:@"#"]) {
+                [indexArray addObject:@"#"];
+            }
+        }else {
+            if (![indexArray containsObject:firstChar]) {
+                [indexArray addObject:[NSString stringWithFormat:@"%@",firstChar]];
+            }
+        }
+    }
+    
+    NSArray *result = [indexArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
+    //得到角标
+    _searchBtnArr = [NSArray arrayWithArray:result];
+    NSLog(@"索引栏==%@",_searchBtnArr);
+    
+    NSMutableArray *totalSections = [NSMutableArray array];
+    for (NSString *cha in _searchBtnArr) {
+        NSLog(@"首字母%@",cha);
+        NSMutableArray *sections = [NSMutableArray array];
+        for (NSDictionary *blacker in self.brandList) {
+            
+            if (![cha isEqualToString:@"#"] && [[self firstCharactor:blacker[@"brandName"]] isEqualToString:cha]) {
+                [sections addObject:blacker];
+            }
+            
+            if (([cha isEqualToString:@"#"] && [[self firstCharactor:blacker[@"brandName"]] characterAtIndex:0] < 'A') || [[self firstCharactor:blacker[@"brandName"]] characterAtIndex:0] > 'Z'){
+                [sections addObject:blacker];
+            }
+        }
+        [totalSections addObject:sections];
+        
+    }
+    //    [totalSections addObject:sections];
+    self.sections = [NSArray arrayWithArray:totalSections];
+    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/myJson.json"];
+    NSLog(@"%@",filePath);
+    NSDictionary *json_dic = @{@"arr":self.sections,@"a":_searchBtnArr};//key为arr value为arr数组的字典
+    //    第三步.封包数据
+    NSData *json_data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
+    
+    //    第四步.写入数据
+    [json_data writeToFile:filePath atomically:YES];
+    NSLog(@"出去了》〉》〉》〉》〉》〉》〉》〉");
+}
+
+- (NSString *)firstCharactor:(NSString *)aString
+{
+    if (!aString) {
+        return nil;
+    }
+    
+    NSMutableString *str = [NSMutableString stringWithString:aString];
+    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
+    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
+    NSString *pinYin = [str capitalizedString];
+    return [pinYin substringToIndex:1];
+}
 //获取商品详情
 - (void)getProductDetailInforWithProductId:(NSInteger )ProductId type:(NSInteger)type
                                 OnResponse:(void (^)(NSDictionary *dic))onResponse{

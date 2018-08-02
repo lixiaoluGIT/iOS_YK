@@ -46,6 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="f9x-jP-Yu4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="66" id="4cO-fC-5Vf"/>
                     <constraint firstItem="ooc-OM-L01" firstAttribute="leading" secondItem="7kA-4W-iLL" secondAttribute="trailing" constant="-165" id="4tZ-ZY-I4x"/>
@@ -72,7 +73,7 @@
                 <outlet property="type" destination="ooc-OM-L01" id="hM4-Sh-YJl"/>
                 <outlet property="yuan" destination="bnW-qS-ove" id="lCF-IC-87a"/>
             </connections>
-            <point key="canvasLocation" x="60" y="-203"/>
+            <point key="canvasLocation" x="71" y="-205"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="206" id="cyN-UZ-b49" customClass="YKCouponView">
             <rect key="frame" x="0.0" y="0.0" width="385" height="206"/>
@@ -111,7 +112,7 @@
                     <constraint firstItem="Y9Q-pn-fsB" firstAttribute="top" secondItem="Fex-4A-OIP" secondAttribute="bottom" constant="14" id="ndx-Wh-OAW"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="249" y="113"/>
+            <point key="canvasLocation" x="71" y="1"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="206" id="XlF-NQ-3NT" customClass="YKCouponView">
             <rect key="frame" x="0.0" y="0.0" width="385" height="206"/>
@@ -137,7 +138,7 @@
                     <constraint firstItem="pR6-TP-EmS" firstAttribute="centerY" secondItem="OZa-ix-Tzd" secondAttribute="centerY" id="hAG-CD-O7P"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="111" y="189"/>
+            <point key="canvasLocation" x="71" y="247"/>
         </tableViewCell>
     </objects>
     <resources>

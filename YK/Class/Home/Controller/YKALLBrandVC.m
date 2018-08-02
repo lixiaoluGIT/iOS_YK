@@ -103,6 +103,7 @@
 //    [self getBrandList];
 }
 - (void)getBrandList{
+    //沙盒路径
     NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/myJson.json"];//获取json文件保存的路径
     
     NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
@@ -119,23 +120,25 @@
         _searchBtnArr = [NSMutableArray arrayWithArray:a];
         [self.tableView reloadData];
         return;
+    }else {
+        [smartHUD alertText:self.view alert:@"获取数据中,请稍后再试" delay:2.0];
     }
-    [[YKHomeManager sharedManager]getBrandListStatus:0 OnResponse:^(NSDictionary *dic) {
-
-        
-        self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
-        
-        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"brandBannerImgList"]];
-        
-        self.imageClickUrls = [NSArray array];
-        self.imageClickUrls = [self getImageUrlsArray:array];
-
-        [self group:self.blackLists];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-        
-    }];
+//    [[YKHomeManager sharedManager]getBrandListStatus:0 OnResponse:^(NSDictionary *dic) {
+//
+//
+//        self.blackLists = [NSMutableArray arrayWithArray:dic[@"data"][@"brandVoList"]];
+//
+//        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"brandBannerImgList"]];
+//
+//        self.imageClickUrls = [NSArray array];
+//        self.imageClickUrls = [self getImageUrlsArray:array];
+//
+//        [self group:self.blackLists];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.tableView reloadData];
+//        });
+//
+//    }];
 }
 
 - (NSMutableArray *)getImageArray:(NSArray *)array{

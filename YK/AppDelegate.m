@@ -49,10 +49,12 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-//    [[YKUserManager sharedManager]uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
-//        
-//    }];
+    [[YKHomeManager sharedManager]getBrandListStatus:0 OnResponse:^(NSDictionary *dic) {
+        
+    }];
     //马甲包去掉了引导页（防止被拒）
+    //安装
+    [MobClick event:@"upload"];
     
     if (![UD boolForKey:@"notFirst"]) {
         

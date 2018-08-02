@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *kajuan;
 @property (weak, nonatomic) IBOutlet UIImageView *kajuanImage;
 
+
 @end
 @implementation YKCouponView
 

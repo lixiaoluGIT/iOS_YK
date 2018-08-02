@@ -10,7 +10,9 @@
 
 @interface YKHomeManager : NSObject
 
-@property (nonatomic,strong)NSMutableArray *brandList;
+@property (nonatomic,strong)NSMutableArray *brandList;//总数据
+@property (nonatomic,strong)NSArray *sections;//分好组的数据源
+@property (nonatomic,strong)NSArray *searchBtnArr;
 
 + (YKHomeManager *)sharedManager;
 

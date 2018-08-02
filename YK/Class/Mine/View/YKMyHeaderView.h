@@ -13,5 +13,7 @@
 @property (nonatomic,copy)void (^VIPClickBlock)(NSInteger VIPStatus);
 @property (nonatomic,strong)YKUser *user;
 @property (nonatomic,copy)void (^viewClickBlock)(void);
+@property (nonatomic,copy)void (^btnClickBlock)(NSInteger tag);
+@property (nonatomic,strong)UIImageView *headPho;
 
 @end

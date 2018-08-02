@@ -10,4 +10,5 @@
 
 @interface YKCouponListVC : YKBaseTableVC
 @property (nonatomic,copy)void (^selectCoupon)(NSInteger CouponNum,int CouponId);
+@property (nonatomic,assign)BOOL isFromPay;
 @end
