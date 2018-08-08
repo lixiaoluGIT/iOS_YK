@@ -142,8 +142,6 @@
         
         if ([dic[@"status"] integerValue] == 200) {
             
-           
-            
             //登录成功数据处理
             //            [self saveCurrentTime];//保存登录时间z
             //上传pushID
@@ -208,8 +206,12 @@
         
         if ([dic[@"status"] intValue] == 401) {//未登录
             [UD setObject:@"" forKey:@"token"];
+            if (onResponse) {
+                onResponse(nil);
+            }
+            return ;
         }
-        
+
         [self getUserInfo:dic[@"data"]];//得到用户基本数据
             if (onResponse) {
                 onResponse(nil);
@@ -624,6 +626,11 @@
 //    sex = 1;
 //    unionid = oMTz10QphHKC3BLL7eWst4nWxGqY;
       [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    if ([UD boolForKey:@"bindWX"] == YES) {
+        [dic setObject:@"1" forKey:@"type"];//登录
+    }else {
+        [dic setObject:@"0" forKey:@"type"];//绑定
+    }
     [YKHttpClient Method:@"POST" URLString:WeChatLogin_Url paramers:dic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
@@ -645,7 +652,7 @@
                 onResponse(nil);
             }
         }else {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"message"] delay:1.8];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2.5];
         }
         
     } failure:^(NSError *error) {
@@ -933,6 +940,67 @@
             }
             
         }
+    }];
+}
+
+- (void)getAccountPageOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [YKHttpClient Method:@"GET" apiName:getAccount_Url Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] integerValue] == 200) {
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.5];
+        }
+    }];
+}
+
+- (void)getAccountDetailPageOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [YKHttpClient Method:@"GET" apiName:getAccount_Url Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] integerValue] == 200) {
+            if (onResponse) {
+                onResponse(dic);
+            }
+            
+        }
+    }];
+}
+
+- (void)tiXianeOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [YKHttpClient Method:@"GET" apiName:tiXian_Url Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+      
+        if ([dic[@"status"] integerValue] == 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.5];
+        }
+        
+            if (onResponse) {
+                onResponse(dic);
+            }
+        
+            
+//        }
+        //没绑定微信
+//        if ([dic[@"status"] intValue] == 410) {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"即将去绑定微信账户" delay:3];
+//           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//
+//                    [[YKUserManager sharedManager]loginByWeChatOnResponse:^(NSDictionary *dic) {
+//
+//                    }];
+//
+//                });
+//
+//            });
+//        }
+//
     }];
 }
 @end

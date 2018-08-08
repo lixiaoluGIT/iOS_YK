@@ -103,15 +103,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获取现金红包流程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tC2-CT-vkH">
-                        <rect key="frame" x="117" y="58" width="115" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                        <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backImage" translatesAutoresizingMaskIntoConstraints="NO" id="a0U-BR-OQz">
-                        <rect key="frame" x="-13" y="99" width="375" height="230"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="LDY-eu-YRQ">
                         <rect key="frame" x="315" y="15" width="10" height="14"/>
                     </imageView>
@@ -122,20 +113,15 @@
                     <constraint firstAttribute="trailing" secondItem="LDY-eu-YRQ" secondAttribute="trailing" constant="24" id="8GS-Oa-azi"/>
                     <constraint firstAttribute="trailing" secondItem="e1E-5P-4X3" secondAttribute="trailing" constant="24" id="Gk0-N5-BSf"/>
                     <constraint firstItem="e1E-5P-4X3" firstAttribute="top" secondItem="SEW-nS-ek1" secondAttribute="bottom" constant="14.5" id="HAN-dv-986"/>
-                    <constraint firstItem="tC2-CT-vkH" firstAttribute="centerX" secondItem="L6b-RC-QKh" secondAttribute="centerX" id="JDq-Sr-bly"/>
-                    <constraint firstItem="a0U-BR-OQz" firstAttribute="centerX" secondItem="L6b-RC-QKh" secondAttribute="centerX" id="KyT-NQ-iz2"/>
                     <constraint firstItem="LDY-eu-YRQ" firstAttribute="centerY" secondItem="SEW-nS-ek1" secondAttribute="centerY" id="cD2-G2-J8i"/>
                     <constraint firstItem="e1E-5P-4X3" firstAttribute="leading" secondItem="SEW-nS-ek1" secondAttribute="leading" id="jql-2V-ztZ"/>
                     <constraint firstItem="SEW-nS-ek1" firstAttribute="leading" secondItem="L6b-RC-QKh" secondAttribute="leading" constant="24" id="qiE-7u-UFv"/>
-                    <constraint firstItem="a0U-BR-OQz" firstAttribute="top" secondItem="tC2-CT-vkH" secondAttribute="bottom" constant="24" id="xol-rc-SrG"/>
-                    <constraint firstItem="tC2-CT-vkH" firstAttribute="top" secondItem="e1E-5P-4X3" secondAttribute="bottom" constant="11" id="yNt-1v-mUZ"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="194.5" y="212.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="backImage" width="375" height="230"/>
         <image name="right" width="10" height="14"/>
     </resources>
 </document>

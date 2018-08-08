@@ -10,7 +10,7 @@
 #import "YKLoginVC.h"
 #import "RSAEncryptor.h"
 #import "YKSelectColedgeVC.h"
-
+#import "YKLogInView.h"
 @interface YKChangePhoneVC ()
 {
     NSTimer *timer;
@@ -227,10 +227,21 @@ NSInteger timeCount;
     }
     
     [[YKUserManager sharedManager]changePhoneWithPhone:self.phoneText.text VetifyCode:self.vetifyText.text status:status inviteCode:_colledgeId OnResponse:^(NSDictionary *dic) {
-        [self.navigationController popViewControllerAnimated:YES];
+        if (self.isFromThirdLogin) {
+            [self performSelectorOnMainThread:@selector(toLoginView) withObject:nil waitUntilDone:1];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }];
 }
-
+- (void)toLoginView{
+    YKLogInView *loginView = [[NSBundle mainBundle]loadNibNamed:@"YKLogInView" owner:nil options:nil][0];
+    loginView.frame = CGRectMake(0, HEIGHT, 0, 0);
+    [[UIApplication sharedApplication].keyWindow addSubview:loginView];
+    [loginView appear];
+    
+}
 - (void)leftAction{
     if (self.isFromThirdLogin) {
         [[YKUserManager sharedManager]exitLoginWithPhone:@"" VetifyCode:@"" OnResponse:^(NSDictionary *dic) {

@@ -12,15 +12,28 @@
 #import "YKWalletDetailVC.h"
 #import "YKAccountCell.h"
 #import "YKShareVC.h"
+#import "YKChangePhoneVC.h"
 
 @interface YKUserAccountVC (){
     YKWalletButtom *buttom;
 }
-
+@property (nonatomic,strong)NSDictionary *account;
 @end
 
 @implementation YKUserAccountVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [[YKUserManager sharedManager]getAccountPageOnResponse:^(NSDictionary *dic) {
+        _account = dic[@"data"];
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [UD setBool:NO forKey:@"bindWX"];
+    [UD synchronize];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -53,7 +66,66 @@
     self.navigationItem.titleView = title;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setupUI];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatDidLoginNotification:) name:@"wechatDidLoginNotification" object:nil];
 
+}
+
+//接收微信登录的通知
+- (void)wechatDidLoginNotification:(NSNotification *)notify{
+    NSDictionary *dict = [notify userInfo];
+    [[YKUserManager sharedManager]getWechatAccessTokenWithCode:dict[@"code"] OnResponse:^(NSDictionary *dic) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]] || [YKUserManager sharedManager].user.phone.length == 0) {
+                YKChangePhoneVC *changePhone = [YKChangePhoneVC new];
+                changePhone.isFromThirdLogin = YES;
+                changePhone.hidesBottomBarWhenPushed = YES;
+                [[self getCurrentVC].navigationController pushViewController:changePhone animated:YES];
+            }
+        }];
+        
+    }];
+};
+     
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    if ([window subviews].count>0) {
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+        id nextResponder = [frontView nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]]){
+            result = nextResponder;
+        }
+        else{
+            result = window.rootViewController;
+        }
+    }
+    else{
+        result = window.rootViewController;
+    }
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [((UITabBarController*)result) selectedViewController];
+    }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [((UINavigationController*)result) visibleViewController];
+    }
+    
+    return result;
 }
 
 - (void)leftAction{
@@ -134,7 +206,27 @@
     }
     mycell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section==0) {
-        mycell.account = @{@"account":@"188.00"};
+        mycell.account = _account;
+        mycell.tixianClick = ^(void){
+          
+            [[YKUserManager sharedManager]tiXianeOnResponse:^(NSDictionary *dic) {
+                if ([dic[@"status"] intValue] == 410) {
+                    [UD setBool:YES forKey:@"bindWX"];
+                    [UD synchronize];
+                    [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"即将去绑定微信.." delay:3.0];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                            [[YKUserManager sharedManager]loginByWeChatOnResponse:^(NSDictionary *dic) {
+
+                            }];
+                    
+                        });
+                    
+                    });
+                }
+            }];
+        };
     }
     if (indexPath.section==1) {
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {

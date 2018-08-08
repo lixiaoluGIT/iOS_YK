@@ -142,7 +142,7 @@
     }
     if (_payType == YEAR_CARD) {
         _carPrice.text = @"年卡价";
-        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] !=1) { //押金无效(充押金并续费)
             _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
             NSInteger total = 3187 - _CouponNum;

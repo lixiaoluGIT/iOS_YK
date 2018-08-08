@@ -16,7 +16,7 @@
 + (YKUserManager *)sharedManager;
 @property (nonatomic,assign)NSInteger couponNum;//价钱
 @property (nonatomic,assign)int couponID;//id
-@property (nonatomic,assign)BOOL isFromCoupon;
+@property (nonatomic,assign)BOOL isFromCoupon;//来自去使用优惠劵
 
 //获取验证码
 - (void)getVetifyCodeWithPhone:(NSString *)phone
@@ -117,4 +117,12 @@
 
 //获取优惠券
 - (void)getWalletDetailPageOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//获取资金账户
+- (void)getAccountPageOnResponse:(void (^)(NSDictionary *dic))onResponse;
+//获取账户明细
+- (void)getAccountDetailPageOnResponse:(void (^)(NSDictionary *dic))onResponse;
+//提现
+- (void)tiXianeOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 @end

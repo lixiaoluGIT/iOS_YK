@@ -20,7 +20,7 @@
 @property (nonatomic,strong)NSString *phone;//用户手机号
 //会员卡押金信息
 @property (nonatomic,strong)NSString *cardNum;//会员卡号
-@property (nonatomic,strong)NSString *cardType;//会员卡类型 1季卡2月卡3年卡4体验卡5助力卡
+@property (nonatomic,strong)NSString *cardType;//会员卡类型 1季卡2月卡3年卡4体验卡5助力卡6加时卡
 @property (nonatomic,strong)NSString *depositEffective;//押金状态 0>未交,不是VIP,1>有效,2>退还中,3>无效
 @property (nonatomic,strong)NSString *effective;//会员卡状态 1>使用中,2>已过期,3>无押金,4>未开通
 @property (nonatomic,strong)NSString *validity;//会员剩余天数
@@ -29,6 +29,8 @@
 //学校信息
 @property (nonatomic,strong)NSString *colledgeId;//学校Id
 @property (nonatomic,strong)NSString *colledgeName;//学校名
+//是否付费
+@property (nonatomic,strong)NSString *isNewUser;//0未付费。1已付费
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

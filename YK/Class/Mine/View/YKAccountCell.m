@@ -22,8 +22,8 @@
 
 - (void)setAccount:(NSDictionary *)account{
     _account = account;
-    _accountLabel.text = [NSString stringWithFormat:@"¥%@",account[@"account"]];
-    if ([account[@"account"] intValue] == 0) {
+    _accountLabel.text = [NSString stringWithFormat:@"¥%@",account[@"capital"]];
+    if ([account[@"capital"] intValue] == 0) {
         _txBtn.backgroundColor = [UIColor colorWithHexString:@"999999"];
         [_txBtn setUserInteractionEnabled:NO];
     }else {
@@ -32,7 +32,14 @@
     }
 }
 - (IBAction)tixian:(id)sender {
-    [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"客官莫急"  delay:1.5];
+    
+    if ([_account[@"capital"] intValue] <50) {//余额不足
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"满50才可提现哦" delay:1.5];
+        return;
+    }
+    if (self.tixianClick) {
+        self.tixianClick();
+    }
 }
 
 @end

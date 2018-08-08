@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKShareVC : YKBaseVC
+@interface YKShareVC : YKBaseTableVC
 
 @end

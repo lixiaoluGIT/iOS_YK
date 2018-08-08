@@ -64,6 +64,13 @@
 		007D57C420CFA63200C23F5E /* YKSearchSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D57C320CFA63200C23F5E /* YKSearchSegmentVC.m */; };
 		007D57C720CFBA9900C23F5E /* YKStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D57C620CFBA9900C23F5E /* YKStyleView.m */; };
 		007D57CA20CFCDA800C23F5E /* YKSPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D57C920CFCDA800C23F5E /* YKSPVC.m */; };
+		0087C98F211AA0F90014E733 /* YKLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C98D211AA0F90014E733 /* YKLogInView.m */; };
+		0087C990211AA0F90014E733 /* YKLogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C98E211AA0F90014E733 /* YKLogInView.xib */; };
+		0087C993211AAFB90014E733 /* YKPlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C992211AAFB90014E733 /* YKPlayVC.m */; };
+		0087C997211AC8480014E733 /* YKHomeAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C995211AC8480014E733 /* YKHomeAleartView.m */; };
+		0087C998211AC8480014E733 /* YKHomeAleartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C996211AC8480014E733 /* YKHomeAleartView.xib */; };
+		0087C99C211AEA210014E733 /* YKShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C99A211AEA210014E733 /* YKShareCell.m */; };
+		0087C99D211AEA210014E733 /* YKShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C99B211AEA210014E733 /* YKShareCell.xib */; };
 		009D3768210588EA00B16A33 /* YKCouponListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D3767210588EA00B16A33 /* YKCouponListVC.m */; };
 		00A0CC4A2090265C001205A1 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC3F2090265C001205A1 /* libSocialWeChat.a */; };
 		00A0CC4C2090265D001205A1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC432090265C001205A1 /* libWeChatSDK.a */; };
@@ -694,6 +701,17 @@
 		007D57C620CFBA9900C23F5E /* YKStyleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKStyleView.m; sourceTree = "<group>"; };
 		007D57C820CFCDA800C23F5E /* YKSPVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSPVC.h; sourceTree = "<group>"; };
 		007D57C920CFCDA800C23F5E /* YKSPVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSPVC.m; sourceTree = "<group>"; };
+		0087C98C211AA0F90014E733 /* YKLogInView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKLogInView.h; sourceTree = "<group>"; };
+		0087C98D211AA0F90014E733 /* YKLogInView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLogInView.m; sourceTree = "<group>"; };
+		0087C98E211AA0F90014E733 /* YKLogInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKLogInView.xib; sourceTree = "<group>"; };
+		0087C991211AAFB90014E733 /* YKPlayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKPlayVC.h; sourceTree = "<group>"; };
+		0087C992211AAFB90014E733 /* YKPlayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKPlayVC.m; sourceTree = "<group>"; };
+		0087C994211AC8470014E733 /* YKHomeAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHomeAleartView.h; sourceTree = "<group>"; };
+		0087C995211AC8480014E733 /* YKHomeAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHomeAleartView.m; sourceTree = "<group>"; };
+		0087C996211AC8480014E733 /* YKHomeAleartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKHomeAleartView.xib; sourceTree = "<group>"; };
+		0087C999211AEA210014E733 /* YKShareCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKShareCell.h; sourceTree = "<group>"; };
+		0087C99A211AEA210014E733 /* YKShareCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKShareCell.m; sourceTree = "<group>"; };
+		0087C99B211AEA210014E733 /* YKShareCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKShareCell.xib; sourceTree = "<group>"; };
 		009D3766210588EA00B16A33 /* YKCouponListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponListVC.h; sourceTree = "<group>"; };
 		009D3767210588EA00B16A33 /* YKCouponListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponListVC.m; sourceTree = "<group>"; };
 		00A0CC3F2090265C001205A1 /* libSocialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWeChat.a; sourceTree = "<group>"; };
@@ -2363,6 +2381,14 @@
 				009D3767210588EA00B16A33 /* YKCouponListVC.m */,
 				00753FBB211009E900550A66 /* YKCouponSegementVC.h */,
 				00753FBC211009E900550A66 /* YKCouponSegementVC.m */,
+				0087C98C211AA0F90014E733 /* YKLogInView.h */,
+				0087C98D211AA0F90014E733 /* YKLogInView.m */,
+				0087C98E211AA0F90014E733 /* YKLogInView.xib */,
+				0087C991211AAFB90014E733 /* YKPlayVC.h */,
+				0087C992211AAFB90014E733 /* YKPlayVC.m */,
+				0087C994211AC8470014E733 /* YKHomeAleartView.h */,
+				0087C995211AC8480014E733 /* YKHomeAleartView.m */,
+				0087C996211AC8480014E733 /* YKHomeAleartView.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2585,6 +2611,9 @@
 				C57505371FFB853500F7E07A /* DDAleartView.m */,
 				C5E46EA71FFE307F002453EB /* YKShareVC.h */,
 				C5E46EA81FFE307F002453EB /* YKShareVC.m */,
+				0087C999211AEA210014E733 /* YKShareCell.h */,
+				0087C99A211AEA210014E733 /* YKShareCell.m */,
+				0087C99B211AEA210014E733 /* YKShareCell.xib */,
 				C5742ECE2003661800BBB882 /* STPageControl.h */,
 				C5742ECF2003661800BBB882 /* STPageControl.m */,
 				C5E46EAA1FFE3FF2002453EB /* YKShareSuccessView.h */,
@@ -3923,6 +3952,7 @@
 			files = (
 				C525DE331FBC04EE002802AE /* YKSearchHeader.xib in Resources */,
 				C525DC311FBAAFC1002802AE /* LaunchScreen.storyboard in Resources */,
+				0087C998211AC8480014E733 /* YKHomeAleartView.xib in Resources */,
 				00698505207F3C57006F774E /* newka.png in Resources */,
 				C525DC2E1FBAAFC1002802AE /* Assets.xcassets in Resources */,
 				C5343C821FC5474800F5132A /* YKProductDetailHeader.xib in Resources */,
@@ -3947,6 +3977,7 @@
 				C525DEAD1FBD97BA002802AE /* YKAddressDetailCell.xib in Resources */,
 				C52D0FAE1FC6D97700B50258 /* YKWalletDetailCell.xib in Resources */,
 				C5B723DC202D70F200344339 /* s.gif in Resources */,
+				0087C990211AA0F90014E733 /* YKLogInView.xib in Resources */,
 				C525DEA51FBD89F7002802AE /* YKSMSCell.xib in Resources */,
 				C5690F991FE770BD0027EFCE /* YKTotalSMSCell.xib in Resources */,
 				005D2CEB2085E10B00AEBDA0 /* top111.jpg in Resources */,
@@ -3984,6 +4015,7 @@
 				C532A76B1FDFD8BB0068A31D /* YKSelectPayView.xib in Resources */,
 				00753FB0210F0BAF00550A66 /* YKVipCell.xib in Resources */,
 				C525DDA01FBAB2A9002802AE /* LICENSE in Resources */,
+				0087C99D211AEA210014E733 /* YKShareCell.xib in Resources */,
 				C57A53B11FCBAFF70090E372 /* YKEditInforVC.xib in Resources */,
 				C525DDAB1FBAB2A9002802AE /* README.md in Resources */,
 				C5742ED22003872C00BBB882 /* Images.xcassets in Resources */,
@@ -4063,6 +4095,7 @@
 				0062BCFB20D2761F00D978BD /* YKActivityheader.m in Sources */,
 				C525DD791FBAB2A9002802AE /* UIScrollView+MJExtension.m in Sources */,
 				C5FB786C205904780076DD6F /* YYSentinel.m in Sources */,
+				0087C98F211AA0F90014E733 /* YKLogInView.m in Sources */,
 				C5FB782F205904780076DD6F /* UIButton+YYWebImage.m in Sources */,
 				C5FB7840205904780076DD6F /* YYTextDebugOption.m in Sources */,
 				C525DE901FBD28D6002802AE /* SteyUtil.m in Sources */,
@@ -4145,6 +4178,7 @@
 				C5FB785A205904780076DD6F /* NSNumber+YYAdd.m in Sources */,
 				C525DE091FBABE69002802AE /* CGQCollectionViewCell.m in Sources */,
 				C525DDA21FBAB2A9002802AE /* NSString+MLLabel.m in Sources */,
+				0087C993211AAFB90014E733 /* YKPlayVC.m in Sources */,
 				C532A7781FE0CCEE0068A31D /* ApiXml.mm in Sources */,
 				C5FB786B205904780076DD6F /* YYThreadSafeDictionary.m in Sources */,
 				C525DD8D1FBAB2A9002802AE /* SDWaitingView.m in Sources */,
@@ -4189,6 +4223,7 @@
 				C525DD941FBAB2A9002802AE /* MASLayoutConstraint.m in Sources */,
 				C52D0FAD1FC6D97700B50258 /* YKWalletDetailCell.m in Sources */,
 				C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */,
+				0087C99C211AEA210014E733 /* YKShareCell.m in Sources */,
 				C5FB784F205904780076DD6F /* UIApplication+YYAdd.m in Sources */,
 				C5FB783A205904780076DD6F /* YYTextEffectWindow.m in Sources */,
 				C525DD6C1FBAB2A8002802AE /* AFURLResponseSerialization.m in Sources */,
@@ -4365,6 +4400,7 @@
 				C54B8F861FE27472000EAF8E /* YKMessageManager.m in Sources */,
 				C5DA84B720060692002A12E3 /* YKLinkWebVC.m in Sources */,
 				C525DC781FBAB207002802AE /* ZYCollectionViewCell.m in Sources */,
+				0087C997211AC8480014E733 /* YKHomeAleartView.m in Sources */,
 				C525DC261FBAAFC1002802AE /* AppDelegate.m in Sources */,
 				C5F929BB20206E53001D2139 /* FYTransitionAnimator.m in Sources */,
 				C525DDC31FBAB2A9002802AE /* SDWebImageCompat.m in Sources */,

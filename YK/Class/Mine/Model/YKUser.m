@@ -47,6 +47,8 @@
         self.colledgeName = @"选择院校";
     }
     
+//    self.newUser = Dictionary[@"school"][@"schoolId"];
+    self.isNewUser = Dictionary[@"userInfo"][@"newUser"];
     return self;
 }
 

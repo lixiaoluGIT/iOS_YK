@@ -80,7 +80,6 @@
         YKCouponCodeView *headView = [[NSBundle mainBundle] loadNibNamed:@"YKCouponCodeView" owner:self options:nil][0];
         headView.selectionStyle = UITableViewCellSelectionStyleNone;
         headView.frame = CGRectMake(0, 0, WIDHT, 100);
-//        headView.userInteractionEnabled = NO;
         UIView * view = [[UIView alloc] initWithFrame:headView.frame];
         headView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [view addSubview:headView];
@@ -96,12 +95,33 @@
     
     [[YKUserManager sharedManager]getWalletDetailPageOnResponse:^(NSDictionary *dic) {
         [self.tableView.mj_header endRefreshing];
+    
         self.dataArray = [NSArray arrayWithArray:dic[@"data"]];
+      
+        
+        NSMutableArray *currentArray = [NSMutableArray array];
+        if (couponType==1) {//可使用
+            for (NSDictionary *dic in self.dataArray) {
+                if ([dic[@"couponStatus"] intValue] == 1){//可使用
+                    [currentArray addObject:dic];
+                }
+            }
+            self.dataArray = [NSArray arrayWithArray:currentArray];
+        }else {//已过期
+            for (NSDictionary *dic in self.dataArray) {
+                if ([dic[@"couponStatus"] intValue] == 3){//已过期
+                    [currentArray addObject:dic];
+                }
+            }
+            self.dataArray = [NSArray arrayWithArray:currentArray];
+        }
+        
         if (self.dataArray.count == 0) {
             _NoDataView.hidden = NO;
         }else {
             _NoDataView.hidden = YES;
         }
+        
         [self.tableView reloadData];
     }];
     
@@ -161,10 +181,7 @@
         [YKUserManager sharedManager].isFromCoupon = YES;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
         [self presentViewController:nav animated:YES completion:^{
-            
         }];
     }
-   
 }
-
 @end

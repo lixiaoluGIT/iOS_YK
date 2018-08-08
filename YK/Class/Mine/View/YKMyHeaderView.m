@@ -68,12 +68,12 @@
     
     //5个图标view
     _tagView = [[UIView alloc]init];
-    _tagView.frame = CGRectMake(0, _toDetailLabel.bottom+23, WIDHT, 58);
+    _tagView.frame = CGRectMake(0, _toDetailLabel.bottom+55, WIDHT, 58);
     _tagView.backgroundColor = mainColor;
     [self addSubview:_tagView];
     //5个图标
     NSArray *titles = @[@"全部衣袋",@"待签收",@"待归还",@"优惠劵",@"资金账户"];
-    NSArray *images = @[@"衣袋图标",@"待签收-1",@"待归还-1",@"优惠劵-2",@"资金账户"];
+    NSArray *images = @[@"衣袋图标-1",@"待签收-2",@"待归还-2",@"优惠劵-3",@"资金账户-1"];
     for (int i=0;i<5; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(WIDHT/5*i, 0, WIDHT/5, 58);
@@ -84,9 +84,9 @@
         //字
         UILabel *label = [[UILabel alloc]init];
         label.text = titles[i];
-        label.textColor = [UIColor whiteColor];
+        label.textColor = [UIColor colorWithHexString:@"cccccc"];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:14];
+        label.font = [UIFont systemFontOfSize:12];
         [btn addSubview:label];
         //布局
         [image mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -90,7 +90,8 @@
 
     [NC addObserver:self selector:@selector(toSearch) name:@"tosearch" object:nil];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    
+    //弹框
+//    [[YKHomeManager sharedManager]showAleart];
     //腾讯统计
     [[MTAConfig getInstance] setSmartReporting:YES];
     [[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_INSTANT];
@@ -223,6 +224,9 @@
     return imageArray;
 }
 
+- (void)aleart{
+    [[YKHomeManager sharedManager]showAleart];
+}
 -(void)dd{
     
     NSInteger num = 1;
@@ -236,6 +240,7 @@
                     [self checkVersion];
                     hadAppearCheckVersion = YES;
                 }
+        [self performSelector:@selector(aleart) withObject:nil afterDelay:1];
         self.collectionView.hidden = NO;
         NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"loopPic"]];
         self.imagesArr = [self getImageArray:array];

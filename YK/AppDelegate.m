@@ -36,6 +36,9 @@
 #endif
 // 如果需要使用idfa功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
+//
+#import "YKLogInView.h"
+#import "YKPlayVC.h"
 
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate,DXAlertViewDelegate,JPUSHRegisterDelegate>
 
@@ -45,6 +48,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UD removeObjectForKey:@"hadLoad"];
+    [NC addObserver:self selector:@selector(registerSuccess) name:@"registerSuccess" object:nil];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -55,22 +59,22 @@
     //马甲包去掉了引导页（防止被拒）
     //安装
     [MobClick event:@"upload"];
-    
-    if (![UD boolForKey:@"notFirst"]) {
-        
-        //第一次安装的时候上传idfa
-        //idfa
-//        [[YKUserManager sharedManager]uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
+//
+//    if (![UD boolForKey:@"notFirst"]) {
+//
+//        //第一次安装的时候上传idfa
+//        //idfa
+////        [[YKUserManager sharedManager]uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
+////
+////        }];
+//
+//        _window.rootViewController = [[WelcomeViewController alloc] init];
+//
+//        [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
 //
 //        }];
-    
-        _window.rootViewController = [[WelcomeViewController alloc] init];
-        
-        [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
-            
-        }];
-    }
-    else{
+//    }
+//    else{
         DDAdvertisementVC *ad = [DDAdvertisementVC new];
         if ([UD objectForKey:Ad_Url]) {
             ad.url = [UD objectForKey:Ad_Url];
@@ -95,7 +99,7 @@
             
         }
        
-    }
+//    }
     
     //注册融云服务
     [[RCIM sharedRCIM] initWithAppKey:RongAPPID];
@@ -726,6 +730,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return YES;
+}
+
+- (void)registerSuccess{
+   
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 //    [UD removeObjectForKey:@"hadLoad"];

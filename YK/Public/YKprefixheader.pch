@@ -127,6 +127,12 @@
 #define upLoadPushID_Url @"/user/uploadPushId"
 //上传学校
 #define upLoadColledge_Url @"/school/selectSchool"
+//获取资金账户
+#define getAccount_Url @"/account/queryAccount"
+//查询资金明细
+#define getAccountDetail_Url @"/account/queryAccountDetail"
+//提现
+#define tiXian_Url @"/account/withdraw"
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页

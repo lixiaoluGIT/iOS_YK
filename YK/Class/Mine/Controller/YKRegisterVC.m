@@ -9,6 +9,7 @@
 #import "YKRegisterVC.h"
 #import "RSAEncryptor.h"
 #import "YKSelectColedgeVC.h"
+#import "YKLogInView.h"
 
 @interface YKRegisterVC ()
 <UITextFieldDelegate>{
@@ -180,6 +181,7 @@ NSInteger timeNum;
     [[YKUserManager sharedManager] RegisterWithPhone:self.phoneText.text VetifyCode:self.vetifyCodeText.text InviteCode:_colledgeId  OnResponse:^(NSDictionary *dic) {
         [self dismissViewControllerAnimated:YES completion:^{
             
+            [self performSelector:@selector(toLoginView) withObject:nil afterDelay:0.3];
                     }];
     }];
     
@@ -191,6 +193,13 @@ NSInteger timeNum;
 //    }];
 }
 
+- (void)toLoginView{
+    YKLogInView *loginView = [[NSBundle mainBundle]loadNibNamed:@"YKLogInView" owner:nil options:nil][0];
+    loginView.frame = CGRectMake(0, HEIGHT, 0, 0);
+    [[UIApplication sharedApplication].keyWindow addSubview:loginView];
+    [loginView appear];
+
+}
 - (NSString *)getRSAStr:(NSString *)str{
     
     //使用字符串格式的公钥私钥加密解密

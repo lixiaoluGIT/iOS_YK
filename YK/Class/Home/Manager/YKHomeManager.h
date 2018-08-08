@@ -47,4 +47,6 @@
 //得到用户尺码表
 - (NSArray *)getUserSizeArray:(NSDictionary *)dic;
 
+//弹框
+- (void)showAleart;
 @end

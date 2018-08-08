@@ -8,6 +8,7 @@
 
 #import "YKHomeManager.h"
 #import "YKShareVC.h"
+#import "YKHomeAleartView.h"
 
 @implementation YKHomeManager
 
@@ -442,4 +443,13 @@
     return sizeArray;
 }
 
+- (void)showAleart{
+    if ([[YKUserManager sharedManager].user.isNewUser intValue] == 1) {//已付费
+        return;
+    }
+    YKHomeAleartView *loginView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeAleartView" owner:nil options:nil][0];
+    loginView.frame = CGRectMake(0, HEIGHT, 0, 0);
+    [[UIApplication sharedApplication].keyWindow addSubview:loginView];
+    [loginView appear];
+}
 @end

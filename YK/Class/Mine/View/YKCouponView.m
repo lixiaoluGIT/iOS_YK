@@ -70,7 +70,7 @@
     }
 
     _couponID = [dic[@"couponId"] intValue];
-    
+//    _type.text = dic[@"couponName"];
     _effectiveDay.text = [NSString stringWithFormat:@"%@前有效",[self timeWithTimeIntervalString:dic[@"expiryTime"]]];
 
     if ([dic[@"couponStatus"] intValue]==1) {//未使用

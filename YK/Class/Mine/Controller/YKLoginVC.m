@@ -95,6 +95,10 @@ NSInteger timeNum;
         }];
     }
 }
+
+//- (void)toLoginView{
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"registerSuccess" object:nil userInfo:nil];
+//}
 #pragma mark - 视频播放结束 触发
 - (void)playToEnd
 {
@@ -392,6 +396,8 @@ NSInteger timeNum;
 
 //微信登录
 - (IBAction)weChatLogin:(id)sender {
+    [UD setBool:NO forKey:@"bindWX"];//不是绑定,是登录
+    [UD synchronize];
     [[YKUserManager sharedManager]loginByWeChatOnResponse:^(NSDictionary *dic) {
         
     }];

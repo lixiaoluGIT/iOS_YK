@@ -149,6 +149,7 @@
 	<string>是否允许此App访问你的媒体资料库来上传你的头像？</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchImages</key>

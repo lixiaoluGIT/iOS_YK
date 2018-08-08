@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="673" id="KGk-i7-Jjw" customClass="YKHomeAleartView">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="673"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="358" height="672.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kZ-yo-izY">
+                        <rect key="frame" x="0.0" y="0.0" width="358" height="673"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJS-dO-t3j">
+                        <rect key="frame" x="163" y="546" width="32" height="32"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="WSH-lD-CPl"/>
+                            <constraint firstAttribute="width" constant="32" id="iGO-MS-9C2"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="guanbi-1"/>
+                        <connections>
+                            <action selector="close:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BDh-pz-fmf"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="弹窗" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-rC-nc5">
+                        <rect key="frame" x="37" y="80" width="284" height="439"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Fk-Zn-49q">
+                        <rect key="frame" x="119" y="447" width="121" height="40"/>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.37254901960784315" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="121" id="Q9f-08-w0T"/>
+                            <constraint firstAttribute="height" constant="40" id="RTZ-2G-sGW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <state key="normal" title="立即领取"/>
+                        <connections>
+                            <action selector="use:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="F5d-Sz-zax"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dEH-rC-nc5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="4Ho-Qu-fw2"/>
+                    <constraint firstItem="2kZ-yo-izY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5DW-DN-e8R"/>
+                    <constraint firstItem="kJS-dO-t3j" firstAttribute="centerX" secondItem="dEH-rC-nc5" secondAttribute="centerX" id="7Dt-9a-Ptw"/>
+                    <constraint firstItem="8Fk-Zn-49q" firstAttribute="top" secondItem="dEH-rC-nc5" secondAttribute="bottom" constant="-72" id="GIM-Oe-XEJ"/>
+                    <constraint firstItem="dEH-rC-nc5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="80" id="LtU-sW-xXb"/>
+                    <constraint firstAttribute="bottom" secondItem="2kZ-yo-izY" secondAttribute="bottom" id="YzW-Fs-I1P"/>
+                    <constraint firstItem="8Fk-Zn-49q" firstAttribute="centerX" secondItem="dEH-rC-nc5" secondAttribute="centerX" id="abF-Rl-oE2"/>
+                    <constraint firstItem="2kZ-yo-izY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cwF-KZ-6bJ"/>
+                    <constraint firstItem="kJS-dO-t3j" firstAttribute="top" secondItem="dEH-rC-nc5" secondAttribute="bottom" constant="27" id="n7e-Ne-CI5"/>
+                    <constraint firstAttribute="trailing" secondItem="2kZ-yo-izY" secondAttribute="trailing" id="o7b-it-Gnv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backView" destination="2kZ-yo-izY" id="J2l-nS-Ong"/>
+                <outlet property="gap" destination="LtU-sW-xXb" id="mhP-Yo-hg4"/>
+                <outlet property="getBtn" destination="8Fk-Zn-49q" id="4bM-p8-lxO"/>
+                <outlet property="girlImage" destination="dEH-rC-nc5" id="H58-v0-VaF"/>
+            </connections>
+            <point key="canvasLocation" x="-167" y="384"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="guanbi-1" width="32" height="33"/>
+        <image name="弹窗" width="284" height="439"/>
+    </resources>
+</document>

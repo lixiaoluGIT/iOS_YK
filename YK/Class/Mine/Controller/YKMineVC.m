@@ -87,12 +87,12 @@
 }
 -(void)addHeadView{
     WeakSelf(weakSelf)
-    head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5-30)];
+    head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5-30+20)];
     if (HEIGHT==812) {
-        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
+        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5+20)];
     }
     if (WIDHT==375) {
-        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
+        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5+20)];
     }
     head.userInteractionEnabled = YES;
      self.tableView.tableHeaderView=head;
@@ -316,108 +316,6 @@
         return mycell;
     
     
-    
-//    WeakSelf(weakSelf)
-//    if (indexPath.section==0) {
-//        YKMineBagCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKMineBagCell" owner:self options:nil][0];
-//        bagCell.scanBlock = ^(NSInteger tag){
-//            if ([Token length] == 0) {
-//                [weakSelf Login];
-//            }else {
-//                YKMySuitBagVC *suit = [YKMySuitBagVC new];
-//                suit.selectedIndex = tag;
-//                suit.hidesBottomBarWhenPushed = YES;
-//                [self.navigationController pushViewController:suit animated:YES];
-//            }
-//        };
-//        bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return bagCell;
-//    }
-//    
-//    static NSString *identifer = @"cell";
-//    YKMineCategoryCell *cell = [[YKMineCategoryCell alloc]init];
-//    if (!cell) {
-//        cell = [tableView dequeueReusableCellWithIdentifier:identifer];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    }
-//    [cell initWithTitleArray:self.titles ImageArray:self.images];
-//    cell.clickBlock = ^(NSInteger tag){
-//        if ([Token length] == 0) {
-//            if (tag!=3&&tag!=4&&tag!=5) {
-//                [self Login];
-//                return;
-//            }
-//        }
-//       
-//            if (tag==0) {//钱包
-//                YKWalletVC *wallet = [YKWalletVC new];
-//                wallet.hidesBottomBarWhenPushed = YES;
-//                [self.navigationController pushViewController:wallet animated:YES];
-//            }
-//            if (tag==1) {//个人资料
-//                YKEditInforVC *set = [[YKEditInforVC alloc]initWithNibName:@"YKEditInforVC" bundle:[NSBundle mainBundle]];
-//                set.hidesBottomBarWhenPushed = YES;
-//                [self.navigationController pushViewController:set animated:YES];
-//                
-//            }
-//            if (tag==2) {//收货地址
-//                YKAddressVC *address = [YKAddressVC new];
-//                address.hidesBottomBarWhenPushed = YES;
-//                [self.navigationController pushViewController:address animated:YES];
-//            }
-//        if (tag==3) {//分享
-//            YKShareVC *share = [YKShareVC new];
-//            share.hidesBottomBarWhenPushed = YES;
-//            [self.navigationController pushViewController:share animated:YES];
-//        }
-//            if (tag==4) {//常见问题
-//                YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
-//                normal.hidesBottomBarWhenPushed = YES;
-//                [self.navigationController pushViewController:normal animated:YES];
-//            }
-//            if (tag==5) {//联系客服
-//                if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
-//                    NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
-//                    NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
-//                    if (compare == NSOrderedDescending || compare == NSOrderedSame) {
-//                        /// 大于等于10.0系统使用此openURL方法
-//                        if (@available(iOS 10.0, *)) {
-//                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
-//                        } else {
-//                            // Fallback on earlier versions
-//                        }
-//                    } else {
-//                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-//                    }
-//                    return;
-//                }
-//                UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
-//                alertview.delegate = self;
-//                [alertview show];
-//                
-////                if ([Token length] == 0) {
-////                    YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-////                    [self presentViewController:login animated:YES completion:^{
-////
-////                    }];
-////                    login.hidesBottomBarWhenPushed = YES;
-////                    return;
-////                }
-////
-////                DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"客服服务时间:10:00-19:00" cancelBtnTitle:@"拨打电话" otherBtnTitle:@"在线客服"];
-////                alertView.delegate = self;
-////                [alertView show];
-//                
-//               
-//            }
-//            if (tag==6) {//设置
-////                YKReturnVC *re = [[YKReturnVC alloc]init];
-//                YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
-//                set.hidesBottomBarWhenPushed = YES;
-//                [self.navigationController pushViewController:set animated:YES];
-//            }
-//    };
-//    return cell;
 }
 
 - (void)kefu{

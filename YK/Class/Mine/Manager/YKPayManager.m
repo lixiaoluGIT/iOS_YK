@@ -158,6 +158,14 @@
         req.timeStamp           = stamp.intValue;
         req.package             = [dic objectForKey:@"package"];
         req.sign                = [dic objectForKey:@"sign"];
+//        req.openID              = @"wx08491f30bacfc1ce";
+//                req.partnerId           = @"1496670272";
+//                req.prepayId            = @"wx08120701416881d574e459463625596850";
+//                req.nonceStr            = @"1207005880";
+//        req.timeStamp           = 1533701220 ;
+//                req.package             = @"Sign=WXPay";
+//                req.sign                = @"BB03AB5F94D05F605159986A019";
+//
         
         [WXApi sendReq:req];
     }

@@ -22,7 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _becomeBtn.layer.masksToBounds = YES;
-    _becomeBtn.layer.cornerRadius = 21;
+    _becomeBtn.layer.cornerRadius = 16;
     // Initialization code
 }
 - (IBAction)btnClick:(id)sender {
@@ -44,7 +44,7 @@
         _dayLabel.text = _user.validity;
         if ([_user.cardType intValue]==1||[_user.cardType intValue]==6) {//月卡
             _vipStatusLabel.text = @"月卡会员";
-            _backImage.image = [UIImage imageNamed:@"yy"];
+            _backImage.image = [UIImage imageNamed:@"yk-1"];
         }
         if ([_user.cardType intValue]==2) {//季卡
             _vipStatusLabel.text = @"季卡会员";
