@@ -126,9 +126,6 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="r4f-e1-ikz">
                         <rect key="frame" x="343" y="17" width="10" height="14"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot" translatesAutoresizingMaskIntoConstraints="NO" id="7ec-Gj-I1e">
-                        <rect key="frame" x="88" y="8" width="24" height="12"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6l-MT-XPm">
                         <rect key="frame" x="33.5" y="69" width="73.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -155,24 +152,21 @@
                     <constraint firstItem="r4f-e1-ikz" firstAttribute="centerY" secondItem="chZ-HX-3ZE" secondAttribute="centerY" id="RIN-3Q-jWI"/>
                     <constraint firstItem="XuI-vs-MR2" firstAttribute="top" secondItem="W6l-MT-XPm" secondAttribute="bottom" constant="-40" id="RNh-s3-E7T"/>
                     <constraint firstItem="chZ-HX-3ZE" firstAttribute="top" secondItem="3e8-NU-9nI" secondAttribute="top" constant="14" id="Rb2-OC-4pF"/>
-                    <constraint firstItem="7ec-Gj-I1e" firstAttribute="top" secondItem="chZ-HX-3ZE" secondAttribute="top" constant="-6" id="TQh-RJ-VBy"/>
                     <constraint firstAttribute="trailing" secondItem="r4f-e1-ikz" secondAttribute="trailing" constant="24" id="dam-10-5x2"/>
                     <constraint firstItem="XuI-vs-MR2" firstAttribute="top" secondItem="chZ-HX-3ZE" secondAttribute="bottom" constant="16" id="eQA-uD-5Kn"/>
                     <constraint firstItem="cT5-eL-2Vt" firstAttribute="leading" secondItem="VL2-g2-z3D" secondAttribute="trailing" constant="-80" id="erJ-nz-ua4"/>
                     <constraint firstItem="XuI-vs-MR2" firstAttribute="leading" secondItem="chZ-HX-3ZE" secondAttribute="leading" id="lap-gf-nmu"/>
                     <constraint firstItem="cT5-eL-2Vt" firstAttribute="top" secondItem="W6l-MT-XPm" secondAttribute="bottom" constant="8" id="qfw-JH-64M"/>
-                    <constraint firstItem="7ec-Gj-I1e" firstAttribute="leading" secondItem="chZ-HX-3ZE" secondAttribute="trailing" constant="-1" id="svi-dD-nhh"/>
                     <constraint firstItem="cT5-eL-2Vt" firstAttribute="leading" secondItem="W6l-MT-XPm" secondAttribute="leading" id="tWe-WZ-NA0"/>
                     <constraint firstItem="cT5-eL-2Vt" firstAttribute="leading" secondItem="W6l-MT-XPm" secondAttribute="leading" id="wlL-K8-Gv2"/>
                     <constraint firstItem="VL2-g2-z3D" firstAttribute="top" secondItem="cT5-eL-2Vt" secondAttribute="bottom" constant="16" id="ypO-yf-oRn"/>
                     <constraint firstItem="chZ-HX-3ZE" firstAttribute="leading" secondItem="3e8-NU-9nI" secondAttribute="leading" constant="23" id="z0q-2k-YEw"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-13.5" y="575"/>
+            <point key="canvasLocation" x="-12" y="431"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="hot" width="24" height="12"/>
         <image name="right" width="10" height="14"/>
         <image name="yqyj-1" width="335" height="117"/>
     </resources>

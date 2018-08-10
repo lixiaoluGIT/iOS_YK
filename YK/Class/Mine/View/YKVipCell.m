@@ -42,6 +42,15 @@
     }else {
         
         _dayLabel.text = _user.validity;
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) {
+            _vipStatusLabel.text = @"暂无押金";
+            _backImage.image = [UIImage imageNamed:@"yk-1"];
+             [_becomeBtn setTitle:@"续费" forState:UIControlStateNormal];
+            return;
+        }
+        
+       
+        
         if ([_user.cardType intValue]==1||[_user.cardType intValue]==6) {//月卡
             _vipStatusLabel.text = @"月卡会员";
             _backImage.image = [UIImage imageNamed:@"yk-1"];
@@ -62,8 +71,8 @@
             _vipStatusLabel.text = @"助力卡会员";
             _backImage.image = [UIImage imageNamed:@""];
         }
-        
         [_becomeBtn setTitle:@"续费" forState:UIControlStateNormal];
+        
     }
 }
 

@@ -75,28 +75,28 @@
 }
 
 - (void)appear{
-    [UIView animateWithDuration:0.2 animations:^{
-        self.frame = CGRectMake(0, -20, WIDHT, HEIGHT);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
          _backView.alpha = 0.7;
     }completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.frame = CGRectMake(0, 20, WIDHT, HEIGHT);
-        }completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1 animations:^{
-                self.frame = CGRectMake(0, -10, WIDHT, HEIGHT);
-            }completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.1 animations:^{
-                    self.frame = CGRectMake(0, 10, WIDHT, HEIGHT);
-                }completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.1 animations:^{
-                        self.frame = CGRectMake(0, -5, WIDHT, HEIGHT);
-                    }completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.1 animations:^{
-                            self.frame = CGRectMake(0, 5, WIDHT, HEIGHT);
-                        }completion:^(BOOL finished) {
-                            [UIView animateWithDuration:0.1 animations:^{
-                                self.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
-                            }completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.2 animations:^{
+//            self.frame = CGRectMake(0, 20, WIDHT, HEIGHT);
+//        }completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.1 animations:^{
+//                self.frame = CGRectMake(0, -10, WIDHT, HEIGHT);
+//            }completion:^(BOOL finished) {
+//                [UIView animateWithDuration:0.1 animations:^{
+//                    self.frame = CGRectMake(0, 10, WIDHT, HEIGHT);
+//                }completion:^(BOOL finished) {
+//                    [UIView animateWithDuration:0.1 animations:^{
+//                        self.frame = CGRectMake(0, -5, WIDHT, HEIGHT);
+//                    }completion:^(BOOL finished) {
+//                        [UIView animateWithDuration:0.1 animations:^{
+//                            self.frame = CGRectMake(0, 5, WIDHT, HEIGHT);
+//                        }completion:^(BOOL finished) {
+//                            [UIView animateWithDuration:0.1 animations:^{
+//                                self.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
+//                            }completion:^(BOOL finished) {
 //
 //                                CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
 //                                //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
@@ -107,12 +107,12 @@
 //                                animation.fillMode = kCAFillModeForwards;
 //                                animation.repeatCount = 1; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
 //                                [self.girlImage.layer addAnimation:animation forKey:nil];
-                            }];
-                        }];
-                    }];
-                }];
-            }];
-        }];
+//                            }];
+//                        }];
+//                    }];
+//                }];
+//            }];
+//        }];
     }];
 }
 

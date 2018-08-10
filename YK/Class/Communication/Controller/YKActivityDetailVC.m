@@ -154,8 +154,10 @@
         headerView.frame = CGRectMake(0, 0, WIDHT, 400);
 //        YKActivityheader
         _acH = [[NSBundle mainBundle]loadNibNamed:@"YKActivityheader" owner:nil options:nil][0];
-        _acH.frame = CGRectMake(0, 0, WIDHT, 400);
         _acH.activity = _activity;
+        headerView.frame = CGRectMake(0, 0, WIDHT, _acH.Lheight);
+        _acH.frame = CGRectMake(0, 0, WIDHT, _acH.Lheight);
+
         WeakSelf(weakSelf)
         _acH.attendActivityBlock = ^(NSString *activityId){
             if ([Token length] == 0) {

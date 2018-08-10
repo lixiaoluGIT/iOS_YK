@@ -65,32 +65,32 @@
 }
 
 - (void)appear{
-    [UIView animateWithDuration:0.2 animations:^{
-        self.frame = CGRectMake(0, -20, WIDHT, HEIGHT);
-    }completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.frame = CGRectMake(0, 20, WIDHT, HEIGHT);
-        }completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1 animations:^{
-                self.frame = CGRectMake(0, -10, WIDHT, HEIGHT);
-            }completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.1 animations:^{
-                    self.frame = CGRectMake(0, 10, WIDHT, HEIGHT);
-                }completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.1 animations:^{
-                        self.frame = CGRectMake(0, -5, WIDHT, HEIGHT);
-                    }completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.1 animations:^{
-                            self.frame = CGRectMake(0, 5, WIDHT, HEIGHT);
-                        }completion:^(BOOL finished) {
-                            [UIView animateWithDuration:0.1 animations:^{
-                                self.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
-                            }];
-                        }];
-                    }];
-                }];
-            }];
-        }];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
+//    }completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.2 animations:^{
+//            self.frame = CGRectMake(0, 20, WIDHT, HEIGHT);
+//        }completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.1 animations:^{
+//                self.frame = CGRectMake(0, -10, WIDHT, HEIGHT);
+//            }completion:^(BOOL finished) {
+//                [UIView animateWithDuration:0.1 animations:^{
+//                    self.frame = CGRectMake(0, 10, WIDHT, HEIGHT);
+//                }completion:^(BOOL finished) {
+//                    [UIView animateWithDuration:0.1 animations:^{
+//                        self.frame = CGRectMake(0, -5, WIDHT, HEIGHT);
+//                    }completion:^(BOOL finished) {
+//                        [UIView animateWithDuration:0.1 animations:^{
+//                            self.frame = CGRectMake(0, 5, WIDHT, HEIGHT);
+//                        }completion:^(BOOL finished) {
+//                            [UIView animateWithDuration:0.1 animations:^{
+//                                self.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
+//                            }];
+//                        }];
+//                    }];
+//                }];
+//            }];
+//        }];
     }];
 }
 

@@ -12,5 +12,6 @@
 @interface YKActivityheader : UITableViewCell
 @property (nonatomic,strong)YKActivity *activity;
 @property (nonatomic,copy)void(^attendActivityBlock)(NSString *activityId);
+@property (nonatomic,assign)CGFloat Lheight;
 //@property (nonatomic,copy)void (^clickIndexToWebViewBlock)(NSString *webUrl);
 @end
