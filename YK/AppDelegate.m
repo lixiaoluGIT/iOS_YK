@@ -670,7 +670,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         NSLog(@"error code %d  error msg %@  lang %@   country %@",response.errCode,response.errStr,response.lang,response.country);
         
         if (resp.errCode == 0) {  //成功。
-          
+          [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"分享成功" delay:2];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"wechatShareSuccessNotification" object:self userInfo:nil];
             
             //这里处理回调的方法 。 通过代理吧对应的登录消息传送过去。

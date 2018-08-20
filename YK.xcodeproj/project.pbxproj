@@ -64,6 +64,8 @@
 		007D57C420CFA63200C23F5E /* YKSearchSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D57C320CFA63200C23F5E /* YKSearchSegmentVC.m */; };
 		007D57C720CFBA9900C23F5E /* YKStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D57C620CFBA9900C23F5E /* YKStyleView.m */; };
 		007D57CA20CFCDA800C23F5E /* YKSPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D57C920CFCDA800C23F5E /* YKSPVC.m */; };
+		007EE275212AB6930040B3D3 /* YKHomeCrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE273212AB6930040B3D3 /* YKHomeCrollView.m */; };
+		007EE276212AB6930040B3D3 /* YKHomeCrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007EE274212AB6930040B3D3 /* YKHomeCrollView.xib */; };
 		0087C98F211AA0F90014E733 /* YKLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C98D211AA0F90014E733 /* YKLogInView.m */; };
 		0087C990211AA0F90014E733 /* YKLogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C98E211AA0F90014E733 /* YKLogInView.xib */; };
 		0087C993211AAFB90014E733 /* YKPlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C992211AAFB90014E733 /* YKPlayVC.m */; };
@@ -701,6 +703,9 @@
 		007D57C620CFBA9900C23F5E /* YKStyleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKStyleView.m; sourceTree = "<group>"; };
 		007D57C820CFCDA800C23F5E /* YKSPVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSPVC.h; sourceTree = "<group>"; };
 		007D57C920CFCDA800C23F5E /* YKSPVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSPVC.m; sourceTree = "<group>"; };
+		007EE272212AB6930040B3D3 /* YKHomeCrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHomeCrollView.h; sourceTree = "<group>"; };
+		007EE273212AB6930040B3D3 /* YKHomeCrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHomeCrollView.m; sourceTree = "<group>"; };
+		007EE274212AB6930040B3D3 /* YKHomeCrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKHomeCrollView.xib; sourceTree = "<group>"; };
 		0087C98C211AA0F90014E733 /* YKLogInView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKLogInView.h; sourceTree = "<group>"; };
 		0087C98D211AA0F90014E733 /* YKLogInView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLogInView.m; sourceTree = "<group>"; };
 		0087C98E211AA0F90014E733 /* YKLogInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKLogInView.xib; sourceTree = "<group>"; };
@@ -2245,6 +2250,9 @@
 				005D2CF22085F9D500AEBDA0 /* DCCycleScrollViewFlowLayout.m */,
 				005D2CF32085F9D500AEBDA0 /* DCCycleScrollViewCell.h */,
 				005D2CEE2085F9D400AEBDA0 /* DCCycleScrollViewCell.m */,
+				007EE272212AB6930040B3D3 /* YKHomeCrollView.h */,
+				007EE273212AB6930040B3D3 /* YKHomeCrollView.m */,
+				007EE274212AB6930040B3D3 /* YKHomeCrollView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4038,6 +4046,7 @@
 				C525DEB21FBD9FEE002802AE /* YKEditAddressView.xib in Resources */,
 				C5E46EAE1FFE3FF2002453EB /* YKShareSuccessView.xib in Resources */,
 				C5E023151FD95DCD00C33629 /* YKSuitEnsureCell.xib in Resources */,
+				007EE276212AB6930040B3D3 /* YKHomeCrollView.xib in Resources */,
 				005D2CD62084576F00AEBDA0 /* Name.plist in Resources */,
 				C525DD9C1FBAB2A9002802AE /* MLEmoji_Expression.bundle in Resources */,
 				002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */,
@@ -4361,6 +4370,7 @@
 				C532A74C1FDF8AAB0068A31D /* NSDataEx.m in Sources */,
 				C525DD7A1FBAB2A9002802AE /* NSBundle+MJRefresh.m in Sources */,
 				C5FB78E8205908F80076DD6F /* A2DynamicDelegate.m in Sources */,
+				007EE275212AB6930040B3D3 /* YKHomeCrollView.m in Sources */,
 				C5FB78CF205908F80076DD6F /* NSSet+BlocksKit.m in Sources */,
 				002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */,
 				005D2CF62085F9D600AEBDA0 /* DCCycleScrollViewFlowLayout.m in Sources */,
@@ -4634,8 +4644,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29NXF4787V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4744,8 +4754,8 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "90d3ec60-dcb2-4714-a596-a9acd3002c45";
+				PROVISIONING_PROFILE_SPECIFIER = xykootest;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -4849,8 +4859,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29NXF4787V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4959,8 +4969,8 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0f64e436-77e9-41ac-b9df-04b3532a641d";
+				PROVISIONING_PROFILE_SPECIFIER = xykoo;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5003,435 +5013,6 @@
 				TEST_TARGET_NAME = YK;
 			};
 			name = Release_1;
-		};
-		005375F120F84E490000DCF3 /* Debug_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				CustomAppName = "衣库";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				VALID_ARCHS = "arm64 armv7 armv7s";
-			};
-			name = "Debug_女神新衣";
-		};
-		005375F220F84E490000DCF3 /* Debug_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon_女神新衣";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage_女神新衣";
-				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CustomAppName = "女神新衣";
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/YK/Vender/AliPay",
-					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib",
-					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib-noidfa",
-					"$(PROJECT_DIR)/YK/Vender/UM",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialUI",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDK",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Twitter",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/DingDing",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Facebook",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Linkedin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Kakao",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/YK/Vender/GtSdkLib-noidfa",
-					"$(PROJECT_DIR)/YK/Vender/GtSdkLib",
-					"$(PROJECT_DIR)/YK/Vender/Tencent",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/YK/Vender/UMAnalysis",
-					"$(PROJECT_DIR)/YK/Vender/RongYun",
-					"$(PROJECT_DIR)/YK/Public/YYKit/Vendor",
-					"$(PROJECT_DIR)/YK/Vender/YYKit/Vendor",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial",
-					"$(PROJECT_DIR)/YK/Vender/UMShare",
-					"$(PROJECT_DIR)/YK/Vender/UMShare/UMSocialUI",
-				);
-				GCC_NO_COMMON_BLOCKS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/YK/Public/YKprefixheader.pch";
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"\"$(SRCROOT)/YK/Vender/AliPay\"",
-				);
-				INFOPLIST_FILE = YK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/YK/Vender/AliPay",
-					"$(PROJECT_DIR)/YK/Vender/WXPay",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Pocket",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Twitter",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Pinterest",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/SMS",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/EverNote",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Flickr",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/YiXin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Douban",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/YouDao",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Renren",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/UniqueId",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/DingDing",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/AlipayShare",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Tumblr",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/GooglePlus",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Facebook",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Line",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/VKontakte",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/DropBox",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/LaiWang",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/TencentWeibo",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Instagram",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Sina",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Email",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WhatsApp",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Linkedin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Kakao",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/UniqueId",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/UniqueId",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/alipay",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/Lib",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/wxpay",
-					"$(PROJECT_DIR)/YK/Vender/RongYun",
-					"$(PROJECT_DIR)/YK/Vender/TencentAnalysis",
-					"$(PROJECT_DIR)/YK/Vender/UMShare/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/UMShare/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/JPush",
-				);
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = com.clh.yiku;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
-			};
-			name = "Debug_女神新衣";
-		};
-		005375F320F84E490000DCF3 /* Debug_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7X87NN8N4W;
-				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YK.app/YK";
-			};
-			name = "Debug_女神新衣";
-		};
-		005375F420F84E490000DCF3 /* Debug_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7X87NN8N4W;
-				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = YK;
-			};
-			name = "Debug_女神新衣";
-		};
-		005375F520F84E5B0000DCF3 /* Release_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				COPY_PHASE_STRIP = NO;
-				CustomAppName = "衣库";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s";
-			};
-			name = "Release_女神新衣";
-		};
-		005375F620F84E5B0000DCF3 /* Release_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon_女神新衣";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage_女神新衣";
-				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				CustomAppName = "女神新衣";
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/YK/Vender/AliPay",
-					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib",
-					"$(PROJECT_DIR)/YK/Vender/GeTui/GtSdkLib-noidfa",
-					"$(PROJECT_DIR)/YK/Vender/UM",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialUI",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDK",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Twitter",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/DingDing",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Facebook",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Linkedin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Kakao",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/YK/Vender/GtSdkLib-noidfa",
-					"$(PROJECT_DIR)/YK/Vender/GtSdkLib",
-					"$(PROJECT_DIR)/YK/Vender/Tencent",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/YK/Vender/UMAnalysis",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialUI",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialUI",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/QQ/QQSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/alipay",
-					"$(PROJECT_DIR)/YK/Vender/RongYun",
-					"$(PROJECT_DIR)/YK/Public/YYKit/Vendor",
-					"$(PROJECT_DIR)/YK/Vender/YYKit/Vendor",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial",
-					"$(PROJECT_DIR)/YK/Vender/UMShare",
-					"$(PROJECT_DIR)/YK/Vender/UMShare/UMSocialUI",
-				);
-				GCC_NO_COMMON_BLOCKS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/YK/Public/YKprefixheader.pch";
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"\"$(SRCROOT)/YK/Vender/AliPay\"",
-				);
-				INFOPLIST_FILE = YK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/YK/Vender/AliPay",
-					"$(PROJECT_DIR)/YK/Vender/WXPay",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Pocket",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Twitter",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Pinterest",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/SMS",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/EverNote",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Flickr",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/YiXin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Douban",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/YouDao",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Renren",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/UniqueId",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/DingDing",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/AlipayShare",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Tumblr",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/GooglePlus",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Facebook",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Line",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/VKontakte",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/DropBox",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/LaiWang",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/TencentWeibo",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Instagram",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Sina",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Email",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WhatsApp",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Linkedin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/Kakao",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/YK/Vender/UMSocial/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/UniqueId",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/UniqueId",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/SocialLibraries/QQ",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/YZtag/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/alipay",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/Lib",
-					"$(PROJECT_DIR)/YK/Vender/dongdongcar/wxpay",
-					"$(PROJECT_DIR)/YK/Vender/RongYun",
-					"$(PROJECT_DIR)/YK/Vender/TencentAnalysis",
-					"$(PROJECT_DIR)/YK/Vender/UMShare/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/YK/Vender/UMShare/SocialLibraries/WeChat/WechatSDK",
-					"$(PROJECT_DIR)/YK/Vender/JPush",
-				);
-				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = com.clh.yiku;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
-			};
-			name = "Release_女神新衣";
-		};
-		005375F720F84E5B0000DCF3 /* Release_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7X87NN8N4W;
-				INFOPLIST_FILE = YKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.YKTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YK.app/YK";
-			};
-			name = "Release_女神新衣";
-		};
-		005375F820F84E5B0000DCF3 /* Release_女神新衣 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7X87NN8N4W;
-				INFOPLIST_FILE = YKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ss.YKUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = YK;
-			};
-			name = "Release_女神新衣";
 		};
 		005D2CD72084751800AEBDA0 /* Debug_共享衣橱 */ = {
 			isa = XCBuildConfiguration;
@@ -5498,9 +5079,9 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CustomAppName = "衣橱共享";
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				DEVELOPMENT_TEAM = TC33G6XHH9;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5609,8 +5190,8 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yd.ycgx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7663d891-fe0b-4018-b19d-21de89373cc8";
+				PROVISIONING_PROFILE_SPECIFIER = dev_ycgx;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5714,9 +5295,9 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CustomAppName = "衣橱共享";
-				DEVELOPMENT_TEAM = 22F9ZLB38V;
+				DEVELOPMENT_TEAM = TC33G6XHH9;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5825,8 +5406,8 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yd.ycgx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "26ab3238-5412-4afa-ad98-bc53eed99fb0";
+				PROVISIONING_PROFILE_SPECIFIER = dis_ycgx;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5987,7 +5568,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6089,8 +5670,8 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "fa10b410-a26d-4812-a2bd-3e1b86545d1a";
+				PROVISIONING_PROFILE_SPECIFIER = YKDevFile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -6105,7 +5686,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6215,8 +5796,8 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a98be9ff-688d-4df1-a535-adc5de2c3991";
+				PROVISIONING_PROFILE_SPECIFIER = YKDisFile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -6304,11 +5885,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C525DC4B1FBAAFC1002802AE /* Debug */,
-				005375F120F84E490000DCF3 /* Debug_女神新衣 */,
 				0034CF2020747626002015AE /* Debug_1 */,
 				005D2CD72084751800AEBDA0 /* Debug_共享衣橱 */,
 				C525DC4C1FBAAFC1002802AE /* Release */,
-				005375F520F84E5B0000DCF3 /* Release_女神新衣 */,
 				0034CF242074763A002015AE /* Release_1 */,
 				005D2CDF2084753700AEBDA0 /* Release_共享衣橱 */,
 			);
@@ -6319,11 +5898,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C525DC4E1FBAAFC1002802AE /* Debug */,
-				005375F220F84E490000DCF3 /* Debug_女神新衣 */,
 				0034CF2120747626002015AE /* Debug_1 */,
 				005D2CD82084751800AEBDA0 /* Debug_共享衣橱 */,
 				C525DC4F1FBAAFC1002802AE /* Release */,
-				005375F620F84E5B0000DCF3 /* Release_女神新衣 */,
 				0034CF252074763A002015AE /* Release_1 */,
 				005D2CE02084753700AEBDA0 /* Release_共享衣橱 */,
 			);
@@ -6334,11 +5911,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C525DC511FBAAFC1002802AE /* Debug */,
-				005375F320F84E490000DCF3 /* Debug_女神新衣 */,
 				0034CF2220747626002015AE /* Debug_1 */,
 				005D2CD92084751800AEBDA0 /* Debug_共享衣橱 */,
 				C525DC521FBAAFC1002802AE /* Release */,
-				005375F720F84E5B0000DCF3 /* Release_女神新衣 */,
 				0034CF262074763A002015AE /* Release_1 */,
 				005D2CE12084753700AEBDA0 /* Release_共享衣橱 */,
 			);
@@ -6349,11 +5924,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C525DC541FBAAFC1002802AE /* Debug */,
-				005375F420F84E490000DCF3 /* Debug_女神新衣 */,
 				0034CF2320747626002015AE /* Debug_1 */,
 				005D2CDA2084751800AEBDA0 /* Debug_共享衣橱 */,
 				C525DC551FBAAFC1002802AE /* Release */,
-				005375F820F84E5B0000DCF3 /* Release_女神新衣 */,
 				0034CF272074763A002015AE /* Release_1 */,
 				005D2CE22084753700AEBDA0 /* Release_共享衣橱 */,
 			);

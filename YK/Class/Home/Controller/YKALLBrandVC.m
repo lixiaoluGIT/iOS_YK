@@ -95,7 +95,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     
-    
+        [self.tableView registerNib:[UINib nibWithNibName:@"YKALLBrandCell"bundle:nil]forCellReuseIdentifier:@"YKALLBrandCell"];
 //    [self getBrandList];
 }
 
@@ -244,12 +244,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *string = @"cell";
-    
-    YKALLBrandCell *cell = [tableView dequeueReusableCellWithIdentifier:string];
-    if (cell == nil) {
-        cell = [[YKALLBrandCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:string];
-    }
+    static NSString * identifier =@"YKALLBrandCell";
+    YKALLBrandCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (cell == nil) {
+//        cell = [[YKALLBrandCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:string];
+//    }
     NSDictionary *blacker = self.sections[indexPath.section][indexPath.row];
     [cell initWithDictionary:blacker];
     

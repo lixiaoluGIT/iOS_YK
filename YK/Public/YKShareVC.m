@@ -15,6 +15,7 @@
 #import <Foundation/Foundation.h>
 #import <UShareUI/UShareUI.h>
 #import "YKShareCell.h"
+#import "YKLoginVC.h"
 
 @interface YKShareVC ()<VTingPopItemSelectDelegate> {
     NSMutableArray *images;
@@ -150,6 +151,14 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     YKShareCell *share = [[NSBundle mainBundle]loadNibNamed:@"YKShareCell" owner:nil options:nil][0];
     share.shareBlock1 = ^(){
+        if ([Token length] == 0) {
+            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            [self presentViewController:login animated:YES completion:^{
+                
+            }];
+            login.hidesBottomBarWhenPushed = YES;
+            return ;
+        }
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = @"快来和我一起尝试\"包月换衣\"";
         message.description = @"衣库共享衣橱，首月149元，上万件大牌时装无限换穿！";
@@ -165,6 +174,14 @@
         [WXApi sendReq:req];
     };
     share.shareBlock2 = ^(){
+        if ([Token length] == 0) {
+            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            [self presentViewController:login animated:YES completion:^{
+                
+            }];
+            login.hidesBottomBarWhenPushed = YES;
+            return ;
+        }
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = @"快来和我一起尝试\"包月换衣\"";
         message.description = @"衣库共享衣橱，首月149元，上万件大牌时装无限换穿！";
@@ -307,9 +324,9 @@
     [[YKUserManager sharedManager]shareSuccessOnResponse:^(NSDictionary *dic) {
         
     }];
-    backView.hidden = NO;
-    su.hidden = NO;
-    close.hidden = NO;
+//    backView.hidden = NO;
+//    su.hidden = NO;
+//    close.hidden = NO;
 }
 
 - (void)leftAction{

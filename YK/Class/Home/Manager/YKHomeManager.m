@@ -444,6 +444,7 @@
 }
 
 - (void)showAleart{
+//    [self showPoint];
     if ([[YKUserManager sharedManager].user.isNewUser intValue] == 1) {//已付费
         return;
     }
@@ -452,4 +453,24 @@
     [[UIApplication sharedApplication].keyWindow addSubview:loginView];
     [loginView appear];
 }
+
+- (void)showPoint{
+    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"悬浮窗"]];
+    if (HEIGHT==812) {
+        image.frame = CGRectMake(WIDHT-80, HEIGHT-150, 25, 25);
+    }else {
+        image.frame = CGRectMake(WIDHT-80, HEIGHT-80, 25, 25);
+    }
+    [image sizeToFit];
+    [[UIApplication sharedApplication].keyWindow addSubview:image];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(invite)];
+    [image setUserInteractionEnabled:YES];
+    [image addGestureRecognizer:tap];
+}
+
+- (void)invite{
+    [[self getCurrentVC].navigationController pushViewController:[YKShareVC new] animated:YES];
+    [self getCurrentVC].hidesBottomBarWhenPushed = YES;
+}
+
 @end

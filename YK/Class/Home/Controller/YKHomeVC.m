@@ -28,6 +28,7 @@
 
 #import "YKWeekNewView.h"
 #import "DCCycleScrollView.h"
+#import "YKHomeCrollView.h"
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate>
 {
@@ -38,7 +39,9 @@
     BOOL hadtitle2;
     BOOL hadtitle4;
     BOOL hadtitle5;
+    BOOL rqmy;
     CGFloat lastContentOffset;
+    UIImageView *image;
 }
 @property (nonatomic, assign) NSInteger pageNum;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -60,9 +63,16 @@
 
 @implementation YKHomeVC
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [image removeFromSuperview];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    image.hidden = NO;
+    [self showPoint];
     self.navigationController.navigationBar.hidden = NO;
     //分享弹框
     [[YKHomeManager sharedManager]showAleartViewToShare];
@@ -139,7 +149,6 @@
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
     self.collectionView.hidden = YES;
-    
     
     //监听tableView 偏移量
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -224,6 +233,26 @@
     return imageArray;
 }
 
+- (void)showPoint{
+    image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"悬浮窗"]];
+    if (HEIGHT==812) {
+        image.frame = CGRectMake(WIDHT-80, HEIGHT-150, 45, 45);
+    }else {
+        image.frame = CGRectMake(WIDHT-80, HEIGHT-130, 55, 55);
+    }
+//    [image sizeToFit];
+    [[UIApplication sharedApplication].keyWindow addSubview:image];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(invite)];
+    [image setUserInteractionEnabled:YES];
+    [image addGestureRecognizer:tap];
+}
+
+- (void)invite{
+    YKShareVC *share = [[YKShareVC alloc]init];
+    share.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:share animated:YES];
+ }
+
 - (void)aleart{
     [[YKHomeManager sharedManager]showAleart];
 }
@@ -300,9 +329,9 @@
  
     
     if(WIDHT == 414){
-        return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+100+WIDHT*0.84);
+        return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+60+WIDHT*0.84 + WIDHT-40);
     }else {
-        return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+100+WIDHT*0.84-40);
+        return CGSizeMake(WIDHT, WIDHT*0.52+100+320*2+60+WIDHT*0.84-40 + WIDHT-40);
     }
 }
 
@@ -316,10 +345,10 @@
     
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
-        headerView.backgroundColor =[UIColor whiteColor];
+        headerView.backgroundColor = [UIColor whiteColor];
         
         //banner图
-//        ZYCollectionView * cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
+//        ZYCollectionView *cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
 //        cycleView.imagesArr = self.imagesArr;
 //        cycleView.delegate  = self;
 //        cycleView.placeHolderImageName = @"banner.jpg";
@@ -335,12 +364,24 @@
         //文字miao s
         YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
-        desCell.frame = CGRectMake(0, WIDHT*0.58, WIDHT, 82);
+        desCell.frame = CGRectMake(0, WIDHT*0.58, WIDHT, 92);
         [headerView addSubview:desCell];
 
+        //人气美衣
+        YKHomeCrollView *homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
+        homeScrollView.selectionStyle = UITableViewCellEditingStyleNone;
+        homeScrollView.frame = CGRectMake(0, WIDHT*0.58+92, WIDHT, WIDHT-40);
+        [homeScrollView initWithType:1 productList:nil OnResponse:^{
+            NSLog(@"qu");
+        }];
+        if (!rqmy) {
+            [headerView addSubview:homeScrollView];
+            rqmy = YES;
+        }
+        
         //活动文字（专题活动）
         YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
-        ti2.frame = CGRectMake(0, WIDHT*0.58+82,WIDHT, 100);
+        ti2.frame = CGRectMake(0, WIDHT*0.58+92 + WIDHT-40,WIDHT, 60);
 //        ti2.backgroundColor = [UIColor redColor];
         if (!hadtitle4) {
             [headerView addSubview:ti2];

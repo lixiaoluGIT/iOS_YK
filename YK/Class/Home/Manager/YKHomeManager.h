@@ -49,4 +49,8 @@
 
 //弹框
 - (void)showAleart;
+
+//悬浮框
+- (void)showPoint;
+
 @end
