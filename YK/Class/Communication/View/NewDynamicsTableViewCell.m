@@ -302,6 +302,7 @@
     _Line1.hidden = YES;
     _Line2.hidden = YES;
     _guanzhuImage.hidden = YES;
+    _dividingLine.hidden = YES;
     [_moreLessDetailBtn setTitle:@"..." forState:UIControlStateNormal];
 }
 
@@ -312,8 +313,8 @@
     DynamicsModel * model = layout.model;
     
     //头像
-    _portrait.left = 24;
-    _portrait.top = 24;
+    _portrait.left = 10;
+    _portrait.top = 14;
     _portrait.size = CGSizeMake(kDynamicsPortraitWidthAndHeight, kDynamicsPortraitWidthAndHeight);
     [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.headPhoto]]];
     [_portrait sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:model.headPhoto]] placeholderImage:[UIImage imageNamed:@"商品图"]];
@@ -337,7 +338,7 @@
     //描述
     _detailLabel.left = _portrait.left;
     _detailLabel.top = _portrait.bottom + 14;
-    _detailLabel.width = SCREENWIDTH - 48;
+    _detailLabel.width = SCREENWIDTH - 20;
     _detailLabel.height = layout.detailLayout.textBoundingSize.height;
     _detailLabel.textLayout = layout.detailLayout;
     _detailLabel.textColor = mainColor;

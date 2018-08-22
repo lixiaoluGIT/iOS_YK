@@ -31,6 +31,7 @@
     
 //    qiangkongImgae = [UIImageView alloc]in
     _qiangkongImage.hidden = _shangxinImage.hidden = YES;
+//    self.backgroundColor = [UIColor redColor];
     
 }
 

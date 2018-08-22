@@ -55,7 +55,7 @@
 
 - (void)initWithDic:(NSDictionary *)dic{
     [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"productImg"]]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
-    [_image setContentMode:UIViewContentModeScaleToFill];
+    [_image setContentMode:UIViewContentModeScaleAspectFill];
 }
 
 

@@ -57,12 +57,12 @@
     CGFloat itemW;
     CGFloat margin;
     if (_picPathStringsArray.count == 1) {
-        itemW = WIDHT-48;
+        itemW = WIDHT-20;
         margin = 100;
         self.scrollEnabled = NO;
     }else {
         itemW = 220;
-        margin = 14;
+        margin = 10;
         self.scrollEnabled = YES;
     }
     CGFloat itemH = 286*WIDHT/414;
@@ -73,11 +73,11 @@
         
         NSURL * url = [NSURL URLWithString:[self URLEncodedString:_picPathStringsArray[idx]]];
         [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"商品图"] options:SDWebImageRetryFailed];
-        imageView.frame = CGRectMake(24+(itemW + margin)*idx,0,itemW, itemH);
+        imageView.frame = CGRectMake(10+(itemW + margin)*idx,0,itemW, itemH);
         imageView.backgroundColor = [UIColor redColor];
         [self addSubview:imageView];
     }];
-    self.contentSize = CGSizeMake(_picPathStringsArray.count*(itemW+margin)+24, itemH);
+    self.contentSize = CGSizeMake(_picPathStringsArray.count*(itemW+margin)+10, itemH);
     self.contentOffset = CGPointMake(0, 0);
 }
 

@@ -19,6 +19,10 @@
     // Initialization code
 }
 - (void)click{
+    if ([Token length] == 0) {
+        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:1.5];
+        return;
+    }
     YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
     
