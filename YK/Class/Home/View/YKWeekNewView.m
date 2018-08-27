@@ -33,6 +33,9 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_eng.text length])];
     [_eng setAttributedText:attributedString];
     [_eng sizeToFit];
+    
+    _image.layer.masksToBounds = YES;
+    [_image setContentMode:UIViewContentModeScaleAspectFill];
 
 }
 
@@ -54,7 +57,7 @@
 }
 
 - (void)initWithDic:(NSDictionary *)dic{
-    [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"productImg"]]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
+    [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"imgUrl"]]] placeholderImage:[UIImage imageNamed:@"商品详情头图"]];
     [_image setContentMode:UIViewContentModeScaleAspectFill];
 }
 

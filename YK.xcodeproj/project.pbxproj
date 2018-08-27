@@ -66,6 +66,9 @@
 		007D57CA20CFCDA800C23F5E /* YKSPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007D57C920CFCDA800C23F5E /* YKSPVC.m */; };
 		007EE275212AB6930040B3D3 /* YKHomeCrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE273212AB6930040B3D3 /* YKHomeCrollView.m */; };
 		007EE276212AB6930040B3D3 /* YKHomeCrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007EE274212AB6930040B3D3 /* YKHomeCrollView.xib */; };
+		007EE296212E73FE0040B3D3 /* YKListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE294212E73FD0040B3D3 /* YKListCell.m */; };
+		007EE297212E73FE0040B3D3 /* YKListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007EE295212E73FD0040B3D3 /* YKListCell.xib */; };
+		007EE29A212E76DE0040B3D3 /* YKLiseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE299212E76DE0040B3D3 /* YKLiseVC.m */; };
 		0087C98F211AA0F90014E733 /* YKLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C98D211AA0F90014E733 /* YKLogInView.m */; };
 		0087C990211AA0F90014E733 /* YKLogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C98E211AA0F90014E733 /* YKLogInView.xib */; };
 		0087C993211AAFB90014E733 /* YKPlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C992211AAFB90014E733 /* YKPlayVC.m */; };
@@ -706,6 +709,11 @@
 		007EE272212AB6930040B3D3 /* YKHomeCrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHomeCrollView.h; sourceTree = "<group>"; };
 		007EE273212AB6930040B3D3 /* YKHomeCrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHomeCrollView.m; sourceTree = "<group>"; };
 		007EE274212AB6930040B3D3 /* YKHomeCrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKHomeCrollView.xib; sourceTree = "<group>"; };
+		007EE293212E73FD0040B3D3 /* YKListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKListCell.h; sourceTree = "<group>"; };
+		007EE294212E73FD0040B3D3 /* YKListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKListCell.m; sourceTree = "<group>"; };
+		007EE295212E73FD0040B3D3 /* YKListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKListCell.xib; sourceTree = "<group>"; };
+		007EE298212E76DE0040B3D3 /* YKLiseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKLiseVC.h; sourceTree = "<group>"; };
+		007EE299212E76DE0040B3D3 /* YKLiseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLiseVC.m; sourceTree = "<group>"; };
 		0087C98C211AA0F90014E733 /* YKLogInView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKLogInView.h; sourceTree = "<group>"; };
 		0087C98D211AA0F90014E733 /* YKLogInView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLogInView.m; sourceTree = "<group>"; };
 		0087C98E211AA0F90014E733 /* YKLogInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKLogInView.xib; sourceTree = "<group>"; };
@@ -2158,6 +2166,8 @@
 				C5343C791FC52E2400F5132A /* YKBrandDetailVC.m */,
 				C592925B204FD9D7002ED8DB /* YKHomeSegementVC.h */,
 				C592925C204FD9D7002ED8DB /* YKHomeSegementVC.m */,
+				007EE298212E76DE0040B3D3 /* YKLiseVC.h */,
+				007EE299212E76DE0040B3D3 /* YKLiseVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2253,6 +2263,9 @@
 				007EE272212AB6930040B3D3 /* YKHomeCrollView.h */,
 				007EE273212AB6930040B3D3 /* YKHomeCrollView.m */,
 				007EE274212AB6930040B3D3 /* YKHomeCrollView.xib */,
+				007EE293212E73FD0040B3D3 /* YKListCell.h */,
+				007EE294212E73FD0040B3D3 /* YKListCell.m */,
+				007EE295212E73FD0040B3D3 /* YKListCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4049,6 +4062,7 @@
 				007EE276212AB6930040B3D3 /* YKHomeCrollView.xib in Resources */,
 				005D2CD62084576F00AEBDA0 /* Name.plist in Resources */,
 				C525DD9C1FBAB2A9002802AE /* MLEmoji_Expression.bundle in Resources */,
+				007EE297212E73FE0040B3D3 /* YKListCell.xib in Resources */,
 				002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */,
 				C55D49231FC3CE2F000D2056 /* YKMyBagSMSCell.xib in Resources */,
 				C525DD9A1FBAB2A9002802AE /* Info.plist in Resources */,
@@ -4192,6 +4206,7 @@
 				C5FB786B205904780076DD6F /* YYThreadSafeDictionary.m in Sources */,
 				C525DD8D1FBAB2A9002802AE /* SDWaitingView.m in Sources */,
 				00C392902069FD510068DFC0 /* YKCouponView.m in Sources */,
+				007EE296212E73FE0040B3D3 /* YKListCell.m in Sources */,
 				C5E0230B1FD78FEA00C33629 /* YKBrand.m in Sources */,
 				C525DDAC1FBAB2A9002802AE /* TZImageCropManager.m in Sources */,
 				C532A6DE1FDF881E0068A31D /* YKPayManager.m in Sources */,
@@ -4404,6 +4419,7 @@
 				002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */,
 				C5FB7844205904780076DD6F /* NSParagraphStyle+YYText.m in Sources */,
 				C5FB7845205904780076DD6F /* YYTextParser.m in Sources */,
+				007EE29A212E76DE0040B3D3 /* YKLiseVC.m in Sources */,
 				C525DD9E1FBAB2A9002802AE /* MLEmojiLabel.m in Sources */,
 				C5FB78E3205908F80076DD6F /* MFMessageComposeViewController+BlocksKit.m in Sources */,
 				C5E46EAD1FFE3FF2002453EB /* YKShareSuccessView.m in Sources */,

@@ -49,10 +49,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oET-0h-9R9">
+                        <rect key="frame" x="0.0" y="10" width="457" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="VzP-vZ-7OL"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="click:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="31i-Vx-xyq"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="oET-0h-9R9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="56D-Tj-iB2"/>
                     <constraint firstItem="15K-x8-NmD" firstAttribute="top" secondItem="Ie4-UL-llg" secondAttribute="bottom" constant="14" id="90k-1E-Uog"/>
                     <constraint firstItem="oiZ-G5-NqK" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="GrN-ZA-7ko"/>
+                    <constraint firstAttribute="trailing" secondItem="oET-0h-9R9" secondAttribute="trailing" id="Jnw-Ix-j5X"/>
                     <constraint firstAttribute="trailing" secondItem="MIe-Cy-HBl" secondAttribute="trailing" constant="10" id="LsX-Zv-W0i"/>
                     <constraint firstItem="MIe-Cy-HBl" firstAttribute="centerY" secondItem="Ie4-UL-llg" secondAttribute="centerY" id="TmT-ss-SKA"/>
                     <constraint firstItem="Ie4-UL-llg" firstAttribute="centerY" secondItem="o91-IU-ueg" secondAttribute="centerY" id="W1T-HI-FJo"/>
@@ -64,6 +76,7 @@
                     <constraint firstItem="15K-x8-NmD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sSW-t5-e4J"/>
                     <constraint firstItem="203-6X-rws" firstAttribute="bottom" secondItem="Ie4-UL-llg" secondAttribute="bottom" id="uHH-c9-LSS"/>
                     <constraint firstItem="o91-IU-ueg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uaq-0i-ctM"/>
+                    <constraint firstItem="oET-0h-9R9" firstAttribute="centerY" secondItem="MIe-Cy-HBl" secondAttribute="centerY" id="ubQ-X2-DgQ"/>
                     <constraint firstItem="oiZ-G5-NqK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="xAK-gT-S10"/>
                     <constraint firstItem="203-6X-rws" firstAttribute="leading" secondItem="Ie4-UL-llg" secondAttribute="trailing" constant="9" id="xzq-bu-vgV"/>
                 </constraints>

@@ -33,7 +33,9 @@
 #import "DynamicsModel.h"
 #import "NewDynamicsLayout.h"
 #import "NewDynamicsTableViewCell.h"
-
+#import "YKSPDetailVC.h"
+#import "YKSPVC.h"
+#import "YKLiseVC.h"
 
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate,NewDynamicsCellDelegate>
@@ -77,9 +79,14 @@
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)DCCycleScrollView *banner2;
 @property (nonatomic,strong)YKWeekNewView *weekNew;
+@property (nonatomic,strong)YKHomeCrollView *homeScrollView;
+@property (nonatomic,strong)YKHomeCrollView *psScrollView;
 
 @property (nonatomic,strong)NSMutableArray *layoutsArr1;
 @property (nonatomic,strong)NSArray *layoutsArr2;
+
+@property (nonatomic,strong)NSArray *beautifulClothes;//美衣
+@property (nonatomic,strong)NSArray *beautifulPS;//配饰
 @end
 
 @implementation YKHomeVC
@@ -285,7 +292,7 @@
     return _layoutsArr1;
 }
 -(void)dd{
-    
+    WeakSelf(weakSelf)
     NSInteger num = 1;
     NSInteger size = 04;
     [[YKHomeManager sharedManager]getMyHomePageDataWithNum:num Size:size OnResponse:^(NSDictionary *dic) {
@@ -305,11 +312,32 @@
         self.imageClickUrls = [self getImageClickUrlsArray:array];
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"thematicActivities"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
-        self.weeknewDic = [NSDictionary dictionaryWithDictionary:dic[@"data"][@"suitwith"][@"content"]];
+        self.weeknewDic = [NSDictionary dictionaryWithDictionary:dic[@"data"][@"suitWith"][@"content"][0]];
         self.hotWears = [NSMutableArray arrayWithArray:dic[@"data"][@"fashionWears"]];
-
         NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"article"][@"articleVOS"]];
         
+        self.beautifulClothes = [NSArray arrayWithArray:dic[@"data"][@"beautifulClothes"][@"content"]];
+        [_homeScrollView initWithType:1 productList:self.beautifulClothes OnResponse:^{
+            //去全部
+            //美衣界面
+            YKSPVC *detail = [[YKSPVC alloc]init];
+            detail.title = @"人气美衣";
+            detail.isPS = NO;
+            detail.isfromhome = YES;
+            detail.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:detail animated:YES];
+        }];
+       
+        self.beautifulPS = [NSArray arrayWithArray:dic[@"data"][@"ornaments"][@"content"]];
+        [_psScrollView initWithType:2 productList:self.beautifulPS OnResponse:^{
+            //配饰界面
+            YKSPVC *detail = [[YKSPVC alloc]init];
+            detail.title = @"人气配饰";
+            detail.isPS = YES;
+            detail.isfromhome = YES;
+            detail.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:detail animated:YES];
+        }];
      
         for (id dict in currentArray) {
             //字典转模型
@@ -387,14 +415,7 @@
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         headerView.backgroundColor = [UIColor whiteColor];
-        
-        //banner图
-//        ZYCollectionView *cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.55)];
-//        cycleView.imagesArr = self.imagesArr;
-//        cycleView.delegate  = self;
-//        cycleView.placeHolderImageName = @"banner.jpg";
-//        [headerView addSubview:cycleView];
-        
+
         //轮播图
         YKBaseScrollView *cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.58)];
         cycleView.imagesArr = self.imagesArr;
@@ -406,28 +427,36 @@
         YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
         desCell.frame = CGRectMake(0, cycleView.frame.size.height + cycleView.frame.origin.y, WIDHT, 92);
-//        desCell.backgroundColor=[UIColor redColor];
         [headerView addSubview:desCell];
 
         //人气美衣
-        YKHomeCrollView *homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
-        homeScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-        homeScrollView.frame = CGRectMake(0, WIDHT*0.58+92, WIDHT, WIDHT-40);
+        _homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
+        _homeScrollView.selectionStyle = UITableViewCellEditingStyleNone;
+        _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+92, WIDHT, WIDHT-40);
         if (HEIGHT!=414) {
-            homeScrollView.frame = CGRectMake(0, WIDHT*0.58+92, WIDHT, WIDHT-20);
+            _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+92, WIDHT, WIDHT-20);
         }
-        [homeScrollView initWithType:1 productList:nil OnResponse:^{
+        [_homeScrollView initWithType:1 productList:self.beautifulClothes OnResponse:^{
             NSLog(@"qu");
+            //去美衣界面
+            
+            
+            
         }];
+        _homeScrollView.toDetailBlock = ^(NSString *productId){
+            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+            detail.hidesBottomBarWhenPushed = YES;
+            detail.productId = productId;
+            [weakSelf.navigationController pushViewController:detail animated:YES];
+        };
         if (!rqmy) {
-            [headerView addSubview:homeScrollView];
+            [headerView addSubview:_homeScrollView];
             rqmy = YES;
         }
         
         //活动文字（专题活动）
         YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
-        ti2.frame = CGRectMake(0, homeScrollView.frame.size.height + homeScrollView.frame.origin.y,WIDHT, 60);
-//        ti2.backgroundColor = [UIColor redColor];
+        ti2.frame = CGRectMake(0, _homeScrollView.frame.size.height + _homeScrollView.frame.origin.y,WIDHT, 60);
         if (!hadtitle4) {
             [headerView addSubview:ti2];
             hadtitle4 = YES;
@@ -466,21 +495,29 @@
                 hadtitle1 = YES;
         }
  
-        
-        
-        
         //本周上新>>>搭配成套
         _weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
-        _weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.8);
+        _weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.8+2);
         _weekNew.toDetailBlock = ^(void){
+            
+            //到列表页
+            
+            //去列表页
+            NSLog(@"去列表页");
+            YKLiseVC *list = [[YKLiseVC alloc]init];
+            list.title = @"搭配成套";
+            list.dataArray = weakSelf.hotWears;
+            list.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:list animated:YES];
+            
             //临时判断，五一之前走这个
 //            if ([steyHelper validateWithStartTime:@"2018-04-24" withExpireTime:@"2018-04-30"]) {
-                YKSearchVC *search = [[YKSearchVC alloc] init];
-                search.hidesBottomBarWhenPushed = YES;
-                UINavigationController *nav = weakSelf.tabBarController.viewControllers[1];
-                search.hidesBottomBarWhenPushed = YES;
-                weakSelf.tabBarController.selectedViewController = nav;
-                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//                YKSearchVC *search = [[YKSearchVC alloc] init];
+//                search.hidesBottomBarWhenPushed = YES;
+//                UINavigationController *nav = weakSelf.tabBarController.viewControllers[1];
+//                search.hidesBottomBarWhenPushed = YES;
+//                weakSelf.tabBarController.selectedViewController = nav;
+//                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
 //            }else {
 //                YKLinkWebVC *web = [YKLinkWebVC new];
 //                web.url = weakSelf.weeknewDic[@"productUrl"];
@@ -494,30 +531,50 @@
         }
         
         //人气配饰
-        YKHomeCrollView *psScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
-        psScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-        psScrollView.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y, WIDHT, WIDHT-40);
+        _psScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
+        _psScrollView.selectionStyle = UITableViewCellEditingStyleNone;
+        _psScrollView.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y, WIDHT, WIDHT-40);
         if (HEIGHT!=414) {
-            psScrollView.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y, WIDHT, WIDHT-20);
+            _psScrollView.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y, WIDHT, WIDHT-20);
         }
-        [psScrollView initWithType:2 productList:nil OnResponse:^{
+        [_psScrollView initWithType:2 productList:nil OnResponse:^{
             NSLog(@"qu");
+            //配饰界面
+            YKSPVC *detail = [[YKSPVC alloc]init];
+            detail.isfromhome = YES;
+            detail.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:detail animated:YES];
+            
         }];
+        _psScrollView.toDetailBlock = ^(NSString *productId){
+            YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+            detail.hidesBottomBarWhenPushed = YES;
+            detail.productId = productId;
+            [weakSelf.navigationController pushViewController:detail animated:YES];
+        };
         if (!rqps) {
-            [headerView addSubview:psScrollView];
+            [headerView addSubview:_psScrollView];
             rqps = YES;
         }
         
         //时尚穿搭
         YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][3];
-        ti3.frame = CGRectMake(0, psScrollView.frame.size.height + psScrollView.frame.origin.y,WIDHT, 60);
-        //        ti.backgroundColor = [UIColor redColor];
+        ti3.frame = CGRectMake(0, _psScrollView.frame.size.height + _psScrollView.frame.origin.y,WIDHT, 60);
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+            //去列表页
+            NSLog(@"去列表页");
+            YKLiseVC *list = [[YKLiseVC alloc]init];
+            list.title = @"时尚穿搭";
+            list.dataArray = self.hotWears;
+            list.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:list animated:YES];
+        }];
+        [ti3 addGestureRecognizer:tap];
         if (!hadtitle5) {
             [headerView addSubview:ti3];
             hadtitle5 = YES;
         }
         _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti3.frame.size.height+ ti3.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.hotWears]];
-        //        [DCCycleScrollView cycleScrollViewWithFrame:];
         _banner2.autoScrollTimeInterval = 3;
         _banner2.autoScroll = NO;
         _banner2.isZoom = YES;
@@ -543,7 +600,6 @@
             web.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:web animated:YES];
         };
-        //        _banner1.backgroundColor = [UIColor redColor];
         if (!hadtitle11&&self.brandArray.count>0) {
             [headerView addSubview:_banner2];
             hadtitle11 = YES;
@@ -552,7 +608,6 @@
         //精选晒图标题
         YKRecommentTitleView  *st =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][5];
         st.frame = CGRectMake(0, _banner2.frame.origin.y + _banner2.frame.size.height,WIDHT, 60);
-        //        ti.backgroundColor = [UIColor redColor];
         if (!jxst&&self.layoutsArr1.count>0) {
             [headerView addSubview:st];
             jxst = YES;
@@ -591,24 +646,10 @@
             com2 = YES;
             NSLog(@"创建--===");
         }
-//       YKHomeCrollView *stScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
-//        stScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-//        stScrollView.frame = CGRectMake(0, _banner2.frame.origin.y + _banner2.frame.size.height, WIDHT, WIDHT-40);
-//        if (HEIGHT!=414) {
-//            stScrollView.frame = CGRectMake(0, _banner2.frame.origin.y + _banner2.frame.size.height, WIDHT, WIDHT-20);
-//        }
-//        [stScrollView initWithType:3 productList:nil OnResponse:^{
-//            NSLog(@"qu");
-//        }];
-//        if (!jmst) {
-//            [headerView addSubview:stScrollView];
-//            jmst = YES;
-//        }
-        
+
         //精选推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
         ti.frame = CGRectMake(0, cell2.frame.size.height + cell2.frame.origin.y+10,WIDHT, 60);
-//        ti.backgroundColor = [UIColor redColor];
         if (!hadtitle2&&self.layoutsArr1.count>0) {
             [headerView addSubview:ti];
             hadtitle2 = YES;

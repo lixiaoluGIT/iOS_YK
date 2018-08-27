@@ -25,4 +25,5 @@
 @property (nonatomic,copy)NSString *imageMaster;
 @property (nonatomic,copy)NSString *clothingPrice;
 
+@property (nonatomic,copy)void (^toDetailBlock)(NSString *productId);
 @end

@@ -213,6 +213,9 @@
     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/140);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) collectionViewLayout:layoutView];
+    if (self.isFromHome) {
+         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) collectionViewLayout:layoutView];
+    }
     if (HEIGHT==812) {
         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-80) collectionViewLayout:layoutView];
     }

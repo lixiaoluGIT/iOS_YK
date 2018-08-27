@@ -244,7 +244,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString * identifier =@"YKALLBrandCell";
+    static NSString * identifier = @"YKALLBrandCell";
     YKALLBrandCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 //    if (cell == nil) {
 //        cell = [[YKALLBrandCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:string];

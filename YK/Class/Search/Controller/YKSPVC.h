@@ -10,4 +10,6 @@
 
 @interface YKSPVC : UIViewController
 
+@property (nonatomic,assign)BOOL isfromhome;
+@property (nonatomic,assign)BOOL isPS;
 @end

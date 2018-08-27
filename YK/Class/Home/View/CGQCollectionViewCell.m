@@ -33,8 +33,16 @@
     _qiangkongImage.hidden = _shangxinImage.hidden = YES;
 //    self.backgroundColor = [UIColor redColor];
     
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail)];
+//    [self addGestureRecognizer:tap];
+    
 }
 
+- (void)toDetail{
+    if (self.toDetailBlock) {
+        self.toDetailBlock(self.goodsId);
+    }
+}
 - (void)setQiangKongImage{
     
 }

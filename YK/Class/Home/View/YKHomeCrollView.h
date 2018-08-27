@@ -13,5 +13,6 @@
 - (void)initWithType:(NSInteger)type productList:(NSArray *)productList OnResponse:(void (^)(void))onResponse;
 
 @property (nonatomic,copy)void (^toAllBlock)(void);
+@property (nonatomic,copy)void (^toDetailBlock)(NSString *productId);
 
 @end

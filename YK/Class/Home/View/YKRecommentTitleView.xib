@@ -147,11 +147,11 @@
             </connections>
             <point key="canvasLocation" x="-23.5" y="478.5"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="3bH-8p-Z2u" customClass="YKRecommentTitleView">
-            <rect key="frame" x="0.0" y="0.0" width="362" height="115"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="71" id="3bH-8p-Z2u" customClass="YKRecommentTitleView">
+            <rect key="frame" x="0.0" y="0.0" width="341" height="71"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3bH-8p-Z2u" id="YXB-d6-n59">
-                <rect key="frame" x="0.0" y="0.0" width="362" height="114.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="341" height="70.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sscd" translatesAutoresizingMaskIntoConstraints="NO" id="axZ-bL-pfh">
@@ -170,7 +170,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ar-NR-ZEd">
-                        <rect key="frame" x="0.0" y="0.0" width="362" height="10"/>
+                        <rect key="frame" x="0.0" y="0.0" width="341" height="10"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="Aqf-Xc-78A"/>
@@ -180,7 +180,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="e7M-nP-UDa">
-                        <rect key="frame" x="342" y="27" width="10" height="14"/>
+                        <rect key="frame" x="321" y="27" width="10" height="14"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -201,7 +201,7 @@
             <constraints>
                 <constraint firstItem="6Ar-NR-ZEd" firstAttribute="top" secondItem="3bH-8p-Z2u" secondAttribute="top" id="ku2-Uy-Eaj"/>
             </constraints>
-            <point key="canvasLocation" x="-8" y="308.5"/>
+            <point key="canvasLocation" x="-18.5" y="286.5"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="107" id="jfM-hJ-rHi" customClass="YKRecommentTitleView">
             <rect key="frame" x="0.0" y="0.0" width="333" height="107"/>

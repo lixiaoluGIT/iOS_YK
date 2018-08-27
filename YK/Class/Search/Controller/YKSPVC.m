@@ -20,16 +20,53 @@
 
 @implementation YKSPVC
 
+- (void)leftAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.title = @"人气配饰";
     _pageNum = 1;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 20, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    }
+    btn.adjustsImageWhenHighlighted = NO;
+    //    btn.backgroundColor = [UIColor redColor];
+    [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+        negativeSpacer.width = -18;
+    }
+    
+    self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
+  
+    
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+    title.text = self.title;
+    title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.font = PingFangSC_Semibold(20);
+    self.navigationItem.titleView = title;
+    
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/140);
     layoutView.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
     //layoutView.footerReferenceSize = CGSizeMake(self.view.bounds.size.width, 150);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-120) collectionViewLayout:layoutView];
+   
+    if (self.isfromhome) {
+            self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layoutView];
+    }else {
+         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-120) collectionViewLayout:layoutView];
+    }
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;

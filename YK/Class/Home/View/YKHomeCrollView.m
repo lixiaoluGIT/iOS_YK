@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImage;
 
+@property (nonatomic,strong)NSArray *productList;
+
 @end
 
 @implementation YKHomeCrollView
@@ -60,59 +62,46 @@
 
 - (void)initWithType:(NSInteger)type productList:(NSArray *)productList OnResponse:(void (^)(void))onResponse{
     
+    _productList = [NSArray arrayWithArray:productList];
     self.toAllBlock = onResponse;
     if (type==1) {//服装
         _logo.image = [UIImage imageNamed:@"rqmy"];
         _title.text = @"人气美衣";
         _eng.text = @"Beautiful clothes";
-        //布局
-        CGFloat w = (WIDHT-30)/2;
-        for (int i=0; i<5; i++) {
-            CGQCollectionViewCell *cell = [[NSBundle mainBundle]loadNibNamed:@"CGQCollectionViewCell" owner:nil options:nil][0];
-            cell.frame = CGRectMake(10+(w+10)*i, 0, w, w*240/140);
-            [self.scrollView addSubview:cell];
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:@"http://img-cdn.xykoo.cn/clothing/蕾丝印花猫上衣/clothingImg0"]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-            
-        }
-        self.scrollView.contentSize= CGSizeMake(10+(w+10)*5,0);
-        
-        self.scrollView.scrollEnabled = YES;
+     
     }
     if (type==2) {//配饰
         //布局
         _logo.image = [UIImage imageNamed:@"rqps"];
         _title.text = @"人气配饰";
         _eng.text = @"Personal accessories";
-        CGFloat w = (WIDHT-30)/2;
-        for (int i=0; i<5; i++) {
-            CGQCollectionViewCell *cell = [[NSBundle mainBundle]loadNibNamed:@"CGQCollectionViewCell" owner:nil options:nil][0];
-            cell.frame = CGRectMake(10+(w+10)*i, 0, w, w*240/140);
-            [self.scrollView addSubview:cell];
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:@"http://img-cdn.xykoo.cn/clothing/少女心条纹耳饰59344/clothingImg0"]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-            
-        }
-        self.scrollView.contentSize= CGSizeMake(10+(w+10)*5,0);
         
-        self.scrollView.scrollEnabled = YES;
+        
     }
     
-    if (type==3) {//精选晒图
-        //布局
-        _logo.image = [UIImage imageNamed:@"sqst"];
-        _title.text = @"精美晒图";
-        _eng.text = @"Community sun map";
-    //图片
-        CGFloat w = (WIDHT-30)/2;
-        for (int i=0; i<5; i++) {
-            UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(10+(w+10)*i, 0, w, w*240/140)];
-            [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:@"http://img-cdn.xykoo.cn/1031726724860481536"]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-            [self.scrollView addSubview:image];
-//            image setContentMode:<#(UIViewContentMode)#>
-        }
-        self.scrollView.contentSize= CGSizeMake(10+(w+10)*5,0);
-        
-        self.scrollView.scrollEnabled = YES;
+    //布局
+    CGFloat w = (WIDHT-30)/2;
+    for (int i=0; i<productList.count; i++) {
+        YKProduct *product = [[YKProduct alloc]init];
+        [product initWithDictionary:productList[i]];
+        CGQCollectionViewCell *cell = [[NSBundle mainBundle]loadNibNamed:@"CGQCollectionViewCell" owner:nil options:nil][0];
+        cell.frame = CGRectMake(10+(w+10)*i, 0, w, w*240/140);
+        cell.product = product;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+            if (self.toDetailBlock) {
+                self.toDetailBlock(cell.goodsId);
+            }
+        }];
+        [cell addGestureRecognizer:tap];
+        [self.scrollView addSubview:cell];
+        //            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:@"http://img-cdn.xykoo.cn/clothing/蕾丝印花猫上衣/clothingImg0"]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+        //            cell.tag = i;
+        //            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail:)];
+        //            [cell addGestureRecognizer:tap];
     }
+    self.scrollView.contentSize= CGSizeMake(10+(w+10)*productList.count,0);
+    
+    self.scrollView.scrollEnabled = YES;
   
     
     
@@ -120,6 +109,9 @@
 //    YKProduct *procuct = [[YKProduct alloc]init];
 //    [procuct initWithDictionary:self.productArray[indexPath.row]];
 //    cell.product = procuct;
+}
+- (IBAction)click:(id)sender {
+    [self block];
 }
 
 - (void)block{
@@ -138,4 +130,12 @@
                                                               kCFStringEncodingUTF8));
     return encodedString;
 }
+
+//- (void)toDetail:(CGQCollectionViewCell *)cell{
+//    NSString *productId = self.productList[cell.tag][@"goodId"];
+//
+//    if (self.toDetailBlock) {
+//        self.toDetailBlock(productId);
+//    }
+//}
 @end
