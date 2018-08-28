@@ -36,7 +36,7 @@
 #import "YKSPDetailVC.h"
 #import "YKSPVC.h"
 #import "YKLiseVC.h"
-
+#import "YKHomeActivityView.h"
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate,NewDynamicsCellDelegate>
 {
@@ -78,6 +78,7 @@
 @property (nonatomic,strong)YKScrollView *scroll1;
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)DCCycleScrollView *banner2;
+@property (nonatomic,strong)YKHomeActivityView *activityView;
 @property (nonatomic,strong)YKWeekNewView *weekNew;
 @property (nonatomic,strong)YKHomeCrollView *homeScrollView;
 @property (nonatomic,strong)YKHomeCrollView *psScrollView;
@@ -395,12 +396,12 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
  
     if (WIDHT == 375) {
-        return CGSizeMake(WIDHT, WIDHT*0.52+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30);
     }
     if(WIDHT == 414){
-        return CGSizeMake(WIDHT, WIDHT*0.52+60+320*2+60+WIDHT*0.8 + WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8 + WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40);
     }else {
-        return CGSizeMake(WIDHT, WIDHT*0.52+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40);
     }
 }
 
@@ -439,9 +440,6 @@
         [_homeScrollView initWithType:1 productList:self.beautifulClothes OnResponse:^{
             NSLog(@"qu");
             //去美衣界面
-            
-            
-            
         }];
         _homeScrollView.toDetailBlock = ^(NSString *productId){
             YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
@@ -454,6 +452,7 @@
             rqmy = YES;
         }
         
+        
         //活动文字（专题活动）
         YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
         ti2.frame = CGRectMake(0, _homeScrollView.frame.size.height + _homeScrollView.frame.origin.y,WIDHT, 60);
@@ -462,38 +461,55 @@
             hadtitle4 = YES;
         }
         //
-        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
-//        [DCCycleScrollView cycleScrollViewWithFrame:];
-        _banner1.autoScrollTimeInterval = 3;
-        _banner1.autoScroll = NO;
-        _banner1.isZoom = YES;
-        _banner1.itemSpace = -32;
-        _banner1.imgCornerRadius = 0;
-        _banner1.itemWidth = self.view.frame.size.width - 48;
-        if (self.brandArray.count==1) {
-            _banner1.itemWidth = self.view.frame.size.width - 48;
-            _banner1.itemSpace = 0;
-        }
-        _banner1.delegate = self;
-        _banner1.isSearch = 1;
-        _banner1.toDetailBlock = ^(NSInteger index){
-            NSDictionary *dic;
+        _activityView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeActivityView" owner:nil options:nil][0];
+        _activityView.frame = CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.52);
+        _activityView.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
+        _activityView.toDetailBlock = ^(NSString *activityID){
             YKLinkWebVC *web =[YKLinkWebVC new];
             web.needShare = YES;
-            
-                dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
-                web.url = dic[@"specialLink"];
-                if (web.url.length == 0) {
-                    return;
-                }
-                web.hidesBottomBarWhenPushed = YES;
-                [weakSelf.navigationController pushViewController:web animated:YES];
+            web.url = activityID;
+            if (web.url.length == 0) {
+                return;
+            }
+            web.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:web animated:YES];
         };
- 
         if (!hadtitle1&&self.brandArray.count>0) {
-                [headerView addSubview:_banner1];
-                hadtitle1 = YES;
+            [headerView addSubview:_activityView];
+            hadtitle1 = YES;
         }
+        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+////        [DCCycleScrollView cycleScrollViewWithFrame:];
+//        _banner1.autoScrollTimeInterval = 3;
+//        _banner1.autoScroll = NO;
+//        _banner1.isZoom = YES;
+//        _banner1.itemSpace = -32;
+//        _banner1.imgCornerRadius = 0;
+//        _banner1.itemWidth = self.view.frame.size.width - 48;
+//        if (self.brandArray.count==1) {
+//            _banner1.itemWidth = self.view.frame.size.width - 48;
+//            _banner1.itemSpace = 0;
+//        }
+//        _banner1.delegate = self;
+//        _banner1.isSearch = 1;
+//        _banner1.toDetailBlock = ^(NSInteger index){
+//            NSDictionary *dic;
+//            YKLinkWebVC *web =[YKLinkWebVC new];
+//            web.needShare = YES;
+//
+//                dic = [NSDictionary dictionaryWithDictionary:self.brandArray[index]];
+//                web.url = dic[@"specialLink"];
+//                if (web.url.length == 0) {
+//                    return;
+//                }
+//                web.hidesBottomBarWhenPushed = YES;
+//                [weakSelf.navigationController pushViewController:web animated:YES];
+//        };
+//
+//        if (!hadtitle1&&self.brandArray.count>0) {
+//                [headerView addSubview:_banner1];
+//                hadtitle1 = YES;
+//        }
  
         //本周上新>>>搭配成套
         _weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
@@ -574,15 +590,18 @@
             [headerView addSubview:ti3];
             hadtitle5 = YES;
         }
-        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti3.frame.size.height+ ti3.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.hotWears]];
+        NSMutableArray *array = [NSMutableArray array];
+        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.hotWears[0]];
+        [array addObject:dic];
+        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti3.frame.size.height+ ti3.frame.origin.y,WIDHT, WIDHT*0.6) shouldInfiniteLoop:YES imageGroups:array];
         _banner2.autoScrollTimeInterval = 3;
         _banner2.autoScroll = NO;
         _banner2.isZoom = YES;
         _banner2.itemSpace = -32;
         _banner2.imgCornerRadius = 0;
-        _banner2.itemWidth = self.view.frame.size.width - 48;
+        _banner2.itemWidth = self.view.frame.size.width;
         if (self.hotWears.count==1) {
-            _banner2.itemWidth = self.view.frame.size.width -48;
+            _banner2.itemWidth = self.view.frame.size.width;
             _banner2.userInteractionEnabled = YES;
             _banner2.itemSpace = 0;
         }

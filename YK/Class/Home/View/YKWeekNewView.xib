@@ -40,9 +40,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right" translatesAutoresizingMaskIntoConstraints="NO" id="92v-4J-KHm">
                         <rect key="frame" x="496" y="27" width="10" height="14"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match complete set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTU-8u-X16">
-                        <rect key="frame" x="118.5" y="28" width="98" height="12"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTU-8u-X16">
+                        <rect key="frame" x="118.5" y="32" width="39.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -60,9 +60,9 @@
                     <constraint firstItem="yxL-LZ-gEP" firstAttribute="top" secondItem="6oR-uk-jwu" secondAttribute="bottom" constant="14" id="8WK-sg-ffw"/>
                     <constraint firstAttribute="trailing" secondItem="wdF-6l-bpg" secondAttribute="trailing" id="HPB-JO-gxr"/>
                     <constraint firstItem="wdF-6l-bpg" firstAttribute="top" secondItem="yxL-LZ-gEP" secondAttribute="bottom" constant="14" id="KCa-6N-AGT"/>
+                    <constraint firstItem="MTU-8u-X16" firstAttribute="bottom" secondItem="NXS-hg-3ZJ" secondAttribute="bottom" id="OG0-qP-yfp"/>
                     <constraint firstItem="92v-4J-KHm" firstAttribute="centerY" secondItem="NXS-hg-3ZJ" secondAttribute="centerY" id="QNC-ww-fGu"/>
                     <constraint firstItem="6oR-uk-jwu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dcA-a6-hB7"/>
-                    <constraint firstItem="MTU-8u-X16" firstAttribute="centerY" secondItem="NXS-hg-3ZJ" secondAttribute="centerY" id="gjL-Pi-3km"/>
                     <constraint firstAttribute="trailing" secondItem="6oR-uk-jwu" secondAttribute="trailing" id="gnx-m0-p7i"/>
                     <constraint firstItem="yxL-LZ-gEP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="iKs-Cb-OIY"/>
                     <constraint firstAttribute="trailing" secondItem="92v-4J-KHm" secondAttribute="trailing" constant="10" id="mMG-s0-6dc"/>

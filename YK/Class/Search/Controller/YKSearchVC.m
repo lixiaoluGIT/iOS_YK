@@ -77,7 +77,7 @@
     self.view.backgroundColor =[ UIColor whiteColor];
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (w-72)/2*240/140);
+    layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (w-30)/2*240/140);
     layoutView.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-120) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -288,18 +288,18 @@
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(16, 24, 16, 24);
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 16;
+    return 10;
 }
 
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 24;
+    return 10;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

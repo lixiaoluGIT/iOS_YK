@@ -21,18 +21,18 @@
     [self addGestureRecognizer:tap];
     // Initialization code
     
-    _eng.numberOfLines = 0;
-    _eng.lineBreakMode = NSLineBreakByCharWrapping;
-    //设置字间距
-    NSDictionary *dic = @{NSKernAttributeName:@4.f
-                          
-                          };
-    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:_eng.text attributes:dic];
-    
-    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_eng.text length])];
-    [_eng setAttributedText:attributedString];
-    [_eng sizeToFit];
+//    _eng.numberOfLines = 0;
+//    _eng.lineBreakMode = NSLineBreakByCharWrapping;
+//    //设置字间距
+//    NSDictionary *dic = @{NSKernAttributeName:@4.f
+//                          
+//                          };
+//    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:_eng.text attributes:dic];
+//    
+//    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_eng.text length])];
+//    [_eng setAttributedText:attributedString];
+//    [_eng sizeToFit];
     
     _image.layer.masksToBounds = YES;
     [_image setContentMode:UIViewContentModeScaleAspectFill];
