@@ -10,6 +10,7 @@
 #import "YKCouponView.h"
 #import "YKToBeVIPVC.h"
 #import "YKCouponCodeView.h"
+#import "YKSuitVC.h"
 
 @interface YKCouponListVC (){
     NSInteger couponType;
@@ -159,6 +160,16 @@
     }
     if (cell.couponStatus==3) {
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已过期" delay:1.5];
+        return;
+    }
+    if (cell.couponType==5) {//加衣券
+        //到衣袋页
+        YKSuitVC *search = [[YKSuitVC alloc] init];
+                        search.hidesBottomBarWhenPushed = YES;
+                        UINavigationController *nav = self.tabBarController.viewControllers[2];
+                        search.hidesBottomBarWhenPushed = YES;
+                        self.tabBarController.selectedViewController = nav;
+                        [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     }
     if (cell.couponType==1) {//加时卡

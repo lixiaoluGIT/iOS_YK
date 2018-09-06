@@ -12,4 +12,5 @@
 
 @property (nonatomic,assign)BOOL isfromhome;
 @property (nonatomic,assign)BOOL isPS;
+@property (nonatomic,strong)NSString *sid;
 @end

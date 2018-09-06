@@ -16,9 +16,11 @@
 #import "YKAddressDetailCell.h"
 #import "YKSuitEnsureCell.h"
 #import "YKToBeVIPVC.h"
+#import "YKUserAccountVC.h"
 
 @interface YKSuitDetailVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>{
     BOOL isHadDefaultAddress;
+    NSInteger aleartId;
 }
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)YKAddress *addressM;
@@ -83,7 +85,7 @@
     
     self.navigationItem.titleView = title;
     
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-64) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;
@@ -122,12 +124,13 @@
 //        [alertView show];
 //        return;
 //    }
-    if ([[self getCurrentTime]intValue]>16) {
-        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"小仙女，当天17点以后下单，快递小哥可能明天才来取件哦，请您耐心等待！" cancelBtnTitle:@"取消" otherBtnTitle:@"继续确认"];
-        alertView.delegate = self;
-        [alertView show];
-        return;
-    }
+//    if ([[self getCurrentTime]intValue]>16) {
+//        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"平台提示" message:@"小仙女，当天17点以后下单，快递小哥可能明天才来取件哦，请您耐心等待！" cancelBtnTitle:@"取消" otherBtnTitle:@"继续确认"];
+//        alertView.delegate = self;
+//        aleartId = 1;
+//        [alertView show];
+//        return;
+//    }
     
     
     [self order];
@@ -140,12 +143,12 @@
     return dateTime;
 }
 
-- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==1) {
-        [self order];
-    }
-    
-}
+//- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (buttonIndex==1) {
+//        [self order];
+//    }
+//
+//}
 - (void)order{
     //提交订单
     [[YKOrderManager sharedManager]releaseOrderWithAddress:self.addressM shoppingCartIdList:[YKSuitManager sharedManager].suitArray OnResponse:^(NSDictionary *dic) {
@@ -163,9 +166,28 @@
             [self.navigationController pushViewController:success animated:YES];
             return;
         }
+        if (status == 439) {
+            [self alert];
+        }
         [smartHUD alertText:self.view alert:dic[@"msg"] delay:1.2];
         
     }];
+}
+
+- (void)alert{
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"您还没有交押金，是否缴纳押金" cancelBtnTitle:@"取消" otherBtnTitle:@"去交押金"];
+    alertView.delegate = self;
+    [alertView show];
+}
+
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        
+    YKUserAccountVC *account = [[YKUserAccountVC alloc]init];
+    [self.navigationController pushViewController:account animated:YES];
+        
+    }
+    
 }
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];

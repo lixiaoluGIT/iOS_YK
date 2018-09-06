@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *shangxinImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *qiangkongImage;
+@property (weak, nonatomic) IBOutlet UIButton *freeBtn;
+@property (weak, nonatomic) IBOutlet UILabel *des;
 
 
 @end
@@ -35,6 +37,9 @@
     
 //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail)];
 //    [self addGestureRecognizer:tap];
+    
+    _freeBtn.layer.masksToBounds = YES;
+    _freeBtn.layer.cornerRadius = 4;
     
 }
 
@@ -64,12 +69,34 @@
     _detailLabel.text = _brandName;
     _qiangkongImage.hidden = product.isHadStock;
     _shangxinImage.hidden = !product.isNew;
+    
     //已抢空，不显示上新
+   
     if (!product.isHadStock) {
         _shangxinImage.hidden = YES;
     }
     _imageView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     
+    if (product.isStarSame) {//明星同款
+        _shangxinImage.hidden = NO;
+        _shangxinImage.image = [UIImage imageNamed:@"starame"];
+    }
+    
+    
+    if ([Token length] == 0) {//未登录
+        _freeBtn.hidden = NO;
+        _des.hidden = NO;
+    }else {
+    
+    //未开通会员
+    if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
+        _freeBtn.hidden = NO;
+        _des.hidden = NO;
+    }else {//已是会员
+        _freeBtn.hidden = YES;
+        _des.hidden = YES;
+    }
+    }
 }
 
 @end

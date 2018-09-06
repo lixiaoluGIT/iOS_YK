@@ -53,4 +53,14 @@
 //悬浮框
 - (void)showPoint;
 
+//TODO:接口应整合成一个，按分类id请求相应数据，而不是这样单独的接口,这样架构的接口真的懒得接，太小学生了
+
+//请求搭配成套 || 时尚穿搭 || ...
+- (void)getList:(NSInteger)page cid:(NSString *)cid OnResponse:(void (^)(NSArray *array))onResponse;
+
+//请求时尚穿搭
+//- (void)getFashionList:(NSInteger)page OnResponse:(void (^)(NSArray *array))onResponse;
+
+//请求人气美衣和配饰
+
 @end

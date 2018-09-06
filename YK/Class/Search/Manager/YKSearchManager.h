@@ -23,7 +23,7 @@
                     OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //请求配饰列表
-- (void)getPSListWithPage:(NSInteger)page Size:(NSInteger)size OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)getPSListWithPage:(NSInteger)page Size:(NSInteger)size sid:(NSString *)sid OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 //配饰详情
 - (void)getPSDetailWithPSId:(NSString *)PSId UserId:(NSString *)userId OnResponse:(void (^)(NSDictionary *dic))onResponse;

@@ -187,11 +187,22 @@
         return;
     }
     
-    [[YKOrderManager sharedManager]orderReceiveWithOrderNo:@"" addressId:self.address.addressId time:self.timeStr OnResponse:^(NSDictionary *dic) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    [self alert];
+    
 }
-
+- (void)alert{
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"问题解决" message:@"请您确认取件地址是否正确，预约后无法更改信息" cancelBtnTitle:@"取消" otherBtnTitle:@"确定"];
+    [alertView show];
+}
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        
+        [[YKOrderManager sharedManager]orderReceiveWithOrderNo:@"" addressId:self.address.addressId time:self.timeStr OnResponse:^(NSDictionary *dic) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
+    
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    if (indexPath.row==0) {
 //        return 70;

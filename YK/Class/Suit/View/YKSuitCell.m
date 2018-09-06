@@ -126,10 +126,18 @@
     
     UIButton *btn = (UIButton *)sender;
     
-    if ([YKSuitManager sharedManager].suitAccount>=3&&btn.selected==NO) {
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"亲,一次最多选购三件哦" delay:2];
-        return;
+    if ([YKSuitManager sharedManager].isUseCC) {//4件
+        if ([YKSuitManager sharedManager].suitAccount>=4&&btn.selected==NO) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"亲,美衣数量已达上限噢" delay:2];
+            return;
+        }
+    }else {
+        if ([YKSuitManager sharedManager].suitAccount>=3&&btn.selected==NO) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"亲,一次最多选购三件哦" delay:2];
+            return;
+        }
     }
+   
     if ([self.suitStatus isEqualToString:@"0"]) {
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"该宝贝被抢光了,下次记得早点哦" delay:2];
         return;

@@ -13,15 +13,19 @@
 #import "YKProductDetailVC.h"
 #import "YKSearchVC.h"
 #import "YKSPDetailVC.h"
-
+#import "YKAddCCouponView.h"
+#import "YKBuyAddCCVC.h"
 #define vH  56*WIDHT/414
 
 @interface YKSuitVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     YKNoDataView *NoDataView;
+    BOOL ccbuttom;
+    BOOL bt;
 }
 @property (nonatomic,strong)UIButton *selectAll;
 @property (nonatomic,strong)UIButton *btn;
+@property (nonatomic,strong)YKAddCCouponView *addCCView;
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
 
@@ -44,10 +48,13 @@
     [selectDeArray removeAllObjects];
     [selectDeShoppingCartList removeAllObjects];
     [YKSuitManager sharedManager].suitAccount = 0;
+    [YKSuitManager sharedManager].isHadCC = NO;
+    [YKSuitManager sharedManager].isUseCC = NO;
+
    
     [self resetMasonrys];
     [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-50*WIDHT/414);
+        self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-100*WIDHT/414);
         [self.view layoutIfNeeded];
     }];
     [self.tableView setEditing:NO animated:YES];
@@ -70,19 +77,27 @@
             self.tableView.hidden = YES;
             NoDataView.hidden = NO;
             _btn.hidden = YES;
+            _addCCView.hidden = YES;
             [self.tableView setEditing:NO animated:YES];
             [self resetMasonrys];
             self.goodsIsClips = NO;
         }else {
             self.tableView.hidden = NO;
             _btn.hidden = NO;
+            _addCCView.hidden=  NO;
             NoDataView.hidden = YES;
             [self.tableView reloadData];
         }
        
 
     }];
+    
+    //查询加衣劵
+    [[YKSuitManager sharedManager]searchAddCCOnResponse:^(NSDictionary *dic) {
+        [_addCCView reloadData];
+    }];
 }
+
 - (void)setLeftBar{
     UIBarButtonItem *rightBarItem ;
     if (_dataArray.count == 0) {
@@ -156,7 +171,7 @@
 //    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithHexString:@"afafaf"];
     
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-100) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-130) style:UITableViewStylePlain];
     if (_isFromeProduct) {
         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-56*WIDHT/414) style:UITableViewStylePlain];
     }
@@ -168,40 +183,7 @@
     [self.view addSubview:self.tableView];
     self.tableView .separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
-   if (WIDHT==320) {
-        _btn.frame = CGRectMake(0, self.view.frame.size.height-120*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (WIDHT==375){
-        _btn.frame = CGRectMake(0, self.view.frame.size.height-110*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (WIDHT==414){
-        _btn.frame = CGRectMake(0, self.view.frame.size.height-100*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (HEIGHT == 812) {
-        _btn.frame = CGRectMake(0, self.view.frame.size.height-148*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (_isFromeProduct) {
-        if (WIDHT==320) {
-            _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-        }
-        if (WIDHT==375){
-            _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-        }
-        if (WIDHT==414){
-            _btn.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-        }
-        if (HEIGHT == 812) {
-              _btn.frame = CGRectMake(0, self.view.frame.size.height-80*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-        }
-        
-    }
-    [_btn setTitle:@"确认衣袋" forState:UIControlStateNormal];
-    [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _btn.titleLabel.font = PingFangSC_Semibold(16);
-    _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
-    [_btn addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btn];
+    
     
     _mulitSelectArray = [[NSMutableArray alloc] init];
     selectDeArray = [[NSMutableArray alloc]init];
@@ -225,16 +207,70 @@
     NoDataView.hidden = YES;
 
     self.tableView.allowsMultipleSelection = YES;
-    [self setupBottomStatus];
+//    [self setupBottomStatus];
+    
+    [self setButtom];//底部视图
+    
+}
+
+- (void)setButtom{
+    WeakSelf(weakSelf)
+    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addCCView = [[NSBundle mainBundle]loadNibNamed:@"YKAddCCouponView" owner:nil options:nil][0];
+    _addCCView.buyBlock = ^(void){
+        YKBuyAddCCVC *buy = [[YKBuyAddCCVC alloc]init];
+        buy.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:buy animated:YES];
+    };
+    _addCCView.ensureBlock = ^(void){
+        [weakSelf toDetail];
+    };
+    if (WIDHT==320) {
+        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-120*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+    }
+    if (WIDHT==375){
+        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-110*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+    }
+    if (WIDHT==414){
+        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-105*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+    }
+    if (HEIGHT == 812) {
+        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-148*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+    }
+    if (_isFromeProduct) {
+        if (WIDHT==320) {
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
+        if (WIDHT==375){
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
+        if (WIDHT==414){
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
+        if (HEIGHT == 812) {
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-80*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        }
+        
+    }
+
+        [self.view addSubview:_addCCView];
+  
+
+ 
+        [self setupBottomStatus];
+  
+   
+    
 }
 - (void)setupBottomStatus{
     UIView *bottomBgView = [[UIView alloc]init];
     bottomBgView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomBgView];
+    [self.view bringSubviewToFront:bottomBgView];
     [bottomBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(50);
-        make.height.mas_equalTo(@50);
+        make.bottom.equalTo(self.view).offset(54);
+        make.height.mas_equalTo(@54);
     }];
     self.bottomBgView = bottomBgView;
     
@@ -321,6 +357,7 @@
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.bottom.equalTo(self.bottomBgView);
         make.width.mas_equalTo(@(WIDHT-120));
+        make.height.equalTo(@56);
     }];
     [btn addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -352,6 +389,7 @@
     [[YKSuitManager sharedManager]clear];
     _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
     self.goodsIsClips = !self.goodsIsClips;
+    _addCCView.hidden = !_addCCView.hidden;
     if (self.goodsIsClips) {
         [self updateMasonrys];
         btn.title = @"完成";

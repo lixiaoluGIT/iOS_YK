@@ -51,6 +51,17 @@
     
     //判断上新时间是否在48小时内
     [self formateDate:self.onLineTime];
+    
+    //明星同款
+//    _isStarSame = [dic[@"starSameStyle"] intValue];
+    NSString *s = [NSString stringWithFormat:@"%@",dic[@"starSameStyle"]];
+    
+    if ([s intValue] == 1){
+        _isStarSame = YES;
+    }else {
+        _isStarSame = NO;
+    }
+
 }
 
 - (void)formateDate:(NSString *)dateString

@@ -10,14 +10,17 @@
 #import "YKListCell.h"
 #import "YKLinkWebVC.h"
 @interface YKLiseVC ()
-
+{
+    NSInteger page;
+}
+@property (nonatomic,strong)NSArray *dataArray;
 @end
 
 @implementation YKLiseVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    page = 1;
     self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
 //    self.title = @"衣库活动";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -47,20 +50,15 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [[YKPayManager sharedManager]getWalletDetailPageOnResponse:^(NSDictionary *dic) {
-        
-//        self.dataArray = [NSArray arrayWithArray:dic[@"data"]];
-//        [self.tableView reloadData];
+    [[YKHomeManager sharedManager]getList:page cid:_cid OnResponse:^(NSArray *array) {
+        self.dataArray = [NSArray arrayWithArray:array];
+        NSLog(@"=======%@",self.dataArray);
+        [self.tableView reloadData];
     }];
 }
 
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)setDataArray:(NSArray *)dataArray{
-    _dataArray = dataArray;
-    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,14 +81,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YKListCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKListCell" owner:self options:nil][0];
-    [bagCell initWithDic:self.dataArray[indexPath.section]];
+    [bagCell initWithDic:self.dataArray[indexPath.section] cid:_cid];
     bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return bagCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YKLinkWebVC *web = [[YKLinkWebVC alloc]init];
-    web.url = self.dataArray[indexPath.section][@"hotWearUrl"];
+    if ([_cid intValue] == 1) {
+        web.url = self.dataArray[indexPath.section][@"linkUrl"];
+    }
+    if ([_cid intValue] == 2) {
+        web.url = self.dataArray[indexPath.section][@"hotWearUrl"];
+    }
+    
     web.needShare = YES;
     [self.navigationController pushViewController:web animated:YES];
 }

@@ -40,26 +40,26 @@
     //    _eng.backgroundColor = [UIColor greenColor];
     
     //    _eng.font = FONT(15);
-    
-    _eng.lineBreakMode = NSLineBreakByCharWrapping;
-    
-    //设置字间距
-    
-    NSDictionary *dic = @{NSKernAttributeName:@4.f
-                          
-                          };
-    
-    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:_eng.text attributes:dic];
-    
-    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    
-    //    [paragraphStyle setLineSpacing:30];//行间距
-    
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_eng.text length])];
-    
-    [_eng setAttributedText:attributedString];
-    
-    [_eng sizeToFit];
+//
+//    _eng.lineBreakMode = NSLineBreakByCharWrapping;
+//
+//    //设置字间距
+//
+//    NSDictionary *dic = @{NSKernAttributeName:@4.f
+//
+//                          };
+//
+//    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:_eng.text attributes:dic];
+//
+//    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//
+//    //    [paragraphStyle setLineSpacing:30];//行间距
+//
+//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_eng.text length])];
+//
+//    [_eng setAttributedText:attributedString];
+//
+//    [_eng sizeToFit];
 }
 
 - (void)initWithType:(NSInteger)type productList:(NSArray *)productList OnResponse:(void (^)(void))onResponse{
@@ -123,7 +123,7 @@
     _pageControl = [[UIPageControl alloc]init];
     _pageControl.numberOfPages = 3;
     _pageControl.currentPage = 0;
-    _pageControl.frame = CGRectMake(0, self.frame.size.height-30, WIDHT, 30);
+    _pageControl.frame = CGRectMake(0, self.frame.size.height-20, WIDHT, 20);
 //    _pageControl.backgroundColor = [UIColor redColor];
     _pageControl.pageIndicatorTintColor = [UIColor colorWithHexString:@"f4f4f4"];
     _pageControl.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"333333"];

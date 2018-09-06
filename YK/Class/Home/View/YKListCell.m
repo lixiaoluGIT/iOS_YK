@@ -17,6 +17,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_image setContentMode:UIViewContentModeScaleAspectFill];
+    _image.layer.masksToBounds = YES;
+    _image.layer.cornerRadius = 4;
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -30,8 +33,15 @@
     return encodedString;
 }
 
-- (void)initWithDic:(NSDictionary *)dic{
-    [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"hotWearImg"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-    _clickUrl = dic[@"hotWearUrl"];
+- (void)initWithDic:(NSDictionary *)dic cid:(NSString *)cid{
+    if ([cid intValue]==1) {
+        [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"imgUrl"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+        _clickUrl = dic[@"linkUrl"];
+    }
+    if ([cid intValue]==2) {
+        [_image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"hotWearImg"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+        _clickUrl = dic[@"hotWearUrl"];
+    }
+   
 }
 @end

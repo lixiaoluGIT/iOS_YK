@@ -137,6 +137,33 @@
     }];
 }
 
+//查询用户加衣劵
+- (void)searchAddCCOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [YKHttpClient Method:@"GET" URLString:SearchCC_Url paramers:nil success:^(NSDictionary *dict) {
+        
+        if ([dict[@"status"] integerValue] == 200) {
+            NSArray *array = [NSArray arrayWithArray:dict[@"data"]];
+            if (array.count>0) {//有加衣劵
+                _isHadCC = YES;
+                _addClothingId = array[0][@"addClothingId"];
+            }else {//没加衣劵
+                _isHadCC = NO;
+                _addClothingId = @"0";
+            }
+            
+            if (onResponse) {
+                onResponse(dict);
+            }
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (NSMutableArray *)suitArray{
     if (!_suitArray) {
         _suitArray = [NSMutableArray array];
@@ -147,6 +174,9 @@
 - (void)clear{
     [self.suitArray removeAllObjects];
     self.suitAccount = 0;
+//    self.isUseCC = NO;
+//    self.isHadCC = NO;
+//    self.addClothingId = @"0";
 }
 
 @end

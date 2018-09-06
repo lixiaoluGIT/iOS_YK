@@ -30,6 +30,11 @@
 		0034CF1B20737E58002015AE /* YKHomeDesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0034CF1920737E58002015AE /* YKHomeDesCell.xib */; };
 		003AE74C2133C9FD001D7D17 /* YKHomeActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AE74A2133C9FD001D7D17 /* YKHomeActivityView.m */; };
 		003AE74D2133C9FD001D7D17 /* YKHomeActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AE74B2133C9FD001D7D17 /* YKHomeActivityView.xib */; };
+		003AE781213790E8001D7D17 /* YKAddCCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AE77F213790E8001D7D17 /* YKAddCCouponView.m */; };
+		003AE782213790E8001D7D17 /* YKAddCCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AE780213790E8001D7D17 /* YKAddCCouponView.xib */; };
+		003AE7862137A7E2001D7D17 /* YKAddCCDesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AE7842137A7E2001D7D17 /* YKAddCCDesView.m */; };
+		003AE7872137A7E2001D7D17 /* YKAddCCDesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AE7852137A7E2001D7D17 /* YKAddCCDesView.xib */; };
+		003AE78A2137ABC8001D7D17 /* YKBuyAddCCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AE7892137ABC8001D7D17 /* YKBuyAddCCVC.m */; };
 		0048BA1120C922F000D4699D /* YKCommunicationImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0048BA1020C922F000D4699D /* YKCommunicationImageView.m */; };
 		005D2CCF2080A44F00AEBDA0 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005D2CCD2080A44E00AEBDA0 /* TencentOpenAPI.framework */; };
 		005D2CD02080A44F00AEBDA0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 005D2CCE2080A44E00AEBDA0 /* TencentOpenApi_IOS_Bundle.bundle */; };
@@ -655,6 +660,14 @@
 		003AE7492133C9FD001D7D17 /* YKHomeActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHomeActivityView.h; sourceTree = "<group>"; };
 		003AE74A2133C9FD001D7D17 /* YKHomeActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHomeActivityView.m; sourceTree = "<group>"; };
 		003AE74B2133C9FD001D7D17 /* YKHomeActivityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKHomeActivityView.xib; sourceTree = "<group>"; };
+		003AE77E213790E8001D7D17 /* YKAddCCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAddCCouponView.h; sourceTree = "<group>"; };
+		003AE77F213790E8001D7D17 /* YKAddCCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAddCCouponView.m; sourceTree = "<group>"; };
+		003AE780213790E8001D7D17 /* YKAddCCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKAddCCouponView.xib; sourceTree = "<group>"; };
+		003AE7832137A7E2001D7D17 /* YKAddCCDesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKAddCCDesView.h; sourceTree = "<group>"; };
+		003AE7842137A7E2001D7D17 /* YKAddCCDesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKAddCCDesView.m; sourceTree = "<group>"; };
+		003AE7852137A7E2001D7D17 /* YKAddCCDesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKAddCCDesView.xib; sourceTree = "<group>"; };
+		003AE7882137ABC7001D7D17 /* YKBuyAddCCVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBuyAddCCVC.h; sourceTree = "<group>"; };
+		003AE7892137ABC8001D7D17 /* YKBuyAddCCVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBuyAddCCVC.m; sourceTree = "<group>"; };
 		0048BA0F20C922F000D4699D /* YKCommunicationImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCommunicationImageView.h; sourceTree = "<group>"; };
 		0048BA1020C922F000D4699D /* YKCommunicationImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCommunicationImageView.m; sourceTree = "<group>"; };
 		005D2CCD2080A44E00AEBDA0 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -2571,6 +2584,8 @@
 				C5FECDE11FC2860400D299AE /* YKSuccessVC.h */,
 				C5FECDE21FC2860400D299AE /* YKSuccessVC.m */,
 				C5FECDE31FC2860400D299AE /* YKSuccessVC.xib */,
+				003AE7882137ABC7001D7D17 /* YKBuyAddCCVC.h */,
+				003AE7892137ABC8001D7D17 /* YKBuyAddCCVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2606,6 +2621,12 @@
 				C5E023111FD95DCD00C33629 /* YKSuitEnsureCell.h */,
 				C5E023121FD95DCD00C33629 /* YKSuitEnsureCell.m */,
 				C5E023131FD95DCD00C33629 /* YKSuitEnsureCell.xib */,
+				003AE77E213790E8001D7D17 /* YKAddCCouponView.h */,
+				003AE77F213790E8001D7D17 /* YKAddCCouponView.m */,
+				003AE780213790E8001D7D17 /* YKAddCCouponView.xib */,
+				003AE7832137A7E2001D7D17 /* YKAddCCDesView.h */,
+				003AE7842137A7E2001D7D17 /* YKAddCCDesView.m */,
+				003AE7852137A7E2001D7D17 /* YKAddCCDesView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4004,11 +4025,13 @@
 				C525DE121FBABF81002802AE /* timg.jpg in Resources */,
 				C5FB776D205902CE0076DD6F /* moment0.plist in Resources */,
 				C525DEAD1FBD97BA002802AE /* YKAddressDetailCell.xib in Resources */,
+				003AE7872137A7E2001D7D17 /* YKAddCCDesView.xib in Resources */,
 				C52D0FAE1FC6D97700B50258 /* YKWalletDetailCell.xib in Resources */,
 				C5B723DC202D70F200344339 /* s.gif in Resources */,
 				0087C990211AA0F90014E733 /* YKLogInView.xib in Resources */,
 				C525DEA51FBD89F7002802AE /* YKSMSCell.xib in Resources */,
 				C5690F991FE770BD0027EFCE /* YKTotalSMSCell.xib in Resources */,
+				003AE782213790E8001D7D17 /* YKAddCCouponView.xib in Resources */,
 				005D2CEB2085E10B00AEBDA0 /* top111.jpg in Resources */,
 				C53347201FD0F232002A08D0 /* YKSMSStatusView.xib in Resources */,
 				C5303A061FCEAE7900FB12CE /* YKReturnAddressView.xib in Resources */,
@@ -4198,6 +4221,7 @@
 				C5FB785F205904780076DD6F /* NSKeyedUnarchiver+YYAdd.m in Sources */,
 				C5FB7848205904780076DD6F /* YYTextAttribute.m in Sources */,
 				C525DEA01FBD8030002802AE /* YKSuitDetailVC.m in Sources */,
+				003AE78A2137ABC8001D7D17 /* YKBuyAddCCVC.m in Sources */,
 				C525DD7E1FBAB2A9002802AE /* MJRefreshBackNormalFooter.m in Sources */,
 				C53347231FD11FDF002A08D0 /* YKHomeManager.m in Sources */,
 				C525DDAF1FBAB2A9002802AE /* TZAssetModel.m in Sources */,
@@ -4305,6 +4329,7 @@
 				005D2CF52085F9D600AEBDA0 /* DCCycleScrollView.m in Sources */,
 				C5FB78D2205908F80076DD6F /* NSObject+BKAssociatedObjects.m in Sources */,
 				C5FB78C9205908F80076DD6F /* NSDictionary+BlocksKit.m in Sources */,
+				003AE7862137A7E2001D7D17 /* YKAddCCDesView.m in Sources */,
 				C525DE7B1FBC4981002802AE /* YKMineCell.m in Sources */,
 				C525DD991FBAB2A9002802AE /* MASViewAttribute.m in Sources */,
 				C5F929B820206E52001D2139 /* CLImageBrowserCell.m in Sources */,
@@ -4345,6 +4370,7 @@
 				C5FB785D205904780076DD6F /* NSData+YYAdd.m in Sources */,
 				C536298420089C9200CA1F8B /* YKCacheManager.m in Sources */,
 				C57505381FFB853500F7E07A /* DDAleartView.m in Sources */,
+				003AE781213790E8001D7D17 /* YKAddCCouponView.m in Sources */,
 				C5FB7864205904780076DD6F /* NSNotificationCenter+YYAdd.m in Sources */,
 				C525DC341FBAAFC1002802AE /* main.m in Sources */,
 				C5690F981FE770BD0027EFCE /* YKTotalSMSCell.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "YKVipCell.h"
+#import "YKUserAccountVC.h"
 
 @interface YKVipCell()
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
@@ -30,7 +31,46 @@
         _btnClick();
     }
 }
-
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    if ([window subviews].count>0) {
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+        id nextResponder = [frontView nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]]){
+            result = nextResponder;
+        }
+        else{
+            result = window.rootViewController;
+        }
+    }
+    else{
+        result = window.rootViewController;
+    }
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [((UITabBarController*)result) selectedViewController];
+    }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [((UINavigationController*)result) visibleViewController];
+    }
+    
+    return result;
+}
 - (void)setUser:(YKUser *)user{
     _user = user;
     _dayLabel.text = _user.validity;
@@ -43,9 +83,16 @@
         
         _dayLabel.text = _user.validity;
         if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) {
-            _vipStatusLabel.text = @"暂无押金";
+            _vipStatusLabel.text = @"缴纳押金>";
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+                YKUserAccountVC *account = [[YKUserAccountVC alloc]init];
+                account.hidesBottomBarWhenPushed = YES;
+                [[self getCurrentVC].navigationController pushViewController:account animated:YES];
+            }];
+            [self setUserInteractionEnabled:YES];
+            [self addGestureRecognizer:tap];
             _backImage.image = [UIImage imageNamed:@"yk-1"];
-             [_becomeBtn setTitle:@"续费" forState:UIControlStateNormal];
+            [_becomeBtn setTitle:@"续费" forState:UIControlStateNormal];
             return;
         }
         

@@ -40,7 +40,7 @@
 //    }
     //判断支付来源
     NSString *str;
-    if ([[self appName] isEqualToString:@"衣库"]){
+//    if ([[self appName] isEqualToString:@"衣库"]){
         if (couponId==0) {
             if ([[YKUserManager sharedManager].user.depositEffective intValue] == 1) {//押金有效，不交押金
                 str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=0",AliPay_Url,@(payMethod),@(paytype),2,@(activity)];
@@ -61,7 +61,11 @@
         if (paytype==0) {//单独充押金
             str =  [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=%@",AliPay_Url,@(payMethod),@(paytype),1,@(activity),@(couponId)];
         }}
+    
+    if (paytype == 5) {//加衣劵
+        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&deposit=%d&activity=%@&couponId=%@",AliPay_Url,@(payMethod),@(paytype),2,@(activity),@(couponId)];
     }
+//    }
     
 //    if ([[self appName] isEqualToString:@"女神的衣柜"]) {//主包支付{//马甲包支付
 //        str = [NSString stringWithFormat:@"%@?payMethod=%@&payType=%@&platform=%@",AliPay_Url,@(payMethod),@(paytype),@"1"];

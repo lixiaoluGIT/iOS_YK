@@ -65,10 +65,15 @@
     }];
 }
 
-- (void)getPSListWithPage:(NSInteger)page Size:(NSInteger)size OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)getPSListWithPage:(NSInteger)page Size:(NSInteger)size sid:(NSString *)sid OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&size=%ld",PSList_Url,page,size];
-    
+    NSString *url;
+    if ([sid intValue] == 1 || [sid intValue] == 2) {//人气美衣
+        url = [NSString stringWithFormat:@"%@?page=%ld&size=%ld&type=%@",@"/popularity/popularityClothingPage",page,size,sid];
+    }else {
+        url = [NSString stringWithFormat:@"%@?page=%ld&size=%ld",PSList_Url,page,size];
+    }
+
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if (onResponse) {

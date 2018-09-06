@@ -473,4 +473,40 @@
     [self getCurrentVC].hidesBottomBarWhenPushed = YES;
 }
 
+//请求活动列表
+- (void)getList:(NSInteger)page cid:(NSString *)cid OnResponse:(void (^)(NSArray *array))onResponse{
+    
+    NSInteger ci = [cid intValue];
+    NSString *url;
+    switch (ci) {
+        case 1:
+            url = [NSString stringWithFormat:@"%@?page=%d&size=%d",GetSuitList_Url,page,10];
+            break;
+        case 2:
+            url = [NSString stringWithFormat:@"%@?page=%d&size=%d",GetFashionList_Url,page,10];
+        default:
+            break;
+    }
+
+    
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"content"]];
+        if (array.count == 0) {
+            
+        }
+        
+        if (onResponse) {
+            onResponse(array);
+        }
+        
+    }];
+}
+//请求时尚穿搭
+- (void)getFashionListOn:(NSInteger)page Response:(void (^)(NSDictionary *dic))onResponse{
+    
+}
+
 @end

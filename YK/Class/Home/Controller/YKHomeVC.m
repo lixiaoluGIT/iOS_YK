@@ -325,6 +325,7 @@
             detail.title = @"人气美衣";
             detail.isPS = NO;
             detail.isfromhome = YES;
+            detail.sid = @"1";//衣服
             detail.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:detail animated:YES];
         }];
@@ -336,6 +337,7 @@
             detail.title = @"人气配饰";
             detail.isPS = YES;
             detail.isfromhome = YES;
+            detail.sid = @"2";//配饰
             detail.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:detail animated:YES];
         }];
@@ -522,7 +524,8 @@
             NSLog(@"去列表页");
             YKLiseVC *list = [[YKLiseVC alloc]init];
             list.title = @"搭配成套";
-            list.dataArray = weakSelf.hotWears;
+//            list.dataArray = weakSelf.hotWears;
+            list.cid = @"1";
             list.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:list animated:YES];
             
@@ -581,7 +584,8 @@
             NSLog(@"去列表页");
             YKLiseVC *list = [[YKLiseVC alloc]init];
             list.title = @"时尚穿搭";
-            list.dataArray = self.hotWears;
+//            list.dataArray = self.hotWears;
+            list.cid = @"2";
             list.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:list animated:YES];
         }];

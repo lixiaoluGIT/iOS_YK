@@ -148,7 +148,7 @@
         NSString *s = [UD objectForKey:@"showTime"];
         NSArray *controllerTittle;
         if ([s intValue] != 3) {
-            controllerTittle = @[@"YKSearchVC",@"YKSPVC",@"YKALLBrandVC"];
+            controllerTittle = @[@"YKSearchVC",@"YKSPVC"];
         }else {
             controllerTittle = @[@"YKSearchVC",@"YKALLBrandVC"];
         }
@@ -169,7 +169,7 @@
         NSString *s = [UD objectForKey:@"showTime"];
         
         if ([s intValue] != 3) {
-            _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"配饰",@"品牌",nil];
+            _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"配饰",nil];
         }else {
             _titleArr = [[NSMutableArray alloc] initWithObjects:@"服装",@"品牌",nil];
         }

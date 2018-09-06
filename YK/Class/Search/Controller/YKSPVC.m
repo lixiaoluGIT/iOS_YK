@@ -57,7 +57,7 @@
     
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/140);
+    layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
     layoutView.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
     //layoutView.footerReferenceSize = CGSizeMake(self.view.bounds.size.width, 150);
     
@@ -77,9 +77,14 @@
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _pageNum=1;
         //请求更多商品
-        [[YKSearchManager sharedManager]getPSListWithPage:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
+        [[YKSearchManager sharedManager]getPSListWithPage:_pageNum Size:10 sid:_sid OnResponse:^(NSDictionary *dic) {
             [self.productList removeAllObjects];
-            NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
+            NSMutableArray *array;
+            if ([_sid intValue] == 1 || [_sid intValue] == 2) {
+                array = [NSMutableArray arrayWithArray:dic[@"data"][@"content"]];
+            }else {
+                array = [NSMutableArray arrayWithArray:dic[@"data"]];
+            }
             [self.collectionView.mj_header endRefreshing];
             if (array.count==0) {
                 [weakSelf.collectionView.mj_header endRefreshing];
@@ -97,8 +102,14 @@
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
         //请求更多商品
-        [[YKSearchManager sharedManager]getPSListWithPage:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
-            NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
+        [[YKSearchManager sharedManager]getPSListWithPage:_pageNum Size:10 sid:_sid OnResponse:^(NSDictionary *dic) {
+            NSMutableArray *array;
+            if ([_sid intValue] == 1 || [_sid intValue] == 2) {
+               array = [NSMutableArray arrayWithArray:dic[@"data"][@"content"]];
+            }else {
+                array = [NSMutableArray arrayWithArray:dic[@"data"]];
+            }
+            
             [self.collectionView.mj_footer endRefreshing];
             if (array.count==0) {
                 [weakSelf.collectionView.mj_footer endRefreshing];
@@ -117,8 +128,13 @@
 }
 
 - (void)getDataList{
-    [[YKSearchManager sharedManager]getPSListWithPage:_pageNum Size:10 OnResponse:^(NSDictionary *dic) {
-        self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
+    [[YKSearchManager sharedManager]getPSListWithPage:_pageNum Size:10 sid:_sid OnResponse:^(NSDictionary *dic) {
+        if ([_sid intValue] == 1 || [_sid intValue] == 2) {
+            self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"content"]];
+        }else {
+            self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
+        }
+        
         [self.collectionView reloadData];
     }];
 }
@@ -126,6 +142,7 @@
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return self.productList.count;
@@ -147,18 +164,18 @@
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(16, 24, 16, 24);
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 16;
+    return 10;
 }
 
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 24;
+    return 10;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

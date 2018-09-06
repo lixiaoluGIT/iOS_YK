@@ -9,5 +9,6 @@
 #import "YKBaseTableVC.h"
 
 @interface YKLiseVC : YKBaseTableVC
-@property (nonatomic,strong)NSArray *dataArray;
+
+@property (nonatomic,strong)NSString *cid;//分类id
 @end

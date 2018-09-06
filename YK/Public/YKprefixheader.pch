@@ -147,7 +147,10 @@
 #define GetProductDetail_Url @"/product/getClothingDetail"
 //分页请求更多商品(刷新商品列表)
 #define GetMoreProduct_Url @"/product/getFreshClothList"
-
+//请求搭配成套
+#define GetSuitList_Url @"/suitWith/suitWithPage"
+//请求时尚穿搭
+#define GetFashionList_Url @"/hotWear/hotWearPage"
 /*----------------------------选衣--------------------------------*/
 //筛选商品
 #define filterCloth_Url @"/product/selectClothBySortIdAndTypeId"
@@ -169,6 +172,8 @@
 //#define PostOrder_Url @"/shoppingCart/confirmShoppingCart"
 //批量删除购物车
 #define DeleteFromShoppingCart_Url @"/shoppingCart/batchDeleting"
+//查询当前用户加衣劵
+#define SearchCC_Url @"/addClothingVoucher/queryAddClothingVoucher"
 
 /*----------------------------地址模块--------------------------------*/
 //新增收货地址

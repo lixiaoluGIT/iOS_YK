@@ -68,6 +68,14 @@
         _couponNum = [dic[@"couponAmount"] integerValue];
         _numLabel.text = [NSString stringWithFormat:@"%@",dic[@"couponAmount"]];
     }
+    
+    if ([dic[@"couponType"] intValue] == 5) {//加衣券劵
+        _couponType = 5;
+        _type.text = @"加衣券";
+        _yuan.text = @"件";
+        _couponNum = [dic[@"couponAmount"] integerValue];
+        _numLabel.text = [NSString stringWithFormat:@"%@",dic[@"couponAmount"]];
+    }
 
     _couponID = [dic[@"couponId"] intValue];
 //    _type.text = dic[@"couponName"];

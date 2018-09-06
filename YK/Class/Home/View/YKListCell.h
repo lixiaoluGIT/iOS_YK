@@ -10,5 +10,5 @@
 
 @interface YKListCell : UITableViewCell
 @property (nonatomic,strong)NSString *clickUrl;
-- (void)initWithDic:(NSDictionary *)dic;
+- (void)initWithDic:(NSDictionary *)dic cid:(NSString *)cid;
 @end
