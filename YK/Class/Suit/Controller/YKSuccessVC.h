@@ -10,4 +10,9 @@
 
 @interface YKSuccessVC : UIViewController
 
+@property (nonatomic,strong)NSMutableArray *pList;//所选商品列表
+@property (nonatomic,strong)YKAddress *addressM;
+@property (nonatomic,strong)NSString *timeStr;
+@property (nonatomic,strong)NSString *orderNum;
+
 @end

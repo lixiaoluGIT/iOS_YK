@@ -15,6 +15,7 @@
 #import "YKRecommentTitleView.h"
 #import "YKProductDetailHeader.h"
 #import "YKProductDetailButtom.h"
+#import "YKDetailFootView.h"
 #import "YKYifuScanCell.h"
 #import "YKLoginVC.h"
 #import "YKBrandDetailVC.h"
@@ -38,6 +39,7 @@
 #import "YKNoDataView.h"
 #import "YKProductCommentVC.h"
 #import "YKEditSizeVC.h"
+#import "YKCartVC.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource,NewDynamicsCellDelegate>{
@@ -51,6 +53,7 @@
     BOOL hadUserTable;
     BOOL hadTabel;
     NewDynamicsTableViewCell * cell;
+    YKDetailFootView *buttom;
 }
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -142,10 +145,22 @@
             [self.layoutsArr addObject:layout];
         }
         
+        [buttom initWithIsLike:productDetail.isInCollectionFolder total:productDetail.occupiedClothes];
+        
+        [self performSelector:@selector(showButtom) withObject:nil afterDelay:0.8];
         [self.collectionView reloadData];
     }];
 }
 
+- (void)showButtom{
+    [UIView animateWithDuration:0.25 animations:^{
+        buttom.frame = CGRectMake(0,HEIGHT-50,WIDHT, 50);
+        //iphone x 适配,排除安全区
+        if (HEIGHT == 812) {
+            buttom.frame = CGRectMake(0,HEIGHT-74,WIDHT, 50);
+        }
+    }] ;
+}
 
 - (NSMutableArray *)getImageArray:(NSArray *)array{
     NSMutableArray *imageArray = [NSMutableArray array];
@@ -265,59 +280,67 @@
 //    [self.view addSubview:btn1];
     
     WeakSelf(weakSelf)
-    YKProductDetailButtom *buttom=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailButtom" owner:self options:nil][0];
-    buttom.frame = CGRectMake(0,HEIGHT-50,WIDHT, 51);
+    buttom =  [[NSBundle mainBundle] loadNibNamed:@"YKDetailFootView" owner:self options:nil][0];
+    buttom.frame = CGRectMake(0,HEIGHT,WIDHT, 50);
     //iphone x 适配,排除安全区
     if (HEIGHT == 812) {
-      buttom.frame = CGRectMake(0,HEIGHT-74,WIDHT, 51);
+      buttom.frame = CGRectMake(0,HEIGHT,WIDHT, 50);
     }
+//    buttom.product = self.product;
+    buttom.likeSelectBlock = ^(BOOL isLike){
+        if (isLike) {
+            [weakSelf deCollect];
+        }else{
+            [weakSelf collect];
+        }
+    };
     buttom.AddToCartBlock = ^(void){//添加到购物车
         [weakSelf addTOCart];
     };
-    buttom.KeFuBlock = ^(void){//客服
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
-            NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
-            NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
-            if (compare == NSOrderedDescending || compare == NSOrderedSame) {
-                /// 大于等于10.0系统使用此openURL方法
-                if (@available(iOS 10.0, *)) {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
-                } else {
-                    // Fallback on earlier versions
-                }
-            } else {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-            }
-            return;
-        }
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
-        alertview.delegate = self;
-        [alertview show];
-        
-        
-//        if ([Token length] == 0) {
-//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-//            [self presentViewController:login animated:YES completion:^{
-//
-//            }];
-//            login.hidesBottomBarWhenPushed = YES;
+//    buttom.KeFuBlock = ^(void){//客服
+//        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
+//            NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+//            NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+//            if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+//                /// 大于等于10.0系统使用此openURL方法
+//                if (@available(iOS 10.0, *)) {
+//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+//            } else {
+//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+//            }
 //            return;
 //        }
-//        YKChatVC *chatService = [[YKChatVC alloc] init];
-//        chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-//        chatService.targetId = RoundCloudServiceId;
-//        chatService.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController :chatService animated:YES];
-//        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"客服服务时间:10:00-19:00" cancelBtnTitle:@"拨打电话" otherBtnTitle:@"在线客服"];
-//        alertView.delegate = self;
-//        [alertView show];
-      
+//        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+//        alertview.delegate = self;
+//        [alertview show];
+//
+//
+////        if ([Token length] == 0) {
+////            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+////            [self presentViewController:login animated:YES completion:^{
+////
+////            }];
+////            login.hidesBottomBarWhenPushed = YES;
+////            return;
+////        }
+////        YKChatVC *chatService = [[YKChatVC alloc] init];
+////        chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+////        chatService.targetId = RoundCloudServiceId;
+////        chatService.hidesBottomBarWhenPushed = YES;
+////        [self.navigationController pushViewController :chatService animated:YES];
+////        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"客服服务时间:10:00-19:00" cancelBtnTitle:@"拨打电话" otherBtnTitle:@"在线客服"];
+////        alertView.delegate = self;
+////        [alertView show];
+    
         
 //
-    };
+//    };
     buttom.ToSuitBlock = ^(void){//去衣袋
         
-        YKSuitVC *suit = [[YKSuitVC alloc] init];
+        YKCartVC *suit = [[YKCartVC alloc] init];
         suit.hidesBottomBarWhenPushed = YES;
         suit.isFromeProduct = YES;
         [self.navigationController pushViewController:suit animated:YES];
@@ -390,6 +413,43 @@
     //    [self.tabBarController setSelectedIndex:0];
 }
 
+//取消收藏
+- (void)deCollect{
+   
+    NSMutableArray *shopCartList = [NSMutableArray array];
+    [shopCartList addObject:@""];
+    [[YKSuitManager sharedManager]deleteCollecttwithShoppingCartId:shopCartList OnResponse:^(NSDictionary *dic) {
+        [self getPruductDetail];
+    }];
+    
+}
+
+//收藏商品
+- (void)collect{
+    if ([Token length] == 0) {
+        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+        [self presentViewController:login animated:YES completion:^{
+            
+        }];
+        login.hidesBottomBarWhenPushed = YES;
+        return;
+    }
+    
+    if (_sizeNum==0 && !_isSP) {
+        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
+        //弹出尺码选择的页面
+        
+        
+        return ;
+    }
+    
+    [[YKSuitManager sharedManager]collectWithclothingId:self.productId clothingStckType:_sizeNum OnResponse:^(NSDictionary *dic) {
+      
+        [self getPruductDetail];
+    
+    }];
+}
+
 - (void)addTOCart{
     //未登录
     
@@ -403,10 +463,13 @@
     }
     if (_sizeNum==0 && !_isSP) {
         [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
+        //弹出尺码选择的页面
+        
+        
         return ;
     }
     [[YKSuitManager sharedManager]addToShoppingCartwithclothingId:self.productId clothingStckType:_sizeNum OnResponse:^(NSDictionary *dic) {
-        
+        [self getPruductDetail];
     }];
 }
 -(void)dd{

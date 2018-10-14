@@ -26,6 +26,8 @@
     _title.layer.masksToBounds = YES;
     _title.layer.cornerRadius = 4;
     _title.textColor = mainColor;
+    _image.layer.masksToBounds = YES;
+    _image.layer.cornerRadius = _image.frame.size.height/2;
 //    self.backgroundColor = [UIColor yellowColor];
 //    self.image.backgroundColor = [UIColor greenColor];
 //    self.title.backgroundColor =[UIColor blueColor];

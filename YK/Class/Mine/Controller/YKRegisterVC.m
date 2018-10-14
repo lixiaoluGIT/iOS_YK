@@ -208,5 +208,4 @@ NSInteger timeNum;
     return encryptStr;
 }
 
-
 @end

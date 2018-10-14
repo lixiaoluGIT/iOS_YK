@@ -84,9 +84,9 @@
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请选择商品" delay:1.5];
     }else {
         //到确认订单页
-        if (self.ensureBlock) {
-            self.ensureBlock();
-        }
+//        if (self.ensureBlock) {
+//            self.ensureBlock();
+//        }
     }
 
 }

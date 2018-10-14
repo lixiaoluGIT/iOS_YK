@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,25 +19,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kefu-2" translatesAutoresizingMaskIntoConstraints="NO" id="77n-RE-w8T">
-                        <rect key="frame" x="27" y="8" width="20" height="20"/>
+                        <rect key="frame" x="27" y="8" width="24" height="20"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客服" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzB-Mv-ROf">
-                        <rect key="frame" x="27" y="32" width="20.5" height="12"/>
+                        <rect key="frame" x="29" y="32" width="20.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yidai-1" translatesAutoresizingMaskIntoConstraints="NO" id="NP5-cf-YhR">
-                        <rect key="frame" x="101" y="8" width="20" height="20"/>
+                        <rect key="frame" x="105" y="7.5" width="20" height="21"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衣袋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M56-yj-cz6">
-                        <rect key="frame" x="100.5" y="31.5" width="21" height="12"/>
+                        <rect key="frame" x="104.5" y="31.5" width="21" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.4039215686" green="0.40784313729999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t19-9K-4Ql">
-                        <rect key="frame" x="74" y="0.0" width="2" height="56.5"/>
+                        <rect key="frame" x="78" y="0.0" width="2" height="56.5"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="2" id="Gjf-n0-0dj"/>
@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKn-qa-gJI">
-                        <rect key="frame" x="148" y="0.0" width="207" height="56.5"/>
+                        <rect key="frame" x="152" y="0.0" width="203" height="56.5"/>
                         <color key="backgroundColor" red="1" green="0.42745098039215684" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                         <state key="normal" title="加入衣袋">
@@ -58,13 +58,13 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rR-wq-sLz">
-                        <rect key="frame" x="0.0" y="0.0" width="74" height="56.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="76" height="56.5"/>
                         <connections>
                             <action selector="kefu:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mIZ-CP-wBS"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNk-Ch-rTe">
-                        <rect key="frame" x="74" y="0.5" width="74" height="56.5"/>
+                        <rect key="frame" x="76" y="0.5" width="76" height="56.5"/>
                         <connections>
                             <action selector="toYidai:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vs9-mP-Uif"/>
                         </connections>
@@ -102,11 +102,11 @@
                 <outlet property="kefu" destination="77n-RE-w8T" id="UkR-NS-u0Y"/>
                 <outlet property="yidai" destination="NP5-cf-YhR" id="Er2-3s-8aB"/>
             </connections>
-            <point key="canvasLocation" x="-209" y="79"/>
+            <point key="canvasLocation" x="38" y="87"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="kefu-2" width="20" height="20"/>
-        <image name="yidai-1" width="20" height="20"/>
+        <image name="kefu-2" width="24" height="20"/>
+        <image name="yidai-1" width="20" height="21"/>
     </resources>
 </document>

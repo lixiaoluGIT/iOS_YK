@@ -15,6 +15,7 @@ typedef enum : NSInteger {
     MONTH_CARD = 1,//月卡
     SEASON_CARD = 2,//季卡
     YEAR_CARD = 3,//年卡
+    ONCE_CARD = 4,//次卡
 }payType;
 
 #import <Foundation/Foundation.h>

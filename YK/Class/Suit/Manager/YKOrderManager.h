@@ -34,6 +34,7 @@ typedef enum : NSInteger {
 //提交订单
 - (void)releaseOrderWithAddress:(YKAddress *)address
                        shoppingCartIdList:(NSMutableArray *)shoppingCartIdList
+                       cardType:(NSInteger)cardType
                              OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 /*!

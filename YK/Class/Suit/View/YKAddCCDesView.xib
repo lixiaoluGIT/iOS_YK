@@ -11,18 +11,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="585" id="KGk-i7-Jjw" customClass="YKAddCCDesView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="585"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="517" id="KGk-i7-Jjw" customClass="YKAddCCDesView">
+            <rect key="frame" x="0.0" y="0.0" width="444" height="517"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="584.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="444" height="516.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="23456" translatesAutoresizingMaskIntoConstraints="NO" id="LiY-Wd-97w">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="177"/>
+                        <rect key="frame" x="0.0" y="0.0" width="444" height="177"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wqz-ph-J1q">
-                        <rect key="frame" x="0.0" y="177" width="414" height="10"/>
+                        <rect key="frame" x="0.0" y="177" width="444" height="10"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="0X8-Ld-SWc"/>
@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiQ-Om-PUL">
-                        <rect key="frame" x="340" y="204" width="36" height="22"/>
+                        <rect key="frame" x="370" y="204" width="36" height="22"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqq-TV-1L7">
-                        <rect key="frame" x="38" y="243" width="338" height="1"/>
+                        <rect key="frame" x="38" y="243" width="368" height="1"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="7Ur-PW-UyM"/>
@@ -84,10 +84,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG5-Ky-Ppw">
-                        <rect key="frame" x="0.0" y="534.5" width="414" height="50"/>
+                        <rect key="frame" x="0.0" y="466.5" width="444" height="50"/>
                         <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="xGi-Bw-9iJ"/>
+                            <constraint firstAttribute="height" constant="50" id="8ir-JA-beP"/>
                         </constraints>
                         <state key="normal" title="立即购买"/>
                         <connections>
@@ -124,7 +124,7 @@
                     <constraint firstItem="d9o-3j-1Hy" firstAttribute="top" secondItem="4Nv-8Q-1Hr" secondAttribute="bottom" constant="12" id="zyH-RT-KpP"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-43" y="152.5"/>
+            <point key="canvasLocation" x="-28" y="118.5"/>
         </tableViewCell>
     </objects>
     <resources>

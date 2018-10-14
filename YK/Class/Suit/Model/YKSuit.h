@@ -22,6 +22,8 @@
 @property (nonatomic,strong)NSString *clothingImgUrl;//商品图标
 @property (nonatomic,assign)NSInteger classify;
 
+@property (nonatomic,strong)NSString *ownedNum;//所占衣位数
+
 
 - (void)initWithDictionary:(NSDictionary *)dic;
 

@@ -34,6 +34,8 @@
 @property (nonatomic,assign)BOOL isNew;//是否是刚上新
 @property (nonatomic,assign)BOOL isStarSame;//明星同款
 
+@property (nonatomic,strong)NSString *OwenNum;//占衣位数
+
 //
 
 @property (nonatomic,strong)NSMutableArray *bannerImages;//轮播图
@@ -41,6 +43,11 @@
 @property (nonatomic,strong)NSDictionary *brand;//品牌信息
 @property (nonatomic,strong)NSMutableArray *pruductDetailImgs;//详情图
 @property (nonatomic,strong)NSMutableArray *productList;//相关推荐
+
+//是否收藏
+@property (nonatomic,strong)NSString *isInCollectionFolder;// 1收藏 2未收藏
+//衣袋总数量
+@property (nonatomic,strong)NSString *occupiedClothes;
 
 - (void)initWithDictionary:(NSDictionary *)dic;
 
@@ -53,6 +60,13 @@
 @property (nonatomic,strong)NSDictionary *brand;//品牌信息
 @property (nonatomic,strong)NSMutableArray *pruductDetailImgs;//详情图
 @property (nonatomic,strong)NSMutableArray *productList;//相关推荐
+
+
+//是否收藏
+@property (nonatomic,strong)NSString *isInCollectionFolder;// 1收藏 2未收藏
+//衣袋总数量
+@property (nonatomic,strong)NSString *occupiedClothes;
+
 
 - (void)initWithDictionary:(NSDictionary *)dic;
 @end

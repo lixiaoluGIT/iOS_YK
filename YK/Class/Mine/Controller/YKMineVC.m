@@ -26,6 +26,7 @@
 #import "YKCouponSegementVC.h"
 #import "YKVipCell.h"
 #import "YKUserAccountVC.h"
+#import "YKSuitVC.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
@@ -152,6 +153,15 @@
                     [weakSelf.navigationController pushViewController:account animated:YES];
                     return ;
                 }
+                if (tag==102) {
+                    //心愿单
+                    YKSuitVC *suit = [YKSuitVC new];
+                    suit.isFromeProduct = YES;
+                    suit.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:suit animated:YES];
+                    return ;
+                }
+                
                 //历史订单
                 YKMySuitBagVC *suit = [YKMySuitBagVC new];
                 suit.selectedIndex = tag;

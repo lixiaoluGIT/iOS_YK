@@ -13,6 +13,7 @@
 #import "YKMineVC.h"
 #import "YKHomeSegementVC.h"
 #import "YKSearchSegmentVC.h"
+#import "YKCartVC.h"
 
 @interface YKMainVC ()<UITabBarControllerDelegate>
 {
@@ -66,7 +67,9 @@
         near = [[UINavigationController alloc] initWithRootViewController:orderVC];
         [orderVC.tabBarItem setTitleTextAttributes:dictMine forState:UIControlStateSelected];
         
-        YKSuitVC *shareLineController = [[YKSuitVC  alloc] init];
+//        YKSuitVC *shareLineController = [[YKSuitVC  alloc] init];
+//        shareLineController.title = @"衣袋";
+        YKCartVC *shareLineController = [[YKCartVC alloc]init];
         shareLineController.title = @"衣袋";
  
         shareLineController.tabBarItem.image = [UIImage imageNamed:@"yidai"];

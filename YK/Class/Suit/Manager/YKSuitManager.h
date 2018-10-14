@@ -16,6 +16,9 @@
 @property (nonatomic,strong)NSString *addClothingId;//加衣劵id
 @property (nonatomic,assign)BOOL isUseCC;//是否使用加衣劵
 
+@property (nonatomic,assign)BOOL hadOnce;//是否有次卡
+@property (nonatomic,assign)NSInteger onceNum;//次卡次数
+
 + (YKSuitManager *)sharedManager;
 
 //添加到购物车
@@ -38,10 +41,26 @@
 - (void)postOrderwithSuits:(NSArray *)suits
                                   OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
-//查询用户加衣劵
+//查询用户加衣劵 GET /addClothingVoucher/usedAddClothingVoucher
 - (void)searchAddCCOnResponse:(void (^)(NSDictionary *dic))onResponse;
-
+//使用加衣劵
+- (void)useAddCCaddClothingVoucherId:(NSString *)addClothingVoucherId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 //清除缓存
 - (void)clear;
+
+//查询用户是否有次卡
+- (void)searchOnceStatusOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//收藏商品
+- (void)collectWithclothingId:(NSString *)clothingId
+                       clothingStckType:(NSString *)clothingStckType
+                             OnResponse:(void (^)(NSDictionary *dic))onResponse;
+//收藏列表
+- (void)getCollectListOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//移除收藏
+- (void)deleteCollecttwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+
 
 @end

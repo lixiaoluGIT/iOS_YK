@@ -72,11 +72,13 @@
     _tagView.backgroundColor = mainColor;
     [self addSubview:_tagView];
     //5个图标
-    NSArray *titles = @[@"全部衣袋",@"待签收",@"待归还",@"优惠劵",@"资金账户"];
+    NSArray *titles = @[@"待签收",@"待归还",@"心愿单",@"优惠劵",@"资金账户"];
     NSArray *images = @[@"衣袋图标-1",@"待签收-2",@"待归还-2",@"优惠劵-3",@"资金账户-1"];
     for (int i=0;i<5; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(WIDHT/5*i, 0, WIDHT/5, 58);
+        
+        
         [_tagView addSubview:btn];
         //图
         UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:images[i]]];
@@ -101,6 +103,13 @@
         
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        
+        UILabel *l = [[UILabel alloc]init];
+        l.backgroundColor = [UIColor redColor];
+        l.layer.cornerRadius=5;
+        l.layer.masksToBounds = YES;
+        l.frame = CGRectMake(btn.frame.size.width-20, -5, 10, 10);
+        [btn addSubview:l];
     }
 }
 

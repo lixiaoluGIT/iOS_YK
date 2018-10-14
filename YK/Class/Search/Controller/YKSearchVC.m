@@ -120,7 +120,7 @@
 
 - (void)initUpBtn{
     self.upBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-150, 35, 35);
+    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-200, 35, 35);
     [self.upBtn setBackgroundImage:[UIImage imageNamed:@"置顶图标"] forState:UIControlStateNormal];
     [self.view addSubview:self.upBtn];
     [self.view bringSubviewToFront:self.upBtn];
@@ -137,11 +137,11 @@
         {
             if (self.collectionView.contentOffset.y>360) {
                 [UIView animateWithDuration:0.3 animations:^{
-                    self.upBtn.frame = CGRectMake(WIDHT-60, HEIGHT-150, 35, 35);
+                    self.upBtn.frame = CGRectMake(WIDHT-60, HEIGHT-200, 35, 35);
                 }];
             }else {
                 [UIView animateWithDuration:0.3 animations:^{
-                    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-150, 0, 0);
+                    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-200, 0, 0);
                 }];
             }
         }

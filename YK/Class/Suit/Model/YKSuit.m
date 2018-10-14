@@ -47,8 +47,11 @@
         _clothingStockId = [NSString stringWithFormat:@"%@",dic[@"clothingStockId"]];
     }
     
-    if (dic[@"clothingStockType"] != [NSNull null]) {
+    if (dic[@"clothingStockType"] != [NSNull null] && dic[@"clothingStockType"]!=nil) {
         _clothingStockType = [NSString stringWithFormat:@"%@",dic[@"clothingStockType"]];
+    }else {
+        //解决衣袋和心愿单字段不一样的问题
+        _clothingStockType = [NSString stringWithFormat:@"%@",dic[@"stockType"]];
     }
 
     if (dic[@"clothingImgUrl"] != [NSNull null]) {
@@ -63,6 +66,12 @@
             self.classify = 2;//配饰
         }
     }
+    //商品所占衣位数
+    if (dic[@"ownedNum"] != [NSNull null]) {
+        
+        self.ownedNum = dic[@"ownedNum"];//衣服
+    }
+
 }
 
 @end

@@ -36,7 +36,7 @@
     [self setupUI];
 }
 - (void)setupUI {
-    [self.suitImage setContentMode:UIViewContentModeScaleAspectFit];
+//    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
 //    self.suitImage.clipsToBounds = YES;
 //    self.suitImage.layer.masksToBounds = YES;
 //    self.suitImage.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
@@ -184,10 +184,10 @@
 
 - (void)setSuit:(YKSuit *)suit{
     _suit = suit;
-    self.suitImage.autoresizingMask = NO;
+//    self.suitImage.autoresizingMask = NO;
     [self.suitImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:suit.clothingImgUrl]] placeholderImage:[UIImage imageNamed:@"商品图"]];
-    self.suitImage.backgroundColor = [UIColor redColor];
-    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
+//    self.suitImage.backgroundColor = [UIColor redColor];
+//    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
     self.suitName.text = suit.clothingName;
     self.suitBrand.text = suit.clothingBrandName;
     self.suitType.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];

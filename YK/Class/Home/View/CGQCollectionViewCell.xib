@@ -43,7 +43,7 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eS4-TP-3ji">
                         <rect key="frame" x="217" y="279.5" width="39" height="16"/>
-                        <color key="backgroundColor" red="0.396078431372549" green="0.68627450980392157" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.33725490196078434" green="0.70196078431372544" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="39" id="GEU-hW-NaA"/>
                             <constraint firstAttribute="height" constant="16" id="K3b-lD-zMy"/>
@@ -54,13 +54,46 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开通会员免费穿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFR-0u-uyN">
                         <rect key="frame" x="186" y="306.5" width="70" height="14"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="10"/>
-                        <color key="textColor" red="0.5607843137254902" green="0.69803921568627447" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.24705882352941178" green="0.56862745098039214" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pv-tw-PoQ">
+                        <rect key="frame" x="211" y="240" width="38" height="18"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占衣位" translatesAutoresizingMaskIntoConstraints="NO" id="Uea-BH-PG2">
+                                <rect key="frame" x="7" y="4.5" width="6" height="9"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlG-5M-i8B">
+                                <rect key="frame" x="24" y="2" width="7" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="changhao" translatesAutoresizingMaskIntoConstraints="NO" id="3UQ-mC-t1f">
+                                <rect key="frame" x="15.5" y="7" width="7" height="7"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="6.4000000000000004" id="3DH-46-s9g"/>
+                                    <constraint firstAttribute="height" constant="6.4000000000000004" id="bXe-8n-Mbz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.24705882352941178" green="0.56862745098039214" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jlG-5M-i8B" secondAttribute="trailing" constant="7" id="1K2-GW-MUP"/>
+                            <constraint firstAttribute="height" constant="18" id="1wS-sE-5es"/>
+                            <constraint firstItem="3UQ-mC-t1f" firstAttribute="top" secondItem="2Pv-tw-PoQ" secondAttribute="top" constant="7" id="HBl-Uf-fEY"/>
+                            <constraint firstItem="jlG-5M-i8B" firstAttribute="centerY" secondItem="2Pv-tw-PoQ" secondAttribute="centerY" id="ZOw-yk-1hJ"/>
+                            <constraint firstItem="Uea-BH-PG2" firstAttribute="leading" secondItem="2Pv-tw-PoQ" secondAttribute="leading" constant="7" id="cMz-kq-Xql"/>
+                            <constraint firstItem="3UQ-mC-t1f" firstAttribute="centerX" secondItem="2Pv-tw-PoQ" secondAttribute="centerX" id="gi3-Ki-9qB"/>
+                            <constraint firstItem="Uea-BH-PG2" firstAttribute="centerY" secondItem="2Pv-tw-PoQ" secondAttribute="centerY" id="uYd-mb-wxn"/>
+                            <constraint firstAttribute="width" constant="38" id="wtA-ce-U6u"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="2Pv-tw-PoQ" firstAttribute="bottom" secondItem="VsE-Au-0OE" secondAttribute="bottom" constant="-7" id="5p2-O9-upn"/>
                 <constraint firstAttribute="trailing" secondItem="eS4-TP-3ji" secondAttribute="trailing" id="ArX-eM-CUz"/>
                 <constraint firstItem="VsE-Au-0OE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="B9U-yO-GQs"/>
                 <constraint firstAttribute="trailing" secondItem="hZv-X5-c5y" secondAttribute="trailing" id="F5R-A3-DAH"/>
@@ -79,9 +112,11 @@
                 <constraint firstItem="o6Q-Xj-Mth" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="s7E-SL-bsb"/>
                 <constraint firstItem="P6F-GH-N2m" firstAttribute="leading" secondItem="mBc-Nl-XRj" secondAttribute="leading" id="syv-ff-aJP"/>
                 <constraint firstItem="eS4-TP-3ji" firstAttribute="centerY" secondItem="mBc-Nl-XRj" secondAttribute="centerY" id="vDL-SP-leC"/>
+                <constraint firstAttribute="trailing" secondItem="2Pv-tw-PoQ" secondAttribute="trailing" constant="7" id="zze-pE-OgO"/>
             </constraints>
             <size key="customSize" width="256" height="353"/>
             <connections>
+                <outlet property="backView" destination="2Pv-tw-PoQ" id="ilI-2P-BmB"/>
                 <outlet property="des" destination="HFR-0u-uyN" id="XJg-zJ-Ucp"/>
                 <outlet property="detailLabel" destination="P6F-GH-N2m" id="gvF-ta-iVq"/>
                 <outlet property="freeBtn" destination="eS4-TP-3ji" id="bc5-xb-DYO"/>
@@ -89,13 +124,16 @@
                 <outlet property="lable" destination="mBc-Nl-XRj" id="HGF-NA-7oZ"/>
                 <outlet property="qiangkongImage" destination="hZv-X5-c5y" id="QZF-oa-n6b"/>
                 <outlet property="shangxinImage" destination="o6Q-Xj-Mth" id="fPr-TI-yb0"/>
+                <outlet property="zhanyiweiNum" destination="jlG-5M-i8B" id="vz0-il-857"/>
             </connections>
-            <point key="canvasLocation" x="-102" y="-24.5"/>
+            <point key="canvasLocation" x="-100" y="-25"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="changhao" width="7" height="7"/>
         <image name="daifanjia" width="44" height="44"/>
         <image name="shangxin-1" width="56" height="22"/>
         <image name="timg.jpg" width="925" height="992"/>
+        <image name="占衣位" width="6" height="9"/>
     </resources>
 </document>

@@ -398,12 +398,12 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
  
     if (WIDHT == 375) {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30+60);
     }
     if(WIDHT == 414){
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8 + WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8 + WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40+60);
     }else {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+60);
     }
 }
 
@@ -429,15 +429,15 @@
         //文字miao s
         YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
-        desCell.frame = CGRectMake(0, cycleView.frame.size.height + cycleView.frame.origin.y, WIDHT, 92);
+        desCell.frame = CGRectMake(0, cycleView.frame.size.height + cycleView.frame.origin.y, WIDHT, 86);
         [headerView addSubview:desCell];
 
         //人气美衣
         _homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
         _homeScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-        _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+92, WIDHT, WIDHT-40);
+        _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+86, WIDHT, WIDHT-40);
         if (HEIGHT!=414) {
-            _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+92, WIDHT, WIDHT-20);
+            _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+86, WIDHT, WIDHT-20);
         }
         [_homeScrollView initWithType:1 productList:self.beautifulClothes OnResponse:^{
             NSLog(@"qu");
@@ -761,26 +761,26 @@
 //        if (scrollView.contentOffset.y< lastContentOffset )
 //        {
 //            //向上
-//            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+////            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
 //                        NSLog(@"向上");
-//            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
+////            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
 //
 //        } else if (scrollView. contentOffset.y >lastContentOffset )
 //        {
-//            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];
+////            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];
 //            //向下
 //                        NSLog(@"向下");
 //
 //
-//                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+////                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
 //        }
 //
 //    }
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-//    if (scrollView==self.collectionView) {
-//        lastContentOffset = scrollView.contentOffset.y;
-//    }
+    if (scrollView==self.collectionView) {
+        lastContentOffset = scrollView.contentOffset.y;
+    }
     
 }
 

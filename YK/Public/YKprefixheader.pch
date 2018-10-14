@@ -62,6 +62,19 @@
 //#define YKRedColor [UIColor colorWithHexString:@"000000"]
 //#endif
 
+//屏幕适配
+#define kDevice_Is_iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// 以6为原型图
+#define kLength_HParameter (kDevice_Is_iPhoneX ? 1.0 : (kDevice_Is_iPhone6Plus ? 1.104 : (kDevice_Is_iPhone6 ? 1 : (kDevice_Is_iPhone4 ? 0.719640 : 0.853333))))
+#define kLength_VParameter (kDevice_Is_iPhoneX ? 1.217391 : (kDevice_Is_iPhone6Plus ? 1.103448 : (kDevice_Is_iPhone6 ? 1 : (kDevice_Is_iPhone4 ? 0.719640 : 0.851574))))
+
+#define kSuitLength_H(lengthGiven) ((lengthGiven) * kLength_HParameter)
+#define kSuitLength_V(lengthGiven) ((lengthGiven) * kLength_VParameter)
 
 /*----------------------------字体--------------------------------*/
 #define PingFangTC_Light(fontSize)  [UIFont fontWithName:@"PingFangTC-Light" size:(fontSize)];
@@ -90,7 +103,7 @@
 /*----------------------------Public--------------------------------*/
 //#define BaseUrl @"http://39.106.70.17"
 //#define BaseUrl @"http:39.107.65.143"
-#define BaseUrl @"http://api.xykoo.cn/"
+#define BaseUrl @"http://api.xykoo.cn"
 //192.168.1.115:8080
 
 //#define BaseUrl @""
@@ -174,6 +187,17 @@
 #define DeleteFromShoppingCart_Url @"/shoppingCart/batchDeleting"
 //查询当前用户加衣劵
 #define SearchCC_Url @"/addClothingVoucher/queryAddClothingVoucher"
+//使用加衣劵
+#define useCC_Url @"/addClothingVoucher/usedAddClothingVoucher"
+//查询次卡状态
+#define onceStatus_Url @"/frequencyCard/queryFrequencyCard"
+
+//收藏商品
+#define collect_Url @"/collectionFolder/addCommodity"
+//移除收藏
+#define deCollect_Url @"/collectionFolder/deleteCollection"
+//收藏列表
+#define collectList_Url @"/collectionFolder/getCollectionFolder"
 
 /*----------------------------地址模块--------------------------------*/
 //新增收货地址

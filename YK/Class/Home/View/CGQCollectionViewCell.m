@@ -16,12 +16,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *freeBtn;
 @property (weak, nonatomic) IBOutlet UILabel *des;
 
+@property (weak, nonatomic) IBOutlet UILabel *zhanyiweiNum;//占衣位数量
+
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
 @implementation CGQCollectionViewCell
-
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -41,6 +42,8 @@
     _freeBtn.layer.masksToBounds = YES;
     _freeBtn.layer.cornerRadius = 4;
     
+    _backView.layer.masksToBounds = YES;
+    _backView.layer.cornerRadius = _backView.frame.size.height/2;
 }
 
 - (void)toDetail{
@@ -97,6 +100,12 @@
         _des.hidden = YES;
     }
     }
+    
+    _zhanyiweiNum.text = product.OwenNum;
+//    _zhanyiweiNum.text = @"2";
+    
+//    _backView.hidden = ([product.OwenNum intValue] == 1);
+    
 }
 
 @end

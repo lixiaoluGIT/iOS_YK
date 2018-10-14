@@ -24,7 +24,7 @@
                        clothingStckType:(NSString *)clothingStckType
                              OnResponse:(void (^)(NSDictionary *dic))onResponse{
 
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     //商品ID,库存ID
     NSString *url = [NSString stringWithFormat:@"%@?clothingId=%@&clothingStckId=%@",AddToShoppingCart_Url,clothingId,clothingStckType];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
@@ -164,6 +164,25 @@
     }];
 }
 
+- (void)useAddCCaddClothingVoucherId:(NSString *)addClothingVoucherId OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    NSString *url = [NSString stringWithFormat:@"%@?addClothingVoucherId=%@",useCC_Url,addClothingVoucherId];
+    [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        
+        if ([dict[@"status"] integerValue] == 200) {
+            
+          
+            
+            if (onResponse) {
+                onResponse(dict);
+            }
+        }else {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 - (NSMutableArray *)suitArray{
     if (!_suitArray) {
         _suitArray = [NSMutableArray array];
@@ -177,6 +196,105 @@
 //    self.isUseCC = NO;
 //    self.isHadCC = NO;
 //    self.addClothingId = @"0";
+}
+
+- (void)searchOnceStatusOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [YKHttpClient Method:@"GET" URLString:onceStatus_Url paramers:nil success:^(NSDictionary *dict) {
+        
+        if ([dict[@"status"] integerValue] == 200) {
+            NSDictionary *dic = [NSDictionary dictionaryWithDictionary:dict[@"data"]];
+            if ([dic[@"surplusNumber"] intValue] == 0) {//次卡数为0
+                _hadOnce = NO;//无次卡
+            }else {
+                _hadOnce = YES;//有次卡
+            }
+            
+            if (onResponse) {
+                onResponse(dict);
+            }
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+//收藏商品
+- (void)collectWithclothingId:(NSString *)clothingId
+             clothingStckType:(NSString *)clothingStckType
+                   OnResponse:(void (^)(NSDictionary *dic))onResponse{
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    //商品ID,库存ID
+    NSString *url = [NSString stringWithFormat:@"%@?clothingId=%@&clothingStockId=%@",collect_Url,clothingId,clothingStckType];
+    NSDictionary *d = @{@"clothingId":clothingId,@"clothingStockId":clothingStckType};
+    
+    [YKHttpClient Method:@"POST" URLString:collect_Url paramers:d success:^(NSDictionary *dict) {
+        if ([dict[@"status"] integerValue] == 200) {
+                        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已添加至心愿单" delay:1.2];
+            if (onResponse) {
+                onResponse(dict);
+            }
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+//    [YKHttpClient Method:@"POST" apiName:collect_Url Params:d Completion:^(NSDictionary *dic) {
+//
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//
+////        [MobClick event:@"__add_cart" attributes:@{@"item":@"衣库服饰",@"amount":@"200"}];
+//
+//        if ([dic[@"status"] integerValue] == 200) {
+////            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.2];
+//            if (onResponse) {
+//                onResponse(dic);
+//            }
+//        }else {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
+//        }
+//
+//    }];
+}
+
+//收藏列表
+- (void)getCollectListOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    [YKHttpClient Method:@"GET" apiName:collectList_Url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        
+        if (onResponse) {
+            onResponse(dic);
+        }
+        
+    }];
+}
+
+//移除收藏
+- (void)deleteCollecttwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    NSDictionary *dic = @{@"collectionList":shoppingCartIdList};
+    
+    [YKHttpClient Method:@"GET" URLString:deCollect_Url paramers:dic success:^(NSDictionary *dict) {
+        if ([dict[@"status"] integerValue] == 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+            if (onResponse) {
+                onResponse(dic);
+            }
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 @end

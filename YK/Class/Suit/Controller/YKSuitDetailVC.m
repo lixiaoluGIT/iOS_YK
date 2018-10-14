@@ -20,6 +20,8 @@
 
 @interface YKSuitDetailVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>{
     BOOL isHadDefaultAddress;
+    BOOL hadOnce;
+    NSInteger cardType;
     NSInteger aleartId;
 }
 @property (nonatomic,strong)UITableView *tableView;
@@ -93,6 +95,32 @@
     self.tableView.backgroundColor = self.view.backgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     
+//    UIButton *buttom = [UIButton buttonWithType:UIButtonTypeCustom];
+//    if (WIDHT==320) {
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+//    if (WIDHT==375){
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+//    if (WIDHT==414){
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+//    [buttom setTitle:@"提交订单" forState:UIControlStateNormal];
+//    [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    buttom.titleLabel.font = PingFangSC_Semibold(16);
+//    buttom.backgroundColor = mainColor;
+//    [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:buttom];
+    
+    //查询次卡状态
+    [[YKSuitManager sharedManager]searchOnceStatusOnResponse:^(NSDictionary *dic) {
+        //刷新ui
+        [self refreshUI];
+    }];
+}
+
+- (void)refreshUI{
+    cardType = 1;
     UIButton *buttom = [UIButton buttonWithType:UIButtonTypeCustom];
     if (WIDHT==320) {
         buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
@@ -109,7 +137,14 @@
     buttom.backgroundColor = mainColor;
     [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];
+    if (![YKSuitManager sharedManager].hadOnce) {
+        
+    }else {
+        //次卡和月卡的选择框
+        //次卡 cardType = 2 月卡 cardType = 1
+    }
 }
+
 //提交订单
 - (void)toRelease{
 
@@ -150,19 +185,31 @@
 //
 //}
 - (void)order{
+    //使用加衣劵
+    if ([YKSuitManager sharedManager].isUseCC == YES) {
+        
+        [[YKSuitManager sharedManager]useAddCCaddClothingVoucherId:[YKSuitManager sharedManager].addClothingId OnResponse:^(NSDictionary *dic) {
+            
+        }];
+    }
+   
     //提交订单
-    [[YKOrderManager sharedManager]releaseOrderWithAddress:self.addressM shoppingCartIdList:[YKSuitManager sharedManager].suitArray OnResponse:^(NSDictionary *dic) {
+    [[YKOrderManager sharedManager]releaseOrderWithAddress:self.addressM shoppingCartIdList:[YKSuitManager sharedManager].suitArray cardType:cardType OnResponse:^(NSDictionary *dic) {
         NSInteger status = [dic[@"status"] intValue];
         if (status==438) {
             YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
             [self presentViewController:nav animated:YES completion:^{
-                
+
             }];
             return ;
         }
         if (status==200) {
             YKSuccessVC *success = [[YKSuccessVC alloc]initWithNibName:@"YKSuccessVC" bundle:[NSBundle mainBundle]];
+            success.pList = [YKSuitManager sharedManager].suitArray;
+            success.addressM = self.addressM;
+            success.orderNum = [NSString stringWithFormat:@"%@",dic[@"data"][@"orderNo"]];
+            success.timeStr = [NSString stringWithFormat:@"%@",dic[@"data"][@"createDate"]];
             [self.navigationController pushViewController:success animated:YES];
             return;
         }

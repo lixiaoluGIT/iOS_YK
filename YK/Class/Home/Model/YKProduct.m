@@ -62,6 +62,8 @@
         _isStarSame = NO;
     }
 
+    //占衣位数
+    _OwenNum = [NSString stringWithFormat:@"%@",dic[@"occupySeat"]];
 }
 
 - (void)formateDate:(NSString *)dateString
@@ -100,6 +102,8 @@
     _brand = [NSDictionary dictionaryWithDictionary:productDetail.brand];
     _pruductDetailImgs = [NSMutableArray arrayWithArray:productDetail.pruductDetailImgs];
     _productList = [NSMutableArray arrayWithArray:productDetail.productList];
+    _isInCollectionFolder = productDetail.isInCollectionFolder;
+    _occupiedClothes = productDetail.occupiedClothes;
 }
 
 
@@ -140,6 +144,12 @@
     self.pruductDetailImgs = [NSMutableArray arrayWithArray:dic[@"data"][@"clothingDetailImg"]];
     //相关推荐
     self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"]];
+    
+    //是否收藏
+    self.isInCollectionFolder = [NSString stringWithFormat:@"%@",dic[@"data"][@"isInCollectionFolder"]];
+    
+    //商品总数量
+    self.occupiedClothes = [NSString stringWithFormat:@"%@",dic[@"data"][@"occupiedClothes"]];
 }
 
 @end

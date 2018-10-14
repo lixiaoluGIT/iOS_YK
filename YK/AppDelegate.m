@@ -53,9 +53,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [[YKHomeManager sharedManager]getBrandListStatus:0 OnResponse:^(NSDictionary *dic) {
-        
-    }];
+//    [[YKHomeManager sharedManager]getBrandListStatus:0 OnResponse:^(NSDictionary *dic) {
+//
+//    }];
     //马甲包去掉了引导页（防止被拒）
     //安装
     [MobClick event:@"upload"];
@@ -68,7 +68,7 @@
 ////
 ////        }];
 //
-//        _window.rootViewController = [[WelcomeViewController alloc] init];
+        _window.rootViewController = [[WelcomeViewController alloc] init];
 //
 //        [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
 //

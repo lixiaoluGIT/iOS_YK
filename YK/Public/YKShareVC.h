@@ -10,4 +10,5 @@
 
 @interface YKShareVC : YKBaseTableVC
 
+@property (nonatomic,assign)BOOL isFromSu;
 @end

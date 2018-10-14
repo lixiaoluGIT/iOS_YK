@@ -17,4 +17,5 @@
 @property (nonatomic,assign)BOOL isFromShare;
 @property (nonatomic,assign)BOOL isSP;
 
+
 @end

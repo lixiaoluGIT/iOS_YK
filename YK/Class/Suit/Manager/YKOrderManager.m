@@ -48,11 +48,12 @@
 
 - (void)releaseOrderWithAddress:(YKAddress *)address
              shoppingCartIdList:(NSMutableArray *)shoppingCartIdList
+                       cardType:(NSInteger)cardType
                      OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSDictionary *dic = @{@"addressId":address.addressId,@"shoppingCartIdList":[self handleArrayWithArry:shoppingCartIdList]};
+    NSDictionary *dic = @{@"addressId":address.addressId,@"shoppingCartIdList":[self handleArrayWithArry:shoppingCartIdList],@"cardType":@(cardType)};
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     [YKHttpClient Method:@"POST" URLString:releaseOrder_Url paramers:dic success:^(NSDictionary *dict) {

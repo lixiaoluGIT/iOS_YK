@@ -19,22 +19,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="登入" translatesAutoresizingMaskIntoConstraints="NO" id="qTv-Yc-ukO">
-                        <rect key="frame" x="0.0" y="20" width="395" height="476"/>
+                        <rect key="frame" x="0.0" y="0.0" width="395" height="476"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hi,欢迎来到衣库" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UN-ax-YyS">
-                        <rect key="frame" x="20" y="516" width="101.5" height="17"/>
+                        <rect key="frame" x="20" y="496" width="101.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我们精心的准备了上千款好看的美衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXz-dT-d4U">
-                        <rect key="frame" x="20" y="543" width="229" height="17"/>
+                        <rect key="frame" x="20" y="523" width="229" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只等一个热爱生活的你" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SI1-6d-haE">
-                        <rect key="frame" x="20" y="570" width="143" height="17"/>
+                        <rect key="frame" x="20" y="550" width="143" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                     <constraint firstItem="SI1-6d-haE" firstAttribute="leading" secondItem="wXz-dT-d4U" secondAttribute="leading" id="NXQ-iK-CVO"/>
                     <constraint firstAttribute="bottom" secondItem="SLz-Vl-kv4" secondAttribute="bottom" constant="24" id="R10-zo-cWs"/>
                     <constraint firstItem="ia4-rh-508" firstAttribute="centerY" secondItem="SLz-Vl-kv4" secondAttribute="centerY" id="arI-Ye-8KR"/>
-                    <constraint firstItem="qTv-Yc-ukO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="aw1-GA-b5m"/>
+                    <constraint firstItem="qTv-Yc-ukO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aw1-GA-b5m"/>
                     <constraint firstItem="6UN-ax-YyS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="bjw-rU-Ku6"/>
                     <constraint firstAttribute="trailing" secondItem="ia4-rh-508" secondAttribute="trailing" constant="20" id="gSD-I0-cdE"/>
                     <constraint firstItem="SI1-6d-haE" firstAttribute="top" secondItem="wXz-dT-d4U" secondAttribute="bottom" constant="10" id="jDd-xi-Lxc"/>

@@ -19,7 +19,7 @@
 #define KScreenHeight self.view.frame.size.height
 
 
-@interface YKToBeVIPVC ()<UITextFieldDelegate>
+@interface YKToBeVIPVC ()<UITextFieldDelegate,DXAlertViewDelegate>
 {
     BOOL isShareUser;
     BOOL isAgree;
@@ -48,7 +48,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap5;
 @property (weak, nonatomic) IBOutlet UIView *buttomView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomH;
+
 @property (weak, nonatomic) IBOutlet UILabel *yuanJia;
 @property (weak, nonatomic) IBOutlet UILabel *liJIan;//价钱
 @property (weak, nonatomic) IBOutlet UILabel *znegyi;
@@ -71,17 +71,26 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn4;
 @property (weak, nonatomic) IBOutlet UIButton *btn5;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ljW;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zengW;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zengGap;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *yjGap;
-@property (weak, nonatomic) IBOutlet UIImageView *xianshiImage;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *xianshiImageGap;
+
+@property (weak, nonatomic) IBOutlet UILabel *myAccount;//用户余额
+@property (weak, nonatomic) IBOutlet UILabel *cardDes;//卡描述
+@property (nonatomic,strong)NSString *account;//用户余额
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *accountGap;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bh;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hhh;
+@property (weak, nonatomic) IBOutlet UIButton *detailBtn;
 
 @end
 
 @implementation YKToBeVIPVC
+- (IBAction)toD:(id)sender {
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"次卡使用说明" message:@"1. 次卡购买后不可退订；\n2. 从下单起开始计算日期，到归还衣袋为止，期限为7天；\n3. 每超过期限一天，将从押金中扣除10元；超过7天期限，剩余押金将被冻结；\n4. 如有疑问，请联系客服。\n" cancelBtnTitle:@"这个隐藏" otherBtnTitle:@"我知道了"];
+    alertView.delegate = self;
+    [alertView show];
+}
+
 - (IBAction)yajinshuoming:(id)sender {
     
     YKWebVC *web = [YKWebVC new];
@@ -103,7 +112,9 @@
     if ([YKUserManager sharedManager].isFromCoupon == YES) {
         _CouponId = [YKUserManager sharedManager].couponID;
         _CouponNum = [YKUserManager sharedManager].couponNum;
-        _liJIan.text = [NSString stringWithFormat:@"-¥%ld",_CouponNum];
+        //次卡优惠劵无效
+        [smartHUD alertText:self.view alert:@"次卡暂不支持优惠劵" delay:2.0];
+//        _liJIan.text = [NSString stringWithFormat:@"-¥%ld",_CouponNum];
     }
     [YKUserManager sharedManager].isFromCoupon = NO;
 
@@ -111,46 +122,100 @@
 //    [self resetUI];
 }
 - (void)resetPrice{
+    if ([[YKUserManager sharedManager].user.depositEffective intValue] !=1) { //押金无效(充押金并续费)
+        _accountGap.constant = 60;
+        _bh.constant = 230;
+        _hhh.constant = 38;
+        if (WIDHT==375) {
+            _accountGap.constant = 55;
+            _bh.constant = 210;
+            _hhh.constant = 30;
+        }
+    }else {//押金有效(只续费)
+        _accountGap.constant = 20;
+        _bh.constant = 195;
+        
+    }
+    if (_payType == ONCE_CARD) {
+        if (self.CouponNum==0) {
+            _liJIan.text = @"选择优惠劵";
+        }else {
+            _liJIan.text = @"次卡暂不支持优惠劵";
+        }
+    }else {
+        if (self.CouponNum==0) {
+             _liJIan.text = @"选择优惠劵";
+        }else {
+        _liJIan.text = [NSString stringWithFormat:@"-¥%ld",self.CouponNum];
+        }
+    }
+   
+    if (_payType == ONCE_CARD) {
+        _cardDes.text = @"次卡可享受衣库一次提供的无限换衣特权";
+        _carPrice.text = @"次卡价";
+        _detailBtn.hidden = NO;
+        if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
+            _yuanJia.text = @"¥69";
+            _yaJin.text = @"¥199";
+            NSInteger total = 199+69-[_account intValue];
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+        }else {//押金有效(只续费)
+            _yuanJia.text = @"¥69";
+            _yaJin.text = @"¥0";
+            NSInteger total = 69-[_account intValue];
+            _total.text = [NSString stringWithFormat:@"¥%ld",total];
+            
+        }
+    }
     if (_payType == MONTH_CARD) {
+        _detailBtn.hidden = YES;
         _carPrice.text = @"月卡价";
+        _cardDes.text = @"月卡可享受衣库30天内提供的无限换衣特权";
+
         if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
             _yuanJia.text = @"¥299";
             _yaJin.text = @"¥199";
-            NSInteger total = 498 - _CouponNum;
+            NSInteger total = 498 - _CouponNum- [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
         }else {//押金有效(只续费)
             _yuanJia.text = @"¥299";
             _yaJin.text = @"¥0";
-            NSInteger total = 299 - _CouponNum;
+            NSInteger total = 299 - _CouponNum - [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
             
         }
     }
     if (_payType == SEASON_CARD) {
+        _detailBtn.hidden = YES;
         _carPrice.text = @"季卡价";
+        _cardDes.text = @"季卡可享受衣库90天内提供的无限换衣特权";
+
         if ([[YKUserManager sharedManager].user.depositEffective intValue] != 1) { //押金无效(充押金并续费)
             _yuanJia.text = @"¥807";
             _yaJin.text = @"¥199";
-            NSInteger total = 1006 - _CouponNum;
+            NSInteger total = 1006 - _CouponNum- [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
         }else {//押金有效(只续费)
             _yuanJia.text = @"¥807";
             _yaJin.text = @"¥0";
-            NSInteger total = 807 - _CouponNum;
+            NSInteger total = 807 - _CouponNum- [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
         }
     }
     if (_payType == YEAR_CARD) {
+        _detailBtn.hidden = YES;
         _carPrice.text = @"年卡价";
+        _cardDes.text = @"年卡可享受衣库365天内提供的无限换衣特权";
+
         if ([[YKUserManager sharedManager].user.depositEffective intValue] !=1) { //押金无效(充押金并续费)
             _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥199";
-            NSInteger total = 3187 - _CouponNum;
+            NSInteger total = 3187 - _CouponNum- [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
         }else {//押金有效(只续费)
             _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥0";
-            NSInteger total = 2988 - _CouponNum;
+            NSInteger total = 2988 - _CouponNum- [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
         }
     }
@@ -204,7 +269,7 @@
     if (HEIGHT==812) {
         _titleGap.constant = 60;
     }
-    self.payType = 4;//给个非0,1,2,3
+    self.payType = 5;//给个非0,1,2,3,4
     _buttomView.hidden = NO;
 
   
@@ -224,24 +289,39 @@
     [_liJIan addGestureRecognizer:tap];
     
     WeakSelf(weakSelf)
-    _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, BarH+24, WIDHT, 200) imageSpacing:10 imageWidth:WIDHT - 50];
+    _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, BarH+10, WIDHT, 150) imageSpacing:14 imageWidth:WIDHT - 140];
     _scrollView.initAlpha = 0.5; // 设置两边卡片的透明度
-    _scrollView.imageRadius = 10; // 设置卡片圆角
+    _scrollView.imageRadius = 14; // 设置卡片圆角
     _scrollView.imageHeightPoor = 20; // 设置中间卡片与两边卡片的高度差
     // 设置要加载的图片
-    self.scrollView.data = @[@"yueka1",@"jika1",@"nianka1"];
+    self.scrollView.data = @[@"cika",@"yueka-1",@"jika-1",@"nianka-1"];
     _scrollView.placeHolderImage = [UIImage imageNamed:@"商品图"]; // 设置占位图片
     [self.view addSubview:self.scrollView];
     _scrollView.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
         NSLog(@"%ld",currentIndex);
         _payType = currentIndex+1;
+        if (currentIndex==0) {
+            _payType = ONCE_CARD;
+        }else {
+            _payType = currentIndex;
+        }
+        
         [weakSelf resetPrice];
     };
-    _payType = MONTH_CARD;
+    _payType = ONCE_CARD;
     self.CouponId = 0;
     self.CouponNum = 0;
     [self resetPrice];
     
+    [[YKUserManager sharedManager]getAccountPageOnResponse:^(NSDictionary *dic) {
+        _account = dic[@"data"][@"capital"];
+        if ([_account intValue] == 0) {
+            _myAccount.text = [NSString stringWithFormat:@"账户余额为0"];
+        }else {
+        _myAccount.text = [NSString stringWithFormat:@"账户余额抵扣%@元",_account];
+        }
+         [self resetPrice];
+    }];
 //    [weakSelf resetUI];
 }
 
@@ -331,6 +411,9 @@
 //        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:0 OnResponse:^(NSDictionary *dic) {
 //
 //        }];
+        if (_payType == ONCE_CARD) {
+            weakSelf.CouponId = 0;
+        }
         [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:weakSelf.CouponId OnResponse:^(NSDictionary *dic) {
 
         }];
@@ -370,7 +453,7 @@
         [smartHUD alertText:self.view alert:@"请先阅读充值说明并同意" delay:2.0];
         return;
     }
-    if (self.payType!=0&&self.payType!=1&&self.payType!=2&&self.payType!=3) {
+    if (self.payType!=0&&self.payType!=1&&self.payType!=2&&self.payType!=3&&self.payType!=4) {
         [smartHUD alertText:self.view alert:@"请选择VIP类型" delay:1.2];
         return ;
     }
@@ -455,6 +538,10 @@
 }
 
 - (void)share{
+    if (_payType == ONCE_CARD) {
+        [smartHUD alertText:self.view alert:@"次卡暂不支持优惠劵" delay:2.0];
+        return;
+    }
     YKCouponListVC *Coupon = [YKCouponListVC new];
     Coupon.isFromPay = YES;
     Coupon.selectCoupon = ^(NSInteger ConponNum,int CouponId){

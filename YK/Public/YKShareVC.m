@@ -330,7 +330,12 @@
 }
 
 - (void)leftAction{
+    if (self.isFromSu) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else {
     [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

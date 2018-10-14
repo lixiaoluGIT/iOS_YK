@@ -9,6 +9,11 @@
 #import "YKHomeDesCell.h"
 #import "YKToBeVIPVC.h"
 
+@interface YKHomeDesCell()
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+
+@end
+
 @implementation YKHomeDesCell
 
 - (void)awakeFromNib {
@@ -16,6 +21,10 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click)];
     self.userInteractionEnabled = YES;
     [self addGestureRecognizer:tap];
+    _image.layer.masksToBounds = YES;
+//    _image.frame.size.height = 86; = 86;
+//    _image.size.width
+//    [_image setContentMode:UIViewContentModeScaleAspectFill];
     // Initialization code
 }
 - (void)click{

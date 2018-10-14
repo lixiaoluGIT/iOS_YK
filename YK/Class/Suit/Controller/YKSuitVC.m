@@ -48,8 +48,7 @@
     [selectDeArray removeAllObjects];
     [selectDeShoppingCartList removeAllObjects];
     [YKSuitManager sharedManager].suitAccount = 0;
-    [YKSuitManager sharedManager].isHadCC = NO;
-    [YKSuitManager sharedManager].isUseCC = NO;
+
 
    
     [self resetMasonrys];
@@ -68,11 +67,13 @@
     self.goodsIsClips = NO;
 }
 
+//获取心愿单列表
 - (void)getShoppingList{
-    [[YKSuitManager sharedManager]getShoppingListOnResponse:^(NSDictionary *dic) {
+    
+    [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
         self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
         
-         [self setLeftBar];
+        [self setLeftBar];
         if (self.dataArray.count==0) {
             self.tableView.hidden = YES;
             NoDataView.hidden = NO;
@@ -88,14 +89,34 @@
             NoDataView.hidden = YES;
             [self.tableView reloadData];
         }
+    }];
+//    [[YKSuitManager sharedManager]getShoppingListOnResponse:^(NSDictionary *dic) {
+//        self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+//
+//         [self setLeftBar];
+//        if (self.dataArray.count==0) {
+//            self.tableView.hidden = YES;
+//            NoDataView.hidden = NO;
+//            _btn.hidden = YES;
+//            _addCCView.hidden = YES;
+//            [self.tableView setEditing:NO animated:YES];
+//            [self resetMasonrys];
+//            self.goodsIsClips = NO;
+//        }else {
+//            self.tableView.hidden = NO;
+//            _btn.hidden = NO;
+//            _addCCView.hidden=  NO;
+//            NoDataView.hidden = YES;
+//            [self.tableView reloadData];
+//        }
        
 
-    }];
+//    }];
     
     //查询加衣劵
-    [[YKSuitManager sharedManager]searchAddCCOnResponse:^(NSDictionary *dic) {
-        [_addCCView reloadData];
-    }];
+//    [[YKSuitManager sharedManager]searchAddCCOnResponse:^(NSDictionary *dic) {
+//        [_addCCView reloadData];
+//    }];
 }
 
 - (void)setLeftBar{
@@ -118,7 +139,8 @@
     [_mulitSelectArray removeAllObjects];
     [selectDeArray removeAllObjects];
     [selectDeShoppingCartList removeAllObjects];
-    
+    [YKSuitManager sharedManager].isHadCC = NO;
+    [YKSuitManager sharedManager].isUseCC = NO;
     [self getShoppingList];
     
     _array = [NSMutableDictionary dictionary];
@@ -159,7 +181,7 @@
         [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
         
         UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
-        title.text = @"衣袋";
+        title.text = @"我的心愿单";
         title.textAlignment = NSTextAlignmentCenter;
         title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
         title.font = PingFangSC_Semibold(20);
@@ -191,7 +213,7 @@
     _cellArray  = [[NSMutableArray alloc]init];
 
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
-    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"shangpin"] statusDes:@"暂无商品" hiddenBtn:NO actionTitle:@"去逛逛" actionBlock:^{
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"shangpin"] statusDes:@"暂无心愿单" hiddenBtn:NO actionTitle:@"去逛逛" actionBlock:^{
         YKSearchVC *searchVC = [[YKSearchVC alloc] init];
         searchVC.hidesBottomBarWhenPushed = YES;
         UINavigationController *nav = self.tabBarController.viewControllers[1];
@@ -217,12 +239,8 @@
     WeakSelf(weakSelf)
     _btn = [UIButton buttonWithType:UIButtonTypeCustom];
     _addCCView = [[NSBundle mainBundle]loadNibNamed:@"YKAddCCouponView" owner:nil options:nil][0];
-    _addCCView.buyBlock = ^(void){
-        YKBuyAddCCVC *buy = [[YKBuyAddCCVC alloc]init];
-        buy.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:buy animated:YES];
-    };
-    _addCCView.ensureBlock = ^(void){
+    
+    _addCCView.ensureBlock = ^(void){//加入衣袋
         [weakSelf toDetail];
     };
     if (WIDHT==320) {
@@ -235,20 +253,20 @@
         _addCCView.frame = CGRectMake(0, self.view.frame.size.height-105*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
     }
     if (HEIGHT == 812) {
-        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-148*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-148*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
     }
     if (_isFromeProduct) {
         if (WIDHT==320) {
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-48*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
         }
         if (WIDHT==375){
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-48*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
         }
         if (WIDHT==414){
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-48*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
         }
         if (HEIGHT == 812) {
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-80*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-80*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
         }
         
     }
@@ -462,17 +480,19 @@
         return;
     }
 
-        YKSuitDetailVC *detail = [YKSuitDetailVC new];
-        detail.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:detail animated:YES];
+    //todo:接口，判断一共可加入几个衣服,用用户剩余衣位判断
+    [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"判断sheng yu衣位数" delay:1.2];
+//        YKSuitDetailVC *detail = [YKSuitDetailVC new];
+//        detail.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSString *status = [self.dataArray[indexPath.row][@"clothingStockNum"] intValue]  > 0 ?@"1":@"0";
-    CGFloat h = [YKSuitCell heightForCell:status];
+//    NSString *status = [self.dataArray[indexPath.row][@"clothingStockNum"] intValue]  > 0 ?@"1":@"0";
+//    CGFloat h = [YKSuitCell heightForCell:status];
     
-    return h;
+    return 115;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

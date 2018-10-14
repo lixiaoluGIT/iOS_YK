@@ -192,6 +192,7 @@
 }
 - (void)alert{
     DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"问题解决" message:@"请您确认取件地址是否正确，预约后无法更改信息" cancelBtnTitle:@"取消" otherBtnTitle:@"确定"];
+    alertView.delegate = self;
     [alertView show];
 }
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

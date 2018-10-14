@@ -62,7 +62,7 @@
         self.messageLab.textColor=mainColor;
         self.messageLab.font=PingFangSC_Regular(15);
         self.messageLab.numberOfLines=0;
-        self.messageLab.textAlignment=NSTextAlignmentCenter;
+        self.messageLab.textAlignment=NSTextAlignmentLeft;
         self.messageLab.lineBreakMode=NSLineBreakByTruncatingTail;
         self.messageLab.characterSpace=1;
         self.messageLab.lineSpace=2;
@@ -118,6 +118,15 @@
         self.alertview.center = self.center;
         [self addSubview:self.alertview];
         
+        
+        if ([cancelTitle isEqual:@"这个隐藏"]) {
+            _cancelBtn.hidden = YES;
+            _otherBtn.tag=1;
+         
+            CGFloat btn_w =(AlertView_W-15*2);
+
+            _otherBtn.frame=CGRectMake(15, btn_y, btn_w, DXABtn_H);
+        }
         [self.alertview addSubview:self.titleLab];
         [self.alertview addSubview:self.messageLab];
 

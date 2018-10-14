@@ -121,6 +121,7 @@
         self.frame = CGRectMake(0, HEIGHT, WIDHT, HEIGHT);
     }completion:^(BOOL finished) {
         [self removeFromSuperview];
+        
     }];
 }
 

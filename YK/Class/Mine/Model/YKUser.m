@@ -37,6 +37,7 @@
             self.isShare = Dictionary[@"userInfo"][@"isShare"];
         }
     
+    
     self.colledgeId = Dictionary[@"school"][@"schoolId"];
     self.colledgeName = Dictionary[@"school"][@"schoolName"];
     if([self.colledgeName rangeOfString:@"#"].location !=NSNotFound)//
