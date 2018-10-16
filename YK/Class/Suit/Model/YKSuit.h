@@ -23,6 +23,7 @@
 @property (nonatomic,assign)NSInteger classify;
 
 @property (nonatomic,strong)NSString *ownedNum;//所占衣位数
+@property (nonatomic,strong)NSString *collectId;//收藏id
 
 
 - (void)initWithDictionary:(NSDictionary *)dic;

@@ -18,20 +18,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="428" height="164.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVh-a8-lff">
-                        <rect key="frame" x="20" y="10" width="388" height="90"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVh-a8-lff">
+                        <rect key="frame" x="20" y="11" width="388" height="90"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="fbM-df-alU"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="36"/>
+                        <state key="normal" title="+">
+                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guanbi" translatesAutoresizingMaskIntoConstraints="NO" id="m0P-6U-4if">
-                        <rect key="frame" x="207" y="48" width="14" height="14"/>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="m0P-6U-4if" firstAttribute="centerX" secondItem="JVh-a8-lff" secondAttribute="centerX" id="Egu-4G-uwD"/>
-                    <constraint firstItem="m0P-6U-4if" firstAttribute="centerY" secondItem="JVh-a8-lff" secondAttribute="centerY" id="H5W-Af-6xE"/>
                     <constraint firstItem="JVh-a8-lff" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="iy5-6w-eAU"/>
                     <constraint firstItem="JVh-a8-lff" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vn6-6A-5hD"/>
                     <constraint firstAttribute="trailing" secondItem="JVh-a8-lff" secondAttribute="trailing" constant="20" id="wF5-6h-zhF"/>
@@ -39,12 +37,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btn" destination="JVh-a8-lff" id="hVU-JJ-7ck"/>
-                <outlet property="image" destination="H5W-Af-6xE" id="121-MX-i2H"/>
             </connections>
             <point key="canvasLocation" x="21" y="-41"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="guanbi" width="14" height="14"/>
-    </resources>
 </document>

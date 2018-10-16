@@ -101,7 +101,12 @@
     }
     }
     
-    _zhanyiweiNum.text = product.OwenNum;
+    if ([product.OwenNum intValue] == 2) {
+         _zhanyiweiNum.text = product.OwenNum;
+    }else {
+        _backView.hidden = YES;
+    }
+   
 //    _zhanyiweiNum.text = @"2";
     
 //    _backView.hidden = ([product.OwenNum intValue] == 1);

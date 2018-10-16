@@ -326,19 +326,19 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     
-    if (cell.product.classify==1) {
+//    if (cell.product.classify==1) {
         YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
         detail.productId = cell.goodsId;
         detail.titleStr = cell.goodsName;
         detail.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detail animated:YES];
-    }else {
-        YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
-        detail.productId = cell.goodsId;
-        detail.titleStr = cell.goodsName;
-        detail.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:detail animated:YES];
-    }
+//    }else {
+//        YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+//        detail.productId = cell.goodsId;
+//        detail.titleStr = cell.goodsName;
+//        detail.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:detail animated:YES];
+//    }
  
 }
 

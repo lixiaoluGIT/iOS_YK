@@ -17,6 +17,7 @@
 @property (nonatomic,assign)BOOL selectStatus;
 @property (nonatomic,strong)NSString *suitId;
 
+@property (nonatomic,assign)NSInteger leaseNum;//剩余可用衣位数
 /** 删除选中按钮 */
 @property(nonatomic,weak) UIButton *collectBtn;
 

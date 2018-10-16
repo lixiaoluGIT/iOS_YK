@@ -20,9 +20,30 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdr-4M-Ggp">
                         <rect key="frame" x="0.0" y="0.0" width="477" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="占1个衣位" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1D-Ni-VGj">
+                                <rect key="frame" x="279" y="16.5" width="62" height="20"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVT-lx-xrv">
+                                <rect key="frame" x="355" y="16.5" width="1" height="20"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="7vn-D3-knE"/>
+                                    <constraint firstAttribute="height" constant="20" id="mQk-3T-rsk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="JdQ-LM-Qwb"/>
+                            <constraint firstItem="HVT-lx-xrv" firstAttribute="centerY" secondItem="J1D-Ni-VGj" secondAttribute="centerY" id="PKa-y4-lnw"/>
+                            <constraint firstItem="HVT-lx-xrv" firstAttribute="leading" secondItem="J1D-Ni-VGj" secondAttribute="trailing" constant="14" id="Tih-U5-YVm"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参考价  -----" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB7-E8-rOf">
@@ -107,6 +128,7 @@
                     <constraint firstItem="Fdr-4M-Ggp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Cp3-Sg-p3R"/>
                     <constraint firstItem="mAD-kC-OL8" firstAttribute="top" secondItem="tnm-GL-ol0" secondAttribute="bottom" constant="16" id="FJt-c2-1k0"/>
                     <constraint firstItem="cB7-E8-rOf" firstAttribute="bottom" secondItem="rjG-xy-sep" secondAttribute="bottom" id="H3K-p4-iGS"/>
+                    <constraint firstItem="J1D-Ni-VGj" firstAttribute="centerY" secondItem="cB7-E8-rOf" secondAttribute="centerY" id="Jap-eZ-wBq"/>
                     <constraint firstItem="rjG-xy-sep" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="K5V-Gb-sIi"/>
                     <constraint firstItem="ShF-Hn-eAM" firstAttribute="leading" secondItem="Vja-BE-5ge" secondAttribute="trailing" constant="4" id="My6-ym-2Ni"/>
                     <constraint firstAttribute="trailing" secondItem="Fdr-4M-Ggp" secondAttribute="trailing" id="NRN-Sp-NwY"/>
@@ -117,6 +139,7 @@
                     <constraint firstItem="tnm-GL-ol0" firstAttribute="leading" secondItem="0qd-4P-ucH" secondAttribute="leading" id="V3d-nN-G4j"/>
                     <constraint firstAttribute="trailing" secondItem="cB7-E8-rOf" secondAttribute="trailing" constant="24" id="Xae-NB-2Fj"/>
                     <constraint firstItem="mAD-kC-OL8" firstAttribute="leading" secondItem="Vja-BE-5ge" secondAttribute="leading" id="Xbm-iV-qbL"/>
+                    <constraint firstItem="cB7-E8-rOf" firstAttribute="leading" secondItem="HVT-lx-xrv" secondAttribute="trailing" constant="14" id="b8U-io-a71"/>
                     <constraint firstAttribute="trailing" secondItem="0qd-4P-ucH" secondAttribute="trailing" constant="24" id="dio-tG-Mzu"/>
                     <constraint firstItem="UzO-s0-RXw" firstAttribute="leading" secondItem="RnA-Fq-SWZ" secondAttribute="leading" id="dkn-sJ-GzB"/>
                     <constraint firstItem="Zb8-4U-aYb" firstAttribute="leading" secondItem="rjG-xy-sep" secondAttribute="trailing" constant="8" id="enF-Vc-hCd"/>
@@ -138,8 +161,9 @@
                 <outlet property="selectText" destination="CYq-4Q-jak" id="2Yc-N0-IbY"/>
                 <outlet property="tishiImage" destination="RnA-Fq-SWZ" id="CUu-Jb-Ffm"/>
                 <outlet property="yellowImage" destination="mAD-kC-OL8" id="pkZ-H7-Pg9"/>
+                <outlet property="yiwei" destination="J1D-Ni-VGj" id="I2y-mc-FCJ"/>
             </connections>
-            <point key="canvasLocation" x="13.5" y="30"/>
+            <point key="canvasLocation" x="-189" y="3"/>
         </tableViewCell>
     </objects>
     <resources>

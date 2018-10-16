@@ -47,6 +47,10 @@
     self.barnd.text = suit.clothingBrandName;
     self.type.text = suit.clothingStockType;
     self.price.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];
+    
+    //衣位
+    _owendNum.text = [NSString stringWithFormat:@"占%@个衣位",suit.ownedNum];
+    
     self.suitStatus = suit.clothingStockNum;//剩余库存数量
     self.suitId = suit.clothingId;
     

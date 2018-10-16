@@ -552,19 +552,19 @@
            
         }else {
             
-            if (cell.suit.classify==1) {
+//            if (cell.suit.classify==1) {
                 YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
                 detail.productId = cell.suit.clothingId;
                 detail.titleStr = cell.suit.clothingName;
                 detail.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:detail animated:YES];
-            }else {
-                YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
-                detail.productId = cell.suit.clothingId;
-                detail.titleStr = cell.suit.clothingName;
-                detail.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:detail animated:YES];
-            }
+//            }else {
+//                YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+//                detail.productId = cell.suit.clothingId;
+//                detail.titleStr = cell.suit.clothingName;
+//                detail.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:detail animated:YES];
+//            }
             
         }
         

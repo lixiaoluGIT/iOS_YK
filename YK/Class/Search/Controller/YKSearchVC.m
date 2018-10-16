@@ -116,6 +116,17 @@
     [self getData];
     [self initUpBtn];
     
+    //衣位导视图
+    UIImageView *image = [[UIImageView alloc]init];
+    image.image = [UIImage imageNamed:@"衣位导视图"];
+    [image sizeToFit];
+    image.frame = [UIApplication sharedApplication].keyWindow.frame;
+    [[UIApplication sharedApplication].keyWindow addSubview:image];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        image.hidden = YES;
+    }];
+    [image setUserInteractionEnabled:YES];
+    [image addGestureRecognizer:tap];
 }
 
 - (void)initUpBtn{

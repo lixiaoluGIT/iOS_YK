@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *recommentWords;
 @property (weak, nonatomic) IBOutlet UILabel *selectText;
 @property (weak, nonatomic) IBOutlet UIImageView *yellowImage;
+@property (weak, nonatomic) IBOutlet UILabel *yiwei;
 
 @end
 
@@ -63,6 +64,8 @@
     _brandName.text = [NSString stringWithFormat:@"%@",product[@"brandName"]];
     
     self.stockArray = [NSArray arrayWithArray:product[@"clothingStockDTOS"]];
+    
+    _yiwei.text = [NSString stringWithFormat:@"占%@个衣位",product[@"occupySeat"]];
     //尺码显示
     self.sizeView = [[YKSizeView alloc]init];
     [self.sizeView initViewWithArray:self.stockArray];
@@ -87,7 +90,7 @@
     [paragraphStyle  setLineSpacing:4];
     self.recommentWords.text = _recomment;
    
-    
+
     NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
     // 设置Label要显示的text

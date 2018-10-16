@@ -69,7 +69,13 @@
     //商品所占衣位数
     if (dic[@"ownedNum"] != [NSNull null]) {
         
-        self.ownedNum = dic[@"ownedNum"];//衣服
+        self.ownedNum = dic[@"occupySeat"];//衣服
+    }
+    
+    //收藏id
+    if (dic[@"collectionId"] != [NSNull null]) {
+        
+        self.collectId = dic[@"collectionId"];//衣服
     }
 
 }

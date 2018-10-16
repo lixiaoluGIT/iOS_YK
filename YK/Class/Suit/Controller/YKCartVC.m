@@ -21,6 +21,10 @@
     NSInteger maxClothesNum;//最大衣位数
     NSInteger currentClothesNum;//当前衣位数
     YKNoDataView *NoDataView;
+    
+    NSInteger totalNum;//总衣位数
+    NSInteger useNum;//已占用衣位数
+    NSInteger leaseNum;//剩余衣位数
 }
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -37,9 +41,43 @@
     [self searchAddCloth];
     [self creatTableView];
     [self creatButtom];
-    [self getCartList];
+//    [self getCartList];
+//
+//    [self getNum];
 }
 
+- (void)getNum{
+    //查询加衣劵
+    [[YKSuitManager sharedManager]searchAddCCOnResponse:^(NSDictionary *dic) {
+        //得到总衣位数
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+        if (array.count>0) {//有加衣劵
+            totalNum = 4;
+            
+        }else {//没加衣劵
+            totalNum = 3;
+            
+        }
+        
+        //购物车已有衣位。请求购物车
+        [[YKSuitManager sharedManager]getShoppingListOnResponse:^(NSDictionary *dic) {
+            NSArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
+            //得到已用衣位数
+            NSInteger use=0;
+            for (NSDictionary *dic in array) {
+                YKSuit *suit = [[YKSuit alloc]init];
+                [suit initWithDictionary:dic];
+                NSInteger a = [suit.ownedNum intValue];
+                use = use + a;
+            }
+            useNum = use;
+            //可用衣位数 = 总衣位-已用衣位数
+            leaseNum = totalNum-useNum;
+            //            [buttom setTitle:[NSString stringWithFormat:@"加入衣袋 (%ld/%ld)",useNum,totalNum] forState:UIControlStateNormal];
+      
+        }];
+    }];
+}
 - (void)creatNav{
     if (_isFromeProduct) {
         UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -81,9 +119,13 @@
     }];
 
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self searchAddCloth];
+    [self getCartList];
+    
+    [self getNum];
     
 }
 
@@ -121,7 +163,7 @@
     self.tableView.estimatedRowHeight = 140;
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = self.view.backgroundColor;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)creatButtom{
@@ -158,9 +200,21 @@
 - (void)toRelease{
     
     if (self.dataArray.count==0) {
-        [smartHUD alertText:self.view alert:@"请先添加商品" delay:2];
+        [smartHUD alertText:self.view alert:@"请先添加衣物" delay:2];
         return;
     }
+    //判断当前衣服是否有无库存状态
+    
+    
+    for (NSDictionary *dic in self.dataArray) {
+        YKSuit *suit = [[YKSuit alloc]init];
+        [suit initWithDictionary:dic];
+        if ([suit.clothingStockNum isEqual:@"0"]) {
+            [smartHUD alertText:self.view alert:@"存在待返架衣物" delay:1.4];
+            return;
+        }
+    }
+    
     YKSuitDetailVC *detail = [YKSuitDetailVC new];
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
@@ -220,20 +274,25 @@
     if (indexPath.row<self.dataArray.count) {
         YKNewSuitCell *mycell = (YKNewSuitCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         
-        if (mycell.suit.classify==1) {
+//        if (mycell.suit.classify==1) {
             YKProductDetailVC *detail = [YKProductDetailVC new];
             detail.productId = mycell.suitId;
             detail.titleStr = mycell.suit.clothingName;
             detail.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:detail animated:YES];
-        }else {
-            YKSPDetailVC *detail = [YKSPDetailVC new];
-            detail.productId = mycell.suitId;
-            detail.titleStr = mycell.suit.clothingName;
-            detail.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:detail animated:YES];
-        }
+//        }else {
+//            YKSPDetailVC *detail = [YKSPDetailVC new];
+//            detail.productId = mycell.suitId;
+//            detail.titleStr = mycell.suit.clothingName;
+//            detail.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:detail animated:YES];
+//        }
     }else {
+        //如果当前衣位已满
+        if (leaseNum==0) {
+            [smartHUD alertText:self.view alert:@"衣位已满" delay:1.4];
+            return;
+        }
         //去心愿单
         YKSuitVC *suit = [[YKSuitVC alloc]init];
         suit.isFromeProduct = YES;
@@ -244,7 +303,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 20;
+    return 40;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -252,12 +311,12 @@
     UILabel *lable = [[UILabel alloc]init];
     if (![YKSuitManager sharedManager].isHadCC) {
         lable.text = @"还想继续选衣服？立即购买加衣劵> ";
-        lable.font = PingFangSC_Medium(10);
+        lable.font = PingFangSC_Medium(12);
         lable.textColor = [UIColor colorWithHexString:@"1a1a1a"];
         [foot setUserInteractionEnabled:YES];
     }else {
         lable.text = @"下单时不满4件衣服，不消耗加衣劵";
-        lable.font = PingFangSC_Medium(10);
+        lable.font = PingFangSC_Medium(12);
         lable.textColor = [UIColor colorWithHexString:@"7a7a7a"];
         [foot setUserInteractionEnabled:NO];
     }
@@ -281,7 +340,11 @@
     NSMutableArray *shopCartList = [NSMutableArray array];
     [shopCartList addObject:shopCartId];
     [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:shopCartList OnResponse:^(NSDictionary *dic) {
+//        [self getCartList];
         [self getCartList];
+        
+        [self getNum];
+        
     }];
 }
 

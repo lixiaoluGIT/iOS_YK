@@ -164,7 +164,7 @@
                 
                 //历史订单
                 YKMySuitBagVC *suit = [YKMySuitBagVC new];
-                suit.selectedIndex = tag;
+                suit.selectedIndex = tag+1;
                 suit.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:suit animated:YES];
             }

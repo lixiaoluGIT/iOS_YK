@@ -17,11 +17,15 @@
 #import "YKBuyAddCCVC.h"
 #define vH  56*WIDHT/414
 
-@interface YKSuitVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface YKSuitVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
 {
     YKNoDataView *NoDataView;
     BOOL ccbuttom;
     BOOL bt;
+    NSInteger totalNum;//总衣位数
+    NSInteger useNum;//已占用衣位数
+    NSInteger leaseNum;//剩余衣位数
+    UIButton *buttom;
 }
 @property (nonatomic,strong)UIButton *selectAll;
 @property (nonatomic,strong)UIButton *btn;
@@ -50,7 +54,6 @@
     [YKSuitManager sharedManager].suitAccount = 0;
 
 
-   
     [self resetMasonrys];
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-100*WIDHT/414);
@@ -77,14 +80,14 @@
         if (self.dataArray.count==0) {
             self.tableView.hidden = YES;
             NoDataView.hidden = NO;
-            _btn.hidden = YES;
+            buttom.hidden = YES;
             _addCCView.hidden = YES;
             [self.tableView setEditing:NO animated:YES];
             [self resetMasonrys];
             self.goodsIsClips = NO;
         }else {
             self.tableView.hidden = NO;
-            _btn.hidden = NO;
+            buttom.hidden = NO;
             _addCCView.hidden=  NO;
             NoDataView.hidden = YES;
             [self.tableView reloadData];
@@ -184,7 +187,7 @@
         title.text = @"我的心愿单";
         title.textAlignment = NSTextAlignmentCenter;
         title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-        title.font = PingFangSC_Semibold(20);
+        title.font = PingFangSC_Semibold(kSuitLength_H(16));
         self.navigationItem.titleView = title;
     }
     //添加编辑按钮
@@ -233,45 +236,75 @@
     
     [self setButtom];//底部视图
     
+    [self getLeaseNum];//得到可用衣位数
+}
+
+- (void)getLeaseNum{
+    //查询加衣劵
+    [[YKSuitManager sharedManager]searchAddCCOnResponse:^(NSDictionary *dic) {
+        //得到总衣位数
+        NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+        if (array.count>0) {//有加衣劵
+            totalNum = 4;
+            
+        }else {//没加衣劵
+            totalNum = 3;
+            
+        }
+        
+        //购物车已有衣位。请求购物车
+        [[YKSuitManager sharedManager]getShoppingListOnResponse:^(NSDictionary *dic) {
+            NSArray *array = [NSMutableArray arrayWithArray:dic[@"data"]];
+            //得到已用衣位数
+            NSInteger use=0;
+            for (NSDictionary *dic in array) {
+                YKSuit *suit = [[YKSuit alloc]init];
+                [suit initWithDictionary:dic];
+                NSInteger a = [suit.ownedNum intValue];
+                use = use + a;
+            }
+            useNum = use;
+            //可用衣位数 = 总衣位-已用衣位数
+            leaseNum = totalNum-useNum;
+//            [buttom setTitle:[NSString stringWithFormat:@"加入衣袋 (%ld/%ld)",useNum,totalNum] forState:UIControlStateNormal];
+            [buttom setTitle:[NSString stringWithFormat:@"加入衣袋 (%ld/%ld)",[YKSuitManager sharedManager].suitAccount + useNum,totalNum] forState:UIControlStateNormal];
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 - (void)setButtom{
-    WeakSelf(weakSelf)
+
     _btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addCCView = [[NSBundle mainBundle]loadNibNamed:@"YKAddCCouponView" owner:nil options:nil][0];
-    
-    _addCCView.ensureBlock = ^(void){//加入衣袋
-        [weakSelf toDetail];
-    };
+        buttom = [UIButton buttonWithType:UIButtonTypeCustom];
     if (WIDHT==320) {
-        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-120*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
     }
     if (WIDHT==375){
-        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-110*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
     }
     if (WIDHT==414){
-        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-105*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
     }
-    if (HEIGHT == 812) {
-        _addCCView.frame = CGRectMake(0, self.view.frame.size.height-148*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
-    }
+    
     if (_isFromeProduct) {
         if (WIDHT==320) {
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-48*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
+            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
         }
         if (WIDHT==375){
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-48*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
+            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
         }
         if (WIDHT==414){
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-48*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
+            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
         }
-        if (HEIGHT == 812) {
-            _addCCView.frame = CGRectMake(0, self.view.frame.size.height-80*WIDHT/414, self.view.frame.size.width, 48*WIDHT/414);
-        }
-        
     }
-
-        [self.view addSubview:_addCCView];
+    [buttom setTitle:@"加入衣袋" forState:UIControlStateNormal];
+    [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    buttom.titleLabel.font = PingFangSC_Semibold(16);
+    buttom.backgroundColor = mainColor;
+    [buttom addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttom];
+//    [self.view addSubview:_addCCView];
   
 
  
@@ -341,9 +374,9 @@
     if (btn.selected) {
         //添加购物车ID
         for (NSDictionary *cart in _dataArray) {
-            NSString *selectShoppingCardId = cart[@"shoppingCartId"];
-            if (![selectDeShoppingCartList containsObject:selectShoppingCardId]) {
-                [selectDeShoppingCartList addObject:selectShoppingCardId];
+            NSString *collectionId = cart[@"collectionId"];
+            if (![selectDeShoppingCartList containsObject:collectionId]) {
+                [selectDeShoppingCartList addObject:collectionId];
             }
         }
         
@@ -381,13 +414,23 @@
 }
 - (void)delete{
     if (selectDeArray.count==0) {
-        [smartHUD alertText:self.view alert:@"请选择要删除的商品" delay:1.2];
+        [smartHUD alertText:self.view alert:@"请选择衣物" delay:1.4];
         return;
     }
     
 //    for (int index=0; index<selectDeArray.count; index++) {
 //        YKSuitCell *cell = _cellArray[[selectDeArray[index] intValue]];
-        [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:selectDeShoppingCartList OnResponse:^(NSDictionary *dic) {
+    DXAlertView *ale = [[DXAlertView alloc]initWithTitle:@"温馨提示" message:@"确定要从心愿单移除吗" cancelBtnTitle:@"再等等" otherBtnTitle:@"立即移除"];
+    ale.delegate = self;
+    [ale show];
+    
+    
+//    }
+    
+}
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [[YKSuitManager sharedManager]deleteCollecttwithShoppingCartId:selectDeShoppingCartList OnResponse:^(NSDictionary *dic) {
             [_mulitSelectArray removeAllObjects];
             [selectDeArray removeAllObjects];
             [selectDeShoppingCartList removeAllObjects];
@@ -396,8 +439,7 @@
             [[YKSuitManager sharedManager]clear];
             
         }];
-//    }
-    
+    }
 }
 - (void)edit:(UIBarButtonItem *)btn{
     if (_dataArray.count==0) {
@@ -481,10 +523,51 @@
     }
 
     //todo:接口，判断一共可加入几个衣服,用用户剩余衣位判断
-    [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"判断sheng yu衣位数" delay:1.2];
-//        YKSuitDetailVC *detail = [YKSuitDetailVC new];
-//        detail.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:detail animated:YES];
+//    [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"批量加入衣袋" delay:1.2];
+    //加入衣袋
+    //总衣位，当前衣位，剩余衣位，所选衣位
+    
+    NSMutableArray *postArray = [NSMutableArray array];
+    for (YKSuit *suit in [YKSuitManager sharedManager].suitArray ) {
+        NSMutableDictionary *d = [NSMutableDictionary dictionary];
+        [d setValue:suit.clothingId forKey:@"clothingId"];
+        [d setValue:suit.clothingStockId forKey:@"stockId"];
+        [postArray addObject:d];
+        
+        YKSuit *s = [YKSuitManager sharedManager].suitArray.lastObject;
+        [[YKSuitManager sharedManager]addToShoppingCartwithclothingId:suit.clothingId clothingStckType:suit.clothingStockId OnResponse:^(NSDictionary *dic) {
+            //最后一个刷新页面
+            if ([suit isEqual:s]) {
+                [smartHUD alertText:self.view alert:@"添加成功" delay:1.4];
+                [_mulitSelectArray removeAllObjects];
+                [selectDeArray removeAllObjects];
+                [selectDeShoppingCartList removeAllObjects];
+                [YKSuitManager sharedManager].suitAccount = 0;
+                [[YKSuitManager sharedManager].suitArray removeAllObjects];
+//                [self resetMasonrys];
+//                [UIView animateWithDuration:0.3 animations:^{
+//                    self.tableView.frame = CGRectMake(0, 0, WIDHT, HEIGHT-100*WIDHT/414);
+//                    [self.view layoutIfNeeded];
+//                }];
+//                [self.tableView setEditing:NO animated:YES];
+                [_mulitSelectArray removeAllObjects];
+                [selectDeArray removeAllObjects];
+                [selectDeShoppingCartList removeAllObjects];
+                [self.tableView reloadData];
+                self.selectAll.selected = NO;
+                self.selectAllImageView.image = [UIImage imageNamed:@"weixuanzhong"];
+//                [self setLeftBar];
+                self.goodsIsClips = NO;
+                [self getLeaseNum];
+                
+            }
+        }];
+    }
+    //批量加入衣袋
+   
+//    [[YKSuitManager sharedManager]CollecttwithShoppingCartId:postArray OnResponse:^(NSDictionary *dic) {
+//
+//    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -510,11 +593,13 @@
     YKSuit *suit = [[YKSuit alloc]init];
     [suit initWithDictionary:self.dataArray[indexPath.row]];
     mycell.suit = suit;
+    mycell.leaseNum = leaseNum;
     mycell.selectClickBlock = ^(NSInteger status){
         if (self.tableView.editing) {
             [[YKSuitManager sharedManager]clear];
             return ;
         }
+       
         NSString*  selectRow  = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
        if ([_mulitSelectArray containsObject:selectRow]) {
             [_mulitSelectArray removeObject:selectRow];
@@ -522,7 +607,13 @@
         }else{
             [_mulitSelectArray addObject:selectRow];
         }
-      
+//        NSInteger s = [self.suit.ownedNum intValue];
+//        [YKSuitManager sharedManager].suitAccount = s + [YKSuitManager sharedManager].suitAccount;
+        
+        [self getLeaseNum];
+        
+//        [buttom setTitle:[NSString stringWithFormat:@"加入衣袋 (%ld/%ld)",[YKSuitManager sharedManager].suitAccount + useNum,totalNum] forState:UIControlStateNormal];
+        
         if (status==0) {
             _btn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
         }else {
@@ -550,7 +641,7 @@
         cell.collectBtn.selected = !cell.collectBtn.selected;
         
         NSString*  selectRow  = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-        NSString *shoppingCardId = cell.suit.shoppingCartId;
+        NSString *shoppingCardId = cell.suit.collectId;
         //购物车ID
         if ([selectDeShoppingCartList containsObject:shoppingCardId]) {
             [selectDeShoppingCartList removeObject:shoppingCardId];
@@ -581,19 +672,19 @@
         //非编辑状态下
         YKSuitCell *mycell = (YKSuitCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         
-        if (mycell.suit.classify==1) {
+//        if (mycell.suit.classify==1) {
             YKProductDetailVC *detail = [YKProductDetailVC new];
             detail.productId = mycell.suitId;
             detail.titleStr = mycell.suit.clothingName;
             detail.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:detail animated:YES];
-        }else {
-            YKSPDetailVC *detail = [YKSPDetailVC new];
-            detail.productId = mycell.suitId;
-            detail.titleStr = mycell.suit.clothingName;
-            detail.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:detail animated:YES];
-        }
+//        }else {
+//            YKSPDetailVC *detail = [YKSPDetailVC new];
+//            detail.productId = mycell.suitId;
+//            detail.titleStr = mycell.suit.clothingName;
+//            detail.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:detail animated:YES];
+//        }
         
         
         

@@ -240,28 +240,28 @@
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
     DynamicsModel * model = layout.model;
     
-    if ([model.classify isEqual:@"1"]) {
+//    if ([model.classify isEqual:@"1"]) {
         YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
         detail.hidesBottomBarWhenPushed = YES;
         detail.productId = model.clothingId;
         detail.titleStr = @"商品详情";
         //    detail.productId = @"438";
         [self.navigationController pushViewController:detail animated:YES];
-    } else  if ([model.classify isEqual:@"2"]) {
-        YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
-        detail.hidesBottomBarWhenPushed = YES;
-        detail.productId = model.clothingId;
-        detail.titleStr = @"商品详情";
-        //    detail.productId = @"438";
-        [self.navigationController pushViewController:detail animated:YES];
-    } else {
-        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-        detail.hidesBottomBarWhenPushed = YES;
-        detail.productId = model.clothingId;
-        detail.titleStr = @"商品详情";
-        //    detail.productId = @"438";
-        [self.navigationController pushViewController:detail animated:YES];
-    }
+//    } else  if ([model.classify isEqual:@"2"]) {
+//        YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+//        detail.hidesBottomBarWhenPushed = YES;
+//        detail.productId = model.clothingId;
+//        detail.titleStr = @"商品详情";
+//        //    detail.productId = @"438";
+//        [self.navigationController pushViewController:detail animated:YES];
+//    } else {
+//        YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+//        detail.hidesBottomBarWhenPushed = YES;
+//        detail.productId = model.clothingId;
+//        detail.titleStr = @"商品详情";
+//        //    detail.productId = @"438";
+//        [self.navigationController pushViewController:detail animated:YES];
+//    }
     
 
     

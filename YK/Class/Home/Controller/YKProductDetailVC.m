@@ -40,6 +40,7 @@
 #import "YKProductCommentVC.h"
 #import "YKEditSizeVC.h"
 #import "YKCartVC.h"
+#import "YKProductAleartView.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource,NewDynamicsCellDelegate>{
@@ -54,6 +55,8 @@
     BOOL hadTabel;
     NewDynamicsTableViewCell * cell;
     YKDetailFootView *buttom;
+   __block YKProductAleartView *aleartView;
+    UIView *backView;
 }
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -115,6 +118,7 @@
         self.product.productDetail = productDetail;
         scroll.product = self.product.product;
         scroll.brand = self.product.brand;
+        aleartView.product = self.product.product;
         scroll.recomment = productDetail.product[@"clothingExplain"];
         self.imagesArr = [self getImageArray:self.product.bannerImages];
         NSArray *sizeArray = [NSArray arrayWithArray:dic[@"data"][@"sizeTableVos"]];
@@ -147,7 +151,7 @@
         
         [buttom initWithIsLike:productDetail.isInCollectionFolder total:productDetail.occupiedClothes];
         
-        [self performSelector:@selector(showButtom) withObject:nil afterDelay:0.8];
+        [self performSelector:@selector(showButtom) withObject:nil afterDelay:0.3];
         [self.collectionView reloadData];
     }];
 }
@@ -232,7 +236,7 @@
     
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
-     layoutView.itemSize = CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/140);
+     layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) collectionViewLayout:layoutView];
     if (HEIGHT==812) {
@@ -296,6 +300,7 @@
     };
     buttom.AddToCartBlock = ^(void){//添加到购物车
         [weakSelf addTOCart];
+       
     };
 //    buttom.KeFuBlock = ^(void){//客服
 //        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
@@ -341,9 +346,9 @@
     buttom.ToSuitBlock = ^(void){//去衣袋
         
         YKCartVC *suit = [[YKCartVC alloc] init];
-        suit.hidesBottomBarWhenPushed = YES;
+//        suit.hidesBottomBarWhenPushed = YES;
         suit.isFromeProduct = YES;
-        [self.navigationController pushViewController:suit animated:YES];
+        [weakSelf.navigationController pushViewController:suit animated:YES];
 //        UINavigationController *nav = self.tabBarController.viewControllers[2];
 //        chatVC.hidesBottomBarWhenPushed = YES;
 //        self.tabBarController.selectedViewController = nav;
@@ -351,6 +356,38 @@
         
     };
     [self.view addSubview:buttom];
+    
+    backView = [[UIView alloc]init];
+    backView.backgroundColor = [UIColor blackColor];
+    backView.frame = [UIScreen mainScreen].bounds;
+    backView.alpha = 0.5;
+    [[UIApplication sharedApplication].keyWindow addSubview:backView];
+    backView.hidden = YES;
+    
+    aleartView = [[NSBundle mainBundle]loadNibNamed:@"YKProductAleartView" owner:nil options:nil][0];
+    aleartView.frame = CGRectMake(0, HEIGHT, WIDHT, 300);
+    aleartView.selectBlock = ^(NSString *type){
+        _sizeNum = type;
+    };
+    aleartView.addTOCartBlock = ^(NSString *type){
+        [weakSelf addTOCart];
+    };
+    aleartView.favouriteBlock = ^(NSString *type){
+        [weakSelf collect];
+    };
+    aleartView.disBLock = ^(void){
+        [weakSelf disMiss];
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:aleartView];
+    
+}
+
+- (void)disMiss{
+    [UIView animateWithDuration:0.25 animations:^{
+        aleartView.frame = CGRectMake(0, HEIGHT, WIDHT, 300);
+    }completion:^(BOOL finished) {
+        backView.hidden = YES;
+    }];
 }
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
@@ -436,15 +473,19 @@
     }
     
     if (_sizeNum==0 && !_isSP) {
-        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
+//        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
         //弹出尺码选择的页面
         
-        
+        [UIView animateWithDuration:0.25 animations:^{
+            backView.hidden = NO;
+            aleartView.frame = CGRectMake(0, HEIGHT-300, WIDHT, 300);
+            aleartView.isAddCart = NO;
+        }];
         return ;
     }
     
     [[YKSuitManager sharedManager]collectWithclothingId:self.productId clothingStckType:_sizeNum OnResponse:^(NSDictionary *dic) {
-      
+        [self disMiss];
         [self getPruductDetail];
     
     }];
@@ -462,14 +503,23 @@
         return;
     }
     if (_sizeNum==0 && !_isSP) {
-        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
+//        [smartHUD alertText:self.view alert:@"请选择尺码大小" delay:1.2];
         //弹出尺码选择的页面
         
+        [UIView animateWithDuration:0.25 animations:^{
+            backView.hidden = NO;
+            aleartView.frame = CGRectMake(0, HEIGHT-300, WIDHT, 300);
+            aleartView.isAddCart = YES;
+        }];
         
         return ;
     }
     [[YKSuitManager sharedManager]addToShoppingCartwithclothingId:self.productId clothingStckType:_sizeNum OnResponse:^(NSDictionary *dic) {
+        //添加购物车动画
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addToCartSuccess" object:self userInfo:nil];
+        [self disMiss];
         [self getPruductDetail];
+        
     }];
 }
 -(void)dd{
@@ -788,26 +838,26 @@
 }
 //设置大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==1) {
-        return CGSizeMake((WIDHT-72)/2, (WIDHT-72)/2*240/140);
-    }
+//    if (indexPath.section==1) {
+        return CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
+//    }
     
-    return CGSizeMake(WIDHT-48,WIDHT-48);
+//    return CGSizeMake(WIDHT-48,WIDHT-48);
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (section==0) {
-        return UIEdgeInsetsMake(16, 24, 16, 24);
+        return UIEdgeInsetsMake(10, 10, 10, 10);
     }
-    return UIEdgeInsetsMake(16, 24, 16, 24);
+    return UIEdgeInsetsMake(10, 10, 10, 10);
     
 }
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     if (section==0) {
-        return 24;
+        return 10;
     }
     return 10;
 }
@@ -816,7 +866,7 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     if (section==0) {
-        return 24;
+        return 10;
     }
     return 10;
 }

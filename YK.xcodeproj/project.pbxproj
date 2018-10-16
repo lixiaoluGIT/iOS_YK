@@ -99,6 +99,8 @@
 		00A0CC4E2090265D001205A1 /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC462090265C001205A1 /* UMShare.framework */; };
 		00A0CC4F2090265D001205A1 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00A0CC482090265C001205A1 /* UMSocialSDKResources.bundle */; };
 		00A0CC502090265D001205A1 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC492090265C001205A1 /* UShareUI.framework */; };
+		00AA32042174A4810040C5A6 /* YKProductAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA32022174A4810040C5A6 /* YKProductAleartView.m */; };
+		00AA32052174A4810040C5A6 /* YKProductAleartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AA32032174A4810040C5A6 /* YKProductAleartView.xib */; };
 		00B7F22F20B684E80086EFBB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B7F22E20B684E80086EFBB /* GameKit.framework */; };
 		00B7F23320B6BA460086EFBB /* YKProductAdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B7F23120B6BA460086EFBB /* YKProductAdCell.m */; };
 		00B7F23420B6BA460086EFBB /* YKProductAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B7F23220B6BA460086EFBB /* YKProductAdCell.xib */; };
@@ -777,6 +779,9 @@
 		00A0CC462090265C001205A1 /* UMShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMShare.framework; sourceTree = "<group>"; };
 		00A0CC482090265C001205A1 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		00A0CC492090265C001205A1 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		00AA32012174A4810040C5A6 /* YKProductAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductAleartView.h; sourceTree = "<group>"; };
+		00AA32022174A4810040C5A6 /* YKProductAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductAleartView.m; sourceTree = "<group>"; };
+		00AA32032174A4810040C5A6 /* YKProductAleartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKProductAleartView.xib; sourceTree = "<group>"; };
 		00B7F22E20B684E80086EFBB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		00B7F23020B6BA450086EFBB /* YKProductAdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductAdCell.h; sourceTree = "<group>"; };
 		00B7F23120B6BA460086EFBB /* YKProductAdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductAdCell.m; sourceTree = "<group>"; };
@@ -2313,6 +2318,9 @@
 				004FAB172170E9300083F607 /* YKDetailFootView.h */,
 				004FAB182170E9300083F607 /* YKDetailFootView.m */,
 				004FAB192170E9300083F607 /* YKDetailFootView.xib */,
+				00AA32012174A4810040C5A6 /* YKProductAleartView.h */,
+				00AA32022174A4810040C5A6 /* YKProductAleartView.m */,
+				00AA32032174A4810040C5A6 /* YKProductAleartView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4148,6 +4156,7 @@
 				C52D0FC51FC80D3B00B50258 /* YKToBeVIPVC.xib in Resources */,
 				003AE74D2133C9FD001D7D17 /* YKHomeActivityView.xib in Resources */,
 				C525DE0A1FBABE69002802AE /* CGQCollectionViewCell.xib in Resources */,
+				00AA32052174A4810040C5A6 /* YKProductAleartView.xib in Resources */,
 				004FAB1B2170E9300083F607 /* YKDetailFootView.xib in Resources */,
 				C525DE7C1FBC4981002802AE /* YKMineCell.xib in Resources */,
 				C5343C871FC577AF00F5132A /* YKProductDetailButtom.xib in Resources */,
@@ -4198,6 +4207,7 @@
 				C5343C921FC69D2400F5132A /* YKBrandDetailHeader.m in Sources */,
 				C5E97F7B2015B6BA0043705B /* DXAlertView.m in Sources */,
 				C5303A001FCEAE4D00FB12CE /* YKReturnView.m in Sources */,
+				00AA32042174A4810040C5A6 /* YKProductAleartView.m in Sources */,
 				C57A53B01FCBAFF70090E372 /* YKEditInforVC.m in Sources */,
 				C53039DF1FCC26C100FB12CE /* WelcomeViewController.m in Sources */,
 				C532A74D1FDF8AAB0068A31D /* DataSigner.m in Sources */,

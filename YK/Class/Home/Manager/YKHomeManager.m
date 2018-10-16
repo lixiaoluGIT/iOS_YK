@@ -197,7 +197,7 @@
 - (void)getProductDetailInforWithProductId:(NSInteger )ProductId type:(NSInteger)type
                                 OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     NSString *url;
     if (type==0) {//衣服

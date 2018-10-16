@@ -113,7 +113,7 @@
         _CouponId = [YKUserManager sharedManager].couponID;
         _CouponNum = [YKUserManager sharedManager].couponNum;
         //次卡优惠劵无效
-        [smartHUD alertText:self.view alert:@"次卡暂不支持优惠劵" delay:2.0];
+//        [smartHUD alertText:self.view alert:@"次卡暂不支持优惠劵" delay:2.0];
 //        _liJIan.text = [NSString stringWithFormat:@"-¥%ld",_CouponNum];
     }
     [YKUserManager sharedManager].isFromCoupon = NO;
@@ -294,21 +294,21 @@
     _scrollView.imageRadius = 14; // 设置卡片圆角
     _scrollView.imageHeightPoor = 20; // 设置中间卡片与两边卡片的高度差
     // 设置要加载的图片
-    self.scrollView.data = @[@"cika",@"yueka-1",@"jika-1",@"nianka-1"];
+    self.scrollView.data = @[@"yueka-1",@"jika-1",@"nianka-1"];
     _scrollView.placeHolderImage = [UIImage imageNamed:@"商品图"]; // 设置占位图片
     [self.view addSubview:self.scrollView];
     _scrollView.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
         NSLog(@"%ld",currentIndex);
         _payType = currentIndex+1;
-        if (currentIndex==0) {
-            _payType = ONCE_CARD;
-        }else {
-            _payType = currentIndex;
-        }
+//        if (currentIndex==0) {
+//            _payType = MONTH_CARD;
+//        }else {
+//            _payType = currentIndex;
+//        }
         
         [weakSelf resetPrice];
     };
-    _payType = ONCE_CARD;
+    _payType = MONTH_CARD;
     self.CouponId = 0;
     self.CouponNum = 0;
     [self resetPrice];

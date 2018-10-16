@@ -8,6 +8,6 @@
 
 #import "YKBaseVC.h"
 
-@interface YKCartVC : YKBaseVC
+@interface YKCartVC : UIViewController
 @property (nonatomic,assign)BOOL isFromeProduct;
 @end

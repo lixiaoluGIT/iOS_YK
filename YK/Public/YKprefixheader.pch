@@ -198,6 +198,8 @@
 #define deCollect_Url @"/collectionFolder/deleteCollection"
 //收藏列表
 #define collectList_Url @"/collectionFolder/getCollectionFolder"
+//添加收藏到购物车
+#define collectToCart_Url @"/shoppingCart/batchAddition"
 
 /*----------------------------地址模块--------------------------------*/
 //新增收货地址

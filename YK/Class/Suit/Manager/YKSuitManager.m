@@ -34,7 +34,7 @@
         [MobClick event:@"__add_cart" attributes:@{@"item":@"衣库服饰",@"amount":@"200"}];
         
         if ([dic[@"status"] integerValue] == 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.2];
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.2];
             if (onResponse) {
                 onResponse(dic);
             }
@@ -47,7 +47,7 @@
 
 - (void)getShoppingListOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
     [YKHttpClient Method:@"GET" apiName:ShoppingCartList_Url Params:nil Completion:^(NSDictionary *dic) {
         
@@ -227,7 +227,7 @@
                    OnResponse:(void (^)(NSDictionary *dic))onResponse{
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     //商品ID,库存ID
-    NSString *url = [NSString stringWithFormat:@"%@?clothingId=%@&clothingStockId=%@",collect_Url,clothingId,clothingStckType];
+//    NSString *url = [NSString stringWithFormat:@"%@?clothingId=%@&clothingStockId=%@",collect_Url,clothingId,clothingStckType];
     NSDictionary *d = @{@"clothingId":clothingId,@"clothingStockId":clothingStckType};
     
     [YKHttpClient Method:@"POST" URLString:collect_Url paramers:d success:^(NSDictionary *dict) {
@@ -243,22 +243,6 @@
     } failure:^(NSError *error) {
         
     }];
-//    [YKHttpClient Method:@"POST" apiName:collect_Url Params:d Completion:^(NSDictionary *dic) {
-//
-//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-//
-////        [MobClick event:@"__add_cart" attributes:@{@"item":@"衣库服饰",@"amount":@"200"}];
-//
-//        if ([dic[@"status"] integerValue] == 200) {
-////            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.2];
-//            if (onResponse) {
-//                onResponse(dic);
-//            }
-//        }else {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.2];
-//        }
-//
-//    }];
 }
 
 //收藏列表
@@ -277,22 +261,58 @@
     }];
 }
 
+-(NSString*) removeLastOneChar:(NSString*)origin
+{
+    NSString* cutted;
+    if([origin length] > 0){
+        cutted = [origin substringToIndex:([origin length]-1)];// 去掉最后一个","
+    }else{
+        cutted = origin;
+    }
+    return cutted;
+}
 //移除收藏
 - (void)deleteCollecttwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    NSDictionary *dic = @{@"collectionList":shoppingCartIdList};
-    
-    [YKHttpClient Method:@"GET" URLString:deCollect_Url paramers:dic success:^(NSDictionary *dict) {
-        if ([dict[@"status"] integerValue] == 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+//    NSDictionary *d = @{@"collectionList":shoppingCartIdList};
+    NSString *s = [NSString stringWithFormat:@"%@?collectionList=",deCollect_Url];
+    for (int i=0;i<shoppingCartIdList.count ; i++) {
+      s =  [s stringByAppendingString:[NSString stringWithFormat:@"%@,",shoppingCartIdList[i]]];
+    }
+    s = [self removeLastOneChar:s];
+    [YKHttpClient Method:@"GET" apiName:s Params:nil Completion:^(NSDictionary *dic) {
+
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] intValue] == 200) {
             if (onResponse) {
                 onResponse(dic);
             }
-        }else {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.2];
+        }else{
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"message"] delay:1.4];
+        }
+
+        
+
+    }];
+
+}
+
+- (void)CollecttwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    NSDictionary *d = @{@"batchCartDTO":shoppingCartIdList};
+
+    [YKHttpClient Method:@"POST" apiName:collectToCart_Url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dic[@"status"] intValue] == 200) {
+            if (onResponse) {
+                onResponse(dic);
+            }
+        }else{
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"message"] delay:1.4];
         }
         
-    } failure:^(NSError *error) {
+        
         
     }];
 }

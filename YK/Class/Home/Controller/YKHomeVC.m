@@ -398,12 +398,12 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
  
     if (WIDHT == 375) {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30+60);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30);
     }
     if(WIDHT == 414){
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8 + WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40+60);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8 + WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40);
     }else {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+60);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40);
     }
 }
 
@@ -566,7 +566,8 @@
             
         }];
         _psScrollView.toDetailBlock = ^(NSString *productId){
-            YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+//            YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
             detail.hidesBottomBarWhenPushed = YES;
             detail.productId = productId;
             [weakSelf.navigationController pushViewController:detail animated:YES];

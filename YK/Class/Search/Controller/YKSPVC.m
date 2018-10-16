@@ -180,8 +180,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-    YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
-    detail.isSP = YES;
+//    YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+    YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+//    detail.isSP = YES;
     detail.productId = cell.goodsId;
     detail.titleStr = cell.goodsName;
     detail.hidesBottomBarWhenPushed = YES;

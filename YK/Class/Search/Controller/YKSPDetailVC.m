@@ -710,20 +710,20 @@
         [self presentViewController:imageBrowser animated:YES completion:nil];
     }
     
-    if (indexPath.section==1) {
+//    if (indexPath.section==1) {
         if (cell.product.classify==1) {
             YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
             detail.productId = cell.goodsId;
             detail.titleStr = cell.goodsName;
             detail.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:detail animated:YES];
-        }else {
-            YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
-            detail.productId = cell.goodsId;
-            detail.titleStr = cell.goodsName;
-            detail.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:detail animated:YES];
-        }
+//        }else {
+//            YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+//            detail.productId = cell.goodsId;
+//            detail.titleStr = cell.goodsName;
+//            detail.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:detail animated:YES];
+//        }
     }
     
     

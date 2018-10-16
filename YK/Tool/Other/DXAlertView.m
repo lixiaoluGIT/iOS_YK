@@ -62,7 +62,7 @@
         self.messageLab.textColor=mainColor;
         self.messageLab.font=PingFangSC_Regular(15);
         self.messageLab.numberOfLines=0;
-        self.messageLab.textAlignment=NSTextAlignmentLeft;
+        self.messageLab.textAlignment= NSTextAlignmentCenter;
         self.messageLab.lineBreakMode=NSLineBreakByTruncatingTail;
         self.messageLab.characterSpace=1;
         self.messageLab.lineSpace=2;

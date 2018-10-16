@@ -104,12 +104,12 @@
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         
-        UILabel *l = [[UILabel alloc]init];
-        l.backgroundColor = [UIColor redColor];
-        l.layer.cornerRadius=5;
-        l.layer.masksToBounds = YES;
-        l.frame = CGRectMake(btn.frame.size.width-20, -5, 10, 10);
-        [btn addSubview:l];
+//        UILabel *l = [[UILabel alloc]init];
+//        l.backgroundColor = [UIColor redColor];
+//        l.layer.cornerRadius=5;
+//        l.layer.masksToBounds = YES;
+//        l.frame = CGRectMake(btn.frame.size.width-20, -5, 10, 10);
+//        [btn addSubview:l];
     }
 }
 

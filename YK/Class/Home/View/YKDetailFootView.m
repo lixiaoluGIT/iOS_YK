@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnW;
 
+@property (weak, nonatomic) IBOutlet UIButton *addBtn;
+
 
 @end
 @implementation YKDetailFootView
@@ -26,6 +28,7 @@
     _owendNumLable.layer.masksToBounds = YES;
     _owendNumLable.layer.cornerRadius = 5.5;
     _btnW.constant = kSuitLength_H(243);
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToCartSuccess) name:@"addToCartSuccess" object:nil];
 }
 
 - (IBAction)selectLike:(id)sender {
@@ -57,7 +60,7 @@
     if ([isCollect intValue] == 1) {//已收藏
         _likeBtn.selected = YES;
         _likeImage.image = [UIImage imageNamed:@"喜欢已选"];
-        _likeLabel.text = @"取消";
+        _likeLabel.text = @"喜欢";
         
     }else {//未收藏
         _likeBtn.selected = NO;
@@ -67,5 +70,25 @@
     
 }
 
+//添加购物车动画(曲线动画)
+- (void)addAnimatedWithFrame:(CGRect)frame {
+    
+}
+
+//添加购物车动画
+- (void)addToCartSuccess{
+    [UIView animateKeyframesWithDuration:0.8 delay:0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
+        
+        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1/3.0 animations:^{
+            _owendNumLable.transform = CGAffineTransformMakeScale(3.0, 3.0);
+        }];
+        
+        [UIView addKeyframeWithRelativeStartTime:1/3.0 relativeDuration:2/3.0 animations:^{
+            _owendNumLable.transform = CGAffineTransformIdentity;
+        }];
+    } completion:^(BOOL finished) {
+        
+    }];
+}
 
 @end

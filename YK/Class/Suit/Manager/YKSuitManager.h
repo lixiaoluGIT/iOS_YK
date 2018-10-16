@@ -19,6 +19,8 @@
 @property (nonatomic,assign)BOOL hadOnce;//是否有次卡
 @property (nonatomic,assign)NSInteger onceNum;//次卡次数
 
+@property (nonatomic,assign)NSInteger selectTotalNum;//心愿单所选衣位总数
+
 + (YKSuitManager *)sharedManager;
 
 //添加到购物车
@@ -61,6 +63,8 @@
 //移除收藏
 - (void)deleteCollecttwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//心愿单添加到购物车
+- (void)CollecttwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 
 @end
