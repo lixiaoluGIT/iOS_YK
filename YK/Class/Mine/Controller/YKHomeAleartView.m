@@ -25,14 +25,44 @@
     _getBtn.layer.cornerRadius = 20;
     _backView.backgroundColor = [UIColor blackColor];
     _backView.alpha = 1;
-    _gap.constant = 80*WIDHT/375;
+    _gap.constant = kSuitLength_V(120);
     if ([Token length] == 0) {
-        [self.getBtn setTitle:@"立即领取" forState:UIControlStateNormal];
+        [self.getBtn setTitle:@"立即注册" forState:UIControlStateNormal];
     }else {
         [self.getBtn setTitle:@"立即使用" forState:UIControlStateNormal];
     }
+    
+//    [self shakeAnimation];
 }
 
+
+- (void) shakeAnimation
+{
+    CAKeyframeAnimation * keyAnimaion = [CAKeyframeAnimation animation];
+    keyAnimaion.keyPath = @"transform.rotation";
+    keyAnimaion.values = @[@(-10 / 180.0 * M_PI),@(10 /180.0 * M_PI),@(-10/ 180.0 * M_PI)];//度数转弧度
+    
+    keyAnimaion.removedOnCompletion = NO;
+    keyAnimaion.fillMode = kCAFillModeForwards;
+    keyAnimaion.duration = 0.4;
+    keyAnimaion.repeatCount = MAXFLOAT;
+    [self.getBtn.layer addAnimation:keyAnimaion forKey:nil];
+
+//    CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//    //设置抖动幅度
+//    shake.fromValue = [NSNumber numberWithFloat:+0.2];
+//    shake.toValue = [NSNumber numberWithFloat:-0.2];
+//    shake.duration = 0.5;
+//    shake.autoreverses = NO ; //是否重复
+//    shake.repeatCount = 100;
+//    [self.getBtn.layer addAnimation:shake forKey:@"imageView"];
+//    self.getBtn.alpha = 1.0;
+//    [UIView animateWithDuration:3.0
+//                           delay:0.0
+//                         options:UIViewAnimationOptionCurveEaseIn
+//                      animations:nil completion:nil];
+}
+     
 - (UIViewController *)getCurrentVC
 {
     UIViewController *result = nil;
@@ -75,8 +105,8 @@
 }
 
 - (void)appear{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
+    [UIView animateWithDuration:0.25 animations:^{
+        self.frame = CGRectMake(0, 0, WIDHT, HEIGHT+2);
          _backView.alpha = 0.7;
     }completion:^(BOOL finished) {
 //        [UIView animateWithDuration:0.2 animations:^{

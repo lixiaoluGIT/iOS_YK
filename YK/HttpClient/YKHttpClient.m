@@ -298,6 +298,7 @@
          NSData *textData = [text dataUsingEncoding:NSUTF8StringEncoding];
          NSString *cId = [NSString stringWithFormat:@"%@",clothingId];
          NSData *clothingIdData = [cId dataUsingEncoding:NSUTF8StringEncoding];
+         
          NSString *actId = [NSString stringWithFormat:@"%@",activityId];
          NSData *activityData = [actId dataUsingEncoding:NSUTF8StringEncoding];
          //text为后台参数名

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKSuitVC : UIViewController
+@interface YKSuitVC : YKBaseVC
 {
     NSMutableArray* _dataArray;
     int _selectRow;
@@ -18,4 +18,5 @@
 }
 
 @property (nonatomic,assign)BOOL isFromeProduct;
+@property (nonatomic,assign)BOOL isAuto;
 @end

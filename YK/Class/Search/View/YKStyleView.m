@@ -38,7 +38,7 @@
     title.height =18;
     title.text = @"风格选择";
     title.textColor = mainColor;
-    title.font = PingFangSC_Semibold(16);
+    title.font = PingFangSC_Medium(kSuitLength_H(16));
     [self addSubview:title];
 }
 
@@ -75,7 +75,7 @@
                 btn.image.clipsToBounds = YES;
         
                 CGFloat w = (WIDHT-48)/3;
-                btn.frame = CGRectMake(24+w*(i%3),50+w*(i/3),w,w);
+                btn.frame = CGRectMake(24+w*(i%3),50+w*(i/3),w,w+2);
         btn.tag = i;
         [self addSubview:btn];
         [_btnArray addObject:btn];

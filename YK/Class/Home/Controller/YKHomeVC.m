@@ -102,7 +102,7 @@
     [super viewWillAppear:animated];
     image.hidden = NO;
     [self showPoint];
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     //分享弹框
     [[YKHomeManager sharedManager]showAleartViewToShare];
     
@@ -167,7 +167,7 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (w-30)/2*240/140);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-170*WIDHT/414) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-160*WIDHT/414) collectionViewLayout:layoutView];
 //    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-30) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
@@ -264,11 +264,11 @@
 
 - (void)showPoint{
     image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"悬浮窗"]];
-    if (HEIGHT==812) {
-        image.frame = CGRectMake(WIDHT-80, HEIGHT-150, 45, 45);
-    }else {
-        image.frame = CGRectMake(WIDHT-80, HEIGHT-130, 55, 55);
-    }
+//    if (HEIGHT==812) {
+//        image.frame = CGRectMake(WIDHT-80, HEIGHT-150, 45, 45);
+//    }else {
+        image.frame = CGRectMake(WIDHT-kSuitLength_H(60), HEIGHT-kSuitLength_V(120), kSuitLength_H(50),kSuitLength_H(50));
+//    }
 //    [image sizeToFit];
     [[UIApplication sharedApplication].keyWindow addSubview:image];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(invite)];
@@ -398,13 +398,15 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
  
     if (WIDHT == 375) {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30+10-14+10);
     }
     if(WIDHT == 414){
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8 + WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+ WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40+10-14+40);
     }else {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+WIDHT*0.8-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40);
+        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+10-14);
     }
+    
+//    return kSuitLength_H(<#lengthGiven#>)
 }
 
 #pragma mark - scrollViewDelegate
@@ -429,15 +431,18 @@
         //文字miao s
         YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
-        desCell.frame = CGRectMake(0, cycleView.frame.size.height + cycleView.frame.origin.y, WIDHT, 86);
+        desCell.frame = CGRectMake(0, cycleView.frame.size.height + cycleView.frame.origin.y, WIDHT, kSuitLength_H(93));
         [headerView addSubview:desCell];
 
         //人气美衣
         _homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
         _homeScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-        _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+86, WIDHT, WIDHT-40);
+        _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT-40);
         if (HEIGHT!=414) {
-            _homeScrollView.frame = CGRectMake(0, WIDHT*0.58+86, WIDHT, WIDHT-20);
+            _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT-20);
+        }
+        if (HEIGHT==812) {
+             _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT);
         }
         [_homeScrollView initWithType:1 productList:self.beautifulClothes OnResponse:^{
             NSLog(@"qu");
@@ -457,14 +462,15 @@
         
         //活动文字（专题活动）
         YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
-        ti2.frame = CGRectMake(0, _homeScrollView.frame.size.height + _homeScrollView.frame.origin.y,WIDHT, 60);
+        ti2.frame = CGRectMake(0, _homeScrollView.frame.size.height + _homeScrollView.frame.origin.y,WIDHT, kSuitLength_H(60));
+//        ti2.backgroundColor = [UIColor redColor];
         if (!hadtitle4) {
             [headerView addSubview:ti2];
             hadtitle4 = YES;
         }
         //
         _activityView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeActivityView" owner:nil options:nil][0];
-        _activityView.frame = CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.52);
+        _activityView.frame = CGRectMake(0, ti2.bottom,WIDHT, WIDHT*0.52+4);
         _activityView.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         _activityView.toDetailBlock = ^(NSString *activityID){
             YKLinkWebVC *web =[YKLinkWebVC new];
@@ -545,23 +551,26 @@
 //            }
         };
         if (!hadtitle3) {
-            [headerView addSubview:_weekNew];
+//            [headerView addSubview:_weekNew];
             hadtitle3 = YES;
         }
         
         //人气配饰
         _psScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
         _psScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-        _psScrollView.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y, WIDHT, WIDHT-40);
+        _psScrollView.frame = CGRectMake(0, _banner1.bottom, WIDHT, WIDHT-40);
         if (HEIGHT!=414) {
-            _psScrollView.frame = CGRectMake(0, _weekNew.frame.size.height + _weekNew.frame.origin.y, WIDHT, WIDHT-20);
+            _psScrollView.frame = CGRectMake(0,  _banner1.bottom, WIDHT, WIDHT-20);
+        }
+        if (HEIGHT==812) {
+            _psScrollView.frame = CGRectMake(0, _banner1.bottom, WIDHT, WIDHT);
         }
         [_psScrollView initWithType:2 productList:nil OnResponse:^{
             NSLog(@"qu");
             //配饰界面
             YKSPVC *detail = [[YKSPVC alloc]init];
             detail.isfromhome = YES;
-            detail.hidesBottomBarWhenPushed = YES;
+            detail.hidesBottomBarWhenPushed = YES;  
             [weakSelf.navigationController pushViewController:detail animated:YES];
             
         }];
@@ -579,7 +588,7 @@
         
         //时尚穿搭
         YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][3];
-        ti3.frame = CGRectMake(0, _psScrollView.frame.size.height + _psScrollView.frame.origin.y,WIDHT, 60);
+        ti3.frame = CGRectMake(0, _psScrollView.frame.size.height + _psScrollView.frame.origin.y,WIDHT, kSuitLength_H(60));
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             //去列表页
             NSLog(@"去列表页");
@@ -598,7 +607,7 @@
         NSMutableArray *array = [NSMutableArray array];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.hotWears[0]];
         [array addObject:dic];
-        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti3.frame.size.height+ ti3.frame.origin.y,WIDHT, WIDHT*0.6) shouldInfiniteLoop:YES imageGroups:array];
+        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,ti3.bottom,WIDHT, WIDHT*0.6) shouldInfiniteLoop:YES imageGroups:array];
         _banner2.autoScrollTimeInterval = 3;
         _banner2.autoScroll = NO;
         _banner2.isZoom = YES;
@@ -631,7 +640,7 @@
         
         //精选晒图标题
         YKRecommentTitleView  *st =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][5];
-        st.frame = CGRectMake(0, _banner2.frame.origin.y + _banner2.frame.size.height,WIDHT, 60);
+        st.frame = CGRectMake(0, _banner2.frame.origin.y + _banner2.frame.size.height,WIDHT, kSuitLength_H(60));
         if (!jxst&&self.layoutsArr1.count>0) {
             [headerView addSubview:st];
             jxst = YES;
@@ -673,7 +682,7 @@
 
         //精选推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-        ti.frame = CGRectMake(0, cell2.frame.size.height + cell2.frame.origin.y+10,WIDHT, 60);
+        ti.frame = CGRectMake(0, cell2.bottom + 20,WIDHT, kSuitLength_H(60));
         if (!hadtitle2&&self.layoutsArr1.count>0) {
             [headerView addSubview:ti];
             hadtitle2 = YES;
@@ -756,27 +765,36 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
   
-//    if (scrollView == self.collectionView)
-//    {
-//
-//        if (scrollView.contentOffset.y< lastContentOffset )
-//        {
-//            //向上
-////            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
-//                        NSLog(@"向上");
-////            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
-//
-//        } else if (scrollView. contentOffset.y >lastContentOffset )
-//        {
-////            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];
-//            //向下
-//                        NSLog(@"向下");
-//
-//
-////                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+    if (scrollView == self.collectionView)
+    {
+//        if (lastContentOffset<kSuitLength_V(300)) {
+//            return;
 //        }
-//
-//    }
+
+        if (scrollView.contentOffset.y< lastContentOffset )
+        {
+            
+            //向上
+            [UIView animateWithDuration:0.25 animations:^{
+                self.collectionView.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
+            }];
+//            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+//                        NSLog(@"向上");
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
+
+        } else if (scrollView. contentOffset.y >lastContentOffset )
+        {
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];
+            //向下
+//                        NSLog(@"向下");
+
+                self.collectionView.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
+            
+//                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+        }
+
+    }
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
     if (scrollView==self.collectionView) {

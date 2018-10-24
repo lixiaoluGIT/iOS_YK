@@ -5,17 +5,65 @@
 //  Created by LXL on 2018/1/24.
 //  Copyright © 2018年 YK. All rights reserved.
 //
-
+#define IOS7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #import "YKBaseVC.h"
 
 @interface YKBaseVC ()<UINavigationControllerDelegate>
 {
     UIPercentDrivenInteractiveTransition *interactiveTransition;
+    UIView *_lineView;
 }
+@property (nonatomic, assign, getter=isIOS7FullScreenLayout) BOOL  iOS7FullScreenLayout;   //default is NO;
 @end
 
+
 @implementation YKBaseVC
- 
+
+
+//视图加载完成获取到导航栏最下面的黑线
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//
+//    //获取导航栏下面黑线
+//    _lineView = [self getLineViewInNavigationBar:self.navigationController.navigationBar];
+//}
+
+//视图将要显示时隐藏
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    _lineView.hidden = YES;
+//    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+}
+
+//视图将要消失时取消隐藏
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    _lineView.hidden = NO;
+//    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+}
+
+//找到导航栏最下面黑线视图
+- (UIImageView *)getLineViewInNavigationBar:(UIView *)view
+{
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+        return (UIImageView *)view;
+    }
+    
+    for (UIView *subview in view.subviews) {
+        UIImageView *imageView = [self getLineViewInNavigationBar:subview];
+        if (imageView) {
+            return imageView;
+        }
+    }
+    
+    return nil;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.view.backgroundColor = [UIColor whiteColor];
@@ -59,6 +107,9 @@
 //    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panEvent:)];
 //
 //    [self.view addGestureRecognizer:panGesture];
+    
+    //获取导航栏下面黑线
+    _lineView = [self getLineViewInNavigationBar:self.navigationController.navigationBar];
 
 
 }
@@ -133,11 +184,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
         
         interactiveTransition = nil;
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

@@ -87,12 +87,12 @@
         [button setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateSelected];
         [button setBackgroundColor:[UIColor whiteColor]];
-        button.titleLabel.font = PingFangSC_Semibold(16);
+        button.titleLabel.font = PingFangSC_Regular(kSuitLength_V(13));
 //        button.backgroundColor = [UIColor redColor];
         
         if (i == _currentPageIndex) {
             button.selected = YES;
-            [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithHexString:@"ee2d2d"] forState:UIControlStateNormal];
             clickButton = button;
             [self.view addSubview:self.theLine];
             //
@@ -225,7 +225,7 @@
     button.selected = YES;
     for (UIButton *btn in _buttonArr) {
         if (button == btn) {
-            btn.titleLabel.textColor = mainColor;
+            btn.titleLabel.textColor = YKRedColor;
         }else {
             btn.titleLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
         }

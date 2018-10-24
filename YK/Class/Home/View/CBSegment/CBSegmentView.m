@@ -66,7 +66,7 @@
         _SegmentStyle = CBSegmentStyleSlider;
         _titleColor = mainColor;
         _titleSelectedColor = [UIColor whiteColor];
-        _titleFont = 14;
+        _titleFont = kSuitLength_H(14);
         [self setContentSize:CGSizeMake(WIDHT, 0)];
 //        self.backgroundColor = [UIColor redColor];
     }
@@ -161,13 +161,13 @@
         [btn setTitle:titleArray[i] forState:UIControlStateNormal];
         [btn setTitleColor:_titleColor forState:UIControlStateNormal];
         [btn setTitleColor:_titleSelectedColor forState:UIControlStateSelected];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:_titleFont]];
+        btn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 4;
         
 //        if (style == CBSegmentStyleZoom) {
         [btn setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        btn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
         btn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
 //        btn.backgroundColor = mainColor;
 //            btn.layer.borderWidth = 1;

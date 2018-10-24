@@ -77,7 +77,7 @@
     title.font = PingFangSC_Semibold(20);;
 
     self.navigationItem.titleView = title;
-    [self creatWeb];
+//    [self creatWeb];
     
     if (self.needShare) {
         UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -119,7 +119,14 @@
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
     [self.view addSubview:_webView];
-    NSURL* url = [NSURL URLWithString:[self URLEncodedString:_url]];
+    NSString *s;
+    if ([Token length] == 0) {
+        s = [NSString stringWithFormat:@"%@",_url];
+    }else {
+        s = [NSString stringWithFormat:@"%@?token=%@",_url,Token];
+    }
+    
+    NSURL* url = [NSURL URLWithString:[self URLEncodedString:s]];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     
     [_webView loadRequest:request];
@@ -190,6 +197,15 @@
     NSString *requestString = [[[request URL] absoluteString]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     self.shareUrl = requestString;
+    if ([requestString containsString:@"tologin"]){
+        YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+        
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
+        return YES;
+    }
     if ([requestString containsString:@"next:"]){
         NSLog(@"=====================");
         if ([Token length] == 0) {

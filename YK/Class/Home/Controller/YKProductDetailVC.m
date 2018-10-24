@@ -345,6 +345,15 @@
 //    };
     buttom.ToSuitBlock = ^(void){//去衣袋
         
+        if ([Token length] == 0) {
+            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            [self presentViewController:login animated:YES completion:^{
+                
+            }];
+            login.hidesBottomBarWhenPushed = YES;
+            return;
+        }
+        
         YKCartVC *suit = [[YKCartVC alloc] init];
 //        suit.hidesBottomBarWhenPushed = YES;
         suit.isFromeProduct = YES;

@@ -12,6 +12,7 @@
 @property (nonatomic,assign)BOOL isSelected;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hhh;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *www;
+@property (weak, nonatomic) IBOutlet UILabel *name;
 
 @end
 @implementation YKScrollBtnView
@@ -21,13 +22,14 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail)];
     [self addGestureRecognizer:tap];
     
-    _hhh.constant = 84*WIDHT/414-10;
-    _www.constant = 90*WIDHT/414-10;
+    _hhh.constant = kSuitLength_H(70);
+    _www.constant = kSuitLength_H(70);
     _title.layer.masksToBounds = YES;
     _title.layer.cornerRadius = 4;
     _title.textColor = mainColor;
     _image.layer.masksToBounds = YES;
-    _image.layer.cornerRadius = _image.frame.size.height/2;
+    _image.layer.cornerRadius = kSuitLength_H(70/2);
+    _name.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
 //    self.backgroundColor = [UIColor yellowColor];
 //    self.image.backgroundColor = [UIColor greenColor];
 //    self.title.backgroundColor =[UIColor blueColor];

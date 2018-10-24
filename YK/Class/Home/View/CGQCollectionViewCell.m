@@ -44,6 +44,17 @@
     
     _backView.layer.masksToBounds = YES;
     _backView.layer.cornerRadius = _backView.frame.size.height/2;
+    
+    //字体适配
+    _lable.font = PingFangSC_Regular(kSuitLength_V(13));
+    _detailLabel.font = PingFangTC_Light(kSuitLength_V(11));
+    _des.font = PingFangSC_Medium(kSuitLength_V(11));
+    _freeBtn.titleLabel.font = PingFangSC_Regular(10);
+    _zhanyiweiNum.font = PingFangTC_Light(kSuitLength_V(7));
+}
+
+- (void)setlableFont:(UILabel *)label bond:(NSInteger)bond{
+    label.font = PingFangSC_Regular(kSuitLength_V(13));
 }
 
 - (void)toDetail{

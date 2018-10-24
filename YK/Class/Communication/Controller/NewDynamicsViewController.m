@@ -81,11 +81,28 @@
     [[YKCommunicationManager sharedManager]getUserConcernListOnResponse:^(NSDictionary *dic) {
        
     }];
+    //收缩动画
+    publicBtn.hidden = NO;
+//    [UIView animateWithDuration:0.25 animations:^{
+//        publicBtn.frame = CGRectMake(kSuitLength_H(110), HEIGHT-kSuitLength_V(110), WIDHT-kSuitLength_H(220), kSuitLength_H(44));
+//    }];
+    
+   
+ }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    //收缩动画
+    [JRMenuView dismissAllJRMenu];
+    publicBtn.hidden = YES;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [MobClick event:@"__cust_event_2"];
+    
+    [ self.navigationController setNavigationBarHidden : NO animated : YES ];
     
     self.title = @"朋友圈";
     [self setup];
@@ -116,13 +133,10 @@
     publicBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [publicBtn setBackgroundImage:[UIImage imageNamed:@"anniu"] forState:UIControlStateNormal];
     [self.view addSubview:publicBtn];
-    [publicBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_bottom).offset(-100);
-        if (HEIGHT==812) {
-            make.top.equalTo(self.view.mas_bottom).offset(-150);
-        }
-    }];
+    publicBtn.frame = CGRectMake(kSuitLength_H(120), HEIGHT-kSuitLength_V(200), WIDHT-kSuitLength_H(240), kSuitLength_H(40));
+    if (HEIGHT==812) {
+         publicBtn.frame = CGRectMake(kSuitLength_H(120), HEIGHT-kSuitLength_V(220), WIDHT-kSuitLength_H(240), kSuitLength_H(40));
+    }
     [publicBtn addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
     
 }
@@ -230,11 +244,11 @@
     [self.navigationController pushViewController:sele animated:YES];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [JRMenuView dismissAllJRMenu];
-}
+//-(void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+////    [JRMenuView dismissAllJRMenu];
+//}
 
 - (void)setup
 {
@@ -337,5 +351,6 @@
          lastContentOffset = scrollView.contentOffset.y;
     }
 }
+
 
 @end

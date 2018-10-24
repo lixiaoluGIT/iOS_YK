@@ -15,10 +15,17 @@
     if (dic[@"clothingId"]) {
         _clothingId= [NSString stringWithFormat:@"%@",dic[@"clothingId"]];
     }
-    if (dic[@"clothingStockNum"]) {
-        _clothingStockNum= [NSString stringWithFormat:@"%@",dic[@"clothingStockNum"]];
-    }
+//    if (dic[@"clothingStockNum"]) {
+//        _clothingStockNum= [NSString stringWithFormat:@"%@",dic[@"clothingStockNum"]];
+//    }
    
+    if (dic[@"clothingStockNum"] != [NSNull null] && dic[@"clothingStockNum"]!=nil) {
+        _clothingStockNum = [NSString stringWithFormat:@"%@",dic[@"clothingStockNum"]];
+    }else {
+        //解决衣袋和心愿单字段不一样的问题
+        _clothingStockNum = [NSString stringWithFormat:@"%@",dic[@"stockNumber"]];
+    }
+    
     if (dic[@"shoppingCartId"] != [NSNull null]) {
         _shoppingCartId = [NSString stringWithFormat:@"%@",dic[@"shoppingCartId"]];
     }

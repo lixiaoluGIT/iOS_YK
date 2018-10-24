@@ -11,55 +11,55 @@
 @implementation NewDynamicsViewController (Delegate)
 
 #pragma mark - TableViewDelegate
-- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-    if (scrollView==self.dynamicsTable) {
-        lastContentOffset = scrollView.contentOffset.y;
-    }
-    
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    [publicBtn setNeedsUpdateConstraints];
-    if (scrollView == self.dynamicsTable)
-    {
-        
-        if (scrollView.contentOffset.y< lastContentOffset )
-        {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"NavigationBarHadAppear" object:self userInfo:nil];
-            //向上
-//            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
-//            NSLog(@"向上");
-            [UIView animateWithDuration:0.3 animations:^{
-               
-                [publicBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(self.view.mas_centerX);
-                    make.top.equalTo(self.view.mas_bottom).offset(-100);
-                    if (HEIGHT==812) {
-                        make.top.equalTo(self.view.mas_bottom).offset(-150);
-                    }
-                }];
-            }];
-            [publicBtn.superview layoutIfNeeded];//强制绘制
-        } else if (scrollView. contentOffset.y >lastContentOffset )
-        {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"NavigationBarHadDisappear" object:self userInfo:nil];
-            [UIView animateWithDuration:0.3 animations:^{
-//                [publicBtn layoutIfNeeded];//这里是关键
-                
-                [publicBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(self.view.mas_centerX);
-                    make.top.equalTo(self.view.mas_bottom);
-                    if (HEIGHT==812) {
-                        make.top.equalTo(self.view.mas_bottom);
-                    }
-                }];
-            }];
-            [publicBtn.superview layoutIfNeeded];//强制绘制
-//            [ self.navigationController setNavigationBarHidden : YES animated : YES ];
-        }
-    
-    }
-}
+//- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+//    if (scrollView==self.dynamicsTable) {
+//        lastContentOffset = scrollView.contentOffset.y;
+//    }
+//
+//}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    
+//    [publicBtn setNeedsUpdateConstraints];
+//    if (scrollView == self.dynamicsTable)
+//    {
+//        
+//        if (scrollView.contentOffset.y< lastContentOffset )
+//        {
+////            [[NSNotificationCenter defaultCenter] postNotificationName:@"NavigationBarHadAppear" object:self userInfo:nil];
+//            //向上
+////            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+////            NSLog(@"向上");
+//            [UIView animateWithDuration:0.3 animations:^{
+//               
+//                [publicBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.centerX.equalTo(self.view.mas_centerX);
+//                    make.top.equalTo(self.view.mas_bottom).offset(-100);
+//                    if (HEIGHT==812) {
+//                        make.top.equalTo(self.view.mas_bottom).offset(-150);
+//                    }
+//                }];
+//            }];
+//            [publicBtn.superview layoutIfNeeded];//强制绘制
+//        } else if (scrollView. contentOffset.y >lastContentOffset )
+//        {
+////            [[NSNotificationCenter defaultCenter] postNotificationName:@"NavigationBarHadDisappear" object:self userInfo:nil];
+//            [UIView animateWithDuration:0.3 animations:^{
+////                [publicBtn layoutIfNeeded];//这里是关键
+//                
+//                [publicBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.centerX.equalTo(self.view.mas_centerX);
+//                    make.top.equalTo(self.view.mas_bottom);
+//                    if (HEIGHT==812) {
+//                        make.top.equalTo(self.view.mas_bottom);
+//                    }
+//                }];
+//            }];
+//            [publicBtn.superview layoutIfNeeded];//强制绘制
+////            [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+//        }
+//    
+//    }
+//}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
@@ -353,5 +353,57 @@
         }];
         [self.dynamicsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    if (scrollView == self.dynamicsTable)
+    {
+        
+        if (scrollView.contentOffset.y< lastContentOffset )
+        {
+            
+            //向上
+            [UIView animateWithDuration:0.25 animations:^{
+                self.dynamicsTable.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
+            }];
+            //            [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+//            NSLog(@"向上");
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
+            
+            //收缩动画
+            publicBtn.hidden = NO;
+//            [UIView animateWithDuration:0.25 animations:^{
+//                publicBtn.frame = CGRectMake(kSuitLength_H(110), HEIGHT-kSuitLength_V(110), WIDHT-kSuitLength_H(220), kSuitLength_H(44));
+//            }];
+            
+        } else if (scrollView. contentOffset.y >lastContentOffset )
+        {
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];
+            //向下
+//            NSLog(@"向下");
+            
+            self.dynamicsTable.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
+            
+            //                [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+            
+            publicBtn.hidden = YES;
+            //收缩动画
+//            [UIView animateWithDuration:0.2f animations:^{
+//                [UIView animateWithDuration:0.25 animations:^{
+//                    publicBtn.frame = CGRectMake(kSuitLength_H(110), HEIGHT-kSuitLength_V(110), WIDHT-kSuitLength_H(220), kSuitLength_H(44));
+//                }];
+//
+//            }];
+        }
+        
+    }
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    if (scrollView==self.dynamicsTable) {
+        lastContentOffset = scrollView.contentOffset.y;
+    }
+    
 }
 @end

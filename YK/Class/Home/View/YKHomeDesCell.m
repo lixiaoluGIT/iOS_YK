@@ -8,6 +8,7 @@
 
 #import "YKHomeDesCell.h"
 #import "YKToBeVIPVC.h"
+#import "YKLoginVC.h"
 
 @interface YKHomeDesCell()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
@@ -27,9 +28,15 @@
 //    [_image setContentMode:UIViewContentModeScaleAspectFill];
     // Initialization code
 }
+
 - (void)click{
     if ([Token length] == 0) {
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:1.5];
+        YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+        
+        [[self getCurrentVC] presentViewController:nav animated:YES completion:^{
+            
+        }];
         return;
     }
     YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];

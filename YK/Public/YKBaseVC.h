@@ -11,5 +11,5 @@
 @interface YKBaseVC : UIViewController
 
 @property (nonatomic,strong)NSString *titleS;
-
+- (void)addLeftItem;
 @end

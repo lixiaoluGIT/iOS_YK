@@ -18,6 +18,7 @@
     [super awakeFromNib];
  
     // Initialization code
+    _title.font = PingFangSC_Regular(kSuitLength_V(16));
 }
 
 

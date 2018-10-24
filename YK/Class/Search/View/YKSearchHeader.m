@@ -45,6 +45,9 @@
     [btn addTarget:self action:@selector(clickAll) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
+    _SortLabel.font = PingFangSC_Medium(kSuitLength_H(16));
+    _TypeLabel.font = PingFangSC_Medium(kSuitLength_H(16));
+    
 }
 - (IBAction)clickALl:(id)sender {
     if (self.clickALLBlock) {

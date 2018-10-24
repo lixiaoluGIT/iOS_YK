@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKHomeSegementVC : UIViewController
+@interface YKHomeSegementVC : YKBaseVC
 @property(nonatomic, assign) NSInteger type;
 @end

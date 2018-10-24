@@ -90,10 +90,14 @@ NSInteger timeNum;
     
 }
 - (IBAction)getVetifyCode:(id)sender {
-    if (![steyHelper isValidatePhone:self.phoneText.text] ) {
+    if (self.phoneText.text.length == 0 || self.phoneText.text.length != 11) {
         [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
         return;
     }
+//    if (![steyHelper isValidatePhone:self.phoneText.text] ) {
+//        [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
+//        return;
+//    }
     //请求验证码接口,成功后
     
     [[YKUserManager sharedManager]getVetifyCodeWithPhone:[self getRSAStr:self.phoneText.text]  OnResponse:^(NSDictionary *dic) {
@@ -164,14 +168,16 @@ NSInteger timeNum;
 }
 - (IBAction)login:(id)sender {
     
-    if (self.phoneText.text.length == 0) {
+    if (self.phoneText.text.length == 0 || self.phoneText.text.length != 11) {
         [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
         return;
     }else {
-        if (![steyHelper isValidatePhone:self.phoneText.text] ) {
-            [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
-            return;
-        }
+        //正则判断手机号，先去掉
+        
+//        if (![steyHelper isValidatePhone:self.phoneText.text] ) {
+//            [smartHUD alertText:self.view alert:@"手机号错误" delay:1];
+//            return;
+//        }
     }
     if (self.vetifyCodeText.text.length == 0) {
         [smartHUD alertText:self.view alert:@"验证码不能为空" delay:1];

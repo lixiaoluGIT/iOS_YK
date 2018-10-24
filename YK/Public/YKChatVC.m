@@ -8,7 +8,7 @@
 
 #import "YKChatVC.h"
 
-@interface YKChatVC ()
+@interface YKChatVC ()<DXAlertViewDelegate>
 {
     UILabel *title;
 
@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-        self.title = @"在线客服";
+        self.title = @"小库客服";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -43,7 +43,7 @@
     
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Regular(kSuitLength_H(16));
     title.text = self.title;
     
     self.navigationItem.titleView = title;
@@ -51,7 +51,18 @@
 }
 
 - (void)leftAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"温馨提示" message:@"确定要退出当前聊天吗" cancelBtnTitle:@"继续咨询" otherBtnTitle:@"退出聊天"];
+    aleart.delegate = self;
+    [aleart show];
+}
+
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    if (buttonIndex==0) {
+        return;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -27,6 +27,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    //字体适配
+    _name.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
+    _barnd.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _price.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _owendNum.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _noSuit.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _type.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
     // Initialization code
 }
 

@@ -23,7 +23,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJS-dO-t3j">
-                        <rect key="frame" x="163" y="546" width="32" height="32"/>
+                        <rect key="frame" x="163" y="480" width="32" height="32"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="WSH-lD-CPl"/>
@@ -34,12 +34,12 @@
                             <action selector="close:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BDh-pz-fmf"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="弹窗" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-rC-nc5">
-                        <rect key="frame" x="37" y="80" width="284" height="439"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="弹窗-2" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-rC-nc5">
+                        <rect key="frame" x="16.5" y="80" width="325" height="373"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Fk-Zn-49q">
-                        <rect key="frame" x="119" y="447" width="121" height="40"/>
-                        <color key="backgroundColor" red="0.99607843137254903" green="0.37254901960784315" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="119" y="363" width="121" height="40"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.62745098039215685" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="121" id="Q9f-08-w0T"/>
                             <constraint firstAttribute="height" constant="40" id="RTZ-2G-sGW"/>
@@ -55,7 +55,7 @@
                     <constraint firstItem="dEH-rC-nc5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="4Ho-Qu-fw2"/>
                     <constraint firstItem="2kZ-yo-izY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5DW-DN-e8R"/>
                     <constraint firstItem="kJS-dO-t3j" firstAttribute="centerX" secondItem="dEH-rC-nc5" secondAttribute="centerX" id="7Dt-9a-Ptw"/>
-                    <constraint firstItem="8Fk-Zn-49q" firstAttribute="top" secondItem="dEH-rC-nc5" secondAttribute="bottom" constant="-72" id="GIM-Oe-XEJ"/>
+                    <constraint firstItem="8Fk-Zn-49q" firstAttribute="top" secondItem="dEH-rC-nc5" secondAttribute="bottom" constant="-90" id="GIM-Oe-XEJ"/>
                     <constraint firstItem="dEH-rC-nc5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="80" id="LtU-sW-xXb"/>
                     <constraint firstAttribute="bottom" secondItem="2kZ-yo-izY" secondAttribute="bottom" constant="-1" id="YzW-Fs-I1P"/>
                     <constraint firstItem="8Fk-Zn-49q" firstAttribute="centerX" secondItem="dEH-rC-nc5" secondAttribute="centerX" id="abF-Rl-oE2"/>
@@ -70,11 +70,11 @@
                 <outlet property="getBtn" destination="8Fk-Zn-49q" id="4bM-p8-lxO"/>
                 <outlet property="girlImage" destination="dEH-rC-nc5" id="H58-v0-VaF"/>
             </connections>
-            <point key="canvasLocation" x="-167" y="384"/>
+            <point key="canvasLocation" x="-80" y="237"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="guanbi-1" width="32" height="33"/>
-        <image name="弹窗" width="284" height="439"/>
+        <image name="弹窗-2" width="325" height="373"/>
     </resources>
 </document>

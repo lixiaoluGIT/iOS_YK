@@ -15,6 +15,7 @@
 #import "YKSuitVC.h"
 #import "YKProductDetailVC.h"
 #import "YKSPDetailVC.h"
+#import "YKLoginVC.h"
 
 @interface YKCartVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -126,6 +127,7 @@
     [self getCartList];
     
     [self getNum];
+    self.view.backgroundColor = [UIColor whiteColor];
     
 }
 
@@ -157,7 +159,7 @@
 }
 
 - (void)creatTableView{
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-64) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;
@@ -178,6 +180,9 @@
         buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
     }
     
+    if (HEIGHT==812){
+        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50-30, self.view.frame.size.width, 56*WIDHT/414);
+    }
     if (_isFromeProduct) {
         if (WIDHT==320) {
             buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
@@ -188,8 +193,9 @@
         if (WIDHT==414){
             buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
         }
+      
     }
-    [buttom setTitle:@"提交订单" forState:UIControlStateNormal];
+    [buttom setTitle:@"确认衣袋" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     buttom.titleLabel.font = PingFangSC_Semibold(16);
     buttom.backgroundColor = mainColor;
@@ -198,6 +204,15 @@
 }
 
 - (void)toRelease{
+    
+    if ([Token length] == 0) {
+        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+        [self presentViewController:login animated:YES completion:^{
+            
+        }];
+        login.hidesBottomBarWhenPushed = YES;
+        return;
+    }
     
     if (self.dataArray.count==0) {
         [smartHUD alertText:self.view alert:@"请先添加衣物" delay:2];
@@ -288,14 +303,23 @@
 //            [self.navigationController pushViewController:detail animated:YES];
 //        }
     }else {
+        if ([Token length] == 0) {
+            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            [self presentViewController:login animated:YES completion:^{
+                
+            }];
+            login.hidesBottomBarWhenPushed = YES;
+            return;
+        }
         //如果当前衣位已满
-        if (leaseNum==0) {
+        if (leaseNum<=0) {
             [smartHUD alertText:self.view alert:@"衣位已满" delay:1.4];
             return;
         }
         //去心愿单
-        YKSuitVC *suit = [[YKSuitVC alloc]init];
+        YKSuitVC *suit = [YKSuitVC new];
         suit.isFromeProduct = YES;
+        suit.isAuto = NO;
         suit.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:suit animated:YES];
     
@@ -303,6 +327,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    if (WIDHT==375) {
+//        if ([YKSuitManager sharedManager].isHadCC){
+//            return 20;
+//        }
+//    }
     return 40;
 }
 
@@ -328,6 +357,14 @@
     }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if ([Token length] == 0) {
+            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+            [self presentViewController:login animated:YES completion:^{
+                
+            }];
+            login.hidesBottomBarWhenPushed = YES;
+            return;
+        }
         YKBuyAddCCVC *buyadd = [[YKBuyAddCCVC alloc]init];
         buyadd.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:buyadd animated:YES];

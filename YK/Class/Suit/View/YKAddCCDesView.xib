@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加衣劵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vF9-H0-ee8">
-                        <rect key="frame" x="38" y="204" width="56" height="22"/>
+                        <rect key="frame" x="20" y="204" width="56" height="22"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -44,13 +44,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="规则说明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxD-cR-kcO">
-                        <rect key="frame" x="38" y="261" width="74" height="22"/>
+                        <rect key="frame" x="20" y="261" width="74" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.1764705882352941" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqq-TV-1L7">
-                        <rect key="frame" x="38" y="243" width="368" height="1"/>
+                        <rect key="frame" x="20" y="243" width="386" height="1"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="7Ur-PW-UyM"/>
@@ -60,25 +60,25 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.使用加衣劵后，单个衣袋最多可选择4件衣服;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjR-Ut-zWV">
-                        <rect key="frame" x="38" y="300" width="336" height="19.5"/>
+                        <rect key="frame" x="20" y="300" width="404" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.每个衣袋仅限使用一张加衣劵；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nv-8Q-1Hr">
-                        <rect key="frame" x="38" y="331" width="242.5" height="19.5"/>
+                        <rect key="frame" x="20" y="331" width="242.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.加衣劵可在衣袋中使用，不可成为新订单；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9o-3j-1Hy">
-                        <rect key="frame" x="38" y="362.5" width="324" height="19.5"/>
+                        <rect key="frame" x="20" y="362.5" width="324" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.加衣劵没有使用有效期。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXj-Le-jTH">
-                        <rect key="frame" x="38" y="393.5" width="193.5" height="19.5"/>
+                        <rect key="frame" x="20" y="393.5" width="193.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                     <constraint firstItem="4Nv-8Q-1Hr" firstAttribute="top" secondItem="SjR-Ut-zWV" secondAttribute="bottom" constant="12" id="HAP-Fw-ai3"/>
                     <constraint firstItem="AXj-Le-jTH" firstAttribute="leading" secondItem="d9o-3j-1Hy" secondAttribute="leading" id="K7S-x7-ijR"/>
                     <constraint firstItem="SjR-Ut-zWV" firstAttribute="top" secondItem="wxD-cR-kcO" secondAttribute="bottom" constant="17" id="O5h-B9-q4n"/>
-                    <constraint firstItem="vF9-H0-ee8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="38" id="RKc-jZ-6sg"/>
+                    <constraint firstItem="vF9-H0-ee8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="RKc-jZ-6sg"/>
                     <constraint firstAttribute="trailing" secondItem="LiY-Wd-97w" secondAttribute="trailing" id="Rr7-P3-NX4"/>
                     <constraint firstItem="eiQ-Om-PUL" firstAttribute="centerY" secondItem="vF9-H0-ee8" secondAttribute="centerY" id="VP8-nc-qHo"/>
                     <constraint firstAttribute="bottom" secondItem="mG5-Ky-Ppw" secondAttribute="bottom" id="WZa-Pp-mg5"/>
@@ -119,6 +119,7 @@
                     <constraint firstItem="Wqz-ph-J1q" firstAttribute="top" secondItem="LiY-Wd-97w" secondAttribute="bottom" id="oiY-5p-W8o"/>
                     <constraint firstItem="jqq-TV-1L7" firstAttribute="leading" secondItem="vF9-H0-ee8" secondAttribute="leading" id="qBQ-cw-nAw"/>
                     <constraint firstItem="d9o-3j-1Hy" firstAttribute="leading" secondItem="4Nv-8Q-1Hr" secondAttribute="leading" id="qfV-O7-Lfj"/>
+                    <constraint firstAttribute="trailing" secondItem="SjR-Ut-zWV" secondAttribute="trailing" constant="20" id="qnG-cM-p6G"/>
                     <constraint firstItem="LiY-Wd-97w" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ui8-Tu-4AW"/>
                     <constraint firstItem="jqq-TV-1L7" firstAttribute="top" secondItem="vF9-H0-ee8" secondAttribute="bottom" constant="17" id="y0c-by-uKA"/>
                     <constraint firstItem="d9o-3j-1Hy" firstAttribute="top" secondItem="4Nv-8Q-1Hr" secondAttribute="bottom" constant="12" id="zyH-RT-KpP"/>

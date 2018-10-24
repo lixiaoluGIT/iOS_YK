@@ -12,8 +12,11 @@
 #import "YKLoginVC.h"
 #import "YKMessageVC.h"
 
-@interface YKHomeSegementVC ()
-
+@interface YKHomeSegementVC ()<DXAlertViewDelegate>
+{
+    NSMutableArray *cacheArray;
+    BOOL isNavHidden;
+}
 @end
 
 
@@ -47,6 +50,8 @@
 
 @property (nonatomic,strong)NSMutableArray *buttonArr;
 
+@property (nonatomic,strong)UIView *btnView;
+
 @end
 
 @implementation YKHomeSegementVC
@@ -54,19 +59,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    cacheArray = [NSMutableArray array];
     [NC addObserver:self selector:@selector(navigationBarHidden) name:@"NavigationHidden" object:nil];
-    [NC addObserver:self selector:@selector(navigationBarNotHidden:) name:@"NavigationNotHidden" object:nil];
+    [NC addObserver:self selector:@selector(navigationBarNotHidden) name:@"NavigationNotHidden" object:nil];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    releaseButton.frame = CGRectMake(0, 25, 20, 20);
-    [releaseButton addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
-    [releaseButton setBackgroundImage:[UIImage imageNamed:@"wuxiaoxi"] forState:UIControlStateNormal];
-    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:releaseButton];
+    
+    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 20, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    }
+    btn.adjustsImageWhenHighlighted = NO;
+    //    btn.backgroundColor = [UIColor redColor];
+    [btn setImage:[UIImage imageNamed:@"kefu-2"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
+  
+    negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+        negativeSpacer.width = -18;
+    }
+    btn.hidden = YES;
+    self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
+    
+    UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
+    btn1.frame = CGRectMake(0, 0, 20, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        btn1.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    }
+    btn1.adjustsImageWhenHighlighted = NO;
+    //    btn.backgroundColor = [UIColor redColor];
+    [btn1 setImage:[UIImage imageNamed:@"wuxiaoxi"] forState:UIControlStateNormal];
+    [btn1 addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:btn1];
     UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;
+    negativeSpacer.width = 0;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+        negativeSpacer.width = -18;
+    }
+    
     self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
-    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor blackColor]];
     
     UIImage *titleImages = [UIImage imageNamed:@"title"];
     UIImageView *newTitleView = [[UIImageView alloc] initWithImage:titleImages];
@@ -78,6 +110,61 @@
     [self updateCurrentPageIndex:self.type];
 }
 //
+
+- (void)call{
+    DXAlertView *al = [[DXAlertView alloc]initWithTitle:@"进入咨询" message:@"确认拨打客服电话吗？" cancelBtnTitle:@"暂不" otherBtnTitle:@"立即咨询"];
+    al.delegate = self;
+    [al show];
+    
+}
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+//        YKChatVC *chatService = [[YKChatVC alloc] init];
+//        chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+//        chatService.targetId = RoundCloudServiceId;
+//        chatService.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController :chatService animated:YES];
+    }else {
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
+            NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+            NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+            if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+                /// 大于等于10.0系统使用此openURL方法
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+                } else {
+                    // Fallback on earlier versions
+                }
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+            }
+            return;
+        }
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+        alertview.delegate = self;
+        [alertview show];
+    }
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {//取消
+        
+    }
+    if (buttonIndex==1) {//拨打
+        NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
+        NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
+        if (compare == NSOrderedDescending || compare == NSOrderedSame) {
+            /// 大于等于10.0系统使用此openURL方法
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+            }
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+        }
+    }
+}
 - (void)toMessage{
     if ([Token length] == 0) {
         YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
@@ -102,6 +189,14 @@
 //    [self.navigationController pushViewController :chatService animated:YES];
 }
 - (void)setConfig{
+    
+    //btnView
+    self.btnView = [[UIView alloc]init];
+    self.btnView.backgroundColor = [UIColor whiteColor];
+    self.btnView.frame = CGRectMake(0, kNavgationBarHeight , WIDHT, kSuitLength_V(38));
+    [self.view addSubview:self.btnView];
+    
+    self.buttonArr = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     _buttonArr = [NSMutableArray array];
     self.theLine = [[UILabel alloc]init];
@@ -113,59 +208,64 @@
         button.layer.masksToBounds = YES;
         [button setTitle:self.titleArr[i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateSelected];
-        [button setBackgroundColor:[UIColor whiteColor]];
-        button.titleLabel.font = PingFangSC_Semibold(16);
+        [button setTitleColor:YKRedColor forState:UIControlStateSelected];
+//        [button setBackgroundColor:[UIColor lightGrayColor]];
+        button.titleLabel.font = PingFangSC_Regular(kSuitLength_V(13));
+        
+//        if (i == _currentPageIndex) {
+//            button.selected = YES;
+//            [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
+//            clickButton = button;
+//            [button addSubview:self.theLine];
+//        }
+        
+        [button addTarget:self action:@selector(changeControllerClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:button];
+//        button.backgroundColor = [UIColor greenColor];
+        [_buttonArr addObject:button];
+        
+        button.frame = CGRectMake(self.btnView.frame.size.width/self.titleArr.count*i, kSuitLength_V(0), self.btnView.frame.size.width/self.titleArr.count, kSuitLength_V(38));
         
         if (i == _currentPageIndex) {
             button.selected = YES;
             [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
             clickButton = button;
-            [self.view addSubview:self.theLine];
-//
-//                        [self.theLine mas_makeConstraints:^(MASConstraintMaker *make) {
-//                            make.top.mas_equalTo(clickButton.mas_bottom);
-//                            make.left.right.equalTo(clickButton);
-//                            make.height.mas_equalTo(.5);
-//                        }];
-            
-          
-            
+            [button addSubview:self.theLine];
         }
-        [button addTarget:self action:@selector(changeControllerClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
-//        button.backgroundColor = [UIColor greenColor];
-        [_buttonArr addObject:button];
+        [self.btnView addSubview:button];
 
     }
     //布局
-    [_buttonArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:10 tailSpacing:10];
-    [_buttonArr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight+13);
-        make.height.mas_equalTo(30);
-    }];
+//    [_buttonArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:10 tailSpacing:10];
+//    [_buttonArr mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight+13);
+//        make.height.mas_equalTo(30);
+//    }];
     
-    UILabel *line = [[UILabel alloc]init];
-    line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-    [self.view addSubview:line];
-    line.frame = CGRectMake(0,kNavgationBarHeight + 15 + 40-1 , WIDHT, 1);
+    //横线
+//    UILabel *line = [[UILabel alloc]init];
+//    line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+//    [self.btnView addSubview:line];
+//    line.frame = CGRectMake(0, self.btnView.height-1, WIDHT, 1);
     
+    //竖线
     UILabel *Vline = [[UILabel alloc]init];
     Vline.backgroundColor = mainColor;
-    Vline.frame = CGRectMake(WIDHT/2,64+22,1, 12);
-    if (HEIGHT == 812) {
-        Vline.frame = CGRectMake(WIDHT/2,64+22+25,1, 12);
-    }
-    [self.view addSubview:Vline];
+    Vline.frame = CGRectMake(WIDHT/2,kSuitLength_V(13),1, kSuitLength_V(13));
+//    if (HEIGHT == 812) {
+//        Vline.frame = CGRectMake(WIDHT/2,64+22+25,1, 12);
+//    }
+    [self.btnView addSubview:Vline];
 }
 //
 - (void)addControllerToArr{
     [self addChildViewController:self.pageController];
     [self.view addSubview:self.pageController.view];
-    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight + 15 + 40);
-        make.left.bottom.right.equalTo(self.view);
-    }];
+    self.pageController.view.frame = CGRectMake(0,kNavgationBarHeight+kSuitLength_V(38) , WIDHT, self.view.frame.size.height);
+//    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight + 15 + 40);
+//        make.left.bottom.right.equalTo(self.view);
+//    }];
     //
     for (UIView *view in self.pageController.view.subviews) {
         if ([view isKindOfClass:[UIScrollView class]]) {
@@ -244,28 +344,32 @@
 }
 //
 - (void)updateCurrentPageIndex:(NSInteger)newIndex{
+    if (![cacheArray containsObject:@(newIndex)]) {
+        [self navigationBarNotHidden];
+        [cacheArray addObject:@(newIndex)];
+    }
     _currentPageIndex = newIndex;
     UIButton *button = [self.view viewWithTag:BtnTag + _currentPageIndex];
     button.selected = YES;
     for (UIButton *btn in _buttonArr) {
         if (button == btn) {
-            btn.titleLabel.textColor = mainColor;
+            btn.titleLabel.textColor = YKRedColor;
         }else {
             btn.titleLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
         }
     }
     __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:.1f animations:^{
+    [UIView animateWithDuration:.25f animations:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf.theLine removeFromSuperview];
-        [strongSelf.view addSubview:strongSelf.theLine];
+        [strongSelf.btnView addSubview:strongSelf.theLine];
         //
         [strongSelf.theLine mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(button.mas_bottom);
+            make.top.mas_equalTo(button.mas_bottom).offset(-2);
 //            make.left.right.equalTo(button);
             make.centerX.equalTo(button.mas_centerX);
-            make.width.equalTo(@20);
-            make.height.mas_equalTo(2);
+            make.width.equalTo(@(kSuitLength_H(25)));
+            make.height.mas_equalTo(kSuitLength_V(2));
         }];
         
 //         [strongSelf.theLine.superview layoutIfNeeded];//强制绘制
@@ -303,8 +407,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //CGSize size = [self.titleArr[0] sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:The_titleFont size:20]}];
     NSInteger x = _currentPageIndex;
+//    [self navigationBarNotHidden];
     UIButton *button = [self.view viewWithTag:BtnTag + x];
-    [UIView animateWithDuration:.1f animations:^{
+    [UIView animateWithDuration:.25f animations:^{
         UIView *line = [self.view viewWithTag:2000];
         CGRect sizeRect = line.frame;
         sizeRect.origin.x = button.frame.origin.x;
@@ -313,12 +418,46 @@
 }
 
 - (void)navigationBarHidden{
-    NSLog(@"hidden");
+//    NSLog(@"hidden");
+    [ self.navigationController setNavigationBarHidden : YES animated : YES ];
+    isNavHidden = YES;
+//    NSLog(@"%f %f",self.view.frame.size.height,HEIGHT);
+    self.view.backgroundColor = [UIColor whiteColor];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.btnView.frame = CGRectMake(0, kStatusnBarHeight , WIDHT, kSuitLength_V(38));
+        self.pageController.view.frame = CGRectMake(0,self.btnView.frame.size.height + self.btnView.frame.origin.y , WIDHT, HEIGHT/4*3+75);
+    }];
     
+//    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.view.mas_top).offset(kSuitLength_H(50)+20);
+//        make.left.bottom.right.equalTo(self.view);
+//    }];
 }
 
 - (void)navigationBarNotHidden{
-    NSLog(@"nothidden");
+    [ self.navigationController setNavigationBarHidden : NO animated : YES ];
+     isNavHidden = NO;
+//    NSLog(@"nothidden");
+//    NSLog(@"%f ,%f",self.view.frame.size.height,HEIGHT);
+//    self.view.backgroundColor = [UIColor blackColor];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.btnView.frame = CGRectMake(0, kNavgationBarHeight , WIDHT, kSuitLength_V(38));
+        self.pageController.view.frame = CGRectMake(0,kNavgationBarHeight+kSuitLength_V(38) , WIDHT, HEIGHT);
+    }];
+    
+//    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.view.mas_top).offset(kSuitLength_H(50));
+//        make.left.bottom.right.equalTo(self.view);
+//    }];
+    
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+     [ self.navigationController setNavigationBarHidden : NO animated : NO];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [ self.navigationController setNavigationBarHidden : isNavHidden animated : NO ];
+}
 @end

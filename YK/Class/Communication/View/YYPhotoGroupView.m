@@ -6,7 +6,7 @@
 //
 
 #import "YYPhotoGroupView.h"
-#import "YYKit.h"
+//#import "YYKit.h"
 #import <Photos/Photos.h>
 
 #define kPadding 20

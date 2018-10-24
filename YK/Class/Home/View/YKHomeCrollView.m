@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *eng;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hh;
 
 @property (nonatomic,strong)UIPageControl *pageControl;
 
@@ -36,6 +37,9 @@
     [_rightImage addGestureRecognizer:tap];
     
     _eng.numberOfLines = 0;
+    _title.font = [UIFont systemFontOfSize:kSuitLength_H(18)];
+    _eng.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _hh.constant = kSuitLength_V(50);
     
     //    _eng.backgroundColor = [UIColor greenColor];
     

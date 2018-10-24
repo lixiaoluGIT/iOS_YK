@@ -141,7 +141,7 @@
         
         
         YKSuit *suit3 = _pList[2];
-        _p3.text = suit2.clothingName;
+        _p3.text = suit3.clothingName;
         _p3size.text = suit3.clothingStockType;
         _p3price.text = [NSString stringWithFormat:@"¥%@",suit3.clothingPrice];
         
@@ -166,9 +166,9 @@
         
         
         YKSuit *suit3 = _pList[2];
-        _p2.text = suit2.clothingName;
-        _p2size.text = suit3.clothingStockType;
-        _p2price.text = [NSString stringWithFormat:@"¥%@",suit3.clothingPrice];
+        _p3.text = suit3.clothingName;
+        _p3size.text = suit3.clothingStockType;
+        _p3price.text = [NSString stringWithFormat:@"¥%@",suit3.clothingPrice];
         
         
         YKSuit *suit4 = _pList[3];

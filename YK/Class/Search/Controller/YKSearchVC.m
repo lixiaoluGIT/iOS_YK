@@ -79,6 +79,7 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (w-30)/2*240/140);
     layoutView.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
+     layoutView.footerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-50) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
@@ -121,7 +122,11 @@
     image.image = [UIImage imageNamed:@"衣位导视图"];
     [image sizeToFit];
     image.frame = [UIApplication sharedApplication].keyWindow.frame;
-    [[UIApplication sharedApplication].keyWindow addSubview:image];
+    if (![UD boolForKey:@"hadap"]) {
+        [[UIApplication sharedApplication].keyWindow addSubview:image];
+        [UD setBool:YES forKey:@"hadap"];
+    }
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
         image.hidden = YES;
     }];
@@ -131,7 +136,12 @@
 
 - (void)initUpBtn{
     self.upBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-200, 35, 35);
+    self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-180, kSuitLength_H(35),kSuitLength_H(35));
+    if (HEIGHT==812) {
+        self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-250, kSuitLength_H(35), kSuitLength_H(35));
+    
+    }
+    self.upBtn.alpha = 0;
     [self.upBtn setBackgroundImage:[UIImage imageNamed:@"置顶图标"] forState:UIControlStateNormal];
     [self.view addSubview:self.upBtn];
     [self.view bringSubviewToFront:self.upBtn];
@@ -144,16 +154,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-        if (scrollView == self.collectionView&&HEIGHT!=814)
+        if (scrollView == self.collectionView)
         {
             if (self.collectionView.contentOffset.y>360) {
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.upBtn.frame = CGRectMake(WIDHT-60, HEIGHT-200, 35, 35);
-                }];
+                self.upBtn.alpha = (self.collectionView.contentOffset.y-360)/360;
             }else {
-                [UIView animateWithDuration:0.3 animations:^{
-                    self.upBtn.frame = CGRectMake(WIDHT, HEIGHT-200, 0, 0);
-                }];
+                self.upBtn.alpha = 0;
             }
         }
   
@@ -246,13 +252,22 @@
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
 
-    return CGSizeMake(self.view.frame.size.width, (WIDHT-48)/3*2+50+170);
+    return CGSizeMake(self.view.frame.size.width, (WIDHT-48)/3*2+40+kSuitLength_H(160));
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    
+    return CGSizeMake(self.view.frame.size.width, 0);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     WeakSelf(weakSelf)
-    
+  
+    if (kind == UICollectionElementKindSectionFooter) {
+        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
+        return footer;
+    }
     if (kind == UICollectionElementKindSectionHeader) {
         
         UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
@@ -260,7 +275,7 @@
         //风格
         YKStyleView *styleView = [[YKStyleView alloc]init];
         styleView.styleArray = self.styleArray;
-        styleView.frame = CGRectMake(0, 0, WIDHT, (WIDHT-48)/3*2+50);
+        styleView.frame = CGRectMake(0, 0, WIDHT, (WIDHT-48)/3*2+40);
         if (hadScroll) {
             [head addSubview:styleView];
             hadScroll = NO;
@@ -274,7 +289,7 @@
 
         if (self.titles.count!=0) {
             self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
-            self.titleView.frame = CGRectMake(0,styleView.frame.size.height + styleView.frame.origin.y,head.frame.size.width, 170);
+            self.titleView.frame = CGRectMake(0,styleView.frame.size.height + styleView.frame.origin.y,head.frame.size.width, kSuitLength_H(160));
             [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
             //筛选
             self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){

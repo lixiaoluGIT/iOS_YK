@@ -55,6 +55,12 @@
         [self.tableView reloadData];
     }];
     
+    if ([Token length] == 0) {
+        self.tableView.scrollEnabled = NO;
+    }else {
+        self.tableView.scrollEnabled = YES;
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -157,6 +163,7 @@
                     //心愿单
                     YKSuitVC *suit = [YKSuitVC new];
                     suit.isFromeProduct = YES;
+                    suit.isAuto = YES;
                     suit.hidesBottomBarWhenPushed = YES;
                     [weakSelf.navigationController pushViewController:suit animated:YES];
                     return ;
@@ -365,6 +372,11 @@
                 [self.navigationController pushViewController:normal animated:YES];
             }if (indexPath.row==2) {
                 [self kefu];
+//                YKChatVC *chatService = [[YKChatVC alloc] init];
+//                chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+//                chatService.targetId = RoundCloudServiceId;
+//                chatService.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController :chatService animated:YES];
             }if (indexPath.row==3) {
               
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
@@ -398,6 +410,11 @@
             }
             if (indexPath.row==2) {
                 [self kefu];
+//                YKChatVC *chatService = [[YKChatVC alloc] init];
+//                chatService.conversationType = ConversationType_CUSTOMERSERVICE;
+//                chatService.targetId = RoundCloudServiceId;
+//                chatService.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController :chatService animated:YES];
             }
             if (indexPath.row==3) {
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
@@ -490,7 +507,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     
-    UIScrollView * scrollView = (UIScrollView *)object;
+    UIScrollView * scrollView = (UIScrollView *)object;     
     
     if (self.tableView != scrollView) {
         return;
@@ -504,11 +521,11 @@
     if (scrollView.contentOffset.y>0) {
         self.navigationController.navigationBar.hidden = NO;
     }
-    if (scrollView.contentOffset.y>100) {
+    if (scrollView.contentOffset.y>200) {
         self.navigationController.navigationBar.alpha = 1;
         
     }else {
-        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/100 ;
+        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/200 ;
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         if (scrollView.contentOffset.y<=0) {
             [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;

@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *eng;
+@property (weak, nonatomic) IBOutlet UILabel *kkkk;
+@property (weak, nonatomic) IBOutlet UILabel *llll;
 
 @end
 @implementation YKRecommentTitleView
@@ -21,6 +23,10 @@
     // Initialization code
     
     _eng.numberOfLines = 0;
+    _title.font = [UIFont systemFontOfSize:kSuitLength_H(18)];
+    _eng.font = PingFangSC_Regular(kSuitLength_H(12));
+    _kkkk.font = [UIFont systemFontOfSize:kSuitLength_H(18)];
+    _eng.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
     
 //    _eng.backgroundColor = [UIColor greenColor];
     

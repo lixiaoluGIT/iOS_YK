@@ -267,7 +267,7 @@
             //可用衣位数 = 总衣位-已用衣位数
             leaseNum = totalNum-useNum;
 //            [buttom setTitle:[NSString stringWithFormat:@"加入衣袋 (%ld/%ld)",useNum,totalNum] forState:UIControlStateNormal];
-            [buttom setTitle:[NSString stringWithFormat:@"加入衣袋 (%ld/%ld)",[YKSuitManager sharedManager].suitAccount + useNum,totalNum] forState:UIControlStateNormal];
+//            [buttom setTitle:[NSString stringWithFormat:@"加入衣袋 (%ld/%ld)",[YKSuitManager sharedManager].suitAccount + useNum,totalNum] forState:UIControlStateNormal];
             [self.tableView reloadData];
         }];
     }];
@@ -275,32 +275,42 @@
 
 - (void)setButtom{
 
-    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
         buttom = [UIButton buttonWithType:UIButtonTypeCustom];
-    if (WIDHT==320) {
-        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (WIDHT==375){
-        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (WIDHT==414){
-        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
-    }
+//    if (WIDHT==320) {
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+//    if (WIDHT==375){
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+//    if (WIDHT==414){
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
+//    }
     
-    if (_isFromeProduct) {
-        if (WIDHT==320) {
-            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-        }
-        if (WIDHT==375){
-            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-        }
-        if (WIDHT==414){
-            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-        }
+//    if (_isFromeProduct) {
+//        if (WIDHT==320) {
+//            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//        }
+//        if (WIDHT==375){
+//            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//        }
+//        if (WIDHT==414){
+//            buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//        }
+//    }
+    if (!_isAuto) {
+         buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(104), WIDHT, kSuitLength_H(50));
+    }else {
+         buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(50), WIDHT, kSuitLength_H(50));
+    }
+    buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(50), WIDHT, kSuitLength_H(50));
+    
+    if (HEIGHT==812) {
+        buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(75), WIDHT, kSuitLength_H(50));
     }
     [buttom setTitle:@"加入衣袋" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buttom.titleLabel.font = PingFangSC_Semibold(16);
+    buttom.titleLabel.font = PingFangSC_Semibold(kSuitLength_H(16));
     buttom.backgroundColor = mainColor;
     [buttom addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];
@@ -420,7 +430,7 @@
     
 //    for (int index=0; index<selectDeArray.count; index++) {
 //        YKSuitCell *cell = _cellArray[[selectDeArray[index] intValue]];
-    DXAlertView *ale = [[DXAlertView alloc]initWithTitle:@"温馨提示" message:@"确定要从心愿单移除吗" cancelBtnTitle:@"再等等" otherBtnTitle:@"立即移除"];
+    DXAlertView *ale = [[DXAlertView alloc]initWithTitle:@"温馨提示" message:@"确定要从心愿单移除吗" cancelBtnTitle:@"点错了" otherBtnTitle:@"立即移除"];
     ale.delegate = self;
     [ale show];
     

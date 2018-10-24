@@ -34,6 +34,13 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     [self setupUI];
+    
+    //字体适配
+    _suitName.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
+    _suitBrand.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _price.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _noSuit.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
+    _suitType.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
 }
 - (void)setupUI {
 //    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];

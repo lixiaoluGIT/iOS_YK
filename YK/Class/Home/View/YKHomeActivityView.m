@@ -30,9 +30,13 @@
         [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"specialImg"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
         [self.scrollView addSubview:image];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-            if (self.toDetailBlock) {
-                self.toDetailBlock(dic[@"specialLink"]);
+            
+//            if ([Token length] == 0) {
+                if (self.toDetailBlock) {
+                    self.toDetailBlock(dic[@"specialLink"]);
+//                }
             }
+            
         }];
         [image addGestureRecognizer:tap];
         
