@@ -63,6 +63,7 @@
         [self setUpUI];
     }];
 }
+
 - (void)setUpUI{
     switch (_validityStatus) {
         case 0://押金未交

@@ -50,6 +50,7 @@
     self.SV.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
     for (int i = 0; i<self.imagesArr.count+2; i++) {
         UIImageView *imgV = [[UIImageView alloc]init];
+        
         if (i == 0) {
             [imgV sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:self.imagesArr[self.imagesArr.count-1]]] placeholderImage:[UIImage imageNamed:imageName]];
         } else if (i == self.imagesArr.count + 1) {
