@@ -22,6 +22,7 @@
     [super viewWillAppear:YES];
      [self getData];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

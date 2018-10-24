@@ -42,6 +42,7 @@
     _noSuit.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
     _suitType.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
 }
+
 - (void)setupUI {
 //    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
 //    self.suitImage.clipsToBounds = YES;

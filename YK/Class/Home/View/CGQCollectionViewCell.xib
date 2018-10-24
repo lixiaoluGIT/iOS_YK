@@ -24,13 +24,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maxmating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBc-Nl-XRj">
-                        <rect key="frame" x="0.0" y="189.5" width="141" height="17"/>
+                        <rect key="frame" x="0.0" y="189.5" width="145" height="17"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="12"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="短款套头连帽卫衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6F-GH-N2m">
-                        <rect key="frame" x="0.0" y="216.5" width="141" height="14"/>
+                        <rect key="frame" x="0.0" y="216.5" width="145" height="14"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -104,7 +104,7 @@
                 <constraint firstAttribute="trailing" secondItem="VsE-Au-0OE" secondAttribute="trailing" id="M2d-My-ZEj"/>
                 <constraint firstItem="P6F-GH-N2m" firstAttribute="top" secondItem="mBc-Nl-XRj" secondAttribute="bottom" constant="10" id="TOn-5w-iBZ"/>
                 <constraint firstItem="VsE-Au-0OE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Vbc-Wr-oyP"/>
-                <constraint firstItem="eS4-TP-3ji" firstAttribute="leading" secondItem="mBc-Nl-XRj" secondAttribute="trailing" constant="4" id="Wbg-f7-hGm"/>
+                <constraint firstItem="eS4-TP-3ji" firstAttribute="leading" secondItem="mBc-Nl-XRj" secondAttribute="trailing" id="Wbg-f7-hGm"/>
                 <constraint firstItem="hZv-X5-c5y" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Znm-jP-8Ss"/>
                 <constraint firstItem="mBc-Nl-XRj" firstAttribute="top" secondItem="VsE-Au-0OE" secondAttribute="bottom" constant="14" id="hSO-fS-MO5"/>
                 <constraint firstItem="mBc-Nl-XRj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hrl-dp-GtO"/>

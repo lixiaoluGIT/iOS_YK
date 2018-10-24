@@ -27,6 +27,12 @@
 //    self.ima.layer.masksToBounds = YES;
 //    self.ima.layer.borderColor = [UIColor colorWithHexString:@"f5f5f5"].CGColor;
 //    self.ima.layer.borderWidth = 1;
+    
+    //字体适配
+    _myDes.font = PingFangSC_Medium(kSuitLength_H(14));
+    _myBrand.font = PingFangSC_Regular(kSuitLength_H(12));
+    _mySize.font =  PingFangSC_Regular(kSuitLength_H(12));
+    _myPrice.font = PingFangSC_Medium(kSuitLength_H(14));
 }
 
 - (void)setSuit:(YKSuit *)suit{
