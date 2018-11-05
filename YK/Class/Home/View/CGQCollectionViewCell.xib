@@ -38,8 +38,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daifanjia" translatesAutoresizingMaskIntoConstraints="NO" id="hZv-X5-c5y">
                         <rect key="frame" x="140" y="0.0" width="44" height="44"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shangxin-1" translatesAutoresizingMaskIntoConstraints="NO" id="o6Q-Xj-Mth">
-                        <rect key="frame" x="0.0" y="0.0" width="56" height="22"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="刚刚上新" translatesAutoresizingMaskIntoConstraints="NO" id="o6Q-Xj-Mth">
+                        <rect key="frame" x="0.0" y="0.0" width="58" height="20"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eS4-TP-3ji">
                         <rect key="frame" x="145" y="190" width="39" height="16"/>
@@ -132,8 +132,8 @@
     <resources>
         <image name="changhao" width="7" height="7"/>
         <image name="daifanjia" width="44" height="44"/>
-        <image name="shangxin-1" width="56" height="22"/>
         <image name="timg.jpg" width="925" height="992"/>
+        <image name="刚刚上新" width="58" height="20"/>
         <image name="占衣位" width="6" height="9"/>
     </resources>
 </document>

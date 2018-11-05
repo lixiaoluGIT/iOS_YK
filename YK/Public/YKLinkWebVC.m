@@ -197,6 +197,9 @@
     NSString *requestString = [[[request URL] absoluteString]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     self.shareUrl = requestString;
+    
+   
+    
     if ([requestString containsString:@"tologin"]){
         YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];

@@ -22,14 +22,15 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toDetail)];
     [self addGestureRecognizer:tap];
     
-    _hhh.constant = kSuitLength_H(70);
-    _www.constant = kSuitLength_H(70);
+    _hhh.constant = kSuitLength_H(56);
+    _www.constant = kSuitLength_H(56);
     _title.layer.masksToBounds = YES;
     _title.layer.cornerRadius = 4;
     _title.textColor = mainColor;
+    _title.font = PingFangSC_Regular(kSuitLength_H(12))
     _image.layer.masksToBounds = YES;
-    _image.layer.cornerRadius = kSuitLength_H(70/2);
-    _name.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _image.layer.cornerRadius = kSuitLength_H(56/2);
+    
 //    self.backgroundColor = [UIColor yellowColor];
 //    self.image.backgroundColor = [UIColor greenColor];
 //    self.title.backgroundColor =[UIColor blueColor];

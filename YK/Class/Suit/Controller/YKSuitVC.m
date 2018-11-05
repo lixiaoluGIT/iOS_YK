@@ -301,12 +301,12 @@
     if (!_isAuto) {
          buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(104), WIDHT, kSuitLength_H(50));
     }else {
-         buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(50), WIDHT, kSuitLength_H(50));
+         buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(104), WIDHT, kSuitLength_H(50));
     }
-    buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(50), WIDHT, kSuitLength_H(50));
+    buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(104), WIDHT, kSuitLength_H(50));
     
     if (HEIGHT==812) {
-        buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(75), WIDHT, kSuitLength_H(50));
+        buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(104), WIDHT, kSuitLength_H(50));
     }
     [buttom setTitle:@"加入衣袋" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

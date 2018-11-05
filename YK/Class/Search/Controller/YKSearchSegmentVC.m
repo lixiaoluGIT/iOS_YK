@@ -46,6 +46,8 @@
 
 @property (nonatomic,strong)NSMutableArray *buttonArr;
 
+@property (nonatomic,strong)UIView *btnView;
+
 @end
 
 @implementation YKSearchSegmentVC
@@ -62,6 +64,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [MobClick event:@"__cust_event_3"];
+    
+    [NC addObserver:self selector:@selector(up) name:@"up" object:nil];
+    [NC addObserver:self selector:@selector(down) name:@"down" object:nil];
   
     UIImage *titleImages = [UIImage imageNamed:@"title"];
     UIImageView *newTitleView = [[UIImageView alloc] initWithImage:titleImages];
@@ -77,60 +82,67 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _buttonArr = [NSMutableArray array];
     self.theLine = [[UILabel alloc]init];
-    self.theLine.backgroundColor = [UIColor colorWithHexString:@"ee2d2d"];
+    self.theLine.backgroundColor = YKRedColor;
+    
+    self.btnView = [[UIView alloc]init];
+    self.btnView.backgroundColor = [UIColor whiteColor];
+    self.btnView.frame = CGRectMake(0, kNavgationBarHeight , WIDHT, kSuitLength_V(44));
+    [self.view addSubview:self.btnView];
+    
     UIButton *clickButton = nil;
     for (NSInteger i = 0; i < self.titleArr.count; i ++) {
         UIButton *button = [[UIButton alloc] init];
         button.tag = BtnTag + i;
         button.layer.masksToBounds = YES;
         [button setTitle:self.titleArr[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+        [button setTitleColor:YKRedColor forState:UIControlStateSelected];
         [button setBackgroundColor:[UIColor whiteColor]];
-        button.titleLabel.font = PingFangSC_Regular(kSuitLength_V(13));
+        button.titleLabel.font = PingFangSC_Regular(kSuitLength_V(14));
 //        button.backgroundColor = [UIColor redColor];
         
         if (i == _currentPageIndex) {
             button.selected = YES;
-            [button setTitleColor:[UIColor colorWithHexString:@"ee2d2d"] forState:UIControlStateNormal];
+            [button setTitleColor:YKRedColor forState:UIControlStateNormal];
             clickButton = button;
             [self.view addSubview:self.theLine];
-            //
-            //                        [self.theLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            //                            make.top.mas_equalTo(clickButton.mas_bottom);
-            //                            make.left.right.equalTo(clickButton);
-            //                            make.height.mas_equalTo(.5);
-            //                        }];
-            
-            
-            
         }
+        
         [button addTarget:self action:@selector(changeControllerClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
+        
+        button.frame = CGRectMake(kSuitLength_H(40)+(self.btnView.frame.size.width-kSuitLength_H(80))/self.titleArr.count*i, kSuitLength_V(0), (self.btnView.frame.size.width-kSuitLength_H(80))/self.titleArr.count, kSuitLength_V(44));
+        
+        [self.btnView addSubview:button];
         //        button.backgroundColor = [UIColor greenColor];
         [_buttonArr addObject:button];
         
     }
+    
+    CGFloat w = (WIDHT-kSuitLength_H(80))/self.titleArr.count;
+    self.theLine.frame = CGRectMake(WIDHT/2-w/2-15,self.btnView.frame.size.height-4 , kSuitLength_H(30), 2);
+    [self.btnView addSubview:self.theLine];
+    
     //布局
-    [_buttonArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:60 tailSpacing:60];
-    [_buttonArr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight+16);
-        make.height.mas_equalTo(30);
-    }];
+//    [_buttonArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:60 tailSpacing:60];
+//    [_buttonArr mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight+16);
+//        make.height.mas_equalTo(30);
+//    }];
     
     UILabel *line = [[UILabel alloc]init];
-    line.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
-    [self.view addSubview:line];
-    line.frame = CGRectMake(0,kNavgationBarHeight + 15 + 40-1 , WIDHT, 1);
+    line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    [self.btnView addSubview:line];
+    line.frame = CGRectMake(0,kSuitLength_H(42), WIDHT, 2);
 }
 //
 - (void)addControllerToArr{
     [self addChildViewController:self.pageController];
     [self.view addSubview:self.pageController.view];
-    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight + 15 + 40);
-        make.left.bottom.right.equalTo(self.view);
-    }];
+      self.pageController.view.frame = CGRectMake(0,kNavgationBarHeight+kSuitLength_V(44) , WIDHT, self.view.frame.size.height);
+//    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.view.mas_top).offset(kNavgationBarHeight + 15 + 40);
+//        make.left.bottom.right.equalTo(self.view);
+//    }];
     //
     for (UIView *view in self.pageController.view.subviews) {
         if ([view isKindOfClass:[UIScrollView class]]) {
@@ -194,17 +206,19 @@
     NSInteger nowTemp = sender.tag - BtnTag;
     if (nowTemp > tempIndex) {
         for (NSInteger i = tempIndex + 1; i <= nowTemp; i ++) {
+             [weakSelf updateCurrentPageIndex:i];
             [self.pageController setViewControllers:@[self.controllerArr[i]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
                 if (finished) {
-                    [weakSelf updateCurrentPageIndex:i];
+//                    [weakSelf updateCurrentPageIndex:i];
                 }
             }];
         }
     }else if (nowTemp < tempIndex){
         for (NSInteger i = tempIndex; i >= nowTemp; i --) {
+            [weakSelf updateCurrentPageIndex:i];
             [self.pageController setViewControllers:@[self.controllerArr[i]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
                 if (finished) {
-                    [weakSelf updateCurrentPageIndex:i];
+//                    [weakSelf updateCurrentPageIndex:i];
                 }
             }];
         }
@@ -223,6 +237,30 @@
     _currentPageIndex = newIndex;
     UIButton *button = [self.view viewWithTag:BtnTag + _currentPageIndex];
     button.selected = YES;
+   
+    //    [UIView animateWithDuration:.25f animations:^{
+    //        __strong typeof(weakSelf) strongSelf = weakSelf;
+    //        [strongSelf.theLine removeFromSuperview];
+    //        [strongSelf.btnView addSubview:strongSelf.theLine];
+    //        //
+    //        [strongSelf.theLine mas_updateConstraints:^(MASConstraintMaker *make) {
+    //            make.top.mas_equalTo(button.mas_bottom).offset(-2);
+    //            //            make.left.right.equalTo(button);
+    //            make.centerX.equalTo(button.mas_centerX);
+    //            make.width.equalTo(@(kSuitLength_H(25)));
+    //            make.height.mas_equalTo(kSuitLength_V(2));
+    //        }];
+    CGFloat w = (WIDHT-kSuitLength_H(80))/_titleArr.count;
+    [UIView animateWithDuration:0.25 animations:^{
+        if (newIndex==0) {
+            
+            self.theLine.frame = CGRectMake(WIDHT/2-w/2-15,self.btnView.frame.size.height-4, kSuitLength_H(30), 2);
+        }else {
+            self.theLine.frame = CGRectMake(WIDHT-kSuitLength_H(40)-w/2-15,self.btnView.frame.size.height-4 , kSuitLength_H(30), 2);
+//            self.theLine.frame = CGRectMake((WIDHT-kSuitLength_H(80))/self.titleArr.count/4*3 -15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
+        }
+        
+    }];
     for (UIButton *btn in _buttonArr) {
         if (button == btn) {
             btn.titleLabel.textColor = YKRedColor;
@@ -230,22 +268,32 @@
             btn.titleLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
         }
     }
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:.1f animations:^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf.theLine removeFromSuperview];
-        [strongSelf.view addSubview:strongSelf.theLine];
-        //
-        [strongSelf.theLine mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(button.mas_bottom);
-            //            make.left.right.equalTo(button);
-            make.centerX.equalTo(button.mas_centerX);
-            make.width.equalTo(@20);
-            make.height.mas_equalTo(2);
-        }];
-        
-        //         [strongSelf.theLine.superview layoutIfNeeded];//强制绘制
-    }];
+//    _currentPageIndex = newIndex;
+//    UIButton *button = [self.view viewWithTag:BtnTag + _currentPageIndex];
+//    button.selected = YES;
+//    for (UIButton *btn in _buttonArr) {
+//        if (button == btn) {
+//            btn.titleLabel.textColor = YKRedColor;
+//        }else {
+//            btn.titleLabel.textColor = [UIColor colorWithHexString:@"999999"];
+//        }
+//    }
+//    __weak typeof(self) weakSelf = self;
+//    [UIView animateWithDuration:.1f animations:^{
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf.theLine removeFromSuperview];
+//        [strongSelf.view addSubview:strongSelf.theLine];
+//        //
+//        [strongSelf.theLine mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(button.mas_bottom);
+//            //            make.left.right.equalTo(button);
+//            make.centerX.equalTo(button.mas_centerX);
+//            make.width.equalTo(@20);
+//            make.height.mas_equalTo(2);
+//        }];
+//
+//        //         [strongSelf.theLine.superview layoutIfNeeded];//强制绘制
+//    }];
 }
 
 #pragma mark - 无效代理方法
@@ -285,6 +333,26 @@
         CGRect sizeRect = line.frame;
         sizeRect.origin.x = button.frame.origin.x;
         //        line.frame = CGRectMake(button.frame.origin.x, ((button.frame.size.width)/2 - (size.width)/2), size.width, .5);
+    }];
+}
+
+- (void)up{
+    
+    
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.btnView.frame = CGRectMake(0, -kSuitLength_H(44) , WIDHT, kSuitLength_V(44));
+        self.pageController.view.frame = CGRectMake(0,self.btnView.frame.size.height + self.btnView.frame.origin.y+ kStatusnBarHeight, WIDHT, HEIGHT);
+    }];
+}
+
+- (void)down{
+    
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.btnView.frame = CGRectMake(0, kNavgationBarHeight , WIDHT, kSuitLength_V(44));
+        self.pageController.view.frame = CGRectMake(0,kNavgationBarHeight+kSuitLength_V(44) , WIDHT, HEIGHT);
     }];
 }
 @end

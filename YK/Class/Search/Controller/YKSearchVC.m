@@ -21,12 +21,17 @@
 #import "YKProductAdCell.h"
 #import "YKLinkWebVC.h"
 #import "YKStyleView.h"
+#import "YKFilterHeaderView.h"
+#import "YKFilterView.h"
 
 @interface YKSearchVC ()<UICollectionViewDelegate, UICollectionViewDataSource,DCCycleScrollViewDelegate>
 {
     BOOL hadScroll;//已经添加
     BOOL hadButtons;
     BOOL hadtitle1;
+    CGFloat lastContentOffset;
+    YKFilterHeaderView *upView;
+    YKFilterView *filterView;
  }
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)NSString* categoryId;
@@ -57,6 +62,8 @@
 @property (nonatomic,strong)NSMutableArray *thirdLevelCategoryList;
 @property (nonatomic,strong)NSMutableArray *productList;
 @property (nonatomic,strong)UIButton *upBtn;
+// 标签数据
+@property (nonatomic, strong) GetNewFilterOutPutDto *filterModel;
 
 
 @end
@@ -117,6 +124,12 @@
     [self getData];
     [self initUpBtn];
     
+    //浮框
+    upView  = [[YKFilterHeaderView alloc]init];
+    upView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(47));
+    upView.hidden = YES;
+    [self.view addSubview:upView];
+    
     //衣位导视图
     UIImageView *image = [[UIImageView alloc]init];
     image.image = [UIImage imageNamed:@"衣位导视图"];
@@ -132,19 +145,68 @@
     }];
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:tap];
+    
+    //获取筛选数据
+    [self getFilterData];
+}
+
+- (void)getFilterData{
+    //创建弹框
+     [self creatFilterView];
+    //弹框赋值
+    
+    //测试数据
+    NSDictionary *d = @{@"value":@"连衣裙",@"id":@"1111"};//品类
+    NSDictionary *d1 = @{@"value":@"冬",@"key":@"1111"};//季节
+    NSDictionary *d2 = @{@"value":@"黑红",@"key":@"1111"};//颜色
+    NSDictionary *d3 = @{@"value":@"7天内",@"key":@"1111"};//上新时间
+    NSDictionary *d4 = @{@"value":@"美式休闲",@"key":@"1111"};//热门标签
+    NSDictionary *d5 = @{@"value":@"优雅",@"key":@"1111"};//风格
+    NSDictionary *d6 = @{@"value":@"针织",@"key":@"1111"};//元素
+    
+    NSArray *a = @[d,d,d,d,d];
+    NSArray *a1 = @[d1,d1,d1,d1,d1];
+     NSArray *a2 = @[d2,d2,d2,d2,d2];
+     NSArray *a3 = @[d3,d3,d3,d3,d3];
+     NSArray *a4 = @[d4,d4,d4,d4,d4];
+     NSArray *a5 = @[d5,d5,d5,d5,d5];
+     NSArray *a6 = @[d6,d6,d6,d6,d6];
+    
+//    self.houseMoreMDic = [NSMutableDictionary dictionary];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.tags forKey:@"品类"];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.roomTypes forKey:@"季节"];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.saleStatus forKey:@"颜色"];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.daysToOpen forKey:@"上新时间"];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.areaRanges forKey:@"热门标签"];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.years forKey:@"风格"];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.buildingType forKey:@"元素"];
+    NSDictionary *dic = @{@"tags":a,
+                          @"roomTypes":a1,
+                          @"saleStatus":a2,
+                          @"daysToOpen":a3,
+                          @"areaRanges":a4,
+                          @"years":a5,
+                          @"buildingType":a6};
+    
+    self.filterModel = [GetNewFilterOutPutDto objectWithKeyValues:dic];
+   
+    filterView.houseFilterOutPutDto = self.filterModel ;
+    
+   //赋值
+    [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
 }
 
 - (void)initUpBtn{
     self.upBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-180, kSuitLength_H(35),kSuitLength_H(35));
+    self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-120, kSuitLength_H(35),kSuitLength_H(35));
     if (HEIGHT==812) {
         self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-250, kSuitLength_H(35), kSuitLength_H(35));
     
     }
     self.upBtn.alpha = 0;
     [self.upBtn setBackgroundImage:[UIImage imageNamed:@"置顶图标"] forState:UIControlStateNormal];
-    [self.view addSubview:self.upBtn];
-    [self.view bringSubviewToFront:self.upBtn];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.upBtn];
+//    [self.view bringSubviewToFront:self.upBtn];
     [self.upBtn addTarget:self action:@selector(up) forControlEvents:UIControlEventTouchUpInside];
     
 }
@@ -162,6 +224,38 @@
                 self.upBtn.alpha = 0;
             }
         }
+    
+    if (scrollView == self.collectionView)
+    {
+        
+        if (scrollView. contentOffset.y > WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)){
+            //浮框出现
+            upView.hidden = NO;
+            
+        }else {
+            upView.hidden = YES;
+        }
+        
+        if(scrollView.contentOffset.y > lastContentOffset && scrollView.contentOffset.y>kSuitLength_H(300)) {
+            //向上推
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"up" object:nil userInfo:nil];
+            self.collectionView.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-kSuitLength_V(50));
+        }
+     
+        if (scrollView.contentOffset.y< lastContentOffset )
+        {
+            //向下
+            [UIView animateWithDuration:0.25 animations:^{
+                self.collectionView.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
+            }];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"down" object:nil userInfo:nil];
+            
+            
+        }
+        
+        
+    }
   
 }
 - (void)getData{
@@ -252,7 +346,8 @@
 //头
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
 
-    return CGSizeMake(self.view.frame.size.width, (WIDHT-48)/3*2+40+kSuitLength_H(160));
+//    return CGSizeMake(self.view.frame.size.width, (WIDHT-48)/3*2+40+kSuitLength_H(160));
+    return CGSizeMake(WIDHT, WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13) + kSuitLength_H(47));
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
@@ -275,7 +370,7 @@
         //风格
         YKStyleView *styleView = [[YKStyleView alloc]init];
         styleView.styleArray = self.styleArray;
-        styleView.frame = CGRectMake(0, 0, WIDHT, (WIDHT-48)/3*2+40);
+        styleView.frame = CGRectMake(0, 0, WIDHT, WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13));
         if (hadScroll) {
             [head addSubview:styleView];
             hadScroll = NO;
@@ -286,25 +381,36 @@
             weakSelf.pageNum = 1;
             [weakSelf filterProductWithCategoryId:_categoryId sortId:_sortId styleId:styleId];
         };
-
-        if (self.titles.count!=0) {
-            self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
-            self.titleView.frame = CGRectMake(0,styleView.frame.size.height + styleView.frame.origin.y,head.frame.size.width, kSuitLength_H(160));
-            [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
-            //筛选
-            self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){
-                _pageNum = 1;
-                _sortId = sortId;
-                _categoryId = categoryId;
-                [weakSelf filterProductWithCategoryId:categoryId sortId:sortId styleId:weakSelf.styleId];
-            };
-            if (!hadButtons) {
-                [head addSubview:self.titleView];
-                hadButtons = YES;
-            }
-            
+        
+        //筛选三个title
+        YKFilterHeaderView *headerView = [[YKFilterHeaderView alloc]init];
+        headerView.frame = CGRectMake(0, styleView.bottom, WIDHT, kSuitLength_H(47));
+        headerView.filterActionDid = ^(void){
+            [weakSelf showFilterView];
+        };
+        if (!hadButtons) {
+            [head addSubview:headerView];
+            hadButtons = YES;
         }
         
+//        if (self.titles.count!=0) {
+//            self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
+//            self.titleView.frame = CGRectMake(0,styleView.frame.size.height + styleView.frame.origin.y,head.frame.size.width, kSuitLength_H(160));
+//            [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
+//            //筛选
+//            self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){
+//                _pageNum = 1;
+//                _sortId = sortId;
+//                _categoryId = categoryId;
+//                [weakSelf filterProductWithCategoryId:categoryId sortId:sortId styleId:weakSelf.styleId];
+//            };
+//            if (!hadButtons) {
+//                [head addSubview:self.titleView];
+//                hadButtons = YES;
+//            }
+//
+//        }
+//
             return head;
     }
     
@@ -377,4 +483,43 @@
     }];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    if (scrollView==self.collectionView) {
+        lastContentOffset = scrollView.contentOffset.y;
+    }
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    self.upBtn.alpha = 0;
+}
+
+- (void)creatFilterView{
+    filterView = [[YKFilterView alloc] initWithFrame:CGRectMake(screen_width, 0, 0, HEIGHT)];
+    
+    filterView.tabColor = [UIColor whiteColor];
+    
+    filterView.menuHeight = self.view.frame.size.height - kSuitLength_V((20 + 40 + 20) / 2);
+    filterView.userInteractionEnabled = YES;
+    
+    
+    //更多的回调
+    filterView.moreSelectedCallback = ^(NSArray *tags, NSInteger DaysToOpenLow,NSInteger DaysToOpenhigh,NSArray *roomTypes,NSArray *SaleStatus,NSInteger AreaLow,NSInteger AreaHigh,NSArray *YearLimits,NSArray *BuildingType){
+   
+    };
+    [filterView setDidSelectedCallback:^(NSString *circleId, NSString *content, NSInteger tag){
+        
+    }];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:filterView];
+    
+}
+
+- (void)showFilterView{
+    //赋值
+//    [filterView initDataSourseWithType:@"3" AndSelectTag:20003];
+    
+    [filterView showDropDownWithTag:20003];
+}
 @end

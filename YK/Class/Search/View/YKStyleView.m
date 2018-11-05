@@ -25,21 +25,21 @@
 }
 
 - (void)addTitle{
-    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"huangxian"]];
-    image.left = 15;
-    image.top = 24;
-    [image sizeToFit];
-    [self addSubview:image];
-    
-    UILabel *title = [[UILabel alloc]init];
-    title.top = 24;
-    title.left = image.right + 6;
-    title.width = 100;
-    title.height =18;
-    title.text = @"风格选择";
-    title.textColor = mainColor;
-    title.font = PingFangSC_Medium(kSuitLength_H(16));
-    [self addSubview:title];
+//    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"huangxian"]];
+//    image.left = 15;
+//    image.top = 24;
+//    [image sizeToFit];
+//    [self addSubview:image];
+//
+//    UILabel *title = [[UILabel alloc]init];
+//    title.top = 24;
+//    title.left = image.right + 6;
+//    title.width = 100;
+//    title.height =18;
+//    title.text = @"风格选择";
+//    title.textColor = mainColor;
+//    title.font = PingFangSC_Medium(kSuitLength_H(16));
+//    [self addSubview:title];
 }
 
 - (NSString *)URLEncodedString:(NSString *)str
@@ -57,8 +57,8 @@
     WeakSelf(weakSelf)
     _styleArray = styleArray;
     NSUInteger num;
-    if (_styleArray.count>=6) {
-        num = 6;
+    if (_styleArray.count>=4) {
+        num = 4;
     }else {
         num = _styleArray.count;
     }
@@ -74,41 +74,45 @@
                 btn.image.contentMode = UIViewContentModeScaleAspectFit;
                 btn.image.clipsToBounds = YES;
         
-                CGFloat w = (WIDHT-48)/3;
-                btn.frame = CGRectMake(24+w*(i%3),50+w*(i/3),w,w+2);
+                CGFloat w = WIDHT/4;
+                btn.frame = CGRectMake(w*(i%4),w*(i/4),w,w);
         btn.tag = i;
         [self addSubview:btn];
         [_btnArray addObject:btn];
         
     }
+    //线
+    UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, WIDHT/4+kSuitLength_H(13), WIDHT, kSuitLength_H(10))];
+    line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    [self addSubview:line];
 }
 
 - (void)btnViewClick:(YKScrollBtnView *)btnView{
 
-    for (YKScrollBtnView *btn in _btnArray) {
-        if (btn.tag == btnView.tag) {
-            btnView.isSelect  = !btnView.isSelect;
-            if (btnView.isSelect) {
-                 btn.styleId = _styleArray[btnView.tag][@"styleId"];
-                btnView.title.textColor = [UIColor whiteColor];
-                btnView.title.backgroundColor = mainColor;
-                //拼接x
-                 btnView.title.text = [btnView.title.text stringByAppendingFormat:@" x"];
-            }else {
-                btnView.title.textColor = mainColor;
-                btnView.title.backgroundColor = [UIColor whiteColor];
-                btnView.styleId = @"0";
-                //去x
-                btnView.title.text = [btnView.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
-            }
-        }else {
-            btn.isSelect = NO;
-            btn.title.textColor = mainColor;
-            btn.title.backgroundColor = [UIColor whiteColor];
-            btn.title.text = [btn.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
-        }
-    }if (self.toDetailBlock) {
-        self.toDetailBlock(btnView.styleId,@"");
-    }
+//    for (YKScrollBtnView *btn in _btnArray) {
+//        if (btn.tag == btnView.tag) {
+//            btnView.isSelect  = !btnView.isSelect;
+//            if (btnView.isSelect) {
+//                 btn.styleId = _styleArray[btnView.tag][@"styleId"];
+//                btnView.title.textColor = [UIColor whiteColor];
+//                btnView.title.backgroundColor = mainColor;
+//                //拼接x
+//                 btnView.title.text = [btnView.title.text stringByAppendingFormat:@" x"];
+//            }else {
+//                btnView.title.textColor = mainColor;
+//                btnView.title.backgroundColor = [UIColor whiteColor];
+//                btnView.styleId = @"0";
+//                //去x
+//                btnView.title.text = [btnView.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
+//            }
+//        }else {
+//            btn.isSelect = NO;
+//            btn.title.textColor = mainColor;
+//            btn.title.backgroundColor = [UIColor whiteColor];
+//            btn.title.text = [btn.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
+//        }
+//    }if (self.toDetailBlock) {
+//        self.toDetailBlock(btnView.styleId,@"");
+//    }
 }
 @end

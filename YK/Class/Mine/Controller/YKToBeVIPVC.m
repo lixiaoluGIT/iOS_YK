@@ -495,7 +495,22 @@
         
         [self getData];
         //完成付费
-        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
+        NSString *des;
+        switch (_payType) {
+            case 1:
+                des = @"衣库月卡(阿里支付)";
+                break;
+            case 2:
+                des = @"衣库季卡(阿里支付)";
+                break;
+            case 3:
+                des = @"衣库年卡(阿里支付)";
+                break;
+                
+            default:
+                break;
+        }
+        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158(无效id)",@"item":des,@"amount":_total.text}];
         //监测
         [MobClick event:@"pay"];
         
@@ -517,7 +532,22 @@
     if ([[dict objectForKey:@"codeid"]integerValue]==0) {
         
         //完成付费
-         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158",@"item":@"衣库会员卡",@"amount":@"149"}];
+        NSString *des;
+        switch (_payType) {
+            case 1:
+                des = @"衣库月卡(微信支付)";
+                break;
+            case 2:
+                des = @"衣库季卡(微信支付)";
+                break;
+            case 3:
+                des = @"衣库年卡(微信支付)";
+                break;
+                
+            default:
+                break;
+        }
+         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158(无效id)",@"item":des,@"amount":_total.text}];
         //主包监测
         [MobClick event:@"pay"];
         [self getData];

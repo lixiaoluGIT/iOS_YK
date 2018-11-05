@@ -9,6 +9,257 @@
 #ifndef YKprefixheader_pch
 #define YKprefixheader_pch
 
+#define IOS10_OR_LATER  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+#define IOS9_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+#define IOS8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define IOS7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IOS6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
+#define IOS5_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0)
+#define IOS4_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 4.0)
+#define IOS3_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 3.0)
+
+//#define IS_IPAD         (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+//#define isIPhone5       ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+
+#define IS_IPAD         (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+#define isIPhone4       ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define isIPhone5       ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define isIPhone6       ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define isIPhone6p      ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IsIPhoneX      ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+
+#define CELLWIDTH  self.frame.size.width
+#define CELLHEIGHT self.frame.size.height
+
+#define PMWidth   self.view.frame.size.width
+#define PMHeight  self.view.frame.size.height
+
+#define SetUpTextColorFontParagraph(label,textStr,font,fontRange,color,colorRange,attributedString) \
+attributedString = [[NSMutableAttributedString alloc] initWithString:textStr];\
+[attributedString addAttribute:NSFontAttributeName value:font range:fontRange];\
+[attributedString addAttribute:NSForegroundColorAttributeName value:color range:colorRange];\
+label.attributedText = attributedString;
+
+#define FontColorBlue RGBCOLOR(106,192,255) //字体蓝色
+
+
+
+/*本地化转换*/
+#define L(key) \
+[[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
+
+
+#define MD_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
+boundingRectWithSize:maxSize options:(NSStringDrawingUsesLineFragmentOrigin) \
+attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
+
+
+//颜色创建
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+//是否为空或是[NSNull null]
+#define NotNilAndNull(_ref)  (((_ref) != nil) && (![(_ref) isEqual:[NSNull null]]))
+#define IsNilOrNull(_ref)   (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]))
+
+//字符串是否为空
+#define IsStrEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]))
+//数组是否为空
+#define IsArrEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref) count] == 0))
+
+//字符串是否合法（只用于定位）
+#define IsLegitimate(_ref)  (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]) || ([(_ref)isEqualToString:@"0"]))
+//字典获取
+#define EncodeFormDic(dic,key) [dic[key] isKindOfClass:[NSString class]] ? dic[key] :([dic[key] isKindOfClass:[NSNumber class]] ? [dic[key] stringValue]:@"")
+//释放定时器
+#define TT_INVALIDATE_TIMER(__TIMER) \
+{\
+[__TIMER invalidate];\
+__TIMER = nil;\
+}
+
+#define OC(str) [NSString stringWithCString:(str) encoding:NSUTF8StringEncoding]
+
+//释放ASIHttpRequest专用
+#define HTTP_RELEASE_SAFELY(__POINTER) \
+{\
+if (nil != (__POINTER))\
+{\
+[__POINTER clearDelegatesAndCancel];\
+TT_RELEASE_SAFELY(__POINTER);\
+}\
+}
+
+//释放httpMessage专用
+#define HTTPMSG_RELEASE_SAFELY(__REF) \
+{\
+if (nil != (__REF))\
+{\
+[__REF cancelDelegateAndCancel];\
+TT_RELEASE_SAFELY(__REF);\
+}\
+}
+
+//释放service专用
+#define SERVICE_RELEASE_SAFELY(__REF) \
+{\
+if ((__REF) != nil)\
+{ \
+[__REF setDelegate:nil];\
+TT_RELEASE_SAFELY(__REF);\
+}\
+}
+
+//释放SNPopoverViewController
+#define POP_RELEASE_SAFELY(__POINTER) \
+{\
+if (nil != (__POINTER))\
+{\
+[__POINTER dismissPopoverAnimated:YES];\
+TT_RELEASE_SAFELY(__POINTER);\
+}\
+}
+
+//安全释放
+#define TT_RELEASE_SAFELY(__REF) { (__REF) = nil;}
+
+//view安全释放
+#define TTVIEW_RELEASE_SAFELY(__REF) { [__REF removeFromSuperview]; __REF = nil; }
+
+//释放定时器
+#define TT_INVALIDATE_TIMER(__TIMER) \
+{\
+[__TIMER invalidate];\
+__TIMER = nil;\
+}
+
+#define DEBUGLOG 1
+
+#ifdef DEBUGLOG
+#       define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#       define DLog(...)
+#endif
+
+#define EncodeFormDic(dic,key) [dic[key] isKindOfClass:[NSString class]] ? dic[key] :([dic[key] isKindOfClass:[NSNumber class]] ? [dic[key] stringValue]:@"")
+
+
+
+//arc 支持performSelector:
+#define SuppressPerformSelectorLeakWarning(Stuff) \
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+Stuff; \
+_Pragma("clang diagnostic pop") \
+} while (0)
+
+#define DefaultImage @"personal-head"
+#define HouseDefaultImage @"houseDefauit"
+
+#define MSW             ([UIScreen mainScreen].bounds.size.width)
+#define MSH             ([UIScreen mainScreen].bounds.size.height)
+#define screen_width    ([UIScreen mainScreen].bounds.size.width)
+#define screen_height   ([UIScreen mainScreen].bounds.size.height)
+//iPhoneX屏幕高度
+#define MSXH ([UIScreen mainScreen].bounds.size.height == 812.0 ?[UIScreen mainScreen].bounds.size.height-34 : [UIScreen mainScreen].bounds.size.height)
+#define NAVH ([UIScreen mainScreen].bounds.size.height == 812.0 ? 88 : 64)
+#define TOPH ([UIScreen mainScreen].bounds.size.height == 812.0 ? 24 : 0)
+
+
+#define MAXThree(a,b,c) (a>b?(a>c?a:c):(b>c?b:c))
+
+#define SearchColor             [UIColor colorWithHex:@"#e5e5e5"]
+#define MoneyColor              [UIColor colorWithHex:@"#cd082f"]
+#define titleLightGrayColor     [UIColor colorWithHex:@"#676767"]
+#define titleDarkGrayColor      [UIColor colorWithHex:@"#4e4e4e"]
+#define NavColor                [UIColor colorWithHex:@"#fbd04c"]
+
+// 导航栏颜色 - 白色
+#define NavBarColor                [UIColor colorWithHex:@"#ffffff"]
+
+#define MainColor               [UIColor colorWithHex:@"#FBD04C"]       //主色
+#define DarkLineColor           RGBCOLOR(200, 200, 200)
+#define BackGroundColor         RGBCOLOR(234, 234, 234)
+#define LineColor               RGBCOLOR(200, 200, 200)
+#define LightBlackColor         RGBCOLOR(56, 65, 79)
+#define DarkRedColor            RGBCOLOR(208, 22, 53)
+//#define backwhiteColor              [UIColor colorWithHex:@"#F3F3F3"]   //白色
+#define blackTextColor          [UIColor colorWithHexString:@"#333333"]      //字体黑色
+#define grayTextColor           [UIColor colorWithHexString:@"#666666"]      //字体灰色
+#define shallowgrayTextColor           [UIColor colorWithHexString:@"#9A9A9A"]      //字体浅灰色
+#define redTextColor            [UIColor colorWithHexString:@"#FF4444"]      //字体红色
+#define gartLineColor            [UIColor colorWithHexString:243/255.0 green:243/255.0 blue:243/255.0 alpha:1/1.0];           //灰色线条
+#define bordergaryColor            [UIColor colorWithHexString:@"#C8C8C8"]      //边框灰色
+
+#define tagBorderGaryColor            [UIColor colorWithHexString:@"#D9D9D9"]      //标签边框灰色
+
+#define BTNBorderGaryColor            [UIColor colorWithHexString:@"#E8E8E8"]      //按钮边框灰色
+
+#define kLineColor                  [UIColor colorWithHexString:@"#DEDEDE"]      //线条灰色
+
+#define kLineColor2                  [UIColor colorWithHexString:@"#f9f9f9"]      //线条淡灰色
+
+#define kDefaultImg1_1          [UIImage imageNamed:@"app_defaultImg"]
+#define kDefaultImg1_6          [UIImage imageNamed:@"app_defaultImg1_6"]
+#define kDefaultImg3_2          [UIImage imageNamed:@"app_defaultImg3_2"]
+#define kDefaultImg4_5          [UIImage imageNamed:@"app_defaultImg4_5"]
+#define kDefaultImgColor        RGBCOLOR(203, 201, 202)
+
+//高度自适应
+#define MD_MULTILINE_TEXTSIZETWO(text, font, maxSize) [text length] > 0 ? [text \
+boundingRectWithSize:maxSize options:(NSStringDrawingUsesLineFragmentOrigin) \
+attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
+
+////定义百度推送的key
+//#define kBPushEnterpriseKey @"EWmGYdDw6jnKNGyVRRcRm5Cr" //企业版推送key
+//#define kBPushAppStoreKey   @"LprIms0TRaXIH1LEP9NIiW8b" //商店版推送key
+//#define kBPushKey           [[[NSBundle mainBundle] bundleIdentifier] myContainsString:@"buguyuan"] ? kBPushEnterpriseKey : kBPushAppStoreKey
+////定义百度地图的key
+//#define kBMapEnterpriseKey @"7uMrlsMaGBhVCpy07DETxjXMlrqown3V" //企业版推送key
+//#define kBMapAppStoreKey   @"7uMrlsMaGBhVCpy07DETxjXMlrqown3V" //商店版推送key
+//#define kBMapKey           [[[NSBundle mainBundle] bundleIdentifier] myContainsString:@"buguyuan"] ? kBMapEnterpriseKey : kBMapAppStoreKey
+//
+////定义极光推送的模式
+//#ifdef DEBUG
+//#       define JPushIsProduction 0
+//#else
+//#       define JPushIsProduction 1
+//#endif
+//#define Alipay_OpenApp     @"alipay.open.xingfumall"
+
+//------------------------------------------notification name------------------------------------------------//
+
+#define LOGIN_OK                                @"LOGIN_OK"
+
+
+// 适配
+#define IPhone4_5_6_6P(a,b,c,d) (CGSizeEqualToSize(CGSizeMake(320, 480), [[UIScreen mainScreen] bounds].size) ?(a) :(CGSizeEqualToSize(CGSizeMake(320, 568), [[UIScreen mainScreen] bounds].size) ? (b) :(CGSizeEqualToSize(CGSizeMake(375, 667), [[UIScreen mainScreen] bounds].size) ||CGSizeEqualToSize(CGSizeMake(375, 812), [[UIScreen mainScreen] bounds].size) ?(c) : (CGSizeEqualToSize(CGSizeMake(414, 736), [[UIScreen mainScreen] bounds].size) ?(d) : 0))))
+#define IPhone4_5_6_6P_X(a,b,c,d,e) (CGSizeEqualToSize(CGSizeMake(320, 480), [[UIScreen mainScreen] bounds].size) ?(a) :(CGSizeEqualToSize(CGSizeMake(320, 568), [[UIScreen mainScreen] bounds].size) ? (b) : (CGSizeEqualToSize(CGSizeMake(375, 667), [[UIScreen mainScreen] bounds].size) ?(c) : (CGSizeEqualToSize(CGSizeMake(414, 736), [[UIScreen mainScreen] bounds].size) ?(d) : CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size)?(e) : 0))))
+
+
+// 屏幕适配
+#define kDevice_Is_iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// 以6为原型图
+#define kLength_HParameter (kDevice_Is_iPhoneX ? 1.0 : (kDevice_Is_iPhone6Plus ? 1.104 : (kDevice_Is_iPhone6 ? 1 : (kDevice_Is_iPhone4 ? 0.719640 : 0.853333))))
+#define kLength_VParameter (kDevice_Is_iPhoneX ? 1.217391 : (kDevice_Is_iPhone6Plus ? 1.103448 : (kDevice_Is_iPhone6 ? 1 : (kDevice_Is_iPhone4 ? 0.719640 : 0.851574))))
+
+#define kSuitLength_H(lengthGiven) ((lengthGiven) * kLength_HParameter)
+#define kSuitLength_V(lengthGiven) ((lengthGiven) * kLength_VParameter)
+
+
+// font
+#define kFont(size) [UIFont systemFontOfSize:size]
+#define kBoldFont(size) [UIFont boldSystemFontOfSize:size]
+
+// kWindow
+#define kWindow [UIApplication sharedApplication].delegate.window
 //客服电话
 //#define PHONE @"15512805315"//王阳手机号
 #define PHONE @"010-52894251"//座机号
@@ -55,7 +306,7 @@
 //#ifdef release//开发环境
 #define mainColor [UIColor colorWithHexString:@"1a1a1a"]
 #define backColo [UIColor colorWithHexString:@"dddddd"]
-#define YKRedColor [UIColor colorWithHexString:@"EE2D2D"]
+#define YKRedColor [UIColor colorWithHexString:@"F34520"]
 //#else //生产环境
 //#define mainColor [UIColor colorWithHexString:@"fe7310"]
 //#define backColo [UIColor colorWithHexString:@"f4f4f4"]
@@ -347,6 +598,7 @@
 #import "MTA.h"
 #import <UMCommon/UMCommon.h>
 #import <UMAnalytics/MobClick.h>
+#import "MJExtension.h"
 
 #ifdef DEBUG
 #define NSLog(...)  NSLog(__VA_ARGS__)

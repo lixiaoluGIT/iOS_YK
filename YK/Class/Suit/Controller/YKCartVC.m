@@ -26,6 +26,8 @@
     NSInteger totalNum;//总衣位数
     NSInteger useNum;//已占用衣位数
     NSInteger leaseNum;//剩余衣位数
+    
+    NSInteger ccNum;
 }
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -52,6 +54,7 @@
     [[YKSuitManager sharedManager]searchAddCCOnResponse:^(NSDictionary *dic) {
         //得到总衣位数
         NSArray *array = [NSArray arrayWithArray:dic[@"data"]];
+        ccNum = array.count;
         if (array.count>0) {//有加衣劵
             totalNum = 4;
             
@@ -332,29 +335,51 @@
 //            return 20;
 //        }
 //    }
-    return 40;
+    return kSuitLength_H(44);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *foot = [[UIView alloc]init];
     UILabel *lable = [[UILabel alloc]init];
+    [foot addSubview:lable];
     if (![YKSuitManager sharedManager].isHadCC) {
+        
         lable.text = @"还想继续选衣服？立即购买加衣劵> ";
         lable.font = PingFangSC_Medium(12);
         lable.textColor = [UIColor colorWithHexString:@"1a1a1a"];
         [foot setUserInteractionEnabled:YES];
+        
+        
+        [lable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(foot.right).offset(-20);
+            make.centerY.mas_equalTo(foot);
+        }];
     }else {
+        UILabel *l = [[UILabel alloc]init];
+        l.text = [NSString stringWithFormat:@"加衣劵剩余%ld张",(long)ccNum];
+        l.textColor = mainColor;
+        l.font = PingFangSC_Medium(kSuitLength_H(12));
+        [foot addSubview:l];
+        
         lable.text = @"下单时不满4件衣服，不消耗加衣劵";
-        lable.font = PingFangSC_Medium(12);
+        lable.font = PingFangSC_Medium(kSuitLength_H(12));
         lable.textColor = [UIColor colorWithHexString:@"7a7a7a"];
         [foot setUserInteractionEnabled:NO];
+        
+        [l mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(foot.right).offset(-20);
+            make.top.mas_equalTo(kSuitLength_H(4));
+            
+        }];
+        
+        [lable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(foot.right).offset(-20);
+            make.top.mas_equalTo(l.mas_bottom).offset(kSuitLength_H(4));
+        }];
     }
-    [foot addSubview:lable];
     
-    [lable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(foot.right).offset(-20);
-        make.centerY.mas_equalTo(foot);
-    }];
+    
+   
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
         if ([Token length] == 0) {

@@ -14,6 +14,7 @@
 #import "YKHomeSegementVC.h"
 #import "YKSearchSegmentVC.h"
 #import "YKCartVC.h"
+#import "YKSuitVC.h"
 
 @interface YKMainVC ()<UITabBarControllerDelegate>
 {
@@ -40,6 +41,8 @@
         
         UINavigationController *home;
         UINavigationController *near;
+        UINavigationController *su;
+        
         
 //        YKHomeVC *homeVC = [YKHomeVC new];
 //        homeVC.tabBarItem.image = [UIImage imageNamed:@"home"];
@@ -48,8 +51,8 @@
 //        homeVC.title = @"首页";
         
         YKHomeSegementVC *homeVC = [YKHomeSegementVC new];
-        homeVC.tabBarItem.image = [UIImage imageNamed:@"home"];
-        homeVC.tabBarItem.selectedImage = [UIImage imageNamed:@"home1"];
+        homeVC.tabBarItem.image = [UIImage imageNamed:@"首页未选"];
+        homeVC.tabBarItem.selectedImage = [UIImage imageNamed:@"首页2"];
         homeVC.tabBarItem.title = @"首页";
         homeVC.title = @"首页";
         
@@ -60,34 +63,42 @@
         //homeVC.tabBarItem
         
         YKSearchSegmentVC *orderVC = [[YKSearchSegmentVC alloc]init];
-        orderVC.tabBarItem.image = [UIImage imageNamed:@"xuanyi"];
-        orderVC.tabBarItem.selectedImage = [UIImage imageNamed:@"xuanyi1"];
+        orderVC.tabBarItem.image = [UIImage imageNamed:@"选衣未选中"];
+        orderVC.tabBarItem.selectedImage = [UIImage imageNamed:@"选衣"];
         orderVC.tabBarItem.title = @"选衣";
         orderVC.title = @"选衣";
         near = [[UINavigationController alloc] initWithRootViewController:orderVC];
         [orderVC.tabBarItem setTitleTextAttributes:dictMine forState:UIControlStateSelected];
+        
+        YKSuitVC *suit = [[YKSuitVC alloc]init];
+        suit.tabBarItem.image = [UIImage imageNamed:@"心愿单未选"];
+        suit.tabBarItem.selectedImage = [UIImage imageNamed:@"心愿单"];
+        suit.tabBarItem.title = @"心愿单";
+        suit.title = @"心愿单";
+        su = [[UINavigationController alloc] initWithRootViewController:suit];
+        [suit.tabBarItem setTitleTextAttributes:dictMine forState:UIControlStateSelected];
         
 //        YKSuitVC *shareLineController = [[YKSuitVC  alloc] init];
 //        shareLineController.title = @"衣袋";
         YKCartVC *shareLineController = [[YKCartVC alloc]init];
         shareLineController.title = @"衣袋";
  
-        shareLineController.tabBarItem.image = [UIImage imageNamed:@"yidai"];
-        shareLineController.tabBarItem.selectedImage = [UIImage imageNamed:@"yidai1"];
+        shareLineController.tabBarItem.image = [UIImage imageNamed:@"衣袋未选"];
+        shareLineController.tabBarItem.selectedImage = [UIImage imageNamed:@"衣袋"];
         shareLineController.tabBarItem.title = @"衣袋";
         UINavigationController *meaaage = [[UINavigationController alloc] initWithRootViewController:shareLineController];
         [shareLineController.tabBarItem setTitleTextAttributes:dictMine forState:UIControlStateSelected];
         
         YKMineVC  *welfareController = [YKMineVC  new];
         welfareController.title = @"我的";
-        welfareController.tabBarItem.image = [UIImage imageNamed:@"wode"];
-        welfareController.tabBarItem.selectedImage = [UIImage imageNamed:@"wode1"];
+        welfareController.tabBarItem.image = [UIImage imageNamed:@"我的未选"];
+        welfareController.tabBarItem.selectedImage = [UIImage imageNamed:@"Path 2"];
         welfareController.tabBarItem.title = @"我的";
         UINavigationController *list = [[UINavigationController alloc] initWithRootViewController:welfareController];
         
         [welfareController.tabBarItem setTitleTextAttributes:dictMine forState:UIControlStateSelected];
 
-        self.viewControllers = @[home, near, meaaage, list];
+        self.viewControllers = @[home, near, su,meaaage, list];
         
         self.delegate = self;
         self.selectedIndex = 0;
@@ -109,12 +120,12 @@
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-    if (tabBarController.selectedIndex == 3) {
-        
-    }
-    
-    //点击tabBarItem动画
-    if (self.selectedIndex != _currentIndex)[self tabBarButtonClick:[self getTabBarButton]];
+//    if (tabBarController.selectedIndex == 3) {
+//
+//    }
+//    
+//    //点击tabBarItem动画
+//    if (self.selectedIndex != _currentIndex)[self tabBarButtonClick:[self getTabBarButton]];
     
     
 }

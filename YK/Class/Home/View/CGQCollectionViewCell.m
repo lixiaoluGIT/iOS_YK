@@ -93,7 +93,7 @@
     
     if (product.isStarSame) {//明星同款
         _shangxinImage.hidden = NO;
-        _shangxinImage.image = [UIImage imageNamed:@"starame"];
+        _shangxinImage.image = [UIImage imageNamed:@"明星同款"];
     }
     
     

@@ -39,6 +39,7 @@
 //
 #import "YKLogInView.h"
 #import "YKPlayVC.h"
+#import "YKLinkWebVC.h"
 
 @interface AppDelegate ()<WXApiDelegate,UIApplicationDelegate, GeTuiSdkDelegate, UNUserNotificationCenterDelegate,DXAlertViewDelegate,JPUSHRegisterDelegate>
 
@@ -605,6 +606,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
+    
+    if ([url.scheme isEqualToString:@"openfromweb"]) {
+        
+//        NSString *l = [NSString stringWithFormat:@"%@",url];
+//        NSRange range = NSMakeRange(14, l.length-14);
+//        NSString *clothID  = [l substringWithRange:range];
+//        //跳到web
+//
+//        YKLinkWebVC *web = [YKLinkWebVC new];
+//        web.hidesBottomBarWhenPushed = YES;
+//        web.url = clothID;
+//        [[self getCurrentVC].navigationController pushViewController:web animated:YES];
+    }
     
     if ([url.scheme isEqualToString:@"openyk"]) {
         NSString *l = [NSString stringWithFormat:@"%@",url];

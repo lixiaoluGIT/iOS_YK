@@ -46,7 +46,7 @@
     }];
 }
 - (void)alert{
-    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"问题解决" message:@"如果遇到特殊情况无法预约或预约出现问题，需要您主动联系快递上门取件(快递费由衣库平台承担)。收件地址：山东省 青州市 丰收二路 衣库仓储中心,收件人信息：衣库APP,收件人联系方式：182 6441 1625" cancelBtnTitle:@"取消" otherBtnTitle:@"确定"];
+    DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"问题解决" message:@"如果遇到特殊情况无法预约或预约出现问题，需要您主动联系快递上门取件(快递费由衣库平台承担)。收件地址：山东省 青州市 丰收二路 衣库仓储中心,收件人信息：衣库APP,收件人联系方式：15614205180" cancelBtnTitle:@"取消" otherBtnTitle:@"确定"];
    [alertView show];
 }
 - (void)viewDidLoad {

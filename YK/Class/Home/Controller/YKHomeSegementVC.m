@@ -201,6 +201,7 @@
     _buttonArr = [NSMutableArray array];
     self.theLine = [[UILabel alloc]init];
     self.theLine.backgroundColor = [UIColor colorWithHexString:@"ee2d2d"];
+
     UIButton *clickButton = nil;
     for (NSInteger i = 0; i < self.titleArr.count; i ++) {
         UIButton *button = [[UIButton alloc] init];
@@ -235,6 +236,10 @@
         [self.btnView addSubview:button];
 
     }
+    
+    self.theLine.frame = CGRectMake(WIDHT/4-15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
+    [self.btnView addSubview:self.theLine];
+    
     //布局
 //    [_buttonArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:10 tailSpacing:10];
 //    [_buttonArr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -307,28 +312,35 @@
         _pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         _pageController.delegate = self;
         _pageController.dataSource = self;
-        [_pageController setViewControllers:@[[self.controllerArr objectAtIndex:self.type]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [_pageController setViewControllers:@[[self.controllerArr objectAtIndex:self.type]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     }
     return _pageController;
 }
 //
 - (void)changeControllerClick:(UIButton *)sender{
+//    [self navigationBarNotHidden];
     NSInteger tempIndex = _currentPageIndex;
     __weak typeof(self) weakSelf = self;
     NSInteger nowTemp = sender.tag - BtnTag;
     if (nowTemp > tempIndex) {
         for (NSInteger i = tempIndex + 1; i <= nowTemp; i ++) {
-            [self.pageController setViewControllers:@[self.controllerArr[i]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
+
+            [weakSelf updateCurrentPageIndex:i];
+
+            [self.pageController setViewControllers:@[self.controllerArr[i]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
                 if (finished) {
-                    [weakSelf updateCurrentPageIndex:i];
+//                    [weakSelf updateCurrentPageIndex:i];
                 }
             }];
         }
     }else if (nowTemp < tempIndex){
         for (NSInteger i = tempIndex; i >= nowTemp; i --) {
-            [self.pageController setViewControllers:@[self.controllerArr[i]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
+
+            [weakSelf updateCurrentPageIndex:i];
+
+            [self.pageController setViewControllers:@[self.controllerArr[i]] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:^(BOOL finished) {
                 if (finished) {
-                    [weakSelf updateCurrentPageIndex:i];
+//                    [weakSelf updateCurrentPageIndex:i];
                 }
             }];
         }
@@ -344,13 +356,34 @@
 }
 //
 - (void)updateCurrentPageIndex:(NSInteger)newIndex{
-    if (![cacheArray containsObject:@(newIndex)]) {
-        [self navigationBarNotHidden];
-        [cacheArray addObject:@(newIndex)];
-    }
+//    if (![cacheArray containsObject:@(newIndex)]) {
+//        [self navigationBarNotHidden];
+//        [cacheArray addObject:@(newIndex)];
+//    }
     _currentPageIndex = newIndex;
     UIButton *button = [self.view viewWithTag:BtnTag + _currentPageIndex];
     button.selected = YES;
+    __weak typeof(self) weakSelf = self;
+//    [UIView animateWithDuration:.25f animations:^{
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf.theLine removeFromSuperview];
+//        [strongSelf.btnView addSubview:strongSelf.theLine];
+//        //
+//        [strongSelf.theLine mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(button.mas_bottom).offset(-2);
+//            //            make.left.right.equalTo(button);
+//            make.centerX.equalTo(button.mas_centerX);
+//            make.width.equalTo(@(kSuitLength_H(25)));
+//            make.height.mas_equalTo(kSuitLength_V(2));
+//        }];
+    [UIView animateWithDuration:0.25 animations:^{
+        if (newIndex==0) {
+            self.theLine.frame = CGRectMake(WIDHT/4-15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
+        }else {
+            self.theLine.frame = CGRectMake(WIDHT/4*3-15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
+        }
+        
+    }];
     for (UIButton *btn in _buttonArr) {
         if (button == btn) {
             btn.titleLabel.textColor = YKRedColor;
@@ -358,22 +391,22 @@
             btn.titleLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
         }
     }
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:.25f animations:^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf.theLine removeFromSuperview];
-        [strongSelf.btnView addSubview:strongSelf.theLine];
-        //
-        [strongSelf.theLine mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(button.mas_bottom).offset(-2);
-//            make.left.right.equalTo(button);
-            make.centerX.equalTo(button.mas_centerX);
-            make.width.equalTo(@(kSuitLength_H(25)));
-            make.height.mas_equalTo(kSuitLength_V(2));
-        }];
-        
+//    __weak typeof(self) weakSelf = self;
+//    [UIView animateWithDuration:.25f animations:^{
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf.theLine removeFromSuperview];
+//        [strongSelf.btnView addSubview:strongSelf.theLine];
+//        //
+//        [strongSelf.theLine mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(button.mas_bottom).offset(-2);
+////            make.left.right.equalTo(button);
+//            make.centerX.equalTo(button.mas_centerX);
+//            make.width.equalTo(@(kSuitLength_H(25)));
+//            make.height.mas_equalTo(kSuitLength_V(2));
+//        }];
+    
 //         [strongSelf.theLine.superview layoutIfNeeded];//强制绘制
-    }];
+//    }];
 }
 
 #pragma mark - 无效代理方法
@@ -405,52 +438,37 @@
 }
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    //CGSize size = [self.titleArr[0] sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:The_titleFont size:20]}];
+
     NSInteger x = _currentPageIndex;
-//    [self navigationBarNotHidden];
+
     UIButton *button = [self.view viewWithTag:BtnTag + x];
     [UIView animateWithDuration:.25f animations:^{
         UIView *line = [self.view viewWithTag:2000];
         CGRect sizeRect = line.frame;
         sizeRect.origin.x = button.frame.origin.x;
-//        line.frame = CGRectMake(button.frame.origin.x, ((button.frame.size.width)/2 - (size.width)/2), size.width, .5);
     }];
 }
 
 - (void)navigationBarHidden{
-//    NSLog(@"hidden");
+
     [ self.navigationController setNavigationBarHidden : YES animated : YES ];
     isNavHidden = YES;
-//    NSLog(@"%f %f",self.view.frame.size.height,HEIGHT);
     self.view.backgroundColor = [UIColor whiteColor];
     [UIView animateWithDuration:0.25 animations:^{
         self.btnView.frame = CGRectMake(0, kStatusnBarHeight , WIDHT, kSuitLength_V(38));
         self.pageController.view.frame = CGRectMake(0,self.btnView.frame.size.height + self.btnView.frame.origin.y , WIDHT, HEIGHT/4*3+75);
     }];
-    
-//    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.view.mas_top).offset(kSuitLength_H(50)+20);
-//        make.left.bottom.right.equalTo(self.view);
-//    }];
 }
 
 - (void)navigationBarNotHidden{
     [ self.navigationController setNavigationBarHidden : NO animated : YES ];
      isNavHidden = NO;
-//    NSLog(@"nothidden");
-//    NSLog(@"%f ,%f",self.view.frame.size.height,HEIGHT);
-//    self.view.backgroundColor = [UIColor blackColor];
     [UIView animateWithDuration:0.25 animations:^{
         self.btnView.frame = CGRectMake(0, kNavgationBarHeight , WIDHT, kSuitLength_V(38));
         self.pageController.view.frame = CGRectMake(0,kNavgationBarHeight+kSuitLength_V(38) , WIDHT, HEIGHT);
     }];
-    
-//    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.view.mas_top).offset(kSuitLength_H(50));
-//        make.left.bottom.right.equalTo(self.view);
-//    }];
-    
 }
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
      [ self.navigationController setNavigationBarHidden : NO animated : NO];
@@ -460,4 +478,5 @@
     [super viewWillAppear:YES];
     [ self.navigationController setNavigationBarHidden : isNavHidden animated : NO ];
 }
+
 @end
