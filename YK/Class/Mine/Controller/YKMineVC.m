@@ -85,26 +85,32 @@
 }
 -(UIImageView*)imageview{
     if (!_headImageView) {
-        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5)];
-//        _headImageView.image = [UIImage imageNamed:@"top.jpg"];
-        _headImageView.backgroundColor = mainColor;
+        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, kSuitLength_H(182))];
+        _headImageView.image = [UIImage imageNamed:@"Oval 6"];
+//        [_headImageView sizeToFit];
+        _headImageView.backgroundColor = [UIColor whiteColor];
         self.origialFrame = _headImageView.frame;
     }
     return _headImageView;
 }
 -(void)addHeadView{
     WeakSelf(weakSelf)
-    head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5-30+20)];
-    if (HEIGHT==812) {
-        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5+20)];
-    }
-    if (WIDHT==375) {
-        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5+20)];
-    }
+    head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, kSuitLength_H(300))];
+//    if (HEIGHT==812) {
+//        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5+20)];
+//    }
+//    if (WIDHT==375) {
+//        head= [[YKMyHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/1.5+20)];
+//    }
     head.userInteractionEnabled = YES;
      self.tableView.tableHeaderView=head;
     
     head.VIPClickBlock = ^(NSInteger VIPStatus){
+                if ([Token length] == 0) {
+                    [weakSelf login];
+                    return ;
+                }
+        
                 if (VIPStatus==1) {//使用中
                     YKWalletVC *wallet = [YKWalletVC new];
                     wallet.hidesBottomBarWhenPushed = YES;
@@ -123,9 +129,9 @@
                 if (VIPStatus==4) {//未开通
                     YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
                     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-       
+
                     [weakSelf presentViewController:nav animated:YES completion:^{
-        
+
                     }];
                 }
             };
@@ -145,29 +151,29 @@
             if ([Token length] == 0) {
                 [weakSelf Login];
             }else {
-                if (tag==103) {
+                if (tag==102) {
                     //优惠劵
                     YKCouponSegementVC *coupon = [YKCouponSegementVC new];
                     coupon.hidesBottomBarWhenPushed = YES;
                     [weakSelf.navigationController pushViewController:coupon animated:YES];
                     return ;
                 }
-                if (tag==104) {
+                if (tag==103) {
                     //钱包，资金账户
                     YKUserAccountVC *account = [YKUserAccountVC new];
                     account.hidesBottomBarWhenPushed = YES;
                     [weakSelf.navigationController pushViewController:account animated:YES];
                     return ;
                 }
-                if (tag==102) {
-                    //心愿单
-                    YKSuitVC *suit = [YKSuitVC new];
-                    suit.isFromeProduct = YES;
-                    suit.isAuto = YES;
-                    suit.hidesBottomBarWhenPushed = YES;
-                    [weakSelf.navigationController pushViewController:suit animated:YES];
-                    return ;
-                }
+//                if (tag==102) {
+//                    //心愿单
+//                    YKSuitVC *suit = [YKSuitVC new];
+//                    suit.isFromeProduct = YES;
+//                    suit.isAuto = YES;
+//                    suit.hidesBottomBarWhenPushed = YES;
+//                    [weakSelf.navigationController pushViewController:suit animated:YES];
+//                    return ;
+//                }
                 
                 //历史订单
                 YKMySuitBagVC *suit = [YKMySuitBagVC new];
@@ -193,7 +199,7 @@
     self.titles = [NSArray array];
     self.titles = @[@"常见问题",@"我的地址",@"联系客服",@"设置"];
     
-    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -202,13 +208,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 //    if (section==1) {
-        return 10;
+        return 5;
 //    }
 //    return CGFLOAT_MIN;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [UIView new];
-    view.backgroundColor = [UIColor colorWithHexString:@"F4f4f4"];
+    view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     return view;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -218,24 +224,22 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([Token length] == 0) {
-        return 50;
+        return kSuitLength_H(50);
     }
     
+   
     if (indexPath.section==0) {
-        return 240;
-    }
-    if (indexPath.section==1) {
-        return 185;
+        return kSuitLength_H(97);
     }
    
-        return 50;
+        return kSuitLength_H(50);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([Token length] == 0) {
         return 4;
     }else {
-        if (section==0||section==1) {
+        if (section==0) {
             return 1;
         }else {
             return 4;
@@ -248,7 +252,7 @@
     if ([Token length] == 0) {
         return 1;
     }else {
-        return 3;
+        return 2;
     }
         
 }
@@ -261,57 +265,59 @@
         if (mycell == nil) {
             mycell = [[NSBundle mainBundle] loadNibNamed:@"YKMineCell" owner:self options:nil][0];
             mycell.title.text = [NSString stringWithFormat:@"%@",self.titles[indexPath.row]];
+            mycell.title.font = PingFangSC_Regular(kSuitLength_H(14));
+            mycell.title.textColor = mainColor;
             mycell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
         }
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
     }
+//        if (indexPath.section==0) {
+//            static NSString *ID = @"cell";
+//            YKVipCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
+//            if (mycell == nil) {
+//                mycell = [[NSBundle mainBundle] loadNibNamed:@"YKVipCell" owner:self options:nil][0];
+//            }
+//            mycell.user = [YKUserManager sharedManager].user;
+//            WeakSelf(weakSelf)
+//            mycell.btnClick = ^(void){
+//                if ([mycell.user.effective intValue]==1) {//使用中
+//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//                    [weakSelf presentViewController:nav animated:YES completion:^{
+//
+//                    }];
+//                }
+//                if ([mycell.user.effective intValue]==2) {//已过期,充值会员
+//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//                    [weakSelf presentViewController:nav animated:YES completion:^{
+//
+//                    }];
+//                }
+//                if ([mycell.user.effective intValue]==3) {//无押金,充押金
+//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//                    [weakSelf presentViewController:nav animated:YES completion:^{
+//
+//                    }];
+//                }
+//                if ([mycell.user.effective intValue]==4) {//未开通
+//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//                    [weakSelf presentViewController:nav animated:YES completion:^{
+//
+//                    }];
+//                }
+//            };
+//            mycell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            return mycell;
+//        }
         if (indexPath.section==0) {
-            static NSString *ID = @"cell";
-            YKVipCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
-            if (mycell == nil) {
-                mycell = [[NSBundle mainBundle] loadNibNamed:@"YKVipCell" owner:self options:nil][0];
-            }
-            mycell.user = [YKUserManager sharedManager].user;
-            WeakSelf(weakSelf)
-            mycell.btnClick = ^(void){
-                if ([mycell.user.effective intValue]==1) {//使用中
-                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-                    
-                    [weakSelf presentViewController:nav animated:YES completion:^{
-                        
-                    }];
-                }
-                if ([mycell.user.effective intValue]==2) {//已过期,充值会员
-                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-                    
-                    [weakSelf presentViewController:nav animated:YES completion:^{
-                        
-                    }];
-                }
-                if ([mycell.user.effective intValue]==3) {//无押金,充押金
-                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-                    
-                    [weakSelf presentViewController:nav animated:YES completion:^{
-                        
-                    }];
-                }
-                if ([mycell.user.effective intValue]==4) {//未开通
-                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-                    
-                    [weakSelf presentViewController:nav animated:YES completion:^{
-                        
-                    }];
-                }
-            };
-            mycell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return mycell;
-        }
-        if (indexPath.section==1) {
             static NSString *ID = @"cell";
             YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
             if (mycell == nil) {
@@ -391,13 +397,13 @@
             //会员
         }
     
-        if (indexPath.section==1) {
+        if (indexPath.section==0) {
             //邀请
             YKShareVC *share = [YKShareVC new];
             share.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:share animated:YES];
         }
-        if (indexPath.section==2) {
+        if (indexPath.section==1) {
             if (indexPath.row==0) {
                 YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
                 normal.hidesBottomBarWhenPushed = YES;
@@ -487,18 +493,18 @@
     CGFloat yoffset = scrollView.contentOffset.y;
     //处理背景图的放大效果和往上移动的效果
     if (yoffset>0) {//往上滑动
-        
-        _headImageView.frame = ({
-            CGRect frame = self.origialFrame;
-            frame.origin.y = self.origialFrame.origin.y - yoffset;
-            frame;
-        });
-        
+
+//        _headImageView.frame = ({
+//            CGRect frame = self.origialFrame;
+//            frame.origin.y = self.origialFrame.origin.y - yoffset;
+//            frame;
+//        });
+
     }else {//往下滑动，放大处理
         _headImageView.frame = ({
             CGRect frame = self.origialFrame;
             frame.size.height = self.origialFrame.size.height - yoffset;
-            frame.size.width = frame.size.height*1.5;
+//            frame.size.width = frame.size.width-yoffset;
             frame.origin.x = _origialFrame.origin.x - (frame.size.width-_origialFrame.size.width)/2;
             frame;
         });
@@ -506,32 +512,32 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    
-    UIScrollView * scrollView = (UIScrollView *)object;     
-    
-    if (self.tableView != scrollView) {
-        return;
-    }
-    
-    if (![keyPath isEqualToString:@"contentOffset"]) {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-        return;
-    }
-    
-    if (scrollView.contentOffset.y>0) {
-        self.navigationController.navigationBar.hidden = NO;
-    }
-    if (scrollView.contentOffset.y>200) {
-        self.navigationController.navigationBar.alpha = 1;
-        
-    }else {
-        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/200 ;
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-        if (scrollView.contentOffset.y<=0) {
-            [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-        }
-        
-    }
+//
+//    UIScrollView * scrollView = (UIScrollView *)object;
+//
+//    if (self.tableView != scrollView) {
+//        return;
+//    }
+//
+//    if (![keyPath isEqualToString:@"contentOffset"]) {
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//        return;
+//    }
+//
+//    if (scrollView.contentOffset.y>0) {
+//        self.navigationController.navigationBar.hidden = NO;
+//    }
+//    if (scrollView.contentOffset.y>200) {
+//        self.navigationController.navigationBar.alpha = 1;
+//
+//    }else {
+//        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/200 ;
+//        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//        if (scrollView.contentOffset.y<=0) {
+//            [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//        }
+//
+//    }
 }
 
 @end

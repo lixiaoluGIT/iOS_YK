@@ -25,6 +25,7 @@
 		00179C7B2189B449000A0100 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 00179C6E2189B449000A0100 /* NSObject+MJKeyValue.m */; };
 		00179C7C2189B449000A0100 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 00179C702189B449000A0100 /* NSObject+MJProperty.m */; };
 		00179C7D2189B449000A0100 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 00179C722189B449000A0100 /* NSString+MJExtension.m */; };
+		001824952192B2A50038AD5D /* YKFashionRecView.m in Sources */ = {isa = PBXBuildFile; fileRef = 001824942192B2A50038AD5D /* YKFashionRecView.m */; };
 		001D92A72178AF3700D93FA3 /* 541539864479_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 001D92A62178AF3600D93FA3 /* 541539864479_.pic_hd.jpg */; };
 		001D92A92178B00300D93FA3 /* 551539864687_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 001D92A82178B00200D93FA3 /* 551539864687_.pic_hd.jpg */; };
 		002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 002423AF20DCF64E00AB493D /* register_guide_video.mp4 */; };
@@ -694,6 +695,8 @@
 		00179C702189B449000A0100 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		00179C712189B449000A0100 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		00179C722189B449000A0100 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		001824932192B2A50038AD5D /* YKFashionRecView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFashionRecView.h; sourceTree = "<group>"; };
+		001824942192B2A50038AD5D /* YKFashionRecView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFashionRecView.m; sourceTree = "<group>"; };
 		001D92A62178AF3600D93FA3 /* 541539864479_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 541539864479_.pic_hd.jpg; sourceTree = "<group>"; };
 		001D92A82178B00200D93FA3 /* 551539864687_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 551539864687_.pic_hd.jpg; sourceTree = "<group>"; };
 		002423AF20DCF64E00AB493D /* register_guide_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = register_guide_video.mp4; sourceTree = "<group>"; };
@@ -2428,6 +2431,8 @@
 				00AA32012174A4810040C5A6 /* YKProductAleartView.h */,
 				00AA32022174A4810040C5A6 /* YKProductAleartView.m */,
 				00AA32032174A4810040C5A6 /* YKProductAleartView.xib */,
+				001824932192B2A50038AD5D /* YKFashionRecView.h */,
+				001824942192B2A50038AD5D /* YKFashionRecView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4517,6 +4522,7 @@
 				C53347261FD12753002A08D0 /* YKProduct.m in Sources */,
 				C525DD671FBAB2A8002802AE /* AFNetworkActivityIndicatorManager.m in Sources */,
 				00179C782189B449000A0100 /* MJPropertyType.m in Sources */,
+				001824952192B2A50038AD5D /* YKFashionRecView.m in Sources */,
 				C525DDC41FBAB2A9002802AE /* SDWebImagePrefetcher.m in Sources */,
 				C5FB7859205904780076DD6F /* NSArray+YYAdd.m in Sources */,
 				C5343C741FC526BF00F5132A /* YKNormalQuestionVC.m in Sources */,

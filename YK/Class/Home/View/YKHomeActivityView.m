@@ -16,16 +16,24 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.scrollEnabled = NO;
 }
 
 - (void)setImageArray:(NSArray *)imageArray{
     _imageArray = imageArray;
     
-    CGFloat w = WIDHT-10-30;
-    CGFloat h = WIDHT*0.52;
-    for (int i=0; i<imageArray.count; i++) {
+    CGFloat w = WIDHT-20;
+    CGFloat h = kSuitLength_H(187); 
+    NSMutableArray *a = [NSMutableArray array];
+    if (imageArray.count!=0) {
+        [a addObject:imageArray[0]];
+    }
+    if (a.count==0) {
+        return;
+    }
+    for (int i=0; i<a.count; i++) {
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:imageArray[i]];
-        UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake((w+10)*i, 0, w, h)];
+        UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, w, h)];
         [image setUserInteractionEnabled:YES];
         [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"specialImg"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
         [self.scrollView addSubview:image];

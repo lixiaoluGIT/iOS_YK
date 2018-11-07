@@ -164,22 +164,14 @@
     NSDictionary *d5 = @{@"value":@"优雅",@"key":@"1111"};//风格
     NSDictionary *d6 = @{@"value":@"针织",@"key":@"1111"};//元素
     
-    NSArray *a = @[d,d,d,d,d];
+    NSArray *a = @[d,d,d,d,d,d,d,d,d];
     NSArray *a1 = @[d1,d1,d1,d1,d1];
-     NSArray *a2 = @[d2,d2,d2,d2,d2];
-     NSArray *a3 = @[d3,d3,d3,d3,d3];
-     NSArray *a4 = @[d4,d4,d4,d4,d4];
-     NSArray *a5 = @[d5,d5,d5,d5,d5];
-     NSArray *a6 = @[d6,d6,d6,d6,d6];
+     NSArray *a2 = @[d2,d2,d2,d2,d2,d2];
+     NSArray *a3 = @[d3,d3,d3,d3,];
+     NSArray *a4 = @[d4,d4,d4,d4,d4,d4,d4,d4,d4];
+     NSArray *a5 = @[d5,d5,d5,d5,d5,d5,d5,d5];
+     NSArray *a6 = @[d6,d6,d6,d6,d6,d6,d6,d6,d6];
     
-//    self.houseMoreMDic = [NSMutableDictionary dictionary];
-//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.tags forKey:@"品类"];
-//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.roomTypes forKey:@"季节"];
-//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.saleStatus forKey:@"颜色"];
-//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.daysToOpen forKey:@"上新时间"];
-//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.areaRanges forKey:@"热门标签"];
-//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.years forKey:@"风格"];
-//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.buildingType forKey:@"元素"];
     NSDictionary *dic = @{@"tags":a,
                           @"roomTypes":a1,
                           @"saleStatus":a2,

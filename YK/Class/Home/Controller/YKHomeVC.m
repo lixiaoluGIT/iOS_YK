@@ -37,6 +37,7 @@
 #import "YKSPVC.h"
 #import "YKLiseVC.h"
 #import "YKHomeActivityView.h"
+#import "YKFashionRecView.h"
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate,NewDynamicsCellDelegate>
 {
@@ -54,6 +55,8 @@
     BOOL jxst;
     BOOL com1;
     BOOL com2;
+    BOOL sstj;
+    BOOL hadsstjTitle;
     CGFloat lastContentOffset;
     UIImageView *image;
     //
@@ -397,15 +400,16 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
  
-    if (WIDHT == 375) {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30+10-14+10);
-    }
-    if(WIDHT == 414){
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+ WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40+10-14+40);
-    }else {
-        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+10-14);
-    }
+//    if (WIDHT == 375) {
+//        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 + layout1.height+layout2.height+15-60 + 60+20+20-30+10-14+10);
+//    }
+//    if(WIDHT == 414){
+//        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60+ WIDHT-40 + WIDHT-40+ layout1.height + layout2.height + 15 + 60+20+20-40+10-14+40);
+//    }else {
+//        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+10-14);
+//    }
     
+    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(71)*4 + kSuitLength_H(187+220) + kSuitLength_H(220)*2+10);
 //    return kSuitLength_H(<#lengthGiven#>)
 }
 
@@ -435,34 +439,34 @@
         [headerView addSubview:desCell];
 
         //人气美衣
-        _homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
-        _homeScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-        _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT-40);
-        if (HEIGHT!=414) {
-            _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT-20);
-        }
-        if (HEIGHT==812) {
-             _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT);
-        }
-        [_homeScrollView initWithType:1 productList:self.beautifulClothes OnResponse:^{
-            NSLog(@"qu");
-            //去美衣界面
-        }];
-        _homeScrollView.toDetailBlock = ^(NSString *productId){
-            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-            detail.hidesBottomBarWhenPushed = YES;
-            detail.productId = productId;
-            [weakSelf.navigationController pushViewController:detail animated:YES];
-        };
-        if (!rqmy) {
-            [headerView addSubview:_homeScrollView];
-            rqmy = YES;
-        }
-        
+//        _homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
+//        _homeScrollView.selectionStyle = UITableViewCellEditingStyleNone;
+//        _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT-40);
+//        if (HEIGHT!=414) {
+//            _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT-20);
+//        }
+//        if (HEIGHT==812) {
+//             _homeScrollView.frame = CGRectMake(0, desCell.bottom, WIDHT, WIDHT);
+//        }
+//        [_homeScrollView initWithType:1 productList:self.beautifulClothes OnResponse:^{
+//            NSLog(@"qu");
+//            //去美衣界面
+//        }];
+//        _homeScrollView.toDetailBlock = ^(NSString *productId){
+//            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+//            detail.hidesBottomBarWhenPushed = YES;
+//            detail.productId = productId;
+//            [weakSelf.navigationController pushViewController:detail animated:YES];
+//        };
+//        if (!rqmy) {
+//            [headerView addSubview:_homeScrollView];
+//            rqmy = YES;
+//        }
+//
         
         //活动文字（专题活动）
         YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
-        ti2.frame = CGRectMake(0, _homeScrollView.frame.size.height + _homeScrollView.frame.origin.y,WIDHT, kSuitLength_H(60));
+        ti2.frame = CGRectMake(0, desCell.frame.size.height + desCell.frame.origin.y,WIDHT, kSuitLength_H(71));
 //        ti2.backgroundColor = [UIColor redColor];
         if (!hadtitle4) {
             [headerView addSubview:ti2];
@@ -470,7 +474,7 @@
         }
         //
         _activityView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeActivityView" owner:nil options:nil][0];
-        _activityView.frame = CGRectMake(0, ti2.bottom,WIDHT, WIDHT*0.52+4);
+        _activityView.frame = CGRectMake(0, ti2.bottom,WIDHT, kSuitLength_H(187));
         _activityView.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         _activityView.toDetailBlock = ^(NSString *activityID){
             YKLinkWebVC *web =[YKLinkWebVC new];
@@ -486,7 +490,8 @@
             [headerView addSubview:_activityView];
             hadtitle1 = YES;
         }
-        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
+        
+//        _banner1  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, ti2.frame.size.height+ ti2.frame.origin.y,WIDHT, WIDHT*0.52) shouldInfiniteLoop:YES imageGroups:[NSMutableArray arrayWithArray:self.brandArray]];
 ////        [DCCycleScrollView cycleScrollViewWithFrame:];
 //        _banner1.autoScrollTimeInterval = 3;
 //        _banner1.autoScroll = NO;
@@ -520,21 +525,21 @@
 //        }
  
         //本周上新>>>搭配成套
-        _weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
-        _weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.8+2);
-        _weekNew.toDetailBlock = ^(void){
-            
-            //到列表页
-            
-            //去列表页
-            NSLog(@"去列表页");
-            YKLiseVC *list = [[YKLiseVC alloc]init];
-            list.title = @"搭配成套";
-//            list.dataArray = weakSelf.hotWears;
-            list.cid = @"1";
-            list.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:list animated:YES];
-            
+//        _weekNew = [[NSBundle mainBundle] loadNibNamed:@"YKWeekNewView" owner:self options:nil][0];
+//        _weekNew.frame = CGRectMake(0, _banner1.frame.origin.y + _banner1.frame.size.height, WIDHT, WIDHT*0.8+2);
+//        _weekNew.toDetailBlock = ^(void){
+//
+//            //到列表页
+//
+//            //去列表页
+//            NSLog(@"去列表页");
+//            YKLiseVC *list = [[YKLiseVC alloc]init];
+//            list.title = @"搭配成套";
+////            list.dataArray = weakSelf.hotWears;
+//            list.cid = @"1";
+//            list.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:list animated:YES];
+//
             //临时判断，五一之前走这个
 //            if ([steyHelper validateWithStartTime:@"2018-04-24" withExpireTime:@"2018-04-30"]) {
 //                YKSearchVC *search = [[YKSearchVC alloc] init];
@@ -549,46 +554,46 @@
 //                web.hidesBottomBarWhenPushed = YES;
 //                [weakSelf.navigationController pushViewController:web animated:YES];
 //            }
-        };
-        if (!hadtitle3) {
-//            [headerView addSubview:_weekNew];
-            hadtitle3 = YES;
-        }
-        
+//        };
+//        if (!hadtitle3) {
+////            [headerView addSubview:_weekNew];
+//            hadtitle3 = YES;
+//        }
+    
         //人气配饰
-        _psScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
-        _psScrollView.selectionStyle = UITableViewCellEditingStyleNone;
-        _psScrollView.frame = CGRectMake(0, _banner1.bottom, WIDHT, WIDHT-40);
-        if (HEIGHT!=414) {
-            _psScrollView.frame = CGRectMake(0,  _banner1.bottom, WIDHT, WIDHT-20);
-        }
-        if (HEIGHT==812) {
-            _psScrollView.frame = CGRectMake(0, _banner1.bottom, WIDHT, WIDHT);
-        }
-        [_psScrollView initWithType:2 productList:nil OnResponse:^{
-            NSLog(@"qu");
-            //配饰界面
-            YKSPVC *detail = [[YKSPVC alloc]init];
-            detail.isfromhome = YES;
-            detail.hidesBottomBarWhenPushed = YES;  
-            [weakSelf.navigationController pushViewController:detail animated:YES];
-            
-        }];
-        _psScrollView.toDetailBlock = ^(NSString *productId){
-//            YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
-            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
-            detail.hidesBottomBarWhenPushed = YES;
-            detail.productId = productId;
-            [weakSelf.navigationController pushViewController:detail animated:YES];
-        };
-        if (!rqps) {
-            [headerView addSubview:_psScrollView];
-            rqps = YES;
-        }
-        
-        //时尚穿搭
+//        _psScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
+//        _psScrollView.selectionStyle = UITableViewCellEditingStyleNone;
+//        _psScrollView.frame = CGRectMake(0, _banner1.bottom, WIDHT, WIDHT-40);
+//        if (HEIGHT!=414) {
+//            _psScrollView.frame = CGRectMake(0,  _banner1.bottom, WIDHT, WIDHT-20);
+//        }
+//        if (HEIGHT==812) {
+//            _psScrollView.frame = CGRectMake(0, _banner1.bottom, WIDHT, WIDHT);
+//        }
+//        [_psScrollView initWithType:2 productList:nil OnResponse:^{
+//            NSLog(@"qu");
+//            //配饰界面
+//            YKSPVC *detail = [[YKSPVC alloc]init];
+//            detail.isfromhome = YES;
+//            detail.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:detail animated:YES];
+//
+//        }];
+//        _psScrollView.toDetailBlock = ^(NSString *productId){
+////            YKSPDetailVC *detail = [[YKSPDetailVC alloc]init];
+//            YKProductDetailVC *detail = [[YKProductDetailVC alloc]init];
+//            detail.hidesBottomBarWhenPushed = YES;
+//            detail.productId = productId;
+//            [weakSelf.navigationController pushViewController:detail animated:YES];
+//        };
+//        if (!rqps) {
+//            [headerView addSubview:_psScrollView];
+//            rqps = YES;
+//        }
+//
+        //时尚穿搭-》搭配推荐
         YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][3];
-        ti3.frame = CGRectMake(0, _psScrollView.frame.size.height + _psScrollView.frame.origin.y,WIDHT, kSuitLength_H(60));
+        ti3.frame = CGRectMake(0, _activityView.frame.size.height + _activityView.frame.origin.y,WIDHT, kSuitLength_H(71));
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             //去列表页
             NSLog(@"去列表页");
@@ -607,7 +612,7 @@
         NSMutableArray *array = [NSMutableArray array];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.hotWears[0]];
         [array addObject:dic];
-        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,ti3.bottom,WIDHT, WIDHT*0.6) shouldInfiniteLoop:YES imageGroups:array];
+        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(10,ti3.bottom,WIDHT-20,kSuitLength_H(220)) shouldInfiniteLoop:YES imageGroups:array];
         _banner2.autoScrollTimeInterval = 3;
         _banner2.autoScroll = NO;
         _banner2.isZoom = YES;
@@ -639,50 +644,78 @@
         }
         
         //精选晒图标题
-        YKRecommentTitleView  *st =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][5];
-        st.frame = CGRectMake(0, _banner2.frame.origin.y + _banner2.frame.size.height,WIDHT, kSuitLength_H(60));
-        if (!jxst&&self.layoutsArr1.count>0) {
-            [headerView addSubview:st];
-            jxst = YES;
-        }
+//        YKRecommentTitleView  *st =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][5];
+//        st.frame = CGRectMake(0, _banner2.frame.origin.y + _banner2.frame.size.height,WIDHT, kSuitLength_H(60));
+//        if (!jxst&&self.layoutsArr1.count>0) {
+//            [headerView addSubview:st];
+//            jxst = YES;
+//        }
+//
+//        //精美晒图1
+//        cell1 = [[NewDynamicsTableViewCell alloc]init];
+//        cell1.delegate = self;
+//        cell1.isShowInProductDetail = YES;
+//        cell1.hidden = NO;
+//        if (self.layoutsArr1.count>0) {
+//            cell1.layout = self.layoutsArr1[0];
+//            layout1 = self.layoutsArr1[0];
+//            cell1.frame = CGRectMake(0, st.frame.origin.y + st.frame.size.height-14, WIDHT, layout1.height);
+//            [cell1 reSetUI];
+//        }
+//        if (!com1&&self.layoutsArr1.count>0) {
+//            [headerView addSubview:cell1];
+//            com1 = YES;
+//            NSLog(@"创建--===");
+//        }
+//
+//        //精美晒图2
+//        cell2 = [[NewDynamicsTableViewCell alloc]init];
+//        cell2.delegate = self;
+//        cell2.isShowInProductDetail = YES;
+//        cell2.hidden = NO;
+//        if (self.layoutsArr1.count>0) {
+//            cell2.layout = self.layoutsArr1[1];
+//            layout2 = self.layoutsArr1[1];
+//            cell2.frame = CGRectMake(0, cell1.frame.origin.y + cell1.frame.size.height+10, WIDHT, layout2.height);
+//            [cell2 reSetUI];
+//        }
+//        if (!com2&&self.layoutsArr1.count>0) {
+//            [headerView addSubview:cell2];
+//            com2 = YES;
+//            NSLog(@"创建--===");
+//        }
 
-        //精美晒图1
-        cell1 = [[NewDynamicsTableViewCell alloc]init];
-        cell1.delegate = self;
-        cell1.isShowInProductDetail = YES;
-        cell1.hidden = NO;
-        if (self.layoutsArr1.count>0) {
-            cell1.layout = self.layoutsArr1[0];
-            layout1 = self.layoutsArr1[0];
-            cell1.frame = CGRectMake(0, st.frame.origin.y + st.frame.size.height-14, WIDHT, layout1.height);
-            [cell1 reSetUI];
+        //时尚穿搭标题
+        YKRecommentTitleView  *fashionTitle =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][6];
+        //        ti.backgroundColor = [UIColor redColor];
+        fashionTitle.frame = CGRectMake(0, _banner2.frame.size.height + _banner2.frame.origin.y ,WIDHT, kSuitLength_H(71));
+        if (!hadsstjTitle) {
+            [headerView addSubview:fashionTitle];
+            hadsstjTitle = YES;
         }
-        if (!com1&&self.layoutsArr1.count>0) {
-            [headerView addSubview:cell1];
-            com1 = YES;
-            NSLog(@"创建--===");
+        //时尚穿搭
+        YKFashionRecView *fashion = [[YKFashionRecView alloc]init];
+        fashion.frame = CGRectMake(0,fashionTitle.frame.size.height + fashionTitle.frame.origin.y , WIDHT, kSuitLength_H(220)*2+10);
+        fashion.imageArray = [NSMutableArray arrayWithArray:self.hotWears];
+        fashion.toDetailBlock = ^(NSString *activityID){
+            YKLinkWebVC *web =[YKLinkWebVC new];
+            web.needShare = YES;
+            web.url = activityID;
+            if (web.url.length == 0) {
+                return;
+            }
+            web.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:web animated:YES];
+        };
+        if (!sstj&&self.hotWears.count>0) {
+            [headerView addSubview:fashion];
+            sstj = YES;
         }
-
-        //精美晒图2
-        cell2 = [[NewDynamicsTableViewCell alloc]init];
-        cell2.delegate = self;
-        cell2.isShowInProductDetail = YES;
-        cell2.hidden = NO;
-        if (self.layoutsArr1.count>0) {
-            cell2.layout = self.layoutsArr1[1];
-            layout2 = self.layoutsArr1[1];
-            cell2.frame = CGRectMake(0, cell1.frame.origin.y + cell1.frame.size.height+10, WIDHT, layout2.height);
-            [cell2 reSetUI];
-        }
-        if (!com2&&self.layoutsArr1.count>0) {
-            [headerView addSubview:cell2];
-            com2 = YES;
-            NSLog(@"创建--===");
-        }
-
+        
         //精选推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
-        ti.frame = CGRectMake(0, cell2.bottom + 20,WIDHT, kSuitLength_H(60));
+//        ti.backgroundColor = [UIColor redColor];
+        ti.frame = CGRectMake(0, fashion.bottom,WIDHT, kSuitLength_H(71));
         if (!hadtitle2&&self.layoutsArr1.count>0) {
             [headerView addSubview:ti];
             hadtitle2 = YES;
@@ -724,7 +757,7 @@
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(0, 10, 10, 10);
 }
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section

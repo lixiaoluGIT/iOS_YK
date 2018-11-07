@@ -17,6 +17,8 @@
 @property (nonatomic,strong)UIView *tagView;
 
 @property (nonatomic,assign)NSInteger VIPStatus;
+@property (nonatomic,strong)UIButton *vipBtn;
+@property (nonatomic,strong)UIImageView *cardImage;
 @end
 
 @implementation YKMyHeaderView
@@ -30,22 +32,53 @@
 }
 
 - (void)setUpUI{
-    _headPho=[[UIImageView alloc]initWithFrame:CGRectMake(WIDHT/2-30, 54,60, 60)];
-    _headPho.layer.cornerRadius=30;
-    _headPho.clipsToBounds=YES;
-    [self addSubview:_headPho];
+    //卡片背景
+    UIView *cardView = [[UIView alloc]init];
+    cardView.backgroundColor = [UIColor clearColor];
     
+    [self addSubview:cardView];
+    cardView.frame = CGRectMake(kSuitLength_H(68), kSuitLength_H(105), WIDHT-kSuitLength_H(68)*2, kSuitLength_H(114));
+ 
+    //卡图片
+    self.cardImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, cardView.frame.size.width, cardView.frame.size.height)];
+    self.cardImage.image = [UIImage imageNamed:@"季卡-1"];
+    self.cardImage.backgroundColor = [UIColor clearColor];
+    [cardView addSubview:self.cardImage];
+    
+    //头像
+    _headPho=[[UIImageView alloc]initWithFrame:CGRectMake(kSuitLength_H(26), kSuitLength_H(16),kSuitLength_H(60), kSuitLength_H(60))];
+    _headPho.layer.cornerRadius=kSuitLength_H(60/2);
+    _headPho.clipsToBounds=YES;
+    [cardView addSubview:_headPho];
+    
+
+    //姓名
     _name=[[UILabel alloc]initWithFrame:CGRectMake(0, _headPho.bottom+7,WIDHT, 20)];
-    _name.font = PingFangSC_Semibold(18);
+    _name.centerX = _headPho.centerX;
+    _name.font = PingFangSC_Semibold(kSuitLength_H(14));
     _name.textColor = [UIColor colorWithHexString:@"ffffff"];
     _name.textAlignment=1;
-    [self addSubview:_name];
+    [cardView addSubview:_name];
     
-    _toDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, _name.bottom+1, WIDHT, 20)];
-    _toDetailLabel.font = PingFangSC_Semibold(14);
-    _toDetailLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
-    _toDetailLabel.textAlignment=1;
-    [self addSubview:_toDetailLabel];
+    //会员按钮
+    _vipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _vipBtn.frame = CGRectMake(_headPho.frame.size.width + _headPho.frame.origin.x + kSuitLength_H(49), kSuitLength_H(44), kSuitLength_H(91), kSuitLength_H(26));
+    [_vipBtn setTitle:@"年卡会员" forState:UIControlStateNormal];
+    _vipBtn.layer.masksToBounds = YES;
+    _vipBtn.layer.cornerRadius = kSuitLength_H(26/2);
+    _vipBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    _vipBtn.layer.borderWidth = 1;
+    [_vipBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _vipBtn.titleLabel.font = PingFangSC_Medium(12);
+    [_vipBtn addTarget:self action:@selector(VIP) forControlEvents:UIControlEventTouchUpInside];
+    [cardView addSubview:_vipBtn];
+    
+    
+//    _toDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, _name.bottom+1, WIDHT, 20)];
+//    _toDetailLabel.font = PingFangSC_Semibold(14);
+//    _toDetailLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
+//    _toDetailLabel.textAlignment=1;
+//    [self addSubview:_toDetailLabel];
     //赋值
     _headPho.image= [UIImage imageNamed:@"touxianghuancun"];
     _name.text=@"衣库用户";
@@ -68,15 +101,15 @@
     
     //5个图标view
     _tagView = [[UIView alloc]init];
-    _tagView.frame = CGRectMake(0, _toDetailLabel.bottom+55, WIDHT, 58);
-    _tagView.backgroundColor = mainColor;
+    _tagView.frame = CGRectMake(0, cardView.bottom+kSuitLength_H(24), WIDHT, kSuitLength_H(60));
+    _tagView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_tagView];
     //5个图标
-    NSArray *titles = @[@"待签收",@"待归还",@"心愿单",@"优惠劵",@"资金账户"];
-    NSArray *images = @[@"待签收-2",@"待归还-2",@"心愿单",@"优惠劵-3",@"资金账户-1"];
-    for (int i=0;i<5; i++) {
+    NSArray *titles = @[@"待签收",@"待归还",@"卡券包",@"资金账户"];
+    NSArray *images = @[@"待签收-111",@"待归还111",@"卡劵包111",@"资金账户111"];
+    for (int i=0;i<4; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(WIDHT/5*i, 0, WIDHT/5, 58);
+        btn.frame = CGRectMake(kSuitLength_H(20)+(WIDHT-kSuitLength_H(20)*2)/4*i, 0, (WIDHT-kSuitLength_H(20)*2)/4, kSuitLength_H(60));
         
         
         [_tagView addSubview:btn];
@@ -86,7 +119,7 @@
         //字
         UILabel *label = [[UILabel alloc]init];
         label.text = titles[i];
-        label.textColor = [UIColor colorWithHexString:@"cccccc"];
+        label.textColor = [UIColor colorWithHexString:@"333333"];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = PingFangSC_Regular(kSuitLength_V(12));
         [btn addSubview:label];
@@ -103,13 +136,23 @@
         
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        if (i==0||i==1) {
+            UILabel *l = [[UILabel alloc]init];
+            l.frame = CGRectMake(btn.frame.size.width-kSuitLength_H(25), -(kSuitLength_H(11/2)), kSuitLength_H(11), kSuitLength_H(11));
+            l.backgroundColor = YKRedColor;
+            l.textColor = [UIColor whiteColor];
+            l.text = [NSString stringWithFormat:@"%d",i];
+            l.layer.masksToBounds = YES;
+            l.layer.cornerRadius=kSuitLength_H(11)/2;
+            
+            l.textAlignment = NSTextAlignmentCenter;
+            l.font = PingFangSC_Regular(kSuitLength_H(7));
+            
+            
+            [btn addSubview:l];
+        }
         
-//        UILabel *l = [[UILabel alloc]init];
-//        l.backgroundColor = [UIColor redColor];
-//        l.layer.cornerRadius=5;
-//        l.layer.masksToBounds = YES;
-//        l.frame = CGRectMake(btn.frame.size.width-20, -5, 10, 10);
-//        [btn addSubview:l];
+        
     }
 }
 
@@ -126,6 +169,7 @@
         _headPho.image = [UIImage imageNamed:@"touxianghuancun"];
         _name.text = @"WELCOME";
         _toDetailLabel.text = @"请登录 >";
+        [_vipBtn setTitle:@"未登录" forState:UIControlStateNormal];
 //    _vipLabel.text = @"您还不是会员用户";
 
     }else {
@@ -162,6 +206,31 @@
         }else {//未开通
             _vipLabel.text = @"您还不是会员用户,立即加入!  >>";
         }
+        
+        if ([user.cardType intValue] == 0) {
+            [_vipBtn setTitle:@"成为会员 >" forState:UIControlStateNormal];
+            _cardImage.image = [UIImage imageNamed:@"年卡-1"];
+        }
+        
+        if ([user.cardType intValue] == 1) {
+            [_vipBtn setTitle:@"季卡会员 >" forState:UIControlStateNormal];
+            _cardImage.image = [UIImage imageNamed:@"季卡-1"];
+        }
+        
+        if ([user.cardType intValue] == 2) {
+            [_vipBtn setTitle:@"月卡会员 >" forState:UIControlStateNormal];
+            _cardImage.image = [UIImage imageNamed:@"月卡"];
+        }
+        
+        if ([user.cardType intValue] == 3) {
+            [_vipBtn setTitle:@"年卡会员 >" forState:UIControlStateNormal];
+            _cardImage.image = [UIImage imageNamed:@"年卡-1"];
+        }
+        
+        if ([user.cardType intValue] == 4) {
+            [_vipBtn setTitle:@"体验卡 >" forState:UIControlStateNormal];
+            _cardImage.image = [UIImage imageNamed:@"年卡-1"];
+        }
 
 }
 }
@@ -174,9 +243,9 @@
 }
 
 - (void)VIP{
-    if ([Token length] == 0) {
-        return;
-    }
+//    if ([Token length] == 0) {
+//        return;
+//    }
     if (self.VIPClickBlock) {
         self.VIPClickBlock(_VIPStatus);//1使用中 2已过期 3无押金 4未开通
     }

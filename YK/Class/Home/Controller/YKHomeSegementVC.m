@@ -200,7 +200,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _buttonArr = [NSMutableArray array];
     self.theLine = [[UILabel alloc]init];
-    self.theLine.backgroundColor = [UIColor colorWithHexString:@"ee2d2d"];
+    self.theLine.backgroundColor = YKRedColor;
 
     UIButton *clickButton = nil;
     for (NSInteger i = 0; i < self.titleArr.count; i ++) {
@@ -208,10 +208,10 @@
         button.tag = BtnTag + i;
         button.layer.masksToBounds = YES;
         [button setTitle:self.titleArr[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         [button setTitleColor:YKRedColor forState:UIControlStateSelected];
 //        [button setBackgroundColor:[UIColor lightGrayColor]];
-        button.titleLabel.font = PingFangSC_Regular(kSuitLength_V(13));
+        button.titleLabel.font = PingFangSC_Medium(kSuitLength_V(12));
         
 //        if (i == _currentPageIndex) {
 //            button.selected = YES;
@@ -229,7 +229,7 @@
         
         if (i == _currentPageIndex) {
             button.selected = YES;
-            [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
+            [button setTitleColor:YKRedColor forState:UIControlStateNormal];
             clickButton = button;
             [button addSubview:self.theLine];
         }
@@ -237,7 +237,7 @@
 
     }
     
-    self.theLine.frame = CGRectMake(WIDHT/4-15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
+    self.theLine.frame = CGRectMake(WIDHT/4-10.5,self.btnView.frame.size.height-2 , kSuitLength_H(21), 2);
     [self.btnView addSubview:self.theLine];
     
     //布局
@@ -378,9 +378,9 @@
 //        }];
     [UIView animateWithDuration:0.25 animations:^{
         if (newIndex==0) {
-            self.theLine.frame = CGRectMake(WIDHT/4-15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
+            self.theLine.frame = CGRectMake(WIDHT/4-10.5,self.btnView.frame.size.height-2 , kSuitLength_H(21), 2);
         }else {
-            self.theLine.frame = CGRectMake(WIDHT/4*3-15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
+            self.theLine.frame = CGRectMake(WIDHT/4*3-10.5,self.btnView.frame.size.height-2 , kSuitLength_H(21), 2);
         }
         
     }];
@@ -388,7 +388,7 @@
         if (button == btn) {
             btn.titleLabel.textColor = YKRedColor;
         }else {
-            btn.titleLabel.textColor = [UIColor colorWithHexString:@"cccccc"];
+            btn.titleLabel.textColor = [UIColor colorWithHexString:@"999999"];
         }
     }
 //    __weak typeof(self) weakSelf = self;

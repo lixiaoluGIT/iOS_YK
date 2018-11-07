@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *eng;
 @property (weak, nonatomic) IBOutlet UILabel *kkkk;
 @property (weak, nonatomic) IBOutlet UILabel *llll;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *activityH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fashionH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *recH;
 
 @end
 @implementation YKRecommentTitleView
@@ -23,10 +26,12 @@
     // Initialization code
     
     _eng.numberOfLines = 0;
-    _title.font = [UIFont systemFontOfSize:kSuitLength_H(18)];
-    _eng.font = PingFangSC_Regular(kSuitLength_H(12));
-    _kkkk.font = [UIFont systemFontOfSize:kSuitLength_H(18)];
-    _eng.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+    _title.font = PingFangSC_Medium(kSuitLength_H(16));
+    _eng.font = PingFangSC_Regular(kSuitLength_H(10));
+    _kkkk.font = PingFangSC_Medium(kSuitLength_H(16));
+    _eng.font = PingFangSC_Medium(kSuitLength_H(10));
+    _activityH.constant = _fashionH.constant = kSuitLength_H(19);
+    _recH.constant = kSuitLength_H(19);
     
 //    _eng.backgroundColor = [UIColor greenColor];
     
