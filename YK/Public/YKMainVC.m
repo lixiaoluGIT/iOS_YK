@@ -15,6 +15,7 @@
 #import "YKSearchSegmentVC.h"
 #import "YKCartVC.h"
 #import "YKSuitVC.h"
+#import "YKSuitSegmentVC.h"
 
 @interface YKMainVC ()<UITabBarControllerDelegate>
 {
@@ -80,7 +81,7 @@
         
 //        YKSuitVC *shareLineController = [[YKSuitVC  alloc] init];
 //        shareLineController.title = @"衣袋";
-        YKCartVC *shareLineController = [[YKCartVC alloc]init];
+        YKSuitSegmentVC *shareLineController = [[YKSuitSegmentVC alloc]init];
         shareLineController.title = @"衣袋";
  
         shareLineController.tabBarItem.image = [UIImage imageNamed:@"衣袋未选"];

@@ -85,11 +85,13 @@
         headField = @{@"accept": @"application/json",
                       @"Content-Type":@"application/json; charset=utf-8",
                                     @"X-Auth-Token":Token
+                     
                                     };
     }else {
         headField = @{@"accept": @"application/json",
 
-                    @"Content-Type":@"application/json; charset=utf-8"
+                      @"Content-Type":@"application/json; charset=utf-8"
+                     
                                };
     }
     
@@ -139,7 +141,7 @@
              [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:NO];
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"连接失败" delay:2];
             
-             NSLog(@"HTTPRespose:%@%@\n%@",BaseUrl,apiName,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+//             NSLog(@"HTTPRespose:%@%@\n%@",BaseUrl,apiName,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
             return ;
         }
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -147,7 +149,7 @@
         {
             completion(dic);
         }
-        NSLog(@"HTTPRespose:%@%@\n%@",BaseUrl,apiName,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+//        NSLog(@"HTTPRespose:%@%@\n%@",BaseUrl,apiName,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     }];
     return dataTask;
 }
@@ -172,11 +174,11 @@
         [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         manager.requestSerializer.timeoutInterval = 30.f;
         [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-        NSLog(@"当前URL:%@%@",BaseUrl,urlString);
+//        NSLog(@"当前URL:%@%@",BaseUrl,urlString);
         //发送请求
         [manager POST:[NSString stringWithFormat:@"%@%@",BaseUrl,urlString] parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            NSLog(@"返回json:%@",responseObject);
+//            NSLog(@"返回json:%@",responseObject);
             success(responseObject);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -205,11 +207,11 @@
         [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         manager.requestSerializer.timeoutInterval = 30.f;
         [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-        NSLog(@"当前URL:%@%@",BaseUrl,urlString);
+//        NSLog(@"当前URL:%@%@",BaseUrl,urlString);
         //发送请求
         [manager GET:[NSString stringWithFormat:@"%@%@",BaseUrl,urlString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            NSLog(@"返回json:%@",responseObject);
+//            NSLog(@"返回json:%@",responseObject);
             success(responseObject);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -323,7 +325,7 @@
           success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            NSLog(@"%@",result);
+//            NSLog(@"%@",result);
          NSDictionary *dict =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
          success(dict);
          

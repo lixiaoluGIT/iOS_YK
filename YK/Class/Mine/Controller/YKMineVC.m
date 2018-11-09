@@ -494,11 +494,12 @@
     //处理背景图的放大效果和往上移动的效果
     if (yoffset>0) {//往上滑动
 
-//        _headImageView.frame = ({
-//            CGRect frame = self.origialFrame;
+        _headImageView.frame = ({
+            CGRect frame = self.origialFrame;
 //            frame.origin.y = self.origialFrame.origin.y - yoffset;
-//            frame;
-//        });
+            frame.size.height = self.origialFrame.size.height - yoffset;
+            frame;
+        });
 
     }else {//往下滑动，放大处理
         _headImageView.frame = ({

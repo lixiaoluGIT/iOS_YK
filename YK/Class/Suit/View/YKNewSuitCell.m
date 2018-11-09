@@ -9,7 +9,9 @@
 #import "YKNewSuitCell.h"
 
 @interface YKNewSuitCell()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageW;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageH;
 @property (weak, nonatomic) IBOutlet UIImageView *suitImage;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *barnd;
@@ -18,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *type;
 @property (weak, nonatomic) IBOutlet UIImageView *tipImage;
 @property (weak, nonatomic) IBOutlet UILabel *noSuit;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gapT;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gapB;
 
 
 @property (nonatomic,strong)NSString *suitStatus;
@@ -28,13 +33,17 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     //字体适配
-    _name.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
-    _barnd.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
-    _price.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
-    _owendNum.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
-    _noSuit.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
-    _type.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
-    // Initialization code
+    _name.font = PingFangSC_Regular(kSuitLength_H(14));
+    _barnd.font = PingFangSC_Medium(kSuitLength_H(12));
+    _price.font = PingFangSC_Medium(kSuitLength_H(12));
+    _owendNum.font = PingFangSC_Regular(kSuitLength_H(12));
+    _noSuit.font = PingFangSC_Medium(kSuitLength_H(12));
+    _type.font = PingFangSC_Medium(kSuitLength_H(12));
+    _imageH.constant = kSuitLength_H(93);
+    _imageW.constant = kSuitLength_H(76);
+    _gapT.constant =
+    _gapB.constant = kSuitLength_H(15);
+    _suitImage.centerY = self.centerY;
 }
 
 //删除当前衣袋

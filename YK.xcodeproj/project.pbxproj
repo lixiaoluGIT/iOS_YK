@@ -57,6 +57,9 @@
 		003AE7862137A7E2001D7D17 /* YKAddCCDesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AE7842137A7E2001D7D17 /* YKAddCCDesView.m */; };
 		003AE7872137A7E2001D7D17 /* YKAddCCDesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003AE7852137A7E2001D7D17 /* YKAddCCDesView.xib */; };
 		003AE78A2137ABC8001D7D17 /* YKBuyAddCCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 003AE7892137ABC8001D7D17 /* YKBuyAddCCVC.m */; };
+		00473578219562EF00A24BF0 /* YKSuitSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00473577219562EF00A24BF0 /* YKSuitSegmentVC.m */; };
+		00473581219568BE00A24BF0 /* YKCartHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047357F219568BE00A24BF0 /* YKCartHeader.m */; };
+		00473582219568BE00A24BF0 /* YKCartHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00473580219568BE00A24BF0 /* YKCartHeader.xib */; };
 		0048BA1120C922F000D4699D /* YKCommunicationImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0048BA1020C922F000D4699D /* YKCommunicationImageView.m */; };
 		004FAB072170B2250083F607 /* YKNewSuitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FAB052170B2250083F607 /* YKNewSuitCell.m */; };
 		004FAB082170B2250083F607 /* YKNewSuitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004FAB062170B2250083F607 /* YKNewSuitCell.xib */; };
@@ -744,6 +747,11 @@
 		003AE7852137A7E2001D7D17 /* YKAddCCDesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKAddCCDesView.xib; sourceTree = "<group>"; };
 		003AE7882137ABC7001D7D17 /* YKBuyAddCCVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBuyAddCCVC.h; sourceTree = "<group>"; };
 		003AE7892137ABC8001D7D17 /* YKBuyAddCCVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBuyAddCCVC.m; sourceTree = "<group>"; };
+		00473576219562EF00A24BF0 /* YKSuitSegmentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSuitSegmentVC.h; sourceTree = "<group>"; };
+		00473577219562EF00A24BF0 /* YKSuitSegmentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSuitSegmentVC.m; sourceTree = "<group>"; };
+		0047357E219568BE00A24BF0 /* YKCartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCartHeader.h; sourceTree = "<group>"; };
+		0047357F219568BE00A24BF0 /* YKCartHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCartHeader.m; sourceTree = "<group>"; };
+		00473580219568BE00A24BF0 /* YKCartHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKCartHeader.xib; sourceTree = "<group>"; };
 		0048BA0F20C922F000D4699D /* YKCommunicationImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCommunicationImageView.h; sourceTree = "<group>"; };
 		0048BA1020C922F000D4699D /* YKCommunicationImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCommunicationImageView.m; sourceTree = "<group>"; };
 		004FAB042170B2250083F607 /* YKNewSuitCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKNewSuitCell.h; sourceTree = "<group>"; };
@@ -2746,6 +2754,8 @@
 				004FAB122170BA170083F607 /* YKCartVC.m */,
 				004FAB142170C9FF0083F607 /* YKMyLoveVC.h */,
 				004FAB152170C9FF0083F607 /* YKMyLoveVC.m */,
+				00473576219562EF00A24BF0 /* YKSuitSegmentVC.h */,
+				00473577219562EF00A24BF0 /* YKSuitSegmentVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2793,6 +2803,9 @@
 				004FAB0C2170B8090083F607 /* YKAddCell.h */,
 				004FAB0D2170B8090083F607 /* YKAddCell.m */,
 				004FAB0E2170B8090083F607 /* YKAddCell.xib */,
+				0047357E219568BE00A24BF0 /* YKCartHeader.h */,
+				0047357F219568BE00A24BF0 /* YKCartHeader.m */,
+				00473580219568BE00A24BF0 /* YKCartHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4185,6 +4198,7 @@
 				C5343C931FC69D2400F5132A /* YKBrandDetailHeader.xib in Resources */,
 				002DF71720DBA6AA00560C60 /* tt.jpg in Resources */,
 				C533EF512057B83700A71DBE /* Default-568.png in Resources */,
+				00473582219568BE00A24BF0 /* YKCartHeader.xib in Resources */,
 				C52D0F9E1FC6C43D00B50258 /* liutao.jpg in Resources */,
 				C525DE231FBAD659002802AE /* YKScrollBtnView.xib in Resources */,
 				C5303A011FCEAE4D00FB12CE /* YKReturnView.xib in Resources */,
@@ -4404,6 +4418,7 @@
 				C525DEA01FBD8030002802AE /* YKSuitDetailVC.m in Sources */,
 				003AE78A2137ABC8001D7D17 /* YKBuyAddCCVC.m in Sources */,
 				C525DD7E1FBAB2A9002802AE /* MJRefreshBackNormalFooter.m in Sources */,
+				00473581219568BE00A24BF0 /* YKCartHeader.m in Sources */,
 				C53347231FD11FDF002A08D0 /* YKHomeManager.m in Sources */,
 				C525DDAF1FBAB2A9002802AE /* TZAssetModel.m in Sources */,
 				C525DE221FBAD659002802AE /* YKScrollBtnView.m in Sources */,
@@ -4482,6 +4497,7 @@
 				C532A7471FDF8AAB0068A31D /* Product.m in Sources */,
 				C53347111FCFFE6E002A08D0 /* LogisticsTableViewCell.m in Sources */,
 				C532A76A1FDFD8BB0068A31D /* YKSelectPayView.m in Sources */,
+				00473578219562EF00A24BF0 /* YKSuitSegmentVC.m in Sources */,
 				C525DD641FBAB2A8002802AE /* UIAlertView+AFNetworking.m in Sources */,
 				00303CC52187008200B9ACB7 /* YKFilterView.m in Sources */,
 				007B703620C6675500096731 /* YKSelectColedgeCell.m in Sources */,
