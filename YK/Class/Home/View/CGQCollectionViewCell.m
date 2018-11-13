@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
+@property (weak, nonatomic) IBOutlet UIButton *addSuitBtn;
 @end
 
 @implementation CGQCollectionViewCell
@@ -51,6 +52,20 @@
     _des.font = PingFangSC_Medium(kSuitLength_V(11));
     _freeBtn.titleLabel.font = PingFangSC_Regular(10);
     _zhanyiweiNum.font = PingFangTC_Light(kSuitLength_V(7));
+    
+    [_addSuitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+    [_addSuitBtn addTarget:self action:@selector(addBlock) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//加入衣袋
+- (void)addBlock{
+    
+    [[YKSuitManager sharedManager]addToShoppingCartwithclothingId:_goodsId clothingStckType:_clothingStockId OnResponse:^(NSDictionary *dic) {
+        
+            
+        
+    }];
+    
 }
 
 - (void)setlableFont:(UILabel *)label bond:(NSInteger)bond{
@@ -68,6 +83,7 @@
 - (void)setProduct:(YKProduct *)product{
     _product = product;
     
+    _clothingStockId = product.clothingStockId;
     _brandId = product.brandId;
      _brandName = product.brandName;
      _catId = product.catId;
@@ -121,6 +137,16 @@
 //    _zhanyiweiNum.text = @"2";
     
 //    _backView.hidden = ([product.OwenNum intValue] == 1);
+    
+    if (_isInLoveVC) {
+        _freeBtn.hidden = YES;
+        _des.hidden = YES;
+        _addSuitBtn.hidden = NO;
+    }else {
+        _freeBtn.hidden = NO;
+        _des.hidden = NO;
+        _addSuitBtn.hidden = YES;
+    }
     
 }
 

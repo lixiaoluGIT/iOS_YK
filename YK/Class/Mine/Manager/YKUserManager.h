@@ -125,4 +125,5 @@
 //提现
 - (void)tiXianeOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+- (void)showLoginViewOnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

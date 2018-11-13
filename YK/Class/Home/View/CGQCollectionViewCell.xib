@@ -89,6 +89,13 @@
                             <constraint firstAttribute="width" constant="38" id="wtA-ce-U6u"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvo-1c-EOg">
+                        <rect key="frame" x="144" y="212.5" width="40" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="2eb-sU-CmY"/>
+                        </constraints>
+                        <state key="normal" image="添加衣袋"/>
+                    </button>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -108,14 +115,17 @@
                 <constraint firstItem="hZv-X5-c5y" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Znm-jP-8Ss"/>
                 <constraint firstItem="mBc-Nl-XRj" firstAttribute="top" secondItem="VsE-Au-0OE" secondAttribute="bottom" constant="14" id="hSO-fS-MO5"/>
                 <constraint firstItem="mBc-Nl-XRj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hrl-dp-GtO"/>
+                <constraint firstItem="hvo-1c-EOg" firstAttribute="centerY" secondItem="P6F-GH-N2m" secondAttribute="centerY" id="lhu-m9-Wnh"/>
                 <constraint firstItem="HFR-0u-uyN" firstAttribute="trailing" secondItem="eS4-TP-3ji" secondAttribute="trailing" id="nVd-GH-bMm"/>
                 <constraint firstItem="o6Q-Xj-Mth" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="s7E-SL-bsb"/>
                 <constraint firstItem="P6F-GH-N2m" firstAttribute="leading" secondItem="mBc-Nl-XRj" secondAttribute="leading" id="syv-ff-aJP"/>
                 <constraint firstItem="eS4-TP-3ji" firstAttribute="centerY" secondItem="mBc-Nl-XRj" secondAttribute="centerY" id="vDL-SP-leC"/>
+                <constraint firstAttribute="trailing" secondItem="hvo-1c-EOg" secondAttribute="trailing" id="zim-aP-s25"/>
                 <constraint firstAttribute="trailing" secondItem="2Pv-tw-PoQ" secondAttribute="trailing" constant="7" id="zze-pE-OgO"/>
             </constraints>
             <size key="customSize" width="184" height="234"/>
             <connections>
+                <outlet property="addSuitBtn" destination="hvo-1c-EOg" id="AcT-SP-PsD"/>
                 <outlet property="backView" destination="2Pv-tw-PoQ" id="ilI-2P-BmB"/>
                 <outlet property="des" destination="HFR-0u-uyN" id="XJg-zJ-Ucp"/>
                 <outlet property="detailLabel" destination="P6F-GH-N2m" id="gvF-ta-iVq"/>
@@ -126,7 +136,7 @@
                 <outlet property="shangxinImage" destination="o6Q-Xj-Mth" id="fPr-TI-yb0"/>
                 <outlet property="zhanyiweiNum" destination="jlG-5M-i8B" id="vz0-il-857"/>
             </connections>
-            <point key="canvasLocation" x="-93" y="-92"/>
+            <point key="canvasLocation" x="-226" y="-100"/>
         </collectionViewCell>
     </objects>
     <resources>
@@ -135,5 +145,6 @@
         <image name="timg.jpg" width="925" height="992"/>
         <image name="刚刚上新" width="58" height="20"/>
         <image name="占衣位" width="6" height="9"/>
+        <image name="添加衣袋" width="12" height="12"/>
     </resources>
 </document>

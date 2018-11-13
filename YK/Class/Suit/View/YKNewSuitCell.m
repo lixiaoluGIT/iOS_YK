@@ -23,9 +23,13 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gapT;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gapB;
+@property (weak, nonatomic) IBOutlet UIButton *bugBtn;
 
+@property (weak, nonatomic) IBOutlet UIImageView *deleteImage;
 
+@property (weak, nonatomic) IBOutlet UILabel *Vline;
 @property (nonatomic,strong)NSString *suitStatus;
+@property (nonatomic,strong)UIButton *pubLicBtn;
 //@property (nonatomic,strong)NSString *suitId;
 @end
 @implementation YKNewSuitCell
@@ -44,6 +48,30 @@
     _gapT.constant =
     _gapB.constant = kSuitLength_H(15);
     _suitImage.centerY = self.centerY;
+    
+    //晒图按钮
+    _pubLicBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_pubLicBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
+    [_pubLicBtn setTitle:@"晒图" forState:UIControlStateNormal];
+    _pubLicBtn.titleLabel.font = PingFangSC_Medium(kSuitLength_H(10));
+    _pubLicBtn.frame = CGRectMake(WIDHT-kSuitLength_H(52)-kSuitLength_H(17), _name.centerY, kSuitLength_H(52), kSuitLength_H(15));
+    _pubLicBtn.layer.masksToBounds = YES;
+    _pubLicBtn.layer.cornerRadius = kSuitLength_H(15)/2;
+    _pubLicBtn.backgroundColor = [UIColor colorWithHexString:@"f0f0f0"];
+    _pubLicBtn.hidden = YES;
+    [_pubLicBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
+    [_pubLicBtn addTarget:self action:@selector(public) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_pubLicBtn];
+    [_pubLicBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -kSuitLength_H(5), 0, 0)];
+    [_pubLicBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, kSuitLength_H(5), 0, 0)];
+}
+
+- (void)public{
+    NSLog(@"public");
+    if (self.publicBlock) {
+        //TODO：少购物车id
+        self.publicBlock(self.suit.shoppingCartId);
+    }
 }
 
 //删除当前衣袋
@@ -89,5 +117,34 @@
                                                               NULL,
                                                               kCFStringEncodingUTF8));
     return encodedString;
+}
+
+//历史衣袋用
+- (void)resetUI{
+    _bugBtn.hidden = YES;
+    _deleteImage.hidden = YES;
+    _tipImage.hidden = YES;
+    _noSuit.hidden = YES;
+    _pubLicBtn.hidden = NO;
+    _owendNum.hidden = YES;
+    _Vline.hidden = YES;
+}
+
+- (void)setDic:(NSDictionary *)dic{
+    _dic = dic;
+  
+    self.suitImage.autoresizingMask = NO;
+    [self.suitImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:[NSString stringWithFormat:@"%@",dic[@"clothingImgUrl"]]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+    [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
+    self.name.text = [NSString stringWithFormat:@"%@",dic[@"clothingName"]];
+    self.barnd.text = [NSString stringWithFormat:@"%@",dic[@"clothingBrandName"]];
+    self.type.text = [NSString stringWithFormat:@"%@",dic[@"clothingStockType"]];
+    self.price.text = [NSString stringWithFormat:@"%@",dic[@"clothingPrice"]];
+    
+//    //衣位
+//    _owendNum.text = [NSString stringWithFormat:@"占%@个衣位",suit.ownedNum];
+    
+//    self.suitStatus = suit.clothingStockNum;//剩余库存数量
+    self.suitId = [NSString stringWithFormat:@"%@",dic[@"clothingId"]];
 }
 @end

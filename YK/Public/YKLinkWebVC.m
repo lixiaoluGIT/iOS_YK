@@ -201,23 +201,29 @@
    
     
     if ([requestString containsString:@"tologin"]){
-        YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-        
-        [self presentViewController:nav animated:YES completion:^{
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
+//        YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//        [self presentViewController:nav animated:YES completion:^{
+//
+//        }];
         return YES;
     }
     if ([requestString containsString:@"next:"]){
         NSLog(@"=====================");
         if ([Token length] == 0) {
-            YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-            
-            [self presentViewController:nav animated:YES completion:^{
+            [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
                 
             }];
+//            YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//            [self presentViewController:nav animated:YES completion:^{
+//
+//            }];
             return YES;
         }
         YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];

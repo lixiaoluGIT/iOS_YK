@@ -16,6 +16,7 @@
         self.rongToken = Dictionary[@"rongToken"];
         
         self.userId = Dictionary[@"userInfo"][@"userId"];
+        [UD setObject:self.userId forKey:@"userId"];
         self.nickname = Dictionary[@"userInfo"][@"nickname"];
         self.phone = Dictionary[@"userInfo"][@"phone"];
         self.gender = Dictionary[@"userInfo"][@"gender"];

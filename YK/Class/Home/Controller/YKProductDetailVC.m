@@ -346,11 +346,14 @@
     buttom.ToSuitBlock = ^(void){//去衣袋
         
         if ([Token length] == 0) {
-            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-            [self presentViewController:login animated:YES completion:^{
+            [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
                 
             }];
-            login.hidesBottomBarWhenPushed = YES;
+//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//            [self presentViewController:login animated:YES completion:^{
+//
+//            }];
+//            login.hidesBottomBarWhenPushed = YES;
             return;
         }
         
@@ -473,11 +476,14 @@
 //收藏商品
 - (void)collect{
     if ([Token length] == 0) {
-        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        [self presentViewController:login animated:YES completion:^{
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
-        login.hidesBottomBarWhenPushed = YES;
+//        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        [self presentViewController:login animated:YES completion:^{
+//
+//        }];
+//        login.hidesBottomBarWhenPushed = YES;
         return;
     }
     
@@ -504,11 +510,14 @@
     //未登录
     
     if ([Token length] == 0) {
-        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        [self presentViewController:login animated:YES completion:^{
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
-        login.hidesBottomBarWhenPushed = YES;
+//        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        [self presentViewController:login animated:YES completion:^{
+//
+//        }];
+//        login.hidesBottomBarWhenPushed = YES;
         return;
     }
     if (_sizeNum==0 && !_isSP) {

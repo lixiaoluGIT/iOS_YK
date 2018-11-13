@@ -390,11 +390,14 @@
     //未登录
     
     if ([Token length] == 0) {
-        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        [self presentViewController:login animated:YES completion:^{
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
-        login.hidesBottomBarWhenPushed = YES;
+//        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        [self presentViewController:login animated:YES completion:^{
+//
+//        }];
+//        login.hidesBottomBarWhenPushed = YES;
         return;
     }
     if (_sizeNum==0 && !_isSP) {

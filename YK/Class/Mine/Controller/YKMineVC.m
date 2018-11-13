@@ -55,11 +55,11 @@
         [self.tableView reloadData];
     }];
     
-    if ([Token length] == 0) {
-        self.tableView.scrollEnabled = NO;
-    }else {
-        self.tableView.scrollEnabled = YES;
-    }
+//    if ([Token length] == 0) {
+//        self.tableView.scrollEnabled = NO;
+//    }else {
+//        self.tableView.scrollEnabled = YES;
+//    }
     
 }
 
@@ -362,11 +362,22 @@
     [alertview show];
 }
 - (void)login{
-    YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-    [self presentViewController:login animated:YES completion:^{
-    
+    [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+        [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+//            if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"userId"] length] == 0) {
+//                self.tableView.scrollEnabled = NO;
+//            }else {
+//                self.tableView.scrollEnabled = YES;
+//            }
+            head.user = [YKUserManager sharedManager].user;
+            [self.tableView reloadData];
+        }];
     }];
-    login.hidesBottomBarWhenPushed = YES;
+//    YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//    [self presentViewController:login animated:YES completion:^{
+//
+//    }];
+//    login.hidesBottomBarWhenPushed = YES;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([Token length] == 0) {
@@ -482,10 +493,16 @@
 
 
 - (void)Login{
-    YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-    [self presentViewController:login animated:YES completion:^{
-        
+    [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+        [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
+            head.user = [YKUserManager sharedManager].user;
+            [self.tableView reloadData];
+        }];
     }];
+//    YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//    [self presentViewController:login animated:YES completion:^{
+//
+//    }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

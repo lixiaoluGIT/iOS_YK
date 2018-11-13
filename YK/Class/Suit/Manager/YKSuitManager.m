@@ -24,7 +24,7 @@
                        clothingStckType:(NSString *)clothingStckType
                              OnResponse:(void (^)(NSDictionary *dic))onResponse{
 
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     //商品ID,库存ID
     NSString *url = [NSString stringWithFormat:@"%@?clothingId=%@&clothingStckId=%@",AddToShoppingCart_Url,clothingId,clothingStckType];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
@@ -47,7 +47,7 @@
 
 - (void)getShoppingListOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
 
     [YKHttpClient Method:@"GET" apiName:ShoppingCartList_Url Params:nil Completion:^(NSDictionary *dic) {
         

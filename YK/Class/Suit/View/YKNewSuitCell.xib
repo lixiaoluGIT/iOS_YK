@@ -132,7 +132,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="Vline" destination="KYN-yz-zWg" id="ZVE-wr-Tc6"/>
                 <outlet property="barnd" destination="84h-Bo-iPq" id="kHa-o0-jOc"/>
+                <outlet property="bugBtn" destination="Q1d-a5-AMj" id="HiM-gy-WGM"/>
+                <outlet property="deleteImage" destination="nBX-jP-k8c" id="8ON-W2-I6D"/>
                 <outlet property="imageH" destination="poF-PX-Zla" id="Rrg-Ci-5iG"/>
                 <outlet property="imageW" destination="44d-Li-zed" id="eWy-eB-qc2"/>
                 <outlet property="name" destination="hE9-VR-wrT" id="ObA-zK-wOd"/>
@@ -143,7 +146,7 @@
                 <outlet property="tipImage" destination="Den-Gr-B5I" id="9zj-oF-hib"/>
                 <outlet property="type" destination="cJs-jt-tpQ" id="ByD-sq-66T"/>
             </connections>
-            <point key="canvasLocation" x="-149" y="-310"/>
+            <point key="canvasLocation" x="-250" y="-317"/>
         </tableViewCell>
     </objects>
     <resources>

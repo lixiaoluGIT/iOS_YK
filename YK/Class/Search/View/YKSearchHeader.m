@@ -13,6 +13,7 @@
 {
     CBSegmentView *sliderSegmentView1 ;
     CBSegmentView *sliderSegmentView2 ;
+    CBSegmentView *sliderSegmentView3 ;
 }
 
 @property (nonatomic,strong)NSString *categoryID;
@@ -65,7 +66,7 @@
     self.categoryID = @"";
     
     WeakSelf(weakSelf)
-    sliderSegmentView1 = [[CBSegmentView alloc]initWithFrame: _back1View.frame];
+    sliderSegmentView1 = [[CBSegmentView alloc]initWithFrame: CGRectMake(0, kSuitLength_H(10), WIDHT, kSuitLength_H(40))];
     [self addSubview:sliderSegmentView1];
     [sliderSegmentView1 setTitleArray:CategoryList categoryIds:CategoryIdList withStyle:CBSegmentStyleZoom];
     sliderSegmentView1.titleChooseReturn = ^(NSString *catrgoryId) {
@@ -75,7 +76,12 @@
         }
     };
     
-    sliderSegmentView2 = [[CBSegmentView alloc]initWithFrame:_back2View.frame];
+    UILabel *line1 = [[UILabel alloc]init];
+    line1.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    line1.frame = CGRectMake(0, sliderSegmentView1.bottom, WIDHT, 1);
+    [self addSubview:line1];
+    
+    sliderSegmentView2 = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, sliderSegmentView1.frame.size.height + sliderSegmentView1.frame.origin.y, WIDHT, kSuitLength_H(40))];
     [self addSubview:sliderSegmentView2];
     [sliderSegmentView2 setTitleArray:sortList categoryIds:sortIdList withStyle:CBSegmentStyleZoom];
     sliderSegmentView2.titleChooseReturn = ^(NSString *sortId) {
@@ -84,6 +90,32 @@
             weakSelf.filterBlock(weakSelf.categoryID, weakSelf.sortId);
         }
     };
+    
+    UILabel *line2 = [[UILabel alloc]init];
+    line2.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    line2.frame = CGRectMake(0, sliderSegmentView2.bottom, WIDHT, 1);
+    [self addSubview:line2];
+    //季节
+    NSArray *seasons = [NSArray array];
+    seasons = @[@"不限",@"春",@"夏",@"秋",@"冬"];
+    
+    NSArray *ids = [NSArray array];
+    ids = @[@"0",@"1",@"2",@"3",@"4"];
+    
+    sliderSegmentView3 = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, sliderSegmentView2.frame.size.height + sliderSegmentView2.frame.origin.y, WIDHT, kSuitLength_H(40))];
+    [self addSubview:sliderSegmentView3];
+    [sliderSegmentView3 setTitleArray:seasons categoryIds:ids withStyle:CBSegmentStyleZoom];
+    sliderSegmentView3.titleChooseReturn = ^(NSString *sortId) {
+        weakSelf.sortId = sortId;
+        if (weakSelf.filterBlock) {
+            weakSelf.filterBlock(weakSelf.categoryID, weakSelf.sortId);
+        }
+    };
+    
+    UILabel *line3 = [[UILabel alloc]init];
+    line3.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    line3.frame = CGRectMake(0, sliderSegmentView3.bottom, WIDHT, 1);
+    [self addSubview:line3];
 }
 
 

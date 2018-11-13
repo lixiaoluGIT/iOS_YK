@@ -9,6 +9,7 @@
 #import "YKSuitSegmentVC.h"
 #import "YKCartVC.h"
 #import "YKCartVC.h"
+#import "YKHistorySuitVC.h"
 @interface YKSuitSegmentVC ()
 
 @end
@@ -150,9 +151,9 @@
         NSString *s = [UD objectForKey:@"showTime"];
         NSArray *controllerTittle;
         if ([s intValue] != 3) {
-            controllerTittle = @[@"YKCartVC",@"YKCartVC"];
+            controllerTittle = @[@"YKCartVC",@"YKHistorySuitVC"];
         }else {
-            controllerTittle = @[@"YKCartVC",@"YKCartVC"];
+            controllerTittle = @[@"YKCartVC",@"YKHistorySuitVC"];
         }
         
         _controllerArr = [[NSMutableArray alloc] init];

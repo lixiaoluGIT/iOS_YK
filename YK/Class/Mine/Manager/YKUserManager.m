@@ -9,6 +9,7 @@
 #import "YKUserManager.h"
 #import <RongIMKit/RongIMKit.h>
 #import <AdSupport/AdSupport.h>
+#import "YKNewLoginView.h"
 
 @interface YKUserManager()<DXAlertViewDelegate,TencentSessionDelegate>
 {
@@ -1002,5 +1003,14 @@
 //        }
 //
     }];
+}
+
+- (void)showLoginViewOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    YKNewLoginView *loginView = [[YKNewLoginView alloc]initWithFrame:kWindow.bounds];
+    loginView.loginSuccess = ^(){
+        onResponse(nil);
+    };
+
+    [kWindow addSubview:loginView];
 }
 @end

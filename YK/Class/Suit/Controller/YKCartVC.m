@@ -108,9 +108,17 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
-    [self searchAddCloth];
-//    [self getCartList];
     
+    if ([Token length] == 0) {
+        [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
+//        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+//            [self searchAddCloth];
+//            [self getNum];
+//        }];
+        return;
+    }
+    [self searchAddCloth];
     [self getNum];
 }
 
@@ -149,6 +157,20 @@
     cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
 //    cartheader.isHadCC = [YKSuitManager sharedManager].isHadCC;
     cartheader.btnAction = ^(BOOL isHadCC){
+        if ([Token length] == 0) {
+            [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+                [self searchAddCloth];
+                [self getNum];
+
+            }];
+//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//                [weakSelf presentViewController:login animated:YES completion:^{
+//
+//                }];
+//                login.hidesBottomBarWhenPushed = YES;
+                return;
+            
+        }
         if (isHadCC) {//使用加衣券，去选加衣券
             YKCouponListVC *list = [[YKCouponListVC alloc]init];
             list.hidesBottomBarWhenPushed = YES;
@@ -216,11 +238,15 @@
 - (void)toRelease{
     
     if ([Token length] == 0) {
-        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        [self presentViewController:login animated:YES completion:^{
-            
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+            [self searchAddCloth];
+            [self getNum];
         }];
-        login.hidesBottomBarWhenPushed = YES;
+//        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        [self presentViewController:login animated:YES completion:^{
+//
+//        }];
+//        login.hidesBottomBarWhenPushed = YES;
         return;
     }
     
@@ -314,11 +340,15 @@
 //        }
     }else {
         if ([Token length] == 0) {
-            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-            [self presentViewController:login animated:YES completion:^{
-                
+            [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+                [self searchAddCloth];
+                [self getNum];
             }];
-            login.hidesBottomBarWhenPushed = YES;
+//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//            [self presentViewController:login animated:YES completion:^{
+//
+//            }];
+//            login.hidesBottomBarWhenPushed = YES;
             return;
         }
         //如果当前衣位已满

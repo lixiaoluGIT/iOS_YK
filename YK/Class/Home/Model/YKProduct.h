@@ -27,6 +27,8 @@
 @property (nonatomic,copy)NSString *clothingPrice;//推荐价格
 @property (nonatomic,assign)NSInteger classify;//商品种类1:衣服，2:配饰
 
+@property (nonatomic,strong)NSString *clothingStockId;//库存id
+
 @property (nonatomic,assign)BOOL isHadStock;//有无库存
 
 //上新是否超过48小时，后台判断返回状态，或后台返回时间戳，前端自己判断
@@ -51,6 +53,10 @@
 
 - (void)initWithDictionary:(NSDictionary *)dic;
 
+//心愿单用
+
+- (void)initWithDic:(NSDictionary *)dic;
+
 @end
 
 //商品详情
@@ -69,4 +75,6 @@
 
 
 - (void)initWithDictionary:(NSDictionary *)dic;
+
+
 @end

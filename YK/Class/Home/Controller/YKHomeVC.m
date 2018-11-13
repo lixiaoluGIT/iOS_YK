@@ -38,6 +38,7 @@
 #import "YKLiseVC.h"
 #import "YKHomeActivityView.h"
 #import "YKFashionRecView.h"
+#import "YKNewLoginView.h"
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate,NewDynamicsCellDelegate>
 {
@@ -110,6 +111,8 @@
     [[YKHomeManager sharedManager]showAleartViewToShare];
     
     [UD setBool:NO forKey:@"atSearch"];
+    
+//    [[YKUserManager sharedManager]showLoginView];
 }
 - (void)toSearch{
     YKSearchVC *search = [[YKSearchVC alloc] init];
@@ -228,7 +231,7 @@
     
     //检查版本更新
     //    [self performSelector:@selector(checkVersion) withObject:nil afterDelay:2.2];
-    
+//    [[YKUserManager sharedManager]showLoginView];
 }
 
 - (void)checkVersion{
@@ -237,11 +240,14 @@
 
 - (void)toMessage{
     if ([Token length] == 0) {
-        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        [self presentViewController:login animated:YES completion:^{
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
-        login.hidesBottomBarWhenPushed = YES;
+//        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        [self presentViewController:login animated:YES completion:^{
+//
+//        }];
+//        login.hidesBottomBarWhenPushed = YES;
         return;
     }
     YKMessageVC *mes = [YKMessageVC new];

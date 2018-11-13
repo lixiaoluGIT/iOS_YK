@@ -79,7 +79,7 @@
     if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
         negativeSpacer.width = -18;
     }
-    btn.hidden = YES;
+//    btn.hidden = YES;
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     
     UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -167,11 +167,14 @@
 }
 - (void)toMessage{
     if ([Token length] == 0) {
-        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        [self presentViewController:login animated:YES completion:^{
-
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+            
         }];
-        login.hidesBottomBarWhenPushed = YES;
+         //        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        [self presentViewController:login animated:YES completion:^{
+//
+//        }];
+//        login.hidesBottomBarWhenPushed = YES;
         return;
     }
         YKMessageVC *mes = [YKMessageVC new];

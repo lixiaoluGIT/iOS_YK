@@ -9,5 +9,6 @@
 #import "YKBaseVC.h"
 
 @interface YKMyLoveVC : YKBaseVC
+@property (nonatomic, assign) CGRect origialFrame;
 
 @end

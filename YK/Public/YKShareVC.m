@@ -152,11 +152,14 @@
     YKShareCell *share = [[NSBundle mainBundle]loadNibNamed:@"YKShareCell" owner:nil options:nil][0];
     share.shareBlock1 = ^(){
         if ([Token length] == 0) {
-            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-            [self presentViewController:login animated:YES completion:^{
+            [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
                 
             }];
-            login.hidesBottomBarWhenPushed = YES;
+//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//            [self presentViewController:login animated:YES completion:^{
+//
+//            }];
+//            login.hidesBottomBarWhenPushed = YES;
             return ;
         }
         WXMediaMessage *message = [WXMediaMessage message];
@@ -175,11 +178,14 @@
     };
     share.shareBlock2 = ^(){
         if ([Token length] == 0) {
-            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-            [self presentViewController:login animated:YES completion:^{
+            [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
                 
             }];
-            login.hidesBottomBarWhenPushed = YES;
+//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//            [self presentViewController:login animated:YES completion:^{
+//
+//            }];
+//            login.hidesBottomBarWhenPushed = YES;
             return ;
         }
         WXMediaMessage *message = [WXMediaMessage message];

@@ -31,12 +31,15 @@
 
 - (void)click{
     if ([Token length] == 0) {
-        YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-        
-        [[self getCurrentVC] presentViewController:nav animated:YES completion:^{
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
+//        YKLoginVC *vip = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//        [[self getCurrentVC] presentViewController:nav animated:YES completion:^{
+//
+//        }];
         return;
     }
     YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];

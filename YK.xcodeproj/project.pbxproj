@@ -60,6 +60,17 @@
 		00473578219562EF00A24BF0 /* YKSuitSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00473577219562EF00A24BF0 /* YKSuitSegmentVC.m */; };
 		00473581219568BE00A24BF0 /* YKCartHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047357F219568BE00A24BF0 /* YKCartHeader.m */; };
 		00473582219568BE00A24BF0 /* YKCartHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00473580219568BE00A24BF0 /* YKCartHeader.xib */; };
+		004735852199245C00A24BF0 /* YKHistorySuitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 004735842199245C00A24BF0 /* YKHistorySuitVC.m */; };
+		00473588219924E300A24BF0 /* YKHistoryHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 00473587219924E300A24BF0 /* YKHistoryHeader.m */; };
+		0047358C2199316B00A24BF0 /* YKHisHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047358A2199316B00A24BF0 /* YKHisHeader.m */; };
+		0047358D2199316B00A24BF0 /* YKHisHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0047358B2199316B00A24BF0 /* YKHisHeader.xib */; };
+		00473590219970F000A24BF0 /* YKLoveSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047358F219970F000A24BF0 /* YKLoveSegmentVC.m */; };
+		00473593219A809200A24BF0 /* YKNewLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00473592219A809200A24BF0 /* YKNewLoginView.m */; };
+		00473596219AB01F00A24BF0 /* YKCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00473595219AB01F00A24BF0 /* YKCodeView.m */; };
+		004735A0219AB0DF00A24BF0 /* UIColor+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 00473599219AB0DF00A24BF0 /* UIColor+Extend.m */; };
+		004735A1219AB0DF00A24BF0 /* UIFont+MBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047359B219AB0DF00A24BF0 /* UIFont+MBExtend.m */; };
+		004735A2219AB0DF00A24BF0 /* UITextField+GTExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047359D219AB0DF00A24BF0 /* UITextField+GTExtend.m */; };
+		004735A3219AB0DF00A24BF0 /* UIView+MBLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0047359F219AB0DF00A24BF0 /* UIView+MBLayout.m */; };
 		0048BA1120C922F000D4699D /* YKCommunicationImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0048BA1020C922F000D4699D /* YKCommunicationImageView.m */; };
 		004FAB072170B2250083F607 /* YKNewSuitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004FAB052170B2250083F607 /* YKNewSuitCell.m */; };
 		004FAB082170B2250083F607 /* YKNewSuitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004FAB062170B2250083F607 /* YKNewSuitCell.xib */; };
@@ -752,6 +763,27 @@
 		0047357E219568BE00A24BF0 /* YKCartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCartHeader.h; sourceTree = "<group>"; };
 		0047357F219568BE00A24BF0 /* YKCartHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCartHeader.m; sourceTree = "<group>"; };
 		00473580219568BE00A24BF0 /* YKCartHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKCartHeader.xib; sourceTree = "<group>"; };
+		004735832199245C00A24BF0 /* YKHistorySuitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHistorySuitVC.h; sourceTree = "<group>"; };
+		004735842199245C00A24BF0 /* YKHistorySuitVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHistorySuitVC.m; sourceTree = "<group>"; };
+		00473586219924E300A24BF0 /* YKHistoryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHistoryHeader.h; sourceTree = "<group>"; };
+		00473587219924E300A24BF0 /* YKHistoryHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHistoryHeader.m; sourceTree = "<group>"; };
+		004735892199316B00A24BF0 /* YKHisHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHisHeader.h; sourceTree = "<group>"; };
+		0047358A2199316B00A24BF0 /* YKHisHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHisHeader.m; sourceTree = "<group>"; };
+		0047358B2199316B00A24BF0 /* YKHisHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKHisHeader.xib; sourceTree = "<group>"; };
+		0047358E219970F000A24BF0 /* YKLoveSegmentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKLoveSegmentVC.h; sourceTree = "<group>"; };
+		0047358F219970F000A24BF0 /* YKLoveSegmentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLoveSegmentVC.m; sourceTree = "<group>"; };
+		00473591219A809200A24BF0 /* YKNewLoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKNewLoginView.h; sourceTree = "<group>"; };
+		00473592219A809200A24BF0 /* YKNewLoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKNewLoginView.m; sourceTree = "<group>"; };
+		00473594219AB01F00A24BF0 /* YKCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCodeView.h; sourceTree = "<group>"; };
+		00473595219AB01F00A24BF0 /* YKCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCodeView.m; sourceTree = "<group>"; };
+		00473598219AB0DF00A24BF0 /* UIColor+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extend.h"; sourceTree = "<group>"; };
+		00473599219AB0DF00A24BF0 /* UIColor+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extend.m"; sourceTree = "<group>"; };
+		0047359A219AB0DF00A24BF0 /* UIFont+MBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MBExtend.h"; sourceTree = "<group>"; };
+		0047359B219AB0DF00A24BF0 /* UIFont+MBExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MBExtend.m"; sourceTree = "<group>"; };
+		0047359C219AB0DF00A24BF0 /* UITextField+GTExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+GTExtend.h"; sourceTree = "<group>"; };
+		0047359D219AB0DF00A24BF0 /* UITextField+GTExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+GTExtend.m"; sourceTree = "<group>"; };
+		0047359E219AB0DF00A24BF0 /* UIView+MBLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MBLayout.h"; sourceTree = "<group>"; };
+		0047359F219AB0DF00A24BF0 /* UIView+MBLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MBLayout.m"; sourceTree = "<group>"; };
 		0048BA0F20C922F000D4699D /* YKCommunicationImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCommunicationImageView.h; sourceTree = "<group>"; };
 		0048BA1020C922F000D4699D /* YKCommunicationImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCommunicationImageView.m; sourceTree = "<group>"; };
 		004FAB042170B2250083F607 /* YKNewSuitCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKNewSuitCell.h; sourceTree = "<group>"; };
@@ -2021,6 +2053,21 @@
 			path = TencentAnalysis;
 			sourceTree = "<group>";
 		};
+		00473597219AB0DF00A24BF0 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				00473598219AB0DF00A24BF0 /* UIColor+Extend.h */,
+				00473599219AB0DF00A24BF0 /* UIColor+Extend.m */,
+				0047359A219AB0DF00A24BF0 /* UIFont+MBExtend.h */,
+				0047359B219AB0DF00A24BF0 /* UIFont+MBExtend.m */,
+				0047359C219AB0DF00A24BF0 /* UITextField+GTExtend.h */,
+				0047359D219AB0DF00A24BF0 /* UITextField+GTExtend.m */,
+				0047359E219AB0DF00A24BF0 /* UIView+MBLayout.h */,
+				0047359F219AB0DF00A24BF0 /* UIView+MBLayout.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		005FD06C20F3065C006490E6 /* HW3DBannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2723,6 +2770,10 @@
 				00E53F3E2111566500255E8A /* YKCouponCodeView.h */,
 				00E53F3F2111566500255E8A /* YKCouponCodeView.m */,
 				00E53F402111566500255E8A /* YKCouponCodeView.xib */,
+				00473591219A809200A24BF0 /* YKNewLoginView.h */,
+				00473592219A809200A24BF0 /* YKNewLoginView.m */,
+				00473594219AB01F00A24BF0 /* YKCodeView.h */,
+				00473595219AB01F00A24BF0 /* YKCodeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2756,6 +2807,10 @@
 				004FAB152170C9FF0083F607 /* YKMyLoveVC.m */,
 				00473576219562EF00A24BF0 /* YKSuitSegmentVC.h */,
 				00473577219562EF00A24BF0 /* YKSuitSegmentVC.m */,
+				004735832199245C00A24BF0 /* YKHistorySuitVC.h */,
+				004735842199245C00A24BF0 /* YKHistorySuitVC.m */,
+				0047358E219970F000A24BF0 /* YKLoveSegmentVC.h */,
+				0047358F219970F000A24BF0 /* YKLoveSegmentVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2806,6 +2861,11 @@
 				0047357E219568BE00A24BF0 /* YKCartHeader.h */,
 				0047357F219568BE00A24BF0 /* YKCartHeader.m */,
 				00473580219568BE00A24BF0 /* YKCartHeader.xib */,
+				00473586219924E300A24BF0 /* YKHistoryHeader.h */,
+				00473587219924E300A24BF0 /* YKHistoryHeader.m */,
+				004735892199316B00A24BF0 /* YKHisHeader.h */,
+				0047358A2199316B00A24BF0 /* YKHisHeader.m */,
+				0047358B2199316B00A24BF0 /* YKHisHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2813,6 +2873,7 @@
 		C525DC6D1FBAB15D002802AE /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				00473597219AB0DF00A24BF0 /* Category */,
 				C5327672205B94C10082EF2E /* ZYQAssetPickerController */,
 				C5F929A820206E52001D2139 /* CLImageBrowser */,
 				C53039E01FCC271800FB12CE /* PageView */,
@@ -4283,6 +4344,7 @@
 				002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */,
 				C55D49231FC3CE2F000D2056 /* YKMyBagSMSCell.xib in Resources */,
 				C525DD9A1FBAB2A9002802AE /* Info.plist in Resources */,
+				0047358D2199316B00A24BF0 /* YKHisHeader.xib in Resources */,
 				C525DEB71FBEADB1002802AE /* region.json in Resources */,
 				004FAB082170B2250083F607 /* YKNewSuitCell.xib in Resources */,
 				00027FDC20D91185005BF684 /* brand.plist in Resources */,
@@ -4362,6 +4424,7 @@
 				C525DD771FBAB2A8002802AE /* MJRefreshConst.m in Sources */,
 				C5FB78E0205908F80076DD6F /* UITextField+BlocksKit.m in Sources */,
 				C525DD921FBAB2A9002802AE /* MASCompositeConstraint.m in Sources */,
+				00473593219A809200A24BF0 /* YKNewLoginView.m in Sources */,
 				C525DDB81FBAB2A9002802AE /* TZImagePickerController.m in Sources */,
 				C525DD651FBAB2A8002802AE /* UIProgressView+AFNetworking.m in Sources */,
 				C5FB78E6205908F80076DD6F /* NSURLConnection+BlocksKit.m in Sources */,
@@ -4567,10 +4630,13 @@
 				C53039E91FCC272000FB12CE /* ChangeFontWithButton.m in Sources */,
 				00179C762189B449000A0100 /* MJProperty.m in Sources */,
 				C5FB78E7205908F80076DD6F /* NSObject+A2BlockDelegate.m in Sources */,
+				00473588219924E300A24BF0 /* YKHistoryHeader.m in Sources */,
 				005FD07220F3065D006490E6 /* UIView+Banner.m in Sources */,
+				0047358C2199316B00A24BF0 /* YKHisHeader.m in Sources */,
 				00303CCB2187017B00B9ACB7 /* YKChooser.m in Sources */,
 				C5FB78E2205908F80076DD6F /* MFMailComposeViewController+BlocksKit.m in Sources */,
 				00C3928B2069EF7E0068DFC0 /* YKSharebView.m in Sources */,
+				004735852199245C00A24BF0 /* YKHistorySuitVC.m in Sources */,
 				C5FB782D205904780076DD6F /* YYFrameImage.m in Sources */,
 				C5FB782E205904780076DD6F /* _YYWebImageSetter.m in Sources */,
 				C525DDAA1FBAB2A9002802AE /* MLLabelLayoutManager.m in Sources */,
@@ -4578,6 +4644,7 @@
 				C525DE371FBC18AA002802AE /* YKRecommentTitleView.m in Sources */,
 				00179C772189B449000A0100 /* MJPropertyKey.m in Sources */,
 				C5FB785D205904780076DD6F /* NSData+YYAdd.m in Sources */,
+				004735A0219AB0DF00A24BF0 /* UIColor+Extend.m in Sources */,
 				C536298420089C9200CA1F8B /* YKCacheManager.m in Sources */,
 				C57505381FFB853500F7E07A /* DDAleartView.m in Sources */,
 				003AE781213790E8001D7D17 /* YKAddCCouponView.m in Sources */,
@@ -4627,6 +4694,7 @@
 				C5FB7847205904780076DD6F /* UIPasteboard+YYText.m in Sources */,
 				C525DD881FBAB2A9002802AE /* MJRefreshAutoFooter.m in Sources */,
 				00B9EF2820A0535800A7422B /* SDBaseRefreshView.m in Sources */,
+				00473596219AB01F00A24BF0 /* YKCodeView.m in Sources */,
 				C525DDB71FBAB2A9002802AE /* TZPhotoPreviewCell.m in Sources */,
 				C525DEBB1FBEADC7002802AE /* YQAlertTableViewCell.m in Sources */,
 				00303CDC2187056B00B9ACB7 /* YLCollectionReusableView.m in Sources */,
@@ -4711,6 +4779,7 @@
 				C525DE1D1FBAD1AF002802AE /* YKScrollView.m in Sources */,
 				C525DD871FBAB2A9002802AE /* MJRefreshBackFooter.m in Sources */,
 				C5FB7869205904780076DD6F /* YYWeakProxy.m in Sources */,
+				004735A1219AB0DF00A24BF0 /* UIFont+MBExtend.m in Sources */,
 				C532A74B1FDF8AAB0068A31D /* RSADataVerifier.m in Sources */,
 				C533EF4B2057801B00A71DBE /* YKBaseScrollView.m in Sources */,
 				C5FB78DF205908F80076DD6F /* UIImagePickerController+BlocksKit.m in Sources */,
@@ -4719,6 +4788,7 @@
 				C525DD901FBAB2A9002802AE /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				C53039F71FCE92A200FB12CE /* WMHCustomScroll.m in Sources */,
 				C5303A051FCEAE7900FB12CE /* YKReturnAddressView.m in Sources */,
+				004735A2219AB0DF00A24BF0 /* UITextField+GTExtend.m in Sources */,
 				C5FB7826205904780076DD6F /* YYKVStorage.m in Sources */,
 				C525DD861FBAB2A9002802AE /* MJRefreshHeader.m in Sources */,
 				C525DE931FBD28D6002802AE /* smartHUD.m in Sources */,
@@ -4737,11 +4807,13 @@
 				C532A7491FDF8AAB0068A31D /* openssl_wrapper.m in Sources */,
 				C5E97F892018630B0043705B /* YKBaseTableVC.m in Sources */,
 				C5FB782B205904780076DD6F /* YYImage.m in Sources */,
+				00473590219970F000A24BF0 /* YKLoveSegmentVC.m in Sources */,
 				C5FB7838205904780076DD6F /* YYTextMagnifier.m in Sources */,
 				007D57C020CF754E00C23F5E /* YKComheader.m in Sources */,
 				C525DDC61FBAB2A9002802AE /* SDWebImageDownloaderOperation.m in Sources */,
 				C525DEA81FBD9144002802AE /* YKAddressVC.m in Sources */,
 				C52D0FA81FC6D5FC00B50258 /* YKWalletButtom.m in Sources */,
+				004735A3219AB0DF00A24BF0 /* UIView+MBLayout.m in Sources */,
 				C5FB7868205904780076DD6F /* CALayer+YYAdd.m in Sources */,
 				C5343C7D1FC542FF00F5132A /* YKProductDetailVC.m in Sources */,
 				00E53F412111566500255E8A /* YKCouponCodeView.m in Sources */,

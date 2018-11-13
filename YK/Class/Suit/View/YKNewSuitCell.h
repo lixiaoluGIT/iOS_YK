@@ -10,7 +10,10 @@
 
 @interface YKNewSuitCell : UITableViewCell
 
-@property (nonatomic,strong)YKSuit *suit;
+@property (nonatomic,strong)YKSuit *suit;//衣服模型
 @property (nonatomic,strong)NSString *suitId;
 @property (nonatomic,copy)void (^deleteBlock)(NSString *shopCartId);
+@property (nonatomic,copy)void (^publicBlock)(NSString *shopCartId);
+@property (nonatomic,strong)NSDictionary *dic;//衣服字典
+- (void)resetUI;
 @end
