@@ -98,6 +98,9 @@
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
     self.collectionView.hidden = YES;
+    
+    [self creatFilterView];
+    
     _pageNum = 1;
     WeakSelf(weakSelf)
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -124,6 +127,7 @@
     [self getData];
     [self initUpBtn];
     
+    
     //浮框
     upView  = [[YKFilterHeaderView alloc]init];
     upView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(47));
@@ -146,46 +150,56 @@
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:tap];
     
-    //获取筛选数据
-    [self getFilterData];
+//    //获取筛选数据
+//    [self getFilterData];
 }
 
 - (void)getFilterData{
-    //创建弹框
-     [self creatFilterView];
+ 
+    //获取筛选数据
+    [[YKSearchManager sharedManager]getFilterDataOnResponse:^(NSDictionary *dic) {
+        NSDictionary *filterData = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
+
+        self.filterModel = [GetNewFilterOutPutDto objectWithKeyValues:filterData];
+
+        filterView.houseFilterOutPutDto = self.filterModel ;
+
+        //赋值
+        [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
+    }];
     //弹框赋值
     
     //测试数据
-    NSDictionary *d = @{@"value":@"连衣裙",@"id":@"1111"};//品类
-    NSDictionary *d1 = @{@"value":@"冬",@"key":@"1111"};//季节
-    NSDictionary *d2 = @{@"value":@"黑红",@"key":@"1111"};//颜色
-    NSDictionary *d3 = @{@"value":@"7天内",@"key":@"1111"};//上新时间
-    NSDictionary *d4 = @{@"value":@"美式休闲",@"key":@"1111"};//热门标签
-    NSDictionary *d5 = @{@"value":@"优雅",@"key":@"1111"};//风格
-    NSDictionary *d6 = @{@"value":@"针织",@"key":@"1111"};//元素
+    NSDictionary *d = @{@"categoryName":@"连衣裙",@"id":@"categoryId"};//品类
+    NSDictionary *d1 = @{@"seasonName":@"冬",@"key":@"seasonId"};//季节
+    NSDictionary *d2 = @{@"colourName":@"黑红",@"key":@"colourId"};//颜色
+    NSDictionary *d3 = @{@"Name":@"7天内",@"key":@"time"};//上新时间
+    NSDictionary *d4 = @{@"lableName":@"美式休闲",@"key":@"lableId"};//热门标签
+    NSDictionary *d5 = @{@"styleName":@"优雅",@"key":@"styleId"};//风格
+    NSDictionary *d6 = @{@"elementName":@"针织",@"key":@"elementId"};//元素
     
-    NSArray *a = @[d,d,d,d,d,d,d,d,d];
-    NSArray *a1 = @[d1,d1,d1,d1,d1];
-     NSArray *a2 = @[d2,d2,d2,d2,d2,d2];
-     NSArray *a3 = @[d3,d3,d3,d3,];
-     NSArray *a4 = @[d4,d4,d4,d4,d4,d4,d4,d4,d4];
-     NSArray *a5 = @[d5,d5,d5,d5,d5,d5,d5,d5];
-     NSArray *a6 = @[d6,d6,d6,d6,d6,d6,d6,d6,d6];
-    
-    NSDictionary *dic = @{@"tags":a,
-                          @"roomTypes":a1,
-                          @"saleStatus":a2,
-                          @"daysToOpen":a3,
-                          @"areaRanges":a4,
-                          @"years":a5,
-                          @"buildingType":a6};
-    
-    self.filterModel = [GetNewFilterOutPutDto objectWithKeyValues:dic];
+    NSArray *a = @[d,d,d,d,d];
+    NSArray *a1 = @[d1,d1,d1];
+     NSArray *a2 = @[d2,d2,d2];
+     NSArray *a3 = @[d3,d3,d3,d3];
+     NSArray *a4 = @[d4,d4,d4];
+     NSArray *a5 = @[d5,d5,d5];
+     NSArray *a6 = @[d6,d6,d6];
    
-    filterView.houseFilterOutPutDto = self.filterModel ;
-    
-   //赋值
-    [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
+    NSDictionary *dic = @{@"categoryList":a,
+                          @"colourList":a1,
+                          @"elementList":a2,
+                          @"labelList":a3,
+                          @"seasonList":a4,
+                          @"styleList":a5,
+                          @"updateDay":a6};
+//    
+//    self.filterModel = [GetNewFilterOutPutDto objectWithKeyValues:dic];
+//
+//    filterView.houseFilterOutPutDto = self.filterModel ;
+//
+//   //赋值
+//    [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
 }
 
 - (void)initUpBtn{
@@ -228,7 +242,7 @@
             upView.hidden = YES;
         }
         
-        if(scrollView.contentOffset.y > lastContentOffset && scrollView.contentOffset.y>kSuitLength_H(300)) {
+        if(scrollView.contentOffset.y > lastContentOffset && scrollView.contentOffset.y>kSuitLength_H(500)) {
             //向上推
             [[NSNotificationCenter defaultCenter]postNotificationName:@"up" object:nil userInfo:nil];
             self.collectionView.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEIGHT-kSuitLength_V(50));
@@ -250,6 +264,7 @@
     }
   
 }
+
 - (void)getData{
     [[YKSearchManager sharedManager]getSelectClothPageDataWithNum:1 Size:2 OnResponse:^(NSDictionary *dic) {
         [self.collectionView.mj_header endRefreshing];
@@ -277,6 +292,8 @@
         self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
         self.collectionView.hidden = NO;
         [self.collectionView reloadData];
+        
+        [self getFilterData];
     }];
 }
 

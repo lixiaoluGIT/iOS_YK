@@ -424,6 +424,8 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #define PSList_Url @"/ornament/getOrnamentPage"
 //配饰详情
 #define PSDetail_Url @"/ornament/getOrnamentInfo"
+//获取筛选标签数据
+#define filterData_Url @"/product/getSearchData"
 
 /*----------------------------购物车模块--------------------------------*/
 //添加到购物车

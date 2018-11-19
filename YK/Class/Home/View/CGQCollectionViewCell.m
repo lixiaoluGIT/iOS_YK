@@ -47,11 +47,11 @@
     _backView.layer.cornerRadius = _backView.frame.size.height/2;
     
     //字体适配
-    _lable.font = PingFangSC_Regular(kSuitLength_V(13));
-    _detailLabel.font = PingFangTC_Light(kSuitLength_V(11));
-    _des.font = PingFangSC_Medium(kSuitLength_V(11));
+    _lable.font = PingFangSC_Regular(kSuitLength_H(13));
+    _detailLabel.font = PingFangTC_Light(kSuitLength_H(11));
+    _des.font = PingFangSC_Medium(kSuitLength_H(11));
     _freeBtn.titleLabel.font = PingFangSC_Regular(10);
-    _zhanyiweiNum.font = PingFangTC_Light(kSuitLength_V(7));
+    _zhanyiweiNum.font = PingFangTC_Light(kSuitLength_H(7));
     
     [_addSuitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
     [_addSuitBtn addTarget:self action:@selector(addBlock) forControlEvents:UIControlEventTouchUpInside];

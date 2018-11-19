@@ -371,8 +371,8 @@
         if ([dic[@"type"] intValue] == 1) {//上装（衣长，胸围，肩宽，袖长）
             
             [typeArray addObject:dic[@"model"]];
-            [typeArray addObject:dic[@"clothesLength"]];
             [typeArray addObject:dic[@"chestWidth"]];
+            [typeArray addObject:dic[@"clothesLength"]];
             [typeArray addObject:dic[@"shoulderWidth"]];
             [typeArray addObject:dic[@"sleeveLength"]];
             

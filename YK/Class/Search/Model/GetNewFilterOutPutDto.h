@@ -8,97 +8,63 @@
 
 #import <Foundation/Foundation.h>
 
-@class FilterModel,houseareaRanges,houseareas,housebuildingType,housebusincessCirlces,toOpenDays,housepriceRanges,housepropertyTypes,houseroomTypes,housesaleStatus,housetags, houseyears;
+@class FilterModel,category,color,element,Tag,season,style,updateTime;
 @interface GetNewFilterOutPutDto : NSObject
 
 @property (nonatomic, strong) NSDictionary *newfilter;
-
-@property (nonatomic, strong) NSArray<houseareaRanges *> *areaRanges;//面积数组
-@property (nonatomic, strong) NSArray<houseareas *> *areas;//区域数组
-@property (nonatomic, strong) NSArray<housebuildingType *> *buildingType;//建筑类型数组
-@property (nonatomic, strong) NSArray<housebusincessCirlces *> *busincessCirlces;//商圈数组
-@property (nonatomic, strong) NSArray<toOpenDays *> *daysToOpen;//开盘时间数组
-@property (nonatomic, strong) NSArray<housepriceRanges *> *priceRanges;//均价数组
-@property (nonatomic, strong) NSArray<housepropertyTypes *> *propertyTypes;//类型数组
-@property (nonatomic, strong) NSArray<houseroomTypes *> *roomTypes;//户型数组
-@property (nonatomic, strong) NSArray<housesaleStatus *> *saleStatus;//在售状态数组
-@property (nonatomic, strong) NSArray<housetags *> *tags;//标签数组
-@property (nonatomic, strong) NSArray<houseyears *> *years;//产权年限数组
+@property (nonatomic, strong) NSArray<category *> *categoryList;//分类
+@property (nonatomic, strong) NSArray<color *> *colourList;//颜色数组
+@property (nonatomic, strong) NSArray<element *> *elementList;//元素数组
+@property (nonatomic, strong) NSArray<Tag *> *labelList;//标签数组
+@property (nonatomic, strong) NSArray<season *> *seasonList;//季节数组
+@property (nonatomic, strong) NSArray<style *> *styleList;//风格数组
+@property (nonatomic, strong) NSArray<updateTime *> *updateDay;//上新时间数组
 @end
 
 @interface FilterModel : NSObject
 
 @end
-//面积
-@interface houseareaRanges : NSObject
-@property (nonatomic, assign) NSInteger high;
-@property (nonatomic, assign) NSInteger low;
-@property (nonatomic, copy) NSString *value;
+//分类
+@interface category : NSObject
+@property (nonatomic, assign) NSInteger categoryId;
+@property (nonatomic, copy) NSString *categoryName;
+@property (nonatomic,assign)NSInteger sort;
 @end
-//城市区域
-@interface houseareas : NSObject
-@property (nonatomic, assign) NSInteger key;
-@property (nonatomic, copy) NSString *value;
+//颜色类型
+@interface color : NSObject
+@property (nonatomic, assign) NSInteger colourId;
+@property (nonatomic, copy) NSString *colourName;
+@property (nonatomic,assign)NSInteger sort;
 @end
-//建筑类型
-@interface housebuildingType : NSObject
-@property (nonatomic, assign) NSInteger key;
-@property (nonatomic, copy) NSString *value;
+//元素
+@interface element : NSObject
+@property (nonatomic, copy) NSString *elementName;
+@property (nonatomic, assign) NSInteger elementId;
+@property (nonatomic,assign)NSInteger sort;
 @end
-//商圈
-@interface housebusincessCirlces : NSObject
-@property (nonatomic, assign) NSInteger ID;
-@property (nonatomic, assign) NSInteger sliceAreaId;
-@property (nonatomic, assign) NSInteger tenantId;
-@property (nonatomic, copy) NSString *name;
-- (void)initWithDictionary:(NSDictionary *)Dic;
-@end
-//开盘时间
-@interface toOpenDays : NSObject
-
-//todo:
-@property (nonatomic, assign) NSInteger daysHigh;
-@property (nonatomic, assign) NSInteger daysLow;
-@property (nonatomic, copy) NSString *descprition;
-@property (nonatomic, assign) NSInteger ID;
-- (void)initWithDictionary:(NSDictionary *)Dic;
-@end
-//价格
-@interface housepriceRanges : NSObject
-@property (nonatomic, assign) NSInteger low;
-@property (nonatomic, assign) NSInteger high;
-@property (nonatomic, assign) NSInteger ID;
-@property (nonatomic, assign) NSInteger propertyTypeId;
-- (void)initWithDictionary:(NSDictionary *)Dic;
-//类型
-@end
-@interface housepropertyTypes : NSObject
-@property (nonatomic, assign) NSInteger key;
-@property (nonatomic, copy) NSString *value;
-//户型
-@end
-@interface houseroomTypes : NSObject
-@property (nonatomic, assign) NSInteger key;
-@property (nonatomic, copy) NSString *value;
-//售卖状态
-@end
-@interface housesaleStatus : NSObject
-@property (nonatomic, assign) NSInteger key;
-@property (nonatomic, copy) NSString *value;
+//季节
+@interface season : NSObject
+@property (nonatomic, assign) NSInteger seasonId;
+@property (nonatomic, copy) NSString *seasonName;
+@property (nonatomic,assign)NSInteger sort;
 //标签
 @end
-@interface housetags : NSObject
-@property (nonatomic, copy) NSString *descprition;
-@property (nonatomic, copy) NSString *value;
-@property (nonatomic, assign) NSInteger id;
-@property (nonatomic, assign) NSInteger houseResourcesType;
-//产权年限
+
+@interface Tag : NSObject
+@property (nonatomic, copy) NSString *labelName;
+@property (nonatomic, assign) NSInteger labelId;
+@property (nonatomic,assign)NSInteger sort;
+//风格
 @end
-
-@interface houseyears : NSObject
-@property (nonatomic, assign) NSInteger key;
-@property (nonatomic, copy) NSString *value;
-
+@interface style : NSObject
+@property (nonatomic, assign) NSInteger styleId;
+@property (nonatomic, copy) NSString *styleName;
+@property (nonatomic,assign)NSInteger sort;
+@end
+//上新时间
+@interface updateTime : NSObject
+@property (nonatomic, assign) NSInteger ID;
+@property (nonatomic, copy) NSString *name;
 @end
 
 

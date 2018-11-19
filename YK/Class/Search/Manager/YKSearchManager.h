@@ -28,4 +28,7 @@
 //配饰详情
 - (void)getPSDetailWithPSId:(NSString *)PSId UserId:(NSString *)userId OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//获取筛选标签数据
+- (void)getFilterDataOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 @end

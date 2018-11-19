@@ -76,7 +76,7 @@
 @property (nonatomic,strong)NSArray *imageClickUrls;
 @property (nonatomic,strong)NSArray *brandArray;
 @property (nonatomic,strong)NSMutableArray *productArray;
-@property (nonatomic,strong)NSDictionary  *weeknewDic;//每周上新
+@property (nonatomic,strong)NSArray  *weeknewArray;//每周上新
 @property (nonatomic,strong)NSMutableArray *hotWears;//热门穿搭
 @property (nonatomic,strong)YKScrollView *scroll;
 @property (nonatomic,strong)YKScrollView *scroll1;
@@ -322,7 +322,7 @@
         self.imageClickUrls = [self getImageClickUrlsArray:array];
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"thematicActivities"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
-        self.weeknewDic = [NSDictionary dictionaryWithDictionary:dic[@"data"][@"suitWith"][@"content"][0]];
+        self.weeknewArray = [NSArray arrayWithArray:dic[@"data"][@"suitWith"][@"content"]];
         self.hotWears = [NSMutableArray arrayWithArray:dic[@"data"][@"fashionWears"]];
         NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"article"][@"articleVOS"]];
         
@@ -365,7 +365,7 @@
             _scroll1.activityArray = [NSMutableArray arrayWithArray:self.brandArray];
 //            _banner1.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         }
-        [_weekNew initWithDic:self.weeknewDic];
+//        [_weekNew initWithDic:self.weeknewDic];
         [self.collectionView reloadData];
         
     }];
@@ -702,7 +702,7 @@
         //时尚穿搭
         YKFashionRecView *fashion = [[YKFashionRecView alloc]init];
         fashion.frame = CGRectMake(0,fashionTitle.frame.size.height + fashionTitle.frame.origin.y , WIDHT, kSuitLength_H(220)*2+10);
-        fashion.imageArray = [NSMutableArray arrayWithArray:self.hotWears];
+        fashion.imageArray = [NSMutableArray arrayWithArray:self.weeknewArray];
         fashion.toDetailBlock = ^(NSString *activityID){
             YKLinkWebVC *web =[YKLinkWebVC new];
             web.needShare = YES;

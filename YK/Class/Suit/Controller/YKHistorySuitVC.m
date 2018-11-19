@@ -37,6 +37,16 @@
 }
 
 - (void)getHistoryList{
+    if ([Token length] == 0) {
+        [self.dataArray removeAllObjects];
+        _historyHeader.clothList = self.dataArray;
+        [self.tableView reloadData];
+        //        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+        //            [self searchAddCloth];
+        //            [self getNum];
+        //        }];
+        return;
+    }
     [[YKOrderManager sharedManager]searchOrderWithOrderStatus:5 OnResponse:^(NSMutableArray *array) {
         self.dataArray = [NSMutableArray arrayWithArray:array];
         _historyHeader.clothList = self.dataArray;

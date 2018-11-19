@@ -84,6 +84,10 @@
     
 }
 
+- (void)setHouseFilterOutPutDto:(GetNewFilterOutPutDto *)houseFilterOutPutDto{
+    _houseFilterOutPutDto = houseFilterOutPutDto;
+}
+
 // 点击非选择区域, 回收选项标签
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
@@ -101,20 +105,20 @@
   
     //组装标签界面模型
     self.houseMoreMDic = [NSMutableDictionary dictionary];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.tags forKey:@"品类"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.roomTypes forKey:@"季节"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.saleStatus forKey:@"颜色"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.daysToOpen forKey:@"上新时间"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.areaRanges forKey:@"热门标签"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.years forKey:@"风格"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.buildingType forKey:@"元素"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.categoryList forKey:@"品类"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.seasonList forKey:@"季节"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.colourList forKey:@"颜色"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.updateDay forKey:@"上新时间"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.labelList forKey:@"热门标签"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.styleList forKey:@"风格"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.elementList forKey:@"元素"];
     
  
         _dicMDataSource = self.houseMoreMDic;
         if (_dicMDataSource.count != 0) {
             [self refreshHouseDataWithData:_dicMDataSource WithTag:tag];
         }
-        
+    
 }
 
 - (void)refreshHouseDataWithData:(id)array WithTag:(NSInteger)tag{
@@ -138,13 +142,12 @@
                     
                     for(NSInteger i = 0; i < index; i++){
                         
-                        housetags *tagTemp = tags[i];
-                        
+                        category *ca = tags[i];
                         NSString *str = [NSString string];
                         
-                        str = tagTemp.value;
+                        str = ca.categoryName;
                         
-                        YKTag *tag = [[YKTag alloc]initWithId:1 name:str];
+                        YKTag *tag = [[YKTag alloc]initWithId:ca.categoryId name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -154,13 +157,13 @@
                     
                     for(NSInteger i = 0; i < index; i++){
                         
-                        houseroomTypes *roomTypeTemp = tags[i];
+                        season *se = tags[i];
                         
                         NSString *str = [NSString string];
                         
-                        str = roomTypeTemp.value;
+                        str = se.seasonName;
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:1 name:str];
+                       YKTag *tag = [[YKTag alloc]initWithId:se.seasonId name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -168,13 +171,13 @@
                 } else if ([str isEqualToString:@"颜色"]) {
                     for(NSInteger i = 0; i < index; i++){
                         
-                        housesaleStatus *propertyYearTemp = tags[i];
+                        color *co = tags[i];
                         
                         NSString *str = [NSString string];
                         
-                        str = propertyYearTemp.value;
+                        str = co.colourName;
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:1 name:str];
+                       YKTag *tag = [[YKTag alloc]initWithId:co.colourId name:str];
                         
                         [testTags0 addObject:tag];
                         
@@ -183,14 +186,14 @@
                     
                     for(NSInteger i = 0; i < index; i++){
                         
-                        toOpenDays *useTypeTemp = tags[i];
+                        updateTime *up = tags[i];
                         
                         NSString *str = [NSString string];
                         
-                        str = useTypeTemp.descprition;
+                        str = up.name;
                         //
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:1 name:@"7天内"];
+                       YKTag *tag = [[YKTag alloc]initWithId:up.ID name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -198,26 +201,26 @@
                 } else if ([str isEqualToString:@"热门标签"]) {
                     for(NSInteger i = 0; i < index; i++){
                         
-                        houseareaRanges *buildingTypeTemp = tags[i];
+                        Tag *t = tags[i];
                         
                         NSString *str = [NSString string];
                         
-                        str = buildingTypeTemp.value;
+                        str = t.labelName;
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:1 name:str];
+                       YKTag *tag = [[YKTag alloc]initWithId:t.labelId name:str];
                         
                         [testTags0 addObject:tag];
                     }
                 } else if ([str isEqualToString:@"风格"]) {
                     for(NSInteger i = 0; i < index; i++){
                         
-                        houseyears *decorationlevelTemp = tags[i];
+                        style *st = tags[i];
                         
                         NSString *str = [NSString string];
                         
-                        str = decorationlevelTemp.value;
+                        str = st.styleName;
                         
-                      YKTag *tag = [[YKTag alloc]initWithId:1 name:str];
+                      YKTag *tag = [[YKTag alloc]initWithId:st.styleId name:str];
                         
                         [testTags0 addObject:tag];
                         
@@ -225,13 +228,13 @@
                 } else if ([str isEqualToString:@"元素"]) {
                     for(NSInteger i = 0; i < index; i++){
                         
-                        housebuildingType *faceorientationTemp = tags[i];
+                        element *el = tags[i];
                         
                         NSString *str = [NSString string];
                         
-                        str = faceorientationTemp.value;
+                        str = el.elementName;
                         
-                        YKTag *tag = [[YKTag alloc]initWithId:1 name:str];
+                        YKTag *tag = [[YKTag alloc]initWithId:el.elementId name:str];
                         
                         [testTags0 addObject:tag];
                         
@@ -248,7 +251,7 @@
         
         NSArray *arrTemp;
         
-        arrTemp = @[@"品类", @"季节", @"颜色", @"上新时间",@"热门标签",@"风格",@"元素"];
+        arrTemp = @[@"品类", @"季节", @"上新时间",@"颜色",@"热门标签",@"风格",@"元素"];
         
         [_chooser refreshWithTags:orignDataMDic keyTitleArr:arrTemp selectedTags:selectedTags nTags:types nSaleStatus:seasons nBuildTypes:colors nRoomTypes:openTimes nDayToOpen:hotTags nYears:styles nAreas:elements];
         

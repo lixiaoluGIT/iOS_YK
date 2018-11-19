@@ -11,51 +11,31 @@
 @implementation GetNewFilterOutPutDto
 
 + (NSDictionary *)objectClassInArray{
-    return @{@"areaRanges" : [houseareaRanges class],
-             @"areas" : [houseareas class],
-             @"buildingType" : [housebuildingType class],
-             @"busincessCirlces" : [housebusincessCirlces class],
-             @"daysToOpen" : [toOpenDays class],
-             @"priceRanges" : [housepriceRanges class],
-             @"propertyTypes" : [housepropertyTypes class],
-             @"roomTypes" : [houseroomTypes class],
-             @"saleStatus" : [housesaleStatus class],
-             @"tags" : [housetags class],
-             @"years" : [houseyears class]};
+    return @{@"categoryList" : [category class],
+             @"colourList" : [color class],
+             @"elementList" : [element class],
+             @"labelList" : [Tag class],
+             @"seasonList" : [season class],
+             @"styleList" : [style class],
+             @"updateDay" : [updateTime class],
+             };
 }
 @end
 
-@implementation houseareaRanges@end
-@implementation houseareas@end
-@implementation housebuildingType@end
-@implementation housebusincessCirlces
-- (void)initWithDictionary:(NSDictionary *)Dic{
-    _name = Dic[@"name"];
-    _ID = [Dic[@"id"] intValue];
-    _sliceAreaId = [Dic[@"sliceAreaId"] intValue];
-    _tenantId = [Dic[@"sliceAreaId"] intValue];
-}
+@implementation category
 @end
-@implementation toOpenDays
-- (void)initWithDictionary:(NSDictionary *)Dic{
-    _daysLow = [Dic[@"daysLow"] intValue];;
-    _daysHigh = [Dic[@"daysHigh"] intValue];
-//    _ID = [Dic[@"sliceAreaId"] intValue];
-    _descprition = Dic[@"descprition"];
-}
+@implementation color
 @end
-@implementation housepriceRanges
-- (void)initWithDictionary:(NSDictionary *)Dic{
-    _low = [Dic[@"low"] intValue];;
-    _high = [Dic[@"high"] intValue];
-    _ID = [Dic[@"sliceAreaId"] intValue];
-    _propertyTypeId = [Dic[@"propertyTypeId"] intValue];
-}
+@implementation Tag
+@end
+@implementation element
+@end
+@implementation season
+@end
+@implementation style
+@end
+@implementation updateTime
 @end
 
-@implementation housepropertyTypes@end
-@implementation houseroomTypes@end
-@implementation housesaleStatus@end
-@implementation housetags@end
-@implementation houseyears@end
+
 

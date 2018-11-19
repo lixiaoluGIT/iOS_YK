@@ -93,4 +93,16 @@
         }
     }];
 }
+
+//获取筛选标签数据
+- (void)getFilterDataOnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+  [YKHttpClient Method:@"GET" apiName:filterData_Url Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if (onResponse) {
+            onResponse(dic);
+        }
+    }];
+}
+
 @end
