@@ -232,7 +232,7 @@
     
     [YKHttpClient Method:@"POST" URLString:collect_Url paramers:d success:^(NSDictionary *dict) {
         if ([dict[@"status"] integerValue] == 200) {
-                        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已添加至心愿单" delay:1.2];
+//                        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已添加至心愿单" delay:1.2];
             if (onResponse) {
                 onResponse(dict);
             }

@@ -19,7 +19,7 @@
 //均价回调
 @property(nonatomic, copy) void(^priceSelectedCallback)(NSInteger high, NSInteger low);
 //更多回调
-@property(nonatomic, copy) void(^moreSelectedCallback)(NSArray *tags, NSInteger DaysToOpenLow,NSInteger DaysToOpenhigh,NSArray *roomTypes,NSArray *SaleStatus,NSInteger AreaLow,NSInteger AreaHigh,NSArray *YearLimits,NSArray *BuildingType);
+@property(nonatomic, copy) void(^moreSelectedCallback)(NSArray *types,NSArray *seasons,NSArray *opentimes,NSArray *colors,NSArray *hotTags,NSArray *styles,NSArray *elements);
 
 /// 数据源 数据, 下拉列表的内容数组.
 @property(nonatomic, strong) NSMutableArray * arrMDataSource;

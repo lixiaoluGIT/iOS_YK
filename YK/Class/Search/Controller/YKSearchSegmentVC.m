@@ -355,4 +355,6 @@
         self.pageController.view.frame = CGRectMake(0,kNavgationBarHeight+kSuitLength_V(44) , WIDHT, HEIGHT);
     }];
 }
+
+
 @end

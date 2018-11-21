@@ -128,6 +128,7 @@
 		0087C998211AC8480014E733 /* YKHomeAleartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C996211AC8480014E733 /* YKHomeAleartView.xib */; };
 		0087C99C211AEA210014E733 /* YKShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C99A211AEA210014E733 /* YKShareCell.m */; };
 		0087C99D211AEA210014E733 /* YKShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C99B211AEA210014E733 /* YKShareCell.xib */; };
+		00961FE921A4037D003DD710 /* YKFilterUpHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FE821A4037D003DD710 /* YKFilterUpHeaderView.m */; };
 		009D3768210588EA00B16A33 /* YKCouponListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D3767210588EA00B16A33 /* YKCouponListVC.m */; };
 		00A0CC4A2090265C001205A1 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC3F2090265C001205A1 /* libSocialWeChat.a */; };
 		00A0CC4C2090265D001205A1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC432090265C001205A1 /* libWeChatSDK.a */; };
@@ -873,6 +874,8 @@
 		0087C999211AEA210014E733 /* YKShareCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKShareCell.h; sourceTree = "<group>"; };
 		0087C99A211AEA210014E733 /* YKShareCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKShareCell.m; sourceTree = "<group>"; };
 		0087C99B211AEA210014E733 /* YKShareCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKShareCell.xib; sourceTree = "<group>"; };
+		00961FE721A4037D003DD710 /* YKFilterUpHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFilterUpHeaderView.h; sourceTree = "<group>"; };
+		00961FE821A4037D003DD710 /* YKFilterUpHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFilterUpHeaderView.m; sourceTree = "<group>"; };
 		009D3766210588EA00B16A33 /* YKCouponListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponListVC.h; sourceTree = "<group>"; };
 		009D3767210588EA00B16A33 /* YKCouponListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponListVC.m; sourceTree = "<group>"; };
 		00A0CC3F2090265C001205A1 /* libSocialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWeChat.a; sourceTree = "<group>"; };
@@ -2552,6 +2555,8 @@
 				00303CC42187008200B9ACB7 /* YKFilterView.m */,
 				00303CC92187017B00B9ACB7 /* YKChooser.h */,
 				00303CCA2187017B00B9ACB7 /* YKChooser.m */,
+				00961FE721A4037D003DD710 /* YKFilterUpHeaderView.h */,
+				00961FE821A4037D003DD710 /* YKFilterUpHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4658,6 +4663,7 @@
 				C525DE261FBAEA58002802AE /* YKALLBrandVC.m in Sources */,
 				00179C7C2189B449000A0100 /* NSObject+MJProperty.m in Sources */,
 				C525DED31FC278C7002802AE /* MOFSPickerView.m in Sources */,
+				00961FE921A4037D003DD710 /* YKFilterUpHeaderView.m in Sources */,
 				C52D0FB21FC7BD9000B50258 /* YKDepositVC.m in Sources */,
 				C525DDB91FBAB2A9002802AE /* TZLocationManager.m in Sources */,
 				C5FECDE41FC2860400D299AE /* YKSuccessVC.m in Sources */,

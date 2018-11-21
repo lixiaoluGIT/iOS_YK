@@ -186,14 +186,21 @@
                     
                     for(NSInteger i = 0; i < index; i++){
                         
-                        updateTime *up = tags[i];
+//                        updateTime *up = tags[i];
+//
+//                        NSString *str = [NSString string];
                         
-                        NSString *str = [NSString string];
-                        
-                        str = up.name;
+//                        str = up.name;
                         //
+                        YKTag *tag;
+                        if (i==0) {
+                           tag = [[YKTag alloc]initWithId:1 name:@"7天内"];
+                        }
+                        if (i==1) {
+                            tag = [[YKTag alloc]initWithId:1 name:@"30天内"];
+                        }
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:up.ID name:str];
+//                       YKTag *tag = [[YKTag alloc]initWithId:up.ID name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -307,7 +314,7 @@
 }
 
 //重置按钮的回调
-- (void)resetmoreTagsChooser:(YKChooser *)sheet selectedTags:(NSMutableArray *)sTags nTags:(NSArray *)nTags nSaleStatus:(NSArray *)nSaleStatus nBuildTypes:(NSArray *)nBuildTypes nRoomTypes:(NSArray *)nRoomTypes nDayToOpen:(NSArray *)nDayToOpen nYears:(NSArray *)nYears nAreas:(NSArray *)nAreas{
+- (void)resetmoreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)sTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements{
     
     [selectedTags removeAllObjects];
     [selectedTags addObjectsFromArray:sTags];//选中的所有标签
@@ -320,23 +327,23 @@
     [styles removeAllObjects];
     [elements removeAllObjects];
     
-    [types addObjectsFromArray:nTags];//选中的元素
-    [seasons addObjectsFromArray:nAreas];//选中的季节
-    [colors addObjectsFromArray:nYears];//选中的颜色
-    [openTimes addObjectsFromArray:nDayToOpen];//选中的上新时间
-    [hotTags addObjectsFromArray:nRoomTypes];//选中的热门标签
-    [styles addObjectsFromArray:nBuildTypes];//选中的风格
-    [elements addObjectsFromArray:nSaleStatus];//选中的元素
+    [types addObjectsFromArray:sTags];//选中的元素
+    [seasons addObjectsFromArray:yseasons];//选中的季节
+    [colors addObjectsFromArray:ycolors];//选中的颜色
+    [openTimes addObjectsFromArray:yopenTimes];//选中的上新时间
+    [hotTags addObjectsFromArray:yhotTags];//选中的热门标签
+    [styles addObjectsFromArray:ystyles];//选中的风格
+    [elements addObjectsFromArray:yelements];//选中的元素
     
     NSLog(@"清空了所有的选中标签");
 }
 
 //确认按钮的回调
 
-- (void)moreTagsChooser:(YKChooser *)sheet selectedTags:(NSMutableArray *)sTags nTags:(NSArray *)nTags nSaleStatus:(NSArray *)nSaleStatus nBuildTypes:(NSArray *)nBuildTypes nRoomTypes:(NSArray *)nRoomTypes nDayToOpen:(NSArray *)nDayToOpen nYears:(NSArray *)nYears nAreas:(NSArray *)nAreas{
+- (void)moreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)yTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements{
     
     [selectedTags removeAllObjects];
-    [selectedTags addObjectsFromArray:sTags];//选中的所有标签
+    [selectedTags addObjectsFromArray:yTags];//选中的所有标签
     
     [types removeAllObjects];
     [seasons removeAllObjects];
@@ -346,13 +353,13 @@
     [styles removeAllObjects];
     [elements removeAllObjects];
     
-    [types addObjectsFromArray:nTags];//选中的品类
-    [seasons addObjectsFromArray:nAreas];//选中的季节
-    [colors addObjectsFromArray:nYears];//选中的颜色
-    [openTimes addObjectsFromArray:nDayToOpen];//选中的上新时间
-    [hotTags addObjectsFromArray:nRoomTypes];//选中的热门标签
-    [styles addObjectsFromArray:nBuildTypes];//选中的风格
-    [elements addObjectsFromArray:nSaleStatus];//选中的元素
+    [types addObjectsFromArray:ytypes];//选中的品类
+    [seasons addObjectsFromArray:yseasons];//选中的季节
+    [colors addObjectsFromArray:ycolors];//选中的颜色
+    [openTimes addObjectsFromArray:yopenTimes];//选中的上新时间
+    [hotTags addObjectsFromArray:yhotTags];//选中的热门标签
+    [styles addObjectsFromArray:ystyles];//选中的风格
+    [elements addObjectsFromArray:yelements];//选中的元素
     
     
     //组装数据
@@ -378,7 +385,7 @@
     
     NSMutableArray *postOpenTimes = [NSMutableArray array];
     for (YKTag *tag in openTimes) {
-        [postOpenTimes addObject:@(tag.objId)];
+        [postOpenTimes addObject:tag.name];
     }
     //热门标签
     NSMutableArray *postHotTags = [NSMutableArray array];
@@ -396,11 +403,11 @@
         [postElements addObject:@(tag.objId)];
     }
     
-//    NSLog(@"%@%ld%ld%@%@%ld%ld%@%@",postTags,(long)daysLow,(long)daysHigh,postRoomTypes,postSaleStatus,(long)areaLow,(long)areaLow,postYears,postBuildTypes);
+    NSLog(@"%@%@%@%@%@%@%@",postTypes,postColors,postStyles,postSeasons,postHotTags,postElements,postOpenTimes);
 //
-//    if (self.moreSelectedCallback) {
-//        self.moreSelectedCallback(postTags, daysLow, daysHigh, postRoomTypes, postSaleStatus, areaLow, areaLow, postYears, postBuildTypes);
-//    }
+    if (self.moreSelectedCallback) {
+        self.moreSelectedCallback(postTypes, postSeasons, postOpenTimes, postColors, postHotTags, postStyles, postElements);
+    }
     
     
     if (self.didSelectedCallback) {

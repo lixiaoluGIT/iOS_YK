@@ -44,6 +44,8 @@
         //            _isHadStock = NO;//无库存
         //        }
     }
+    
+    _collectionId = [NSString stringWithFormat:@"%@",dic[@"collectionId"]];
 }
 - (void)initWithDictionary:(NSDictionary *)dic{
     
@@ -94,6 +96,8 @@
 
     //占衣位数
     _OwenNum = [NSString stringWithFormat:@"%@",dic[@"occupySeat"]];
+    
+    
 }
 
 - (void)formateDate:(NSString *)dateString

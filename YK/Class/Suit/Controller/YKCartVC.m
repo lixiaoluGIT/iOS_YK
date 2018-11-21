@@ -18,8 +18,9 @@
 #import "YKLoginVC.h"
 #import "YKCartHeader.h"
 #import "YKCouponListVC.h"
+#import "YKMyLoveVC.h"
 
-@interface YKCartVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface YKCartVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
 {
     NSInteger maxClothesNum;//最大衣位数
     NSInteger currentClothesNum;//当前衣位数
@@ -33,6 +34,7 @@
 }
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic,strong)NSString *shoppingId;
 @end
 
 @implementation YKCartVC
@@ -357,11 +359,17 @@
             return;
         }
         //去心愿单
-        YKSuitVC *suit = [YKSuitVC new];
-        suit.isFromeProduct = YES;
-        suit.isAuto = NO;
-        suit.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:suit animated:YES];
+        YKMyLoveVC *chatVC = [[YKMyLoveVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = self.tabBarController.viewControllers[2];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+//        YKSuitVC *suit = [YKSuitVC new];
+//        suit.isFromeProduct = YES;
+//        suit.isAuto = NO;
+//        suit.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:suit animated:YES];
     
     }
 }
@@ -436,15 +444,34 @@
 //}
 
 - (void)deleteProduct:(NSString *)shopCartId{
-    NSMutableArray *shopCartList = [NSMutableArray array];
-    [shopCartList addObject:shopCartId];
-    [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:shopCartList OnResponse:^(NSDictionary *dic) {
+    self.shoppingId = shopCartId;
+    DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"温馨提示" message:@"确定移除衣袋吗？" cancelBtnTitle:@"暂不" otherBtnTitle:@"是的"];
+    aleart.delegate = self;
+    [aleart show];
+    
+//    NSMutableArray *shopCartList = [NSMutableArray array];
+//    [shopCartList addObject:shopCartId];
+//    [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:shopCartList OnResponse:^(NSDictionary *dic) {
+////        [self getCartList];
 //        [self getCartList];
-        [self getCartList];
-        
-        [self getNum];
-        
-    }];
+//
+//        [self getNum];
+//
+//    }];
 }
 
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex==1) {
+        NSMutableArray *shopCartList = [NSMutableArray array];
+            [shopCartList addObject:self.shoppingId];
+            [[YKSuitManager sharedManager]deleteFromShoppingCartwithShoppingCartId:shopCartList OnResponse:^(NSDictionary *dic) {
+        //        [self getCartList];
+                [self getCartList];
+        
+                [self getNum];
+        
+            }];
+    }
+}
 @end

@@ -55,25 +55,25 @@
 
 //选中的传过去
 - (void)moreTagsChooser:(YKChooser *)sheet
-           selectedTags:(NSArray *)sTags
-                  nTags:(NSArray *)nTags
-            nSaleStatus:(NSArray *)nSaleStatus
-            nBuildTypes:(NSArray *)nBuildTypes
-             nRoomTypes:(NSArray *)nRoomTypes
-             nDayToOpen:(NSArray *)nDayToOpen
-                 nYears:(NSArray *)nYears
-                 nAreas:(NSArray *)nAreas;
+           selectedTags:(NSArray *)yTags
+                  ytypes:(NSArray *)ytypes
+            yseasons:(NSArray *)yseasons
+            yopenTimes:(NSArray *)yopenTimes
+             ycolors:(NSArray *)ycolors
+             yhotTags:(NSArray *)yhotTags
+                 ystyles:(NSArray *)ystyles
+                 yelements:(NSArray *)yelements;
 
 //重置传空值
 - (void)resetmoreTagsChooser:(YKChooser *)sheet
                 selectedTags:(NSArray *)sTags
-                       nTags:(NSArray *)nTags
-                 nSaleStatus:(NSArray *)nSaleStatus
-                 nBuildTypes:(NSArray *)nBuildTypes
-                  nRoomTypes:(NSArray *)nRoomTypes
-                  nDayToOpen:(NSArray *)nDayToOpen
-                      nYears:(NSArray *)nYears
-                      nAreas:(NSArray *)nAreas;
+                       ytypes:(NSArray *)ytypes
+                     yseasons:(NSArray *)yseasons
+                   yopenTimes:(NSArray *)yopenTimes
+                      ycolors:(NSArray *)ycolors
+                     yhotTags:(NSArray *)yhotTags
+                      ystyles:(NSArray *)ystyles
+                    yelements:(NSArray *)yelements;
 @end
 
 #pragma mark---标签cell

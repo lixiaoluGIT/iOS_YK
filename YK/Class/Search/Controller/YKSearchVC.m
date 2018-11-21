@@ -22,6 +22,7 @@
 #import "YKLinkWebVC.h"
 #import "YKStyleView.h"
 #import "YKFilterHeaderView.h"
+#import "YKFilterUpHeaderView.h"
 #import "YKFilterView.h"
 
 @interface YKSearchVC ()<UICollectionViewDelegate, UICollectionViewDataSource,DCCycleScrollViewDelegate>
@@ -30,8 +31,9 @@
     BOOL hadButtons;
     BOOL hadtitle1;
     CGFloat lastContentOffset;
-    YKFilterHeaderView *upView;
-    YKFilterView *filterView;
+    __block YKFilterUpHeaderView *upView;
+    __block YKFilterView *filterView;
+    __block YKFilterHeaderView *headerView;
  }
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)NSString* categoryId;
@@ -129,9 +131,15 @@
     
     
     //浮框
-    upView  = [[YKFilterHeaderView alloc]init];
+    upView  = [[YKFilterUpHeaderView alloc]init];
     upView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(47));
     upView.hidden = YES;
+    upView.filterActionDid = ^(void){
+        [weakSelf showFilterView];
+    };
+    upView.changeTypeBlock = ^(BOOL isSelected){
+        headerView.isSelected = isSelected;
+    };
     [self.view addSubview:upView];
     
     //衣位导视图
@@ -392,10 +400,14 @@
         };
         
         //筛选三个title
-        YKFilterHeaderView *headerView = [[YKFilterHeaderView alloc]init];
+        headerView = [[YKFilterHeaderView alloc]init];
         headerView.frame = CGRectMake(0, styleView.bottom, WIDHT, kSuitLength_H(47));
         headerView.filterActionDid = ^(void){
             [weakSelf showFilterView];
+        };
+        //切换商品类型（全部或在架）
+        headerView.changeTypeBlock = ^(BOOL isSelected){
+            upView.isSelected = isSelected;
         };
         if (!hadButtons) {
             [head addSubview:headerView];
@@ -514,8 +526,8 @@
     
     
     //更多的回调
-    filterView.moreSelectedCallback = ^(NSArray *tags, NSInteger DaysToOpenLow,NSInteger DaysToOpenhigh,NSArray *roomTypes,NSArray *SaleStatus,NSInteger AreaLow,NSInteger AreaHigh,NSArray *YearLimits,NSArray *BuildingType){
-   
+    filterView.moreSelectedCallback = ^(NSArray *types, NSArray *seasons, NSArray *opentimes, NSArray *colors, NSArray *hotTags, NSArray *styles, NSArray *elements) {
+        
     };
     [filterView setDidSelectedCallback:^(NSString *circleId, NSString *content, NSInteger tag){
         
@@ -530,5 +542,6 @@
 //    [filterView initDataSourseWithType:@"3" AndSelectTag:20003];
     
     [filterView showDropDownWithTag:20003];
+//     [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
 }
 @end

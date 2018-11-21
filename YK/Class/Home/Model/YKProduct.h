@@ -48,6 +48,7 @@
 
 //是否收藏
 @property (nonatomic,strong)NSString *isInCollectionFolder;// 1收藏 2未收藏
+@property (nonatomic,strong)NSString *collectionId;
 //衣袋总数量
 @property (nonatomic,strong)NSString *occupiedClothes;
 

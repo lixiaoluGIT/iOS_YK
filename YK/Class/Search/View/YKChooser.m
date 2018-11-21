@@ -163,8 +163,8 @@ static CGFloat const kYGap = 10.f;
         //选中的类别数据
         [_types addObjectsFromArray:nSaleStatus];
         [_seasons addObjectsFromArray:nBuildTypes];
-        [_colors addObjectsFromArray:nRoomTypes];
-        [_openTimes addObjectsFromArray:nDayToOpen];
+        [_openTimes addObjectsFromArray:nRoomTypes];
+        [_colors addObjectsFromArray:nDayToOpen];
         [_hotTags addObjectsFromArray:nYears];
         [_styles addObjectsFromArray:nAreas];
         [_elements addObjectsFromArray:nTags];
@@ -205,6 +205,14 @@ static CGFloat const kYGap = 10.f;
     [self.layout reCalculateFrames];
     [self.bottomView addSubview:self.ensureBtn];
     [self.bottomView addSubview:self.resetBtn];
+    
+    if (_selectedTags.count!=0) {
+        [_resetBtn setBackgroundColor:mainColor];
+        [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+    }else {
+        _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+        [_resetBtn.titleLabel setTextColor:blackTextColor];
+    }
         
 }
 
@@ -279,6 +287,8 @@ static CGFloat const kYGap = 10.f;
         [_resetBtn setTitleColor:blackTextColor forState:UIControlStateNormal];
         [_resetBtn setTitleColor:[blackTextColor colorWithAlphaComponent:0.6] forState:UIControlStateHighlighted];
         [_resetBtn setTitle:@"重置" forState:UIControlStateNormal];
+        [_resetBtn setImage:[UIImage imageNamed:@"更换"] forState:UIControlStateNormal];
+        [_resetBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
         [_resetBtn addTarget:self action:@selector(resetAction) forControlEvents:UIControlEventTouchUpInside];
         _resetBtn.frame = CGRectMake(kSuitLength_H(35.f / 2), _myCollectionView.frame.origin.y + _myCollectionView.frame.size.height +kSuitLength_V(5), kSuitLength_H(270.f / 2), kBottomBtnHeight);
     }
@@ -399,14 +409,14 @@ static CGFloat const kYGap = 10.f;
                     }
                 }
             }
-            if (indexPath.section==2) {//颜色
+            if (indexPath.section==3) {//颜色
                 if (tag.selected) {
                     if (![_colors containsObject:tag]) {
                         [_colors addObject:tag];
                     }
                 }
             }
-            if (indexPath.section==3) {//上新时间
+            if (indexPath.section==2) {//上新时间
                 if (tag.selected) {
                     if (![_openTimes containsObject:tag]) {
                         [_openTimes addObject:tag];
@@ -532,141 +542,243 @@ static CGFloat const kYGap = 10.f;
     
     YKTag *tag = [tags yl_objectAtIndex:indexPath.row];
 //    
-//    if (indexPath.section==0) {//品类
-//        if(![_types containsObject:tag]){
-//            tag.selected = YES;
-//            [_types addObject:tag];
-//        }else{
-//            tag.selected = NO;
-//            [_types removeObject:tag];
-//        }
-//    }
-//    if (indexPath.section==1) {//季节
-//        if(![_seasons containsObject:tag]){
-//            tag.selected = YES;
-//            [_seasons addObject:tag];
-//        }else{
-//            tag.selected = NO;
-//            [_seasons removeObject:tag];
-//        }
-//    }
-//    if (indexPath.section==2) {//颜色
-//        if(![_colors containsObject:tag]){
-//            tag.selected = YES;
-//            [_colors addObject:tag];
-//        }else{
-//            tag.selected = NO;
-//            [_colors removeObject:tag];
-//        }
-//    }
-//    if (indexPath.section==3) {//上新时间
-//        
-//        if(![_selectedTags containsObject:tag]){
-//            
-//            NSMutableArray *a = _selectedTags.copy;
-//            for (YKTag *ct in a) {
-//                for (YKTag *ctt in _openTimes) {
-//                    if ([ct.name isEqual:ctt.name]) {
-//                        ct.selected = NO;
-//                        [_selectedTags removeObject:ct];
-//                    }
-//                }
-//            }
-//            
-//            tag.selected = YES;
-//            [_selectedTags addObject:tag];
-//            
-//        }else{
-//            tag.selected = NO;
-//            [_selectedTags removeObject:tag];
-//        }
-//        
-//        if(![_openTimes containsObject:tag]){
-//            
-//            for (YKTag *t in _openTimes) {//当前section选中的tag
-//                t.selected = NO;
-//                [_openTimes removeObject:t];
-//                for (YKTag *tt in tags) {
-//                    if ([tt.name isEqual:t.name]) {
-//                        tt.selected = t.selected;
-//                    }
-//                    
-//                }
-//            }
-//            tag.selected = YES;
-//            [_openTimes addObject:tag];
-//        }else{
-//            tag.selected = NO;
-//            [_openTimes removeObject:tag];
-//        }
-//        
-//        [collectionView reloadData];
-//        return;
-//    }
-//    if (indexPath.section==4) {//热门标签
-//        
-//        if(![_selectedTags containsObject:tag]){
-//            //取消之前的选中
-//            NSMutableArray *a = _selectedTags.copy;
-//            for (YKTag *ct in a) {//所有的选中
-//                for (YKTag *ctt in _hotTags) {//面积的选中
-//                    if ([ct.name isEqual:ctt.name]) {
-//                        ct.selected = NO;
-//                        [_selectedTags removeObject:ct];//去掉面积之前的选中
-//                    }
-//                }
-//            }
-//            
-//            tag.selected = YES;
-//            [_selectedTags addObject:tag];
-//            
-//        }else{
-//            //取消选中
-//            tag.selected = NO;
-//            [_selectedTags removeObject:tag];
-//        }
-//        
-//        
-//        if(![_hotTags containsObject:tag]){
-//            for (YKTag *t in _hotTags) {//当前section选中的tag
-//                t.selected = NO;
-//                [_hotTags removeObject:t];
-//                for (YKTag *tt in tags) {
-//                    if ([tt.name isEqual:t.name]) {
-//                        tt.selected = t.selected;
-//                    }
-//                    
-//                }
-//            }
-//            
-//            tag.selected = YES;
-//            [_hotTags addObject:tag];
-//        }else{
-//            tag.selected = NO;
-//            [_hotTags removeObject:tag];
-//        }
-//        
-//        [collectionView reloadData];
-//        return;
-//    }
-//    if (indexPath.section==5) {//风格
-//        if(![_styles containsObject:tag]){
-//            tag.selected = YES;
-//            [_styles addObject:tag];
-//        }else{
-//            tag.selected = NO;
-//            [_styles removeObject:tag];
-//        }
-//    }
-//    if (indexPath.section==6) {//元素
-//        if(![_elements containsObject:tag]){
-//            tag.selected = YES;
-//            [_elements addObject:tag];
-//        }else{
-//            tag.selected = NO;
-//            [_elements removeObject:tag];
-//        }
-//    }
+    if (indexPath.section==0) {//品类
+        if(![_types containsObject:tag]){
+            tag.selected = YES;
+            [_types addObject:tag];
+        }else{
+            tag.selected = NO;
+            [_types removeObject:tag];
+        }
+    }
+    if (indexPath.section==1) {//季节
+        if(![_seasons containsObject:tag]){
+            tag.selected = YES;
+            [_seasons addObject:tag];
+        }else{
+            tag.selected = NO;
+            [_seasons removeObject:tag];
+        }
+    }
+  
+    if (indexPath.section==2) {//上新时间
+        
+        if(![_selectedTags containsObject:tag]){
+            
+            NSMutableArray *a = _selectedTags.copy;
+            for (YKTag *ct in a) {
+                for (YKTag *ctt in _openTimes) {
+                    if ([ct.name isEqual:ctt.name]) {
+                        ct.selected = NO;
+                        [_selectedTags removeObject:ct];
+                    }
+                }
+            }
+            
+            tag.selected = YES;
+            [_selectedTags addObject:tag];
+            
+        }else{
+            tag.selected = NO;
+            [_selectedTags removeObject:tag];
+        }
+        
+        if(![_openTimes containsObject:tag]){
+            
+            for (YKTag *t in _openTimes) {//当前section选中的tag
+                t.selected = NO;
+                [_openTimes removeObject:t];
+                for (YKTag *tt in tags) {
+                    if ([tt.name isEqual:t.name]) {
+                        tt.selected = t.selected;
+                    }
+                    
+                }
+            }
+            tag.selected = YES;
+            [_openTimes addObject:tag];
+        }else{
+            tag.selected = NO;
+            [_openTimes removeObject:tag];
+        }
+        if (_selectedTags.count!=0) {
+            [_resetBtn setBackgroundColor:mainColor];
+            [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+        }else {
+            _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+            [_resetBtn.titleLabel setTextColor:blackTextColor];
+        }
+        [collectionView reloadData];
+        return;
+    }
+    
+    if (indexPath.section==3) {//颜色
+        if(![_colors containsObject:tag]){
+            tag.selected = YES;
+            [_colors addObject:tag];
+        }else{
+            tag.selected = NO;
+            [_colors removeObject:tag];
+        }
+    }
+    
+    if (indexPath.section==4) {//热门标签
+        
+        if(![_selectedTags containsObject:tag]){
+            //取消之前的选中
+            NSMutableArray *a = _selectedTags.copy;
+            for (YKTag *ct in a) {//所有的选中
+                for (YKTag *ctt in _hotTags) {//面积的选中
+                    if ([ct.name isEqual:ctt.name]) {
+                        ct.selected = NO;
+                        [_selectedTags removeObject:ct];//去掉面积之前的选中
+                    }
+                }
+            }
+            
+            tag.selected = YES;
+            [_selectedTags addObject:tag];
+            
+        }else{
+            //取消选中
+            tag.selected = NO;
+            [_selectedTags removeObject:tag];
+        }
+        
+        
+        if(![_hotTags containsObject:tag]){
+            for (YKTag *t in _hotTags) {//当前section选中的tag
+                t.selected = NO;
+                [_hotTags removeObject:t];
+                for (YKTag *tt in tags) {
+                    if ([tt.name isEqual:t.name]) {
+                        tt.selected = t.selected;
+                    }
+                    
+                }
+            }
+            
+            tag.selected = YES;
+            [_hotTags addObject:tag];
+        }else{
+            tag.selected = NO;
+            [_hotTags removeObject:tag];
+        }
+        if (_selectedTags.count!=0) {
+            [_resetBtn setBackgroundColor:mainColor];
+            [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+        }else {
+            _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+            [_resetBtn.titleLabel setTextColor:blackTextColor];
+        }
+        [collectionView reloadData];
+        return;
+    }
+    if (indexPath.section==5) {//风格
+        
+        if(![_selectedTags containsObject:tag]){
+            //取消之前的选中
+            NSMutableArray *a = _selectedTags.copy;
+            for (YKTag *ct in a) {//所有的选中
+                for (YKTag *ctt in _styles) {
+                    if ([ct.name isEqual:ctt.name]) {
+                        ct.selected = NO;
+                        [_selectedTags removeObject:ct];//去掉面积之前的选中
+                    }
+                }
+            }
+            
+            tag.selected = YES;
+            [_selectedTags addObject:tag];
+            
+        }else{
+            //取消选中
+            tag.selected = NO;
+            [_selectedTags removeObject:tag];
+        }
+        
+        
+        if(![_styles containsObject:tag]){
+            for (YKTag *t in _styles) {//当前section选中的tag
+                t.selected = NO;
+                [_hotTags removeObject:t];
+                for (YKTag *tt in tags) {
+                    if ([tt.name isEqual:t.name]) {
+                        tt.selected = t.selected;
+                    }
+                    
+                }
+            }
+            
+            tag.selected = YES;
+            [_styles addObject:tag];
+        }else{
+            tag.selected = NO;
+            [_styles removeObject:tag];
+        }
+        if (_selectedTags.count!=0) {
+            [_resetBtn setBackgroundColor:mainColor];
+            [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+        }else {
+            _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+            [_resetBtn.titleLabel setTextColor:blackTextColor];
+        }
+        [collectionView reloadData];
+        return;
+    }
+    
+    if (indexPath.section==6) {//元素
+        
+        if(![_selectedTags containsObject:tag]){
+            //取消之前的选中
+            NSMutableArray *a = _selectedTags.copy;
+            for (YKTag *ct in a) {//所有的选中
+                for (YKTag *ctt in _elements) {//面积的选中
+                    if ([ct.name isEqual:ctt.name]) {
+                        ct.selected = NO;
+                        [_selectedTags removeObject:ct];//去掉面积之前的选中
+                    }
+                }
+            }
+            
+            tag.selected = YES;
+            [_selectedTags addObject:tag];
+            
+        }else{
+            //取消选中
+            tag.selected = NO;
+            [_selectedTags removeObject:tag];
+        }
+        
+        
+        if(![_elements containsObject:tag]){
+            for (YKTag *t in _elements) {//当前section选中的tag
+                t.selected = NO;
+                [_elements removeObject:t];
+                for (YKTag *tt in tags) {
+                    if ([tt.name isEqual:t.name]) {
+                        tt.selected = t.selected;
+                    }
+                    
+                }
+            }
+            
+            tag.selected = YES;
+            [_elements addObject:tag];
+        }else{
+            tag.selected = NO;
+            [_elements removeObject:tag];
+        }
+        if (_selectedTags.count!=0) {
+            [_resetBtn setBackgroundColor:mainColor];
+            [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+        }else {
+            _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+            [_resetBtn.titleLabel setTextColor:blackTextColor];
+        }
+        [collectionView reloadData];
+        return;
+    }
     
     
     if(![_selectedTags containsObject:tag]){
@@ -679,6 +791,14 @@ static CGFloat const kYGap = 10.f;
         [_selectedTags removeObject:tag];
     }
     //            NSLog(@"选中的==%@",_selectedTags);
+    
+    if (_selectedTags.count!=0) {
+        [_resetBtn setBackgroundColor:mainColor];
+        [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+    }else {
+        _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+        [_resetBtn.titleLabel setTextColor:blackTextColor];
+    }
     [collectionView reloadData];
 }
 
@@ -719,9 +839,9 @@ static CGFloat const kYGap = 10.f;
         
  
     
-        _resetBtn.frame = CGRectMake(0, self.bottomView.frame.origin.y + self.bottomView.frame.size.height - kBottomBtnHeight,  (_bottomView.frame.size.width-kSuitLength_H(60))/2, kBottomBtnHeight);
-    
-        _ensureBtn.frame = CGRectMake(_bottomView.frame.size.width/2, self.bottomView.frame.origin.y + self.bottomView.frame.size.height - kBottomBtnHeight , (_bottomView.frame.size.width-kSuitLength_H(60))/2, kBottomBtnHeight);
+        _resetBtn.frame = CGRectMake(0, self.bottomView.frame.origin.y + self.bottomView.frame.size.height - kBottomBtnHeight,  (screen_width-kSuitLength_H(60))/2, kBottomBtnHeight);
+
+        _ensureBtn.frame = CGRectMake(_resetBtn.frame.size.width + _resetBtn.frame.origin.x, self.bottomView.frame.origin.y + self.bottomView.frame.size.height - kBottomBtnHeight , (screen_width-kSuitLength_H(60))/2, kBottomBtnHeight);
     
     //    self.frame = self.bottomView.frame;
     
@@ -771,9 +891,9 @@ static CGFloat const kYGap = 10.f;
 // 点击了更多的确认
 -(void)ensureAction
 {
-    if([_delegate respondsToSelector:@selector(moreTagsChooser:selectedTags:nTags:nSaleStatus:nBuildTypes:nRoomTypes:nDayToOpen:nYears:nAreas:)]){
+    if([_delegate respondsToSelector:@selector(moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:)]){
         
-        [_delegate moreTagsChooser:self selectedTags:_selectedTags nTags:_types nSaleStatus:_seasons nBuildTypes:_colors nRoomTypes:_openTimes nDayToOpen:_hotTags nYears:_styles nAreas:_elements];
+        [_delegate moreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements];
     }
     [self dismiss];
 }
@@ -818,11 +938,18 @@ static CGFloat const kYGap = 10.f;
         
     }
     
-    if([_delegate respondsToSelector:@selector(resetmoreTagsChooser:selectedTags:nTags:nSaleStatus:nBuildTypes:nRoomTypes:nDayToOpen:nYears:nAreas:)]){
+    if([_delegate respondsToSelector:@selector(resetmoreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:)]){
         
-        [_delegate resetmoreTagsChooser:self selectedTags:_selectedTags nTags:_types nSaleStatus:_seasons nBuildTypes:_colors nRoomTypes:_openTimes nDayToOpen:_hotTags nYears:_styles nAreas:_elements];
+        [_delegate resetmoreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements];
     }
     
+    if (_selectedTags.count!=0) {
+        [_resetBtn setBackgroundColor:mainColor];
+        [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+    }else {
+        _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+        [_resetBtn.titleLabel setTextColor:blackTextColor];
+    }
     [self.myCollectionView reloadData];
     
     //    [self dismiss];

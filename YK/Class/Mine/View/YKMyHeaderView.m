@@ -141,7 +141,19 @@
             l.frame = CGRectMake(btn.frame.size.width-kSuitLength_H(25), -(kSuitLength_H(11/2)), kSuitLength_H(11), kSuitLength_H(11));
             l.backgroundColor = YKRedColor;
             l.textColor = [UIColor whiteColor];
-            l.text = [NSString stringWithFormat:@"%d",i];
+//            l.text = [NSString stringWithFormat:@"%d",i];
+            if (i==0) {
+                l.text = [NSString stringWithFormat:@"%@",[YKUserManager sharedManager].user.toQianshouNum];
+                if ([[YKUserManager sharedManager].user.toQianshouNum intValue] == 0) {
+                    l.hidden = YES;
+                }
+            }
+            if (i==1) {
+                l.text = [NSString stringWithFormat:@"%@",[YKUserManager sharedManager].user.toReceiveNum];
+                if ([[YKUserManager sharedManager].user.toReceiveNum intValue] == 0) {
+                    l.hidden = YES;
+                }
+            }
             l.layer.masksToBounds = YES;
             l.layer.cornerRadius=kSuitLength_H(11)/2;
             

@@ -65,6 +65,8 @@
 
 @property (nonatomic,strong)NSMutableArray *dataArray;
 
+@property (nonatomic,strong)NSMutableArray *collectStatusArray;
+
 
 
 @end
@@ -76,6 +78,7 @@
     [UD setBool:YES forKey:@"atSearch"];
     [self getData];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
@@ -88,13 +91,18 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (w-30)/2*240/140);
    
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kSuitLength_H(130), self.view.bounds.size.width, self.view.bounds.size.height-50) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0 , self.view.bounds.size.width, self.view.bounds.size.height - kSuitLength_H(50)) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+//    layoutView.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
+//    layoutView.footerReferenceSize = CGSizeMake(self.view.bounds.size.width, 66);
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CGQCollectionViewCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"CGQCollectionViewCell"];
-
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([YKProductAdCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"YKProductAdCell"];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
     self.collectionView.hidden = YES;
     _pageNum = 1;
     WeakSelf(weakSelf)
@@ -117,67 +125,74 @@
         }];
     }];
     
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _pageNum = 1;
+        //请求更多商品
+        [weakSelf getData];
+    }];
+    
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
     [self getData];
 
-    self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
-    self.titleView.frame = CGRectMake(0,0,WIDHT, kSuitLength_H(130));
-    self.origialFrame = self.titleView.frame;
-    //筛选
-    self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){
-        _pageNum = 1;
-        _sortId = sortId;
-        _categoryId = categoryId;
-        [weakSelf filterProductWithCategoryId:categoryId sortId:sortId styleId:weakSelf.styleId];
-    };
-
-    [self.view addSubview:self.titleView];
+//    self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
+//    self.titleView.frame = CGRectMake(0,0,WIDHT, kSuitLength_H(130));
+//    self.origialFrame = self.titleView.frame;
+//    //筛选
+//    self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){
+//        _pageNum = 1;
+//        _sortId = sortId;
+//        _categoryId = categoryId;
+//        [weakSelf filterProductWithCategoryId:categoryId sortId:sortId styleId:weakSelf.styleId];
+//    };
+//    [self.view addSubview:self.titleView];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-
-//    NSLog(@"%lf",scrollView.contentOffset.y);
-    if (scrollView == self.collectionView)
-    {
-
-        //向上推
-
-        if (scrollView.contentOffset.y>lastContentOffset) {
-
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"up" object:nil userInfo:nil];
-            self.collectionView.frame = CGRectMake(0, kSuitLength_H(130), self.view.bounds.size.width, HEIGHT-kSuitLength_V(50));
-
-             self.titleView.frame = CGRectMake(0,0, WIDHT, kSuitLength_H(130));
-
-        }
-
-
-
-
-    if (scrollView.contentOffset.y< lastContentOffset )
-        {
-            //向下
-            [UIView animateWithDuration:0.25 animations:^{
-                self.collectionView.frame = CGRectMake(0, kSuitLength_H(130), self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
-                self.titleView.hidden = NO;
-                self.titleView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(130));
-            }];
-
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"down" object:nil userInfo:nil];
-
-
-        }
-
-
-    }
+//
+////    NSLog(@"%lf",scrollView.contentOffset.y);
+//    if (scrollView == self.collectionView)
+//    {
+//
+////        向上推
+//
+//        if (scrollView.contentOffset.y>lastContentOffset) {
+//
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"up" object:nil userInfo:nil];
+//            self.collectionView.frame = CGRectMake(0, kSuitLength_H(130), self.view.bounds.size.width, HEIGHT-kSuitLength_V(150));
+//
+//             self.titleView.frame = CGRectMake(0,0, WIDHT, kSuitLength_H(130));
+//
+//        }
+//
+//
+//
+//
+//    if (scrollView.contentOffset.y< lastContentOffset )
+//        {
+////            //向下
+////            [UIView animateWithDuration:0.25 animations:^{
+//                self.collectionView.frame = CGRectMake(0, kSuitLength_H(130), self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
+//                self.titleView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(130));
+////            }];
+//
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"down" object:nil userInfo:nil];
+//
+//
+//        }
+//
+////
+//    }
     
 }
 - (void)getData{
     [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
         self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
-     
+        self.collectStatusArray = [NSMutableArray array];
+        for (int i=0; i<self.dataArray.count; i++) {
+            [self.collectStatusArray addObject:@"1"];
+        }
         if (self.dataArray.count==0) {//显示scrollView
 //            self.tableView.hidden = YES;
 //            NoDataView.hidden = NO;
@@ -271,12 +286,61 @@
     [procuct initWithDic:dic];
     cell.isInLoveVC = YES;
     cell.product = procuct;
+    cell.changeCollectStatus = ^(NSInteger status){
+        if (status==0) {//取消喜欢
+            [self.collectStatusArray replaceObjectAtIndex:indexPath.row withObject:@"0"];
+        }
+        if (status==1) {//喜欢
+            [self.collectStatusArray replaceObjectAtIndex:indexPath.row withObject:@"1"];
+        }
+        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:indexPath.row inSection:0], nil]];
+    };
+      [cell showLoveBtn:self.collectStatusArray[indexPath.row]];
     
     return cell;
 }
 
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    
+    //    return CGSizeMake(self.view.frame.size.width, (WIDHT-48)/3*2+40+kSuitLength_H(160));
+    return CGSizeMake(WIDHT, kSuitLength_H(130));
+}
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    WeakSelf(weakSelf)
+    
+    if (kind == UICollectionElementKindSectionFooter) {
+        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
+        return footer;
+    }
+    if (kind == UICollectionElementKindSectionHeader) {
+        
+        UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
+        
+        self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
+        self.titleView.frame = CGRectMake(0,0,WIDHT, kSuitLength_H(130));
+        self.origialFrame = self.titleView.frame;
+        //筛选
+        self.titleView.filterBlock = ^(NSString *categoryId,NSString *sortId){
+            _pageNum = 1;
+            _sortId = sortId;
+            _categoryId = categoryId;
+            [weakSelf filterProductWithCategoryId:categoryId sortId:sortId styleId:weakSelf.styleId];
+        };
+        
+        if (!hadScroll) {
+            [head addSubview:self.titleView];
+            hadScroll = YES;
+        }
+        [self.titleView setUserInteractionEnabled:YES];
+        
+        return head;
+    }
+    
+    return nil;
+}
 
 
 //设置每个item的UIEdgeInsets

@@ -89,30 +89,30 @@
 
 - (void)btnViewClick:(YKScrollBtnView *)btnView{
 
-//    for (YKScrollBtnView *btn in _btnArray) {
-//        if (btn.tag == btnView.tag) {
-//            btnView.isSelect  = !btnView.isSelect;
-//            if (btnView.isSelect) {
-//                 btn.styleId = _styleArray[btnView.tag][@"styleId"];
-//                btnView.title.textColor = [UIColor whiteColor];
-//                btnView.title.backgroundColor = mainColor;
-//                //拼接x
-//                 btnView.title.text = [btnView.title.text stringByAppendingFormat:@" x"];
-//            }else {
-//                btnView.title.textColor = mainColor;
-//                btnView.title.backgroundColor = [UIColor whiteColor];
-//                btnView.styleId = @"0";
-//                //去x
-//                btnView.title.text = [btnView.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
-//            }
-//        }else {
-//            btn.isSelect = NO;
-//            btn.title.textColor = mainColor;
-//            btn.title.backgroundColor = [UIColor whiteColor];
-//            btn.title.text = [btn.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
-//        }
-//    }if (self.toDetailBlock) {
-//        self.toDetailBlock(btnView.styleId,@"");
-//    }
+    for (YKScrollBtnView *btn in _btnArray) {
+        if (btn.tag == btnView.tag) {
+            btnView.isSelect  = !btnView.isSelect;
+            if (btnView.isSelect) {
+                 btn.styleId = _styleArray[btnView.tag][@"styleId"];
+                btnView.title.textColor = [UIColor whiteColor];
+                btnView.title.backgroundColor = mainColor;
+                //拼接x
+                 btnView.title.text = [btnView.title.text stringByAppendingFormat:@" x"];
+            }else {
+                btnView.title.textColor = mainColor;
+                btnView.title.backgroundColor = [UIColor whiteColor];
+                btnView.styleId = @"0";
+                //去x
+                btnView.title.text = [btnView.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
+            }
+        }else {
+            btn.isSelect = NO;
+            btn.title.textColor = mainColor;
+            btn.title.backgroundColor = [UIColor whiteColor];
+            btn.title.text = [btn.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
+        }
+    }if (self.toDetailBlock) {
+        self.toDetailBlock(btnView.styleId,@"");
+    }
 }
 @end

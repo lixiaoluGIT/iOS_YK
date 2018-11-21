@@ -35,8 +35,8 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daifanjia" translatesAutoresizingMaskIntoConstraints="NO" id="hZv-X5-c5y">
-                        <rect key="frame" x="140" y="0.0" width="44" height="44"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fanjia" translatesAutoresizingMaskIntoConstraints="NO" id="hZv-X5-c5y">
+                        <rect key="frame" x="52" y="78" width="80" height="20"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="刚刚上新" translatesAutoresizingMaskIntoConstraints="NO" id="o6Q-Xj-Mth">
                         <rect key="frame" x="0.0" y="0.0" width="58" height="20"/>
@@ -96,6 +96,17 @@
                         </constraints>
                         <state key="normal" image="添加衣袋"/>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOO-Ix-VQb">
+                        <rect key="frame" x="152" y="10" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="NOd-Tv-ZnA"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="喜欢已选"/>
+                        <state key="selected" image="喜欢未选"/>
+                        <connections>
+                            <action selector="changeLove:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YUj-ke-1gk"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -103,16 +114,18 @@
                 <constraint firstItem="2Pv-tw-PoQ" firstAttribute="bottom" secondItem="VsE-Au-0OE" secondAttribute="bottom" constant="-7" id="5p2-O9-upn"/>
                 <constraint firstAttribute="trailing" secondItem="eS4-TP-3ji" secondAttribute="trailing" id="ArX-eM-CUz"/>
                 <constraint firstItem="VsE-Au-0OE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="B9U-yO-GQs"/>
-                <constraint firstAttribute="trailing" secondItem="hZv-X5-c5y" secondAttribute="trailing" id="F5R-A3-DAH"/>
+                <constraint firstItem="hZv-X5-c5y" firstAttribute="centerY" secondItem="VsE-Au-0OE" secondAttribute="centerY" id="CWj-vJ-lA8"/>
+                <constraint firstItem="bOO-Ix-VQb" firstAttribute="top" secondItem="VsE-Au-0OE" secondAttribute="top" constant="10" id="EYD-MK-Mea"/>
                 <constraint firstItem="VsE-Au-0OE" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.75" id="GnP-JR-ecp"/>
                 <constraint firstItem="o6Q-Xj-Mth" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HQU-GQ-m6P"/>
                 <constraint firstItem="P6F-GH-N2m" firstAttribute="centerX" secondItem="mBc-Nl-XRj" secondAttribute="centerX" id="Jk9-Dm-h5e"/>
                 <constraint firstItem="HFR-0u-uyN" firstAttribute="centerY" secondItem="P6F-GH-N2m" secondAttribute="centerY" id="KpG-7K-Ekb"/>
                 <constraint firstAttribute="trailing" secondItem="VsE-Au-0OE" secondAttribute="trailing" id="M2d-My-ZEj"/>
+                <constraint firstItem="bOO-Ix-VQb" firstAttribute="trailing" secondItem="VsE-Au-0OE" secondAttribute="trailing" constant="-10" id="P2f-af-ByJ"/>
                 <constraint firstItem="P6F-GH-N2m" firstAttribute="top" secondItem="mBc-Nl-XRj" secondAttribute="bottom" constant="10" id="TOn-5w-iBZ"/>
                 <constraint firstItem="VsE-Au-0OE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Vbc-Wr-oyP"/>
                 <constraint firstItem="eS4-TP-3ji" firstAttribute="leading" secondItem="mBc-Nl-XRj" secondAttribute="trailing" id="Wbg-f7-hGm"/>
-                <constraint firstItem="hZv-X5-c5y" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Znm-jP-8Ss"/>
+                <constraint firstItem="hZv-X5-c5y" firstAttribute="centerX" secondItem="VsE-Au-0OE" secondAttribute="centerX" id="gGm-kn-eYb"/>
                 <constraint firstItem="mBc-Nl-XRj" firstAttribute="top" secondItem="VsE-Au-0OE" secondAttribute="bottom" constant="14" id="hSO-fS-MO5"/>
                 <constraint firstItem="mBc-Nl-XRj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hrl-dp-GtO"/>
                 <constraint firstItem="hvo-1c-EOg" firstAttribute="centerY" secondItem="P6F-GH-N2m" secondAttribute="centerY" id="lhu-m9-Wnh"/>
@@ -132,19 +145,22 @@
                 <outlet property="freeBtn" destination="eS4-TP-3ji" id="bc5-xb-DYO"/>
                 <outlet property="imageView" destination="VsE-Au-0OE" id="0lg-4d-ous"/>
                 <outlet property="lable" destination="mBc-Nl-XRj" id="HGF-NA-7oZ"/>
+                <outlet property="loveBtn" destination="bOO-Ix-VQb" id="NY3-B2-laV"/>
                 <outlet property="qiangkongImage" destination="hZv-X5-c5y" id="QZF-oa-n6b"/>
                 <outlet property="shangxinImage" destination="o6Q-Xj-Mth" id="fPr-TI-yb0"/>
                 <outlet property="zhanyiweiNum" destination="jlG-5M-i8B" id="vz0-il-857"/>
             </connections>
-            <point key="canvasLocation" x="-226" y="-100"/>
+            <point key="canvasLocation" x="-379" y="-105"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="changhao" width="7" height="7"/>
-        <image name="daifanjia" width="44" height="44"/>
+        <image name="fanjia" width="80" height="20"/>
         <image name="timg.jpg" width="925" height="992"/>
         <image name="刚刚上新" width="58" height="20"/>
         <image name="占衣位" width="6" height="9"/>
+        <image name="喜欢已选" width="20" height="19"/>
+        <image name="喜欢未选" width="19" height="17"/>
         <image name="添加衣袋" width="12" height="12"/>
     </resources>
 </document>

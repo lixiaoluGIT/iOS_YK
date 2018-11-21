@@ -21,6 +21,11 @@
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
 @property (weak, nonatomic) IBOutlet UIButton *addSuitBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *loveBtn;
+
+@property (nonatomic,strong)NSString *collectionId;
+
 @end
 
 @implementation CGQCollectionViewCell
@@ -55,6 +60,8 @@
     
     [_addSuitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
     [_addSuitBtn addTarget:self action:@selector(addBlock) forControlEvents:UIControlEventTouchUpInside];
+    
+    _loveBtn.hidden = YES;
 }
 
 //加入衣袋
@@ -148,6 +155,41 @@
         _addSuitBtn.hidden = YES;
     }
     
+    _collectionId = product.collectionId;
+    
+}
+
+- (IBAction)changeLove:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    
+    
+    if (!btn.selected) {//喜欢
+        NSMutableArray *list = [NSMutableArray array];
+        [list addObject:_collectionId];
+        //取消喜欢
+        [[YKSuitManager sharedManager]deleteCollecttwithShoppingCartId:list OnResponse:^(NSDictionary *dic) {
+            if (self.changeCollectStatus) {
+                self.changeCollectStatus(0);
+            }
+        }];
+        
+    }else {//未喜欢
+        //喜欢
+        [[YKSuitManager sharedManager]collectWithclothingId:_goodsId clothingStckType:_clothingStockId OnResponse:^(NSDictionary *dic) {
+            if (self.changeCollectStatus) {
+                self.changeCollectStatus(1);
+            }
+        }];
+    }
+    
+    btn.selected = !btn.selected;
+    
+    
+}
+
+- (void)showLoveBtn:(NSString *)status{
+     _loveBtn.hidden = NO;
+    _loveBtn.selected = ![status intValue];
 }
 
 @end

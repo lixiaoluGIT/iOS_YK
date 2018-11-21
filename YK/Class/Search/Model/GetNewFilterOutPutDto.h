@@ -63,8 +63,8 @@
 @end
 //上新时间
 @interface updateTime : NSObject
-@property (nonatomic, assign) NSInteger ID;
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSString *sevenDays;
+@property (nonatomic, copy) NSString *thirtyDays;
 @end
 
 

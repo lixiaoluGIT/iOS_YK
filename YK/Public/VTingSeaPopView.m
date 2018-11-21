@@ -153,7 +153,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissSelfBtn:)];
     [_bottomView setUserInteractionEnabled:YES];
     [_bottomView addGestureRecognizer:tap];
-    //左边关闭按钮
+    //左边关闭按钮     
     _bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _bottomBtn.frame = _exitImgvi.frame;
     [_bottomBtn addTarget:self action:@selector(dismissSelfBtn:) forControlEvents:UIControlEventTouchUpInside];

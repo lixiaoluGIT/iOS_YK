@@ -12,7 +12,9 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)Dictionary{
     if (self = [super init]) {
-        
+        if (Dictionary.allKeys.count == 0) {
+            return nil;
+        }
         self.rongToken = Dictionary[@"rongToken"];
         
         self.userId = Dictionary[@"userInfo"][@"userId"];
@@ -51,6 +53,12 @@
     
 //    self.newUser = Dictionary[@"school"][@"schoolId"];
     self.isNewUser = Dictionary[@"userInfo"][@"newUser"];
+    
+    //待签收数量
+    self.toQianshouNum = [NSString stringWithFormat:@"%@",Dictionary[@"orderNumberList"][0][@"orderNum"]];
+    //待归还数量
+    self.toReceiveNum = [NSString stringWithFormat:@"%@",Dictionary[@"orderNumberList"][1][@"orderNum"]];
+    
     return self;
 }
 

@@ -27,4 +27,7 @@
 @property (nonatomic,strong)NSString *clothingStockId;
 @property (nonatomic,assign)BOOL isInLoveVC;
 @property (nonatomic,copy)void (^toDetailBlock)(NSString *productId);
+//收藏按钮点击
+@property (nonatomic,copy)void (^changeCollectStatus)(NSInteger status);
+- (void)showLoveBtn:(NSString *)status;
 @end

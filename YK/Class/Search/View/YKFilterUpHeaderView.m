@@ -1,21 +1,20 @@
 //
-//  YKFilterHeaderView.m
+//  YKFilterUpHeaderView.m
 //  YK
 //
-//  Created by edz on 2018/10/29.
+//  Created by edz on 2018/11/20.
 //  Copyright © 2018年 YK. All rights reserved.
 //
 
-#import "YKFilterHeaderView.h"
-
-@interface YKFilterHeaderView(){
+#import "YKFilterUpHeaderView.h"
+@interface YKFilterUpHeaderView(){
     UIButton *seLabel;
 }
 @property (nonatomic,strong)UIView *staticView;//静态view
 @property (nonatomic,strong)UIScrollView *scrollView;//选择出来的标签滚动图
 @end
 
-@implementation YKFilterHeaderView
+@implementation YKFilterUpHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -103,10 +102,10 @@
 
 //切换单品推荐类型
 - (void)changeTypeAction:(UIButton *)btn{
-    btn.selected = !btn.selected;
-    if (self.changeTypeBlock) {
-        self.changeTypeBlock(btn.selected);
-    }
+//    btn.selected = !btn.selected;
+//    if (self.changeTypeBlock) {
+//        self.changeTypeBlock(btn.selected);
+//    }
 }
 
 //弹出筛选界面
@@ -120,9 +119,9 @@
     _isSelected = isSelected;
     seLabel.selected = _isSelected;
 //    if (isSelected) {
-//        [seLabel setTitle:@"全部单品" forState:UIControlStateSelected];
+//         [seLabel setTitle:@"全部单品" forState:UIControlStateSelected];
 //    }else {
-//        [seLabel setTitle:@"在架优先" forState:UIControlStateNormal];
+//         [seLabel setTitle:@"在架优先" forState:UIControlStateNormal];
 //    }
 //    seLabel.selected = isSelected;
 }

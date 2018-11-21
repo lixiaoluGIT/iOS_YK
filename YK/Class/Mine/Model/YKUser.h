@@ -31,6 +31,9 @@
 @property (nonatomic,strong)NSString *colledgeName;//学校名
 //是否付费
 @property (nonatomic,strong)NSString *isNewUser;//0未付费。1已付费
+
+@property (nonatomic,strong)NSString *toQianshouNum;
+@property (nonatomic,strong)NSString *toReceiveNum;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
