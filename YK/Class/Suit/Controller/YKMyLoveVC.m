@@ -25,6 +25,7 @@
 #import "YKStyleView.h"
 #import "YKFilterHeaderView.h"
 #import "YKFilterView.h"
+#import "YKLoveNoDataView.h"
 
 @interface YKMyLoveVC ()<UICollectionViewDelegate, UICollectionViewDataSource,DCCycleScrollViewDelegate>
 {
@@ -32,6 +33,7 @@
     BOOL hadButtons;
     BOOL hadtitle1;
     CGFloat lastContentOffset;
+    YKLoveNoDataView *noDataView;
 }
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)NSString* categoryId;
@@ -52,6 +54,9 @@
 //三级
 @property (nonatomic, strong) NSMutableArray *sortTitles;
 @property (nonatomic, strong) NSMutableArray *sortIds;
+
+@property (nonatomic, strong) NSMutableArray *seasons;
+@property (nonatomic, strong) NSMutableArray *seasonIds;
 
 @property (nonatomic,strong)NSMutableArray *styleArray;
 
@@ -113,7 +118,7 @@
             
             NSLog(@"--%@,---%@,---%@",self.categoryId,self.sortId,array);
             if (array.count==0) {
-                [weakSelf.collectionView.mj_footer endRefreshing];
+                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
             }else {
                 [weakSelf.collectionView.mj_footer endRefreshing];
                 for (int i=0; i<array.count; i++) {
@@ -128,12 +133,37 @@
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _pageNum = 1;
         //请求更多商品
-        [weakSelf getData];
+        [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
+            self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+            self.collectStatusArray = [NSMutableArray array];
+            for (int i=0; i<self.dataArray.count; i++) {
+                [self.collectStatusArray addObject:@"1"];
+            }
+            if (self.dataArray.count==0) {//显示scrollView
+                
+                [self.collectionView.mj_header endRefreshing];
+                
+                [self.collectionView.mj_footer endRefreshing];
+                noDataView.hidden = NO;
+            }else {
+                [self.collectionView.mj_footer endRefreshing];
+                
+                [self.collectionView.mj_header endRefreshing];
+                noDataView.hidden = YES;
+                [self.collectionView reloadData];
+            }
+        }];
+    
     }];
+    
+    //空白图
+    noDataView = [[YKLoveNoDataView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(130)+kSuitLength_H(20), WIDHT, kSuitLength_H(500))];
+    noDataView.hidden = YES;
+    [self.view addSubview:noDataView];
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    [self getData];
+//    [self getData];
 
 //    self.titleView =  [[NSBundle mainBundle] loadNibNamed:@"YKSearchHeader" owner:self options:nil][0];
 //    self.titleView.frame = CGRectMake(0,0,WIDHT, kSuitLength_H(130));
@@ -150,7 +180,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-//
+////
 ////    NSLog(@"%lf",scrollView.contentOffset.y);
 //    if (scrollView == self.collectionView)
 //    {
@@ -160,10 +190,11 @@
 //        if (scrollView.contentOffset.y>lastContentOffset) {
 //
 //        [[NSNotificationCenter defaultCenter]postNotificationName:@"up" object:nil userInfo:nil];
-//            self.collectionView.frame = CGRectMake(0, kSuitLength_H(130), self.view.bounds.size.width, HEIGHT-kSuitLength_V(150));
+//             [UIView animateWithDuration:0.25 animations:^{
+//            self.collectionView.frame = CGRectMake(0, kSuitLength_H(20), self.view.bounds.size.width, MSH-kSuitLength_H(50));
 //
-//             self.titleView.frame = CGRectMake(0,0, WIDHT, kSuitLength_H(130));
-//
+////             self.titleView.frame = CGRectMake(0,0, WIDHT, kSuitLength_H(130));
+//             }];
 //        }
 //
 //
@@ -172,10 +203,10 @@
 //    if (scrollView.contentOffset.y< lastContentOffset )
 //        {
 ////            //向下
-////            [UIView animateWithDuration:0.25 animations:^{
-//                self.collectionView.frame = CGRectMake(0, kSuitLength_H(130), self.view.bounds.size.width, HEIGHT-kSuitLength_V(100));
-//                self.titleView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(130));
-////            }];
+//            [UIView animateWithDuration:0.25 animations:^{
+//                self.collectionView.frame = CGRectMake(0, 0, self.view.bounds.size.width, MSH-kSuitLength_H(50));
+////                self.titleView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(130));
+//            }];
 //
 //            [[NSNotificationCenter defaultCenter]postNotificationName:@"down" object:nil userInfo:nil];
 //
@@ -187,57 +218,107 @@
     
 }
 - (void)getData{
-    [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
-        self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
-        self.collectStatusArray = [NSMutableArray array];
-        for (int i=0; i<self.dataArray.count; i++) {
-            [self.collectStatusArray addObject:@"1"];
-        }
-        if (self.dataArray.count==0) {//显示scrollView
-//            self.tableView.hidden = YES;
-//            NoDataView.hidden = NO;
-//            buttom.hidden = YES;
-//            _addCCView.hidden = YES;
-//            [self.tableView setEditing:NO animated:YES];
-//            [self resetMasonrys];
-//            self.goodsIsClips = NO;
-        }else {
-//            self.tableView.hidden = NO;
-//            buttom.hidden = NO;
-//            _addCCView.hidden=  NO;
-//            NoDataView.hidden = YES;
-            [self.collectionView reloadData];
-        }
-    }];
-    [[YKSearchManager sharedManager]getSelectClothPageDataWithNum:1 Size:2 OnResponse:^(NSDictionary *dic) {
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView.mj_footer endRefreshing];
-        //配饰数组
-        self.styleArray = [NSMutableArray arrayWithArray:dic[@"data"][@"clothingStyles"]];
-        //品牌
-        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
+   
         
-        hadScroll = YES;
+//         [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
+//            self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+//            self.collectStatusArray = [NSMutableArray array];
+//            for (int i=0; i<self.dataArray.count; i++) {
+//                [self.collectStatusArray addObject:@"1"];
+//            }
+//            if (self.dataArray.count==0) {//显示scrollView
+//
+//                    [self.collectionView.mj_footer endRefreshing];
+//
+//                    [self.collectionView.mj_footer endRefreshing];
+//                noDataView.hidden = NO;
+//            }else {
+//                [self.collectionView.mj_footer endRefreshing];
+//
+//                [self.collectionView.mj_footer endRefreshing];
+//                noDataView.hidden = YES;
+//                [self.collectionView reloadData];
+//            }
+//        }];
+    
+    [[YKSearchManager sharedManager]getFilterDataOnResponse:^(NSDictionary *dic) {
+        NSDictionary *filterData = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
+        
         //二级类目
-        self.secondLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"secondLevelCategoryList"]];
+        self.secondLevelCategoryList = [NSMutableArray arrayWithArray:filterData[@"categoryList"]];
         self.titles = [NSMutableArray array];
         self.categotyIds = [NSMutableArray array];
         self.titles = [self arrayWithArray:self.secondLevelCategoryList type:2];
         self.categotyIds = [self brandsIdarrayWithArray:self.secondLevelCategoryList type:2];
+        
         //三级类目
-        self.thirdLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"sortList"]];
+        self.thirdLevelCategoryList = [NSMutableArray arrayWithArray:filterData[@"styleList"]];
         self.sortTitles = [NSMutableArray array];
         self.sortIds = [NSMutableArray array];
         self.sortTitles = [self arrayWithArray:self.thirdLevelCategoryList type:3];
         self.sortIds = [self brandsIdarrayWithArray:self.thirdLevelCategoryList type:3];
-        
-        //商品
-        self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
+        //季节
+        self.seasons = [NSMutableArray array];
+        self.seasonIds = [NSMutableArray array];
+        NSMutableArray *seas = [NSMutableArray arrayWithArray:filterData[@"seasonList"]];
+        self.seasons = [self arrayWithArray:seas type:4];
+        self.seasonIds = [self brandsIdarrayWithArray:seas type:4];
         self.collectionView.hidden = NO;
         [self.collectionView reloadData];
+        [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles seasons:_seasons seasonIds:_seasonIds];
         
-         [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles];
+        [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
+            self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+            self.collectStatusArray = [NSMutableArray array];
+            for (int i=0; i<self.dataArray.count; i++) {
+                [self.collectStatusArray addObject:@"1"];
+            }
+            if (self.dataArray.count==0) {//显示scrollView
+                
+                [self.collectionView.mj_footer endRefreshing];
+                
+                [self.collectionView.mj_footer endRefreshing];
+                noDataView.hidden = NO;
+            }else {
+                [self.collectionView.mj_footer endRefreshing];
+                
+                [self.collectionView.mj_footer endRefreshing];
+                noDataView.hidden = YES;
+            }
+            
+            [self.collectionView reloadData];
+        }];
     }];
+    
+//    [[YKSearchManager sharedManager]getSelectClothPageDataWithNum:1 Size:2 OnResponse:^(NSDictionary *dic) {
+//        [self.collectionView.mj_header endRefreshing];
+//        [self.collectionView.mj_footer endRefreshing];
+//        //配饰数组
+//        self.styleArray = [NSMutableArray arrayWithArray:dic[@"data"][@"clothingStyles"]];
+//        //品牌
+//        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
+//
+//        hadScroll = YES;
+//        //二级类目
+//        self.secondLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"secondLevelCategoryList"]];
+//        self.titles = [NSMutableArray array];
+//        self.categotyIds = [NSMutableArray array];
+//        self.titles = [self arrayWithArray:self.secondLevelCategoryList type:2];
+//        self.categotyIds = [self brandsIdarrayWithArray:self.secondLevelCategoryList type:2];
+//        //三级类目
+//        self.thirdLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"sortList"]];
+//        self.sortTitles = [NSMutableArray array];
+//        self.sortIds = [NSMutableArray array];
+//        self.sortTitles = [self arrayWithArray:self.thirdLevelCategoryList type:3];
+//        self.sortIds = [self brandsIdarrayWithArray:self.thirdLevelCategoryList type:3];
+//
+//        //商品
+//        self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
+//        self.collectionView.hidden = NO;
+//        [self.collectionView reloadData];
+//
+//         [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles seasons: seasonIds:];
+//    }];
 }
 
 //title
@@ -245,10 +326,13 @@
     NSMutableArray *titles = [NSMutableArray array];
     for (NSDictionary *dic in array) {
         if (type==2) {
-            [titles addObject:dic[@"catName"]];
+            [titles addObject:dic[@"categoryName"]];
         }
         if (type==3) {
-            [titles addObject:dic[@"clothingSortName"]];
+            [titles addObject:dic[@"styleName"]];
+        }
+        if (type==4) {
+            [titles addObject:dic[@"seasonName"]];
         }
         
     }
@@ -260,10 +344,13 @@
     NSMutableArray *titles = [NSMutableArray array];
     for (NSDictionary *dic in array) {
         if (type==2) {
-            [titles addObject:dic[@"catId"]];
+            [titles addObject:dic[@"categoryId"]];
         }
         if (type==3) {
-            [titles addObject:dic[@"clothingSortId"]];
+            [titles addObject:dic[@"styleId"]];
+        }
+        if (type==4) {
+            [titles addObject:dic[@"seasonId"]];
         }
     }
     

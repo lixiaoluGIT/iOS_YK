@@ -27,6 +27,8 @@
 #import "YKVipCell.h"
 #import "YKUserAccountVC.h"
 #import "YKSuitVC.h"
+#import "YKCouponListVC.h"
+#import "YKInvitVC.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
@@ -153,7 +155,7 @@
             }else {
                 if (tag==102) {
                     //优惠劵
-                    YKCouponSegementVC *coupon = [YKCouponSegementVC new];
+                    YKCouponListVC *coupon = [YKCouponListVC new];
                     coupon.hidesBottomBarWhenPushed = YES;
                     [weakSelf.navigationController pushViewController:coupon animated:YES];
                     return ;
@@ -410,7 +412,7 @@
     
         if (indexPath.section==0) {
             //邀请
-            YKShareVC *share = [YKShareVC new];
+            YKInvitVC *share = [YKInvitVC new];
             share.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:share animated:YES];
         }

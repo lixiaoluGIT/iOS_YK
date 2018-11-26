@@ -105,4 +105,50 @@
     }];
 }
 
+- (void)filterDataWithCategoryIdList:(NSArray *)CategoryIdList
+                        colourIdList:(NSArray *)colourIdList
+                       elementIdList:(NSArray *)elementIdList
+                         labelIdList:(NSArray *)labelIdList
+                        seasonIdList:(NSArray *)seasonIdList
+                         styleIdList:(NSArray *)styleIdList
+                           updateDay:(NSString *)updateDay
+                                page:(NSInteger )page
+                                size:(NSInteger )size
+                               exist:(NSString *)exist
+                          OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSRange range = NSMakeRange(0,updateDay.length-2);
+    NSString *day;
+    if (updateDay.length>0) {
+        day = [updateDay substringWithRange:range];//截取范围类的字符串]
+    }else {
+        day = @"";
+    }
+   
+    NSInteger exi = [exist intValue];
+    NSDictionary *postDic = @{@"CategoryIdList":CategoryIdList,
+                              @"colourIdList":colourIdList,
+                              @"elementIdList":elementIdList,
+                              @"labelIdList":labelIdList,
+                              @"seasonIdList":seasonIdList,
+                              @"styleIdList":styleIdList,
+                              @"updateDay":day,
+                              @"page":@(page),
+                              @"size":@(size),
+                              @"exist":exist,
+                              @"classify":@"0"
+                              };
+    
+    [YKHttpClient Method:@"POST" apiName:filter_Url Params:postDic Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        NSLog(@"RESPONSE:%@",dic);
+        if (onResponse) {
+            onResponse(dic);
+        }
+    }];
+    
+}
 @end

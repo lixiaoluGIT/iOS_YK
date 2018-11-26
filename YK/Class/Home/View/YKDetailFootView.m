@@ -57,14 +57,20 @@
 - (void)initWithIsLike:(NSString *)isCollect total:(NSString *)total{
     _owendNumLable.text = total;
     
+    if ([total intValue] == 0) {
+        _owendNumLable.hidden = YES;
+    }else {
+         _owendNumLable.hidden = NO;
+    }
+    
     if ([isCollect intValue] == 1) {//已收藏
         _likeBtn.selected = YES;
         _likeImage.image = [UIImage imageNamed:@"喜欢已选"];
-        _likeLabel.text = @"喜欢";
+        _likeLabel.text = @"已喜欢";
         
     }else {//未收藏
         _likeBtn.selected = NO;
-        _likeImage.image = [UIImage imageNamed:@"喜欢未选"];
+        _likeImage.image = [UIImage imageNamed:@"心111"];
         _likeLabel.text = @"喜欢";
     }
     

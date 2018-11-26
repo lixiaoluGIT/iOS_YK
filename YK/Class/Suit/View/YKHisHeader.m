@@ -49,7 +49,7 @@
         lableNum.frame = CGRectMake(kSuitLength_H(18) + w*i, lableDes.bottom + kSuitLength_H(5), childView.frame.size.width/2,kSuitLength_H(20));
         
         lableNum.centerX = childView.centerX;
-        lableNum.text = @"88";
+        lableNum.text = @"0";
         lableNum.font = PingFangSC_Medium(kSuitLength_H(12));
         lableNum.textColor = mainColor;
         lableNum.textAlignment = NSTextAlignmentCenter;
@@ -74,17 +74,25 @@
     [backView addSubview:line];
 }
 
-- (void)setClothList:(NSMutableArray *)clothList{
-    _clothList = clothList;
-    //计算总数和总价
-    _totalNum.text = [NSString stringWithFormat:@"%ld件",clothList.count];
-    int totalP = 0;
-    for (NSDictionary *dic in clothList) {
-        totalP = totalP + [dic[@"clothingPrice"] intValue];
-    }
-    _totalPrice.text = [NSString stringWithFormat:@"¥ %d",totalP];
-}
+//- (void)setClothList:(NSMutableArray *)clothList{
+//    _clothList = clothList;
+//    //计算总数和总价
+//    _totalNum.text = [NSString stringWithFormat:@"%ld件",clothList.count];
+//    int totalP = 0;
+//    for (NSDictionary *dic in clothList) {
+//        totalP = totalP + [dic[@"clothingPrice"] intValue];
+//    }
+//    _totalPrice.text = [NSString stringWithFormat:@"¥ %d",totalP];
+//}
 
+- (void)setNumber:(NSString *)Number{
+    _Number = Number;
+     _totalNum.text = [NSString stringWithFormat:@"%@件",Number];
+}
+- (void)setPrice:(NSString *)Price{
+    _Price = Price;
+    _totalPrice.text = [NSString stringWithFormat:@"%@元",Price];
+}
 - (void)setDic:(NSDictionary *)dic{
     _dic = dic;
 }

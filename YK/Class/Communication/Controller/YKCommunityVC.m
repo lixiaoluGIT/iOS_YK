@@ -97,9 +97,9 @@
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     // 设置文字
-    [footer setTitle:@"点击或上拉加载更多" forState:MJRefreshStateIdle];
+    [footer setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
     [footer setTitle:@"加载中......" forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"没有更多数据了" forState:MJRefreshStateNoMoreData];
+    [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
     
     // 设置字体
     footer.stateLabel.font = [UIFont systemFontOfSize:14];

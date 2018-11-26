@@ -69,4 +69,6 @@ typedef enum : NSInteger {
 
 - (void)clear;
 
+//查询历史订单(新接口)
+- (void)searchHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

@@ -24,10 +24,10 @@
     _account = account;
     _accountLabel.text = [NSString stringWithFormat:@"¥%@",account[@"capital"]];
     if ([account[@"capital"] intValue] == 0) {
-        _txBtn.backgroundColor = [UIColor colorWithHexString:@"999999"];
+        _txBtn.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
         [_txBtn setUserInteractionEnabled:NO];
     }else {
-        _txBtn.backgroundColor = mainColor;
+        _txBtn.backgroundColor = YKRedColor;
         [_txBtn setUserInteractionEnabled:YES];
     }
 }

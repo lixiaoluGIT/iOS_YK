@@ -58,7 +58,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Regular(17);
+    title.font = PingFangSC_Medium(14);
     self.navigationItem.titleView = title;
     
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -82,10 +82,10 @@
     
     _buttom = [UIButton buttonWithType:UIButtonTypeCustom];
     _buttom.frame = CGRectMake(0, HEIGHT-50, WIDHT, 50);
-    _buttom.backgroundColor = mainColor;
+    _buttom.backgroundColor = YKRedColor;
     [self.view addSubview:_buttom];
     [_buttom setTitle:@"确认预约" forState:UIControlStateNormal];
-    _buttom.titleLabel.font = [UIFont systemFontOfSize:14];
+    _buttom.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
     [_buttom addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
     
     //请求地址

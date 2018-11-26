@@ -24,7 +24,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *kajuan;
 @property (weak, nonatomic) IBOutlet UIImageView *kajuanImage;
+@property (weak, nonatomic) IBOutlet UILabel *useLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leading;
 
 @end
 @implementation YKCouponView
@@ -51,6 +53,15 @@
     if (WIDHT==375) {
         _train.constant = -165;
     }
+    
+    _useLabel.layer.masksToBounds = YES;
+    _useLabel.layer.cornerRadius = 21/2;
+    
+    _numLabel.font = PingFangSC_Medium(kSuitLength_H(40));
+    _yuan.font = PingFangSC_Regular(kSuitLength_H(12));
+    _type.font = PingFangSC_Medium(kSuitLength_H(24));
+    _effectiveDay.font = PingFangSC_Regular(kSuitLength_H(12));
+    _useLabel.font = PingFangSC_Regular(kSuitLength_H(12));
 }
 
 - (void)initWithDic:(NSDictionary *)dic{
@@ -69,37 +80,61 @@
         _numLabel.text = [NSString stringWithFormat:@"%@",dic[@"couponAmount"]];
     }
     
-    if ([dic[@"couponType"] intValue] == 5) {//加衣券劵
+//    if ([dic[@"status"] isEqual:@"加衣劵"]) {//加衣券劵
+//        _couponType = 5;
+//        _type.text = @"加衣券";
+//        _yuan.text = @"件";
+//        _couponNum = [dic[@"couponAmount"] integerValue];
+//        _numLabel.text = [NSString stringWithFormat:@"%@",dic[@"couponAmount"]];
+//    }
+
+    _couponID = [dic[@"couponId"] intValue];
+
+    _effectiveDay.text = [NSString stringWithFormat:@"%@前有效",[self timeWithTimeIntervalString:dic[@"expiryTime"]]];
+
+    
+    if ([dic[@"status"] isEqual:@"加衣劵"]) {//加衣券劵
         _couponType = 5;
         _type.text = @"加衣券";
         _yuan.text = @"件";
         _couponNum = [dic[@"couponAmount"] integerValue];
         _numLabel.text = [NSString stringWithFormat:@"%@",dic[@"couponAmount"]];
+        _couponID = [dic[@"addClothingId"] intValue];
+        
+        _effectiveDay.text = @"无使用时间限制";
     }
-
-    _couponID = [dic[@"couponId"] intValue];
-//    _type.text = dic[@"couponName"];
-    _effectiveDay.text = [NSString stringWithFormat:@"%@前有效",[self timeWithTimeIntervalString:dic[@"expiryTime"]]];
-
     if ([dic[@"couponStatus"] intValue]==1) {//未使用
         _effectiveDay.text = [NSString stringWithFormat:@"%@前有效",[self timeWithTimeIntervalString:dic[@"expiryTime"]]];
-        _backImahe.image = [UIImage imageNamed:@"可使用"];
+        _backImahe.image = [UIImage imageNamed:@"加衣劵可使用状态"];
         _couponStatus = 1;
     }
     if ([dic[@"couponStatus"] intValue]==2) {//已使用
         _effectiveDay.text = @"已使用";
         _effectiveDay.textColor = YKRedColor;
-        _backImahe.image = [UIImage imageNamed:@"不可使用"];
+        _backImahe.image = [UIImage imageNamed:@"加衣劵不可使用状态"];
          _couponStatus = 2;
     }
     if ([dic[@"couponStatus"] intValue]==3) {//已过期
         _effectiveDay.text = @"已过期";
          _effectiveDay.textColor = YKRedColor;
-        _backImahe.image = [UIImage imageNamed:@"不可使用"];
+        _backImahe.image = [UIImage imageNamed:@"加衣劵不可使用状态"];
          _couponStatus = 3;
     }
 }
 
+- (void)initWithD:(NSDictionary *)dic{
+    
+    _leading.constant = kSuitLength_H(20);
+        _couponType = 5;
+        _type.text = @"加衣券";
+        _yuan.text = @"件";
+        _couponNum = [dic[@"addNumber"] integerValue];
+        _numLabel.text = [NSString stringWithFormat:@"%@",dic[@"addNumber"]];
+        _couponID = [dic[@"addClothingId"] intValue];
+        
+        _effectiveDay.text = @"长期有效";
+    
+}
 - (NSString *)timeWithTimeIntervalString:(NSString *)timeString
 {
     // 格式化时间

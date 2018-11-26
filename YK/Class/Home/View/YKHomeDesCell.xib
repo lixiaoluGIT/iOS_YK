@@ -55,12 +55,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="489" height="116.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="juxing" translatesAutoresizingMaskIntoConstraints="NO" id="8ZO-HB-M6A">
-                        <rect key="frame" x="14" y="51" width="6" height="14"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的尺码表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6Z-5e-SZq">
-                        <rect key="frame" x="24" y="48" width="82" height="20"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <rect key="frame" x="15" y="48.5" width="70" height="20"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -68,22 +65,20 @@
                         <rect key="frame" x="457" y="51" width="8" height="14"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编辑我的尺码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWA-Q3-acj">
-                        <rect key="frame" x="367" y="50" width="86" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <rect key="frame" x="381" y="50" width="72" height="17"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                         <color key="textColor" red="0.93333333333333335" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="8ZO-HB-M6A" firstAttribute="centerY" secondItem="3hJ-Mg-UHG" secondAttribute="centerY" id="31n-hD-s8B"/>
                     <constraint firstAttribute="trailing" secondItem="6F8-O2-9S8" secondAttribute="trailing" constant="24" id="A1n-Pj-iip"/>
-                    <constraint firstItem="8ZO-HB-M6A" firstAttribute="leading" secondItem="3hJ-Mg-UHG" secondAttribute="leading" constant="14" id="Ejk-7x-SD8"/>
+                    <constraint firstItem="E6Z-5e-SZq" firstAttribute="centerY" secondItem="3hJ-Mg-UHG" secondAttribute="centerY" id="Edh-pX-pFR"/>
                     <constraint firstItem="6F8-O2-9S8" firstAttribute="centerY" secondItem="E6Z-5e-SZq" secondAttribute="centerY" id="Scf-kr-MSq"/>
-                    <constraint firstItem="E6Z-5e-SZq" firstAttribute="centerY" secondItem="8ZO-HB-M6A" secondAttribute="centerY" id="hry-sb-zu8"/>
                     <constraint firstItem="OWA-Q3-acj" firstAttribute="centerY" secondItem="6F8-O2-9S8" secondAttribute="centerY" id="sYY-gK-2pF"/>
                     <constraint firstItem="6F8-O2-9S8" firstAttribute="leading" secondItem="OWA-Q3-acj" secondAttribute="trailing" constant="4" id="sag-hW-XAX"/>
-                    <constraint firstItem="E6Z-5e-SZq" firstAttribute="leading" secondItem="8ZO-HB-M6A" secondAttribute="trailing" constant="4" id="zZz-GD-kmb"/>
+                    <constraint firstItem="E6Z-5e-SZq" firstAttribute="leading" secondItem="3hJ-Mg-UHG" secondAttribute="leading" constant="15" id="vQ0-d1-kRi"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="42.5" y="-107.5"/>
@@ -95,29 +90,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="489" height="116.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="juxing" translatesAutoresizingMaskIntoConstraints="NO" id="IIi-ef-0vb">
-                        <rect key="frame" x="14" y="51" width="6" height="14"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衣库尺码表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2v-h8-YZx">
-                        <rect key="frame" x="24" y="48" width="82" height="20"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <rect key="frame" x="15" y="48.5" width="70" height="20"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="j2v-h8-YZx" firstAttribute="centerY" secondItem="IIi-ef-0vb" secondAttribute="centerY" id="a7Y-q5-kMD"/>
-                    <constraint firstItem="IIi-ef-0vb" firstAttribute="centerY" secondItem="sNw-Lf-ydJ" secondAttribute="centerY" id="ok2-wX-d2y"/>
-                    <constraint firstItem="IIi-ef-0vb" firstAttribute="leading" secondItem="sNw-Lf-ydJ" secondAttribute="leading" constant="14" id="rcc-3E-wmR"/>
-                    <constraint firstItem="j2v-h8-YZx" firstAttribute="leading" secondItem="IIi-ef-0vb" secondAttribute="trailing" constant="4" id="xyu-tv-2xr"/>
+                    <constraint firstItem="j2v-h8-YZx" firstAttribute="centerY" secondItem="sNw-Lf-ydJ" secondAttribute="centerY" id="nUJ-aV-9Bp"/>
+                    <constraint firstItem="j2v-h8-YZx" firstAttribute="leading" secondItem="sNw-Lf-ydJ" secondAttribute="leading" constant="15" id="vxe-Qt-uCf"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="43" y="86"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="juxing" width="6" height="14"/>
         <image name="newbanner.png" width="750" height="172"/>
         <image name="you" width="8" height="14"/>
     </resources>

@@ -88,21 +88,21 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _buttonArr = [NSMutableArray array];
     self.theLine = [[UILabel alloc]init];
-    self.theLine.backgroundColor = [UIColor colorWithHexString:@"ee2d2d"];
+    self.theLine.backgroundColor = YKRedColor;
     UIButton *clickButton = nil;
     for (NSInteger i = 0; i < self.titleArr.count; i ++) {
         UIButton *button = [[UIButton alloc] init];
         button.tag = BtnTag + i;
         button.layer.masksToBounds = YES;
         [button setTitle:self.titleArr[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateSelected];
+        [button setTitleColor:mainColor forState:UIControlStateNormal];
+        [button setTitleColor:YKRedColor forState:UIControlStateSelected];
         [button setBackgroundColor:[UIColor whiteColor]];
-        button.titleLabel.font = PingFangSC_Semibold(16);
+        button.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
         
         if (i == _currentPageIndex) {
             button.selected = YES;
-            [button setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];
+            [button setTitleColor:YKRedColor forState:UIControlStateNormal];
             clickButton = button;
             [self.view addSubview:self.theLine];
         }
@@ -141,7 +141,7 @@
 //控制器
 - (NSMutableArray *)controllerArr{
     if (!_controllerArr) {
-        NSArray *controllerTittle = @[@"YKCouponListVC",@"YKCouponListVC"];
+        NSArray *controllerTittle = @[@"YKCouponListVC",@"YKCouponListVC",@"YKCouponListVC"];
         _controllerArr = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < controllerTittle.count; i ++) {
             NSString *controllerName = controllerTittle[i];
@@ -155,7 +155,7 @@
 //标题
 - (NSMutableArray *)titleArr{
     if (!_titleArr) {
-        _titleArr = [[NSMutableArray alloc] initWithObjects:@"可使用", @"已过期", nil];
+        _titleArr = [[NSMutableArray alloc] initWithObjects:@"加时卡", @"优惠劵",@"加衣劵", nil];
     }
     return _titleArr;
 }

@@ -21,5 +21,5 @@
 
 @property (nonatomic,assign)BOOL isFromNew;
 
-- (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList;
+- (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList seasons:(NSMutableArray *)seasons seasonIds:(NSMutableArray *)seasonIds;
 @end

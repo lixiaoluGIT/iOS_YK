@@ -21,6 +21,8 @@
 
 @property (nonatomic,assign)NSInteger selectTotalNum;//心愿单所选衣位总数
 
+@property (nonatomic,assign)int couponId;//传过来的加衣劵id
+
 + (YKSuitManager *)sharedManager;
 
 //添加到购物车

@@ -50,6 +50,7 @@
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.font = PingFangSC_Semibold(20);;
+    
     YKAddCCDesView *des = [[NSBundle mainBundle]loadNibNamed:@"YKAddCCDesView" owner:nil options:nil][0];
     des.frame = CGRectMake(0, 64, WIDHT, HEIGHT-62);
     des.buyBlock = ^(void){

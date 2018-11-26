@@ -34,6 +34,7 @@
     __block YKFilterUpHeaderView *upView;
     __block YKFilterView *filterView;
     __block YKFilterHeaderView *headerView;
+    NSInteger page;
  }
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)NSString* categoryId;
@@ -66,6 +67,16 @@
 @property (nonatomic,strong)UIButton *upBtn;
 // 标签数据
 @property (nonatomic, strong) GetNewFilterOutPutDto *filterModel;
+
+//筛选条件数据
+@property (nonatomic,strong)NSArray *categoryIds;
+@property (nonatomic,strong)NSArray *seasonIds;
+@property (nonatomic,strong)NSString *updateDay;
+@property (nonatomic,strong)NSArray *colors;
+@property (nonatomic,strong)NSArray *hotTags;
+@property (nonatomic,strong)NSArray *styles;
+@property (nonatomic,strong)NSArray *elements;
+@property (nonatomic,strong)NSString *exitStatus;//是否在架的条件
 
 
 @end
@@ -160,6 +171,16 @@
     
 //    //获取筛选数据
 //    [self getFilterData];
+    
+    //筛选条件初始化
+    _seasonIds = [NSArray array];
+    _categoryIds = [NSArray array];
+    _styles = [NSArray array];
+    _elements = [NSArray array];
+    _hotTags = [NSArray array];
+    _colors = [NSArray array];
+    _updateDay = @"";
+    _exitStatus = @"0";
 }
 
 - (void)getFilterData{
@@ -408,6 +429,12 @@
         //切换商品类型（全部或在架）
         headerView.changeTypeBlock = ^(BOOL isSelected){
             upView.isSelected = isSelected;
+            if (isSelected) {
+                self.exitStatus = @"0";
+            }else {
+                self.exitStatus = @"1";
+            }
+            [self filterClothes];
         };
         if (!hadButtons) {
             [head addSubview:headerView];
@@ -517,6 +544,7 @@
 }
 
 - (void)creatFilterView{
+    WeakSelf(weakSelf)
     filterView = [[YKFilterView alloc] initWithFrame:CGRectMake(screen_width, 0, 0, HEIGHT)];
     
     filterView.tabColor = [UIColor whiteColor];
@@ -528,6 +556,19 @@
     //更多的回调
     filterView.moreSelectedCallback = ^(NSArray *types, NSArray *seasons, NSArray *opentimes, NSArray *colors, NSArray *hotTags, NSArray *styles, NSArray *elements) {
         
+        _categoryIds = types;
+        _seasonIds = seasons;
+        if (opentimes.count!=0) {
+            _updateDay = opentimes[0];
+        }else {
+            _updateDay = @"";
+        }
+        _colors = colors;
+        _hotTags = hotTags;
+        _styles = styles;
+        _elements = elements;
+        
+        [weakSelf filterClothes];
     };
     [filterView setDidSelectedCallback:^(NSString *circleId, NSString *content, NSInteger tag){
         
@@ -539,9 +580,33 @@
 
 - (void)showFilterView{
     //赋值
-//    [filterView initDataSourseWithType:@"3" AndSelectTag:20003];
-    
     [filterView showDropDownWithTag:20003];
-//     [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
+}
+
+- (void)filterClothes{
+    [[YKSearchManager sharedManager]filterDataWithCategoryIdList:_categoryIds colourIdList:_colors elementIdList:_elements labelIdList:_hotTags seasonIdList:_seasonIds styleIdList:_styles updateDay:_updateDay  page:page size:10 exist:_exitStatus OnResponse:^(NSDictionary *dic) {
+        
+        if ([dic[@"status"] intValue] != 200) {
+            [smartHUD alertText:kWindow alert:dic[@"msg"] delay:1.2];
+            [self performSelector:@selector(scrollToTop) withObject:nil afterDelay:0.8];
+            return ;
+        }
+        [self.productList removeAllObjects];
+        NSArray *list = [NSArray arrayWithArray:dic[@"data"]];
+        if (list.count==0) {
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [self.collectionView.mj_footer endRefreshing];
+            [self.productList addObjectsFromArray:list];
+        }
+        [self performSelector:@selector(scrollToTop) withObject:nil afterDelay:0.3];
+        self.collectionView.hidden = NO;
+//        [self.collectionView reloadData];
+    }];
+}
+
+- (void)scrollToTop{
+    [self.collectionView scrollToTopAnimated:YES];
+    [self.collectionView reloadData];
 }
 @end

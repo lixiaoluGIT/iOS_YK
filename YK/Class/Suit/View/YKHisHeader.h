@@ -11,4 +11,6 @@
 @interface YKHisHeader : UITableViewCell
 @property (nonatomic,strong)NSDictionary *dic;
 @property (nonatomic,strong)NSMutableArray *clothList;//历史衣服json
+@property (nonatomic,strong)NSString *Number;
+@property (nonatomic,strong)NSString *Price;
 @end

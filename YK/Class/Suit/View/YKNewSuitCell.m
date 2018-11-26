@@ -146,5 +146,12 @@
     
 //    self.suitStatus = suit.clothingStockNum;//剩余库存数量
     self.suitId = [NSString stringWithFormat:@"%@",dic[@"clothingId"]];
+    
+    if ([dic[@"photograph"] intValue] == 2) {//没晒过
+        
+    }else {
+        [self.pubLicBtn setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+        [self.pubLicBtn setUserInteractionEnabled:NO];
+    }
 }
 @end

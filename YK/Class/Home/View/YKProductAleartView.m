@@ -45,7 +45,7 @@
 - (void)setIsAddCart:(BOOL)isAddCart{
     _isAddCart = isAddCart;
     if (isAddCart) {
-        [self.addBtn setTitle:@"加入衣袋" forState:UIControlStateNormal];
+        [self.addBtn setTitle:@"租这件" forState:UIControlStateNormal];
     }else {
         [self.addBtn setTitle:@"加入心愿单" forState:UIControlStateNormal];
     }
@@ -125,7 +125,7 @@
     _tishilabel = [[UILabel alloc]init];
     _tishilabel.text = @"待返架";
     _tishilabel.textColor = YKRedColor;
-    _tishilabel.font = PingFangSC_Regular(14);
+    _tishilabel.font = PingFangSC_Regular(kSuitLength_H(12));
     [self addSubview:_tishilabel];
     
     _tishiImage = [[UIImageView alloc]init];
@@ -137,7 +137,7 @@
     
     [_tishilabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@(-24));
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(self.mas_centerY).offset(-kSuitLength_H(8));
     }];
     [_tishiImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_tishilabel.mas_centerY);
@@ -146,19 +146,34 @@
     
     for (int i=0; i<array.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.layer.masksToBounds = YES;
-        btn.layer.borderColor = mainColor.CGColor;
-        btn.layer.borderWidth = 1;
-        btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-        btn.frame = CGRectMake((48+14)*i,17,48, 24);
+        //        btn.layer.masksToBounds = YES;
+        //        btn.layer.borderColor = YKRedColor.CGColor;
+        //        btn.layer.borderWidth = 1;
+        btn.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+        btn.frame = CGRectMake((kSuitLength_H(58)+kSuitLength_H(17))*i,kSuitLength_H(15),kSuitLength_H(58), kSuitLength_H(26));
         [btn setTitle:array[i][@"clothingStockType"] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [btn setTitleColor:mainColor forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+        [btn setTitleColor:[UIColor colorWithHexString:@"676869"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchDown];
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = kSuitLength_H(26)/2;
         btn.tag = i+1;
         [self addSubview:btn];
         
+        //        UILabel *label = [[UILabel alloc]init];
+        //        label.text = @"待返架";
+        //        label.font = [UIFont systemFontOfSize:12];
+        //        label.textColor = [UIColor colorWithHexString:@"ee2d2d"];
+        //        [self addSubview:label];
+        //        label.hidden = YES;
+        
+        //        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        //            make.centerX.equalTo(btn.mas_centerX);
+        //            make.top.equalTo(btn.mas_bottom).offset(6);
+        //        }];
+        
         [self.typeBtnArray addObject:btn];
+        //        [self.stockStatusLabelArray addObject:label];
         
     }
 }
@@ -175,22 +190,31 @@
         //判断显示标签
         YKProductType *product = [[YKProductType alloc]init];
         [product initWithDictionary:self.stockArray[self.selectindex-1]];
-       
+        //        self.stockStatuslabel = self.stockStatusLabelArray[self.selectindex];
+        //        self.stockStatuslabel.hidden = product.isHadStock;
+        
+        //        for (UILabel *otherlabel in self.stockStatusLabelArray) {
+        //            if (otherlabel!=self.stockStatuslabel) {
+        //                otherlabel.hidden = YES;
+        //            }
+        //        }
+        
         btn.selected = YES;
         
+        
         [UIView animateWithDuration:0.3 animations:^{
-            btn.titleLabel.font = [UIFont systemFontOfSize:14];
-            btn.backgroundColor = mainColor;
+            btn.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+            btn.backgroundColor = YKRedColor;
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            btn.layer.borderWidth = 1;
+            //             btn.layer.borderWidth = 1;
             
-            self.Button1.titleLabel.font = [UIFont systemFontOfSize:14];
-            self.Button1.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-            [self.Button1 setTitleColor:mainColor forState:UIControlStateNormal];
-            self.Button1.layer.borderWidth = 1;
+            self.Button1.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+            self.Button1.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+            [self.Button1 setTitleColor:[UIColor colorWithHexString:@"676869"] forState:UIControlStateNormal];
+            //            self.Button1.layer.borderWidth = 1;
             
             if (!product.isHadStock) {//当前选择没有库存
-                
+                //                btn.frame = CGRectMake((44+20)*self.selectindex,4,48, 24);
                 btn.backgroundColor = YKRedColor;
                 btn.layer.borderWidth = 0;
                 _tishilabel.hidden = NO;
@@ -200,12 +224,18 @@
                 _tishiImage.hidden = YES;
             }
             
+            //            for (int i=0; i<self.typeBtnArray.count; i++) {//找到上一个选中的下标
+            //                UIButton *b = self.typeBtnArray[i];
+            //                if (self.Button1 == b) {
+            //                    btn.backgroundColor = mainColor;
+            ////                    self.Button1.frame = CGRectMake(20+(44+20)*i,12,44, 26);
+            //                }
+            //            }
         }];
         
     }
     
     self.Button1 = btn;
-    
     
     if (self.selectBlock) {
         self.selectBlock(self.stockArray[self.selectindex-1][@"clothingStockId"]);

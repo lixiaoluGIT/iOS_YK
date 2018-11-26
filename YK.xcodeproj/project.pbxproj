@@ -129,6 +129,10 @@
 		0087C99C211AEA210014E733 /* YKShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087C99A211AEA210014E733 /* YKShareCell.m */; };
 		0087C99D211AEA210014E733 /* YKShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0087C99B211AEA210014E733 /* YKShareCell.xib */; };
 		00961FE921A4037D003DD710 /* YKFilterUpHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FE821A4037D003DD710 /* YKFilterUpHeaderView.m */; };
+		00961FEC21A64C4B003DD710 /* YKLoveNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FEB21A64C4B003DD710 /* YKLoveNoDataView.m */; };
+		00961FEF21A804D6003DD710 /* YKSignalSuitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FEE21A804D6003DD710 /* YKSignalSuitVC.m */; };
+		00961FF321A80E19003DD710 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FF221A80E19003DD710 /* NavViewController.m */; };
+		00961FF621ABE610003DD710 /* YKInvitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FF521ABE610003DD710 /* YKInvitVC.m */; };
 		009D3768210588EA00B16A33 /* YKCouponListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D3767210588EA00B16A33 /* YKCouponListVC.m */; };
 		00A0CC4A2090265C001205A1 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC3F2090265C001205A1 /* libSocialWeChat.a */; };
 		00A0CC4C2090265D001205A1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC432090265C001205A1 /* libWeChatSDK.a */; };
@@ -876,6 +880,14 @@
 		0087C99B211AEA210014E733 /* YKShareCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKShareCell.xib; sourceTree = "<group>"; };
 		00961FE721A4037D003DD710 /* YKFilterUpHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFilterUpHeaderView.h; sourceTree = "<group>"; };
 		00961FE821A4037D003DD710 /* YKFilterUpHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFilterUpHeaderView.m; sourceTree = "<group>"; };
+		00961FEA21A64C4B003DD710 /* YKLoveNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKLoveNoDataView.h; sourceTree = "<group>"; };
+		00961FEB21A64C4B003DD710 /* YKLoveNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLoveNoDataView.m; sourceTree = "<group>"; };
+		00961FED21A804D6003DD710 /* YKSignalSuitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSignalSuitVC.h; sourceTree = "<group>"; };
+		00961FEE21A804D6003DD710 /* YKSignalSuitVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSignalSuitVC.m; sourceTree = "<group>"; };
+		00961FF121A80E19003DD710 /* NavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
+		00961FF221A80E19003DD710 /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
+		00961FF421ABE610003DD710 /* YKInvitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKInvitVC.h; sourceTree = "<group>"; };
+		00961FF521ABE610003DD710 /* YKInvitVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKInvitVC.m; sourceTree = "<group>"; };
 		009D3766210588EA00B16A33 /* YKCouponListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponListVC.h; sourceTree = "<group>"; };
 		009D3767210588EA00B16A33 /* YKCouponListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponListVC.m; sourceTree = "<group>"; };
 		00A0CC3F2090265C001205A1 /* libSocialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWeChat.a; sourceTree = "<group>"; };
@@ -2082,6 +2094,15 @@
 			path = HW3DBannerView;
 			sourceTree = "<group>";
 		};
+		00961FF021A80E19003DD710 /* Nav */ = {
+			isa = PBXGroup;
+			children = (
+				00961FF121A80E19003DD710 /* NavViewController.h */,
+				00961FF221A80E19003DD710 /* NavViewController.m */,
+			);
+			path = Nav;
+			sourceTree = "<group>";
+		};
 		00A0CC3C2090265C001205A1 /* UMShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -2816,6 +2837,8 @@
 				004735842199245C00A24BF0 /* YKHistorySuitVC.m */,
 				0047358E219970F000A24BF0 /* YKLoveSegmentVC.h */,
 				0047358F219970F000A24BF0 /* YKLoveSegmentVC.m */,
+				00961FED21A804D6003DD710 /* YKSignalSuitVC.h */,
+				00961FEE21A804D6003DD710 /* YKSignalSuitVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2871,6 +2894,8 @@
 				004735892199316B00A24BF0 /* YKHisHeader.h */,
 				0047358A2199316B00A24BF0 /* YKHisHeader.m */,
 				0047358B2199316B00A24BF0 /* YKHisHeader.xib */,
+				00961FEA21A64C4B003DD710 /* YKLoveNoDataView.h */,
+				00961FEB21A64C4B003DD710 /* YKLoveNoDataView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2890,6 +2915,7 @@
 		C525DC6E1FBAB15D002802AE /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				00961FF021A80E19003DD710 /* Nav */,
 				C52CA76A2000BFA700ECDC80 /* DDAdvertisementVC.h */,
 				C52CA7692000BFA700ECDC80 /* DDAdvertisementVC.m */,
 				C52D04761FE8EB5C00633550 /* YKNoDataView.h */,
@@ -2906,6 +2932,8 @@
 				C57505371FFB853500F7E07A /* DDAleartView.m */,
 				C5E46EA71FFE307F002453EB /* YKShareVC.h */,
 				C5E46EA81FFE307F002453EB /* YKShareVC.m */,
+				00961FF421ABE610003DD710 /* YKInvitVC.h */,
+				00961FF521ABE610003DD710 /* YKInvitVC.m */,
 				0087C999211AEA210014E733 /* YKShareCell.h */,
 				0087C99A211AEA210014E733 /* YKShareCell.m */,
 				0087C99B211AEA210014E733 /* YKShareCell.xib */,
@@ -4414,6 +4442,7 @@
 				C525DE901FBD28D6002802AE /* SteyUtil.m in Sources */,
 				00179C7A2189B449000A0100 /* NSObject+MJCoding.m in Sources */,
 				C5343C921FC69D2400F5132A /* YKBrandDetailHeader.m in Sources */,
+				00961FEC21A64C4B003DD710 /* YKLoveNoDataView.m in Sources */,
 				C5E97F7B2015B6BA0043705B /* DXAlertView.m in Sources */,
 				C5303A001FCEAE4D00FB12CE /* YKReturnView.m in Sources */,
 				00AA32042174A4810040C5A6 /* YKProductAleartView.m in Sources */,
@@ -4532,6 +4561,7 @@
 				00B9EF2B20A0535800A7422B /* DynamicsModel.m in Sources */,
 				007D57C420CFA63200C23F5E /* YKSearchSegmentVC.m in Sources */,
 				00B9EF3020A0535800A7422B /* NewDynamicsTableViewCell.m in Sources */,
+				00961FEF21A804D6003DD710 /* YKSignalSuitVC.m in Sources */,
 				C525DDA11FBAB2A9002802AE /* NSMutableAttributedString+MLLabel.m in Sources */,
 				C5F929BC20206E53001D2139 /* FYTransitionData.m in Sources */,
 				00B7F23320B6BA460086EFBB /* YKProductAdCell.m in Sources */,
@@ -4549,6 +4579,7 @@
 				C5FB784F205904780076DD6F /* UIApplication+YYAdd.m in Sources */,
 				C5FB783A205904780076DD6F /* YYTextEffectWindow.m in Sources */,
 				C525DD6C1FBAB2A8002802AE /* AFURLResponseSerialization.m in Sources */,
+				00961FF321A80E19003DD710 /* NavViewController.m in Sources */,
 				C525DEA41FBD89F7002802AE /* YKSMSCell.m in Sources */,
 				C5FB7852205904780076DD6F /* UIScreen+YYAdd.m in Sources */,
 				C525DE921FBD28D6002802AE /* SteyHelper.m in Sources */,
@@ -4775,6 +4806,7 @@
 				C525DD681FBAB2A8002802AE /* UIImageView+AFNetworking.m in Sources */,
 				00753FAF210F0BAF00550A66 /* YKVipCell.m in Sources */,
 				C525DDA51FBAB2A9002802AE /* NSAttributedString+MLExpression.m in Sources */,
+				00961FF621ABE610003DD710 /* YKInvitVC.m in Sources */,
 				C5343C971FC6A87900F5132A /* CBSegmentView.m in Sources */,
 				C5E0231F1FDA604C00C33629 /* NSDate+FD.m in Sources */,
 				C5FB7872205904780076DD6F /* YYTimer.m in Sources */,

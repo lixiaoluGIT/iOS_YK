@@ -101,7 +101,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="NOd-Tv-ZnA"/>
                         </constraints>
-                        <state key="normal" title="Button" image="喜欢已选"/>
+                        <state key="normal" image="喜欢已选"/>
                         <state key="selected" image="喜欢未选"/>
                         <connections>
                             <action selector="changeLove:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YUj-ke-1gk"/>

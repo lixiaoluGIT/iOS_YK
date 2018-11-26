@@ -426,6 +426,8 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #define PSDetail_Url @"/ornament/getOrnamentInfo"
 //获取筛选标签数据
 #define filterData_Url @"/product/getSearchData"
+//shai xuan
+#define filter_Url @"/product/getClothingPage"
 
 /*----------------------------购物车模块--------------------------------*/
 //添加到购物车
@@ -475,6 +477,8 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #define releaseOrder_Url @"/order/createOrder"
 //查询订单接口
 #define queryOrder_Url @"/order/queryOrder"
+//查询订单新接口
+#define newQueryOrder_Url @"/order/findOrder"
 //查询订单物流信息
 #define queryOrderSMSInfor_Url @"/sf/orderSFTrackQuery"
 //查询物流信息
@@ -557,7 +561,10 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 //#define upLoadIdfa_Url @"/channel/cpaNotice"
 //优惠劵列表
 #define CouponList_Url @"/coupon/getUserCouponsList"
-
+//获取分享图片集合
+#define shareImageList_Url @"/share/getPicturesList"
+//获取分享图片
+#define getshareImage_Url @"/share/getSharedPictures"
 //通知渠道
 
 /*----------------------------Public--------------------------------*/

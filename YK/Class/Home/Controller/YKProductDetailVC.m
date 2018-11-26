@@ -41,6 +41,7 @@
 #import "YKEditSizeVC.h"
 #import "YKCartVC.h"
 #import "YKProductAleartView.h"
+#import "YKSignalSuitVC.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource,NewDynamicsCellDelegate>{
@@ -88,7 +89,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-//    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.alpha = 0;
 //    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
 //    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     
@@ -112,6 +114,7 @@
 - (void)getPruductDetail{
     [[YKHomeManager sharedManager]getProductDetailInforWithProductId:[self.productId intValue] type:_isSP  OnResponse:^(NSDictionary *dic) {
         
+        self.collectionView.hidden = NO;
         self.product  = [YKProduct new];
         YKProductDetail *productDetail = [YKProductDetail new];
         [productDetail initWithDictionary:dic];
@@ -151,17 +154,19 @@
         
         [buttom initWithIsLike:productDetail.isInCollectionFolder total:productDetail.occupiedClothes];
         
-        [self performSelector:@selector(showButtom) withObject:nil afterDelay:0.3];
+//        [self performSelector:@selector(showButtom) withObject:nil afterDelay:0.1];
+        [self showButtom];
         [self.collectionView reloadData];
     }];
 }
 
 - (void)showButtom{
     [UIView animateWithDuration:0.25 animations:^{
-        buttom.frame = CGRectMake(0,HEIGHT-50,WIDHT, 50);
+//        buttom.backgroundColor = [UIColor blackColor];
+        buttom.frame = CGRectMake(0,HEIGHT-kSuitLength_H(50),WIDHT, kSuitLength_H(50));
         //iphone x 适配,排除安全区
         if (HEIGHT == 812) {
-            buttom.frame = CGRectMake(0,HEIGHT-74,WIDHT, 50);
+            buttom.frame = CGRectMake(0,HEIGHT-kSuitLength_H(70),WIDHT, kSuitLength_H(50));
         }
     }] ;
 }
@@ -227,7 +232,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
     self.navigationItem.titleView = title;
     
     //请求数据
@@ -238,7 +243,7 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
      layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-50) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -TOPH-20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
     if (HEIGHT==812) {
         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-80) collectionViewLayout:layoutView];
     }
@@ -273,22 +278,22 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //        [BQActivityView hideActiviTy];
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        self.collectionView.hidden = NO;
+//        self.collectionView.hidden = NO;
     });
     
-//    UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
-//    btn1.frame = CGRectMake(3, 20, 44, 44);
-//    btn1.adjustsImageWhenHighlighted = NO;
-//    [btn1 setImage:[UIImage imageNamed:@"newback"] forState:UIControlStateNormal];
-//    [btn1 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:btn1];
+    UIButton *btn11=[UIButton buttonWithType:UIButtonTypeCustom];
+    btn11.frame = CGRectMake(3, 20, 44, 44);
+    btn11.adjustsImageWhenHighlighted = NO;
+    [btn11 setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [btn11 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn11];
     
     WeakSelf(weakSelf)
     buttom =  [[NSBundle mainBundle] loadNibNamed:@"YKDetailFootView" owner:self options:nil][0];
-    buttom.frame = CGRectMake(0,HEIGHT,WIDHT, 50);
+    buttom.frame = CGRectMake(0,HEIGHT,WIDHT, kSuitLength_H(50));
     //iphone x 适配,排除安全区
     if (HEIGHT == 812) {
-      buttom.frame = CGRectMake(0,HEIGHT,WIDHT, 50);
+      buttom.frame = CGRectMake(0,HEIGHT,WIDHT, kSuitLength_H(50));
     }
 //    buttom.product = self.product;
     buttom.likeSelectBlock = ^(BOOL isLike){
@@ -357,9 +362,9 @@
             return;
         }
         
-        YKCartVC *suit = [[YKCartVC alloc] init];
+        YKSignalSuitVC *suit = [[YKSignalSuitVC alloc] init];
 //        suit.hidesBottomBarWhenPushed = YES;
-        suit.isFromeProduct = YES;
+//        suit.isFromeProduct = YES;
         [weakSelf.navigationController pushViewController:suit animated:YES];
 //        UINavigationController *nav = self.tabBarController.viewControllers[2];
 //        chatVC.hidesBottomBarWhenPushed = YES;
@@ -560,35 +565,48 @@
     });
 }
 
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    
-    UIScrollView * scrollView = (UIScrollView *)object;
-    
-    if (!self.collectionView == scrollView) {
-        return;
-    }
-    
-    if (![keyPath isEqualToString:@"contentOffset"]) {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-        return;
-    }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y>0) {
         self.navigationController.navigationBar.hidden = NO;
     }
     if (scrollView.contentOffset.y>280) {
-//        self.refresh.hidden = YES;
+        //        self.refresh.hidden = YES;
         self.navigationController.navigationBar.alpha = 1;
-        //        self.navigationController.navigationBar.hidden = NO;
+        self.navigationController.navigationBar.hidden = NO;
     }else {
-//        self.refresh.hidden = NO;
+        //        self.refresh.hidden = NO;
         self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
-        //        self.navigationController.navigationBar.hidden = YES;
+        self.navigationController.navigationBar.hidden = NO;
     }
-    
-    
-    
 }
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+//
+//    UIScrollView * scrollView = (UIScrollView *)object;
+//
+//    if (!self.collectionView == scrollView) {
+//        return;
+//    }
+//
+//    if (![keyPath isEqualToString:@"contentOffset"]) {
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//        return;
+//    }
+//    if (scrollView.contentOffset.y>0) {
+//        self.navigationController.navigationBar.hidden = NO;
+//    }
+//    if (scrollView.contentOffset.y>280) {
+////        self.refresh.hidden = YES;
+//        self.navigationController.navigationBar.alpha = 1;
+//                self.navigationController.navigationBar.hidden = NO;
+//    }else {
+////        self.refresh.hidden = NO;
+//        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
+//                self.navigationController.navigationBar.hidden = YES;
+//    }
+//
+//
+//
+//}
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 2;

@@ -13,7 +13,7 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [self drawForm];
+//    [self drawForm];
 
     
 }
@@ -27,7 +27,7 @@
     UILabel *ba = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, WIDHT-40, 30)];
    
     if (row==0) {
-        ba.backgroundColor = mainColor;
+        ba.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
         [self addSubview:ba];
     }
     
@@ -38,13 +38,13 @@
         label.text = [_titleArr[i] isEqual:[NSNull null]] ? @"*":[NSString stringWithFormat:@"%@",_titleArr[i]];
 //        label.text = ;
         label.textColor = mainColor;
-        label.font = PingFangSC_Regular(14);
+        label.font = PingFangSC_Regular(12);
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];
         
         if (row==0) {
-            label.textColor = [UIColor whiteColor];
-            label.font = PingFangSC_Semibold(14);
+            label.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+            label.font = PingFangSC_Medium(12);
         }
         
         

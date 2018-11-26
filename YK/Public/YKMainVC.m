@@ -17,7 +17,7 @@
 #import "YKSuitVC.h"
 #import "YKSuitSegmentVC.h"
 #import "YKLoveSegmentVC.h"
-
+#import "NavViewController.h"
 @interface YKMainVC ()<UITabBarControllerDelegate>
 {
     NSInteger _currentIndex;

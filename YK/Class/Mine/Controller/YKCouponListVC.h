@@ -8,7 +8,13 @@
 
 #import "YKBaseTableVC.h"
 
-@interface YKCouponListVC : YKBaseTableVC
+@interface YKCouponListVC : YKBaseVC
 @property (nonatomic,copy)void (^selectCoupon)(NSInteger CouponNum,int CouponId);
 @property (nonatomic,assign)BOOL isFromPay;
+@property (nonatomic,assign)BOOL isFromSuit;
+
+
+
+@property (nonatomic,assign)NSInteger selectedIndex;
+@property (nonatomic,assign) NSInteger couponStatus;
 @end

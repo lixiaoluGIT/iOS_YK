@@ -28,6 +28,8 @@
 @property (nonatomic,assign) suitBagStatus bagStatus;
 @property (nonatomic,strong) NSMutableArray *orderList;//待签收
 @property (nonatomic,strong) NSString *orderNo;//订单号
+
+@property (nonatomic,strong) UILabel *line;//红线
 @end
 
 @implementation YKMySuitBagVC
@@ -76,7 +78,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
     
     self.navigationItem.titleView = title;
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -91,7 +93,7 @@
     
     [self settingButtons];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-BarH-50*WIDHT/375) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(kSuitLength_H(10), BarH+kSuitLength_H(50), WIDHT-20, HEIGHT-BarH-kSuitLength_H(50)) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;
@@ -100,11 +102,11 @@
     [self.view addSubview:self.tableView];
     
     _buttom = [UIButton buttonWithType:UIButtonTypeCustom];
-    _buttom.frame = CGRectMake(0, HEIGHT-50, WIDHT, 50);
-    _buttom.backgroundColor = mainColor;
+    _buttom.frame = CGRectMake(0, HEIGHT-kSuitLength_H(50), WIDHT, kSuitLength_H(50));
+    _buttom.backgroundColor = YKRedColor;
     [self.view addSubview:_buttom];
     [_buttom setTitle:@"\\\\" forState:UIControlStateNormal];
-    _buttom.titleLabel.font = [UIFont systemFontOfSize:16];
+    _buttom.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
     [_buttom addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
     _buttom.hidden = YES;
     self.tableView.hidden = YES;
@@ -125,9 +127,13 @@
 
 -(void)settingButtons{
     UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, BarH, WIDHT, 50*WIDHT/375)];
-    backView.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+    backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     
+//    self.line = [[UILabel alloc]initWithFrame:CGRectMake(WIDHT/8-kSuitLength_H(30), kSuitLength_H(50)-1, kSuitLength_H(30), 1)];
+//    _line.backgroundColor = YKRedColor;
+//    [backView addSubview:_line];
+ 
     NSArray *arr  =[NSArray arrayWithObjects:@"全部衣袋",@"待签收",@"待归还",@"已归还", nil];
     int index = 0;
     if (self.selectedIndex == 100) {
@@ -146,33 +152,38 @@
         index = 3;
         _bagStatus = hadBack;
     }
+    _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30), kSuitLength_H(45), kSuitLength_H(30), 1);
     //查询订单,刚进来的时候
     [self searchOrders:self.selectedIndex];
     
     for (int i = 0; i < 4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(WIDHT/4*i, BarH, WIDHT /4, 50*WIDHT/375);
-        button.backgroundColor = [UIColor colorWithHexString:@"1a1a1a"];
+        button.frame = CGRectMake(WIDHT/4*i, 0, WIDHT /4, kSuitLength_H(50));
+        button.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
         [button setTitle:arr[i] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont systemFontOfSize:16];
+        button.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
         [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
 //        button.titleLabel setf
-//        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [button setTitleColor:YKRedColor forState:UIControlStateSelected];
 //        button.clipsToBounds = YES;
 //        button.layer.cornerRadius = 15;
         button.tag = 100+i;
         
         if (i == index) {
             button.selected = YES;
-            button.titleLabel.font = PingFangSC_Semibold(18);
-            [button setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+            button.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+            [button setTitleColor:YKRedColor forState:UIControlStateNormal];
             self.Button0 = button;
         }
 //        [button setBackgroundImage:[UIImage imageNamed:@"白.png"] forState:UIControlStateNormal];
 //        [button setBackgroundImage:[UIImage imageNamed:@"红.jpg"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
+        [backView addSubview:button];
     }
+    self.line = [[UILabel alloc]initWithFrame:CGRectMake(WIDHT/8-kSuitLength_H(30)/2, kSuitLength_H(50)-1, kSuitLength_H(30), 1)];
+    _line.backgroundColor = YKRedColor;
+    _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 1);
+    [backView addSubview:_line];
 }
 
 - (void)searchOrders:(NSInteger)orderStatus{
@@ -208,31 +219,41 @@
     self.tableView.hidden = YES;
     [self.tableView setContentOffset:CGPointMake(0, 0)];
     
+    int index = 0;
     if (button.tag == 100) {
+        index=0;
         _bagStatus = totalBag;
     }
     if (button.tag == 101) {
+        index=1;
         _bagStatus = toReceive;
     }
     if (button.tag == 102) {
+        index=2;
         _bagStatus = toBack;
     }
     if (button.tag == 103) {
+        index=3;
         _bagStatus = hadBack;
     }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 1);
+    }];
+    
     if (self.Button0 != button) {
         self.Button0.selected = NO;
         button.selected = YES;
-        button.titleLabel.font = PingFangSC_Semibold(18);
-        [button setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+        button.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+        [button setTitleColor:YKRedColor forState:UIControlStateNormal];
         [self.Button0 setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
-        self.Button0.titleLabel.font = PingFangSC_Regular(16);
+        self.Button0.titleLabel.font =  PingFangSC_Medium(kSuitLength_H(14));
     }
     self.Button0 = button;
     [self searchOrders:button.tag];
 }
 
-- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndexz:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
         [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
                 [self searchOrders:101];

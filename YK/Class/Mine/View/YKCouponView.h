@@ -17,6 +17,7 @@
 @property (nonatomic,assign)int couponID;//id
 - (void)resetNum:(NSInteger)num;
 - (void)initWithDic:(NSDictionary *)dic;
+- (void)initWithD:(NSDictionary *)dic;
 - (void)hid;
 
 - (void)appear;

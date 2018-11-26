@@ -60,10 +60,18 @@
         self.clickALLBlock();
     }
 }
-- (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList{
+- (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList seasons:(NSMutableArray *)seasons seasonIds:(NSMutableArray *)seasonIds{
     
     self.sortId = @"";
     self.categoryID = @"";
+    
+    [CategoryList insertObject:@"不限" atIndex:0];
+    [sortList insertObject:@"不限" atIndex:0];
+    [seasons insertObject:@"不限" atIndex:0];
+
+    [CategoryIdList insertObject:@"" atIndex:0];
+    [sortIdList insertObject:@"" atIndex:0];
+    [seasonIds insertObject:@"" atIndex:0];
     
     WeakSelf(weakSelf)
     sliderSegmentView1 = [[CBSegmentView alloc]initWithFrame: CGRectMake(0, kSuitLength_H(10), WIDHT, kSuitLength_H(40))];
@@ -96,15 +104,15 @@
     line2.frame = CGRectMake(0, sliderSegmentView2.bottom, WIDHT, 1);
     [self addSubview:line2];
     //季节
-    NSArray *seasons = [NSArray array];
-    seasons = @[@"不限",@"春",@"夏",@"秋",@"冬"];
-    
-    NSArray *ids = [NSArray array];
-    ids = @[@"0",@"1",@"2",@"3",@"4"];
+//    NSArray *seasons = [NSArray array];
+//    seasons = @[@"不限",@"春",@"夏",@"秋",@"冬"];
+//
+//    NSArray *ids = [NSArray array];
+//    ids = @[@"0",@"1",@"2",@"3",@"4"];
     
     sliderSegmentView3 = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, sliderSegmentView2.frame.size.height + sliderSegmentView2.frame.origin.y, WIDHT, kSuitLength_H(40))];
     [self addSubview:sliderSegmentView3];
-    [sliderSegmentView3 setTitleArray:seasons categoryIds:ids withStyle:CBSegmentStyleZoom];
+    [sliderSegmentView3 setTitleArray:seasons categoryIds:seasonIds withStyle:CBSegmentStyleZoom];
     sliderSegmentView3.titleChooseReturn = ^(NSString *sortId) {
         weakSelf.sortId = sortId;
         if (weakSelf.filterBlock) {

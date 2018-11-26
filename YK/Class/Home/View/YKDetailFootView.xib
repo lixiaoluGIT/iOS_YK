@@ -24,7 +24,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="243" id="a6g-Tr-5UK"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="12"/>
                         <state key="normal" title="租这件"/>
                         <state key="highlighted">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -50,8 +50,8 @@
                                     <action selector="toCart:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5hj-qD-xRc"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yidai1" translatesAutoresizingMaskIntoConstraints="NO" id="66o-K7-w6f">
-                                <rect key="frame" x="157.5" y="13" width="18" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="衣袋111" translatesAutoresizingMaskIntoConstraints="NO" id="66o-K7-w6f">
+                                <rect key="frame" x="155.5" y="13" width="22" height="22"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="喜欢已选" translatesAutoresizingMaskIntoConstraints="NO" id="Npt-BS-571">
                                 <rect key="frame" x="45.5" y="13" width="20" height="19"/>
@@ -89,7 +89,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dk1-b0-t6x">
-                        <rect key="frame" x="175.5" y="6.5" width="11" height="11"/>
+                        <rect key="frame" x="177.5" y="6.5" width="11" height="11"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="11" id="1Aj-Jh-VGx"/>
@@ -126,7 +126,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="yidai1" width="18" height="20"/>
         <image name="喜欢已选" width="20" height="19"/>
+        <image name="衣袋111" width="22" height="22"/>
     </resources>
 </document>

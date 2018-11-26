@@ -31,4 +31,17 @@
 //获取筛选标签数据
 - (void)getFilterDataOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//筛选
+- (void)filterDataWithCategoryIdList:(NSArray *)CategoryIdList
+                      colourIdList:(NSArray *)colourIdList
+                      elementIdList:(NSArray *)elementIdList
+                      labelIdList:(NSArray *)labelIdList
+                      seasonIdList:(NSArray *)seasonIdList
+                      styleIdList:(NSArray *)styleIdList
+                        updateDay:(NSString *)updateDay
+                             page:(NSInteger )page
+                             size:(NSInteger )page
+                            exist:(NSString *)exist
+                       OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 @end

@@ -294,7 +294,7 @@
     _scrollView.imageRadius = 14; // 设置卡片圆角
     _scrollView.imageHeightPoor = 20; // 设置中间卡片与两边卡片的高度差
     // 设置要加载的图片
-    self.scrollView.data = @[@"yueka-1",@"jika-1",@"nianka-1"];
+    self.scrollView.data = @[@"月卡-1",@"季卡-2",@"nianka1"];
     _scrollView.placeHolderImage = [UIImage imageNamed:@"商品图"]; // 设置占位图片
     [self.view addSubview:self.scrollView];
     _scrollView.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
@@ -510,7 +510,7 @@
             default:
                 break;
         }
-        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158(无效id)",@"item":des,@"amount":_total.text}];
+        [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":[YKUserManager sharedManager].user.phone,@"item":des,@"amount":_total.text}];
         //监测
         [MobClick event:@"pay"];
         
@@ -547,7 +547,7 @@
             default:
                 break;
         }
-         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":@"158158158(无效id)",@"item":des,@"amount":_total.text}];
+         [MobClick event:@"__finish_payment" attributes:@{@"userid":[YKUserManager sharedManager].user.userId,@"orderid":[YKUserManager sharedManager].user.phone,@"item":des,@"amount":_total.text}];
         //主包监测
         [MobClick event:@"pay"];
         [self getData];
@@ -573,7 +573,8 @@
         return;
     }
     YKCouponListVC *Coupon = [YKCouponListVC new];
-    Coupon.isFromPay = YES;
+//    Coupon.isFromPay = YES;
+    Coupon.selectedIndex = 101;
     Coupon.selectCoupon = ^(NSInteger ConponNum,int CouponId){
         _CouponNum = ConponNum;
         _CouponId = CouponId;

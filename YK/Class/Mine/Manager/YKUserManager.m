@@ -384,7 +384,7 @@
                 OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [self clear];
-    
+    [YKSuitManager sharedManager].couponId = 0;
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -930,10 +930,10 @@
 
 - (void)getWalletDetailPageOnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [YKHttpClient Method:@"GET" apiName:CouponList_Url Params:nil Completion:^(NSDictionary *dic) {
         
-//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dic[@"status"] integerValue] == 200) {
             
             if (onResponse) {
@@ -1012,5 +1012,53 @@
     };
 
     [kWindow addSubview:loginView];
+}
+
+- (void)getShareImagesOnResponse:(void (^)(NSDictionary *))onResponse{
+ 
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [YKHttpClient Method:@"GET" apiName:shareImageList_Url Params:nil Completion:^(NSDictionary *dic) {
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//
+//        if ([dic[@"status"] integerValue] == 200) {
+//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dic[@"msg"] delay:1.5];
+//        }
+//
+//        if (onResponse) {
+//            onResponse(dic);
+//        }
+//
+//    }];
+    [YKHttpClient Method:@"GET" URLString:shareImageList_Url paramers:nil success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+                if ([dict[@"status"] integerValue] != 200) {
+                    [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.5];
+                }
+        
+                if (onResponse) {
+                    onResponse(dict);
+                }
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)getShareImageShareimageId:(NSString *)shareImageid OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    NSString *url = [NSString stringWithFormat:@"%@?userId=%d&shareImgId=%d",getshareImage_Url,[[YKUserManager sharedManager].user.userId intValue],[shareImageid intValue]];
+    [YKHttpClient Method:@"GET" URLString:url paramers:nil success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        if ([dict[@"status"] integerValue] != 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:1.5];
+        }
+        
+        if (onResponse) {
+            onResponse(dict);
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 @end

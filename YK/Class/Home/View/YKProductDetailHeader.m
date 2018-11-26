@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectText;
 @property (weak, nonatomic) IBOutlet UIImageView *yellowImage;
 @property (weak, nonatomic) IBOutlet UILabel *yiwei;
+@property (weak, nonatomic) IBOutlet UILabel *clothName;
 
 @end
 
@@ -58,6 +59,7 @@
     _product = product;
     [_brandImage setContentMode:UIViewContentModeScaleAspectFit];
     NSString *des =  [product objectForKey:@"clothingName"];
+    _clothName.text = [NSString stringWithFormat:@"%@",product[@"clothingName"]];
     _productDes.text = des;
     _productPrice.text = [NSString stringWithFormat:@"参考价:¥%@",product[@"clothingPrice"]];
     
@@ -146,7 +148,7 @@
     _tishilabel = [[UILabel alloc]init];
     _tishilabel.text = @"待返架";
     _tishilabel.textColor = YKRedColor;
-    _tishilabel.font = PingFangSC_Regular(14);
+    _tishilabel.font = PingFangSC_Regular(kSuitLength_H(12));
     [self addSubview:_tishilabel];
     
     _tishiImage = [[UIImageView alloc]init];
@@ -158,7 +160,7 @@
     
     [_tishilabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@(-24));
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(self.mas_centerY).offset(-kSuitLength_H(8));
     }];
     [_tishiImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_tishilabel.mas_centerY);
@@ -167,15 +169,17 @@
     
     for (int i=0; i<array.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.layer.masksToBounds = YES;
-        btn.layer.borderColor = mainColor.CGColor;
-        btn.layer.borderWidth = 1;
-        btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-        btn.frame = CGRectMake((48+14)*i,17,48, 24);
+//        btn.layer.masksToBounds = YES;
+//        btn.layer.borderColor = YKRedColor.CGColor;
+//        btn.layer.borderWidth = 1;
+        btn.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+        btn.frame = CGRectMake((kSuitLength_H(58)+kSuitLength_H(17))*i,kSuitLength_H(7),kSuitLength_H(58), kSuitLength_H(26));
         [btn setTitle:array[i][@"clothingStockType"] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [btn setTitleColor:mainColor forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+        [btn setTitleColor:[UIColor colorWithHexString:@"676869"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchDown];
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = kSuitLength_H(26)/2;
         btn.tag = i;
         [self addSubview:btn];
         
@@ -222,15 +226,15 @@
       
         
         [UIView animateWithDuration:0.3 animations:^{
-            btn.titleLabel.font = [UIFont systemFontOfSize:14];
-            btn.backgroundColor = mainColor;
+            btn.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+            btn.backgroundColor = YKRedColor;
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-             btn.layer.borderWidth = 1;
+//             btn.layer.borderWidth = 1;
             
-            self.Button1.titleLabel.font = [UIFont systemFontOfSize:14];
-            self.Button1.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-            [self.Button1 setTitleColor:mainColor forState:UIControlStateNormal];
-            self.Button1.layer.borderWidth = 1;
+            self.Button1.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(12)];
+            self.Button1.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+            [self.Button1 setTitleColor:[UIColor colorWithHexString:@"676869"] forState:UIControlStateNormal];
+//            self.Button1.layer.borderWidth = 1;
             
             if (!product.isHadStock) {//当前选择没有库存
 //                btn.frame = CGRectMake((44+20)*self.selectindex,4,48, 24);

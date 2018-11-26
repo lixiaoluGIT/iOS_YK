@@ -125,5 +125,12 @@
 //提现
 - (void)tiXianeOnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//展示登录界面
 - (void)showLoginViewOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//获取分享图片集合
+- (void)getShareImagesOnResponse:(void (^)(NSDictionary *dic))onResponse;
+
+//分享获取分享图片
+- (void)getShareImageShareimageId:(NSString *)shareImageid OnResponse:(void (^)(NSDictionary *dic))onResponse;
 @end

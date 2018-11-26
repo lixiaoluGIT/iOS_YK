@@ -603,4 +603,22 @@
     [YKOrderManager sharedManager].ID = nil;
 }
 
+//查询历史订单(新接口)
+- (void)searchHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse{
+ 
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+   
+    NSString *str = [NSString stringWithFormat:@"%@?orderState=%ld",newQueryOrder_Url,(long)status];
+    [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+//        NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"userOrderVoList"]];
+        if (onResponse) {
+            onResponse(dic);
+        }
+
+    }];
+     
+}
+
 @end
