@@ -125,7 +125,7 @@
                 <outlet property="headIma" destination="kG1-U3-8rs" id="R8g-Uq-MY5"/>
                 <outlet property="imageView" destination="kG1-U3-8rs" id="s5F-fk-zq6"/>
             </connections>
-            <point key="canvasLocation" x="126" y="98.5"/>
+            <point key="canvasLocation" x="16" y="78"/>
         </tableViewCell>
     </objects>
     <resources>

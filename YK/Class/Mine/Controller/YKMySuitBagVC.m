@@ -114,7 +114,7 @@
     
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
     
-    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"dingdan"] statusDes:@"暂无订单" hiddenBtn:YES actionTitle:@"" actionBlock:^{
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无订单111"] statusDes:@"暂无订单" hiddenBtn:YES actionTitle:@"" actionBlock:^{
         
     }];
   
@@ -414,7 +414,7 @@
     }
     
     
-    return 24;
+    return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -476,7 +476,7 @@
         return header;
     }
     UIView *view = [[UIView alloc]init];
-    view.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     
     return view;
 }

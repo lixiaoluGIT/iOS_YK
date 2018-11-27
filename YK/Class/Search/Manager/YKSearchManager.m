@@ -141,14 +141,24 @@
                               @"classify":@"0"
                               };
     
-    [YKHttpClient Method:@"POST" apiName:filter_Url Params:postDic Completion:^(NSDictionary *dic) {
+//    [YKHttpClient Method:@"POST" apiName:filter_Url Params:postDic Completion:^(NSDictionary *dic) {
+//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//
+//        NSLog(@"RESPONSE:%@",dic);
+//        if (onResponse) {
+//            onResponse(dic);
+//        }
+//    }];
+    
+    [YKHttpClient Method:@"POST" URLString:filter_Url paramers:postDic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-        NSLog(@"RESPONSE:%@",dic);
-        if (onResponse) {
-            onResponse(dic);
-        }
+            NSLog(@"RESPONSE:%@",dict);
+                if (onResponse) {
+                    onResponse(dict);
+                }
+    } failure:^(NSError *error) {
+        
     }];
-    
 }
 @end

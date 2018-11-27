@@ -90,7 +90,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.alpha = 0;
+    self.navigationController.navigationBar.alpha = 1;
 //    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
 //    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     
@@ -242,8 +242,8 @@
     UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
      layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
-    
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -TOPH-20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
+//    -TOPH-20
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
     if (HEIGHT==812) {
         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-80) collectionViewLayout:layoutView];
     }
@@ -354,24 +354,15 @@
             [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
                 
             }];
-//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-//            [self presentViewController:login animated:YES completion:^{
-//
-//            }];
-//            login.hidesBottomBarWhenPushed = YES;
+
             return;
         }
         
         YKSignalSuitVC *suit = [[YKSignalSuitVC alloc] init];
-//        suit.hidesBottomBarWhenPushed = YES;
-//        suit.isFromeProduct = YES;
+       
         [weakSelf.navigationController pushViewController:suit animated:YES];
-//        UINavigationController *nav = self.tabBarController.viewControllers[2];
-//        chatVC.hidesBottomBarWhenPushed = YES;
-//        self.tabBarController.selectedViewController = nav;
-//        [self.navigationController popToRootViewControllerAnimated:NO];
-        
     };
+    
     [self.view addSubview:buttom];
     
     backView = [[UIView alloc]init];
@@ -566,18 +557,18 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y>0) {
-        self.navigationController.navigationBar.hidden = NO;
-    }
-    if (scrollView.contentOffset.y>280) {
-        //        self.refresh.hidden = YES;
-        self.navigationController.navigationBar.alpha = 1;
-        self.navigationController.navigationBar.hidden = NO;
-    }else {
-        //        self.refresh.hidden = NO;
-        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
-        self.navigationController.navigationBar.hidden = NO;
-    }
+//    if (scrollView.contentOffset.y>0) {
+//        self.navigationController.navigationBar.hidden = NO;
+//    }
+//    if (scrollView.contentOffset.y>280) {
+//        //        self.refresh.hidden = YES;
+//        self.navigationController.navigationBar.alpha = 1;
+//        self.navigationController.navigationBar.hidden = NO;
+//    }else {
+//        //        self.refresh.hidden = NO;
+//        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
+//        self.navigationController.navigationBar.hidden = NO;
+//    }
 }
 //- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
 //

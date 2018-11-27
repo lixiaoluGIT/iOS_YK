@@ -81,7 +81,7 @@
         
     }];
     
-    _NoDataView.frame = CGRectMake(0, 98+BarH, WIDHT,HEIGHT-162);
+    _NoDataView.frame = CGRectMake(0, BarH+HEIGHT/4, WIDHT,HEIGHT-162);
 //    self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     [self.view addSubview:_NoDataView];
     _NoDataView.hidden = YES;
@@ -151,9 +151,10 @@
     _line.frame = CGRectMake(WIDHT/6+WIDHT/3*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 1);
     [backView addSubview:_line];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,backView.bottom, WIDHT, HEIGHT-kSuitLength_H(50)-BarH) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,backView.bottom, WIDHT, self.view.frame.size.height-kSuitLength_H(100)) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
 }
 
@@ -294,6 +295,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (WIDHT==320) {
+        return kSuitLength_H(160);
+    }
     return kSuitLength_H(120);
 }
 

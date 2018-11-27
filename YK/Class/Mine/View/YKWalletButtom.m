@@ -17,15 +17,39 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.scanBtn.layer.masksToBounds = YES;
-//    self.scanBtn.layer.cornerRadius = self.scanBtn.frame.size.height/2;
-    self.scanBtn.backgroundColor = mainColor;
-//    self.scanBtn.layer.borderWidth = 1;
-//    self.scanBtn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+//    self.scanBtn.layer.masksToBounds = YES;
+////    self.scanBtn.layer.cornerRadius = self.scanBtn.frame.size.height/2;
+//    self.scanBtn.backgroundColor = mainColor;
+////    self.scanBtn.layer.borderWidth = 1;
+////    self.scanBtn.layer.borderColor = [UIColor colorWithHexString:@"1a1a1a"].CGColor;
+//    self.scanBtn.frame = CGRectMake(WIDHT-kSuitLength_H(140), -kSuitLength_H(36), kSuitLength_H(120), kSuitLength_H(21));
+//    self.scanBtn.backgroundColor = YKRedColor;
+//    self.scanBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
+//    self.scanBtn.layer.masksToBounds = YES;
+//    self.scanBtn.layer.cornerRadius = kSuitLength_H(21)/2;
+    
+    self.des.font = PingFangSC_Regular(kSuitLength_H(12));
+    
+    self.scanBtn.hidden = YES;
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame = CGRectMake(WIDHT-kSuitLength_H(100), kSuitLength_H(18), kSuitLength_H(80), kSuitLength_H(21));
+    b.centerY = self.des.centerY;
+    b.backgroundColor = YKRedColor;
+    b.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
+    b.layer.masksToBounds = YES;
+    b.layer.cornerRadius = kSuitLength_H(21)/2;
+    self.scanBtn = b;
+    [b addTarget:self action:@selector(scan) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:b];
 }
 
-
 - (IBAction)scanBtnClick:(id)sender {
+    if (self.scanBlock) {
+        self.scanBlock(1);
+    }
+}
+
+- (void)scan{
     if (self.scanBlock) {
         self.scanBlock(1);
     }

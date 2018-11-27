@@ -51,6 +51,11 @@
     _backView.backgroundColor = [UIColor blackColor];
     _backView.alpha = 0.74;
     _backView.frame = kWindow.bounds;
+    [_backView setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        [_phoneText resignFirstResponder];
+    }];
+    [_backView addGestureRecognizer:tap];
     [self addSubview:_backView];
     
     //
@@ -60,7 +65,7 @@
     _containView.layer.cornerRadius = 4;
     [self addSubview:_containView];
     
-    _containView.frame = CGRectMake(kSuitLength_H(75), HEIGHT, kSuitLength_H(236), kSuitLength_H(148));
+    _containView.frame = CGRectMake(kSuitLength_H(75), HEIGHT, WIDHT-kSuitLength_H(75)*2, kSuitLength_H(148));
 
     UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeBtn setImage:[UIImage imageNamed:@"关闭"] forState:UIControlStateNormal];

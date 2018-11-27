@@ -9,6 +9,7 @@
 #import "YKHomeAleartView.h"
 #import "YKToBeVIPVC.h"
 #import "YKRegisterVC.h"
+#import "YKLogInView.h"
 
 @interface YKHomeAleartView()
 @property (weak, nonatomic) IBOutlet UIView *backView;
@@ -25,9 +26,13 @@
     _getBtn.layer.cornerRadius = 20;
     _backView.backgroundColor = [UIColor blackColor];
     _backView.alpha = 1;
-    _gap.constant = kSuitLength_V(120);
+     _gap.constant = kSuitLength_V(120);
+    if (WIDHT==320) {
+        _gap.constant = 40;
+    }
+   
     if ([Token length] == 0) {
-        [self.getBtn setTitle:@"立即注册" forState:UIControlStateNormal];
+        [self.getBtn setTitle:@"立即登录" forState:UIControlStateNormal];
     }else {
         [self.getBtn setTitle:@"立即使用" forState:UIControlStateNormal];
     }
@@ -172,10 +177,14 @@
     [self removeFromSuperview];
     if ([Token length] == 0) {
         //到注册页
-        YKRegisterVC *registerVC = [[YKRegisterVC alloc]init];
-        [[self getCurrentVC] presentViewController:registerVC animated:YES completion:^{
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+           
             
         }];
+//        YKRegisterVC *registerVC = [[YKRegisterVC alloc]init];
+//        [[self getCurrentVC] presentViewController:registerVC animated:YES completion:^{
+//
+//        }];
     }else {
         //到ToBeVip页
         YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];

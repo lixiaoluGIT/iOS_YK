@@ -26,6 +26,10 @@
     [super awakeFromNib];
     [self initUI];
     [self layOut];
+    
+    self.btn1.titleLabel.font = PingFangSC_Medium(kSuitLength_H(16));
+     self.btn2.titleLabel.font = PingFangSC_Medium(kSuitLength_H(16));
+     self.btn3.titleLabel.font = PingFangSC_Medium(kSuitLength_H(16));
 }
 
 - (void)initUI{

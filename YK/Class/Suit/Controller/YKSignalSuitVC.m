@@ -44,7 +44,8 @@
     
     maxClothesNum = 4;
     currentClothesNum=3;
-    
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.alpha = 1;
 //    //    [self searchAddCloth];
 //    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     self.title = @"衣袋";
@@ -126,18 +127,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    //    [self searchAddCloth];
-    //    [self getCartList];
-    //
-    //    [self getNum];
+    
+   
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
-    
     if ([Token length] == 0) {
         [self.dataArray removeAllObjects];
         [self.tableView reloadData];
@@ -149,6 +141,47 @@
     }
     [self searchAddCloth];
     [self getNum];
+    
+    if ([YKSuitManager sharedManager].couponId==0) {
+        self.tableView.frame = CGRectMake(0,BarH + kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) ;
+        cartheader.frame = CGRectMake(0, BarH, WIDHT, kSuitLength_H(74));
+        cartheader.hidden = NO;
+    }else {
+        
+        cartheader.frame = CGRectMake(0, BarH , WIDHT, kSuitLength_H(0));
+        self.tableView.frame = CGRectMake(0, cartheader.frame.size.height+cartheader.frame.origin.y, WIDHT, HEIGHT-kSuitLength_H(150));
+        cartheader.hidden = YES;
+    }
+    
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.alpha = 1;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    
+//    if ([Token length] == 0) {
+//        [self.dataArray removeAllObjects];
+//        [self.tableView reloadData];
+//        //        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+//        //            [self searchAddCloth];
+//        //            [self getNum];
+//        //        }];
+//        return;
+//    }
+//    [self searchAddCloth];
+//    [self getNum];
+//
+//    if ([YKSuitManager sharedManager].couponId==0) {
+//        self.tableView.frame = CGRectMake(0,BarH + kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) ;
+//        cartheader.frame = CGRectMake(0, BarH, WIDHT, kSuitLength_H(74));
+//        cartheader.hidden = NO;
+//    }else {
+//
+//        cartheader.frame = CGRectMake(0, BarH , WIDHT, kSuitLength_H(0));
+//        self.tableView.frame = CGRectMake(0, cartheader.frame.size.height+cartheader.frame.origin.y, WIDHT, HEIGHT-kSuitLength_H(150));
+//        cartheader.hidden = YES;
+//    }
 }
 
 - (void)getCartList{
@@ -183,7 +216,12 @@
 - (void)creatHeader{
     WeakSelf(weakSelf)
     cartheader = [[NSBundle mainBundle]loadNibNamed:@"YKCartHeader" owner:nil options:nil][0];
-    cartheader.frame = CGRectMake(0, NAVH, WIDHT, kSuitLength_H(74));
+    cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
+    if ([YKSuitManager sharedManager].couponId==0) {
+        cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
+    }else {
+        cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(0));
+    }
     //    cartheader.isHadCC = [YKSuitManager sharedManager].isHadCC;
     cartheader.btnAction = ^(BOOL isHadCC){
         if ([Token length] == 0) {
@@ -202,9 +240,15 @@
         }
         if (isHadCC) {//使用加衣券，去选加衣券
             YKCouponListVC *list = [[YKCouponListVC alloc]init];
-            list.hidesBottomBarWhenPushed = YES;
-            //            list.selectCoupon = <#^(NSInteger CouponNum, int CouponId)#>
+            list.selectedIndex = 102;
+            list.isFromSuit = YES;
+            list.isFromPay = YES;
             
+            list.selectCoupon = ^(NSInteger CouponNum, int CouponId) {
+                [YKSuitManager sharedManager].couponId = CouponId;
+            };
+            
+            list.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:list animated:YES];
         }else{//购买加衣券，去购买界面
             YKBuyAddCCVC *buy = [[YKBuyAddCCVC alloc]init];
@@ -214,6 +258,7 @@
     };
     [self.view addSubview:cartheader];
 }
+
 
 - (void)creatTableView{
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,NAVH + kSuitLength_H(73), WIDHT, kSuitLength_H(500)) style:UITableViewStylePlain];
@@ -316,7 +361,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [YKSuitManager sharedManager].isHadCC?4:3;
+    return [YKSuitManager sharedManager].couponId==0?3:4;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

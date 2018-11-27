@@ -14,6 +14,7 @@
 #import <UShareUI/UShareUI.h>
 #import "HW3DBannerView.h"
 #import "YKCouponListVC.h"
+#import "YKInputCodeView.h"
 
 #define KScreenWidth self.view.frame.size.width
 #define KScreenHeight self.view.frame.size.height
@@ -81,6 +82,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bh;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hhh;
 @property (weak, nonatomic) IBOutlet UIButton *detailBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomTop;
+
+@property (nonatomic,strong)UILabel *inviteCode;
 
 @end
 
@@ -109,6 +113,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     self.navigationController.navigationBar.hidden = YES;
+    if (WIDHT==320) {
+        isAgree = YES;
+    }
     if ([YKUserManager sharedManager].isFromCoupon == YES) {
         _CouponId = [YKUserManager sharedManager].couponID;
         _CouponNum = [YKUserManager sharedManager].couponNum;
@@ -138,13 +145,13 @@
     }
     if (_payType == ONCE_CARD) {
         if (self.CouponNum==0) {
-            _liJIan.text = @"选择优惠劵";
+            _liJIan.text = @"选择优惠劵 >";
         }else {
             _liJIan.text = @"次卡暂不支持优惠劵";
         }
     }else {
         if (self.CouponNum==0) {
-             _liJIan.text = @"选择优惠劵";
+             _liJIan.text = @"选择优惠劵 >";
         }else {
         _liJIan.text = [NSString stringWithFormat:@"-¥%ld",self.CouponNum];
         }
@@ -288,15 +295,23 @@
     [_liJIan setUserInteractionEnabled:YES];
     [_liJIan addGestureRecognizer:tap];
     
+    UIScrollView *bigScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, BarH, WIDHT, HEIGHT-kSuitLength_H(150))];
+    bigScrollView.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+    [self.view addSubview:bigScrollView];
+    bigScrollView.scrollEnabled = YES;
+//    bigScrollView.showsHorizontalScrollIndicator = NO;
+//    bigScrollView.showsVerticalScrollIndicator = NO;
+    bigScrollView.contentSize = CGSizeMake(0, HEIGHT);
+    
     WeakSelf(weakSelf)
-    _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, BarH+10, WIDHT, 150) imageSpacing:14 imageWidth:WIDHT - 140];
-    _scrollView.initAlpha = 0.5; // 设置两边卡片的透明度
-    _scrollView.imageRadius = 14; // 设置卡片圆角
-    _scrollView.imageHeightPoor = 20; // 设置中间卡片与两边卡片的高度差
+    _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, kSuitLength_H(10), WIDHT, kSuitLength_H(140)) imageSpacing:14 imageWidth:WIDHT - kSuitLength_H(140)];
+    _scrollView.initAlpha = 0.8; // 设置两边卡片的透明度
+    _scrollView.imageRadius = kSuitLength_H(14); // 设置卡片圆角
+    _scrollView.imageHeightPoor = kSuitLength_H(20); // 设置中间卡片与两边卡片的高度差
     // 设置要加载的图片
     self.scrollView.data = @[@"月卡-1",@"季卡-2",@"nianka1"];
     _scrollView.placeHolderImage = [UIImage imageNamed:@"商品图"]; // 设置占位图片
-    [self.view addSubview:self.scrollView];
+    [bigScrollView addSubview:self.scrollView];
     _scrollView.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
         NSLog(@"%ld",currentIndex);
         _payType = currentIndex+1;
@@ -308,6 +323,239 @@
         
         [weakSelf resetPrice];
     };
+    //服务内容view
+    UIView *serviceView = [[UIView alloc]initWithFrame:CGRectMake(0, _scrollView.bottom + kSuitLength_H(10), WIDHT, kSuitLength_H(100))];
+    serviceView.backgroundColor = [UIColor whiteColor];
+    [bigScrollView addSubview:serviceView];
+    
+    //服务内容
+    UILabel *l = [[UILabel alloc]initWithFrame:CGRectMake(0, kSuitLength_H(10), WIDHT, kSuitLength_H(20))];
+    l.text = @"服务内容";
+    l.textColor = [UIColor colorWithHexString:@"1f1f1f"];
+    l.font = PingFangSC_Medium(kSuitLength_H(14));
+    l.textAlignment = NSTextAlignmentCenter;
+    [serviceView addSubview:l];
+    //Content
+    UILabel *l2 = [[UILabel alloc]initWithFrame:CGRectMake(0, l.bottom+kSuitLength_H(4), WIDHT, kSuitLength_H(12))];
+    l2.text = @"Content";
+    l2.textColor = [UIColor colorWithHexString:@"cccccc"];
+    l2.font = PingFangSC_Medium(kSuitLength_H(12));
+    l2.textAlignment = NSTextAlignmentCenter;
+    [serviceView addSubview:l2];
+    //点1
+    UILabel *l3 = [[UILabel alloc]initWithFrame:CGRectMake(kSuitLength_H(47), l2.bottom+kSuitLength_H(13), kSuitLength_H(8), kSuitLength_H(8))];
+    l3.backgroundColor = YKRedColor;
+    l3.layer.masksToBounds = YES;
+    l3.layer.cornerRadius = kSuitLength_H(8)/2;
+    [serviceView addSubview:l3];
+    
+    //点2
+    UILabel *l4 = [[UILabel alloc]initWithFrame:CGRectMake(kSuitLength_H(47), l3.bottom+kSuitLength_H(16), kSuitLength_H(8), kSuitLength_H(8))];
+    l4.backgroundColor = YKRedColor;
+    l4.layer.masksToBounds = YES;
+    l4.layer.cornerRadius = kSuitLength_H(8)/2;
+    [serviceView addSubview:l4];
+    //卡描述
+    UILabel *cardDes = [[UILabel alloc]initWithFrame:CGRectMake(l3.right+kSuitLength_H(9),l.bottom+kSuitLength_H(19) , WIDHT, kSuitLength_H(20))];
+    cardDes.centerY = l3.centerY;
+    cardDes.text = @"年卡可享受衣库365天内提供的无限换衣特权";
+    cardDes.textColor = [UIColor colorWithHexString:@"1f1f1f"];;
+    cardDes.font = PingFangSC_Medium(kSuitLength_H(12));
+    cardDes.textAlignment = NSTextAlignmentLeft;
+    self.cardDes = cardDes;
+    [serviceView addSubview:cardDes];
+    
+    //负责描述
+    UILabel *Des = [[UILabel alloc]initWithFrame:CGRectMake(l4.right+kSuitLength_H(9),cardDes.bottom+kSuitLength_H(8) , WIDHT, kSuitLength_H(20))];
+    Des.centerY = l4.centerY;
+    Des.text = @"衣库负责服装的往返包邮，专业清洗，消毒，除菌";
+    Des.textColor = [UIColor colorWithHexString:@"1f1f1f"];;
+    Des.font = PingFangSC_Medium(kSuitLength_H(12));
+    Des.textAlignment = NSTextAlignmentLeft;
+    [serviceView addSubview:Des];
+    
+    //价钱展示视图
+    UIView *buttomV = [[UIView alloc]initWithFrame:CGRectMake(0, serviceView.bottom + kSuitLength_H(10), WIDHT, kSuitLength_H(240))];
+    buttomV.backgroundColor = [UIColor whiteColor];
+    [bigScrollView addSubview:buttomV];
+    
+    //卡类型
+    UILabel *cardType = [[UILabel alloc]initWithFrame:CGRectZero];
+    cardType.textColor = mainColor;
+    cardType.font = PingFangSC_Regular(kSuitLength_H(14));
+    self.carPrice = cardType;
+    [buttomV addSubview:cardType];
+    [cardType mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kSuitLength_H(24));
+        make.top.mas_equalTo(kSuitLength_H(16));
+    }];
+    
+    //卡价钱
+    UILabel *cardPrice = [[UILabel alloc]initWithFrame:CGRectZero];
+    cardPrice.textColor = mainColor;
+    cardPrice.font = PingFangSC_Regular(kSuitLength_H(14));
+    self.yuanJia = cardPrice;
+    [buttomV addSubview:cardPrice];
+    [cardPrice mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-24));
+        make.top.mas_equalTo(kSuitLength_H(16));
+    }];
+    
+    //押金描述
+    UILabel *yajin = [[UILabel alloc]initWithFrame:CGRectZero];
+    yajin.textColor = mainColor;
+    yajin.font = PingFangSC_Regular(kSuitLength_H(14));
+    yajin.text = @"押金";
+//    self.yaJin = cardType;
+    [buttomV addSubview:yajin];
+    [yajin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kSuitLength_H(24));
+        make.top.mas_equalTo(cardType.mas_bottom).offset(kSuitLength_H(14));
+    }];
+    //押金
+    UILabel *yajinD = [[UILabel alloc]initWithFrame:CGRectZero];
+    yajinD.textColor = mainColor;
+    yajinD.font = PingFangSC_Regular(kSuitLength_H(14));
+    self.yaJin = yajinD;
+    [buttomV addSubview:yajinD];
+    [yajinD mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-24));
+        make.top.mas_equalTo(cardPrice.mas_bottom).offset(kSuitLength_H(14));
+    }];
+    
+    //优惠劵
+    UILabel *coupon = [[UILabel alloc]initWithFrame:CGRectZero];
+    coupon.textColor = mainColor;
+    coupon.font = PingFangSC_Regular(kSuitLength_H(14));
+//    self. = yajinD;
+    coupon.text = @"优惠劵";
+    [buttomV addSubview:coupon];
+    [coupon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kSuitLength_H(24));
+        make.top.mas_equalTo(yajin.mas_bottom).offset(kSuitLength_H(14));
+    }];
+//
+    //选择优惠劵
+    UILabel *seCoupon = [[UILabel alloc]initWithFrame:CGRectZero];
+    seCoupon.textColor = YKRedColor;
+    seCoupon.font = PingFangSC_Regular(kSuitLength_H(14));
+    seCoupon.text = @"选择优惠劵 >";
+    self.liJIan = seCoupon;
+    [seCoupon setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *t = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(share)];
+    [_liJIan setUserInteractionEnabled:YES];
+    [_liJIan addGestureRecognizer:t];
+    [buttomV addSubview:seCoupon];
+    [seCoupon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-24));
+        make.top.mas_equalTo(yajinD.mas_bottom).offset(kSuitLength_H(14));
+    }];
+//
+    //邀请码
+    UILabel *inviteC = [[UILabel alloc]initWithFrame:CGRectZero];
+    inviteC.textColor = mainColor;
+    inviteC.font = PingFangSC_Regular(kSuitLength_H(14));
+
+    inviteC.text = @"邀请码";
+    [buttomV addSubview:inviteC];
+    [inviteC mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kSuitLength_H(24));
+        make.top.mas_equalTo(coupon.mas_bottom).offset(kSuitLength_H(14));
+    }];
+//
+    //点击邀请码
+    UILabel *inviteCode = [[UILabel alloc]initWithFrame:CGRectZero];
+    inviteCode.textColor = [UIColor colorWithHexString:@"999999"];
+    inviteCode.font = PingFangSC_Regular(kSuitLength_H(14));
+    inviteCode.text = @"点击输入邀请码 >";
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        //弹出邀请码输入框
+        YKInputCodeView *loginView = [[YKInputCodeView alloc]initWithFrame:kWindow.bounds];
+        loginView.loginSuccess = ^(NSString *invitCode){
+            _inviteCode.text = invitCode;
+        };
+        
+        [kWindow addSubview:loginView];
+        
+    }];
+    [inviteCode setUserInteractionEnabled:YES];
+    [inviteCode addGestureRecognizer:tap1];
+    self.inviteCode = inviteCode;
+    [buttomV addSubview:inviteCode];
+    [inviteCode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-24));
+        make.top.mas_equalTo(seCoupon.mas_bottom).offset(kSuitLength_H(14));
+    }];
+//
+    //资金账户
+    UILabel *userAcc = [[UILabel alloc]initWithFrame:CGRectZero];
+    userAcc.textColor = mainColor;
+    userAcc.font = PingFangSC_Regular(kSuitLength_H(14));
+    //    self. = seCoupon;
+    [buttomV addSubview:userAcc];
+    userAcc.text = @"资金账户";
+    [userAcc mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kSuitLength_H(24));
+        make.top.mas_equalTo(inviteC.mas_bottom).offset(kSuitLength_H(14));
+    }];
+////
+    //资金账户描述
+    UILabel *userDes = [[UILabel alloc]initWithFrame:CGRectZero];
+    userDes.textColor = YKRedColor;
+    userDes.font = PingFangSC_Regular(kSuitLength_H(14));
+    self.myAccount = userDes;
+    [buttomV addSubview:userDes];
+    [userDes mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-24));
+        make.top.mas_equalTo(inviteC.mas_bottom).offset(kSuitLength_H(14));
+    }];
+//
+//    线
+    UILabel *line = [[UILabel alloc]initWithFrame:CGRectZero];
+    line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    [buttomV addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kSuitLength_H(24));
+        make.top.mas_equalTo(userDes.mas_bottom).offset(kSuitLength_H(14));
+        make.width.mas_equalTo(WIDHT-kSuitLength_H(16)*2);
+        make.height.equalTo(@1);
+    }];
+//
+    //总价
+    UILabel *total = [[UILabel alloc]initWithFrame:CGRectZero];
+    total.textColor = mainColor;
+    total.font = PingFangSC_Medium(kSuitLength_H(20));
+    [buttomV addSubview:total];
+    total.text = @"总价";
+    [total mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kSuitLength_H(24));
+        make.top.mas_equalTo(line.mas_bottom).offset(kSuitLength_H(14));
+    }];
+    //总价描述
+    UILabel *totalP = [[UILabel alloc]initWithFrame:CGRectZero];
+    totalP.textColor = mainColor;
+    totalP.font = PingFangSC_Medium(kSuitLength_H(20));
+    self.total =totalP;
+    [buttomV addSubview:totalP];
+    [totalP mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-24));
+        make.top.mas_equalTo(line.mas_bottom).offset(kSuitLength_H(14));
+    }];
+    
+    
+//    [userDes mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(kSuitLength_H(-16));
+//        make.top.mas_equalTo(inviteC.mas_bottom).offset(kSuitLength_H(14));
+//    }];
+
+    
+    //
+//    _buttomView.frame = CGRectMake(0, serviceView.bottom + kSuitLength_H(10), WIDHT, kSuitLength_H(300));
+    _buttomTop.constant = kSuitLength_H(330);
+//    [_buttomView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_offset(serviceView.mas_bottom).offset(kSuitLength_H(10));
+//    }];
+    
     _payType = MONTH_CARD;
     self.CouponId = 0;
     self.CouponNum = 0;
@@ -573,8 +821,9 @@
         return;
     }
     YKCouponListVC *Coupon = [YKCouponListVC new];
-//    Coupon.isFromPay = YES;
+    Coupon.isFromPay = YES;
     Coupon.selectedIndex = 101;
+    
     Coupon.selectCoupon = ^(NSInteger ConponNum,int CouponId){
         _CouponNum = ConponNum;
         _CouponId = CouponId;

@@ -131,11 +131,14 @@
 
     //我要晒图按钮
     publicBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [publicBtn setBackgroundImage:[UIImage imageNamed:@"anniu"] forState:UIControlStateNormal];
+    [publicBtn setBackgroundImage:[UIImage imageNamed:@"我要晒图"] forState:UIControlStateNormal];
     [self.view addSubview:publicBtn];
-    publicBtn.frame = CGRectMake(kSuitLength_H(120), HEIGHT-kSuitLength_V(200), WIDHT-kSuitLength_H(240), kSuitLength_H(40));
+    publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(200), kSuitLength_H(138), kSuitLength_H(40));
     if (HEIGHT==812) {
-         publicBtn.frame = CGRectMake(kSuitLength_H(120), HEIGHT-kSuitLength_V(220), WIDHT-kSuitLength_H(240), kSuitLength_H(40));
+         CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(220), kSuitLength_H(138), kSuitLength_H(40));
+    }
+    if (HEIGHT==320) {
+        CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(300), kSuitLength_H(138), kSuitLength_H(40));
     }
     [publicBtn addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
     

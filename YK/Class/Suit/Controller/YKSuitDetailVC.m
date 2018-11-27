@@ -83,7 +83,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
     
     self.navigationItem.titleView = title;
     
@@ -122,19 +122,20 @@
 - (void)refreshUI{
     cardType = 1;
     UIButton *buttom = [UIButton buttonWithType:UIButtonTypeCustom];
-    if (WIDHT==320) {
-        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (WIDHT==375){
-        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-    }
-    if (WIDHT==414){
-        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
-    }
+//    if (WIDHT==320) {
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+//    if (WIDHT==375){
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+//    if (WIDHT==414){
+//        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414, self.view.frame.size.width, 56*WIDHT/414);
+//    }
+    buttom.frame = CGRectMake(0, self.view.frame.size.height-kSuitLength_H(44), WIDHT, kSuitLength_H(44));
     [buttom setTitle:@"提交订单" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buttom.titleLabel.font = PingFangSC_Semibold(16);
-    buttom.backgroundColor = mainColor;
+    buttom.titleLabel.font = PingFangSC_Semibold(kSuitLength_H(12));
+    buttom.backgroundColor = YKRedColor;
     [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];
     if (![YKSuitManager sharedManager].hadOnce) {

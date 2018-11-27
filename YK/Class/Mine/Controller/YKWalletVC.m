@@ -65,7 +65,7 @@
     [super viewDidLoad];
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"我的钱包";
+    self.title = @"VIP会员";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -89,7 +89,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
     self.navigationItem.titleView = title;
     
     //如果是老用户,显示明细
@@ -151,7 +151,7 @@
         header.frame =CGRectMake(0, 0, WIDHT, 340);
     }
     
-    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shiyongzhong"]];
+    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"会员卡正在使用"]];
   
     [header addSubview:image];
     CGFloat scale = image.frame.size.width/image.frame.size.height;
@@ -165,13 +165,13 @@
     des.textColor = [UIColor whiteColor];
     [header addSubview:des];
     [des mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(image.mas_bottom).offset(-81);
+        make.bottom.equalTo(image.mas_bottom).offset(-kSuitLength_H(98));
         make.right.equalTo(image.mas_right).offset(-20);
     }];
     UILabel *leftLabel = [[UILabel alloc]init];
     leftLabel.text = @"20天";//剩余多少天
    
-    leftLabel.font = PingFangSC_Semibold(20);
+    leftLabel.font = PingFangSC_Semibold(kSuitLength_H(20));
     leftLabel.textColor = [UIColor whiteColor];
     [header addSubview:leftLabel];
     [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,38 +183,56 @@
     //充值
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setTitle:@"充值" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btn.backgroundColor = YKRedColor;
-    btn.layer.cornerRadius = 4;
+    [btn setTitleColor:YKRedColor forState:UIControlStateNormal];
+//    btn.backgroundColor = YKRedColor;
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = kSuitLength_H(21)/2;
+    btn.layer.borderColor = YKRedColor.CGColor;
+    btn.layer.borderWidth = 1;
     btn.titleLabel.font = PingFangSC_Semibold(12);
     [header addSubview:btn];
     [btn addTarget:self action:@selector(Chongzhi) forControlEvents:UIControlEventTouchUpInside];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftLabel.mas_bottom).offset(10);
+        make.top.equalTo(leftLabel.mas_bottom).offset(kSuitLength_H(12));
         make.right.equalTo(leftLabel.mas_right);
-        make.width.equalTo(@66);
-        make.height.equalTo(@21);
+        make.width.mas_equalTo(kSuitLength_H(44));
+        make.height.mas_equalTo(kSuitLength_H(21));
     }];
     
+    //尊享会员季卡字
+    UILabel *la = [[UILabel alloc]initWithFrame:CGRectMake(kSuitLength_H(46), kSuitLength_H(36), kSuitLength_H(200), kSuitLength_H(28))];
+    la.textColor = [UIColor colorWithHexString:@"D1A468"];
+    la.font = PingFangSC_Semibold(kSuitLength_H(20));
+    [header addSubview:la];
+    //正在使用文字
+    UILabel *la1 = [[UILabel alloc]initWithFrame:CGRectMake(kSuitLength_H(46), la.bottom + kSuitLength_H(4), kSuitLength_H(200), kSuitLength_H(18))];
+    la1.textColor = [UIColor colorWithHexString:@"D1A468"];
+    la1.font = PingFangSC_Regular(kSuitLength_H(14));
+    [header addSubview:la1];
     
     if (depositStatus == 1) {//使用中
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
         if (cardType==4) {
             leftLabel.text = [NSString stringWithFormat:@"会员卡剩余%ld天",(long)effectiveDay];
         }
+        la1.text = @"正在使用中";
         //判断卡类型
         if (cardType==2) {//季卡
-            image.image = [UIImage imageNamed:@"shiyongzhong"];
+            image.image = [UIImage imageNamed:@"会员卡正在使用"];
+            la.text = @"尊享会员季卡";
             
-        }
+        }else
         if (cardType==1) {//月卡
-            image.image = [UIImage imageNamed:@"shiyongzhong"];
-            
-        }
+            image.image = [UIImage imageNamed:@"会员卡正在使用"];
+             la.text = @"尊享会员月卡";
+        }else
         if (cardType==3) {//年卡
-            image.image = [UIImage imageNamed:@"shiyongzhong"];
-           
+            image.image = [UIImage imageNamed:@"会员卡正在使用"];
+             la.text = @"尊享会员年卡";
+        }else {
+            image.image = [UIImage imageNamed:@"会员卡正在使用"];
+             la.text = @"尊享会员体验卡";
         }
 //        if (cardType==3) {//季卡
 //            des.text = @"年卡剩余有效期";
@@ -230,10 +248,27 @@
     }
     if (depositStatus == 2 || depositStatus == 3) {//无押金或已过期
         leftLabel.text = [NSString stringWithFormat:@"%ld天",(long)effectiveDay];
-        image.image = [UIImage imageNamed:@"zanting-2"];
+//        image.image = [UIImage imageNamed:@"zanting-2"];
+        la1.text = @"暂停使用";
         if (cardType==4) {
-            leftLabel.text = [NSString stringWithFormat:@"会员卡剩余%ld天",(long)effectiveDay];
+            leftLabel.text = [NSString stringWithFormat:@"会员剩余%ld天",(long)effectiveDay];
         }
+        if (cardType==2) {//季卡
+            image.image = [UIImage imageNamed:@"会员卡正在使用"];
+            la.text = @"尊享会员季卡";
+            
+        }else
+            if (cardType==1) {//月卡
+                image.image = [UIImage imageNamed:@"会员卡正在使用"];
+                la.text = @"尊享会员月卡";
+            }else
+                if (cardType==3) {//年卡
+                    image.image = [UIImage imageNamed:@"会员卡正在使用"];
+                    la.text = @"尊享会员年卡";
+                }else {
+                    image.image = [UIImage imageNamed:@"会员卡正在使用"];
+                    la.text = @"尊享会员体验卡";
+                }
 //        //判断卡类型
 //        if (cardType==3) {//季卡
 //            des.text = @"年卡剩余有效期";
@@ -281,10 +316,10 @@
 //    }
     
     //背景条
-    UILabel *label = [[UILabel alloc]init];
-    label.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-    [header addSubview:label];
-    label.frame = CGRectMake(0, image.frame.size.height+image.frame.origin.y+20, WIDHT, 10);
+//    UILabel *label = [[UILabel alloc]init];
+//    label.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+//    [header addSubview:label];
+//    label.frame = CGRectMake(0, image.frame.size.height+image.frame.origin.y+20, WIDHT, 10);
     
     self.tableView.tableHeaderView = header;
     //优惠券
@@ -296,33 +331,33 @@
 //    co.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 200);
 //
 //
-    co1 = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][1];
-    [header addSubview:co1];
-    co1.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 180);
-    
-   YKCouponView *co2 = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][2];
-    [header addSubview:co2];
-    co2.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 180  );
-    [header addSubview:co1];
-    if (couponVoList.count>0) {
-        co1.hidden = YES;
-        co2.hidden = NO;
-//        [co1 removeFromSuperview];
-        
+//    co1 = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][1];
+//    [header addSubview:co1];
+//    co1.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 180);
+//
+//   YKCouponView *co2 = [[NSBundle mainBundle] loadNibNamed:@"YKCouponView" owner:self options:nil][2];
+//    [header addSubview:co2];
+//    co2.frame = CGRectMake(0, label.frame.size.height+label.frame.origin.y, WIDHT, 180  );
+//    [header addSubview:co1];
+//    if (couponVoList.count>0) {
 //        co1.hidden = YES;
-//        co.toUse = ^(void){
-//            [[YKUserManager sharedManager]useCouponId:weakSelf.couponIdList[0]  OnResponse:^(NSDictionary *dic) {
-//                [weakSelf getData];//刷新数据
-//            }];
-//        };
-//        [co resetNum:couponVoList.count];
-    }else {
-        co1.hidden = NO;
-        co2.hidden = YES;
-//        [co removeFromSuperview];
-//        co.hidden = YES;
+//        co2.hidden = NO;
+////        [co1 removeFromSuperview];
+//
+////        co1.hidden = YES;
+////        co.toUse = ^(void){
+////            [[YKUserManager sharedManager]useCouponId:weakSelf.couponIdList[0]  OnResponse:^(NSDictionary *dic) {
+////                [weakSelf getData];//刷新数据
+////            }];
+////        };
+////        [co resetNum:couponVoList.count];
+//    }else {
 //        co1.hidden = NO;
-    }
+//        co2.hidden = YES;
+////        [co removeFromSuperview];
+////        co.hidden = YES;
+////        co1.hidden = NO;
+//    }
 //    [self.tableView reloadData];
 }
 
@@ -338,7 +373,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return couponVoList.count;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

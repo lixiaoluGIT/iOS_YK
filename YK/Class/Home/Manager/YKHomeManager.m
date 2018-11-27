@@ -8,6 +8,7 @@
 
 #import "YKHomeManager.h"
 #import "YKShareVC.h"
+#import "YKInvitVC.h"
 #import "YKHomeAleartView.h"
 
 @implementation YKHomeManager
@@ -469,7 +470,7 @@
 }
 
 - (void)invite{
-    [[self getCurrentVC].navigationController pushViewController:[YKShareVC new] animated:YES];
+    [[self getCurrentVC].navigationController pushViewController:[YKInvitVC new] animated:YES];
     [self getCurrentVC].hidesBottomBarWhenPushed = YES;
 }
 

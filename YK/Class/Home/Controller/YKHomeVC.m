@@ -21,6 +21,7 @@
 #import "YKBrandDetailVC.h"
 #import "YKMessageVC.h"
 #import "YKShareVC.h"
+#import "YKInvitVC.h"
 #import "YKLoginVC.h"
 #import "YKLinkWebVC.h"
 #import "YKSearchVC.h"
@@ -286,7 +287,7 @@
 }
 
 - (void)invite{
-    YKShareVC *share = [[YKShareVC alloc]init];
+    YKInvitVC *share = [[YKInvitVC alloc]init];
     share.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:share animated:YES];
  }

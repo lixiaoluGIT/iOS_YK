@@ -67,14 +67,18 @@
     
     //全部筛选按钮
     UIButton *filertBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [filertBtn setTitle:@"全部筛选 >" forState:UIControlStateNormal];
+    [filertBtn setTitle:@"全部筛选" forState:UIControlStateNormal];
+    [filertBtn setImage:[UIImage imageNamed:@"you"] forState:UIControlStateNormal];
+    [filertBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -100)];
+    [filertBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 0)];
     [filertBtn setTitleColor:YKRedColor forState:UIControlStateNormal];
     filertBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
     [filertBtn addTarget:self action:@selector(filterAction) forControlEvents:UIControlEventTouchUpInside];
+//    filertBtn.backgroundColor = [UIColor lightGrayColor];
     [_staticView addSubview:filertBtn];
     
     [filertBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(kSuitLength_H(-(kSuitLength_H(15))));
+        make.right.mas_equalTo(kSuitLength_H(-(kSuitLength_H(10))));
         make.centerY.equalTo(_staticView.mas_centerY);
     }];
     
@@ -88,6 +92,13 @@
         make.width.equalTo(_staticView.mas_width);
         make.height.equalTo(@1);
     }];
+    
+    //设置阴影
+    self.layer.shadowColor = [UIColor colorWithHexString:@"000000"].CGColor;
+    self.layer.shadowOpacity = 0.5f;
+    self.layer.shadowRadius = 4.f;
+    self.layer.shadowOffset = CGSizeMake(4,4);
+    
 }
 
 - (void)setFilterKeys:(NSArray *)filterKeys{
@@ -102,10 +113,10 @@
 
 //切换单品推荐类型
 - (void)changeTypeAction:(UIButton *)btn{
-//    btn.selected = !btn.selected;
-//    if (self.changeTypeBlock) {
-//        self.changeTypeBlock(btn.selected);
-//    }
+    btn.selected = !btn.selected;
+    if (self.changeTypeBlock) {
+        self.changeTypeBlock(btn.selected);
+    }
 }
 
 //弹出筛选界面
@@ -118,12 +129,12 @@
 - (void)setIsSelected:(BOOL)isSelected{
     _isSelected = isSelected;
     seLabel.selected = _isSelected;
-//    if (isSelected) {
-//         [seLabel setTitle:@"全部单品" forState:UIControlStateSelected];
-//    }else {
-//         [seLabel setTitle:@"在架优先" forState:UIControlStateNormal];
-//    }
-//    seLabel.selected = isSelected;
+    if (isSelected) {
+         [seLabel setTitle:@"全部单品" forState:UIControlStateSelected];
+    }else {
+         [seLabel setTitle:@"在架优先" forState:UIControlStateNormal];
+    }
+    seLabel.selected = isSelected;
 }
 
 @end

@@ -65,11 +65,11 @@
     _images = [NSMutableArray array];
     
     titles = [NSMutableArray array];
-        titles = [NSMutableArray arrayWithObjects:@"微信",@"朋友圈", nil];
+    titles = [NSMutableArray arrayWithObjects:@"微信",@"朋友圈", nil];
     imagelist = [NSMutableArray array];
         for (int i = 0; i<2; i++) {
             if (i==0) {
-                [imagelist addObject:[UIImage imageNamed:[NSString stringWithFormat:@"weixin111"]]];
+                [imagelist addObject:[UIImage imageNamed:[NSString stringWithFormat:@"weixin-1"]]];
             }else{
                 [imagelist addObject:[UIImage imageNamed:[NSString stringWithFormat:@"pengyouquan"]]];
             }
@@ -140,7 +140,7 @@
     [bigScrollView addSubview:right11];
     
     right.frame = CGRectMake(WIDHT-kSuitLength_H(16)-kSuitLength_H(7), self.scrollView.top + self.scrollView.frame.size.height/2-kSuitLength_H(16)/2, kSuitLength_H(7), kSuitLength_H(9));
-    [right setImage:[UIImage imageNamed:@"右-2"] forState:UIControlStateNormal];
+    [right setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
     [right addTarget:self action:@selector(toright) forControlEvents:UIControlEventTouchUpInside];
     CABasicAnimation* rotationAnimation;
     

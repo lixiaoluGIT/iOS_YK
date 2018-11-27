@@ -154,7 +154,7 @@
         }
        
         btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-        btn.frame =  CGRectMake(totalWidth,10, btnW, _HeaderH-20);
+        btn.frame =  CGRectMake(totalWidth,10, btnW, _HeaderH-kSuitLength_H(20));
         btn.contentMode = UIViewContentModeCenter;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.tag = i;

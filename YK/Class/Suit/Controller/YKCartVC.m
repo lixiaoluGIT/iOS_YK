@@ -128,11 +128,11 @@
             [self getNum];
         }];
         if ([YKSuitManager sharedManager].couponId==0) {
-            self.tableView.frame = CGRectMake(0, kSuitLength_H(73), WIDHT, kSuitLength_H(420)) ;
+            self.tableView.frame = CGRectMake(0, kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) ;
             cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
             cartheader.hidden = NO;
         }else {
-            self.tableView.frame = CGRectMake(0, kSuitLength_H(0), WIDHT, kSuitLength_H(530));
+            self.tableView.frame = CGRectMake(0, kSuitLength_H(0), WIDHT, HEIGHT-kSuitLength_H(150));
             cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(0));
             cartheader.hidden = YES;
         }
@@ -142,11 +142,11 @@
     [self getNum];
     
     if ([YKSuitManager sharedManager].couponId==0) {
-        self.tableView.frame = CGRectMake(0, kSuitLength_H(73), WIDHT, kSuitLength_H(420)) ;
+        self.tableView.frame = CGRectMake(0, kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) ;
         cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
         cartheader.hidden = NO;
     }else {
-        self.tableView.frame = CGRectMake(0, kSuitLength_H(0), WIDHT, kSuitLength_H(530));
+        self.tableView.frame = CGRectMake(0, kSuitLength_H(0), WIDHT, HEIGHT-kSuitLength_H(150));
         cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(0));
         cartheader.hidden = YES;
     }
@@ -234,9 +234,9 @@
 - (void)creatTableView{
   
     if ([YKSuitManager sharedManager].couponId==0) {
-         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(73), WIDHT, kSuitLength_H(420)) style:UITableViewStylePlain];
+         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) style:UITableViewStylePlain];
     }else {
-         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(0), WIDHT, kSuitLength_H(420)) style:UITableViewStylePlain];
+         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(0), WIDHT, HEIGHT-kSuitLength_H(150)) style:UITableViewStylePlain];
     }
     
     self.tableView.delegate = self;
@@ -275,12 +275,22 @@
 //        }
 //
 //    }
-    buttom.frame = CGRectMake(kSuitLength_H(60), kSuitLength_V(509), kSuitLength_H(255), kSuitLength_H(36));
+    buttom.frame = CGRectMake(kSuitLength_H(60),HEIGHT-kSuitLength_H(160), WIDHT-kSuitLength_H(60)*2, kSuitLength_H(36));
+    if (WIDHT==320) {
+        buttom.frame = CGRectMake(kSuitLength_H(60),HEIGHT-kSuitLength_H(200), WIDHT-kSuitLength_H(60)*2, kSuitLength_H(36));
+    }
+    if (WIDHT==375) {
+        buttom.frame = CGRectMake(kSuitLength_H(60),HEIGHT-kSuitLength_H(160), WIDHT-kSuitLength_H(60)*2, kSuitLength_H(36));
+    }
+    if (WIDHT==414) {
+        buttom.frame = CGRectMake(kSuitLength_H(60),HEIGHT-kSuitLength_H(160), WIDHT-kSuitLength_H(60)*2, kSuitLength_H(36));
+    }
+    
     buttom.backgroundColor = YKRedColor;
     [buttom setTitle:@"确认衣袋" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     buttom.layer.masksToBounds = YES;
-    buttom.layer.cornerRadius = kSuitLength_H(18);
+    buttom.layer.cornerRadius = kSuitLength_H(36)/2;
     buttom.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
     [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];

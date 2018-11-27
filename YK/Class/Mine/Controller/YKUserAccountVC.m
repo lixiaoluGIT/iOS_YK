@@ -13,6 +13,7 @@
 #import "YKAccountCell.h"
 #import "YKShareVC.h"
 #import "YKChangePhoneVC.h"
+#import "YKInvitVC.h"
 
 @interface YKUserAccountVC (){
     YKWalletButtom *buttom;
@@ -230,7 +231,7 @@
     }
     if (indexPath.section==1) {
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-            YKShareVC *share = [YKShareVC new];
+            YKInvitVC *share = [YKInvitVC new];
             [self.navigationController pushViewController:share animated:YES];
         }];
         [mycell addGestureRecognizer:tap];

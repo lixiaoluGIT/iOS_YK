@@ -68,14 +68,17 @@
     
     //全部筛选按钮
     UIButton *filertBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [filertBtn setTitle:@"全部筛选 >" forState:UIControlStateNormal];
+    [filertBtn setTitle:@"全部筛选" forState:UIControlStateNormal];
+    [filertBtn setImage:[UIImage imageNamed:@"you"] forState:UIControlStateNormal];
+    [filertBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -100)];
+    [filertBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 0)];
     [filertBtn setTitleColor:YKRedColor forState:UIControlStateNormal];
     filertBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
     [filertBtn addTarget:self action:@selector(filterAction) forControlEvents:UIControlEventTouchUpInside];
     [_staticView addSubview:filertBtn];
     
     [filertBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(kSuitLength_H(-(kSuitLength_H(15))));
+        make.right.mas_equalTo(kSuitLength_H(-(kSuitLength_H(10))));
         make.centerY.equalTo(_staticView.mas_centerY);
     }];
     
@@ -118,9 +121,9 @@
 
 - (void)setIsSelected:(BOOL)isSelected{
     _isSelected = isSelected;
-    seLabel.selected = _isSelected;
+    seLabel.selected = isSelected;
 //    if (isSelected) {
-//        [seLabel setTitle:@"全部单品" forState:UIControlStateSelected];
+//        [seLabel setTitle:@"全部单品" forState:UIControlStateNormal];
 //    }else {
 //        [seLabel setTitle:@"在架优先" forState:UIControlStateNormal];
 //    }

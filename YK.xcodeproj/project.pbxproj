@@ -133,6 +133,7 @@
 		00961FEF21A804D6003DD710 /* YKSignalSuitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FEE21A804D6003DD710 /* YKSignalSuitVC.m */; };
 		00961FF321A80E19003DD710 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FF221A80E19003DD710 /* NavViewController.m */; };
 		00961FF621ABE610003DD710 /* YKInvitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FF521ABE610003DD710 /* YKInvitVC.m */; };
+		00961FF921AD92C7003DD710 /* YKInputCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00961FF821AD92C6003DD710 /* YKInputCodeView.m */; };
 		009D3768210588EA00B16A33 /* YKCouponListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 009D3767210588EA00B16A33 /* YKCouponListVC.m */; };
 		00A0CC4A2090265C001205A1 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC3F2090265C001205A1 /* libSocialWeChat.a */; };
 		00A0CC4C2090265D001205A1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC432090265C001205A1 /* libWeChatSDK.a */; };
@@ -888,6 +889,8 @@
 		00961FF221A80E19003DD710 /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
 		00961FF421ABE610003DD710 /* YKInvitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKInvitVC.h; sourceTree = "<group>"; };
 		00961FF521ABE610003DD710 /* YKInvitVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKInvitVC.m; sourceTree = "<group>"; };
+		00961FF721AD92C6003DD710 /* YKInputCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKInputCodeView.h; sourceTree = "<group>"; };
+		00961FF821AD92C6003DD710 /* YKInputCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKInputCodeView.m; sourceTree = "<group>"; };
 		009D3766210588EA00B16A33 /* YKCouponListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponListVC.h; sourceTree = "<group>"; };
 		009D3767210588EA00B16A33 /* YKCouponListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponListVC.m; sourceTree = "<group>"; };
 		00A0CC3F2090265C001205A1 /* libSocialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWeChat.a; sourceTree = "<group>"; };
@@ -2798,6 +2801,8 @@
 				00E53F402111566500255E8A /* YKCouponCodeView.xib */,
 				00473591219A809200A24BF0 /* YKNewLoginView.h */,
 				00473592219A809200A24BF0 /* YKNewLoginView.m */,
+				00961FF721AD92C6003DD710 /* YKInputCodeView.h */,
+				00961FF821AD92C6003DD710 /* YKInputCodeView.m */,
 				00473594219AB01F00A24BF0 /* YKCodeView.h */,
 				00473595219AB01F00A24BF0 /* YKCodeView.m */,
 			);
@@ -4575,6 +4580,7 @@
 				C525DD941FBAB2A9002802AE /* MASLayoutConstraint.m in Sources */,
 				C52D0FAD1FC6D97700B50258 /* YKWalletDetailCell.m in Sources */,
 				C5DA84AE2005AB00002A12E3 /* YKAboutView.m in Sources */,
+				00961FF921AD92C7003DD710 /* YKInputCodeView.m in Sources */,
 				0087C99C211AEA210014E733 /* YKShareCell.m in Sources */,
 				C5FB784F205904780076DD6F /* UIApplication+YYAdd.m in Sources */,
 				C5FB783A205904780076DD6F /* YYTextEffectWindow.m in Sources */,
