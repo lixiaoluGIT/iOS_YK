@@ -672,7 +672,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         if (aresp.errCode== 0)
         {
             NSLog(@"code %@",aresp.code);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"wechatDidLoginNotification" object:self userInfo:@{@"code":aresp.code}];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"wechatDidLoginNotification" object:self userInfo:@{@"code":aresp.code}];
+                
+            });
+           
         }
     }
     //微信分享

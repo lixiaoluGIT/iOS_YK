@@ -53,8 +53,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
-    
+    title.font = PingFangSC_Medium(kSuitLength_H(14));;
     self.navigationItem.titleView = title;
     
     _editView = [[NSBundle mainBundle] loadNibNamed:@"YKEditAddressView" owner:self options:nil][0];

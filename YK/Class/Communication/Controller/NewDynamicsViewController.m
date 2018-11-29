@@ -136,10 +136,16 @@
     publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(200), kSuitLength_H(138), kSuitLength_H(40));
     if (HEIGHT==812) {
          CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(220), kSuitLength_H(138), kSuitLength_H(40));
-    }
-    if (HEIGHT==320) {
+    }else
+    if (WIDHT==320) {
         CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(300), kSuitLength_H(138), kSuitLength_H(40));
-    }
+    }else
+        if (WIDHT==414) {
+           publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(200), kSuitLength_H(138), kSuitLength_H(40));
+        }
+    else {
+            publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(250), kSuitLength_H(138), kSuitLength_H(40));
+        }
     [publicBtn addTarget:self action:@selector(Public) forControlEvents:UIControlEventTouchUpInside];
     
 }

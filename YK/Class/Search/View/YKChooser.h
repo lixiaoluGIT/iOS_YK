@@ -79,6 +79,7 @@
 #pragma mark---标签cell
 @interface newMoreCollectionViewCell : UICollectionViewCell
 @property(nonatomic,strong)UILabel *textLabel;
+@property(nonatomic,strong)UIImageView *image;
 
 - (void)refreshWithObject:(NSObject *)obj;
 @end

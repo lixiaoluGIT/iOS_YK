@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-    self.title = @"支付记录";
+    self.title = @"交易明细";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -42,7 +42,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
     self.navigationItem.titleView = title;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

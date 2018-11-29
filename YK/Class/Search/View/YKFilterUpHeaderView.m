@@ -94,7 +94,7 @@
     }];
     
     //设置阴影
-    self.layer.shadowColor = [UIColor colorWithHexString:@"000000"].CGColor;
+    self.layer.shadowColor = [UIColor colorWithHexString:@"cccccc"].CGColor;
     self.layer.shadowOpacity = 0.5f;
     self.layer.shadowRadius = 4.f;
     self.layer.shadowOffset = CGSizeMake(4,4);

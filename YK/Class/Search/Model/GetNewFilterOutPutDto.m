@@ -17,8 +17,17 @@
              @"labelList" : [Tag class],
              @"seasonList" : [season class],
              @"styleList" : [style class],
-             @"updateDay" : [updateTime class],
+             @"timeList" : [updateDay class],
              };
+}
+- (void)initWithDic:(NSDictionary *)dic{
+    self.categoryList = [NSArray arrayWithArray:dic[@"categoryList"]];
+    self.colourList = [NSArray arrayWithArray:dic[@"colourList"]];
+    self.elementList = [NSArray arrayWithArray:dic[@"elementList"]];
+    self.labelList = [NSArray arrayWithArray:dic[@"labelList"]];
+    self.seasonList = [NSArray arrayWithArray:dic[@"seasonList"]];
+    self.timeList = [NSArray arrayWithArray:dic[@"newTimeVOList"]];
+    self.styleList = [NSArray arrayWithArray:dic[@"styleList"]];
 }
 @end
 
@@ -34,7 +43,7 @@
 @end
 @implementation style
 @end
-@implementation updateTime
+@implementation updateDay
 @end
 
 

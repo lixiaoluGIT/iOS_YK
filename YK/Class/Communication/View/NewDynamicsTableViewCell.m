@@ -556,9 +556,9 @@
     }];
 
     if (hadConcern) {//已关注
-        _guanzhuImage.image = [UIImage imageNamed:@"yiguanzhu"];
-    }else {//未关注
         _guanzhuImage.image = [UIImage imageNamed:@"guanzhu"];
+    }else {//未关注
+        _guanzhuImage.image = [UIImage imageNamed:@"weiguanzhu"];
     }
     
     UITapGestureRecognizer *TT = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {

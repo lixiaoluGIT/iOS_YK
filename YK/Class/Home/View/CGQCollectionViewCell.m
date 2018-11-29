@@ -58,8 +58,9 @@
     _freeBtn.titleLabel.font = PingFangSC_Regular(10);
     _zhanyiweiNum.font = PingFangTC_Light(kSuitLength_H(7));
     
-    [_addSuitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
+    [_addSuitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -25)];
     [_addSuitBtn addTarget:self action:@selector(addBlock) forControlEvents:UIControlEventTouchUpInside];
+//    _addSuitBtn.backgroundColor = [UIColor redColor];
     
     _loveBtn.hidden = YES;
 }
@@ -165,7 +166,7 @@
     
     if (!btn.selected) {//喜欢
         NSMutableArray *list = [NSMutableArray array];
-        [list addObject:_collectionId];
+        [list addObject:_goodsId];
         //取消喜欢
         [[YKSuitManager sharedManager]deleteCollecttwithShoppingCartId:list OnResponse:^(NSDictionary *dic) {
             if (self.changeCollectStatus) {

@@ -15,7 +15,7 @@
 //@property (nonatomic,copy)void (^filterSortBlock)(NSInteger sortId);
 
 
-@property (nonatomic,copy)void (^filterBlock)(NSString *categoryId,NSString *sortId);
+@property (nonatomic,copy)void (^filterBlock)(NSString *categoryId,NSString *styleId,NSString *seasonId);
 
 @property (nonatomic,copy)void (^clickALLBlock)(void);
 

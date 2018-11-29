@@ -633,6 +633,7 @@
         [dic setObject:@"0" forKey:@"type"];//绑定
     }
     [YKHttpClient Method:@"POST" URLString:WeChatLogin_Url paramers:dic success:^(NSDictionary *dict) {
+        NSLog(@"微信登录response=%@",dict);
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信授权成功" delay:1.8];

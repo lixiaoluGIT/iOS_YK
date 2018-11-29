@@ -68,6 +68,7 @@
         _titleSelectedColor = [UIColor whiteColor];
         _titleFont = kSuitLength_H(12);
         [self setContentSize:CGSizeMake(WIDHT, 0)];
+        
 //        self.backgroundColor = [UIColor redColor];
     }
     return self;

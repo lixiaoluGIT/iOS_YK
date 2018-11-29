@@ -46,6 +46,7 @@
     _lineView.hidden = NO;
 //    self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.alpha = 1;
 }
 
 //找到导航栏最下面黑线视图
@@ -108,10 +109,16 @@
 //
 //    [self.view addGestureRecognizer:panGesture];
     
+    
+
+
+    self.navigationController.navigationBar.layer.shadowColor = [UIColor colorWithHexString:@"eeeeee"].CGColor;
+    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
+    self.navigationController.navigationBar.layer.shadowRadius = 4.f;
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(4,4);
+    
     //获取导航栏下面黑线
     _lineView = [self getLineViewInNavigationBar:self.navigationController.navigationBar];
-
-
 }
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];

@@ -49,7 +49,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);;
+    title.font = PingFangSC_Medium(kSuitLength_H(14));;
     
     YKAddCCDesView *des = [[NSBundle mainBundle]loadNibNamed:@"YKAddCCDesView" owner:nil options:nil][0];
     des.frame = CGRectMake(0, 64, WIDHT, HEIGHT-62);
@@ -88,7 +88,7 @@
     _payView.frame = CGRectMake(0, HEIGHT, WIDHT, 236);
     _payView.selectPayBlock = ^(payMethod payMethod){
         
-        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:5 activity:0 channelId:0 OnResponse:^(NSDictionary *dic) {
+        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:5 activity:0 channelId:0 inviteCode:@"" OnResponse:^(NSDictionary *dic) {
             
         }];
     };

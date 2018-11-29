@@ -46,7 +46,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Medium(kSuitLength_H(14));;
     self.navigationItem.titleView = title;
 }
 
@@ -70,6 +70,7 @@
         if (localVersionDou < versionNumberMin) {//当前版本小于最低版本
             [_updateBtn setTitle:@"去更新" forState:UIControlStateNormal];
             [_updateBtn setUserInteractionEnabled:YES];
+             [_updateBtn setTitleColor:YKRedColor forState:UIControlStateNormal];
             [_updateBtn addTarget:self action:@selector(toUpDate) forControlEvents:UIControlEventTouchUpInside];
         }
         
@@ -77,6 +78,7 @@
             [_updateBtn setTitle:@"去更新" forState:UIControlStateNormal];
             [_updateBtn setUserInteractionEnabled:YES];
             [_updateBtn addTarget:self action:@selector(toUpDate) forControlEvents:UIControlEventTouchUpInside];
+            [_updateBtn setTitleColor:YKRedColor forState:UIControlStateNormal];
         }
         
         if (localVersionDou>=versionNumberMax) {

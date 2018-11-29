@@ -415,6 +415,8 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #define GetSuitList_Url @"/suitWith/suitWithPage"
 //请求时尚穿搭
 #define GetFashionList_Url @"/hotWear/hotWearPage"
+//请求首页弹框
+#define getHomeAleart_Url @"/homePage/v1/getPopup"
 /*----------------------------选衣--------------------------------*/
 //筛选商品
 #define filterCloth_Url @"/product/selectClothBySortIdAndTypeId"
@@ -450,11 +452,13 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 //收藏商品
 #define collect_Url @"/collectionFolder/addCommodity"
 //移除收藏
-#define deCollect_Url @"/collectionFolder/deleteCollection"
+#define deCollect_Url @"/collectionFolder/deleteCollectionByClothingId"
 //收藏列表
 #define collectList_Url @"/collectionFolder/getCollectionFolder"
 //添加收藏到购物车
 #define collectToCart_Url @"/shoppingCart/batchAddition"
+//心愿单筛选
+#define filterLove_Url @"/collectionFolder/getCollectionFolderPage"
 
 /*----------------------------地址模块--------------------------------*/
 //新增收货地址

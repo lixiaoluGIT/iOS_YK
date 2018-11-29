@@ -18,6 +18,7 @@
     NSInteger timeNum;
     NSTimer *timer;
     NSString *vetifyCode;
+    BOOL isLogining;
 }
 @property (nonatomic,strong)UIView *backView;//背景图层
 @property (nonatomic,strong)UIView *containView;//手机号容器视图
@@ -34,6 +35,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+       
         [self setUpUI];//输入手机号界面
         [self setUpCodeView];
     }
@@ -41,10 +43,6 @@
 }
 
 - (void)setUpUI{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatDidLoginNotification:) name:@"wechatDidLoginNotification" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TencentDidLoginNotification:) name:@"TencentDidLoginNotification" object:nil];
     
     //背景图层
     _backView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -264,6 +262,9 @@
             
             break;
         case 101://qq登录
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatDidLoginNotification:) name:@"wechatDidLoginNotification" object:nil];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TencentDidLoginNotification:) name:@"TencentDidLoginNotification" object:nil];
             
             [[YKUserManager sharedManager]loginByTencentOnResponse:^(NSDictionary *dic) {
                 
@@ -273,6 +274,9 @@
         case 102://微信登录
             [UD setBool:NO forKey:@"bindWX"];//不是绑定,是登录
             [UD synchronize];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatDidLoginNotification:) name:@"wechatDidLoginNotification" object:nil];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TencentDidLoginNotification:) name:@"TencentDidLoginNotification" object:nil];
             [[YKUserManager sharedManager]loginByWeChatOnResponse:^(NSDictionary *dic) {
                 
             }];
@@ -318,6 +322,7 @@
 
 - (void)dismiss{
 
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [UIView animateWithDuration:0.4 animations:^{
         _containView.top = HEIGHT;
         _codeContainView.top = HEIGHT;
@@ -354,9 +359,14 @@
 //接收微信登录的通知
 - (void)wechatDidLoginNotification:(NSNotification *)notify{
     NSDictionary *dict = [notify userInfo];
+    if (isLogining) {
+        return;
+    }
+    isLogining = YES;
     [[YKUserManager sharedManager]getWechatAccessTokenWithCode:dict[@"code"] OnResponse:^(NSDictionary *dic) {
-        
-        [UIView animateWithDuration:0. animations:^{
+        isLogining = NO;
+        NSLog(@"微信登录response：%@",dic);
+        [UIView animateWithDuration:0.3 animations:^{
             [self dismiss];
         }completion:^(BOOL finished) {
             if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]]) {
@@ -466,7 +476,7 @@
         
     }
   
-    
+    //手机号登录
     [[YKUserManager sharedManager]LoginWithPhone:self.phoneText.text VetifyCode:vetifyCode OnResponse:^(NSDictionary *dic) {
         [self dismiss];
         if (self.loginSuccess) {

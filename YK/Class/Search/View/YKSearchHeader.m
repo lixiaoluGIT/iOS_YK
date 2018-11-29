@@ -17,7 +17,9 @@
 }
 
 @property (nonatomic,strong)NSString *categoryID;
-@property (nonatomic,strong)NSString *sortId;
+@property (nonatomic,strong)NSString *styleId;
+@property (nonatomic,strong)NSString *seasonId;
+
 @property (weak, nonatomic) IBOutlet UILabel *allLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *TypeLabel;
@@ -62,16 +64,18 @@
 }
 - (void)setCategoryList:(NSMutableArray *)CategoryList CategoryIdList:(NSMutableArray *)CategoryIdList sortIdList:(NSMutableArray *)sortIdList sortList:(NSMutableArray *)sortList seasons:(NSMutableArray *)seasons seasonIds:(NSMutableArray *)seasonIds{
     
-    self.sortId = @"";
-    self.categoryID = @"";
+    self.seasonId = @"0";
+    self.categoryID = @"0";
+    self.styleId = @"0";
+    
     
     [CategoryList insertObject:@"不限" atIndex:0];
     [sortList insertObject:@"不限" atIndex:0];
     [seasons insertObject:@"不限" atIndex:0];
 
-    [CategoryIdList insertObject:@"" atIndex:0];
-    [sortIdList insertObject:@"" atIndex:0];
-    [seasonIds insertObject:@"" atIndex:0];
+    [CategoryIdList insertObject:@"0" atIndex:0];
+    [sortIdList insertObject:@"0" atIndex:0];
+    [seasonIds insertObject:@"0" atIndex:0];
     
     WeakSelf(weakSelf)
     sliderSegmentView1 = [[CBSegmentView alloc]initWithFrame: CGRectMake(0, kSuitLength_H(10), WIDHT, kSuitLength_H(40))];
@@ -80,7 +84,7 @@
     sliderSegmentView1.titleChooseReturn = ^(NSString *catrgoryId) {
         weakSelf.categoryID = catrgoryId;
         if (weakSelf.filterBlock) {
-            weakSelf.filterBlock(weakSelf.categoryID, weakSelf.sortId);
+            weakSelf.filterBlock(weakSelf.categoryID, weakSelf.styleId,weakSelf.seasonId);
         }
     };
     
@@ -92,10 +96,10 @@
     sliderSegmentView2 = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, sliderSegmentView1.frame.size.height + sliderSegmentView1.frame.origin.y, WIDHT, kSuitLength_H(40))];
     [self addSubview:sliderSegmentView2];
     [sliderSegmentView2 setTitleArray:sortList categoryIds:sortIdList withStyle:CBSegmentStyleZoom];
-    sliderSegmentView2.titleChooseReturn = ^(NSString *sortId) {
-        weakSelf.sortId = sortId;
+    sliderSegmentView2.titleChooseReturn = ^(NSString *styleId) {
+        weakSelf.styleId = styleId;
         if (weakSelf.filterBlock) {
-            weakSelf.filterBlock(weakSelf.categoryID, weakSelf.sortId);
+            weakSelf.filterBlock(weakSelf.categoryID, weakSelf.styleId,weakSelf.seasonId);
         }
     };
     
@@ -113,10 +117,10 @@
     sliderSegmentView3 = [[CBSegmentView alloc]initWithFrame:CGRectMake(0, sliderSegmentView2.frame.size.height + sliderSegmentView2.frame.origin.y, WIDHT, kSuitLength_H(40))];
     [self addSubview:sliderSegmentView3];
     [sliderSegmentView3 setTitleArray:seasons categoryIds:seasonIds withStyle:CBSegmentStyleZoom];
-    sliderSegmentView3.titleChooseReturn = ^(NSString *sortId) {
-        weakSelf.sortId = sortId;
+    sliderSegmentView3.titleChooseReturn = ^(NSString *seasonId) {
+        weakSelf.seasonId = seasonId;
         if (weakSelf.filterBlock) {
-            weakSelf.filterBlock(weakSelf.categoryID, weakSelf.sortId);
+            weakSelf.filterBlock(weakSelf.categoryID, weakSelf.styleId,weakSelf.seasonId);
         }
     };
     

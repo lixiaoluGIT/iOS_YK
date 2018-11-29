@@ -18,6 +18,7 @@
 #import "YKSuitSegmentVC.h"
 #import "YKLoveSegmentVC.h"
 #import "NavViewController.h"
+#import "YKMyLoveVC.h"
 @interface YKMainVC ()<UITabBarControllerDelegate>
 {
     NSInteger _currentIndex;
@@ -72,7 +73,7 @@
         near = [[UINavigationController alloc] initWithRootViewController:orderVC];
         [orderVC.tabBarItem setTitleTextAttributes:dictMine forState:UIControlStateSelected];
         
-        YKLoveSegmentVC *suit = [[YKLoveSegmentVC alloc]init];
+        YKMyLoveVC *suit = [[YKMyLoveVC alloc]init];
         suit.tabBarItem.image = [UIImage imageNamed:@"心愿单未选"];
         suit.tabBarItem.selectedImage = [UIImage imageNamed:@"心愿单"];
         suit.tabBarItem.title = @"心愿单";

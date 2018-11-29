@@ -31,6 +31,7 @@
                  payType:(NSInteger )paytype
                 activity:(NSInteger)activity
                channelId:(int)couponId
+              inviteCode:(NSString *)inviteCode
               OnResponse:(void (^)(NSDictionary *dic))onResponse{
   
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];

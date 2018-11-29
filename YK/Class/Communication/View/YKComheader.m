@@ -27,9 +27,9 @@
     [self initUI];
     [self layOut];
     
-    self.btn1.titleLabel.font = PingFangSC_Medium(kSuitLength_H(16));
-     self.btn2.titleLabel.font = PingFangSC_Medium(kSuitLength_H(16));
-     self.btn3.titleLabel.font = PingFangSC_Medium(kSuitLength_H(16));
+    self.btn1.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+     self.btn2.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+     self.btn3.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
 }
 
 - (void)initUI{
@@ -81,7 +81,10 @@
     }
     
     if (_CommunicationType == CONCERNED&&[Token length]==0) {
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:1.8];
+//        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请先登录" delay:1.8];
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+            
+        }];
         return ;
     }
     if (self.Button0 != button) {
@@ -89,8 +92,8 @@
         button.selected = YES;
         [button setUserInteractionEnabled:NO];
         [self.Button0 setUserInteractionEnabled:YES];
-        button.titleLabel.font = PingFangSC_Semibold(16);
-        self.Button0.titleLabel.font = PingFangSC_Medium(14);
+        button.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14))
+        self.Button0.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
     }
     self.Button0 = button;
     if (self.changeCommunicationTypeBlock) {

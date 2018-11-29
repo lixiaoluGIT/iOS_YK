@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YKLoveNoDataView : UIView
-
+@property (nonatomic,copy)void (^selectClothes)();
 @end

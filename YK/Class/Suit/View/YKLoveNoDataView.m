@@ -48,6 +48,13 @@
     [toSelectBtn setBackgroundColor:YKRedColor];
     [toSelectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     toSelectBtn.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+    [toSelectBtn addTarget:self action:@selector(sel) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:toSelectBtn];
+}
+
+- (void)sel{
+    if (self.selectClothes) {
+        self.selectClothes();
+    }
 }
 @end

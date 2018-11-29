@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class FilterModel,category,color,element,Tag,season,style,updateTime;
+@class FilterModel,category,color,element,Tag,season,style,updateDay;
 @interface GetNewFilterOutPutDto : NSObject
 
 @property (nonatomic, strong) NSDictionary *newfilter;
@@ -18,7 +18,9 @@
 @property (nonatomic, strong) NSArray<Tag *> *labelList;//标签数组
 @property (nonatomic, strong) NSArray<season *> *seasonList;//季节数组
 @property (nonatomic, strong) NSArray<style *> *styleList;//风格数组
-@property (nonatomic, strong) NSArray<updateTime *> *updateDay;//上新时间数组
+@property (nonatomic, strong) NSArray<updateDay *> *timeList;//上新时间数组
+
+- (void)initWithDic:(NSDictionary *)dic;
 @end
 
 @interface FilterModel : NSObject
@@ -62,9 +64,9 @@
 @property (nonatomic,assign)NSInteger sort;
 @end
 //上新时间
-@interface updateTime : NSObject
-@property (nonatomic, assign) NSString *sevenDays;
-@property (nonatomic, copy) NSString *thirtyDays;
+@interface updateDay : NSObject
+@property (nonatomic, assign) NSInteger day;
+@property (nonatomic, copy) NSString *label;
 @end
 
 

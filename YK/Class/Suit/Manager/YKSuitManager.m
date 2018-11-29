@@ -275,11 +275,11 @@
 - (void)deleteCollecttwithShoppingCartId:(NSMutableArray *)shoppingCartIdList OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
 //    NSDictionary *d = @{@"collectionList":shoppingCartIdList};
-    NSString *s = [NSString stringWithFormat:@"%@?collectionList=",deCollect_Url];
-    for (int i=0;i<shoppingCartIdList.count ; i++) {
-      s =  [s stringByAppendingString:[NSString stringWithFormat:@"%@,",shoppingCartIdList[i]]];
-    }
-    s = [self removeLastOneChar:s];
+    NSString *s = [NSString stringWithFormat:@"%@?clothingId=%@",deCollect_Url, shoppingCartIdList[0]];
+//    for (int i=0;i<shoppingCartIdList.count ; i++) {
+//      s =  [s stringByAppendingString:[NSString stringWithFormat:@"%@,",shoppingCartIdList[i]]];
+//    }
+//    s = [self removeLastOneChar:s];
     [YKHttpClient Method:@"GET" apiName:s Params:nil Completion:^(NSDictionary *dic) {
 
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -317,4 +317,42 @@
     }];
 }
 
+- (void)filterDataWithCategoryIdList:(NSArray *)CategoryIdList
+                        colourIdList:(NSArray *)colourIdList
+                       elementIdList:(NSArray *)elementIdList
+                         labelIdList:(NSArray *)labelIdList
+                        seasonIdList:(NSArray *)seasonIdList
+                         styleIdList:(NSArray *)styleIdList
+                           updateDay:(NSString *)updateDay
+                                page:(NSInteger )page
+                                size:(NSInteger )size
+                               exist:(NSString *)exist
+                          OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+
+    NSDictionary *postDic = @{@"CategoryIdList":CategoryIdList,
+                              @"colourIdList":colourIdList,
+                              @"elementIdList":elementIdList,
+                              @"labelIdList":labelIdList,
+                              @"seasonIdList":seasonIdList,
+                              @"styleIdList":styleIdList,
+                              @"updateDay":updateDay,
+                              @"page":@(page),
+                              @"size":@(size),
+                              @"exist":exist,
+                              @"classify":@"0"
+                              };
+    
+    NSLog(@"postDic ====== %@",postDic);
+    [YKHttpClient Method:@"POST" URLString:filterLove_Url paramers:postDic success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+        if (onResponse) {
+            onResponse(dict);
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end

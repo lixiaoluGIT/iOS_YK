@@ -11,6 +11,10 @@
 #import "YKInvitVC.h"
 #import "YKHomeAleartView.h"
 
+@interface YKHomeManager(){
+    YKHomeAleartView *loginView;
+}
+@end
 @implementation YKHomeManager
 
 + (YKHomeManager *)sharedManager{
@@ -449,12 +453,46 @@
     if ([[YKUserManager sharedManager].user.isNewUser intValue] == 1) {//已付费
         return;
     }
-    YKHomeAleartView *loginView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeAleartView" owner:nil options:nil][0];
+    loginView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeAleartView" owner:nil options:nil][0];
     loginView.frame = CGRectMake(0, HEIGHT, 0, 0);
     [[UIApplication sharedApplication].keyWindow addSubview:loginView];
-    [loginView appear];
+    
+    NSString *s1 = [NSString stringWithFormat:@"%@",[UD objectForKey:@"popupImg"]];
+    NSString *s2 = [NSString stringWithFormat:@"%@",[UD objectForKey:@"couponId"]];
+    NSString *s3 = [NSString stringWithFormat:@"%@",[UD objectForKey:@"couponAmount"]];
+    if ([s1 length] != 0) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        
+        [dic setObject:s1 forKey:@"popupImg"];
+        [dic setObject:s2 forKey:@"couponId"];
+        [dic setObject:s3 forKey:@"couponAmount"];
+        loginView.Dic = dic;
+        
+//        [self performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:3.0];
+        
+        
+        [self getHomeAleartImageOnResponse:^(NSDictionary *dic) {
+            [UD setObject:dic[@"popupImg"] forKey:@"popupImg"];
+            [UD setObject:dic[@"couponId"] forKey:@"couponId"];
+            [UD setObject:dic[@"couponAmount"] forKey:@"couponAmount"];
+            loginView.Dic = dic;
+//            [loginView appear];
+        }];
+    }
+    else {
+        [self getHomeAleartImageOnResponse:^(NSDictionary *dic) {
+            [UD setObject:dic[@"popupImg"] forKey:@"homeImage"];
+            [UD setObject:dic[@"couponId"] forKey:@"couponId"];
+            [UD setObject:dic[@"couponAmount"] forKey:@"couponAmount"];
+            loginView.Dic = dic;
+//           [self performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:2.0];
+        }];
+    }
 }
 
+- (void)show{
+    [loginView appear];
+}
 - (void)showPoint{
     UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"悬浮窗"]];
     if (HEIGHT==812) {
@@ -510,4 +548,27 @@
     
 }
 
+- (void)getHomeAleartImageOnResponse:(void (^)(NSDictionary *d))onResponse{
+   
+    NSString *url;
+    if ([Token length] == 0) {//未登录
+        url = [NSString stringWithFormat:@"%@?userId=0",getHomeAleart_Url];
+    }else {//已登录
+        url = [NSString stringWithFormat:@"%@?userId=%d",getHomeAleart_Url,[[YKUserManager sharedManager].user.userId intValue ]];
+    }
+    
+    
+    [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
+        
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        NSDictionary  *d = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
+       
+        
+        if (onResponse) {
+            onResponse(d);
+        }
+        
+    }];
+}
 @end

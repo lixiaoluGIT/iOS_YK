@@ -11,6 +11,7 @@
 @interface YKBaseTableVC ()<UINavigationControllerDelegate>
 {
     UIPercentDrivenInteractiveTransition *interactiveTransition;
+    UIView *_lineView;
 }
 
 @end
@@ -34,8 +35,29 @@
     //    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panEvent:)];
     //
     //    [self.view addGestureRecognizer:panGesture];
+    self.navigationController.navigationBar.layer.shadowColor = [UIColor colorWithHexString:@"eeeeee"].CGColor;
+    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
+    self.navigationController.navigationBar.layer.shadowRadius = 4.f;
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(4,4);
     
+    //获取导航栏下面黑线
+    _lineView = [self getLineViewInNavigationBar:self.navigationController.navigationBar];
     
+}
+- (UIImageView *)getLineViewInNavigationBar:(UIView *)view
+{
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+        return (UIImageView *)view;
+    }
+    
+    for (UIView *subview in view.subviews) {
+        UIImageView *imageView = [self getLineViewInNavigationBar:subview];
+        if (imageView) {
+            return imageView;
+        }
+    }
+    
+    return nil;
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 
@@ -46,7 +68,26 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:
     return YES;
     
 }
+//视图将要显示时隐藏
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    _lineView.hidden = YES;
+    //    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+}
 
+//视图将要消失时取消隐藏
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    _lineView.hidden = NO;
+    //    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.alpha = 1;
+}
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
     
     //如果往左滑

@@ -63,4 +63,7 @@
 
 //请求人气美衣和配饰
 
+//请求首页新人优惠劵弹框图片
+- (void)getHomeAleartImageOnResponse:(void (^)(NSDictionary *d))onResponse;
+
 @end

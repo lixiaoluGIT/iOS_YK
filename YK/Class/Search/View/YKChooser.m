@@ -82,7 +82,7 @@ static CGFloat const kYGap = 10.f;
                      maxSelectCount:(CGFloat)maxCount
                            delegate:(id<MoreTagsChooserDelegate>)aDelegate WithView:(UIView *)view
 {
-    if(self = [super initWithFrame:CGRectMake(0, kSuitLength_H(60), kFrameWidth-kSuitLength_H(60), _bottomHeight)]){
+    if(self = [super initWithFrame:CGRectMake(0, 0, kFrameWidth-kSuitLength_H(60), _bottomHeight)]){
         _orignalMDicTags = [NSMutableDictionary dictionary];
         _orignalMArrayTags = [NSMutableArray array];
         _selectedTags = [NSMutableArray array];
@@ -106,7 +106,7 @@ static CGFloat const kYGap = 10.f;
         self.maxSelectCount = maxCount;
         self.delegate = aDelegate;
         
-        [self addSubview:self.effectView];
+        
         
         [self addSubview:self.bottomView];
         
@@ -223,7 +223,7 @@ static CGFloat const kYGap = 10.f;
     if(!_bottomView){
         _bottomView = [[UIView alloc]init];
         _bottomView.backgroundColor = [UIColor whiteColor];
-        _bottomView.frame = CGRectMake(kSuitLength_H(60/2),0 , kFrameWidth-kSuitLength_H(60/2), screen_height);
+        _bottomView.frame = CGRectMake(kSuitLength_H(60),0 , kFrameWidth-kSuitLength_H(60), screen_height);
     }
     return _bottomView;
 }
@@ -315,20 +315,7 @@ static CGFloat const kYGap = 10.f;
     
 }
 
-// effectView
-- (UIView *)effectView{
-    
-    if (!_effectView) {
-        
-        _effectView = [[UIView alloc] init];
-        
-        _effectView.backgroundColor = [UIColor clearColor];
-        
-        _effectView.frame = CGRectMake(0, 0, screen_width, 0);
-        
-    }
-    return _effectView;
-}
+
 
 
 
@@ -676,11 +663,12 @@ static CGFloat const kYGap = 10.f;
     }
     if (indexPath.section==5) {//风格
         
+        
         if(![_selectedTags containsObject:tag]){
             //取消之前的选中
             NSMutableArray *a = _selectedTags.copy;
             for (YKTag *ct in a) {//所有的选中
-                for (YKTag *ctt in _styles) {
+                for (YKTag *ctt in _styles) {//面积的选中
                     if ([ct.name isEqual:ctt.name]) {
                         ct.selected = NO;
                         [_selectedTags removeObject:ct];//去掉面积之前的选中
@@ -701,7 +689,7 @@ static CGFloat const kYGap = 10.f;
         if(![_styles containsObject:tag]){
             for (YKTag *t in _styles) {//当前section选中的tag
                 t.selected = NO;
-                [_hotTags removeObject:t];
+                [_styles removeObject:t];
                 for (YKTag *tt in tags) {
                     if ([tt.name isEqual:t.name]) {
                         tt.selected = t.selected;
@@ -810,8 +798,7 @@ static CGFloat const kYGap = 10.f;
     
  
     [self endEditing:YES];
-    
-    self.effectView.frame = CGRectMake(kSuitLength_H(60), 0, screen_width, 0);
+ 
     
     CGRect frame = self.bottomView.frame;
   
@@ -820,10 +807,12 @@ static CGFloat const kYGap = 10.f;
     
     frame.size.height = screen_height;
    
-        
+//    self.myCollectionView.backgroundColor = [UIColor redColor];
+//    self.bottomView.backgroundColor = [UIColor yellowColor];
         if (self.myCollectionView.contentSize.height + kSuitLength_V(10) +  kBottomBtnHeight>= frame.size.height) {
             self.myCollectionView.frame = CGRectMake(0, frame.origin.y, frame.size.width, frame.size.height - (kSuitLength_V(10) +  kBottomBtnHeight));
             self.bottomView.frame = frame;
+            self.bottomView.frame = CGRectMake(0, 0, WIDHT-kSuitLength_H(60), HEIGHT);
         } else {
             
             self.myCollectionView.frame = CGRectMake(0, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height);
@@ -850,7 +839,9 @@ static CGFloat const kYGap = 10.f;
     
     self.alpha = 1.f;
     
-   self.frame = self.bottomView.frame;
+//   self.frame = self.bottomView.frame;
+    self.frame = CGRectMake(kSuitLength_H(60), 0, WIDHT-kSuitLength_H(60), HEIGHT);
+//    self.bottomView.backgroundColor = [UIColor redColor];
 }
 
 - (void)dismiss
@@ -882,6 +873,7 @@ static CGFloat const kYGap = 10.f;
                          
                      } completion:^(BOOL finished) {
                          self.alpha = 0.f;
+                         [self.myCollectionView setContentOffset:CGPointMake(0 , 0)];
                      }];
     
 }
@@ -975,6 +967,12 @@ static CGFloat const kYGap = 10.f;
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.layer.borderColor = [UIColor colorWithHexString:@"#F3F4F6"].CGColor;
         [self.contentView addSubview:_textLabel];
+        
+        //对勾图标
+        _image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"选择"]];
+        _image.frame = CGRectMake(frame.size.width-kSuitLength_H(12), frame.size.height-kSuitLength_H(12), kSuitLength_H(12), kSuitLength_H(12));
+//        _image.hidden = YES;
+        [self.contentView addSubview:_image];
     }
     return self;
 }
@@ -983,13 +981,15 @@ static CGFloat const kYGap = 10.f;
 {
     if([obj isKindOfClass:[YKTag class]]){
         YKTag *tag = (YKTag *)obj;
-        UIColor *borderColor = tag.selected ? mainColor : [UIColor colorWithHexString:@"#fafafa"];
-        UIColor *titleColor = tag.selected ? HEXCOLOR(0xffffff) :mainColor;
+        UIColor *borderColor = tag.selected ? [UIColor colorWithHexString:@"#fafafa"] : [UIColor colorWithHexString:@"#fafafa"];
+        UIColor *titleColor = tag.selected ? YKRedColor :HEXCOLOR(0x666666);
         
         _textLabel.layer.borderColor = borderColor.CGColor;
         _textLabel.textColor = titleColor;
         _textLabel.text = tag.name;
         _textLabel.backgroundColor = borderColor;
+        
+         _image.hidden = !tag.selected ;
     }
 }
 
@@ -1003,7 +1003,8 @@ static CGFloat const kYGap = 10.f;
 {
     [super setSelected:selected];
     UIColor *borderColor = selected ? mainColor : HEXCOLOR(0xdddddd);
-    UIColor *titleColor = selected ? [UIColor whiteColor] : grayTextColor;
+    UIColor *titleColor = selected ?grayTextColor : YKRedColor;
+    _image.hidden = selected;
     _textLabel.layer.borderColor = borderColor.CGColor;
     _textLabel.textColor = titleColor;
 }

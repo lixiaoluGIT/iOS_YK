@@ -62,25 +62,61 @@
     cacheArray = [NSMutableArray array];
     [NC addObserver:self selector:@selector(navigationBarHidden) name:@"NavigationHidden" object:nil];
     [NC addObserver:self selector:@selector(navigationBarNotHidden) name:@"NavigationNotHidden" object:nil];
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//
+//    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.frame = CGRectMake(0, 0, 20, 44);
+//    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+//        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+//    }
+//    btn.adjustsImageWhenHighlighted = NO;
+//    //    btn.backgroundColor = [UIColor redColor];
+//    [btn setImage:[UIImage imageNamed:@"kefu-2"] forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
+//
+//    negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+//    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+//        negativeSpacer.width = -18;
+//    }
+////    btn.hidden = YES;
+//    self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
+//
+//    UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
+//    btn1.frame = CGRectMake(0, 0, 20, 44);
+//    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+//        btn1.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+//    }
+//    btn1.adjustsImageWhenHighlighted = NO;
+//    //    btn.backgroundColor = [UIColor redColor];
+//    [btn1 setImage:[UIImage imageNamed:@"wuxiaoxi"] forState:UIControlStateNormal];
+//    [btn1 addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:btn1];
+//    UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = 0;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+//    if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
+//        negativeSpacer.width = -18;
+//    }
+//
+//    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 20, 44);
+    btn.frame = CGRectMake(0, 0, 60, 44);
     if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
-        btn.frame = CGRectMake(0, 0, 44, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
+        btn.frame = CGRectMake(0, 0, 60, 44);;//ios7以后右边距默认值18px，负数相当于右移，正数左移
     }
     btn.adjustsImageWhenHighlighted = NO;
     //    btn.backgroundColor = [UIColor redColor];
     [btn setImage:[UIImage imageNamed:@"kefu-2"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
-  
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -8;//ios7以后右边距默认值18px，负数相当于右移，正数左移
     if ([[UIDevice currentDevice].systemVersion floatValue]< 11) {
         negativeSpacer.width = -18;
     }
-//    btn.hidden = YES;
-    self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
+    
+//    self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     
     UIButton *btn1=[UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(0, 0, 20, 44);
@@ -89,8 +125,8 @@
     }
     btn1.adjustsImageWhenHighlighted = NO;
     //    btn.backgroundColor = [UIColor redColor];
-    [btn1 setImage:[UIImage imageNamed:@"wuxiaoxi"] forState:UIControlStateNormal];
-    [btn1 addTarget:self action:@selector(toMessage) forControlEvents:UIControlEventTouchUpInside];
+    [btn1 setImage:[UIImage imageNamed:@"kefu-2"] forState:UIControlStateNormal];
+    [btn1 addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithCustomView:btn1];
     UIBarButtonItem *negativeSpacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = 0;//ios7以后右边距默认值18px，负数相当于右移，正数左移
@@ -100,6 +136,13 @@
     
     self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
     
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
+//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+//    title.text = self.title;
+//    title.textAlignment = NSTextAlignmentCenter;
+//    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+//    title.font = PingFangSC_Medium(kSuitLength_H(14));
+//    self.navigationItem.titleView = title;
     UIImage *titleImages = [UIImage imageNamed:@"title"];
     UIImageView *newTitleView = [[UIImageView alloc] initWithImage:titleImages];
     self.navigationItem.titleView = newTitleView;
@@ -264,6 +307,15 @@
 //        Vline.frame = CGRectMake(WIDHT/2,64+22+25,1, 12);
 //    }
     [self.btnView addSubview:Vline];
+    
+    //底横线
+    UILabel *Hline = [[UILabel alloc]init];
+    Hline.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+    Hline.frame = CGRectMake(0,kSuitLength_H(37),WIDHT, kSuitLength_H(1));
+    //    if (HEIGHT == 812) {
+    //        Vline.frame = CGRectMake(WIDHT/2,64+22+25,1, 12);
+    //    }
+    [self.btnView addSubview:Hline];
 }
 //
 - (void)addControllerToArr{
@@ -480,6 +532,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [ self.navigationController setNavigationBarHidden : isNavHidden animated : NO ];
+    
+    self.navigationController.navigationBar.layer.shadowColor = [UIColor colorWithHexString:@"ffffff"].CGColor;
+    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
+    self.navigationController.navigationBar.layer.shadowRadius = 4.f;
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0,0);
 }
 
 @end

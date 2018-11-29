@@ -45,8 +45,8 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
-    
+    title.font = PingFangSC_Medium(kSuitLength_H(14));;
+    self.navigationItem.titleView = title;
     self.navigationItem.titleView = title;
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;

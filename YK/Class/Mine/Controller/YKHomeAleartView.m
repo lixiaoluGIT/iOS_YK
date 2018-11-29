@@ -109,6 +109,15 @@
     return result;
 }
 
+- (void)setDic:(NSDictionary *)Dic{
+    _Dic = Dic;
+   
+    [_girlImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",Dic[@"popupImg"]]] placeholderImage:[UIImage imageNamed:@"弹窗-2"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self appear];
+    }];
+    [YKUserManager sharedManager].couponID = [Dic[@"couponId"] intValue];
+    [YKUserManager sharedManager].couponNum = [Dic[@"couponAmount"] integerValue];
+}
 - (void)appear{
     [UIView animateWithDuration:0.25 animations:^{
         self.frame = CGRectMake(0, 0, WIDHT, HEIGHT+2);

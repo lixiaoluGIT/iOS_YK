@@ -662,7 +662,7 @@
         if (_payType == ONCE_CARD) {
             weakSelf.CouponId = 0;
         }
-        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:weakSelf.CouponId OnResponse:^(NSDictionary *dic) {
+        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:weakSelf.CouponId inviteCode:_inviteCode.text OnResponse:^(NSDictionary *dic) {
 
         }];
 //        [[YKPayManager sharedManager]payWithPayMethod:payMethod payType:weakSelf.payType activity:weakSelf.newUserType channelId:_CouponId OnResponse:^(NSDictionary *dic) {

@@ -17,11 +17,11 @@
 
 - (void)initWithDic:(NSDictionary *)dic{
 //    self.brandId = [NSString stringWithFormat:@"%@",dic[@"clothingBrandName"]];
-    self.brandName = [NSString stringWithFormat:@"%@",dic[@"clothingBrandName"]];
+    self.brandName = [NSString stringWithFormat:@"%@",dic[@"brandName"]];
 //    self.catId = [NSString stringWithFormat:@"%@",dic[@"catId"]];
     self.goodsId  = [NSString stringWithFormat:@"%@",dic[@"clothingId"]];
     self.goodsName = [NSString stringWithFormat:@"%@",dic[@"clothingName"]];
-    self.clothingStockId = [NSString stringWithFormat:@"%@",dic[@"clothingStockId"]];
+    self.clothingStockId = [NSString stringWithFormat:@"%@",dic[@"clothingStockDTOS"][0][@"clothingStockId"]];
     self.imageAttach  = [NSString stringWithFormat:@"%@",[self URLEncodedString:dic[@"clothingImgUrl"]]];
  
     self.clothingPrice = [NSString stringWithFormat:@"%@",dic[@"clothingPrice"]];

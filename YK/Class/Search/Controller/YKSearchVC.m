@@ -34,6 +34,7 @@
     __block YKFilterUpHeaderView *upView;
     __block YKFilterView *filterView;
     __block YKFilterHeaderView *headerView;
+    YKNoDataView *NoDataView;
     NSInteger page;
  }
 @property (nonatomic,strong)DCCycleScrollView *banner1;
@@ -77,6 +78,8 @@
 @property (nonatomic,strong)NSArray *styles;
 @property (nonatomic,strong)NSArray *elements;
 @property (nonatomic,strong)NSString *exitStatus;//是否在架的条件
+
+@property (nonatomic,strong)UIView *backView;
 
 
 @end
@@ -190,6 +193,17 @@
     _colors = [NSArray array];
     _updateDay = @"";
     _exitStatus = @"0";
+    
+    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无商品"] statusDes:@"未发现商品，更换筛选试试" hiddenBtn:YES actionTitle:@"" actionBlock:^{
+        
+    }];
+    NoDataView.frame = CGRectMake(0, BarH+HEIGHT/4, WIDHT,HEIGHT-212);
+   
+    NoDataView.backgroundColor = self.view.backgroundColor;
+    NoDataView.hidden = YES;
+    [self.view addSubview:NoDataView];
 }
 
 - (void)getFilterData{
@@ -199,8 +213,9 @@
         NSDictionary *filterData = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
 
         self.filterModel = [GetNewFilterOutPutDto objectWithKeyValues:filterData];
-
-        filterView.houseFilterOutPutDto = self.filterModel ;
+//        self.filterModel = [[GetNewFilterOutPutDto alloc]init];
+//        [self.filterModel initWithDic:filterData];
+        filterView.houseFilterOutPutDto = self.filterModel;
 
         //赋值
         [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
@@ -244,7 +259,7 @@
     self.upBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-120, kSuitLength_H(35),kSuitLength_H(35));
     if (HEIGHT==812) {
-        self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-250, kSuitLength_H(35), kSuitLength_H(35));
+        self.upBtn.frame = CGRectMake(WIDHT-kSuitLength_H(45), HEIGHT-150, kSuitLength_H(35), kSuitLength_H(35));
     
     }
     self.upBtn.alpha = 0;
@@ -579,7 +594,13 @@
 
 - (void)creatFilterView{
     WeakSelf(weakSelf)
-    filterView = [[YKFilterView alloc] initWithFrame:CGRectMake(screen_width, 0, 0, HEIGHT)];
+    _backView = [[UIView alloc]initWithFrame:kWindow.bounds];
+    _backView.backgroundColor = [UIColor blackColor];
+    _backView.alpha = 0.6;
+    _backView.hidden = YES;
+//    [kWindow addSubview:_backView];
+    
+    filterView = [[YKFilterView alloc] initWithFrame:CGRectMake(screen_width, 0, screen_width, HEIGHT)];
     
     filterView.tabColor = [UIColor whiteColor];
     
@@ -589,6 +610,7 @@
     
     //更多的回调
     filterView.moreSelectedCallback = ^(NSArray *types, NSArray *seasons, NSArray *opentimes, NSArray *colors, NSArray *hotTags, NSArray *styles, NSArray *elements) {
+         weakSelf.backView.hidden = YES;
         _pageNum = 1;
         _categoryIds = types;
         _seasonIds = seasons;
@@ -606,6 +628,7 @@
     };
     //点击空白的回调
     [filterView setDidSelectedCallback:^(NSString *circleId, NSString *content, NSInteger tag){
+        weakSelf.backView.hidden = YES;
         _pageNum = 1;
         [weakSelf filterClothes];
     }];
@@ -616,6 +639,7 @@
 
 - (void)showFilterView{
     //赋值
+     _backView.hidden = NO;
     [filterView showDropDownWithTag:20003];
 }
 
@@ -653,7 +677,7 @@
 
 - (void)scrollToTop{
    
-    [self.collectionView setContentOffset:CGPointMake(0, 0)];
+    [self.collectionView setContentOffset:CGPointMake(0, (WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)+2)) animated:self.collectionView.contentOffset.y>700?NO:YES];
     [self.collectionView reloadData];
 }
 @end

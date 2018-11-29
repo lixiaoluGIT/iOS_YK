@@ -11,4 +11,6 @@
 @interface YKHomeAleartView : UITableViewCell
 
 - (void)appear;
+
+@property (nonatomic,strong)NSDictionary *Dic;
 @end

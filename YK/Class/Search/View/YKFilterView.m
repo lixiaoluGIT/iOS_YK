@@ -70,7 +70,7 @@
     
     _effectView.backgroundColor = [UIColor blackColor];
     
-    _effectView.alpha = 0;
+    _effectView.alpha = 0.6;
     
     [self addSubview:_effectView];
     
@@ -81,6 +81,7 @@
     [self addSubview:self.menuTableView];
     
     _chooser = [[YKChooser alloc]initWithBottomHeight:500 maxSelectCount:100 delegate:self WithView:self];
+    _chooser.backgroundColor = [UIColor whiteColor];
     
 }
 
@@ -108,7 +109,7 @@
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.categoryList forKey:@"品类"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.seasonList forKey:@"季节"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.colourList forKey:@"颜色"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.updateDay forKey:@"上新时间"];
+    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.timeList forKey:@"上新时间"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.labelList forKey:@"热门标签"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.styleList forKey:@"风格"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.elementList forKey:@"元素"];
@@ -186,21 +187,21 @@
                     
                     for(NSInteger i = 0; i < index; i++){
                         
-//                        updateTime *up = tags[i];
-//
-//                        NSString *str = [NSString string];
+                        updateDay *up = tags[i];
+
+                        NSString *str = [NSString string];
                         
-//                        str = up.name;
+                        str = up.label;
                         //
-                        YKTag *tag;
-                        if (i==0) {
-                           tag = [[YKTag alloc]initWithId:1 name:@"7天内"];
-                        }
-                        if (i==1) {
-                            tag = [[YKTag alloc]initWithId:1 name:@"30天内"];
-                        }
+//                        YKTag *tag;
+//                        if (i==0) {
+//                           tag = [[YKTag alloc]initWithId:1 name:@"7天内"];
+//                        }
+//                        if (i==1) {
+//                            tag = [[YKTag alloc]initWithId:1 name:@"30天内"];
+//                        }
                         
-//                       YKTag *tag = [[YKTag alloc]initWithId:up.ID name:str];
+                        YKTag *tag = [[YKTag alloc]initWithId:(up.day) name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -275,9 +276,9 @@
 //显示下拉列表
 - (void)showDropDownWithTag:(NSInteger)tag{   // 显示下拉列表
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [UIView animateWithDuration:0.25 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             self.frame = CGRectMake(0, 0, WIDHT, screen_height);
             _effectView.frame = CGRectMake(0, 0, screen_width, screen_height);
             _effectView.alpha = 0.6;
@@ -300,7 +301,7 @@
         
         self.frame = CGRectMake(screen_width, self.frame.origin.y, 0, screen_height);
         
-        _effectView.frame = CGRectMake(screen_width, 0, screen_width-kSuitLength_H(73), screen_height);
+        _effectView.frame = CGRectMake(screen_width, 0, screen_width, screen_height);
         
         [_chooser dismiss];
         _effectView.alpha = 0;
@@ -385,7 +386,7 @@
     
     NSMutableArray *postOpenTimes = [NSMutableArray array];
     for (YKTag *tag in openTimes) {
-        [postOpenTimes addObject:tag.name];
+        [postOpenTimes addObject:@(tag.objId)];
     }
     //热门标签
     NSMutableArray *postHotTags = [NSMutableArray array];

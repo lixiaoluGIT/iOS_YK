@@ -34,6 +34,7 @@ typedef enum : NSInteger {
                  payType:(NSInteger )paytype
                 activity:(NSInteger)activity
                channelId:(int)couponId
+              inviteCode:(NSString *)inviteCode
               OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
 + (YKPayManager *)sharedManager;

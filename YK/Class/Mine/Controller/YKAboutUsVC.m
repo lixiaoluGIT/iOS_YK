@@ -37,12 +37,13 @@
         negativeSpacer.width = -18;
     }
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
+//    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
+    self.navigationItem.titleView = title;
     
     _aboutUSView = [[NSBundle mainBundle] loadNibNamed:@"YKAboutView" owner:self options:nil][0];
     _aboutUSView.selectionStyle = UITableViewCellSelectionStyleNone;

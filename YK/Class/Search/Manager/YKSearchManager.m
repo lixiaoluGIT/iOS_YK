@@ -119,22 +119,22 @@
     
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    NSRange range = NSMakeRange(0,updateDay.length-2);
-    NSString *day;
-    if (updateDay.length>0) {
-        day = [updateDay substringWithRange:range];//截取范围类的字符串]
-    }else {
-        day = @"";
-    }
+//    NSRange range = NSMakeRange(0,updateDay.length-2);
+//    NSString *day;
+//    if (updateDay.length>0) {
+//        day = [updateDay substringWithRange:range];//截取范围类的字符串]
+//    }else {
+//        day = @"";
+//    }
    
     NSInteger exi = [exist intValue];
-    NSDictionary *postDic = @{@"CategoryIdList":CategoryIdList,
+    NSDictionary *postDic = @{@"categoryIdList":CategoryIdList,
                               @"colourIdList":colourIdList,
                               @"elementIdList":elementIdList,
                               @"labelIdList":labelIdList,
                               @"seasonIdList":seasonIdList,
                               @"styleIdList":styleIdList,
-                              @"updateDay":day,
+                              @"updateDay":updateDay,
                               @"page":@(page),
                               @"size":@(size),
                               @"exist":exist,

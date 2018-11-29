@@ -315,7 +315,7 @@
                     [self checkVersion];
                     hadAppearCheckVersion = YES;
                 }
-        [self performSelector:@selector(aleart) withObject:nil afterDelay:1];
+        [self performSelector:@selector(aleart) withObject:nil afterDelay:1.0];
         self.collectionView.hidden = NO;
         NSArray *array = [NSArray arrayWithArray:dic[@"data"][@"loopPic"]];
         self.imagesArr = [self getImageArray:array];
