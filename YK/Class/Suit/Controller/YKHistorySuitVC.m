@@ -47,6 +47,8 @@
         
         [self.dataArray removeAllObjects];
         _historyHeader.clothList = self.dataArray;
+        _historyHeader.Number = @"0";
+        _historyHeader.Price = @"0";
         [self.tableView reloadData];
         [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             [self getHistoryList];

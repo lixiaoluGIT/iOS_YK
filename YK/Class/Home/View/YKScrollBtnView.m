@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hhh;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *www;
 @property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameHeight;
 
 @end
 @implementation YKScrollBtnView
@@ -25,11 +27,14 @@
     _hhh.constant = kSuitLength_H(56);
     _www.constant = kSuitLength_H(56);
     _title.layer.masksToBounds = YES;
-    _title.layer.cornerRadius = 4;
+    _title.layer.cornerRadius =  kSuitLength_H(22)/2;
     _title.textColor = mainColor;
     _title.font = PingFangSC_Regular(kSuitLength_H(12))
     _image.layer.masksToBounds = YES;
     _image.layer.cornerRadius = kSuitLength_H(56/2);
+    
+    _nameWidth.constant = kSuitLength_H(66);
+    _nameHeight.constant = kSuitLength_H(22);
     
 //    self.backgroundColor = [UIColor yellowColor];
 //    self.image.backgroundColor = [UIColor greenColor];

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YKScrollBtnView : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *titleBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (nonatomic,strong)NSString *styleId;

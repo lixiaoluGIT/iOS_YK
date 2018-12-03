@@ -102,9 +102,13 @@
     [super viewWillAppear:animated];
     [UD setBool:YES forKey:@"atSearch"];
     if ([Token length] == 0) {
-        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-            [self getData];
-        }];
+        [self.collectStatusArray removeAllObjects];
+        [self.productList removeAllObjects];
+        [self.collectionView reloadData];
+        [self getData];
+//        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+//            [self getData];
+//        }];
         return;
     }
     [self getData];
@@ -535,4 +539,5 @@
     self.tabBarController.selectedViewController = nav;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 @end

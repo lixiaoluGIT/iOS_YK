@@ -19,6 +19,8 @@
 @property (nonatomic,strong)NSDictionary *brand;
 
 @property (nonatomic,strong)NSString *recomment;
+
+@property (nonatomic,strong)NSString *clothingCreatedate;
 - (void)resetUI;
 @end
 

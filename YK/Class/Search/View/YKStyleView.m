@@ -56,18 +56,23 @@
 - (void)setStyleArray:(NSMutableArray *)styleArray{
     WeakSelf(weakSelf)
     _styleArray = styleArray;
+    //滚动图
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, WIDHT/4)];
+    scrollView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:scrollView];
+    
     NSUInteger num;
     if (_styleArray.count>=4) {
         num = 4;
     }else {
         num = _styleArray.count;
     }
-    for (int i = 0; i<num; i++) {
+    for (int i = 0; i<_styleArray.count; i++) {
       __weak YKScrollBtnView *btn=  [[NSBundle mainBundle] loadNibNamed:@"YKScrollBtnView" owner:self options:nil][0];
-                NSString *s = [NSString stringWithFormat:@"%@",styleArray[i][@"styleImage"]];
+                NSString *s = [NSString stringWithFormat:@"%@",styleArray[i][@"labelImg"]];
                 [btn.image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:s]] placeholderImage:[UIImage imageNamed:@"首页品牌图"]];
-                btn.title.text = [NSString stringWithFormat:@"%@",styleArray[i][@"styleName"]];
-                btn.styleId = styleArray[i][@"styleId"];
+                btn.title.text = [NSString stringWithFormat:@"%@",styleArray[i][@"labelName"]];
+                btn.styleId = styleArray[i][@"labelId"];
                 btn.clickDetailBlock = ^(NSString *brandId,NSString *brandName){
                     [weakSelf btnViewClick:btn];
                 };
@@ -75,12 +80,16 @@
                 btn.image.clipsToBounds = YES;
         
                 CGFloat w = WIDHT/4;
-                btn.frame = CGRectMake(w*(i%4),w*(i/4),w,w);
+                btn.frame = CGRectMake(w*i,0,w,w);
         btn.tag = i;
-        [self addSubview:btn];
+        [scrollView addSubview:btn];
         [_btnArray addObject:btn];
         
     }
+    
+    scrollView.pagingEnabled = YES;
+    scrollView.contentSize = CGSizeMake((_btnArray.count/4+1)*WIDHT, 0);
+    scrollView.showsHorizontalScrollIndicator = NO;
     //线
     UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, WIDHT/4+kSuitLength_H(13), WIDHT, kSuitLength_H(10))];
     line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
@@ -93,7 +102,7 @@
         if (btn.tag == btnView.tag) {
             btnView.isSelect  = !btnView.isSelect;
             if (btnView.isSelect) {
-                 btn.styleId = _styleArray[btnView.tag][@"styleId"];
+                 btn.styleId = _styleArray[btnView.tag][@"labelId"];
                 btnView.title.textColor = [UIColor whiteColor];
                 btnView.title.backgroundColor = mainColor;
                 //拼接x
@@ -106,7 +115,7 @@
                 btnView.title.text = [btnView.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];
             }
         }else {
-            btn.isSelect = NO;
+            btn.isSelect = NO; 
             btn.title.textColor = mainColor;
             btn.title.backgroundColor = [UIColor whiteColor];
             btn.title.text = [btn.title.text stringByReplacingOccurrencesOfString:@" x" withString:@""];

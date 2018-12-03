@@ -48,7 +48,7 @@
 //    [self searchAddCloth];
     [self creatHeader];
     [self creatTableView];
-    [self creatButtom];
+//    [self creatButtom];
 }
 
 - (void)getNum{
@@ -115,18 +115,19 @@
 //
 //        return;
 //    }
+    [self creatButtom];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
-    
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     if ([Token length] == 0) {
         [self.dataArray removeAllObjects];
         [self.tableView reloadData];
-        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-            [self searchAddCloth];
-            [self getNum];
-        }];
+//        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+//            [self searchAddCloth];
+//            [self getNum];
+//        }];
         if ([YKSuitManager sharedManager].couponId==0) {
             self.tableView.frame = CGRectMake(0, kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) ;
             cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
@@ -294,20 +295,30 @@
     buttom.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
     [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];
+    
+    if ([Token length] == 0) {
+        [buttom setTitle:@"去逛逛" forState:UIControlStateNormal];
+    }
 }
 
 - (void)toRelease{
     
     if ([Token length] == 0) {
-        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-            [self searchAddCloth];
-            [self getNum];
-        }];
+//        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+//            [self searchAddCloth];
+//            [self getNum];
+//        }];
 //        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
 //        [self presentViewController:login animated:YES completion:^{
 //
 //        }];
 //        login.hidesBottomBarWhenPushed = YES;
+        YKSearchVC *chatVC = [[YKSearchVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = self.tabBarController.viewControllers[1];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     }
     

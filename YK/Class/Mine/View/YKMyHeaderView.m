@@ -53,7 +53,7 @@
     
 
     //姓名
-    _name=[[UILabel alloc]initWithFrame:CGRectMake(0, _headPho.bottom+7,WIDHT, 20)];
+    _name=[[UILabel alloc]initWithFrame:CGRectMake(0, _headPho.bottom+5,WIDHT, 20)];
     _name.centerX = _headPho.centerX;
     _name.font = PingFangSC_Semibold(kSuitLength_H(14));
     _name.textColor = [UIColor colorWithHexString:@"ffffff"];
@@ -64,6 +64,9 @@
     _vipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _vipBtn.frame = CGRectMake(_headPho.frame.size.width + _headPho.frame.origin.x + kSuitLength_H(49), kSuitLength_H(44), kSuitLength_H(91), kSuitLength_H(26));
     [_vipBtn setTitle:@"年卡会员" forState:UIControlStateNormal];
+    [_vipBtn setImage:[UIImage imageNamed:@"右-3"] forState:UIControlStateNormal];
+    [_vipBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -kSuitLength_H(90))];
+      [_vipBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -kSuitLength_H(10), 0, 0)];
     _vipBtn.layer.masksToBounds = YES;
     _vipBtn.layer.cornerRadius = kSuitLength_H(26/2);
     _vipBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -220,27 +223,27 @@
         }
         
         if ([user.cardType intValue] == 0) {
-            [_vipBtn setTitle:@"成为会员 >" forState:UIControlStateNormal];
+            [_vipBtn setTitle:@"成为会员" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"年卡-1"];
         }
         
         if ([user.cardType intValue] == 1) {
-            [_vipBtn setTitle:@"季卡会员 >" forState:UIControlStateNormal];
+            [_vipBtn setTitle:@"季卡会员" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"季卡-1"];
         }
         
         if ([user.cardType intValue] == 2) {
-            [_vipBtn setTitle:@"月卡会员 >" forState:UIControlStateNormal];
+            [_vipBtn setTitle:@"月卡会员" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"月卡"];
         }
         
         if ([user.cardType intValue] == 3) {
-            [_vipBtn setTitle:@"年卡会员 >" forState:UIControlStateNormal];
+            [_vipBtn setTitle:@"年卡会员" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"年卡-1"];
         }
         
         if ([user.cardType intValue] == 4) {
-            [_vipBtn setTitle:@"体验卡 >" forState:UIControlStateNormal];
+            [_vipBtn setTitle:@"体验卡" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"年卡-1"];
         }
 

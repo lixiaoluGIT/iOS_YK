@@ -26,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supreme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaK-cU-JeA">
-                        <rect key="frame" x="161.5" y="102" width="58" height="22"/>
+                        <rect key="frame" x="161.5" y="98" width="58" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="6fb-4X-Pnd"/>
                             <constraint firstAttribute="width" constant="58" id="u6N-kK-Ws8"/>
@@ -39,7 +39,7 @@
                 <constraints>
                     <constraint firstItem="uwL-SI-jnB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="1bz-g1-Hdq"/>
                     <constraint firstItem="DaK-cU-JeA" firstAttribute="centerX" secondItem="uwL-SI-jnB" secondAttribute="centerX" id="3L6-Tj-gW7"/>
-                    <constraint firstItem="DaK-cU-JeA" firstAttribute="top" secondItem="uwL-SI-jnB" secondAttribute="bottom" constant="8" id="Pvo-YM-kZv"/>
+                    <constraint firstItem="DaK-cU-JeA" firstAttribute="top" secondItem="uwL-SI-jnB" secondAttribute="bottom" constant="4" id="Pvo-YM-kZv"/>
                     <constraint firstItem="uwL-SI-jnB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Wag-o3-5b5"/>
                 </constraints>
             </tableViewCellContentView>
@@ -47,10 +47,12 @@
                 <outlet property="hhh" destination="K5S-YF-DwS" id="m0u-V6-7zJ"/>
                 <outlet property="image" destination="uwL-SI-jnB" id="wfa-Ki-pMe"/>
                 <outlet property="name" destination="DaK-cU-JeA" id="4Za-94-IfA"/>
+                <outlet property="nameHeight" destination="6fb-4X-Pnd" id="eSZ-h5-ml7"/>
+                <outlet property="nameWidth" destination="u6N-kK-Ws8" id="qqz-Lb-eed"/>
                 <outlet property="title" destination="DaK-cU-JeA" id="bay-hL-jsD"/>
                 <outlet property="www" destination="Kfz-UC-8Fb" id="MyK-j2-Lrf"/>
             </connections>
-            <point key="canvasLocation" x="-255" y="-25"/>
+            <point key="canvasLocation" x="-165" y="-23"/>
         </tableViewCell>
     </objects>
     <resources>

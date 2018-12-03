@@ -10,6 +10,43 @@
 
 @implementation YKSearchManager
 
+- (NSMutableArray *)categorys{
+    if (!_categorys) {
+        _categorys  = [NSMutableArray array];
+    }
+    return  _categorys;
+}
+- (NSMutableArray *)times{
+    if (!_times) {
+        _times  = [NSMutableArray array];
+    }
+    return  _times;
+}
+- (NSMutableArray *)colors{
+    if (!_colors) {
+        _colors  = [NSMutableArray array];
+    }
+    return  _colors;
+}
+- (NSMutableArray *)styles{
+    if (!_styles) {
+        _styles  = [NSMutableArray array];
+    }
+    return  _styles;
+}
+- (NSMutableArray *)seasons{
+    if (!_seasons) {
+        _seasons  = [NSMutableArray array];
+    }
+    return  _seasons;
+}
+- (NSMutableArray *)elements{
+    if (!_elements) {
+        _elements  = [NSMutableArray array];
+    }
+    return  _elements;
+}
+
 + (YKSearchManager *)sharedManager{
     static YKSearchManager *sharedAccountManagerInstance = nil;
     static dispatch_once_t predicate;
@@ -153,7 +190,7 @@
     [YKHttpClient Method:@"POST" URLString:filter_Url paramers:postDic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-            NSLog(@"RESPONSE:%@",dict);
+//            NSLog(@"RESPONSE:%@",dict);
                 if (onResponse) {
                     onResponse(dict);
                 }

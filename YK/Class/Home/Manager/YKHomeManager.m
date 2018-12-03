@@ -229,7 +229,7 @@
 //分页请求商品
 - (void)requestForMoreProductsWithNumPage:(NSInteger)numPage typeId:(NSString *)typeId sortId:(NSString *)sortId sytleId:(NSString *)sytleId brandId:(NSString *)brandId OnResponse:(void (^)(NSArray *array))onResponse{
     
-    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&size=%d&typeId=%@&sortId=%@&styleId=%@&brandId=%@",GetMoreProduct_Url,numPage,10,typeId,sortId,sytleId,brandId];
+    NSString *url = [NSString stringWithFormat:@"%@?page=%ld&size=%d&typeId=%@&sortId=%@&styleId=%@&brandId=%@",GetMoreProduct_Url,numPage,20,typeId,sortId,sytleId,brandId];
     
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         

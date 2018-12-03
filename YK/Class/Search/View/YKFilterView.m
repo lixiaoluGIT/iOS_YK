@@ -92,6 +92,53 @@
 // 点击非选择区域, 回收选项标签
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
+    //组装数据
+    //遍历标签数组，拿到选中的key
+    
+    //品类
+    NSMutableArray *postTypes = [NSMutableArray array];
+    for (YKTag *tag in [YKSearchManager sharedManager].categorys) {
+        [postTypes addObject:@(tag.objId)];
+    }
+    
+    //季节
+    NSMutableArray *postSeasons = [NSMutableArray array];
+    for (YKTag *tag in [YKSearchManager sharedManager].seasons) {
+        [postSeasons addObject:@(tag.objId)];
+    }
+    //颜色
+    NSMutableArray *postColors = [NSMutableArray array];
+    for (YKTag *tag in [YKSearchManager sharedManager].colors) {
+        [postColors addObject:@(tag.objId)];
+    }
+    //上新时间
+    
+    NSMutableArray *postOpenTimes = [NSMutableArray array];
+    for (YKTag *tag in [YKSearchManager sharedManager].times) {
+        [postOpenTimes addObject:@(tag.objId)];
+    }
+    //热门标签
+    NSMutableArray *postHotTags = [NSMutableArray array];
+    for (YKTag *tag in [YKSearchManager sharedManager].categorys) {
+        [postHotTags addObject:@(tag.objId)];
+    }
+    //风格
+    NSMutableArray *postStyles = [NSMutableArray array];
+    for (YKTag *tag in [YKSearchManager sharedManager].styles) {
+        [postStyles addObject:@(tag.objId)];
+    }
+    //元素
+    NSMutableArray *postElements = [NSMutableArray array];
+    for (YKTag *tag in [YKSearchManager sharedManager].elements) {
+        [postElements addObject:@(tag.objId)];
+    }
+    
+ NSLog(@"%@%@%@%@%@%@%@",postTypes,postColors,postStyles,postSeasons,postHotTags,postElements,postOpenTimes);
+    //
+    if (self.moreSelectedCallback) {
+        self.moreSelectedCallback(postTypes, postSeasons, postOpenTimes, postColors, postHotTags, postStyles, postElements);
+    }
+    
     
     if (self.didSelectedCallback) {
         self.didSelectedCallback(@"888", @"888", self.tag);
@@ -110,7 +157,7 @@
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.seasonList forKey:@"季节"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.colourList forKey:@"颜色"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.timeList forKey:@"上新时间"];
-    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.labelList forKey:@"热门标签"];
+//    [self.houseMoreMDic setObject:self.houseFilterOutPutDto.labelList forKey:@"热门标签"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.styleList forKey:@"风格"];
     [self.houseMoreMDic setObject:self.houseFilterOutPutDto.elementList forKey:@"元素"];
     
@@ -259,8 +306,9 @@
         
         NSArray *arrTemp;
         
-        arrTemp = @[@"品类", @"季节", @"上新时间",@"颜色",@"热门标签",@"风格",@"元素"];
+        arrTemp = @[@"品类", @"季节", @"上新时间",@"颜色",@"风格",@"元素"];
         
+            NSLog(@"选中的biao qian%@",selectedTags);
         [_chooser refreshWithTags:orignDataMDic keyTitleArr:arrTemp selectedTags:selectedTags nTags:types nSaleStatus:seasons nBuildTypes:colors nRoomTypes:openTimes nDayToOpen:hotTags nYears:styles nAreas:elements];
         
     }

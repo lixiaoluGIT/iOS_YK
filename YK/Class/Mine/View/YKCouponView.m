@@ -62,6 +62,8 @@
     _type.font = PingFangSC_Medium(kSuitLength_H(24));
     _effectiveDay.font = PingFangSC_Regular(kSuitLength_H(12));
     _useLabel.font = PingFangSC_Regular(kSuitLength_H(12));
+    
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)initWithDic:(NSDictionary *)dic{

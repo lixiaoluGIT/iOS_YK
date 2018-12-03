@@ -36,6 +36,8 @@
     __block YKFilterHeaderView *headerView;
     YKNoDataView *NoDataView;
     NSInteger page;
+    YKStyleView *styleView;
+    BOOL isClickTag;
  }
 @property (nonatomic,strong)DCCycleScrollView *banner1;
 @property (nonatomic,strong)NSString* categoryId;
@@ -89,9 +91,26 @@
 - (void)viewWillAppear:(BOOL)animated{
      [super viewWillAppear:animated];
     [UD setBool:YES forKey:@"atSearch"];
+    
+//    [self getFilterData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+     isClickTag = YES;
+   
+    //筛选条件初始化
+    _seasonIds = [NSArray array];
+    _categoryIds = [NSArray array];
+    _styles = [NSArray array];
+    _elements = [NSArray array];
+    _hotTags = [NSArray array];
+    _colors = [NSArray array];
+    _updateDay = @"";
+    _exitStatus = @"0";
+    
+    self.productList = [NSMutableArray array];
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"1a1a1a"]}];
     self.categoryId = @"";
     self.sortId = @"";
@@ -115,7 +134,7 @@
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer2"];
     self.collectionView.hidden = YES;
     
-    [self creatFilterView];
+//    [self creatFilterView];
     
     _pageNum = 1;
     WeakSelf(weakSelf)
@@ -123,28 +142,16 @@
         _pageNum ++;
         //请求更多商品
         [self filterClothes];
-//        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.categoryId sortId:self.sortId sytleId:self.styleId brandId:@"" OnResponse:^(NSArray *array) {
+        
+    }];
 //
-//            NSLog(@"--%@,---%@,---%@",self.categoryId,self.sortId,array);
-//            if (array.count==0) {
-//                [weakSelf.collectionView.mj_footer endRefreshing];
-//            }else {
-//                [weakSelf.collectionView.mj_footer endRefreshing];
-//                for (int i=0; i<array.count; i++) {
-//                    [self.productList addObject:array[i]];
-//                }
-//
-//                [self.collectionView reloadData];
-//            }
-//        }];
-        }];
-  
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
-    [self getData];
+//    [self getData];
+//    [self getFilterData];
     [self initUpBtn];
     
-    
+//    [self filterClothes];
     //浮框
     upView  = [[YKFilterUpHeaderView alloc]init];
     upView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(47));
@@ -180,30 +187,19 @@
     }];
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:tap];
-    
-//    //获取筛选数据
-//    [self getFilterData];
-    
-    //筛选条件初始化
-    _seasonIds = [NSArray array];
-    _categoryIds = [NSArray array];
-    _styles = [NSArray array];
-    _elements = [NSArray array];
-    _hotTags = [NSArray array];
-    _colors = [NSArray array];
-    _updateDay = @"";
-    _exitStatus = @"0";
-    
+ 
     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
     
-    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无商品"] statusDes:@"未发现商品，更换筛选试试" hiddenBtn:YES actionTitle:@"" actionBlock:^{
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无商品"] statusDes:@"未发现商品，更换筛选条件试试" hiddenBtn:YES actionTitle:@"" actionBlock:^{
         
     }];
-    NoDataView.frame = CGRectMake(0, BarH+HEIGHT/4, WIDHT,HEIGHT-212);
+    NoDataView.frame = CGRectMake(0, (WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)+kSuitLength_H(70)), WIDHT,HEIGHT-212);
    
     NoDataView.backgroundColor = self.view.backgroundColor;
     NoDataView.hidden = YES;
     [self.view addSubview:NoDataView];
+    [self creatFilterView];
+     [self getFilterData];
 }
 
 - (void)getFilterData{
@@ -213,46 +209,15 @@
         NSDictionary *filterData = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
 
         self.filterModel = [GetNewFilterOutPutDto objectWithKeyValues:filterData];
-//        self.filterModel = [[GetNewFilterOutPutDto alloc]init];
-//        [self.filterModel initWithDic:filterData];
         filterView.houseFilterOutPutDto = self.filterModel;
-
-        //赋值
+        self.styleArray = [NSMutableArray arrayWithArray:filterData[@"labelList"]];
+        styleView.styleArray = self.styleArray;
+        self.collectionView.hidden = NO;
+        [self.collectionView reloadData];
+        [self filterClothes];
+        //筛选界面赋值
         [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
     }];
-    //弹框赋值
-    
-    //测试数据
-    NSDictionary *d = @{@"categoryName":@"连衣裙",@"id":@"categoryId"};//品类
-    NSDictionary *d1 = @{@"seasonName":@"冬",@"key":@"seasonId"};//季节
-    NSDictionary *d2 = @{@"colourName":@"黑红",@"key":@"colourId"};//颜色
-    NSDictionary *d3 = @{@"Name":@"7天内",@"key":@"time"};//上新时间
-    NSDictionary *d4 = @{@"lableName":@"美式休闲",@"key":@"lableId"};//热门标签
-    NSDictionary *d5 = @{@"styleName":@"优雅",@"key":@"styleId"};//风格
-    NSDictionary *d6 = @{@"elementName":@"针织",@"key":@"elementId"};//元素
-    
-    NSArray *a = @[d,d,d,d,d];
-    NSArray *a1 = @[d1,d1,d1];
-     NSArray *a2 = @[d2,d2,d2];
-     NSArray *a3 = @[d3,d3,d3,d3];
-     NSArray *a4 = @[d4,d4,d4];
-     NSArray *a5 = @[d5,d5,d5];
-     NSArray *a6 = @[d6,d6,d6];
-   
-    NSDictionary *dic = @{@"categoryList":a,
-                          @"colourList":a1,
-                          @"elementList":a2,
-                          @"labelList":a3,
-                          @"seasonList":a4,
-                          @"styleList":a5,
-                          @"updateDay":a6};
-//    
-//    self.filterModel = [GetNewFilterOutPutDto objectWithKeyValues:dic];
-//
-//    filterView.houseFilterOutPutDto = self.filterModel ;
-//
-//   //赋值
-//    [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
 }
 
 - (void)initUpBtn{
@@ -321,37 +286,37 @@
   
 }
 
-- (void)getData{
-    [[YKSearchManager sharedManager]getSelectClothPageDataWithNum:1 Size:2 OnResponse:^(NSDictionary *dic) {
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView.mj_footer endRefreshing];
-        //配饰数组
-        self.styleArray = [NSMutableArray arrayWithArray:dic[@"data"][@"clothingStyles"]];
-        //品牌
-        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
-        
-        hadScroll = YES;
-        //二级类目
-        self.secondLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"secondLevelCategoryList"]];
-        self.titles = [NSMutableArray array];
-        self.categotyIds = [NSMutableArray array];
-        self.titles = [self arrayWithArray:self.secondLevelCategoryList type:2];
-        self.categotyIds = [self brandsIdarrayWithArray:self.secondLevelCategoryList type:2];
-        //三级类目
-        self.thirdLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"sortList"]];
-        self.sortTitles = [NSMutableArray array];
-        self.sortIds = [NSMutableArray array];
-        self.sortTitles = [self arrayWithArray:self.thirdLevelCategoryList type:3];
-        self.sortIds = [self brandsIdarrayWithArray:self.thirdLevelCategoryList type:3];
-        
-        //商品
-        self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
-        self.collectionView.hidden = NO;
-        [self.collectionView reloadData];
-        
-        [self getFilterData];
-    }];
-}
+//- (void)getData{
+//    [[YKSearchManager sharedManager]getSelectClothPageDataWithNum:1 Size:2 OnResponse:^(NSDictionary *dic) {
+//        [self.collectionView.mj_header endRefreshing];
+//        [self.collectionView.mj_footer endRefreshing];
+//        //配饰数组
+//        self.styleArray = [NSMutableArray arrayWithArray:dic[@"data"][@"clothingStyles"]];
+//        //品牌
+//        self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"brandList"]];
+//
+//        hadScroll = YES;
+//        //二级类目
+//        self.secondLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"secondLevelCategoryList"]];
+//        self.titles = [NSMutableArray array];
+//        self.categotyIds = [NSMutableArray array];
+//        self.titles = [self arrayWithArray:self.secondLevelCategoryList type:2];
+//        self.categotyIds = [self brandsIdarrayWithArray:self.secondLevelCategoryList type:2];
+//        //三级类目
+//        self.thirdLevelCategoryList = [NSMutableArray arrayWithArray:dic[@"data"][@"sortList"]];
+//        self.sortTitles = [NSMutableArray array];
+//        self.sortIds = [NSMutableArray array];
+//        self.sortTitles = [self arrayWithArray:self.thirdLevelCategoryList type:3];
+//        self.sortIds = [self brandsIdarrayWithArray:self.thirdLevelCategoryList type:3];
+//
+//        //商品
+//        self.productList = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
+//        self.collectionView.hidden = NO;
+//        [self.collectionView reloadData];
+//
+//        [self getFilterData];
+//    }];
+//}
 
 //title
 - (NSMutableArray *)arrayWithArray:(NSArray *)array type:(NSInteger)type{
@@ -437,18 +402,21 @@
         UICollectionReusableView *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         
         //风格
-        YKStyleView *styleView = [[YKStyleView alloc]init];
+        styleView = [[YKStyleView alloc]init];
         styleView.styleArray = self.styleArray;
         styleView.frame = CGRectMake(0, 0, WIDHT, WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13));
-        if (hadScroll) {
+        if (!hadScroll) {
             [head addSubview:styleView];
-            hadScroll = NO;
+            hadScroll = YES;
         }
         styleView.toDetailBlock = ^(NSString *styleId,NSString *styleName){//筛选风格
             weakSelf.styleId = styleId;
+            _hotTags = @[styleId];
             NSLog(@"传过来的Id==%@",styleId);
             weakSelf.pageNum = 1;
-            [weakSelf filterProductWithCategoryId:_categoryId sortId:_sortId styleId:styleId];
+            isClickTag = YES;
+            [weakSelf filterClothes];
+//            [weakSelf filterProductWithCategoryId:_categoryId sortId:_sortId styleId:styleId];
         };
         
 //        //筛选三个title
@@ -558,27 +526,29 @@
     NSLog(@"%ld", index);
 }
 
-- (void)filterProductWithCategoryId:(NSString *)CategoryId sortId:(NSString *)sortId styleId:(NSString *)styleId{
-    
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
-    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:CategoryId sortId:sortId sytleId:styleId  brandId:@"" OnResponse:^(NSArray *array) {
-        
-        [self.productList removeAllObjects];
-
-        if (array.count==0) {
-            [self.collectionView.mj_footer endRefreshing];
-        }else {
-            [self.collectionView.mj_footer endRefreshing];
-            for (int i=0; i<array.count; i++) {
-                [self.productList addObject:array[i]];
-            }
-            [self.collectionView reloadData];
-        }
-      
-        self.collectionView.hidden = NO;
-        [self.collectionView reloadData];
-    }];
-}
+//- (void)filterProductWithCategoryId:(NSString *)CategoryId sortId:(NSString *)sortId styleId:(NSString *)styleId{
+//
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:CategoryId sortId:sortId sytleId:styleId  brandId:@"" OnResponse:^(NSArray *array) {
+//
+//        [self.productList removeAllObjects];
+//
+//        if (array.count==0) {
+//            [self.collectionView.mj_footer endRefreshing];
+//            NoDataView.hidden = NO;
+//        }else {
+//            NoDataView.hidden = YES;
+//            [self.collectionView.mj_footer endRefreshing];
+//            for (int i=0; i<array.count; i++) {
+//                [self.productList addObject:array[i]];
+//            }
+//            [self.collectionView reloadData];
+//        }
+//
+//        self.collectionView.hidden = NO;
+//        [self.collectionView reloadData];
+//    }];
+//}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
     if (scrollView==self.collectionView) {
@@ -620,7 +590,7 @@
             _updateDay = @"";
         }
         _colors = colors;
-        _hotTags = hotTags;
+//        _hotTags = hotTags;
         _styles = styles;
         _elements = elements;
         
@@ -629,8 +599,8 @@
     //点击空白的回调
     [filterView setDidSelectedCallback:^(NSString *circleId, NSString *content, NSInteger tag){
         weakSelf.backView.hidden = YES;
-        _pageNum = 1;
-        [weakSelf filterClothes];
+//        _pageNum = 1;
+//        [weakSelf filterClothes];
     }];
     
     [[UIApplication sharedApplication].keyWindow addSubview:filterView];
@@ -640,23 +610,29 @@
 - (void)showFilterView{
     //赋值
      _backView.hidden = NO;
+    //筛选界面赋值
+//    [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
     [filterView showDropDownWithTag:20003];
+    
 }
 
 - (void)filterClothes{
-    [[YKSearchManager sharedManager]filterDataWithCategoryIdList:_categoryIds colourIdList:_colors elementIdList:_elements labelIdList:_hotTags seasonIdList:_seasonIds styleIdList:_styles updateDay:_updateDay  page:_pageNum size:10 exist:_exitStatus OnResponse:^(NSDictionary *dic) {
-        
-        if ([dic[@"status"] intValue] != 200) {
+    [[YKSearchManager sharedManager]filterDataWithCategoryIdList:_categoryIds colourIdList:_colors elementIdList:_elements labelIdList:_hotTags seasonIdList:_seasonIds styleIdList:_styles updateDay:_updateDay  page:_pageNum size:20 exist:_exitStatus OnResponse:^(NSDictionary *dic) {
+       
+        if ([dic[@"status"] intValue] != 200) {//服务器错误
             [smartHUD alertText:kWindow alert:dic[@"msg"] delay:1.2];
             [self performSelector:@selector(scrollToTop) withObject:nil afterDelay:0.8];
             return ;
         }
         
+         NSArray *list = [NSArray arrayWithArray:dic[@"data"]];
+        
         if (_pageNum==1) {
             [self.productList removeAllObjects];
+            
         }
         
-        NSArray *list = [NSArray arrayWithArray:dic[@"data"]];
+       
         if (list.count==0) {
             [self.collectionView.mj_footer endRefreshing];
         }else {
@@ -670,14 +646,42 @@
             [self performSelector:@selector(scrollToTop) withObject:nil afterDelay:0.5];
             
         }
+        
+        
         self.collectionView.hidden = NO;
-//        [self.collectionView reloadData];
+        
+        if (list.count==0&&_pageNum==1) {
+            [self.collectionView reloadData];
+
+            [self performSelector:@selector(scrollTo) withObject:nil afterDelay:0.5];
+            NoDataView.hidden = NO;
+        }else {
+            [self.collectionView reloadData];
+            NoDataView.hidden = YES;
+        }
+
+        
+        [self.collectionView reloadData];
     }];
+}
+
+//
+- (void)scrollTo{
+    if (isClickTag ) {
+        isClickTag = NO;
+        return;
+    }
+    [self.collectionView setContentOffset:CGPointMake(0, 0) animated:self.collectionView.contentOffset.y>700?NO:YES];
 }
 
 - (void)scrollToTop{
    
-    [self.collectionView setContentOffset:CGPointMake(0, (WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)+2)) animated:self.collectionView.contentOffset.y>700?NO:YES];
+    if (isClickTag ) {
+        isClickTag = NO;
+    }else {
+        [self.collectionView setContentOffset:CGPointMake(0, (WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)+2)) animated:self.collectionView.contentOffset.y>700?NO:YES];
+    }
+    
     [self.collectionView reloadData];
 }
 @end

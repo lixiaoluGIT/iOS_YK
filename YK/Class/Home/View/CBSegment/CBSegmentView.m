@@ -164,7 +164,7 @@
         [btn setTitleColor:_titleSelectedColor forState:UIControlStateSelected];
         btn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
         btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = 4;
+        btn.layer.cornerRadius = btn.frame.size.height/2;
         
 //        if (style == CBSegmentStyleZoom) {
         [btn setTitleColor:[UIColor colorWithHexString:@"1a1a1a"] forState:UIControlStateNormal];

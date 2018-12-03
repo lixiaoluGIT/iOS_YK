@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *yellowImage;
 @property (weak, nonatomic) IBOutlet UILabel *yiwei;
 @property (weak, nonatomic) IBOutlet UILabel *clothName;
+@property (weak, nonatomic) IBOutlet UILabel *lineee;
 
 @end
 
@@ -47,6 +48,34 @@
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
     // 设置Label要显示的text
     [self.recommentWords  setAttributedText:setString];
+    
+    _lineee.hidden = NO;
+}
+
+- (void)setClothingCreatedate:(NSString *)clothingCreatedate{
+    _clothingCreatedate = clothingCreatedate;
+    //判断上新时间是否在48小时内
+    [self formateDate:clothingCreatedate];
+}
+
+
+- (void)formateDate:(NSString *)dateString
+{
+    
+    NSDate * nowDate = [NSDate date];
+    NSTimeInterval interval    =[dateString doubleValue] / 1000.0;
+    NSDate *needFormatDate               = [NSDate dateWithTimeIntervalSince1970:interval];
+    /////  这里的NSTimeInterval 并不是对象，是基本型，其实是double类型，是由c定义的:  typedef double NSTimeInterval;
+    NSTimeInterval time = [nowDate timeIntervalSinceDate:needFormatDate];
+    
+    //    NSLog(@"hahhahhahahhahahha%@",needFormatDate);
+    if (time<24*60*60*2) {
+        _lineee.hidden = YES;
+    }else {
+        _lineee.hidden = NO;
+        
+    }
+    
 }
 
 - (void)toDetail{

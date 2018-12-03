@@ -17,6 +17,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _statusDes.font = PingFangSC_Regular(kSuitLength_H(12));
 }
 
 - (void)noDataViewWithStatusImage:(UIImage *)imgge statusDes:(NSString *)statusDes hiddenBtn:(BOOL)hiddenBtn actionTitle:(NSString *)actionTitle actionBlock:(void (^)(void))actionBlock{

@@ -305,7 +305,7 @@
 -(void)dd{
     WeakSelf(weakSelf)
     NSInteger num = 1;
-    NSInteger size = 04;
+    NSInteger size = 20;
     [[YKHomeManager sharedManager]getMyHomePageDataWithNum:num Size:size OnResponse:^(NSDictionary *dic) {
         
         [self.collectionView.mj_header endRefreshing];

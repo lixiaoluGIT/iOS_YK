@@ -139,7 +139,7 @@
 
 //查询用户加衣劵
 - (void)searchAddCCOnResponse:(void (^)(NSDictionary *dic))onResponse{
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [YKHttpClient Method:@"GET" URLString:SearchCC_Url paramers:nil success:^(NSDictionary *dict) {
          [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] integerValue] == 200) {

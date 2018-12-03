@@ -10,6 +10,13 @@
 
 @interface YKSearchManager : NSObject
 
+@property (nonatomic,strong)NSMutableArray *categorys;
+@property (nonatomic,strong)NSMutableArray *seasons;
+@property (nonatomic,strong)NSMutableArray *times;
+@property (nonatomic,strong)NSMutableArray *colors;
+@property (nonatomic,strong)NSMutableArray *styles;
+@property (nonatomic,strong)NSMutableArray *elements;
+
 + (YKSearchManager *)sharedManager;
 
 //选衣界面

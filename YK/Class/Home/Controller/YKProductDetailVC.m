@@ -74,6 +74,8 @@
 @property (nonatomic,strong)NSMutableArray *commentsArray;//评论数组
 @property (nonatomic,strong)NSMutableArray *layoutsArr;
 
+@property (nonatomic,strong)NSString *clothingCreatedate;//上新时间
+
 //真实数据
 
 @end
@@ -129,6 +131,8 @@
         if (_isSP) {//pei s
             _sizeNum = scroll.product[@"clothingStockDTOS"][0][@"clothingStockId"];
         }
+        
+        self.clothingCreatedate = [NSString stringWithFormat:@"%@",dic[@"data"][@"clothingDetail"][@"clothingCreatedate"]];
         //生成表格需要的数组
         if (sizeArray.count>0) {
             self.dataArray = [[YKHomeManager sharedManager]getSizeArray:sizeArray];
@@ -156,6 +160,8 @@
         
 //        [self performSelector:@selector(showButtom) withObject:nil afterDelay:0.1];
         [self showButtom];
+        
+        
         [self.collectionView reloadData];
     }];
 }
@@ -674,6 +680,7 @@
             cycleView.imagesArr = self.imagesArr;
             cycleView.delegate  = self;
             self.origialFrame = cycleView.frame;
+            
             [headerView addSubview:cycleView];
             
             scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailHeader" owner:self options:nil][0];
@@ -690,7 +697,7 @@
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
             scroll.frame = CGRectMake(0, WIDHT*0.82+100,WIDHT, 330);
-        
+            scroll.clothingCreatedate = self.clothingCreatedate;
             if (!hadMakeHeader) {
                 [headerView addSubview:scroll];
                 hadMakeHeader = YES;

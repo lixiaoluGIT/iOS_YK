@@ -61,18 +61,31 @@
                                 <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFx-XX-fgE">
+                                <rect key="frame" x="15" y="23" width="40" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="0ER-F6-sVx"/>
+                                    <constraint firstAttribute="width" constant="40" id="e7y-Tu-wFM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <color key="highlightedColor" cocoaTouchSystemColor="lightTextColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="J1D-Ni-VGj" firstAttribute="leading" secondItem="HVT-lx-xrv" secondAttribute="trailing" constant="15" id="3LJ-rm-QVN"/>
                             <constraint firstItem="cB7-E8-rOf" firstAttribute="top" secondItem="Tez-kt-Hdb" secondAttribute="bottom" constant="9" id="5Os-5j-fnA"/>
                             <constraint firstAttribute="height" constant="60" id="JdQ-LM-Qwb"/>
+                            <constraint firstItem="YFx-XX-fgE" firstAttribute="centerX" secondItem="Tez-kt-Hdb" secondAttribute="centerX" id="Vb7-oC-n0y"/>
                             <constraint firstItem="HVT-lx-xrv" firstAttribute="centerY" secondItem="cB7-E8-rOf" secondAttribute="centerY" id="XAl-Ja-7Cw"/>
                             <constraint firstItem="sS9-Wt-wLL" firstAttribute="centerY" secondItem="Tez-kt-Hdb" secondAttribute="centerY" id="Z1H-8G-zdX"/>
                             <constraint firstItem="Tez-kt-Hdb" firstAttribute="top" secondItem="Fdr-4M-Ggp" secondAttribute="top" constant="15" id="gag-5P-QHs"/>
                             <constraint firstItem="cB7-E8-rOf" firstAttribute="leading" secondItem="Tez-kt-Hdb" secondAttribute="leading" id="l5t-Qc-uuA"/>
                             <constraint firstItem="HVT-lx-xrv" firstAttribute="leading" secondItem="cB7-E8-rOf" secondAttribute="trailing" constant="15" id="oeN-Q7-BBx"/>
                             <constraint firstItem="sS9-Wt-wLL" firstAttribute="leading" secondItem="Tez-kt-Hdb" secondAttribute="trailing" constant="9" id="trB-Hc-7xl"/>
+                            <constraint firstItem="YFx-XX-fgE" firstAttribute="centerY" secondItem="Tez-kt-Hdb" secondAttribute="centerY" id="yfH-gr-S24"/>
                             <constraint firstItem="J1D-Ni-VGj" firstAttribute="centerY" secondItem="HVT-lx-xrv" secondAttribute="centerY" id="zxO-3D-CRz"/>
                         </constraints>
                     </view>
@@ -151,6 +164,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="clothName" destination="sS9-Wt-wLL" id="OYV-WJ-Iy6"/>
+                <outlet property="lineee" destination="YFx-XX-fgE" id="2ze-5M-M5Y"/>
                 <outlet property="productPrice" destination="cB7-E8-rOf" id="yxj-HL-8lG"/>
                 <outlet property="recommentWords" destination="0qd-4P-ucH" id="DhM-nR-CZP"/>
                 <outlet property="scrollView" destination="RnA-Fq-SWZ" id="e1K-Or-s2e"/>
@@ -158,7 +172,7 @@
                 <outlet property="tishiImage" destination="RnA-Fq-SWZ" id="CUu-Jb-Ffm"/>
                 <outlet property="yiwei" destination="J1D-Ni-VGj" id="I2y-mc-FCJ"/>
             </connections>
-            <point key="canvasLocation" x="-247" y="1"/>
+            <point key="canvasLocation" x="-39" y="16"/>
         </tableViewCell>
     </objects>
 </document>
