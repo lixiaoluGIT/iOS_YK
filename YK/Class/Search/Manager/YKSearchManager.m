@@ -154,7 +154,7 @@
                                exist:(NSString *)exist
                           OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     
 //    NSRange range = NSMakeRange(0,updateDay.length-2);
 //    NSString *day;
@@ -163,6 +163,9 @@
 //    }else {
 //        day = @"";
 //    }
+    if (page<=1) {
+        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    }
    
     NSInteger exi = [exist intValue];
     NSDictionary *postDic = @{@"categoryIdList":CategoryIdList,
@@ -177,15 +180,6 @@
                               @"exist":exist,
                               @"classify":@"0"
                               };
-    
-//    [YKHttpClient Method:@"POST" apiName:filter_Url Params:postDic Completion:^(NSDictionary *dic) {
-//        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
-//
-//        NSLog(@"RESPONSE:%@",dic);
-//        if (onResponse) {
-//            onResponse(dic);
-//        }
-//    }];
     
     [YKHttpClient Method:@"POST" URLString:filter_Url paramers:postDic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];

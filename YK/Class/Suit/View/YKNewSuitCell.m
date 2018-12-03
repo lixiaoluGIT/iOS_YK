@@ -69,8 +69,8 @@
 - (void)public{
     NSLog(@"public");
     if (self.publicBlock) {
-        //TODO：少购物车id
-        self.publicBlock(self.suit.shoppingCartId);
+       
+        self.publicBlock(self.suitId);
     }
 }
 
@@ -150,6 +150,7 @@
     if ([dic[@"photograph"] intValue] == 2) {//没晒过
         
     }else {
+        [self.pubLicBtn setTitle:@"已晒" forState:UIControlStateNormal];
         [self.pubLicBtn setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         [self.pubLicBtn setUserInteractionEnabled:NO];
     }

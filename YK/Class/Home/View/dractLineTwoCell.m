@@ -38,13 +38,13 @@
         label.text = [_titleArr[i] isEqual:[NSNull null]] ? @"*":[NSString stringWithFormat:@"%@",_titleArr[i]];
 //        label.text = ;
         label.textColor = mainColor;
-        label.font = PingFangSC_Regular(12);
+        label.font = PingFangSC_Regular(kSuitLength_H(12));
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];
         
         if (row==0) {
             label.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-            label.font = PingFangSC_Medium(12);
+            label.font = PingFangSC_Medium(kSuitLength_H(12));
         }
         
         
@@ -94,12 +94,12 @@
 //        label.font = PingFangSC_Regular(14);
 //        label.textAlignment = NSTextAlignmentCenter;
 //        [self addSubview:label];
-////        NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-////        paragraphStyle.alignment = NSTextAlignmentCenter;
-////
-////        UIFont * font = [UIFont systemFontOfSize:14];
-////        NSDictionary * dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
-////        [_titleArr[i] drawInRect:CGRectMake( 15*WIDHT/414 + (WIDHT-15*2)/_titleArr.count*i, 5 , 60, 30) withAttributes:dic];
+//        NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//        paragraphStyle.alignment = NSTextAlignmentCenter;
+//
+//        UIFont * font = [UIFont systemFontOfSize:14];
+//        NSDictionary * dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
+//        [_titleArr[i] drawInRect:CGRectMake( 15*WIDHT/414 + (WIDHT-15*2)/_titleArr.count*i, 5 , 60, 30) withAttributes:dic];
 //    }
     
     

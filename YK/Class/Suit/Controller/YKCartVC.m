@@ -120,7 +120,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
-//    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
     if ([Token length] == 0) {
         [self.dataArray removeAllObjects];
         [self.tableView reloadData];
@@ -139,6 +139,8 @@
         }
         return;
     }
+    
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [self searchAddCloth];
     [self getNum];
     

@@ -38,7 +38,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Suit/Manager/YKSuitManager.m"
-            timestampString = "565501989.985949"
+            timestampString = "565519604.5690449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "204"
@@ -86,7 +86,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Suit/Manager/YKSuitManager.m"
-            timestampString = "565501989.986379"
+            timestampString = "565519604.56934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/View/YKFilterView.m"
-            timestampString = "565501989.986593"
+            timestampString = "565519604.569539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "-moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:"
             landmarkType = "7">
             <Locations>
@@ -150,11 +150,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/View/YKFilterView.m"
-            timestampString = "565501989.986836"
+            timestampString = "565519604.5696909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "-moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:"
             landmarkType = "7">
          </BreakpointContent>
@@ -166,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/View/YKFilterView.m"
-            timestampString = "565501989.987128"
+            timestampString = "565519604.5698169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "435"
-            endingLineNumber = "435"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "-moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:"
             landmarkType = "7">
          </BreakpointContent>
@@ -182,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/View/YKFilterView.m"
-            timestampString = "565501989.9873331"
+            timestampString = "565519604.569942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "-initDataSourseWithType:AndSelectTag:"
             landmarkType = "7">
          </BreakpointContent>
@@ -198,11 +198,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/View/YKChooser.m"
-            timestampString = "565501989.987577"
+            timestampString = "565519604.5700721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "952"
-            endingLineNumber = "952"
+            startingLineNumber = "984"
+            endingLineNumber = "984"
             landmarkName = "-resetAction"
             landmarkType = "7">
          </BreakpointContent>
@@ -214,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/View/YKChooser.m"
-            timestampString = "565501989.987805"
+            timestampString = "565519604.570209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "525"
-            endingLineNumber = "525"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -240,7 +240,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565501989.9880331"
+            timestampString = "565519604.5703599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "621"
@@ -304,7 +304,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Suit/Controller/YKMyLoveVC.m"
-            timestampString = "565501989.988443"
+            timestampString = "565519604.570637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "491"
@@ -367,11 +367,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Suit/Manager/YKSuitManager.m"
-            timestampString = "565501989.988647"
+            timestampString = "565519604.570788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "-filterDataWithCategoryIdList:colourIdList:elementIdList:labelIdList:seasonIdList:styleIdList:updateDay:page:size:exist:OnResponse:"
             landmarkType = "7">
             <Locations>
@@ -430,11 +430,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Suit/Manager/YKSuitManager.m"
-            timestampString = "565501989.988833"
+            timestampString = "565519604.5709341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
             landmarkName = "-filterDataWithCategoryIdList:colourIdList:elementIdList:labelIdList:seasonIdList:styleIdList:updateDay:page:size:exist:OnResponse:"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,11 +446,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Suit/Manager/YKSuitManager.m"
-            timestampString = "565501989.989027"
+            timestampString = "565519604.571066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "-filterDataWithCategoryIdList:colourIdList:elementIdList:labelIdList:seasonIdList:styleIdList:updateDay:page:size:exist:OnResponse:"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,7 +462,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565501989.989219"
+            timestampString = "565519604.571218"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "630"
@@ -478,7 +478,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565501989.9894381"
+            timestampString = "565519604.571385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "664"
@@ -494,7 +494,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565501989.989621"
+            timestampString = "565519604.571591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "622"
@@ -510,7 +510,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565501989.989839"
+            timestampString = "565519604.571746"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "642"
@@ -526,7 +526,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565501989.990019"
+            timestampString = "565519604.571956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "643"
@@ -542,12 +542,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Home/Model/YKProduct.m"
-            timestampString = "565501989.990281"
+            timestampString = "565519604.5721281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "-formateDate:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Communication/Controller/TopPublicVC.m"
+            timestampString = "565512341.119408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "-Public"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TopPublicVC Public]"
+                  moduleName = "YK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edz/iOS_YK/YK/Class/Communication/Controller/TopPublicVC.m"
+                  timestampString = "565511529.108444"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__21-[TopPublicVC Public]_block_invoke"
+                  moduleName = "YK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edz/iOS_YK/YK/Class/Communication/Controller/TopPublicVC.m"
+                  timestampString = "565511529.1125391"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "YK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edz/iOS_YK/YK/Class/Communication/Controller/TopPublicVC.m"
+                  timestampString = "565511529.116608"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Tool/Other/DXAlertView.m"
+            timestampString = "565521306.06338"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "-btnClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

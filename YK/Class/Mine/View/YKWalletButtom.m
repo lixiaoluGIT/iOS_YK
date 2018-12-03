@@ -63,16 +63,20 @@
     switch (status) {
         case 0://押金未交
             _des.text = @"未交押金,缴纳押金享受会员权益";
+            [_scanBtn setTitle:@"缴纳押金" forState:UIControlStateNormal];
             break;
             
         case 1://押金有效
             _des.text = @"已交押金,可享受平台各种会员服务";
+            [_scanBtn setTitle:@"退还押金" forState:UIControlStateNormal];
             break;
         case 2://押金退还中
             _des.text = @"押金退还中";
+            [_scanBtn setTitle:@"押金退还中" forState:UIControlStateNormal];
             break;
         case 3://押金无效
              _des.text = @"未交押金,缴纳押金享受会员权益";
+            [_scanBtn setTitle:@"缴纳押金" forState:UIControlStateNormal];
             break;
         default:
             break;

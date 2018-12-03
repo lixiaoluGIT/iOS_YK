@@ -142,6 +142,7 @@
         _accountGap.constant = 20;
         _bh.constant = 195;
         
+        self.yaJin.text = @"已交押金";
     }
     if (_payType == ONCE_CARD) {
         if (self.CouponNum==0) {
@@ -187,6 +188,7 @@
         }else {//押金有效(只续费)
             _yuanJia.text = @"¥299";
             _yaJin.text = @"¥0";
+             self.yaJin.text = @"已交押金";
             NSInteger total = 299 - _CouponNum - [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
             
@@ -205,6 +207,7 @@
         }else {//押金有效(只续费)
             _yuanJia.text = @"¥807";
             _yaJin.text = @"¥0";
+             self.yaJin.text = @"已交押金";
             NSInteger total = 807 - _CouponNum- [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
         }
@@ -222,6 +225,7 @@
         }else {//押金有效(只续费)
             _yuanJia.text = @"¥2988";
             _yaJin.text = @"¥0";
+             self.yaJin.text = @"已交押金";
             NSInteger total = 2988 - _CouponNum- [_account intValue];
             _total.text = [NSString stringWithFormat:@"¥%ld",total];
         }
@@ -232,8 +236,9 @@
         _yj.hidden = NO;
         
     }else {//押金有效(只续费)
-        _yaJin.hidden = YES;
-        _yj.hidden = YES;
+//        _yaJin.hidden = YES;
+//        _yj.hidden = YES;
+         self.yaJin.text = @"已交押金";
     }
 }
 - (void)viewWillDisappear:(BOOL)animated{

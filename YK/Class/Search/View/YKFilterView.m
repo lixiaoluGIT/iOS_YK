@@ -92,6 +92,16 @@
 // 点击非选择区域, 回收选项标签
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
+    
+    //如果筛选条件没变
+    BOOL filterChange = [UD boolForKey:@"filterDid"];
+    if (!filterChange) {
+         [self hideDropDown];
+        [UD setBool:NO forKey:@"filterDid"];
+        return;
+    }
+    
+    //筛选条件改变
     //组装数据
     //遍历标签数组，拿到选中的key
     
@@ -384,6 +394,11 @@
     [styles addObjectsFromArray:ystyles];//选中的风格
     [elements addObjectsFromArray:yelements];//选中的元素
     
+    //如果筛选条件没变
+    if (![UD boolForKey:@"filterDid"]) {
+      
+        [UD setBool:NO forKey:@"filterDid"];
+    }
     NSLog(@"清空了所有的选中标签");
 }
 

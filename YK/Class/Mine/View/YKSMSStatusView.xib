@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="432" height="128.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wuliu" translatesAutoresizingMaskIntoConstraints="NO" id="7Zc-0C-p7j">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wuliu-1" translatesAutoresizingMaskIntoConstraints="NO" id="7Zc-0C-p7j">
                         <rect key="frame" x="20" y="39.5" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="exk-Qh-V5W"/>
@@ -29,19 +29,19 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物流状态:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHX-DZ-JAr">
                         <rect key="frame" x="84" y="24.5" width="62" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运单编号:829299192332" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USA-ZL-PmJ">
                         <rect key="frame" x="84" y="56.5" width="167.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="官方电话:110" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19I-R6-vZP">
                         <rect key="frame" x="84" y="87.5" width="83" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运输中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4T9-US-dHZ">
@@ -51,7 +51,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="USA-ZL-PmJ" firstAttribute="centerY" secondItem="7Zc-0C-p7j" secondAttribute="centerY" id="GI8-QT-kcR"/>
                     <constraint firstItem="4T9-US-dHZ" firstAttribute="leading" secondItem="aHX-DZ-JAr" secondAttribute="trailing" constant="4" id="Qfb-G5-9Sk"/>
@@ -71,7 +71,7 @@
                 <outlet property="recMan" destination="7wq-ah-PTb" id="1CX-nC-peC"/>
                 <outlet property="smsStatus" destination="4T9-US-dHZ" id="Uo8-8Z-nzH"/>
             </connections>
-            <point key="canvasLocation" x="19" y="204"/>
+            <point key="canvasLocation" x="-31" y="-22"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="2nA-2h-cab" customClass="YKSMSStatusView">
             <rect key="frame" x="0.0" y="0.0" width="405" height="69"/>
@@ -144,6 +144,6 @@
     </objects>
     <resources>
         <image name="paisongyuan" width="18" height="18"/>
-        <image name="wuliu" width="16" height="14"/>
+        <image name="wuliu-1" width="16" height="16"/>
     </resources>
 </document>

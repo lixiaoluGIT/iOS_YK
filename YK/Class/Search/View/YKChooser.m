@@ -114,6 +114,7 @@ static CGFloat const kYGap = 10.f;
         
         [view addSubview:self];
         
+        
     }
     return self;
 }
@@ -523,6 +524,9 @@ static CGFloat const kYGap = 10.f;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    //筛选条件改变
+    [UD setBool:YES forKey:@"filterDid"];
+    
     NSString *str = _tagTitleArr[indexPath.section];
     
     NSArray *tags = (NSArray *)[_orignalMDicTags objectForKey:str];
@@ -596,6 +600,13 @@ static CGFloat const kYGap = 10.f;
             [_resetBtn.titleLabel setTextColor:blackTextColor];
         }
         [collectionView reloadData];
+        //把选择的值赋给单例,供点空白的时候刷新商品用
+        [YKSearchManager sharedManager].styles = _styles;
+        [YKSearchManager sharedManager].categorys = _types;
+        [YKSearchManager sharedManager].times = _openTimes;
+        [YKSearchManager sharedManager].seasons = _seasons;
+        [YKSearchManager sharedManager].elements = _elements;
+        [YKSearchManager sharedManager].styles = _types;
         return;
     }
     
@@ -712,6 +723,13 @@ static CGFloat const kYGap = 10.f;
             [_resetBtn.titleLabel setTextColor:blackTextColor];
         }
         [collectionView reloadData];
+        //把选择的值赋给单例,供点空白的时候刷新商品用
+        [YKSearchManager sharedManager].styles = _styles;
+        [YKSearchManager sharedManager].categorys = _types;
+        [YKSearchManager sharedManager].times = _openTimes;
+        [YKSearchManager sharedManager].seasons = _seasons;
+        [YKSearchManager sharedManager].elements = _elements;
+        [YKSearchManager sharedManager].styles = _types;
         return;
     }
     
@@ -765,6 +783,14 @@ static CGFloat const kYGap = 10.f;
             [_resetBtn.titleLabel setTextColor:blackTextColor];
         }
         [collectionView reloadData];
+        
+        //把选择的值赋给单例,供点空白的时候刷新商品用
+        [YKSearchManager sharedManager].styles = _styles;
+        [YKSearchManager sharedManager].categorys = _types;
+        [YKSearchManager sharedManager].times = _openTimes;
+        [YKSearchManager sharedManager].seasons = _seasons;
+        [YKSearchManager sharedManager].elements = _elements;
+        [YKSearchManager sharedManager].styles = _types;
         return;
     }
     
@@ -797,6 +823,8 @@ static CGFloat const kYGap = 10.f;
     [YKSearchManager sharedManager].styles = _types;
     
     [collectionView reloadData];
+    
+   
 }
 
 
@@ -805,6 +833,7 @@ static CGFloat const kYGap = 10.f;
 - (void)showInView
 {
     
+    [UD setBool:NO forKey:@"filterDid"];
  
     [self endEditing:YES];
  
@@ -902,6 +931,9 @@ static CGFloat const kYGap = 10.f;
 // 点击了更多的重置
 -(void)resetAction
 {
+    
+    //筛选条件改变
+    [UD setBool:YES forKey:@"filterDid"];
     
     [self.selectedTags removeAllObjects];
     

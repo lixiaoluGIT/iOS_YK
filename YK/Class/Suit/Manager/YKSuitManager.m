@@ -31,10 +31,10 @@
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
 
-        [MobClick event:@"__add_cart" attributes:@{@"item":@"衣库服饰",@"amount":@"200"}];
+        [MobClick event:@"__add_cart" attributes:@{@"item":@"衣库服饰",@"amount":@""}];
         
         if ([dic[@"status"] integerValue] == 200) {
-//            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"已成功添加至衣袋" delay:1.2];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"添加衣袋成功" delay:1.2];
             if (onResponse) {
                 onResponse(dic);
             }
@@ -329,7 +329,10 @@
                                exist:(NSString *)exist
                           OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
-    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    if (page<=0) {
+          [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    }
+  
 
     NSDictionary *postDic = @{@"CategoryIdList":CategoryIdList,
                               @"colourIdList":colourIdList,

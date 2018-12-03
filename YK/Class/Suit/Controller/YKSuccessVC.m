@@ -70,7 +70,7 @@
     self.navigationItem.titleView = title;
     
     self.scan.layer.masksToBounds = YES;
-    self.scan.layer.cornerRadius = 18;
+    self.scan.layer.cornerRadius = self.scan.frame.size.height/2;
     self.returnBtn.layer.masksToBounds = YES;
     self.returnBtn.layer.cornerRadius = 18;
     
