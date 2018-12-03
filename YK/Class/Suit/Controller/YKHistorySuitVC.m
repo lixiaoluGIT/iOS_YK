@@ -69,7 +69,7 @@
 //        [self.tableView reloadData];
 //    }];
     
-    [[YKOrderManager sharedManager]searchHistoryOrderWithOrderStatus:0 OnResponse:^(NSDictionary *dic) {
+    [[YKOrderManager sharedManager]searchBeHistoryOrderWithOrderStatus:0 OnResponse:^(NSDictionary  *dic) {
         if ([dic[@"userOrderVoList"] isEqual:[NSNull null]]) {
             return ;
         }

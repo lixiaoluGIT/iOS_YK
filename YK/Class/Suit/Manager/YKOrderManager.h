@@ -12,9 +12,9 @@
 
 typedef enum : NSInteger {
     totalBag = 0,//全部
-    toReceive = 2,//待签收
-    toBack = 3,//待归还
-    hadBack = 5,//已归还
+    toReceive = 1,//待签收
+    toBack = 2,//待归还
+    hadBack = 3,//已归还
 }suitBagStatus;
 
 #import <Foundation/Foundation.h>
@@ -70,5 +70,6 @@ typedef enum : NSInteger {
 - (void)clear;
 
 //查询历史订单(新接口)
-- (void)searchHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)searchBeHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse;
+- (void)searchHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSArray *array))onResponse;
 @end

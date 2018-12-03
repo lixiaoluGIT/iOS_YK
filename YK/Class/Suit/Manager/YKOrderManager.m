@@ -399,7 +399,7 @@
     
     [self clear];
     
-    NSString *url = [NSString stringWithFormat:@"%@?orderId=%@&orderStatus=%@",ensureReceiveOrder_Url,orderNo,@"4"];
+    NSString *url = [NSString stringWithFormat:@"%@?orderNo=%@",ensureReceiveOrder_Url,orderNo];
     [YKHttpClient Method:@"GET" apiName:url Params:nil Completion:^(NSDictionary *dic) {
         
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -603,8 +603,23 @@
     [YKOrderManager sharedManager].ID = nil;
 }
 
+//
+- (void)searchBeHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSString *str = [NSString stringWithFormat:@"%@?orderState=%ld",newQueryOrder_Url,(long)status];
+    [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+   
+      
+        if (onResponse) {
+            onResponse(dic);
+        }
+        
+    }];
+}
 //查询历史订单(新接口)
-- (void)searchHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSDictionary *dic))onResponse{
+- (void)searchHistoryOrderWithOrderStatus:(NSInteger)status OnResponse:(void (^)(NSArray     *array))onResponse{
  
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
    
@@ -612,13 +627,224 @@
     [YKHttpClient Method:@"GET" apiName:str Params:nil Completion:^(NSDictionary *dic) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
-//        NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"userOrderVoList"]];
-        if (onResponse) {
-            onResponse(dic);
+        if (status == 0) {//全部衣袋
+            [self groupOrderWithDictionary:dic groupDoneBlock:^{
+                if (onResponse) {
+                    onResponse(nil);
+                }
+            }];
+            
+            return ;
         }
+        
+        if (status == 1) {//待签收
+            NSMutableArray *list = [NSMutableArray arrayWithArray:dic[@"data"][@"userOrderVoList"]];
+            NSMutableArray *arr = [NSMutableArray array];
+           
+            for (NSDictionary *model in list) {
+                NSArray *a = [NSArray arrayWithArray:model[@"userOrderDetailsVoList"]];
+                [arr addObjectsFromArray:a];
+            }
+            
+            NSDictionary *dic;
+            if (list.count!=0) {
+                 dic = [NSDictionary dictionaryWithDictionary:list[0]];
+                _orderNo = list[0][@"orderNo"];
+                
+                if ([dic[@"sendTime"] isEqual:[NSNull null]]) {//是否发货
+                    _isOnRoad = NO;
+                    
+                }else {
+                    _isOnRoad = YES;
+                }
+            }
+            
+            
+            
+            if (onResponse) {
+                onResponse(arr);
+            }
+            return;
+        }
+       
+        
+        if (status == 2) {//待归还
+            NSLog(@"%@",dic);
+            NSMutableArray *list = [NSMutableArray arrayWithArray:dic[@"data"][@"userOrderVoList"]];
+            if (list.count==0) {
+                if (onResponse) {
+                    onResponse(list);
+                }
+                return ;
+            }
+            NSMutableArray *arr = [NSMutableArray array];
+            
+            for (NSDictionary *model in list) {
+                NSArray *a = [NSArray arrayWithArray:model[@"userOrderVoList"]];
+                [arr addObjectsFromArray:a];
+            }
+//            listArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+//            _orderNo = dic[@"data"][0][@"orderNo"];
+//            _ID = dic[@"data"][0][@"id"];
+//            NSDictionary *dic;
+//            if (list.count!=0) {
+//                dic = [NSDictionary dictionaryWithDictionary:list[0]];
+//                _orderNo = list[0][@"orderNo"];
+//
+//                if ([dic[@"sendTime"] intValue] > 0) {//是否发货
+//                    _isOnRoad = YES;
+//
+//                }else {
+//                    _isOnRoad = NO;
+//                }
+//            }
+            
+            
+            
+            if (onResponse) {
+                onResponse(list);
+            }
+        }
+//        NSMutableArray *array = [NSMutableArray arrayWithArray:dic[@"userOrderVoList"]];
+//        if (onResponse) {
+//            onResponse(nil);
+//        }
 
+        if (status == 3) {//待归还
+            NSLog(@"%@",dic);
+            NSMutableArray *list = [NSMutableArray arrayWithArray:dic[@"data"][@"userOrderVoList"]];
+            if (list.count==0) {
+                if (onResponse) {
+                    onResponse(list);
+                }
+                return ;
+            }
+            NSMutableArray *arr = [NSMutableArray array];
+            
+            for (NSDictionary *model in list) {
+                NSArray *a = [NSArray arrayWithArray:model[@"userOrderDetailsVoList"]];
+                [arr addObjectsFromArray:a];
+            }
+            //            listArray = [NSMutableArray arrayWithArray:dic[@"data"]];
+            //            _orderNo = dic[@"data"][0][@"orderNo"];
+            //            _ID = dic[@"data"][0][@"id"];
+            //            NSDictionary *dic;
+            //            if (list.count!=0) {
+            //                dic = [NSDictionary dictionaryWithDictionary:list[0]];
+            //                _orderNo = list[0][@"orderNo"];
+            //
+            //                if ([dic[@"sendTime"] intValue] > 0) {//是否发货
+            //                    _isOnRoad = YES;
+            //
+            //                }else {
+            //                    _isOnRoad = NO;
+            //                }
+            //            }
+            
+            
+            
+            if (onResponse) {
+                onResponse(arr);
+            }
+        }
     }];
-     
 }
+
+//分组
+- (void)groupOrderWithDictionary:(NSDictionary *)dic groupDoneBlock:(void (^)(void))groupDoneBlock; {
+    
+    NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"userOrderVoList"]];
+    NSMutableArray *totlaList = [NSMutableArray array];
+    NSMutableArray *receiveList = [NSMutableArray array];//存储待签收
+    NSMutableArray *backList = [NSMutableArray array];//存储待归还(di'yi'd)
+    NSMutableArray *backList2 = [NSMutableArray array];//存储待归还(第二单)
+    
+    NSMutableArray *hadBackList = [NSMutableArray array];//存储已归还
+    
+    for (NSDictionary *model in currentArray) {
+        
+        //不是4,5,8的状态全部放入待签收
+        if ([model[@"orderState"] intValue] == 1){
+            
+            //如果状态有1或2,存在待配货或待发货的订单
+            if ([model[@"orderState"] intValue] == 1 || [model[@"orderState"] intValue] == 2 ){
+                _isOnRoad = NO;
+            }else {//状态为3(待签收)已发货
+                _isOnRoad = YES;
+            }
+         
+            self.orderNo = model[@"orderNo"];
+            self.ID = model[@"id"];
+            receiveList = [NSMutableArray arrayWithArray:model[@"userOrderDetailsVoList"]];
+        }if ([model[@"orderState"] intValue] == 2) {//待归还
+            self.orderNo = model[@"orderNo"];
+            self.ID = model[@"id"];
+            
+            if (backList.count>0) {//第二个待归还
+                [backList2 addObject:model[@"userOrderDetailsVoList"]];
+                
+            }else {
+                //第一个待归还
+                [backList addObject:model[@"userOrderDetailsVoList"]];
+            }
+            
+        }else if([model[@"orderState"] intValue] == 3) {//已归还
+            
+            if (hadBackList.count > 0 ) {
+                [totlaList removeObject:hadBackList];
+                NSMutableArray *totalArray = [NSMutableArray arrayWithArray:hadBackList[0]];
+                
+                NSArray *array = [NSArray arrayWithArray:model[@"userOrderDetailsVoList"]];
+                for (int index=0; index<array.count; index++) {
+                    [totalArray addObject:array[index]];
+                }
+                [hadBackList removeAllObjects];
+                [hadBackList insertObject:totalArray atIndex:0];
+            }else {
+                [hadBackList addObject:model[@"userOrderDetailsVoList"]];
+            }
+        }
+        
+        if (receiveList.count>0&&![totlaList containsObject:receiveList]) {
+            [totlaList insertObject:receiveList atIndex:0];
+            if (![self.sectionArray containsObject:receiveSection]) {
+                [self.sectionArray addObject:receiveSection];
+            }
+        }
+        
+        if (backList.count>0&&![totlaList containsObject:backList]) {
+            [totlaList insertObject:backList atIndex:0];
+            [self.sectionArray addObject:backSection];
+        }
+        
+        if (backList2.count>0&&![totlaList containsObject:backList2]) {
+            [totlaList insertObject:backList2 atIndex:0];
+            [self.sectionArray addObject:backSection];
+        }
+        
+        if (hadBackList.count>0&&![totlaList containsObject:hadBackList]) {
+            [totlaList addObject:hadBackList];
+            if (![self.sectionArray containsObject:hadBackSection]) {
+                [self.sectionArray addObject:hadBackSection];
+            }
+        }
+    }
+    
+    NSArray *resultArray = [self.sectionArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        
+        return [obj1 compare:obj2]; //升序
+        
+    }];
+    
+    self.sectionArray = [NSMutableArray arrayWithArray:resultArray];
+    
+    self.totalOrderList = totlaList;
+    
+    if (groupDoneBlock) {//分组完毕
+        groupDoneBlock();
+    }
+    
+}
+
 
 @end

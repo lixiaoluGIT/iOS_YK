@@ -141,6 +141,7 @@
 		00A0CC4E2090265D001205A1 /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC462090265C001205A1 /* UMShare.framework */; };
 		00A0CC4F2090265D001205A1 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00A0CC482090265C001205A1 /* UMSocialSDKResources.bundle */; };
 		00A0CC502090265D001205A1 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC492090265C001205A1 /* UShareUI.framework */; };
+		00A37FEE21B52ED000303CC7 /* YKHistoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A37FED21B52ED000303CC7 /* YKHistoryListVC.m */; };
 		00AA32042174A4810040C5A6 /* YKProductAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA32022174A4810040C5A6 /* YKProductAleartView.m */; };
 		00AA32052174A4810040C5A6 /* YKProductAleartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AA32032174A4810040C5A6 /* YKProductAleartView.xib */; };
 		00B7F22F20B684E80086EFBB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B7F22E20B684E80086EFBB /* GameKit.framework */; };
@@ -902,6 +903,8 @@
 		00A0CC462090265C001205A1 /* UMShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMShare.framework; sourceTree = "<group>"; };
 		00A0CC482090265C001205A1 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		00A0CC492090265C001205A1 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		00A37FEC21B52ECF00303CC7 /* YKHistoryListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHistoryListVC.h; sourceTree = "<group>"; };
+		00A37FED21B52ED000303CC7 /* YKHistoryListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHistoryListVC.m; sourceTree = "<group>"; };
 		00AA32012174A4810040C5A6 /* YKProductAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductAleartView.h; sourceTree = "<group>"; };
 		00AA32022174A4810040C5A6 /* YKProductAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductAleartView.m; sourceTree = "<group>"; };
 		00AA32032174A4810040C5A6 /* YKProductAleartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKProductAleartView.xib; sourceTree = "<group>"; };
@@ -2607,6 +2610,8 @@
 				C525DEB41FBDA023002802AE /* YKEditAddressVC.m */,
 				C55D49181FC2EAB6000D2056 /* YKMySuitBagVC.h */,
 				C55D49191FC2EAB6000D2056 /* YKMySuitBagVC.m */,
+				00A37FEC21B52ECF00303CC7 /* YKHistoryListVC.h */,
+				00A37FED21B52ED000303CC7 /* YKHistoryListVC.m */,
 				C5343C721FC526BF00F5132A /* YKNormalQuestionVC.h */,
 				C5343C731FC526BF00F5132A /* YKNormalQuestionVC.m */,
 				C52D0F9F1FC6CE2800B50258 /* YKWalletVC.h */,
@@ -4658,6 +4663,7 @@
 				004FAB1A2170E9300083F607 /* YKDetailFootView.m in Sources */,
 				C5FB7857205904780076DD6F /* UIControl+YYAdd.m in Sources */,
 				C5FB78D3205908F80076DD6F /* NSArray+BlocksKit.m in Sources */,
+				00A37FEE21B52ED000303CC7 /* YKHistoryListVC.m in Sources */,
 				00303CE42187092500B9ACB7 /* GetNewFilterOutPutDto.m in Sources */,
 				C525DDD61FBAB40D002802AE /* YKMainVC.m in Sources */,
 				C5FB7874205904780076DD6F /* YYReachability.m in Sources */,

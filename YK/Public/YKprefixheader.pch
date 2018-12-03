@@ -488,7 +488,7 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 //查询物流信息
 #define queryOrderZTSMSInfor_Url @"/sendback/getExpressTrack"
 //确认收货...更新订单
-#define ensureReceiveOrder_Url @"/order/updateOrder"
+#define ensureReceiveOrder_Url @"/order/collectGoods"
 //预约归还(下圆通订单) POST /sendback/makeAppointment
 #define orderReceiveOrder_Url @"/sendback/makeAppointment"
 //查询待归还订单是否预约归还 POST /sendback/getTrackResult ///yt/getYTTrackResult
