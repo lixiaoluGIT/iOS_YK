@@ -48,6 +48,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[UITabBar appearance] setTranslucent:NO];
     [UD removeObjectForKey:@"hadLoad"];
     [NC addObserver:self selector:@selector(registerSuccess) name:@"registerSuccess" object:nil];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];

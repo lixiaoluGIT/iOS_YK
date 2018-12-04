@@ -19,18 +19,21 @@
 #import "YKCartHeader.h"
 #import "YKCouponListVC.h"
 #import "YKMyLoveVC.h"
+#import "YKLoveNoDataView.h"
+
 
 @interface YKCartVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
 {
     NSInteger maxClothesNum;//最大衣位数
     NSInteger currentClothesNum;//当前衣位数
-    YKNoDataView *NoDataView;
+    YKLoveNoDataView *noDataView;
     YKCartHeader *cartheader;
     
     NSInteger totalNum;//总衣位数
     NSInteger useNum;//已占用衣位数
     NSInteger leaseNum;//剩余衣位数
     NSInteger ccNum;
+    UIButton *buttom;
 }
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -42,6 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    WeakSelf(weakSelf)
     maxClothesNum = 4;
     currentClothesNum=3;
    
@@ -49,6 +53,34 @@
     [self creatHeader];
     [self creatTableView];
 //    [self creatButtom];
+    
+//    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+//    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无商品"] statusDes:@"暂无衣物" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
+//        YKSearchVC *chatVC = [[YKSearchVC alloc] init];
+//        chatVC.hidesBottomBarWhenPushed = YES;
+//        UINavigationController *nav = self.tabBarController.viewControllers[1];
+//        chatVC.hidesBottomBarWhenPushed = YES;
+//        self.tabBarController.selectedViewController = nav;
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }];
+//    NoDataView.frame = CGRectMake(0, (WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)+kSuitLength_H(70)), WIDHT,HEIGHT-212);
+//    NoDataView.backgroundColor = self.view.backgroundColor;
+//    NoDataView.hidden = YES;
+//    [self.view addSubview:NoDataView];
+    noDataView = [[YKLoveNoDataView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(130), WIDHT, kSuitLength_H(500))];
+    noDataView.hidden = YES;
+    [noDataView reSetTitle];
+    noDataView.selectClothes = ^{
+        YKSearchVC *chatVC = [[YKSearchVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = weakSelf.tabBarController.viewControllers[1];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        weakSelf.tabBarController.selectedViewController = nav;
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+    };
+    [self.view addSubview:noDataView];
+    
+    [self creatButtom];
 }
 
 - (void)getNum{
@@ -100,34 +132,21 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-//    [self searchAddCloth];
-//    [self getCartList];
-//
-//    [self getNum];
-    
+
     self.view.backgroundColor = [UIColor whiteColor];
-    
-//    if ([Token length] == 0) {
-//        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-//            [self searchAddCloth];
-//            [self getNum];
-//        }];
-//
-//        return;
-//    }
-    [self creatButtom];
+//    [self creatButtom];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
     
     if ([Token length] == 0) {
+        noDataView.hidden = NO;
+        self.tableView.hidden = YES;
+        buttom.hidden = YES;
         [self.dataArray removeAllObjects];
         [self.tableView reloadData];
-//        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-//            [self searchAddCloth];
-//            [self getNum];
-//        }];
+
         if ([YKSuitManager sharedManager].couponId==0) {
             self.tableView.frame = CGRectMake(0, kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) ;
             cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
@@ -140,6 +159,9 @@
         return;
     }
     
+    noDataView.hidden = YES;
+    self.tableView.hidden = NO;
+    buttom.hidden = NO;
     [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     [self searchAddCloth];
     [self getNum];
@@ -200,16 +222,26 @@
     cartheader.btnAction = ^(BOOL isHadCC){
         if ([Token length] == 0) {
             [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+                noDataView.hidden = YES;
+                self.tableView.hidden = NO;
+                buttom.hidden = NO;
+                [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
                 [self searchAddCloth];
                 [self getNum];
+                
+                if ([YKSuitManager sharedManager].couponId==0) {
+                    self.tableView.frame = CGRectMake(0, kSuitLength_H(73), WIDHT, HEIGHT-kSuitLength_H(150)) ;
+                    cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(74));
+                    cartheader.hidden = NO;
+                }else {
+                    self.tableView.frame = CGRectMake(0, kSuitLength_H(0), WIDHT, HEIGHT-kSuitLength_H(150));
+                    cartheader.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(0));
+                    cartheader.hidden = YES;
+                }
+              
 
             }];
-//            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-//                [weakSelf presentViewController:login animated:YES completion:^{
-//
-//                }];
-//                login.hidesBottomBarWhenPushed = YES;
-                return;
+            return;
             
         }
         if (isHadCC) {//使用加衣券，去选加衣券
@@ -222,8 +254,6 @@
                
             };
             list.hidesBottomBarWhenPushed = YES;
-//            list.selectCoupon = <#^(NSInteger CouponNum, int CouponId)#>
-            
             [weakSelf.navigationController pushViewController:list animated:YES];
         }else{//购买加衣券，去购买界面
             YKBuyAddCCVC *buy = [[YKBuyAddCCVC alloc]init];
@@ -252,7 +282,7 @@
 }
 
 - (void)creatButtom{
-    UIButton *buttom = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttom = [UIButton buttonWithType:UIButtonTypeCustom];
 //    if (WIDHT==320) {
 //        buttom.frame = CGRectMake(0, self.view.frame.size.height-56*WIDHT/414-50, self.view.frame.size.width, 56*WIDHT/414);
 //    }
@@ -301,6 +331,8 @@
     if ([Token length] == 0) {
         [buttom setTitle:@"去逛逛" forState:UIControlStateNormal];
     }
+    
+    buttom.hidden = YES;
 }
 
 - (void)toRelease{

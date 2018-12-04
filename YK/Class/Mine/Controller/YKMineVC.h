@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YKMineVC : UIViewController
+@interface YKMineVC : YKBaseVC
 @property (nonatomic, strong) UIImageView *headImageView;
 
 @property (nonatomic, assign) CGRect origialFrame;

@@ -134,7 +134,7 @@
     buttom.frame = CGRectMake(0, self.view.frame.size.height-kSuitLength_H(44), WIDHT, kSuitLength_H(44));
     [buttom setTitle:@"提交订单" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buttom.titleLabel.font = PingFangSC_Semibold(kSuitLength_H(12));
+    buttom.titleLabel.font = PingFangSC_Semibold(kSuitLength_H(14));
     buttom.backgroundColor = YKRedColor;
     [buttom addTarget:self action:@selector(toRelease) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttom];

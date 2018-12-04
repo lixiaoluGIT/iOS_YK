@@ -32,10 +32,10 @@
 }
 
 - (IBAction)selectLike:(id)sender {
-    if (_likeBtn.selected) {
-        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"您已喜欢该商品" delay:1.2];
-        return;
-    }
+//    if (_likeBtn.selected) {
+//        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"您已喜欢该商品" delay:1.2];
+//        return;
+//    }
     if (self.likeSelectBlock) {
         self.likeSelectBlock(_likeBtn.selected);
     }

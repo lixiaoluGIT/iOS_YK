@@ -74,7 +74,7 @@
     
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);;
+    title.font = PingFangSC_Medium(kSuitLength_H(14));;
 
     self.navigationItem.titleView = title;
 //    [self creatWeb];

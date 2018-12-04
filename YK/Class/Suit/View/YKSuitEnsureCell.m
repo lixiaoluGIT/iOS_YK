@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *mySize;
 @property (weak, nonatomic) IBOutlet UILabel *myPrice;
 @property (weak, nonatomic) IBOutlet UIImageView *ima;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imaegW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageH;
+
 @end
 @implementation YKSuitEnsureCell
 
@@ -29,10 +33,14 @@
 //    self.ima.layer.borderWidth = 1;
     
     //字体适配
-    _myDes.font = PingFangSC_Medium(kSuitLength_H(14));
-    _myBrand.font = PingFangSC_Regular(kSuitLength_H(12));
-    _mySize.font =  PingFangSC_Regular(kSuitLength_H(12));
-    _myPrice.font = PingFangSC_Medium(kSuitLength_H(14));
+    _myDes.font = PingFangSC_Regular(kSuitLength_H(14));
+    _myBrand.font = PingFangSC_Medium(kSuitLength_H(12));
+    _mySize.font =  PingFangSC_Medium(kSuitLength_H(12));
+    _myPrice.font = PingFangSC_Medium(kSuitLength_H(12));
+    
+    _imageH.constant = kSuitLength_H(93);
+    _imaegW.constant = kSuitLength_H(76);
+  
 }
 
 - (void)setSuit:(YKSuit *)suit{

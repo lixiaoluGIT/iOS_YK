@@ -204,6 +204,7 @@
 
 - (void)getFilterData{
  
+   
     //获取筛选数据
     [[YKSearchManager sharedManager]getFilterDataOnResponse:^(NSDictionary *dic) {
         NSDictionary *filterData = [NSDictionary dictionaryWithDictionary:dic[@"data"]];
@@ -214,8 +215,9 @@
         styleView.styleArray = self.styleArray;
         self.collectionView.hidden = NO;
         [self.collectionView reloadData];
-        [self filterClothes];
+//        [self filterClothes];
         //筛选界面赋值
+         [self filterClothes];
         [filterView initDataSourseWithType:@"3" AndSelectTag:2000];
     }];
 }

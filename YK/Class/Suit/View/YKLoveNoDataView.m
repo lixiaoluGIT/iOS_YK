@@ -9,7 +9,9 @@
 #import "YKLoveNoDataView.h"
 
 @interface YKLoveNoDataView()<UIScrollViewDelegate>
-
+{
+    UIButton *toSelectBtn;
+}
 @end
 @implementation YKLoveNoDataView
 
@@ -42,16 +44,20 @@
         image.image = [UIImage imageNamed:imageArray[i]];
     }
     
-    UIButton *toSelectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    toSelectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     toSelectBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(80)/2, scrollView.frame.size.height + scrollView.frame.origin.y+kSuitLength_H(23), kSuitLength_H(80), kSuitLength_H(32));
     [toSelectBtn setTitle:@"去选衣" forState:UIControlStateNormal];
     [toSelectBtn setBackgroundColor:YKRedColor];
     [toSelectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    toSelectBtn.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+    toSelectBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
     [toSelectBtn addTarget:self action:@selector(sel) forControlEvents:UIControlEventTouchUpInside];
+    toSelectBtn.layer.cornerRadius = kSuitLength_H(32)/2;
     [self addSubview:toSelectBtn];
 }
 
+- (void)reSetTitle{
+    [toSelectBtn setTitle:@"去逛逛" forState:UIControlStateNormal];
+}
 - (void)sel{
     if (self.selectClothes) {
         self.selectClothes();

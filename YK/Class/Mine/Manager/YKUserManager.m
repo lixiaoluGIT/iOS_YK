@@ -384,7 +384,7 @@
                 OnResponse:(void (^)(NSDictionary *dic))onResponse{
     
     [self clear];
-    [YKSuitManager sharedManager].couponId = 0;
+    
 //    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -439,6 +439,7 @@
 }
 
 - (void)clear{
+    [YKSuitManager sharedManager].couponId = 0;
     [UD setObject:@"" forKey:@"token"];
     self.user = nil;
     [UD removeObjectForKey:@"lastAleartTime"];

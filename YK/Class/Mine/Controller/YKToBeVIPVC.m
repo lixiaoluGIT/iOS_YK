@@ -86,6 +86,9 @@
 
 @property (nonatomic,strong)UILabel *inviteCode;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleBtn;
+
+
 @end
 
 @implementation YKToBeVIPVC
@@ -113,6 +116,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     self.navigationController.navigationBar.hidden = YES;
+    
+    _titleBtn.font = PingFangSC_Medium(kSuitLength_H(14));
+    _titleBtn.text = @"选择卡类型";
     if (WIDHT==320) {
         isAgree = YES;
     }

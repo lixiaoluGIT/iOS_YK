@@ -106,9 +106,7 @@
         [self.productList removeAllObjects];
         [self.collectionView reloadData];
         [self getData];
-//        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-//            [self getData];
-//        }];
+
         return;
     }
     [self getData];
@@ -182,48 +180,21 @@
         _pageNum ++;
         //请求更多商品
         [weakSelf filterProductWithCategoryId:_categoryList styleId:_styleList seasonId:_seasonList];
-//        [[YKHomeManager sharedManager]requestForMoreProductsWithNumPage:_pageNum typeId:self.categoryId sortId:self.sortId sytleId:self.styleId brandId:@"" OnResponse:^(NSArray *array) {
-//
-//            NSLog(@"--%@,---%@,---%@",self.categoryId,self.sortId,array);
-//            if (array.count==0) {
-//                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
-//            }else {
-//                [weakSelf.collectionView.mj_footer endRefreshing];
-//                for (int i=0; i<array.count; i++) {
-//                    [self.productList addObject:array[i]];
-//                }
-//
-//                [self.collectionView reloadData];
-//            }
-//        }];
     }];
-    
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+       
         _pageNum = 0;
         //请求更多商品
         [self filterProductWithCategoryId:self.categoryList styleId:self.styleList seasonId:self.seasonList];
-//        [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
-//            self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
-//            self.collectStatusArray = [NSMutableArray array];
-//            for (int i=0; i<self.dataArray.count; i++) {
-//                [self.collectStatusArray addObject:@"1"];
-//            }
-//            if (self.dataArray.count==0) {//显示scrollView
-//
-//                [self.collectionView.mj_header endRefreshing];
-//
-//                [self.collectionView.mj_footer endRefreshing];
-//                noDataView.hidden = NO;
-//            }else {
-//                [self.collectionView.mj_footer endRefreshing];
-//
-//                [self.collectionView.mj_header endRefreshing];
-//                noDataView.hidden = YES;
-//                [self.collectionView reloadData];
-//            }
-//        }];
-    
+        
     }];
+    
+//    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+////        _pageNum = 0;
+////        //请求更多商品
+////        [self filterProductWithCategoryId:self.categoryList styleId:self.styleList seasonId:self.seasonList];
+////
+//    }];
     
     //空白图
     noDataView = [[YKLoveNoDataView alloc]initWithFrame:CGRectMake(0, BarH+ kSuitLength_H(130)+kSuitLength_H(20), WIDHT, kSuitLength_H(500))];
@@ -270,27 +241,6 @@
         [self.titleView setCategoryList:self.titles CategoryIdList:self.categotyIds sortIdList:self.sortIds sortList:self.sortTitles seasons:_seasons seasonIds:_seasonIds];
         
         [self filterProductWithCategoryId:self.categoryList styleId:self.styleList seasonId:self.seasonList];
-//        [[YKSuitManager sharedManager]getCollectListOnResponse:^(NSDictionary *dic) {
-//            self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"]];
-//            self.collectStatusArray = [NSMutableArray array];
-//            for (int i=0; i<self.dataArray.count; i++) {
-//                [self.collectStatusArray addObject:@"1"];
-//            }
-//            if (self.dataArray.count==0) {//显示scrollView
-//
-//                [self.collectionView.mj_footer endRefreshing];
-//
-//                [self.collectionView.mj_footer endRefreshing];
-//                noDataView.hidden = NO;
-//            }else {
-//                [self.collectionView.mj_footer endRefreshing];
-//
-//                [self.collectionView.mj_footer endRefreshing];
-//                noDataView.hidden = YES;
-//            }
-//
-//            [self.collectionView reloadData];
-//        }];
     }];
 }
 

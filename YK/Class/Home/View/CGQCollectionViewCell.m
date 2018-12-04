@@ -121,20 +121,20 @@
     }
     
     
-    if ([Token length] == 0) {//未登录
-        _freeBtn.hidden = NO;
-        _des.hidden = NO;
-    }else {
-    
-    //未开通会员
-    if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
-        _freeBtn.hidden = NO;
-        _des.hidden = NO;
-    }else {//已是会员
-        _freeBtn.hidden = YES;
-        _des.hidden = YES;
-    }
-    }
+//    if ([Token length] == 0) {//未登录
+//        _freeBtn.hidden = NO;
+//        _des.hidden = NO;
+//    }else {
+//
+//    //未开通会员
+//    if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
+//        _freeBtn.hidden = NO;
+//        _des.hidden = NO;
+//    }else {//已是会员
+//        _freeBtn.hidden = YES;
+//        _des.hidden = YES;
+//    }
+//    }
     
     if ([product.OwenNum intValue] == 2) {
          _zhanyiweiNum.text = product.OwenNum;
@@ -154,6 +154,21 @@
         _freeBtn.hidden = NO;
         _des.hidden = NO;
         _addSuitBtn.hidden = YES;
+        
+        if ([Token length] == 0) {//未登录
+            _freeBtn.hidden = NO;
+            _des.hidden = NO;
+        }else {
+            
+            //未开通会员
+            if ([[YKUserManager sharedManager].user.effective intValue] == 4) {
+                _freeBtn.hidden = NO;
+                _des.hidden = NO;
+            }else {//已是会员
+                _freeBtn.hidden = YES;
+                _des.hidden = YES;
+            }
+        }
     }
     
     _collectionId = product.collectionId;

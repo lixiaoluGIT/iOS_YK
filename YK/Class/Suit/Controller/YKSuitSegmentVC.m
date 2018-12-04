@@ -89,7 +89,7 @@
         [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         [button setTitleColor:YKRedColor forState:UIControlStateSelected];
         [button setBackgroundColor:[UIColor whiteColor]];
-        button.titleLabel.font = PingFangSC_Regular(kSuitLength_V(14));
+        button.titleLabel.font = PingFangSC_Medium(kSuitLength_V(14));
         //        button.backgroundColor = [UIColor redColor];
         
         if (i == _currentPageIndex) {

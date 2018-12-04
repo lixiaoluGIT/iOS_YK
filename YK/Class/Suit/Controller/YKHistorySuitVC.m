@@ -12,8 +12,12 @@
 #import "YKProductDetailVC.h"
 #import "YKSelectClothToPubVC.h"
 #import "TopPublicVC.h"
+#import "YKSearchVC.h"
 
 @interface YKHistorySuitVC ()<UITableViewDelegate,UITableViewDataSource>
+{
+    YKNoDataView *NoDataView;
+}
 @property (nonatomic,strong)YKHisHeader *historyHeader;
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -27,6 +31,20 @@
     
     [self creatHeader];
     [self creatTableView];
+    
+    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无订单111"] statusDes:@"暂无历史衣袋" hiddenBtn:NO actionTitle:@"去逛逛" actionBlock:^{
+        YKSearchVC *chatVC = [[YKSearchVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = self.tabBarController.viewControllers[1];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.selectedViewController = nav;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    NoDataView.frame = CGRectMake(0, (WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)+kSuitLength_H(70)), WIDHT,HEIGHT-212);
+    NoDataView.backgroundColor = self.view.backgroundColor;
+    NoDataView.hidden = YES;
+    [self.view addSubview:NoDataView];
     
 }
 
@@ -50,30 +68,27 @@
         _historyHeader.Number = @"0";
         _historyHeader.Price = @"0";
         [self.tableView reloadData];
-        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-            [self getHistoryList];
-        }];
-        //        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
-        //            [self searchAddCloth];
-        //            [self getNum];
-        //        }];
-       
         
-        
-       
+        NoDataView.hidden = NO;
+         self.tableView.hidden = YES;
         return;
     }
-//    [[YKOrderManager sharedManager]searchOrderWithOrderStatus:5 OnResponse:^(NSMutableArray *array) {
-//        self.dataArray = [NSMutableArray arrayWithArray:array];
-//        _historyHeader.clothList = self.dataArray;
-//        [self.tableView reloadData];
-//    }];
+
     
     [[YKOrderManager sharedManager]searchBeHistoryOrderWithOrderStatus:0 OnResponse:^(NSDictionary  *dic) {
-        if ([dic[@"userOrderVoList"] isEqual:[NSNull null]]) {
+        NSArray *a = [NSArray arrayWithArray:dic[@"data"][@"userOrderVoList"]];
+        
+        if (a.count==0) {
+            NoDataView.hidden = NO;
+            self.tableView.hidden = YES;
+            self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"][@"userOrderVoList"]];
+            [self.tableView reloadData];
             return ;
         }
+        NoDataView.hidden = YES;
+         self.tableView.hidden = NO;
         self.dataArray = [NSMutableArray arrayWithArray:dic[@"data"][@"userOrderVoList"]];
+         _dataArray=(NSMutableArray *)[[_dataArray reverseObjectEnumerator] allObjects];
         _historyHeader.Number = [NSString stringWithFormat:@"%@",dic[@"data"][@"totalNumber"]];
          _historyHeader.Price = [NSString stringWithFormat:@"%@",dic[@"data"][@"totalPrice"]];
         [self.tableView reloadData];
@@ -89,7 +104,7 @@
 }
 
 - (void)creatTableView{
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(58), WIDHT, self.view.frame.size.height - kSuitLength_H(58)- kSuitLength_H(120)) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kSuitLength_H(58), WIDHT, self.view.frame.size.height - kSuitLength_H(58)- kSuitLength_H(110)) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;

@@ -21,6 +21,7 @@
         [UD setObject:self.userId forKey:@"userId"];
         self.nickname = Dictionary[@"userInfo"][@"nickname"];
         self.phone = Dictionary[@"userInfo"][@"phone"];
+        
         self.gender = Dictionary[@"userInfo"][@"gender"];
         self.photo = Dictionary[@"userInfo"][@"photo"];
         
@@ -59,6 +60,9 @@
     //待归还数量
     self.toReceiveNum = [NSString stringWithFormat:@"%@",Dictionary[@"orderNumberList"][1][@"orderNum"]];
     
+    if ([self.phone isEqual:[NSNull null]]) {
+        [[YKUserManager sharedManager]clear];
+    }
     return self;
 }
 

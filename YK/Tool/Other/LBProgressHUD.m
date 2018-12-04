@@ -71,7 +71,9 @@ static CGFloat toastWidth = 70;
         self.tipText = TIP_DEFULT_TEXT;
         
         _toast = [[UIView alloc] initWithFrame:CGRectMake((self.frame.size.width - toastWidth) / 2, (self.frame.size.height - toastWidth) / 2 , toastWidth, toastWidth)];
-        _toast.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.8];
+//        _toast.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.8];
+        _toast.backgroundColor = [UIColor clearColor];
+        
         _toast.layer.cornerRadius = 10;
         _toast.hidden = YES;
         [self addSubview:_toast];
@@ -84,7 +86,7 @@ static CGFloat toastWidth = 70;
         _rotateLayer = [CAShapeLayer layer];
         _rotateLayer.path = pathRotate.CGPath;
         _rotateLayer.fillColor = [UIColor clearColor].CGColor;
-        _rotateLayer.strokeColor = [UIColor whiteColor].CGColor;
+        _rotateLayer.strokeColor = mainColor.CGColor;
         _rotateLayer.lineWidth = 3;
         _rotateLayer.lineCap = kCALineCapRound;
         [_rotateView.layer addSublayer:_rotateLayer];
@@ -100,7 +102,7 @@ static CGFloat toastWidth = 70;
         
         _textLayer = [CAShapeLayer layer];
         _textLayer.fillColor   = [UIColor clearColor].CGColor;
-        _textLayer.strokeColor = [UIColor whiteColor].CGColor;
+        _textLayer.strokeColor = mainColor.CGColor;
         _textLayer.lineWidth   = 1;
         _textLayer.lineCap = kCALineCapButt;
         [_toast.layer addSublayer:_textLayer];
@@ -109,7 +111,7 @@ static CGFloat toastWidth = 70;
         textAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         textAnimation.fromValue = @(0);
         textAnimation.toValue = @1;
-        textAnimation.duration = 1.5;
+        textAnimation.duration = 2.0;
         textAnimation.repeatCount = HUGE;
         textAnimation.removedOnCompletion = NO;
         [_textLayer addAnimation:textAnimation forKey:nil];
@@ -151,7 +153,8 @@ static CGFloat toastWidth = 70;
 
 - (void)setShowMask:(BOOL)showMask
 {
-    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:showMask - .5];
+//    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:showMask - .5];
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)show:(BOOL)animated
@@ -159,12 +162,12 @@ static CGFloat toastWidth = 70;
     self.toast.hidden = NO;
     if (animated)
     {
-        self.toast.transform = CGAffineTransformScale(self.transform,0.2,0.2);
+        self.toast.transform = CGAffineTransformScale(self.transform,0.8,0.8);
         
-        [UIView animateWithDuration:.3 animations:^{
+        [UIView animateWithDuration:.5 animations:^{
             self.toast.transform = CGAffineTransformScale(self.transform,1.2,1.2);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.3 animations:^{
+            [UIView animateWithDuration:.5 animations:^{
                 self.toast.transform = CGAffineTransformIdentity;
             }];
         }];
@@ -173,11 +176,11 @@ static CGFloat toastWidth = 70;
 
 - (void)hide:(BOOL)animated
 {
-    [UIView animateWithDuration:animated ? .3 : 0 animations:^{
+    [UIView animateWithDuration:animated ? .5 : 0 animations:^{
         self.toast.transform = CGAffineTransformScale(self.transform,1.2,1.2);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:animated ? .3 : 0 animations:^{
-            self.toast.transform = CGAffineTransformScale(self.transform,0.2,0.2);
+        [UIView animateWithDuration:animated ? .5 : 0 animations:^{
+            self.toast.transform = CGAffineTransformScale(self.transform,0.8,0.8);
         } completion:^(BOOL finished) {
             [self.rotateView.layer removeAnimationForKey:KEY_ANIMATION_ROTATE];
             [self.textLayer removeAnimationForKey:KEY_ANIMATION_TEXT];

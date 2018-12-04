@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,20 +19,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="7Aq-nD-nOn">
-                        <rect key="frame" x="24" y="14" width="90" height="120"/>
+                        <rect key="frame" x="10" y="14" width="90" height="120"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="Tp0-au-sz1"/>
                             <constraint firstAttribute="height" constant="120" id="bdx-JR-47F"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Superme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23z-lD-7IG">
-                        <rect key="frame" x="128" y="65.5" width="60" height="17"/>
+                        <rect key="frame" x="114" y="65.5" width="60" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgk-vr-fKP">
-                        <rect key="frame" x="128" y="117" width="60" height="17"/>
+                        <rect key="frame" x="114" y="117" width="60" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -45,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字母玫瑰印花连帽卫衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dr5-5i-qvZ">
-                        <rect key="frame" x="128" y="14" width="163.5" height="19.5"/>
+                        <rect key="frame" x="114" y="14" width="163.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -75,19 +74,21 @@
                     <constraint firstItem="23z-lD-7IG" firstAttribute="leading" secondItem="Dr5-5i-qvZ" secondAttribute="leading" id="o4x-NG-AM0"/>
                     <constraint firstItem="23z-lD-7IG" firstAttribute="centerY" secondItem="7Aq-nD-nOn" secondAttribute="centerY" id="pBE-gX-N5p"/>
                     <constraint firstItem="23z-lD-7IG" firstAttribute="leading" secondItem="Dr5-5i-qvZ" secondAttribute="leading" id="pMa-nW-s3P"/>
-                    <constraint firstItem="7Aq-nD-nOn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="v1a-rf-C5u"/>
+                    <constraint firstItem="7Aq-nD-nOn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="v1a-rf-C5u"/>
                     <constraint firstItem="kMh-OB-W24" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wki-WT-vAw"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="ima" destination="7Aq-nD-nOn" id="uDU-RO-cat"/>
+                <outlet property="imaegW" destination="Tp0-au-sz1" id="2Pe-PB-d6Q"/>
+                <outlet property="imageH" destination="bdx-JR-47F" id="62K-iC-gaG"/>
                 <outlet property="myBrand" destination="23z-lD-7IG" id="2en-GG-AIR"/>
                 <outlet property="myDes" destination="Dr5-5i-qvZ" id="Aru-KM-iYD"/>
                 <outlet property="myImage" destination="7Aq-nD-nOn" id="Yot-wF-K7c"/>
                 <outlet property="myPrice" destination="ckz-oL-f8N" id="hyK-dT-k0J"/>
                 <outlet property="mySize" destination="Hgk-vr-fKP" id="qXc-NI-uIv"/>
             </connections>
-            <point key="canvasLocation" x="602" y="-13"/>
+            <point key="canvasLocation" x="957" y="-7"/>
         </tableViewCell>
     </objects>
     <resources>

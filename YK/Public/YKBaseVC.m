@@ -112,7 +112,7 @@
     
 
 
-    self.navigationController.navigationBar.layer.shadowColor = [UIColor colorWithHexString:@"eeeeee"].CGColor;
+    self.navigationController.navigationBar.layer.shadowColor = [UIColor colorWithHexString:@"e0e0e0"].CGColor;
     self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
     self.navigationController.navigationBar.layer.shadowRadius = 4.f;
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(4,4);

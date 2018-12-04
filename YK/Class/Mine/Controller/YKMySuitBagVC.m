@@ -56,7 +56,7 @@
     [super viewDidLoad];
     [[YKOrderManager sharedManager]clear];
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-    self.title = @"衣袋";
+    self.title = @"历史订单";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -79,7 +79,7 @@
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Medium(kSuitLength_H(14));
+    title.font = PingFangSC_Regular(kSuitLength_H(14));
     
     self.navigationItem.titleView = title;
     UIButton *releaseButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -153,7 +153,7 @@
         index = 3;
         _bagStatus = hadBack;
     }
-    _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30), kSuitLength_H(45), kSuitLength_H(30), 1);
+    _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30), kSuitLength_H(45), kSuitLength_H(30), 2);
     //查询订单,刚进来的时候
     [self searchOrders:self.selectedIndex-100];
     
@@ -162,7 +162,7 @@
         button.frame = CGRectMake(WIDHT/4*i, 0, WIDHT /4, kSuitLength_H(50));
         button.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
         [button setTitle:arr[i] forState:UIControlStateNormal];
-        button.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+        button.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
         [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
 //        button.titleLabel setf
         [button setTitleColor:YKRedColor forState:UIControlStateSelected];
@@ -172,7 +172,7 @@
         
         if (i == index) {
             button.selected = YES;
-            button.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+            button.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
             [button setTitleColor:YKRedColor forState:UIControlStateNormal];
             self.Button0 = button;
         }
@@ -181,9 +181,9 @@
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [backView addSubview:button];
     }
-    self.line = [[UILabel alloc]initWithFrame:CGRectMake(WIDHT/8-kSuitLength_H(30)/2, kSuitLength_H(50)-1, kSuitLength_H(30), 1)];
+    self.line = [[UILabel alloc]initWithFrame:CGRectMake(WIDHT/8-kSuitLength_H(30)/2, kSuitLength_H(50)-1, kSuitLength_H(30), 2)];
     _line.backgroundColor = YKRedColor;
-    _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 1);
+    _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 2);
     [backView addSubview:_line];
 }
 
@@ -260,17 +260,17 @@
         _bagStatus = hadBack;
     }
     
-    [UIView animateWithDuration:0.3 animations:^{
-        _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 1);
+    [UIView animateWithDuration:0.25 animations:^{
+        _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 2);
     }];
     
     if (self.Button0 != button) {
         self.Button0.selected = NO;
         button.selected = YES;
-        button.titleLabel.font = PingFangSC_Medium(kSuitLength_H(14));
+        button.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
         [button setTitleColor:YKRedColor forState:UIControlStateNormal];
         [self.Button0 setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
-        self.Button0.titleLabel.font =  PingFangSC_Medium(kSuitLength_H(14));
+        self.Button0.titleLabel.font =  PingFangSC_Regular(kSuitLength_H(14));
     }
     self.Button0 = button;
     [self searchOrders:button.tag-100];
@@ -322,9 +322,9 @@
             _buttom.hidden = YES;
         }else {
             if ([YKOrderManager sharedManager].sectionArray.count==1&&([[YKOrderManager sharedManager].sectionArray containsObject:@"2"])) {
-                self.tableView.frame = CGRectMake(24, BarH  +50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(10, BarH  +50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
             }else {
-                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(10, BarH+50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
             }
             self.tableView.hidden = NO;
             _buttom.hidden = YES;
@@ -348,15 +348,16 @@
 
             if ((_bagStatus==toReceive)&&self.orderList.count!=0) {
                 _buttom.hidden = NO;
-                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375-50);
+                self.tableView.frame = CGRectMake(10, BarH+50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375-50);
                 if (_bagStatus==toReceive) {//待归还
                     if ([YKOrderManager sharedManager].isOnRoad) {
                         [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
                         [_buttom setBackgroundColor:YKRedColor];
                         _buttom.userInteractionEnabled = YES;
+                        
                     }else {
                         [_buttom setTitle:@"待发货" forState:UIControlStateNormal];
-                        [_buttom setBackgroundColor:[UIColor colorWithHexString:@"eeeeee"]];
+                        [_buttom setBackgroundColor:[UIColor colorWithHexString:@"999999"]];
                          _buttom.userInteractionEnabled = NO;
                     }
                     
@@ -373,7 +374,7 @@
                     
                 }
             }else {
-                self.tableView.frame = CGRectMake(24, BarH+50*WIDHT/375, WIDHT-48, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(10, BarH+50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
                 _buttom.hidden = YES;
             }
     
@@ -382,9 +383,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0&&_bagStatus==toReceive) {
-        return 46;
+        return kSuitLength_H(40);
     }
-    return 170 ;
+    return kSuitLength_H(120) ;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -428,24 +429,25 @@
     if (_bagStatus==totalBag) {
         if ([[YKOrderManager sharedManager].sectionArray containsObject:receiveSection]) {
             if (section==0) {
-                return 70;
+                return kSuitLength_H(40);
             }
         }
-        return 70;
+        return kSuitLength_H(40);
     }
     
     if (_bagStatus==toBack) {
-        return 70;
+        return kSuitLength_H(40);
     }
     
     
-    return 0;
+    return CGFLOAT_MIN;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (_bagStatus==totalBag) {
-        NSInteger headerSection = [[YKOrderManager sharedManager].sectionArray[section] integerValue];
+       
+        NSInteger headerSection = [[YKOrderManager sharedManager].sectionArray[section] intValue];
         YKSuitHeader *header = [[NSBundle mainBundle] loadNibNamed:@"YKSuitHeader" owner:self options:nil][headerSection];
        //物流信息
         header.SMSBlock = ^(void){

@@ -42,6 +42,7 @@
 #import "YKCartVC.h"
 #import "YKProductAleartView.h"
 #import "YKSignalSuitVC.h"
+#import "YKSearchSegmentVC.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource,NewDynamicsCellDelegate>{
@@ -91,8 +92,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.alpha = 1;
+    
+//    self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
+    self.navigationController.navigationBar.hidden = YES;
 //    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
 //    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     
@@ -249,9 +253,9 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
      layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
 //    -TOPH-20
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
     if (HEIGHT==812) {
-        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT-80) collectionViewLayout:layoutView];
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, HEIGHT-80) collectionViewLayout:layoutView];
     }
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
@@ -364,9 +368,15 @@
             return;
         }
         
-        YKSignalSuitVC *suit = [[YKSignalSuitVC alloc] init];
-       
-        [weakSelf.navigationController pushViewController:suit animated:YES];
+        YKSearchSegmentVC *chatVC = [[YKSearchSegmentVC alloc] init];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = weakSelf.tabBarController.viewControllers[3];
+        chatVC.hidesBottomBarWhenPushed = YES;
+        weakSelf.tabBarController.selectedViewController = nav;
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//        YKSignalSuitVC *suit = [[YKSignalSuitVC alloc] init];
+//
+//        [weakSelf.navigationController pushViewController:suit animated:YES];
     };
     
     [self.view addSubview:buttom];
@@ -468,7 +478,7 @@
 - (void)deCollect{
    
     NSMutableArray *shopCartList = [NSMutableArray array];
-    [shopCartList addObject:@""];
+    [shopCartList addObject:self.productId];
     [[YKSuitManager sharedManager]deleteCollecttwithShoppingCartId:shopCartList OnResponse:^(NSDictionary *dic) {
         [self getPruductDetail];
     }];
@@ -481,11 +491,6 @@
         [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
-//        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-//        [self presentViewController:login animated:YES completion:^{
-//
-//        }];
-//        login.hidesBottomBarWhenPushed = YES;
         return;
     }
     
@@ -515,11 +520,7 @@
         [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
             
         }];
-//        YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-//        [self presentViewController:login animated:YES completion:^{
-//
-//        }];
-//        login.hidesBottomBarWhenPushed = YES;
+
         return;
     }
     if (_sizeNum==0 && !_isSP) {
@@ -563,47 +564,18 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    if (scrollView.contentOffset.y>0) {
-//        self.navigationController.navigationBar.hidden = NO;
-//    }
-//    if (scrollView.contentOffset.y>280) {
-//        //        self.refresh.hidden = YES;
-//        self.navigationController.navigationBar.alpha = 1;
-//        self.navigationController.navigationBar.hidden = NO;
-//    }else {
-//        //        self.refresh.hidden = NO;
-//        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
-//        self.navigationController.navigationBar.hidden = NO;
-//    }
+   
+    if (scrollView.contentOffset.y>280) {
+      
+        self.navigationController.navigationBar.alpha = 1;
+        self.navigationController.navigationBar.hidden = NO;
+    }else {
+      
+        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
+        self.navigationController.navigationBar.hidden = NO;
+    }
 }
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-//
-//    UIScrollView * scrollView = (UIScrollView *)object;
-//
-//    if (!self.collectionView == scrollView) {
-//        return;
-//    }
-//
-//    if (![keyPath isEqualToString:@"contentOffset"]) {
-//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-//        return;
-//    }
-//    if (scrollView.contentOffset.y>0) {
-//        self.navigationController.navigationBar.hidden = NO;
-//    }
-//    if (scrollView.contentOffset.y>280) {
-////        self.refresh.hidden = YES;
-//        self.navigationController.navigationBar.alpha = 1;
-//                self.navigationController.navigationBar.hidden = NO;
-//    }else {
-////        self.refresh.hidden = NO;
-//        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
-//                self.navigationController.navigationBar.hidden = YES;
-//    }
-//
-//
-//
-//}
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 2;

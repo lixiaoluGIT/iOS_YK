@@ -19,6 +19,9 @@
 @property (nonatomic,assign)NSInteger VIPStatus;
 @property (nonatomic,strong)UIButton *vipBtn;
 @property (nonatomic,strong)UIImageView *cardImage;
+
+@property (nonatomic,strong)UILabel *l1;
+@property (nonatomic,strong)UILabel *l2;
 @end
 
 @implementation YKMyHeaderView
@@ -53,20 +56,20 @@
     
 
     //姓名
-    _name=[[UILabel alloc]initWithFrame:CGRectMake(0, _headPho.bottom+5,WIDHT, 20)];
+    _name=[[UILabel alloc]initWithFrame:CGRectMake(0, _headPho.bottom+5,kSuitLength_H(100), kSuitLength_H(18))];
     _name.centerX = _headPho.centerX;
     _name.font = PingFangSC_Semibold(kSuitLength_H(14));
     _name.textColor = [UIColor colorWithHexString:@"ffffff"];
-    _name.textAlignment=1;
+    _name.textAlignment=NSTextAlignmentCenter;
     [cardView addSubview:_name];
     
     //会员按钮
     _vipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _vipBtn.frame = CGRectMake(_headPho.frame.size.width + _headPho.frame.origin.x + kSuitLength_H(49), kSuitLength_H(44), kSuitLength_H(91), kSuitLength_H(26));
-    [_vipBtn setTitle:@"年卡会员" forState:UIControlStateNormal];
+    [_vipBtn setTitle:@"未登录" forState:UIControlStateNormal];
     [_vipBtn setImage:[UIImage imageNamed:@"右-3"] forState:UIControlStateNormal];
-    [_vipBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -kSuitLength_H(90))];
-      [_vipBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -kSuitLength_H(10), 0, 0)];
+    [_vipBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -kSuitLength_H(100))];
+      [_vipBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -kSuitLength_H(12), 0, 0)];
     _vipBtn.layer.masksToBounds = YES;
     _vipBtn.layer.cornerRadius = kSuitLength_H(26/2);
     _vipBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -150,12 +153,14 @@
                 if ([[YKUserManager sharedManager].user.toQianshouNum intValue] == 0) {
                     l.hidden = YES;
                 }
+                self.l1 = l;
             }
             if (i==1) {
                 l.text = [NSString stringWithFormat:@"%@",[YKUserManager sharedManager].user.toReceiveNum];
                 if ([[YKUserManager sharedManager].user.toReceiveNum intValue] == 0) {
                     l.hidden = YES;
                 }
+                self.l2 = l;
             }
             l.layer.masksToBounds = YES;
             l.layer.cornerRadius=kSuitLength_H(11)/2;
@@ -165,6 +170,10 @@
             
             
             [btn addSubview:l];
+            
+            if ([Token length] == 0) {
+                l.hidden = YES;
+            }
         }
         
         
@@ -187,7 +196,19 @@
         [_vipBtn setTitle:@"未登录" forState:UIControlStateNormal];
 //    _vipLabel.text = @"您还不是会员用户";
 
+        self.l1.hidden = YES;
+        self.l2.hidden = YES;
     }else {
+        self.l1.hidden = NO;
+        self.l2.hidden = NO;
+        self.l1.text =  [NSString stringWithFormat:@"%@",[YKUserManager sharedManager].user.toQianshouNum];
+        self.l2.text = [NSString stringWithFormat:@"%@",[YKUserManager sharedManager].user.toReceiveNum];
+        if ([[YKUserManager sharedManager].user.toQianshouNum intValue] == 0) {
+            self.l1.hidden = YES;
+        }
+        if ([[YKUserManager sharedManager].user.toReceiveNum intValue] == 0) {
+            self.l2.hidden = YES;
+        }
     //已登录
         _toDetailLabel.text = @"查看个人信息 >";
         if ([user.nickname isEqual:[NSNull null]]) {

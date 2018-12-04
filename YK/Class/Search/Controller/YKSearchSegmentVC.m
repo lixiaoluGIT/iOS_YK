@@ -98,7 +98,7 @@
         [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         [button setTitleColor:YKRedColor forState:UIControlStateSelected];
         [button setBackgroundColor:[UIColor whiteColor]];
-        button.titleLabel.font = PingFangSC_Regular(kSuitLength_V(14));
+        button.titleLabel.font = PingFangSC_Medium(kSuitLength_V(14));
 //        button.backgroundColor = [UIColor redColor];
         
         if (i == _currentPageIndex) {
@@ -119,7 +119,7 @@
     }
     
     CGFloat w = (WIDHT-kSuitLength_H(80))/self.titleArr.count;
-    self.theLine.frame = CGRectMake(WIDHT/2-w/2-15,self.btnView.frame.size.height-4 , kSuitLength_H(30), 2);
+    self.theLine.frame = CGRectMake(WIDHT/2-w/2-15,self.btnView.frame.size.height-4 , kSuitLength_H(21), 2);
     [self.btnView addSubview:self.theLine];
     
     //布局
@@ -129,10 +129,10 @@
 //        make.height.mas_equalTo(30);
 //    }];
     
-    UILabel *line = [[UILabel alloc]init];
-    line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
-    [self.btnView addSubview:line];
-    line.frame = CGRectMake(0,kSuitLength_H(42), WIDHT, 2);
+//    UILabel *line = [[UILabel alloc]init];
+//    line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+//    [self.btnView addSubview:line];
+//    line.frame = CGRectMake(0,kSuitLength_H(42), WIDHT, 2);
 }
 //
 - (void)addControllerToArr{
@@ -254,9 +254,9 @@
     [UIView animateWithDuration:0.25 animations:^{
         if (newIndex==0) {
             
-            self.theLine.frame = CGRectMake(WIDHT/2-w/2-15,self.btnView.frame.size.height-4, kSuitLength_H(30), 2);
+            self.theLine.frame = CGRectMake(WIDHT/2-w/2-10.5,self.btnView.frame.size.height-4, kSuitLength_H(21), 2);
         }else {
-            self.theLine.frame = CGRectMake(WIDHT-kSuitLength_H(40)-w/2-15,self.btnView.frame.size.height-4 , kSuitLength_H(30), 2);
+            self.theLine.frame = CGRectMake(WIDHT-kSuitLength_H(40)-w/2-10.5,self.btnView.frame.size.height-4 , kSuitLength_H(21), 2);
 //            self.theLine.frame = CGRectMake((WIDHT-kSuitLength_H(80))/self.titleArr.count/4*3 -15,self.btnView.frame.size.height-2 , kSuitLength_H(30), 2);
         }
         
