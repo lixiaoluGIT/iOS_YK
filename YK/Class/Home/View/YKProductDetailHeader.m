@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *yiwei;
 @property (weak, nonatomic) IBOutlet UILabel *clothName;
 @property (weak, nonatomic) IBOutlet UILabel *lineee;
+@property (weak, nonatomic) IBOutlet UILabel *lll;
 
 @end
 
@@ -50,6 +51,9 @@
     [self.recommentWords  setAttributedText:setString];
     
     _lineee.hidden = NO;
+    
+    _selectText.font = PingFangSC_Regular(kSuitLength_H(14));
+    _lll.font = PingFangSC_Regular(kSuitLength_H(14));
 }
 
 - (void)setClothingCreatedate:(NSString *)clothingCreatedate{
@@ -118,7 +122,7 @@
     _recommentWords.text = _recomment;
     
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle  setLineSpacing:4];
+    [paragraphStyle  setLineSpacing:kSuitLength_H(4)];
     self.recommentWords.text = _recomment;
    
 
@@ -126,6 +130,7 @@
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
     // 设置Label要显示的text
     [self.recommentWords  setAttributedText:setString];
+    
     
 }
 

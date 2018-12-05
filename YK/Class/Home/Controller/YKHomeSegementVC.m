@@ -308,14 +308,14 @@
 //    }
     [self.btnView addSubview:Vline];
     
-    //底横线
-    UILabel *Hline = [[UILabel alloc]init];
-    Hline.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
-    Hline.frame = CGRectMake(0,kSuitLength_H(37),WIDHT, kSuitLength_H(1));
-    //    if (HEIGHT == 812) {
-    //        Vline.frame = CGRectMake(WIDHT/2,64+22+25,1, 12);
-    //    }
-    [self.btnView addSubview:Hline];
+//    //底横线
+//    UILabel *Hline = [[UILabel alloc]init];
+//    Hline.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+//    Hline.frame = CGRectMake(0,kSuitLength_H(37),WIDHT, kSuitLength_H(1));
+//    //    if (HEIGHT == 812) {
+//    //        Vline.frame = CGRectMake(WIDHT/2,64+22+25,1, 12);
+//    //    }
+//    [self.btnView addSubview:Hline];
 }
 //
 - (void)addControllerToArr{

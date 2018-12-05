@@ -377,7 +377,7 @@
 //                publicBtn.frame = CGRectMake(kSuitLength_H(110), HEIGHT-kSuitLength_V(110), WIDHT-kSuitLength_H(220), kSuitLength_H(44));
 //            }];
             
-        } else if (scrollView. contentOffset.y >lastContentOffset )
+        } else if (scrollView. contentOffset.y >kSuitLength_H(350) )
         {
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];

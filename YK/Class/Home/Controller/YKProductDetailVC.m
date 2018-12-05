@@ -253,9 +253,9 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
      layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
 //    -TOPH-20
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -TOPH-20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
     if (HEIGHT==812) {
-        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, HEIGHT-80) collectionViewLayout:layoutView];
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -TOPH-20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
     }
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
@@ -292,7 +292,7 @@
     });
     
     UIButton *btn11=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn11.frame = CGRectMake(3, 20, 44, 44);
+    btn11.frame = CGRectMake(3, BarH-44, 44, 44);
     btn11.adjustsImageWhenHighlighted = NO;
     [btn11 setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn11 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
@@ -389,7 +389,7 @@
     backView.hidden = YES;
     
     aleartView = [[NSBundle mainBundle]loadNibNamed:@"YKProductAleartView" owner:nil options:nil][0];
-    aleartView.frame = CGRectMake(0, HEIGHT, WIDHT, 300);
+    aleartView.frame = CGRectMake(0, HEIGHT, WIDHT, kSuitLength_H(300));
     aleartView.selectBlock = ^(NSString *type){
         _sizeNum = type;
     };
@@ -408,7 +408,7 @@
 
 - (void)disMiss{
     [UIView animateWithDuration:0.25 animations:^{
-        aleartView.frame = CGRectMake(0, HEIGHT, WIDHT, 300);
+        aleartView.frame = CGRectMake(0, HEIGHT, WIDHT, kSuitLength_H(300));
     }completion:^(BOOL finished) {
         backView.hidden = YES;
     }];
@@ -500,7 +500,7 @@
         
         [UIView animateWithDuration:0.25 animations:^{
             backView.hidden = NO;
-            aleartView.frame = CGRectMake(0, HEIGHT-300, WIDHT, 300);
+            aleartView.frame = CGRectMake(0, HEIGHT-kSuitLength_H(300), WIDHT, kSuitLength_H(300));
             aleartView.isAddCart = NO;
         }];
         return ;
@@ -529,7 +529,7 @@
         
         [UIView animateWithDuration:0.25 animations:^{
             backView.hidden = NO;
-            aleartView.frame = CGRectMake(0, HEIGHT-300, WIDHT, 300);
+            aleartView.frame = CGRectMake(0, HEIGHT-kSuitLength_H(300), WIDHT, kSuitLength_H(300));
             aleartView.isAddCart = YES;
         }];
         
@@ -565,13 +565,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
    
-    if (scrollView.contentOffset.y>280) {
+    if (scrollView.contentOffset.y>kSuitLength_H(500)) {
       
         self.navigationController.navigationBar.alpha = 1;
         self.navigationController.navigationBar.hidden = NO;
     }else {
       
-        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
+        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/kSuitLength_H(500) ;
         self.navigationController.navigationBar.hidden = NO;
     }
 }
@@ -624,7 +624,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section==0) {
        
-            return CGSizeMake(WIDHT, WIDHT*0.82+330);
+            return CGSizeMake(WIDHT, WIDHT*1.25+230);
         
     }
     if (self.layoutsArr.count>0){
@@ -648,7 +648,7 @@
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
             //轮播图
-            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.82+100)];
+            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, WIDHT*1.25)];
             cycleView.imagesArr = self.imagesArr;
             cycleView.delegate  = self;
             self.origialFrame = cycleView.frame;
@@ -668,7 +668,7 @@
                 
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
-            scroll.frame = CGRectMake(0, WIDHT*0.82+100,WIDHT, 330);
+            scroll.frame = CGRectMake(0, WIDHT*1.25,WIDHT, 330);
             scroll.clothingCreatedate = self.clothingCreatedate;
             if (!hadMakeHeader) {
                 [headerView addSubview:scroll];

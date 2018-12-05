@@ -26,9 +26,6 @@
 		00179C7C2189B449000A0100 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 00179C702189B449000A0100 /* NSObject+MJProperty.m */; };
 		00179C7D2189B449000A0100 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 00179C722189B449000A0100 /* NSString+MJExtension.m */; };
 		001824952192B2A50038AD5D /* YKFashionRecView.m in Sources */ = {isa = PBXBuildFile; fileRef = 001824942192B2A50038AD5D /* YKFashionRecView.m */; };
-		001D92A72178AF3700D93FA3 /* 541539864479_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 001D92A62178AF3600D93FA3 /* 541539864479_.pic_hd.jpg */; };
-		001D92A92178B00300D93FA3 /* 551539864687_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 001D92A82178B00200D93FA3 /* 551539864687_.pic_hd.jpg */; };
-		002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 002423AF20DCF64E00AB493D /* register_guide_video.mp4 */; };
 		002D6F4E20ECC64F00C70FFE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD51FEB92B1003BB993 /* AdSupport.framework */; };
 		002DF71720DBA6AA00560C60 /* tt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 002DF71620DBA6A900560C60 /* tt.jpg */; };
 		002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE59E20B5344300554AB3 /* YKProductCommentVC.m */; };
@@ -141,6 +138,8 @@
 		00A0CC4F2090265D001205A1 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00A0CC482090265C001205A1 /* UMSocialSDKResources.bundle */; };
 		00A0CC502090265D001205A1 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A0CC492090265C001205A1 /* UShareUI.framework */; };
 		00A37FEE21B52ED000303CC7 /* YKHistoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A37FED21B52ED000303CC7 /* YKHistoryListVC.m */; };
+		00A9B80621B7C25900FE186A /* YKRecomentProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A9B80521B7C25900FE186A /* YKRecomentProductVC.m */; };
+		00A9B80921B7CF0600FE186A /* YKRecProductHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A9B80821B7CF0600FE186A /* YKRecProductHeaderView.m */; };
 		00AA32042174A4810040C5A6 /* YKProductAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AA32022174A4810040C5A6 /* YKProductAleartView.m */; };
 		00AA32052174A4810040C5A6 /* YKProductAleartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AA32032174A4810040C5A6 /* YKProductAleartView.xib */; };
 		00B7F22F20B684E80086EFBB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B7F22E20B684E80086EFBB /* GameKit.framework */; };
@@ -710,9 +709,6 @@
 		00179C722189B449000A0100 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		001824932192B2A50038AD5D /* YKFashionRecView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFashionRecView.h; sourceTree = "<group>"; };
 		001824942192B2A50038AD5D /* YKFashionRecView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFashionRecView.m; sourceTree = "<group>"; };
-		001D92A62178AF3600D93FA3 /* 541539864479_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 541539864479_.pic_hd.jpg; sourceTree = "<group>"; };
-		001D92A82178B00200D93FA3 /* 551539864687_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 551539864687_.pic_hd.jpg; sourceTree = "<group>"; };
-		002423AF20DCF64E00AB493D /* register_guide_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = register_guide_video.mp4; sourceTree = "<group>"; };
 		002DF71620DBA6A900560C60 /* tt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tt.jpg; sourceTree = "<group>"; };
 		002FE59D20B5344300554AB3 /* YKProductCommentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductCommentVC.h; sourceTree = "<group>"; };
 		002FE59E20B5344300554AB3 /* YKProductCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductCommentVC.m; sourceTree = "<group>"; };
@@ -896,6 +892,10 @@
 		00A0CC492090265C001205A1 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
 		00A37FEC21B52ECF00303CC7 /* YKHistoryListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKHistoryListVC.h; sourceTree = "<group>"; };
 		00A37FED21B52ED000303CC7 /* YKHistoryListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKHistoryListVC.m; sourceTree = "<group>"; };
+		00A9B80421B7C25900FE186A /* YKRecomentProductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKRecomentProductVC.h; sourceTree = "<group>"; };
+		00A9B80521B7C25900FE186A /* YKRecomentProductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKRecomentProductVC.m; sourceTree = "<group>"; };
+		00A9B80721B7CF0600FE186A /* YKRecProductHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKRecProductHeaderView.h; sourceTree = "<group>"; };
+		00A9B80821B7CF0600FE186A /* YKRecProductHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKRecProductHeaderView.m; sourceTree = "<group>"; };
 		00AA32012174A4810040C5A6 /* YKProductAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductAleartView.h; sourceTree = "<group>"; };
 		00AA32022174A4810040C5A6 /* YKProductAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductAleartView.m; sourceTree = "<group>"; };
 		00AA32032174A4810040C5A6 /* YKProductAleartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKProductAleartView.xib; sourceTree = "<group>"; };
@@ -2393,6 +2393,8 @@
 				C592925C204FD9D7002ED8DB /* YKHomeSegementVC.m */,
 				007EE298212E76DE0040B3D3 /* YKLiseVC.h */,
 				007EE299212E76DE0040B3D3 /* YKLiseVC.m */,
+				00A9B80421B7C25900FE186A /* YKRecomentProductVC.h */,
+				00A9B80521B7C25900FE186A /* YKRecomentProductVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2502,6 +2504,8 @@
 				00AA32032174A4810040C5A6 /* YKProductAleartView.xib */,
 				001824932192B2A50038AD5D /* YKFashionRecView.h */,
 				001824942192B2A50038AD5D /* YKFashionRecView.m */,
+				00A9B80721B7CF0600FE186A /* YKRecProductHeaderView.h */,
+				00A9B80821B7CF0600FE186A /* YKRecProductHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2958,10 +2962,7 @@
 		C525DC6F1FBAB15D002802AE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				001D92A82178B00200D93FA3 /* 551539864687_.pic_hd.jpg */,
-				001D92A62178AF3600D93FA3 /* 541539864479_.pic_hd.jpg */,
 				006E6B84216077F70050886E /* newbanner.png */,
-				002423AF20DCF64E00AB493D /* register_guide_video.mp4 */,
 				002DF71620DBA6A900560C60 /* tt.jpg */,
 				005D2CEA2085E10B00AEBDA0 /* play2.png */,
 				005D2CE82085E0AA00AEBDA0 /* play3.png */,
@@ -4286,7 +4287,6 @@
 				C5303A011FCEAE4D00FB12CE /* YKReturnView.xib in Resources */,
 				C5327671205B6EAC0082EF2E /* YKPublicCell.xib in Resources */,
 				C525DD9D1FBAB2A9002802AE /* MLEmoji_ExpressionImage.plist in Resources */,
-				001D92A92178B00300D93FA3 /* 551539864687_.pic_hd.jpg in Resources */,
 				007B703720C6675500096731 /* YKSelectColedgeCell.xib in Resources */,
 				C525DE121FBABF81002802AE /* timg.jpg in Resources */,
 				C5FB776D205902CE0076DD6F /* moment0.plist in Resources */,
@@ -4357,7 +4357,6 @@
 				C525DD9C1FBAB2A9002802AE /* MLEmoji_Expression.bundle in Resources */,
 				007EE297212E73FE0040B3D3 /* YKListCell.xib in Resources */,
 				006E6B85216077F70050886E /* newbanner.png in Resources */,
-				002423B020DCF64F00AB493D /* register_guide_video.mp4 in Resources */,
 				C55D49231FC3CE2F000D2056 /* YKMyBagSMSCell.xib in Resources */,
 				0047358D2199316B00A24BF0 /* YKHisHeader.xib in Resources */,
 				C525DEB71FBEADB1002802AE /* region.json in Resources */,
@@ -4379,7 +4378,6 @@
 				C532A7461FDF8AAB0068A31D /* AlipaySDK.bundle in Resources */,
 				C5690F941FE768C70027EFCE /* YKTotalMsgView.xib in Resources */,
 				C525DDB31FBAB2A9002802AE /* TZImagePickerController.bundle in Resources */,
-				001D92A72178AF3700D93FA3 /* 541539864479_.pic_hd.jpg in Resources */,
 				C525DED01FC278C7002802AE /* province_data.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4430,6 +4428,7 @@
 				C53039DF1FCC26C100FB12CE /* WelcomeViewController.m in Sources */,
 				C532A74D1FDF8AAB0068A31D /* DataSigner.m in Sources */,
 				C53039E31FCC271800FB12CE /* CusPageControlWithView.m in Sources */,
+				00A9B80621B7C25900FE186A /* YKRecomentProductVC.m in Sources */,
 				C5690F9C1FE773550027EFCE /* YKTotalSMSVC.m in Sources */,
 				C525DDBD1FBAB2A9002802AE /* SDWebImageManager.m in Sources */,
 				C525DD831FBAB2A9002802AE /* MJRefreshStateHeader.m in Sources */,
@@ -4622,6 +4621,7 @@
 				C525DDC41FBAB2A9002802AE /* SDWebImagePrefetcher.m in Sources */,
 				C5FB7859205904780076DD6F /* NSArray+YYAdd.m in Sources */,
 				C5343C741FC526BF00F5132A /* YKNormalQuestionVC.m in Sources */,
+				00A9B80921B7CF0600FE186A /* YKRecProductHeaderView.m in Sources */,
 				C5FB7860205904780076DD6F /* NSTimer+YYAdd.m in Sources */,
 				C525DDF91FBABB68002802AE /* YKHomeVC.m in Sources */,
 				C525DDAE1FBAB2A9002802AE /* TZVideoPlayerController.m in Sources */,
@@ -5006,8 +5006,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29NXF4787V;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5117,7 +5117,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "90d3ec60-dcb2-4714-a596-a9acd3002c45";
-				PROVISIONING_PROFILE_SPECIFIER = xykootest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5221,8 +5221,8 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29NXF4787V;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5332,7 +5332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xykoo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0f64e436-77e9-41ac-b9df-04b3532a641d";
-				PROVISIONING_PROFILE_SPECIFIER = xykoo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5441,9 +5441,9 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CustomAppName = "衣橱共享";
-				DEVELOPMENT_TEAM = TC33G6XHH9;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5553,7 +5553,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yd.ycgx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7663d891-fe0b-4018-b19d-21de89373cc8";
-				PROVISIONING_PROFILE_SPECIFIER = dev_ycgx;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5657,9 +5657,9 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CustomAppName = "衣橱共享";
-				DEVELOPMENT_TEAM = TC33G6XHH9;
+				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5769,7 +5769,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yd.ycgx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "26ab3238-5412-4afa-ad98-bc53eed99fb0";
-				PROVISIONING_PROFILE_SPECIFIER = dis_ycgx;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5930,7 +5930,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6032,8 +6032,8 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fa10b410-a26d-4812-a2bd-3e1b86545d1a";
-				PROVISIONING_PROFILE_SPECIFIER = YKDevFile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -6048,7 +6048,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6159,7 +6159,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a98be9ff-688d-4df1-a535-adc5de2c3991";
-				PROVISIONING_PROFILE_SPECIFIER = YKDisFile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";

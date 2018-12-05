@@ -114,8 +114,8 @@
 
     self.navigationController.navigationBar.layer.shadowColor = [UIColor colorWithHexString:@"e0e0e0"].CGColor;
     self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
-    self.navigationController.navigationBar.layer.shadowRadius = 4.f;
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(4,4);
+    self.navigationController.navigationBar.layer.shadowRadius = 2.f;
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0,2);
     
     //获取导航栏下面黑线
     _lineView = [self getLineViewInNavigationBar:self.navigationController.navigationBar];

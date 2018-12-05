@@ -52,7 +52,7 @@
     title.font = PingFangSC_Medium(kSuitLength_H(14));;
     
     YKAddCCDesView *des = [[NSBundle mainBundle]loadNibNamed:@"YKAddCCDesView" owner:nil options:nil][0];
-    des.frame = CGRectMake(0, 64, WIDHT, HEIGHT-62);
+    des.frame = CGRectMake(0, kSuitLength_H(60), WIDHT, HEIGHT-kSuitLength_H(58));
     des.buyBlock = ^(void){
         [weakSelf buy];
     };

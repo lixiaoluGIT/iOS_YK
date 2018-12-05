@@ -12,6 +12,9 @@
 
 @interface YKHomeDesCell()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *mySize;
+@property (weak, nonatomic) IBOutlet UILabel *edit;
+@property (weak, nonatomic) IBOutlet UILabel *lll;
 
 @end
 
@@ -23,6 +26,9 @@
     self.userInteractionEnabled = YES;
     [self addGestureRecognizer:tap];
     _image.layer.masksToBounds = YES;
+    _mySize.font = PingFangSC_Regular(kSuitLength_H(14));
+    _edit.font = PingFangSC_Regular(kSuitLength_H(12));
+    _lll.font = PingFangSC_Regular(kSuitLength_H(14));
 //    _image.frame.size.height = 86; = 86;
 //    _image.size.width
 //    [_image setContentMode:UIViewContentModeScaleAspectFill];

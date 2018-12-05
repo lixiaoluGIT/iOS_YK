@@ -88,11 +88,7 @@
                     <constraint firstItem="SUV-lu-eRL" firstAttribute="top" secondItem="MC9-cm-JKr" secondAttribute="bottom" constant="4" id="vt5-om-Fai"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="eng" destination="SUV-lu-eRL" id="OGb-cs-EG0"/>
-                <outlet property="title" destination="MC9-cm-JKr" id="Xhv-gv-zzn"/>
-            </connections>
-            <point key="canvasLocation" x="-193" y="136"/>
+            <point key="canvasLocation" x="-324" y="135"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="QzH-dA-XuP" customClass="YKRecommentTitleView">
             <rect key="frame" x="0.0" y="0.0" width="322" height="79"/>
@@ -207,10 +203,6 @@
                     <constraint firstItem="fa3-Jh-BtB" firstAttribute="top" secondItem="1KG-03-StG" secondAttribute="top" constant="20" id="xsX-oU-ZTX"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="eng" destination="APk-IS-vbY" id="H64-YE-DLf"/>
-                <outlet property="title" destination="fa3-Jh-BtB" id="AQm-ex-UrV"/>
-            </connections>
             <point key="canvasLocation" x="-649" y="508"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="72" id="FY2-el-BTX" customClass="YKRecommentTitleView">

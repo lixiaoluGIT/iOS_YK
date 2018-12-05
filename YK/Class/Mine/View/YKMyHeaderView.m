@@ -249,12 +249,12 @@
         }
         
         if ([user.cardType intValue] == 1) {
-            [_vipBtn setTitle:@"季卡会员" forState:UIControlStateNormal];
+            [_vipBtn setTitle:@"月卡会员" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"季卡-1"];
         }
         
         if ([user.cardType intValue] == 2) {
-            [_vipBtn setTitle:@"月卡会员" forState:UIControlStateNormal];
+            [_vipBtn setTitle:@"季卡会员" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"月卡"];
         }
         

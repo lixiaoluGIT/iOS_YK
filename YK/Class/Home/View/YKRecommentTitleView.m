@@ -26,12 +26,13 @@
     // Initialization code
     
     _eng.numberOfLines = 0;
-    _title.font = PingFangSC_Medium(kSuitLength_H(16));
-    _eng.font = PingFangSC_Regular(kSuitLength_H(10));
-    _kkkk.font = PingFangSC_Medium(kSuitLength_H(16));
-    _eng.font = PingFangSC_Medium(kSuitLength_H(10));
-    _activityH.constant = _fashionH.constant = kSuitLength_H(19);
-    _recH.constant = kSuitLength_H(19);
+    _title.font = PingFangSC_Medium(kSuitLength_H(20));
+    _eng.font = PingFangSC_Regular(kSuitLength_H(12));
+    _kkkk.font = PingFangSC_Medium(kSuitLength_H(20));
+    _eng.font = PingFangSC_Regular(kSuitLength_H(12));
+    _activityH.constant = _fashionH.constant = kSuitLength_H(26);
+    _recH.constant = kSuitLength_H(26);
+    _llll.font = PingFangSC_Regular(kSuitLength_H(12));
     
 //    _eng.backgroundColor = [UIColor greenColor];
     

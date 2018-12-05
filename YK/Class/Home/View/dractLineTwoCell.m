@@ -13,14 +13,14 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-//    [self drawForm];
+    [self drawForm];
 
     
 }
 
 //- (void)setTitleArr:(NSArray *)titleArr{
 //    _titleArr = titleArr;
-//    [self setTitle];
+////    [self setTitle];
 //}
 - (void)setTitleRow:(NSInteger)row{
     
@@ -61,7 +61,7 @@
     CGContextFillPath(context);
     
     //先画外层大矩形框
-    CGContextSetStrokeColorWithColor(context, mainColor.CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithHexString:@"fafafa"].CGColor);
     CGMutablePathRef path = CGPathCreateMutable();
     //第一条线起点point
     CGPathMoveToPoint(path, &CGAffineTransformIdentity, 20, 0);
@@ -89,7 +89,7 @@
 //    for (int i = 0; i < _titleArr.count; i++) {
 //
 //        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20*WIDHT/414 + (WIDHT-20*2)/_titleArr.count*i, 0, 60, 30)];
-//        label.text = _titleArr[i];
+//        label.text = [NSString stringWithFormat:@"%@",_titleArr[i]];
 //        label.textColor = mainColor;
 //        label.font = PingFangSC_Regular(14);
 //        label.textAlignment = NSTextAlignmentCenter;
@@ -99,7 +99,8 @@
 //
 //        UIFont * font = [UIFont systemFontOfSize:14];
 //        NSDictionary * dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
-//        [_titleArr[i] drawInRect:CGRectMake( 15*WIDHT/414 + (WIDHT-15*2)/_titleArr.count*i, 5 , 60, 30) withAttributes:dic];
+//        NSString *cS = [NSString stringWithFormat:@"%@",_titleArr[i]];
+//        [cS drawInRect:CGRectMake( 15*WIDHT/414 + (WIDHT-15*2)/_titleArr.count*i, 5 , 60, 30) withAttributes:dic];
 //    }
     
     

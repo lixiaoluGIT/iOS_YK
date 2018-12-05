@@ -61,7 +61,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"尺码资料";
+    self.title = @"编辑尺码";
     
     [_mySizeArray addObject:@""];//肩宽
     [_mySizeArray addObject:@""];//胸围
@@ -101,9 +101,17 @@
     
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     
+    
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
     self.navigationItem.rightBarButtonItem.tintColor = mainColor;
+    
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+    title.text = self.title;
+    title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
+    self.navigationItem.titleView = title;
 }
 
 - (void)leftAction{

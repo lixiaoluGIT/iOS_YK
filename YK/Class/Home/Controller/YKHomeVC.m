@@ -40,6 +40,7 @@
 #import "YKHomeActivityView.h"
 #import "YKFashionRecView.h"
 #import "YKNewLoginView.h"
+#import "YKRecomentProductVC.h"
 
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate,NewDynamicsCellDelegate>
 {
@@ -416,7 +417,7 @@
 //        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+10-14);
 //    }
     
-    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(71)*4 + kSuitLength_H(187+220) + kSuitLength_H(220)*2+10);
+    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(100)*4 + kSuitLength_H(187+355) + kSuitLength_H(355)+10);
 //    return kSuitLength_H(<#lengthGiven#>)
 }
 
@@ -473,7 +474,7 @@
         
         //活动文字（专题活动）
         YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
-        ti2.frame = CGRectMake(0, desCell.frame.size.height + desCell.frame.origin.y,WIDHT, kSuitLength_H(71));
+        ti2.frame = CGRectMake(0, desCell.frame.size.height + desCell.frame.origin.y,WIDHT, kSuitLength_H(100));
 //        ti2.backgroundColor = [UIColor redColor];
         if (!hadtitle4) {
             [headerView addSubview:ti2];
@@ -600,7 +601,7 @@
 //
         //时尚穿搭-》搭配推荐
         YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][3];
-        ti3.frame = CGRectMake(0, _activityView.frame.size.height + _activityView.frame.origin.y,WIDHT, kSuitLength_H(71));
+        ti3.frame = CGRectMake(0, _activityView.frame.size.height + _activityView.frame.origin.y,WIDHT, kSuitLength_H(100));
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             //去列表页
             NSLog(@"去列表页");
@@ -619,7 +620,7 @@
         NSMutableArray *array = [NSMutableArray array];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.hotWears[0]];
         [array addObject:dic];
-        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(10,ti3.bottom,WIDHT-20,kSuitLength_H(220)) shouldInfiniteLoop:YES imageGroups:array];
+        _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(10,ti3.bottom,WIDHT-20,kSuitLength_H(355)) shouldInfiniteLoop:YES imageGroups:array];
         _banner2.autoScrollTimeInterval = 3;
         _banner2.autoScroll = NO;
         _banner2.isZoom = YES;
@@ -695,22 +696,19 @@
         //时尚穿搭标题
         YKRecommentTitleView  *fashionTitle =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][6];
         //        ti.backgroundColor = [UIColor redColor];
-        fashionTitle.frame = CGRectMake(0, _banner2.frame.size.height + _banner2.frame.origin.y ,WIDHT, kSuitLength_H(71));
+        fashionTitle.frame = CGRectMake(0, _banner2.frame.size.height + _banner2.frame.origin.y ,WIDHT, kSuitLength_H(100));
         if (!hadsstjTitle) {
             [headerView addSubview:fashionTitle];
             hadsstjTitle = YES;
         }
         //时尚穿搭
         YKFashionRecView *fashion = [[YKFashionRecView alloc]init];
-        fashion.frame = CGRectMake(0,fashionTitle.frame.size.height + fashionTitle.frame.origin.y , WIDHT, kSuitLength_H(220)*2+10);
+        fashion.frame = CGRectMake(0,fashionTitle.frame.size.height + fashionTitle.frame.origin.y , WIDHT, kSuitLength_H(355)+10);
         fashion.imageArray = [NSMutableArray arrayWithArray:self.weeknewArray];
-        fashion.toDetailBlock = ^(NSString *activityID){
-            YKLinkWebVC *web =[YKLinkWebVC new];
-            web.needShare = YES;
-            web.url = activityID;
-            if (web.url.length == 0) {
-                return;
-            }
+        fashion.toDetailBlock = ^(NSString *suitId){
+            //跳到推荐商品页
+            YKRecomentProductVC *web =[YKRecomentProductVC new];
+            web.pId = suitId;
             web.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:web animated:YES];
         };
@@ -722,7 +720,7 @@
         //精选推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
 //        ti.backgroundColor = [UIColor redColor];
-        ti.frame = CGRectMake(0, fashion.bottom,WIDHT, kSuitLength_H(71));
+        ti.frame = CGRectMake(0, fashion.bottom,WIDHT, kSuitLength_H(100));
         if (!hadtitle2&&self.layoutsArr1.count>0) {
             [headerView addSubview:ti];
             hadtitle2 = YES;
@@ -822,7 +820,7 @@
 //                        NSLog(@"向上");
             [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
 
-        } else if (scrollView. contentOffset.y >lastContentOffset )
+        } else if (scrollView. contentOffset.y >kSuitLength_H(500) )
         {
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];
