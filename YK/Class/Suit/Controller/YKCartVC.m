@@ -319,6 +319,10 @@
         buttom.frame = CGRectMake(kSuitLength_H(60),HEIGHT-kSuitLength_H(160), WIDHT-kSuitLength_H(60)*2, kSuitLength_H(36));
     }
     
+    if (HEIGHT==812) {
+        buttom.frame = CGRectMake(kSuitLength_H(60),HEIGHT-kSuitLength_H(220), WIDHT-kSuitLength_H(60)*2, kSuitLength_H(36));
+    }
+    
     buttom.backgroundColor = YKRedColor;
     [buttom setTitle:@"确认衣袋" forState:UIControlStateNormal];
     [buttom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

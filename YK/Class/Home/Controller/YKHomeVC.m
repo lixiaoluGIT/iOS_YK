@@ -324,7 +324,7 @@
         self.imageClickUrls = [self getImageClickUrlsArray:array];
         self.brandArray = [NSArray arrayWithArray:dic[@"data"][@"thematicActivities"]];
         self.productArray = [NSMutableArray arrayWithArray:dic[@"data"][@"productList"][@"list"]];
-        self.weeknewArray = [NSArray arrayWithArray:dic[@"data"][@"suitWith"][@"content"]];
+        self.weeknewArray = [NSArray arrayWithArray:dic[@"data"][@"fashionRecommendationVOS"]];
         self.hotWears = [NSMutableArray arrayWithArray:dic[@"data"][@"fashionWears"]];
         NSArray *currentArray = [NSArray arrayWithArray:dic[@"data"][@"article"][@"articleVOS"]];
         
@@ -705,10 +705,10 @@
         YKFashionRecView *fashion = [[YKFashionRecView alloc]init];
         fashion.frame = CGRectMake(0,fashionTitle.frame.size.height + fashionTitle.frame.origin.y , WIDHT, kSuitLength_H(355)+10);
         fashion.imageArray = [NSMutableArray arrayWithArray:self.weeknewArray];
-        fashion.toDetailBlock = ^(NSString *suitId){
+        fashion.toDetailBlock = ^(NSDictionary *dic){
             //跳到推荐商品页
             YKRecomentProductVC *web =[YKRecomentProductVC new];
-            web.pId = suitId;
+            web.dic = dic;
             web.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:web animated:YES];
         };

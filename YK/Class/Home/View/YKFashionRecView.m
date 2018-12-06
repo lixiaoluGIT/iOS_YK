@@ -26,13 +26,13 @@
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:imageArray[0]];
         UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(10, (h+10)*i, w, h)];
         [image setUserInteractionEnabled:YES];
-        [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"imgUrl"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+        [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"img1"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
         [self addSubview:image];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             
             //            if ([Token length] == 0) {
             if (self.toDetailBlock) {
-                self.toDetailBlock(dic[@"suitWithId"]);
+                self.toDetailBlock(_imageArray[0]);
                 //                }
             }
             

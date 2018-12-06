@@ -193,4 +193,39 @@
         
     }];
 }
+
+- (void)filterDataWithCategoryIdList:(NSArray *)CategoryIdList
+                        colourIdList:(NSArray *)colourIdList
+                       elementIdList:(NSArray *)elementIdList
+                         labelIdList:(NSArray *)labelIdList
+                        seasonIdList:(NSArray *)seasonIdList
+                         styleIdList:(NSArray *)styleIdList
+                           updateDay:(NSString *)updateDay
+                                page:(NSInteger )page
+                                size:(NSInteger )size
+                               exist:(NSString *)exist
+                      clothingIdList:(NSArray *)clothingIdList
+                          OnResponse:(void (^)(NSDictionary *dic))onResponse;{
+
+    if (page<=1) {
+        [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    }
+  
+
+    NSMutableDictionary  *dic = [NSMutableDictionary dictionary];
+    [dic setObject:@(page) forKey:@"page"];
+     [dic setObject:@(size) forKey:@"size"];
+     [dic setObject:@"0" forKey:@"exist"];
+     [dic setObject:@"0" forKey:@"classify"];
+     [dic setObject:clothingIdList forKey:@"clothingIdList"];
+    
+    [YKHttpClient Method:@"POST" URLString:filter_Url paramers:dic success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if (onResponse) {
+            onResponse(dict);
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end

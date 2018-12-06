@@ -17,6 +17,7 @@
 
 @interface YKUserAccountVC (){
     YKWalletButtom *buttom;
+    BOOL isLogining;
 }
 @property (nonatomic,strong)NSDictionary *account;
 @end
@@ -74,6 +75,10 @@
 
 //接收微信登录的通知
 - (void)wechatDidLoginNotification:(NSNotification *)notify{
+    if (isLogining) {
+        return;
+    }
+    isLogining = YES;
     NSDictionary *dict = [notify userInfo];
     [[YKUserManager sharedManager]getWechatAccessTokenWithCode:dict[@"code"] OnResponse:^(NSDictionary *dic) {
         [self dismissViewControllerAnimated:YES completion:^{

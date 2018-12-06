@@ -240,7 +240,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565611544.533304"
+            timestampString = "565768520.559835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "623"
@@ -262,22 +262,6 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "-setIsSelected:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Mine/View/YKNewLoginView.m"
-            timestampString = "565079846.874943"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
-            landmarkName = "-wechatDidLoginNotification:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -446,7 +430,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565611544.592497"
+            timestampString = "565768520.560361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "632"
@@ -462,7 +446,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565611544.59295"
+            timestampString = "565768520.560668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "666"
@@ -478,7 +462,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565611544.593372"
+            timestampString = "565768520.560964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "624"
@@ -494,7 +478,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565611544.593787"
+            timestampString = "565768520.561253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "644"
@@ -510,7 +494,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Search/Controller/YKSearchVC.m"
-            timestampString = "565611544.59422"
+            timestampString = "565768520.561541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "645"
@@ -621,12 +605,12 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "565697757.336619"
+                  timestampString = "565775438.856433"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
                   endingLineNumber = "194"
-                  offsetFromSymbolStart = "556">
+                  offsetFromSymbolStart = "577">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -636,12 +620,12 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "565697757.339319"
+                  timestampString = "565775438.861062"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
                   endingLineNumber = "194"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -651,12 +635,12 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "565697757.342638"
+                  timestampString = "565775438.864018"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
                   endingLineNumber = "194"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -690,22 +674,6 @@
             startingLineNumber = "406"
             endingLineNumber = "406"
             landmarkName = "-tableView:numberOfRowsInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YK/Class/Home/Controller/YKHomeVC.m"
-            timestampString = "565697756.9092979"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
-            landmarkName = "-dd"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

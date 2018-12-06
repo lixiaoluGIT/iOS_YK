@@ -31,7 +31,8 @@
     _title.textColor = mainColor;
     _title.font = PingFangSC_Regular(kSuitLength_H(12))
     _image.layer.masksToBounds = YES;
-    _image.layer.cornerRadius = kSuitLength_H(56/2);
+    _image.layer.cornerRadius = kSuitLength_H(56)/2;
+    _image.backgroundColor = [UIColor whiteColor];
     
     _nameWidth.constant = kSuitLength_H(66);
     _nameHeight.constant = kSuitLength_H(22);

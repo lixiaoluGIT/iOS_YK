@@ -62,21 +62,30 @@
     //安装
     [MobClick event:@"upload"];
 //
-//    if (![UD boolForKey:@"notFirst"]) {
-//
-//        //第一次安装的时候上传idfa
-//        //idfa
-////        [[YKUserManager sharedManager]uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
-////
-////        }];
-//
-        _window.rootViewController = [[WelcomeViewController alloc] init];
-//
-//        [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
+    if (![UD boolForKey:@"notFirst"]) {
+
+        //第一次安装的时候上传idfa
+        //idfa
+//        [[YKUserManager sharedManager]uploadIdfa:@"" OnResponse:^(NSDictionary *dic) {
 //
 //        }];
-//    }
-//    else{
+
+        _window.rootViewController = [[WelcomeViewController alloc] init];
+
+        [[YKUserManager sharedManager]downLoadAdsContentOnResponse:^(NSDictionary *dic) {
+
+        }];
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        window.rootViewController = [YKMainVC new];
+        
+        CATransition *anim = [CATransition animation];
+        anim.duration = 0;
+        anim.type = @"fade";
+        [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
+        
+        [UD setBool:YES forKey:@"notfirst"];
+    }
+    else{
         DDAdvertisementVC *ad = [DDAdvertisementVC new];
         if ([UD objectForKey:Ad_Url]) {
             ad.url = [UD objectForKey:Ad_Url];
@@ -101,7 +110,7 @@
             
         }
        
-//    }
+    }
     
     //注册融云服务
     [[RCIM sharedRCIM] initWithAppKey:RongAPPID];

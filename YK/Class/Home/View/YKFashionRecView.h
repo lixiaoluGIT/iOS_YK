@@ -11,6 +11,6 @@
 @interface YKFashionRecView : UIView
 
 @property (nonatomic,strong)NSArray *imageArray;
-@property (nonatomic,copy)void (^toDetailBlock)(NSString *suitId);
+@property (nonatomic,copy)void (^toDetailBlock)(NSDictionary *dic);
 
 @end

@@ -27,6 +27,7 @@
     CBSegmentView *sliderSegmentView ;
     BOOL hadMakeSegment;
     UIPercentDrivenInteractiveTransition *interactiveTransition;
+    YKRecProductHeaderView * _acH;
 }
 @property (nonatomic,strong)NSString *catrgoryId;
 @property (nonatomic, assign) NSInteger pageNum;
@@ -70,7 +71,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"精选推荐";
+    self.title = @"";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
@@ -89,13 +90,13 @@
     }
     self.navigationItem.leftBarButtonItems=@[negativeSpacer,item];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
-    title.text = self.title;
-    title.textAlignment = NSTextAlignmentCenter;
-    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Medium(kSuitLength_H(14));
-    
-    self.navigationItem.titleView = title;
+//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+//    title.text = self.title;
+//    title.textAlignment = NSTextAlignmentCenter;
+//    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+//    title.font = PingFangSC_Medium(kSuitLength_H(14));
+//
+//    self.navigationItem.titleView = title;
     
     
     
@@ -149,6 +150,24 @@
     
 }
 
+- (void)setDic:(NSDictionary *)dic{
+    _dic = dic;
+    self.title = [NSString stringWithFormat:@"%@",dic[@"title"]];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+    title.text = self.title;
+    title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.font = PingFangSC_Medium(kSuitLength_H(14));
+    
+    self.navigationItem.titleView = title;
+    
+    //请求商品
+    NSArray *clothingIdList = [NSArray arrayWithArray:dic[@"clothingIdList"]];
+    [[YKSearchManager sharedManager]filterDataWithCategoryIdList:nil colourIdList:nil elementIdList:nil labelIdList:nil seasonIdList:nil styleIdList:nil updateDay:nil page:0 size:20 exist:0 clothingIdList:clothingIdList OnResponse:^(NSDictionary *dic) {
+        self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
+        [self.collectionView reloadData];
+    }];
+}
 
 - (void)leftAction{
     [self.navigationController popViewControllerAnimated:YES];
@@ -159,15 +178,15 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-//    return self.productList.count;
-    return 100;
+    return self.productList.count;
+//    return 100;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGQCollectionViewCell *cell = (CGQCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CGQCollectionViewCell" forIndexPath:indexPath];
-//    YKProduct *product = [[YKProduct alloc]init];
-//    [product initWithDictionary:self.productList[indexPath.row]];
-//    cell.product = product;
+    YKProduct *product = [[YKProduct alloc]init];
+    [product initWithDictionary:self.productList[indexPath.row]];
+    cell.product = product;
     return cell;
 }
 
@@ -184,8 +203,8 @@
         if (indexPath.section==0) {
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
 //            headerView.backgroundColor =[UIColor redColor];
-            YKRecProductHeaderView * _acH = [[YKRecProductHeaderView alloc]init];
-           [ _acH initWithImage:@"top1" content:@"6月-7月，带话题并晒出自己最美的背影照参与本次活动，每周点赞前三名可获得7天加时卡一张，快来参加吧！"];
+            _acH = [[YKRecProductHeaderView alloc]init];
+             [ _acH initWithImage:[NSString stringWithFormat:@"%@",_dic[@"img2"]] content:[NSString stringWithFormat:@"%@",_dic[@"introduce"]]];
             headerView.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(300));
             _acH.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(300));
             if (!hadMakeHeader) {

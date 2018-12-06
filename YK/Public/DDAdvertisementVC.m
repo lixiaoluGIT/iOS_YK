@@ -51,9 +51,9 @@
     
     _jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:_jumpBtn];
-    _jumpBtn.frame = CGRectMake(WIDHT-84, HEIGHT-54, 60, 30);
+    _jumpBtn.frame = CGRectMake(WIDHT-84, HEIGHT-54, kSuitLength_H(60), kSuitLength_H(30));
     if (HEIGHT==812) {
-         _jumpBtn.frame = CGRectMake(WIDHT-84, HEIGHT-54-24, 60, 30);
+         _jumpBtn.frame = CGRectMake(WIDHT-84, HEIGHT-54-24, kSuitLength_H(60), kSuitLength_H(30));
     }
     [_jumpBtn setTitle:@"3 跳过" forState:UIControlStateNormal];
     [_jumpBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
@@ -62,12 +62,12 @@
     _jumpBtn.layer.cornerRadius = 4;
     _jumpBtn.alpha = 1;
     _jumpBtn.backgroundColor = mainColor;
-    _jumpBtn.titleLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:14];
-    _jumpBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    _jumpBtn.titleLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:kSuitLength_H(12)];
+    _jumpBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
 }
 
 - (void)addBottomView{
-    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT-100, WIDHT, 100)];
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT-kSuitLength_H(100), WIDHT, kSuitLength_H(100))];
     [self.view addSubview:bottomView];
     bottomView.backgroundColor = [UIColor whiteColor];
     

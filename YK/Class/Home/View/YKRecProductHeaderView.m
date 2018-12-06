@@ -10,11 +10,22 @@
 
 @implementation YKRecProductHeaderView
 
+- (NSString *)URLEncodedString:(NSString *)str
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
+
 - (void)initWithImage:(NSString *)imageName content:(NSString *)content{
     //图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(200));
-    [image sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"top1.jpg"]];
+    [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:imageName]] placeholderImage:[UIImage imageNamed:@"top1.jpg"]];
     [image setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:image];
     

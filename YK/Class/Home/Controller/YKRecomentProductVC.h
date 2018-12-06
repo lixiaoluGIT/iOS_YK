@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YKRecomentProductVC : YKBaseVC
 
-@property (nonatomic,strong)NSString *pId;
+@property (nonatomic,strong)NSDictionary *dic;
 @end
 
 NS_ASSUME_NONNULL_END
