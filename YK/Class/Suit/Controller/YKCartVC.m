@@ -333,7 +333,7 @@
     [self.view addSubview:buttom];
     
     if ([Token length] == 0) {
-        [buttom setTitle:@"去逛逛" forState:UIControlStateNormal];
+        [buttom setTitle:@"确认衣袋" forState:UIControlStateNormal];
     }
     
     buttom.hidden = YES;

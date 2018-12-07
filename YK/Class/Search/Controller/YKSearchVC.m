@@ -174,16 +174,23 @@
     
     //衣位导视图
     UIImageView *image = [[UIImageView alloc]init];
-    image.image = [UIImage imageNamed:@"衣位导视图"];
+    image.image = [UIImage imageNamed:@"选衣筛选"];
     [image sizeToFit];
+    [image setContentMode:UIViewContentModeScaleToFill];
     image.frame = [UIApplication sharedApplication].keyWindow.frame;
+    
     if (![UD boolForKey:@"hadap"]) {
         [[UIApplication sharedApplication].keyWindow addSubview:image];
         [UD setBool:YES forKey:@"hadap"];
     }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        image.hidden = YES;
+        image.image = [UIImage imageNamed:@"daoshitu"];
+        
+        UITapGestureRecognizer *t = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+            image.hidden = YES;
+        }];
+        [image addGestureRecognizer:t];
     }];
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:tap];

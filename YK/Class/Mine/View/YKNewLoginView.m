@@ -365,22 +365,28 @@
     isLogining = YES;
     [[YKUserManager sharedManager]getWechatAccessTokenWithCode:dict[@"code"] OnResponse:^(NSDictionary *dic) {
         isLogining = NO;
-        NSLog(@"微信登录response：%@",dic);
-        [UIView animateWithDuration:0.3 animations:^{
-            [self dismiss];
-        }completion:^(BOOL finished) {
-            if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]]) {
-                YKChangePhoneVC *changePhone = [YKChangePhoneVC new];
-                changePhone.isFromThirdLogin = YES;
-                changePhone.hidesBottomBarWhenPushed = YES;
-                [[self getCurrentVC].navigationController pushViewController:changePhone animated:YES];
-            }else {
-                if (self.loginSuccess) {
-                    self.loginSuccess();
-                }
-            }
-        }];
         
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismiss];
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.4 animations:^{
+//                    [self dismiss];
+                }completion:^(BOOL finished) {
+                    if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]]) {
+                        YKChangePhoneVC *changePhone = [YKChangePhoneVC new];
+                        changePhone.isFromThirdLogin = YES;
+                        changePhone.hidesBottomBarWhenPushed = YES;
+                        [[self getCurrentVC].navigationController pushViewController:changePhone animated:YES];
+                    }else {
+                        if (self.loginSuccess) {
+                            self.loginSuccess();
+                        }
+                    }
+                }];
+                
+            });
+            
+        });
     }];
 }
 

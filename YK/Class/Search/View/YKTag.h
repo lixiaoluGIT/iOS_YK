@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface YKTag : NSObject
-@property(nonatomic,assign)NSInteger objId;
+@property(nonatomic,assign)NSInteger objId;//id
+@property(nonatomic,assign)NSInteger parentId;//父类id
 @property(nonatomic,copy)NSString *name;
 @property(nonatomic,assign)BOOL selected;///< default is NO
 
-- (instancetype)initWithId:(NSInteger)oId name:(NSString *)name;
+- (instancetype)initWithId:(NSInteger)oId parentId:(NSInteger)parentId name:(NSString *)name;
 
 @end

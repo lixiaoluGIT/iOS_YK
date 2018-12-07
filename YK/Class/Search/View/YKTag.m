@@ -10,9 +10,10 @@
 
 @implementation YKTag
 
-- (instancetype)initWithId:(NSInteger)oId name:(NSString *)name
+- (instancetype)initWithId:(NSInteger)oId parentId:(NSInteger)parentId name:(NSString *)name
 {
     if(self = [super init]){
+        self.parentId = parentId;
         self.objId = oId;
         self.name = name;
     }
@@ -25,7 +26,7 @@
         return NO;
     }
     YKTag *otherTag = (YKTag *)object;
-    return self.objId == otherTag.objId && [self.name isEqualToString:otherTag.name];
+    return self.objId == otherTag.objId && [self.name isEqualToString:otherTag.name] && self.parentId == otherTag.parentId;
 }
 
 - (NSString *)description

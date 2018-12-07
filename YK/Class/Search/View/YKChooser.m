@@ -26,14 +26,14 @@ static NSString *headerIdentifier = @"YLCollectionReusableView";
 //static NSString *footerIdentifier = @"YLCollectionReusableView";
 static NSString *cellIdentifier = @"YLTagsCollectionViewCell";
 
-static NSTimeInterval const kSheetAnimationDuration = 0.25;
+static NSTimeInterval const kSheetAnimationDuration = 0.3;
 static CGFloat const kBottomBtnHeight = 44.f;
-static CGFloat const kBottomGap = 24.f;
+static CGFloat const kBottomGap = 10.f;
 static CGFloat const kYGap = 10.f;
 
-@interface YKChooser()<UICollectionViewDataSource,UICollectionViewDelegate,YLWaterFlowLayoutDelegate, UITextFieldDelegate>
+@interface YKChooser()<UICollectionViewDataSource,UICollectionViewDelegate,YLWaterFlowLayoutDelegate, UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 {
-    
+    NSInteger cRow;//当前点击的一级品类标签
 }
 
 // 标签部分
@@ -66,6 +66,10 @@ static CGFloat const kYGap = 10.f;
 
 @property (nonatomic, strong) UIView *effectView;  // 当键盘输入时后面的背景遮罩
 
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)NSMutableArray *childCategoryArray;//存储不同子类标签数据源
+@property (assign, nonatomic) NSIndexPath *selIndex;//类型单选，当前选中的行
+@property (nonatomic,assign) NSInteger childId;//二级分类id
 @end
 
 
@@ -97,6 +101,9 @@ static CGFloat const kYGap = 10.f;
         
         _tagTitleArr = [NSMutableArray array];
         
+        //子类标签数据源
+        _childCategoryArray = [NSMutableArray array];
+        
         self.alpha = 0.f;
         //        self.backgroundColor = [[UIColor clearColor]colorWithAlphaComponent:0.5];
         
@@ -110,10 +117,11 @@ static CGFloat const kYGap = 10.f;
         
         [self addSubview:self.bottomView];
         
+        
+        
      
         
         [view addSubview:self];
-        
         
     }
     return self;
@@ -162,7 +170,9 @@ static CGFloat const kYGap = 10.f;
         //选中的所有数据
         [_selectedTags addObjectsFromArray:selectedTags];
         //选中的类别数据
+        
         [_types addObjectsFromArray:nSaleStatus];
+        
         [_seasons addObjectsFromArray:nBuildTypes];
         [_openTimes addObjectsFromArray:nRoomTypes];
         [_colors addObjectsFromArray:nDayToOpen];
@@ -316,13 +326,128 @@ static CGFloat const kYGap = 10.f;
     
 }
 
+-(UITableView *)tableView
+{
+    if(!_tableView){
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60)) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor whiteColor];
+        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.backgroundColor = kLineColor2;
+    }
+    return _tableView;
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (cRow==0) {
+        return 0;
+    }
+    NSArray *a = _childCategoryArray[cRow];
+    return a.count;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return kSuitLength_H(50);
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *a ;
+    YKTag *tag ;
+    if (cRow!=0) {
+      a = _childCategoryArray[cRow];
+    tag  = [a yl_objectAtIndex:indexPath.row];
+    }
+    
+    static NSString *CellIdentifier = @"menuTableViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    else
+    {
+        NSArray *subviews = [[NSArray alloc] initWithArray:cell.contentView.subviews];
+        
+        for (UIView *subview in subviews) {
+            
+            [subview removeFromSuperview];
+            
+        }
+    }
+    
+   
+    cell.textLabel.text = tag.name;;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.textLabel.font = PingFangSC_Regular(kSuitLength_H(10));
+    
+    if (_selIndex == indexPath) {
+        cell.textLabel.textColor = YKRedColor;
+        //            cell.contentView.backgroundColor = [UIColor colorWithHex:@"#F9F9F9"];
+    } else {
+        cell.textLabel.textColor = grayTextColor;
+        //            cell.contentView.backgroundColor = NavBarColor;
+    }
+    
+    
+    UIView *view = [[UIView alloc] init];
+    view.frame = CGRectMake(kSuitLength_V(14), kSuitLength_V(82.f / 2)-1, screen_width, 1);
+    view.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
+    
+    [cell.contentView addSubview:view];
+    
+    return cell;
+   
+//    UITableViewCell *cell = [[UITableViewCell alloc]init];
+//    cell.backgroundColor = kLineColor2;
+//    cell.textLabel.text = tag.name;
+//    cell.textLabel.font = PingFangSC_Regular(kSuitLength_H(12));
+//    cell.textLabel.textColor = [UIColor colorWithHexString:@"666666"];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+   
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //之前选中的，取消选择
+    UITableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndex];
+    celled.textLabel.textColor = blackTextColor;
+    //    celled.contentView.backgroundColor = NavBarColor;
+    
+    //记录当前选中的位置索引
+    _selIndex = indexPath;
+    //当前选择的打勾
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.textColor = YKRedColor;
+    NSArray *a ;
+    YKTag *tag ;
+    if (cRow!=0) {
+        a = _childCategoryArray[cRow];
+        tag  = [a yl_objectAtIndex:indexPath.row];
+    }
+   
+   //当前的二级分类id
+    _childId = tag.objId;
+    [YKSearchManager sharedManager].childId = _childId;
+//    [_types removeAllObjects];
+//    [_types addObject:tag];
+    NSLog(@"1111111=%@",_types);
+}
 
 #pragma mark---UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
+//    //如果品类有选中
+//    if (_types.count!=0) {
+//        return _tagTitleArr.count+1;
+//    }
     
   return _tagTitleArr.count;
     
@@ -330,8 +455,8 @@ static CGFloat const kYGap = 10.f;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-
-        for (NSInteger i = 0; i < _tagTitleArr.count; i ++) {
+ 
+    for (NSInteger i = 0; i < _tagTitleArr.count; i ++) {
             
             if (section == i) {
                 
@@ -339,9 +464,15 @@ static CGFloat const kYGap = 10.f;
                 
                 NSArray *tags = (NSArray *)[_orignalMDicTags objectForKey:str];
                 
+                int total=0;
+                for (YKTag *tag in tags) {
+                    if (tag.parentId==0) {
+                        total++;
+                    }
+                }
                 NSInteger index = tags.count;
                 
-                return index;
+               return total;
             }
         }
     
@@ -380,16 +511,36 @@ static CGFloat const kYGap = 10.f;
             NSString *str = _tagTitleArr[indexPath.section];
             
             NSArray *tags = (NSArray *)[_orignalMDicTags objectForKey:str];
-            
-            YKTag *tag = [tags yl_objectAtIndex:indexPath.row];
+            NSMutableArray *tagss = [NSMutableArray array];
+            for (YKTag *tag in tags) {
+                if (tag.parentId==0) {//一级
+                    [tagss addObject:tag];
+                }else {//二级
+                    
+                }
+            }
+            YKTag *tag = [tagss yl_objectAtIndex:indexPath.row];
             
             if (indexPath.section==0) {//品类
                 if (tag.selected) {
                     if (![_types containsObject:tag]) {
+                       
                         [_types addObject:tag];
+                       
                     }
                 }
+                NSMutableArray *ts = [NSMutableArray array];
+                for (YKTag *t in tags) {
+                    if (t.parentId == tag.objId) {//属于哪个一级
+                        [ts addObject:t];
+                    }
+                }
+//                if ([_childCategoryArray containsObject:ts]) {
+                     [_childCategoryArray addObject:ts];
+//                }
+               
             }
+            
             if (indexPath.section==1) {//季节
                 if (tag.selected) {
                     if (![_seasons containsObject:tag]) {
@@ -455,7 +606,7 @@ static CGFloat const kYGap = 10.f;
         if (self.tagTitleArr.count != 0) {
             [header setTitle:[NSString stringWithFormat:@"%@", [self.tagTitleArr objectAtIndex:indexPath.section]]];
         }
-        
+        header.backgroundColor = [UIColor clearColor];
         return header;
     }
     
@@ -487,7 +638,14 @@ static CGFloat const kYGap = 10.f;
         
         for (NSArray *tags in _orignalMArrayTags) {
             
-            YKTag *tag = [tags yl_objectAtIndex:indexPath.row];
+            NSMutableArray *tagss = [NSMutableArray array];
+            for (YKTag *tag in tags) {
+                if (tag.parentId==0) {
+                    [tagss addObject:tag];
+                }
+            }
+            YKTag *tag = [tagss yl_objectAtIndex:indexPath.row];
+        
             
             CGSize size = CGSizeMake(kFrameWidth - layout.sectionInset.left - layout.sectionInset.right,CGFLOAT_MAX);
             
@@ -496,7 +654,7 @@ static CGFloat const kYGap = 10.f;
             CGRect textRect = [tag.name
                                boundingRectWithSize:size
                                options:NSStringDrawingUsesLineFragmentOrigin
-                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:kSuitLength_H(12)]}
                                context:nil];
             CGFloat width = textRect.size.width + 15;
             
@@ -531,16 +689,91 @@ static CGFloat const kYGap = 10.f;
     
     NSArray *tags = (NSArray *)[_orignalMDicTags objectForKey:str];
     
-    YKTag *tag = [tags yl_objectAtIndex:indexPath.row];
+    NSMutableArray *tagss = [NSMutableArray array];
+    for (YKTag *tag in tags) {
+        if (tag.parentId==0) {
+            [tagss addObject:tag];
+        }
+    }
+    YKTag *tag = [tagss yl_objectAtIndex:indexPath.row];
 //    
     if (indexPath.section==0) {//品类
+        if(![_selectedTags containsObject:tag]){
+            
+            NSMutableArray *a = _selectedTags.copy;
+            for (YKTag *ct in a) {
+                for (YKTag *ctt in _types) {
+                    if ([ct.name isEqual:ctt.name]) {
+                        ct.selected = NO;
+                        [_selectedTags removeObject:ct];
+                    }
+                }
+            }
+            
+            tag.selected = YES;
+            [_selectedTags addObject:tag];
+            
+        }else{
+            tag.selected = NO;
+            [_selectedTags removeObject:tag];
+        }
+        
         if(![_types containsObject:tag]){
+            
+            for (YKTag *t in _types) {//当前section选中的tag
+                t.selected = NO;
+                [_types removeObject:t];
+                for (YKTag *tt in tags) {
+                    if ([tt.name isEqual:t.name]) {
+                        tt.selected = t.selected;
+                    }
+                    
+                }
+            }
             tag.selected = YES;
             [_types addObject:tag];
+            
+            cRow = indexPath.row;
+            _selIndex = nil;
+            _childId = 0;
+             [YKSearchManager sharedManager].childId = _childId;
+            [UIView animateWithDuration:0.25 animations:^{
+                self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+                [self.tableView reloadData];
+            }completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.25 animations:^{
+                   self.tableView.frame = CGRectMake(WIDHT-kSuitLength_H(60), TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+                }];
+                
+            }];
         }else{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+            }];
             tag.selected = NO;
             [_types removeObject:tag];
         }
+        NSLog(@"选择的品类%@",_types);
+        if (_selectedTags.count!=0) {
+            [_resetBtn setBackgroundColor:mainColor];
+            [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+        }else {
+            _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+            [_resetBtn.titleLabel setTextColor:blackTextColor];
+        }
+        [collectionView reloadData];
+        //把选择的值赋给单例,供点空白的时候刷新商品用
+        [YKSearchManager sharedManager].styles = _styles;
+        [YKSearchManager sharedManager].categorys = _types;
+        [YKSearchManager sharedManager].times = _openTimes;
+        [YKSearchManager sharedManager].seasons = _seasons;
+        [YKSearchManager sharedManager].elements = _elements;
+        [YKSearchManager sharedManager].styles = _types;
+        return;
+    }else {//点的不是品类的，回收列表
+        [UIView animateWithDuration:0.25 animations:^{
+            self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+        }];
     }
     if (indexPath.section==1) {//季节
         if(![_seasons containsObject:tag]){
@@ -845,19 +1078,19 @@ static CGFloat const kYGap = 10.f;
     
     frame.size.height = screen_height;
    
-//    self.myCollectionView.backgroundColor = [UIColor redColor];
+    self.myCollectionView.backgroundColor = [UIColor clearColor];
 //    self.bottomView.backgroundColor = [UIColor yellowColor];
         if (self.myCollectionView.contentSize.height + kSuitLength_V(10) +  kBottomBtnHeight>= frame.size.height) {
-            self.myCollectionView.frame = CGRectMake(0, frame.origin.y, frame.size.width, frame.size.height - (kSuitLength_V(10) +  kBottomBtnHeight));
+            self.myCollectionView.frame = CGRectMake(-10, frame.origin.y, frame.size.width, frame.size.height - (kSuitLength_V(10) +  kBottomBtnHeight));
             self.bottomView.frame = frame;
             self.bottomView.frame = CGRectMake(0, 0, WIDHT-kSuitLength_H(60), HEIGHT);
         } else {
             
-            self.myCollectionView.frame = CGRectMake(0, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height);
+            self.myCollectionView.frame = CGRectMake(-10, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height);
             self.bottomView.frame = CGRectMake(0, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height + kSuitLength_V(10) +  kBottomBtnHeight);
             
         }
-        
+//    self.myCollectionView.backgroundColor = [UIColor redColor];
 //        _ensureBtn.layer.cornerRadius = kBottomBtnHeight / 2;
         _ensureBtn.layer.masksToBounds = YES;
         
@@ -880,6 +1113,9 @@ static CGFloat const kYGap = 10.f;
 //   self.frame = self.bottomView.frame;
     self.frame = CGRectMake(kSuitLength_H(60), 0, WIDHT-kSuitLength_H(60), HEIGHT);
 //    self.bottomView.backgroundColor = [UIColor redColor];
+    
+    [kWindow addSubview:self.tableView];
+    [kWindow bringSubviewToFront:self.tableView];
 }
 
 - (void)dismiss
@@ -887,7 +1123,7 @@ static CGFloat const kYGap = 10.f;
     
     [self endEditing:YES];
     
-    self.effectView.frame = CGRectMake(0, 0, screen_width, 0);
+//    self.effectView.frame = CGRectMake(0, 0, screen_width, 0);
     
     CGRect frame = self.bottomView.frame;
     //    frame.origin.y = kFrameHeight;
@@ -905,11 +1141,18 @@ static CGFloat const kYGap = 10.f;
     [UIView animateWithDuration:kSheetAnimationDuration
                      animations:^{
                          self.bottomView.frame = frame;
+                         [UIView animateWithDuration:0.25 animations:^{
+                             self.tableView.frame = CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+                         }];
                          
                          
                          //                         [self removeFromSuperview];
                          
                      } completion:^(BOOL finished) {
+                         
+                        [UIView animateWithDuration:0.25 animations:^{
+                             self.effectView.frame = CGRectMake(0, 0, screen_width, 0);
+                        }];
                          self.alpha = 0.f;
                          [self.myCollectionView setContentOffset:CGPointMake(0 , 0)];
                      }];
@@ -921,9 +1164,9 @@ static CGFloat const kYGap = 10.f;
 // 点击了更多的确认
 -(void)ensureAction
 {
-    if([_delegate respondsToSelector:@selector(moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:)]){
+    if([_delegate respondsToSelector:@selector(moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:childId:)]){
         
-        [_delegate moreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements];
+        [_delegate moreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements childId:_childId];
     }
     [self dismiss];
 }
@@ -979,9 +1222,9 @@ static CGFloat const kYGap = 10.f;
         
     }
     
-    if([_delegate respondsToSelector:@selector(resetmoreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:)]){
+    if([_delegate respondsToSelector:@selector(resetmoreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:childId:)]){
         
-        [_delegate resetmoreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements];
+        [_delegate resetmoreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements childId:_childId];
     }
     
     if (_selectedTags.count!=0) {
@@ -991,8 +1234,15 @@ static CGFloat const kYGap = 10.f;
         _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
         [_resetBtn.titleLabel setTextColor:blackTextColor];
     }
+    _selIndex = nil;
+    _childId = 0;
+     [YKSearchManager sharedManager].childId = _childId;
+    [self.tableView reloadData];
     [self.myCollectionView reloadData];
     
+    [UIView animateWithDuration:0.25 animations:^{
+        self.tableView.frame = CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+    }];
     //    [self dismiss];
 }
 

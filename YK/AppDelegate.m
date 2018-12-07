@@ -83,7 +83,7 @@
         anim.type = @"fade";
         [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
         
-        [UD setBool:YES forKey:@"notfirst"];
+//        [UD setBool:YES forKey:@"notfirst"];
     }
     else{
         DDAdvertisementVC *ad = [DDAdvertisementVC new];
@@ -117,7 +117,10 @@
     
     if ([Token length]>0) {//已登录
         [[YKUserManager sharedManager]getUserInforOnResponse:^(NSDictionary *dic) {
-           
+            NSString *s = [NSString stringWithFormat:@"%@",dic[@"userInfo"][@"phone"]];
+            if ([s isEqual:[NSNull null]]) {
+                [[YKUserManager sharedManager] clear];
+            }
             NSString *rong = [YKUserManager sharedManager].user.rongToken;
             NSString *rongToken;
             if (rong.length>0) {

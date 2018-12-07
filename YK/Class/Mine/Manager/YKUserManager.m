@@ -637,7 +637,7 @@
         NSLog(@"微信登录response=%@",dict);
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
-            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信授权成功" delay:1.8];
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信授权成功" delay:1.2];
             [self saveCurrentToken:dict[@"data"][@"token"]];
             
            
@@ -649,11 +649,12 @@
                 [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
                 //主包监测
                 [MobClick event:@"register"];
+                if (onResponse) {
+                    onResponse(nil);
+                }
             }];
             
-            if (onResponse) {
-                onResponse(nil);
-            }
+            
         }else {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2.5];
         }

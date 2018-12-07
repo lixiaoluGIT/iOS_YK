@@ -60,9 +60,9 @@
     //待归还数量
     self.toReceiveNum = [NSString stringWithFormat:@"%@",Dictionary[@"orderNumberList"][1][@"orderNum"]];
     
-    if ([self.phone isEqual:[NSNull null]]) {
-        [[YKUserManager sharedManager]clear];
-    }
+//    if ([self.phone isEqual:[NSNull null]]) {
+//        [[YKUserManager sharedManager]clear];
+//    }
     return self;
 }
 

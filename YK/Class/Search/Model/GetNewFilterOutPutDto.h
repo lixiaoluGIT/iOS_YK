@@ -28,9 +28,10 @@
 @end
 //分类
 @interface category : NSObject
-@property (nonatomic, assign) NSInteger categoryId;
+@property (nonatomic, assign) NSInteger categoryId;//分类id
 @property (nonatomic, copy) NSString *categoryName;
 @property (nonatomic,assign)NSInteger sort;
+@property (nonatomic,assign)NSInteger parentId;//父类id
 @end
 //颜色类型
 @interface color : NSObject

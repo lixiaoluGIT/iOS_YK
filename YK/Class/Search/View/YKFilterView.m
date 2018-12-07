@@ -107,9 +107,14 @@
     
     //品类
     NSMutableArray *postTypes = [NSMutableArray array];
-    for (YKTag *tag in [YKSearchManager sharedManager].categorys) {
-        [postTypes addObject:@(tag.objId)];
+    if ([YKSearchManager sharedManager].childId == 0) {
+        for (YKTag *tag in [YKSearchManager sharedManager].categorys) {
+            [postTypes addObject:@(tag.objId)];
+        }
+    }else {
+         [postTypes addObject:@([YKSearchManager sharedManager].childId)];
     }
+   
     
     //季节
     NSMutableArray *postSeasons = [NSMutableArray array];
@@ -205,7 +210,7 @@
                         
                         str = ca.categoryName;
                         
-                        YKTag *tag = [[YKTag alloc]initWithId:ca.categoryId name:str];
+                        YKTag *tag = [[YKTag alloc]initWithId:ca.categoryId parentId:ca.parentId name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -221,7 +226,7 @@
                         
                         str = se.seasonName;
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:se.seasonId name:str];
+                        YKTag *tag = [[YKTag alloc]initWithId:se.seasonId parentId:0 name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -235,7 +240,7 @@
                         
                         str = co.colourName;
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:co.colourId name:str];
+                       YKTag *tag = [[YKTag alloc]initWithId:co.colourId parentId:0 name:str];
                         
                         [testTags0 addObject:tag];
                         
@@ -258,7 +263,7 @@
 //                            tag = [[YKTag alloc]initWithId:1 name:@"30天内"];
 //                        }
                         
-                        YKTag *tag = [[YKTag alloc]initWithId:(up.day) name:str];
+                        YKTag *tag = [[YKTag alloc]initWithId:(up.day) parentId:0 name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -272,7 +277,7 @@
                         
                         str = t.labelName;
                         
-                       YKTag *tag = [[YKTag alloc]initWithId:t.labelId name:str];
+                       YKTag *tag = [[YKTag alloc]initWithId:t.labelId parentId:0 name:str];
                         
                         [testTags0 addObject:tag];
                     }
@@ -285,7 +290,7 @@
                         
                         str = st.styleName;
                         
-                      YKTag *tag = [[YKTag alloc]initWithId:st.styleId name:str];
+                      YKTag *tag = [[YKTag alloc]initWithId:st.styleId parentId:0 name:str];
                         
                         [testTags0 addObject:tag];
                         
@@ -299,7 +304,7 @@
                         
                         str = el.elementName;
                         
-                        YKTag *tag = [[YKTag alloc]initWithId:el.elementId name:str];
+                        YKTag *tag = [[YKTag alloc]initWithId:el.elementId parentId:0 name:str];
                         
                         [testTags0 addObject:tag];
                         
@@ -373,7 +378,7 @@
 }
 
 //重置按钮的回调
-- (void)resetmoreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)sTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements{
+- (void)resetmoreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)sTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements childId:(NSInteger)childId{
     
     [selectedTags removeAllObjects];
     [selectedTags addObjectsFromArray:sTags];//选中的所有标签
@@ -404,7 +409,7 @@
 
 //确认按钮的回调
 
-- (void)moreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)yTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements{
+- (void)moreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)yTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements childId:(NSInteger)childId{
     
     [selectedTags removeAllObjects];
     [selectedTags addObjectsFromArray:yTags];//选中的所有标签
@@ -431,9 +436,14 @@
     
     //品类
     NSMutableArray *postTypes = [NSMutableArray array];
-    for (YKTag *tag in types) {
-        [postTypes addObject:@(tag.objId)];
+    if (childId==0) {//没有子类，传父类
+        for (YKTag *tag in types) {
+            [postTypes addObject:@(tag.objId)];
+        }
+    }else{//有子类，传子类
+        [postTypes addObject:@(childId)];
     }
+    
     
     //季节
     NSMutableArray *postSeasons = [NSMutableArray array];

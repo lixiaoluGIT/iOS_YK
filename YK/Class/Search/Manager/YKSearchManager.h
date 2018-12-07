@@ -17,6 +17,8 @@
 @property (nonatomic,strong)NSMutableArray *styles;
 @property (nonatomic,strong)NSMutableArray *elements;
 
+@property (nonatomic,assign)NSInteger childId;
+
 + (YKSearchManager *)sharedManager;
 
 //选衣界面

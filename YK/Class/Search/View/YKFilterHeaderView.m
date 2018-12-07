@@ -82,6 +82,16 @@
         make.centerY.equalTo(_staticView.mas_centerY);
     }];
     
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+    [b addTarget:self action:@selector(filterAction) forControlEvents:UIControlEventTouchUpInside];
+    [_staticView addSubview:b];
+    
+    [b mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-(kSuitLength_H(10))));
+        make.centerY.equalTo(_staticView.mas_centerY);
+        make.width.mas_equalTo(kSuitLength_H(100));
+        make.height.mas_equalTo(kSuitLength_H(40));
+    }];
     //线
     UILabel *line = [[UILabel alloc]init];
     line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];

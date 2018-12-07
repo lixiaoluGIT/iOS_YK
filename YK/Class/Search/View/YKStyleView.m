@@ -8,10 +8,12 @@
 
 #import "YKStyleView.h"
 #import "YKScrollBtnView.h"
-@interface YKStyleView(){
+@interface YKStyleView()<UIScrollViewDelegate>{
     __block YKScrollBtnView *btn;
+    UIPageControl *_pageControl;
 }
 @property (nonatomic,strong)NSMutableArray *btnArray;
+
 @end
 @implementation YKStyleView
 
@@ -88,12 +90,35 @@
     }
     
     scrollView.pagingEnabled = YES;
-    scrollView.contentSize = CGSizeMake((_btnArray.count/4+1)*WIDHT, 0);
+    if (_btnArray.count/4>0 && _btnArray.count%4 !=0) {
+         scrollView.contentSize = CGSizeMake((_btnArray.count/4+1)*WIDHT, 0);
+    }else {
+         scrollView.contentSize = CGSizeMake((_btnArray.count/4)*WIDHT, 0);
+    }
+   
     scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.delegate = self;
     //线
     UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, WIDHT/4+kSuitLength_H(13), WIDHT, kSuitLength_H(10))];
     line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     [self addSubview:line];
+    
+    
+    _pageControl = [[UIPageControl alloc]init];
+    _pageControl.numberOfPages = _styleArray.count/4 + 1;
+    _pageControl.currentPage = 0;
+    _pageControl.frame = CGRectMake(0, self.frame.size.height-kSuitLength_H(30), WIDHT, kSuitLength_H(15));
+    //    _pageControl.backgroundColor = [UIColor redColor];
+    _pageControl.pageIndicatorTintColor = [UIColor colorWithHexString:@"f4f4f4"];
+    _pageControl.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"333333"];
+   
+    if (_pageControl.numberOfPages > 1) {
+        [self addSubview:_pageControl];
+        
+        [self bringSubviewToFront:_pageControl];
+    }
+    
+    
 }
 
 - (void)btnViewClick:(YKScrollBtnView *)btnView{
@@ -123,5 +148,15 @@
     }if (self.toDetailBlock) {
         self.toDetailBlock(btnView.styleId,@"");
     }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    CGFloat x = scrollView.contentOffset.x;
+    NSInteger index = x/WIDHT;
+    NSLog(@"%ld %lf",index,x);
+ 
+    _pageControl.currentPage = index;
+  
 }
 @end

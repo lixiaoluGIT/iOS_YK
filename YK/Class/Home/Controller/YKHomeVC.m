@@ -294,7 +294,35 @@
  }
 
 - (void)aleart{
-    [[YKHomeManager sharedManager]showAleart];
+    if (![UD boolForKey:@"notfirst"]) {//第一次安装
+         [UD setBool:YES forKey:@"notfirst"];
+        //衣位导视图
+        UIImageView *image = [[UIImageView alloc]init];
+        image.image = [UIImage imageNamed:@"心愿单-1"];
+        [image sizeToFit];
+        [image setContentMode:UIViewContentModeScaleToFill];
+        image.frame = [UIApplication sharedApplication].keyWindow.frame;
+        if (![UD boolForKey:@"hada"]) {
+            [[UIApplication sharedApplication].keyWindow addSubview:image];
+            [UD setBool:YES forKey:@"hada"];
+        }
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+
+            image.hidden = YES;
+            YKHomeVC *chatVC = [[YKHomeVC alloc] init];
+            chatVC.hidesBottomBarWhenPushed = YES;
+            UINavigationController *nav = self.tabBarController.viewControllers[2];
+            chatVC.hidesBottomBarWhenPushed = YES;
+            self.tabBarController.selectedViewController = nav;
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        [image setUserInteractionEnabled:YES];
+        [image addGestureRecognizer:tap];
+    }else {
+        [[YKHomeManager sharedManager]showAleart];
+        
+    }
 }
 
 - (NSMutableArray *)layoutsArr1{
