@@ -770,7 +770,18 @@
             }else {
                 cell.hidden = YES;
                 //无评论图
-                NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+                UIView *a = [[UIView alloc]init];
+                if (WIDHT==320) {
+//
+                    
+                    a.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT,150);
+                    [headerView addSubview:a];
+                    
+                }else {
+                    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+                }
+               
+              
                 [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"pinglun"] statusDes:@"暂无评论" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
                     
                 }];
@@ -778,7 +789,13 @@
                 NoDataView.backgroundColor = [UIColor whiteColor];
                 [headerView addSubview:NoDataView];
                 NoDataView.hidden = NO;
-                lastView = NoDataView;
+//                lastView = NoDataView;
+               
+                if (WIDHT==320) {
+                      lastView = a;
+                }else {
+                      lastView = NoDataView;
+                }
 //                totalHeight = 20+60+self.dataArray.count*40+170+150;
             }
             

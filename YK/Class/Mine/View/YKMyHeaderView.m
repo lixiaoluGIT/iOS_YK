@@ -76,6 +76,9 @@
     _vipBtn.layer.borderWidth = 1;
     [_vipBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _vipBtn.titleLabel.font = PingFangSC_Medium(12);
+    if (WIDHT==320) {
+        _vipBtn.titleLabel.font = PingFangSC_Medium(10);
+    }
     [_vipBtn addTarget:self action:@selector(VIP) forControlEvents:UIControlEventTouchUpInside];
     [cardView addSubview:_vipBtn];
     

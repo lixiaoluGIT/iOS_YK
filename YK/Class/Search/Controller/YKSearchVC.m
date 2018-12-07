@@ -195,11 +195,14 @@
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:tap];
  
-    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
-    
-    [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无商品"] statusDes:@"未发现商品，更换筛选条件试试" hiddenBtn:YES actionTitle:@"" actionBlock:^{
+    if (WIDHT!=320) {
+        NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
         
-    }];
+        [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无商品"] statusDes:@"未发现商品，更换筛选条件试试" hiddenBtn:YES actionTitle:@"" actionBlock:^{
+            
+        }];
+    }
+    
     NoDataView.frame = CGRectMake(0, (WIDHT/4+kSuitLength_H(10)+kSuitLength_H(13)+kSuitLength_H(70)), WIDHT,HEIGHT-212);
    
     NoDataView.backgroundColor = self.view.backgroundColor;

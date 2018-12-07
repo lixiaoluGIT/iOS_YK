@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *suitbtn;
 @property (weak, nonatomic) IBOutlet UILabel *owendNumLable;
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yidai;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnW;
 
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
@@ -29,6 +31,11 @@
     _owendNumLable.layer.cornerRadius = 5.5;
     _btnW.constant = kSuitLength_H(243);
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToCartSuccess) name:@"addToCartSuccess" object:nil];
+    
+    if (WIDHT==320) {
+        _likeLabel.hidden = YES;
+        _yidai.hidden = YES;
+    }
 }
 
 - (IBAction)selectLike:(id)sender {

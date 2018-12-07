@@ -135,6 +135,7 @@
                 <outlet property="likeLabel" destination="Bzj-vV-kwS" id="a0w-tF-zhf"/>
                 <outlet property="owendNumLable" destination="dk1-b0-t6x" id="WG4-aK-mN6"/>
                 <outlet property="suitbtn" destination="hBD-y2-Pj2" id="IKf-Mi-Dry"/>
+                <outlet property="yidai" destination="ZEe-TV-cuj" id="bPm-Bx-39d"/>
             </connections>
             <point key="canvasLocation" x="17" y="-37"/>
         </tableViewCell>

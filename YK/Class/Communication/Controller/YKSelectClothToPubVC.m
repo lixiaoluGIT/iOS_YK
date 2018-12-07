@@ -279,7 +279,10 @@
 //
 //    }];
 
-    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    if (WIDHT!=320) {
+         NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    }
+   
     [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"wuyifu"] statusDes:@"租过衣服才可以晒图哦～" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
 
     }];

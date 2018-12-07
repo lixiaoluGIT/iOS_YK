@@ -111,8 +111,10 @@
     _buttom.hidden = YES;
     self.tableView.hidden = YES;
     
+    if (WIDHT!=320) {
+        NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    }
     
-    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
     
     [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"暂无订单111"] statusDes:@"暂无订单" hiddenBtn:YES actionTitle:@"" actionBlock:^{
         

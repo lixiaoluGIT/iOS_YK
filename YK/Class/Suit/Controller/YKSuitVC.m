@@ -215,7 +215,10 @@
     selectDeShoppingCartList = [[NSMutableArray alloc]init];
     _cellArray  = [[NSMutableArray alloc]init];
 
-    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    if (WIDHT!=320) {
+         NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    }
+   
     [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"shangpin"] statusDes:@"暂无心愿单" hiddenBtn:NO actionTitle:@"去逛逛" actionBlock:^{
         YKSearchVC *searchVC = [[YKSearchVC alloc] init];
         searchVC.hidesBottomBarWhenPushed = YES;

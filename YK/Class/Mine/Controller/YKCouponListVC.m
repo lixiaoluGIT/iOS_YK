@@ -76,7 +76,10 @@
     self.navigationItem.titleView = title;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    if (WIDHT!=320) {
+         _NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    }
+   
     [_NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"zanwu"] statusDes:@"暂无卡劵" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
         
     }];

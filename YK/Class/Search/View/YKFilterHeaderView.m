@@ -71,6 +71,9 @@
     [filertBtn setTitle:@"全部筛选" forState:UIControlStateNormal];
     [filertBtn setImage:[UIImage imageNamed:@"you"] forState:UIControlStateNormal];
     [filertBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -100)];
+    if (WIDHT==320) {
+        [filertBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -70)];
+    }
     [filertBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 0)];
     [filertBtn setTitleColor:YKRedColor forState:UIControlStateNormal];
     filertBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
