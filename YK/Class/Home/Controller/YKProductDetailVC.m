@@ -293,6 +293,9 @@
     
     UIButton *btn11=[UIButton buttonWithType:UIButtonTypeCustom];
     btn11.frame = CGRectMake(3, BarH-44, 44, 44);
+    if ([[UIDevice currentDevice].systemVersion floatValue]>= 12) {
+        btn11.frame = CGRectMake(8, BarH-44, 44, 44);
+    }
     btn11.adjustsImageWhenHighlighted = NO;
     [btn11 setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [btn11 addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];

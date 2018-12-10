@@ -291,10 +291,14 @@
 
 - (void)showCodeView{
     
-    if (_phoneText.text.length != 11) {
-        [smartHUD alertText:kWindow alert:@"手机号有误" delay:1.3];
-        return;
-    }
+    if (![steyHelper isValidatePhone:self.phoneText.text] ) {
+                    [smartHUD alertText:kWindow alert:@"手机号错误" delay:1];
+                    return;
+                }
+//    if (_phoneText.text.length != 11) {
+//        [smartHUD alertText:kWindow alert:@"手机号有误" delay:1.3];
+//        return;
+//    }
     [_phoneText resignFirstResponder];
     phoneLable.text = _phoneText.text;
     [self reset];

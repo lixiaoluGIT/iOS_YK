@@ -599,15 +599,23 @@
                 
                 NSLog(@"%@",dic);
                 
-                NSString *openId = [dic objectForKey:@"openid"];
-                NSString *memNickName = [dic objectForKey:@"nickname"];
-                NSString *memSex = [dic objectForKey:@"sex"];
+                if ([Token length] == 0) {//未登录，微信登录接口
+                    NSString *openId = [dic objectForKey:@"openid"];
+                    NSString *memNickName = [dic objectForKey:@"nickname"];
+                    NSString *memSex = [dic objectForKey:@"sex"];
+                    
+                    [self loginWithOpenId:openId memNickName:memNickName memSex:memSex dic:dic OnResponse:^(NSDictionary *dic) {
+                        if (onResponse) {
+                            onResponse(nil);
+                        }
+                    }];
+                }else {//已登录，绑定微信接口（提现）
+                    [self binWXWithOpenId:openId memNickName:@"" memSex:@"" dic:dic OnResponse:^(NSDictionary *dic) {
+                        
+                    }];
+                }
                 
-                [self loginWithOpenId:openId memNickName:memNickName memSex:memSex dic:dic OnResponse:^(NSDictionary *dic) {
-                    if (onResponse) {
-                        onResponse(nil);
-                    }
-                }];
+               
             }
         });
         
@@ -653,6 +661,45 @@
                     onResponse(nil);
                 }
             }];
+            
+            
+        }else {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:dict[@"msg"] delay:2.5];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+//手机号绑定微信提现用
+- (void)binWXWithOpenId:(NSString *)openId memNickName:(NSString *)memNickName memSex:(NSString *)memSex dic:(NSMutableDictionary *)dic OnResponse:(void (^)(NSDictionary *dic))onResponse{
+    
+    [dic removeObjectForKey:@"privilege"];
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    [dic setObject:@"0" forKey:@"type"];//绑定
+    [dic setObject:[YKUserManager sharedManager].user.userId forKey:@"userId"];
+    
+    [YKHttpClient Method:@"POST" URLString:BindWX_Url paramers:dic success:^(NSDictionary *dict) {
+    
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dict[@"status"] intValue] == 200) {
+            [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信绑定成功" delay:1.2];
+//            [self saveCurrentToken:dict[@"data"][@"token"]];
+            
+            
+//            [self getUserInforOnResponse:^(NSDictionary *dic) {
+//                //链接融云
+//                [self RongCloudConnect];
+//                //监测登陆成功的事件
+//                [MobClick event:@"__register" attributes:@{@"userid":_user.userId}];
+//                [MobClick event:@"__login" attributes:@{@"userid":_user.userId}];
+//                //主包监测
+//                [MobClick event:@"register"];
+//                if (onResponse) {
+//                    onResponse(nil);
+//                }
+//            }];
             
             
         }else {

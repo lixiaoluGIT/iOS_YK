@@ -25,7 +25,7 @@
     //图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(0, 0, WIDHT, kSuitLength_H(200));
-    [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:imageName]] placeholderImage:[UIImage imageNamed:@"top1.jpg"]];
+    [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:imageName]] placeholderImage:[UIImage imageNamed:@"商品头图"]];
     [image setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:image];
     

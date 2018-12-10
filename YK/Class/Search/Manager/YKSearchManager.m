@@ -10,6 +10,12 @@
 
 @implementation YKSearchManager
 
+- (NSMutableArray *)childIds{
+    if (!_childIds) {
+        _childIds = [NSMutableArray array];
+    }
+    return _childIds;
+}
 - (NSMutableArray *)categorys{
     if (!_categorys) {
         _categorys  = [NSMutableArray array];

@@ -17,7 +17,7 @@
 @property (nonatomic,strong)NSMutableArray *styles;
 @property (nonatomic,strong)NSMutableArray *elements;
 
-@property (nonatomic,assign)NSInteger childId;
+@property (nonatomic,strong)NSMutableArray *childIds;
 
 + (YKSearchManager *)sharedManager;
 

@@ -119,7 +119,7 @@
     
     _titleBtn.font = PingFangSC_Medium(kSuitLength_H(14));
     _titleBtn.text = @"选择卡类型";
-    if (WIDHT==320) {
+    if (WIDHT==320 || HEIGHT==812) {
         isAgree = YES;
     }
     if ([YKUserManager sharedManager].isFromCoupon == YES) {

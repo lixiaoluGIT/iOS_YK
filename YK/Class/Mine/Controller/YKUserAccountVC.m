@@ -81,14 +81,14 @@
     isLogining = YES;
     NSDictionary *dict = [notify userInfo];
     [[YKUserManager sharedManager]getWechatAccessTokenWithCode:dict[@"code"] OnResponse:^(NSDictionary *dic) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]] || [YKUserManager sharedManager].user.phone.length == 0) {
-                YKChangePhoneVC *changePhone = [YKChangePhoneVC new];
-                changePhone.isFromThirdLogin = YES;
-                changePhone.hidesBottomBarWhenPushed = YES;
-                [[self getCurrentVC].navigationController pushViewController:changePhone animated:YES];
-            }
-        }];
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            if ([[YKUserManager sharedManager].user.phone isEqual:[NSNull null]] || [YKUserManager sharedManager].user.phone.length == 0) {
+//                YKChangePhoneVC *changePhone = [YKChangePhoneVC new];
+//                changePhone.isFromThirdLogin = YES;
+//                changePhone.hidesBottomBarWhenPushed = YES;
+//                [[self getCurrentVC].navigationController pushViewController:changePhone animated:YES];
+//            }
+//        }];
         
     }];
 };

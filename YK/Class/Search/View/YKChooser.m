@@ -70,6 +70,7 @@ static CGFloat const kYGap = 10.f;
 @property (nonatomic,strong)NSMutableArray *childCategoryArray;//存储不同子类标签数据源
 @property (assign, nonatomic) NSIndexPath *selIndex;//类型单选，当前选中的行
 @property (nonatomic,assign) NSInteger childId;//二级分类id
+@property (nonatomic,strong) NSMutableArray *selectIndePaths;
 @end
 
 
@@ -103,6 +104,8 @@ static CGFloat const kYGap = 10.f;
         
         //子类标签数据源
         _childCategoryArray = [NSMutableArray array];
+        
+        _selectIndePaths = [NSMutableArray array];
         
         self.alpha = 0.f;
         //        self.backgroundColor = [[UIColor clearColor]colorWithAlphaComponent:0.5];
@@ -329,7 +332,7 @@ static CGFloat const kYGap = 10.f;
 -(UITableView *)tableView
 {
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60)) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100)) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor whiteColor];
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         _tableView.dataSource = self;
@@ -386,14 +389,19 @@ static CGFloat const kYGap = 10.f;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.textLabel.font = PingFangSC_Regular(kSuitLength_H(10));
     
-    if (_selIndex == indexPath) {
-        cell.textLabel.textColor = YKRedColor;
-        //            cell.contentView.backgroundColor = [UIColor colorWithHex:@"#F9F9F9"];
-    } else {
-        cell.textLabel.textColor = grayTextColor;
-        //            cell.contentView.backgroundColor = NavBarColor;
-    }
+//    if (_selIndex == indexPath) {
+//        cell.textLabel.textColor = YKRedColor;
+//        //            cell.contentView.backgroundColor = [UIColor colorWithHex:@"#F9F9F9"];
+//    } else {
+//        cell.textLabel.textColor = grayTextColor;
+//        //            cell.contentView.backgroundColor = NavBarColor;
+//    }
     
+    if ([_selectIndePaths containsObject:indexPath]) {
+         cell.textLabel.textColor = YKRedColor;
+    }else {
+         cell.textLabel.textColor = grayTextColor;
+    }
     
     UIView *view = [[UIView alloc] init];
     view.frame = CGRectMake(kSuitLength_V(14), kSuitLength_V(82.f / 2)-1, screen_width, 1);
@@ -413,16 +421,18 @@ static CGFloat const kYGap = 10.f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-   
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     //之前选中的，取消选择
-    UITableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndex];
+    UITableViewCell *celled = [tableView cellForRowAtIndexPath:indexPath];
     celled.textLabel.textColor = blackTextColor;
-    //    celled.contentView.backgroundColor = NavBarColor;
-    
     //记录当前选中的位置索引
     _selIndex = indexPath;
+    //点击的行保存起来
+    if (![_selectIndePaths containsObject:_selIndex]) {
+        [_selectIndePaths addObject:_selIndex];
+    }else {
+        [_selectIndePaths removeObject:_selIndex];
+    }
     //当前选择的打勾
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.textLabel.textColor = YKRedColor;
@@ -435,10 +445,14 @@ static CGFloat const kYGap = 10.f;
    
    //当前的二级分类id
     _childId = tag.objId;
-    [YKSearchManager sharedManager].childId = _childId;
-//    [_types removeAllObjects];
-//    [_types addObject:tag];
-    NSLog(@"1111111=%@",_types);
+    if (![[YKSearchManager sharedManager].childIds containsObject:@(_childId)]) {
+        [[YKSearchManager sharedManager].childIds addObject:@(_childId)];
+    }else {
+         [[YKSearchManager sharedManager].childIds removeObject:@(_childId)];
+    }
+   
+    [self.tableView reloadData];
+//    [YKSearchManager sharedManager].childId = _childId;
 }
 
 #pragma mark---UICollectionViewDataSource
@@ -735,20 +749,21 @@ static CGFloat const kYGap = 10.f;
             
             cRow = indexPath.row;
             _selIndex = nil;
-            _childId = 0;
-             [YKSearchManager sharedManager].childId = _childId;
+//            _childId = 0;
+            [_selectIndePaths removeAllObjects];
+             [[YKSearchManager sharedManager].childIds removeAllObjects];
             [UIView animateWithDuration:0.25 animations:^{
-                self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+                self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
                 [self.tableView reloadData];
             }completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.25 animations:^{
-                   self.tableView.frame = CGRectMake(WIDHT-kSuitLength_H(60), TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+                   self.tableView.frame = CGRectMake(WIDHT-kSuitLength_H(60), TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
                 }];
                 
             }];
         }else{
             [UIView animateWithDuration:0.25 animations:^{
-                self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+                self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
             }];
             tag.selected = NO;
             [_types removeObject:tag];
@@ -773,6 +788,9 @@ static CGFloat const kYGap = 10.f;
     }else {//点的不是品类的，回收列表
         [UIView animateWithDuration:0.25 animations:^{
             self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+            if (HEIGHT==812) {
+                  self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
+            }
         }];
     }
     if (indexPath.section==1) {//季节
@@ -1142,7 +1160,7 @@ static CGFloat const kYGap = 10.f;
                      animations:^{
                          self.bottomView.frame = frame;
                          [UIView animateWithDuration:0.25 animations:^{
-                             self.tableView.frame = CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+                             self.tableView.frame = CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
                          }];
                          
                          
@@ -1164,10 +1182,10 @@ static CGFloat const kYGap = 10.f;
 // 点击了更多的确认
 -(void)ensureAction
 {
-    if([_delegate respondsToSelector:@selector(moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:childId:)]){
-        
-        [_delegate moreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements childId:_childId];
+    if([_delegate respondsToSelector:@selector(moreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:childIds:)]){
+        [_delegate moreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements childIds:[YKSearchManager sharedManager].childIds];
     }
+   
     [self dismiss];
 }
 
@@ -1222,9 +1240,9 @@ static CGFloat const kYGap = 10.f;
         
     }
     
-    if([_delegate respondsToSelector:@selector(resetmoreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:childId:)]){
+    if([_delegate respondsToSelector:@selector(resetmoreTagsChooser:selectedTags:ytypes:yseasons:yopenTimes:ycolors:yhotTags:ystyles:yelements:childIds:)]){
         
-        [_delegate resetmoreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements childId:_childId];
+        [_delegate resetmoreTagsChooser:self selectedTags:_selectedTags ytypes:_types yseasons:_seasons yopenTimes:_openTimes ycolors:_colors yhotTags:_hotTags ystyles:_styles yelements:_elements childIds:[YKSearchManager sharedManager].childIds];
     }
     
     if (_selectedTags.count!=0) {
@@ -1234,14 +1252,14 @@ static CGFloat const kYGap = 10.f;
         _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
         [_resetBtn.titleLabel setTextColor:blackTextColor];
     }
-    _selIndex = nil;
+    [_selectIndePaths removeAllObjects];
     _childId = 0;
-     [YKSearchManager sharedManager].childId = _childId;
+     [[YKSearchManager sharedManager].childIds removeAllObjects];
     [self.tableView reloadData];
     [self.myCollectionView reloadData];
     
     [UIView animateWithDuration:0.25 animations:^{
-        self.tableView.frame = CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(60));
+        self.tableView.frame = CGRectMake(WIDHT, TOPH+20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
     }];
     //    [self dismiss];
 }

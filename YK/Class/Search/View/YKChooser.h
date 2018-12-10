@@ -63,7 +63,7 @@
              yhotTags:(NSArray *)yhotTags
                  ystyles:(NSArray *)ystyles
                  yelements:(NSArray *)yelements
-                childId:(NSInteger)childId;
+                childIds:(NSArray *)childIds;
 
 //重置传空值
 - (void)resetmoreTagsChooser:(YKChooser *)sheet
@@ -75,7 +75,7 @@
                      yhotTags:(NSArray *)yhotTags
                       ystyles:(NSArray *)ystyles
                     yelements:(NSArray *)yelements
-                     childId:(NSInteger)childId;
+                     childIds:(NSArray *)childIds;
 @end
 
 #pragma mark---标签cell

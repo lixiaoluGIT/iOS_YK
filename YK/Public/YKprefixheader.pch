@@ -369,6 +369,8 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #define Register_Url @"/user/schoolRegister"
 //微信登录接口
 #define WeChatLogin_Url @"/user/wxLogin"
+//绑定微信
+#define BindWX_Url @"/user/bindingWx"
 //qq登录接口
 #define TencentLogin_Url @"/user/qqLogin"
 //获取用户信息

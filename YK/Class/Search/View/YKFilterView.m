@@ -107,12 +107,12 @@
     
     //品类
     NSMutableArray *postTypes = [NSMutableArray array];
-    if ([YKSearchManager sharedManager].childId == 0) {
+    if ([YKSearchManager sharedManager].childIds.count==0) {
         for (YKTag *tag in [YKSearchManager sharedManager].categorys) {
             [postTypes addObject:@(tag.objId)];
         }
     }else {
-         [postTypes addObject:@([YKSearchManager sharedManager].childId)];
+         [postTypes addObjectsFromArray:[YKSearchManager sharedManager].childIds];
     }
    
     
@@ -378,7 +378,7 @@
 }
 
 //重置按钮的回调
-- (void)resetmoreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)sTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements childId:(NSInteger)childId{
+- (void)resetmoreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)sTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements childIds:(NSArray *)childIds{
     
     [selectedTags removeAllObjects];
     [selectedTags addObjectsFromArray:sTags];//选中的所有标签
@@ -409,7 +409,7 @@
 
 //确认按钮的回调
 
-- (void)moreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)yTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements childId:(NSInteger)childId{
+- (void)moreTagsChooser:(YKChooser *)sheet selectedTags:(NSArray *)yTags ytypes:(NSArray *)ytypes yseasons:(NSArray *)yseasons yopenTimes:(NSArray *)yopenTimes ycolors:(NSArray *)ycolors yhotTags:(NSArray *)yhotTags ystyles:(NSArray *)ystyles yelements:(NSArray *)yelements childIds:(NSArray *)childIds{
     
     [selectedTags removeAllObjects];
     [selectedTags addObjectsFromArray:yTags];//选中的所有标签
@@ -436,12 +436,12 @@
     
     //品类
     NSMutableArray *postTypes = [NSMutableArray array];
-    if (childId==0) {//没有子类，传父类
+    if (childIds.count==0) {//没有子类，传父类
         for (YKTag *tag in types) {
             [postTypes addObject:@(tag.objId)];
         }
     }else{//有子类，传子类
-        [postTypes addObject:@(childId)];
+        [postTypes addObjectsFromArray:childIds];
     }
     
     

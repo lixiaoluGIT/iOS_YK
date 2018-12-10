@@ -288,6 +288,15 @@
 }
 
 - (void)invite{
+    if ([Token length] ==0) {
+        [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
+            YKInvitVC *share = [[YKInvitVC alloc]init];
+            share.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:share animated:YES];
+        }];
+        return;
+    }
+    
     YKInvitVC *share = [[YKInvitVC alloc]init];
     share.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:share animated:YES];
