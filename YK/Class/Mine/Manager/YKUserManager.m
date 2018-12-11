@@ -609,7 +609,7 @@
                             onResponse(nil);
                         }
                     }];
-                }else {//已登录，绑定微信接口（提现）
+                }else {//已登录，绑定微信接口（提现处用）
                     [self binWXWithOpenId:openId memNickName:@"" memSex:@"" dic:dic OnResponse:^(NSDictionary *dic) {
                         
                     }];
@@ -685,7 +685,7 @@
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         if ([dict[@"status"] intValue] == 200) {
             [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"微信绑定成功" delay:1.2];
-//            [self saveCurrentToken:dict[@"data"][@"token"]];
+            [self saveCurrentToken:dict[@"data"][@"token"]];
             
             
 //            [self getUserInforOnResponse:^(NSDictionary *dic) {

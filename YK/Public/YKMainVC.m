@@ -120,6 +120,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    //设置tabbar背景颜色
+//    [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
+//    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+//    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"newbanner"]];
+//    // [UITabBar appearance].clipsToBounds = YES; // 添加的图片大小不匹配的话，加上此句，屏蔽掉tabbar多余部分
+//    [[UITabBar appearance] setShadowImage:[UIImage imageNamed:@"newbanner"]];
+    
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
