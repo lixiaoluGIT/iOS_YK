@@ -609,7 +609,7 @@
                             onResponse(nil);
                         }
                     }];
-                }else {//已登录，绑定微信接口（提现处用）
+                }else {//已登录，绑定微信接口（提现的时候用）
                     [self binWXWithOpenId:openId memNickName:@"" memSex:@"" dic:dic OnResponse:^(NSDictionary *dic) {
                         
                     }];

@@ -303,7 +303,7 @@
  }
 
 - (void)aleart{
-    if (![UD boolForKey:@"notfirst"]) {//第一次安装
+    if (![UD boolForKey:@"notfirst"] && HEIGHT!=812) {//第一次安装
          [UD setBool:YES forKey:@"notfirst"];
         //衣位导视图
         UIImageView *image = [[UIImageView alloc]init];
@@ -454,7 +454,7 @@
 //        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+10-14);
 //    }
     
-    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(100)*4 + kSuitLength_H(187+355) + kSuitLength_H(355)+10);
+    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(88)*4 + kSuitLength_H(210+355) + kSuitLength_H(355)*self.weeknewArray.count+10);
 //    return kSuitLength_H(<#lengthGiven#>)
 }
 
@@ -511,7 +511,7 @@
         
         //活动文字（专题活动）
         YKRecommentTitleView  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][2];
-        ti2.frame = CGRectMake(0, desCell.frame.size.height + desCell.frame.origin.y,WIDHT, kSuitLength_H(100));
+        ti2.frame = CGRectMake(0, desCell.frame.size.height + desCell.frame.origin.y,WIDHT, kSuitLength_H(88));
 //        ti2.backgroundColor = [UIColor redColor];
         if (!hadtitle4) {
             [headerView addSubview:ti2];
@@ -519,7 +519,7 @@
         }
         //
         _activityView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeActivityView" owner:nil options:nil][0];
-        _activityView.frame = CGRectMake(0, ti2.bottom,WIDHT, kSuitLength_H(187));
+        _activityView.frame = CGRectMake(0, ti2.bottom,WIDHT, kSuitLength_H(210));
         _activityView.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         _activityView.toDetailBlock = ^(NSString *activityID){
             YKLinkWebVC *web =[YKLinkWebVC new];
@@ -638,7 +638,7 @@
 //
         //时尚穿搭-》搭配推荐
         YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][3];
-        ti3.frame = CGRectMake(0, _activityView.frame.size.height + _activityView.frame.origin.y,WIDHT, kSuitLength_H(100));
+        ti3.frame = CGRectMake(0, _activityView.bottom,WIDHT, kSuitLength_H(88));
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             //去列表页
             NSLog(@"去列表页");
@@ -733,14 +733,14 @@
         //时尚穿搭标题
         YKRecommentTitleView  *fashionTitle =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][6];
         //        ti.backgroundColor = [UIColor redColor];
-        fashionTitle.frame = CGRectMake(0, _banner2.frame.size.height + _banner2.frame.origin.y ,WIDHT, kSuitLength_H(100));
+        fashionTitle.frame = CGRectMake(0, _banner2.frame.size.height + _banner2.frame.origin.y ,WIDHT, kSuitLength_H(88));
         if (!hadsstjTitle) {
             [headerView addSubview:fashionTitle];
             hadsstjTitle = YES;
         }
         //时尚穿搭
         YKFashionRecView *fashion = [[YKFashionRecView alloc]init];
-        fashion.frame = CGRectMake(0,fashionTitle.frame.size.height + fashionTitle.frame.origin.y , WIDHT, kSuitLength_H(355)+10);
+        fashion.frame = CGRectMake(0,fashionTitle.frame.size.height + fashionTitle.frame.origin.y , WIDHT, kSuitLength_H(355)*self.weeknewArray.count+10);
         fashion.imageArray = [NSMutableArray arrayWithArray:self.weeknewArray];
         fashion.toDetailBlock = ^(NSDictionary *dic){
             //跳到推荐商品页
@@ -757,7 +757,7 @@
         //精选推荐标题
         YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][0];
 //        ti.backgroundColor = [UIColor redColor];
-        ti.frame = CGRectMake(0, fashion.bottom,WIDHT, kSuitLength_H(100));
+        ti.frame = CGRectMake(0, fashion.bottom,WIDHT, kSuitLength_H(88));
         if (!hadtitle2&&self.layoutsArr1.count>0) {
             [headerView addSubview:ti];
             hadtitle2 = YES;
@@ -857,7 +857,7 @@
 //                        NSLog(@"向上");
             [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationNotHidden" object:nil userInfo:nil];
 
-        } else if (scrollView. contentOffset.y >kSuitLength_H(500) )
+        } else if (scrollView. contentOffset.y >kSuitLength_H(600) )
         {
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"NavigationHidden" object:nil userInfo:nil];

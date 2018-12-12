@@ -96,7 +96,7 @@ NSInteger timeCount;
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-    title.font = PingFangSC_Semibold(20);
+    title.font = PingFangSC_Regular(kSuitLength_H(14));
     self.navigationItem.titleView = title;
 
     if ([YKUserManager sharedManager].user.phone!=[NSNull null]) {

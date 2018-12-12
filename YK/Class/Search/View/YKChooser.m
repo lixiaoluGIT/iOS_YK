@@ -346,11 +346,14 @@ static CGFloat const kYGap = 10.f;
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (cRow==0) {
-        return 0;
+//    if (cRow==0) {
+//        return 0;
+//    }
+    NSArray *a;
+    if (_childCategoryArray.count!=0) {
+       a = _childCategoryArray[cRow];
     }
-    NSArray *a = _childCategoryArray[cRow];
-    return a.count;
+        return a.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -360,10 +363,10 @@ static CGFloat const kYGap = 10.f;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *a ;
     YKTag *tag ;
-    if (cRow!=0) {
+//    if (cRow!=0) {
       a = _childCategoryArray[cRow];
     tag  = [a yl_objectAtIndex:indexPath.row];
-    }
+//    }
     
     static NSString *CellIdentifier = @"menuTableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
@@ -425,6 +428,63 @@ static CGFloat const kYGap = 10.f;
     //之前选中的，取消选择
     UITableViewCell *celled = [tableView cellForRowAtIndexPath:indexPath];
     celled.textLabel.textColor = blackTextColor;
+//    //记录当前选中的位置索引
+//    _selIndex = indexPath;
+//    //点击的行保存起来
+//    if (![_selectIndePaths containsObject:_selIndex]) {
+//        [_selectIndePaths addObject:_selIndex];
+//    }else {
+//        [_selectIndePaths removeObject:_selIndex];
+//    }
+    //当前选择的打勾
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.textColor = YKRedColor;
+    NSArray *a ;
+    YKTag *tag ;
+    
+    a = _childCategoryArray[cRow];
+    tag  = [a yl_objectAtIndex:indexPath.row];
+
+   
+   //当前的二级分类id
+    _childId = tag.objId;
+//    if (![[YKSearchManager sharedManager].childIds containsObject:@(_childId)]) {
+//        [[YKSearchManager sharedManager].childIds addObject:@(_childId)];
+//    }else {
+//         [[YKSearchManager sharedManager].childIds removeObject:@(_childId)];
+//    }
+   
+    if ([YKSearchManager sharedManager].childIds.count==a.count) {
+        if (_selectIndePaths.count==0) {
+            [[YKSearchManager sharedManager].childIds removeAllObjects];
+        }
+        
+    }
+    if (_types.count!=0) {//选了一类
+        //没选二类
+        //清空父类id
+//        [_types removeAllObjects];
+//        if ([YKSearchManager sharedManager].childIds.count == 0) {
+            //传子类所有标签
+//            for (YKTag *tag in a) {
+//                [[YKSearchManager sharedManager].childIds addObject:@(tag.objId)];
+//            }
+//        }else {
+            if (![[YKSearchManager sharedManager].childIds containsObject:@(_childId)]) {
+                [[YKSearchManager sharedManager].childIds addObject:@(_childId)];
+            }else {
+                [[YKSearchManager sharedManager].childIds removeObject:@(_childId)];
+                
+                if ([YKSearchManager sharedManager].childIds.count==0) {
+                    for (YKTag *tag in a) {
+                        [[YKSearchManager sharedManager].childIds addObject:@(tag.objId)];
+                    }
+                }
+              
+            }
+//        }
+    }
+    
     //记录当前选中的位置索引
     _selIndex = indexPath;
     //点击的行保存起来
@@ -433,24 +493,7 @@ static CGFloat const kYGap = 10.f;
     }else {
         [_selectIndePaths removeObject:_selIndex];
     }
-    //当前选择的打勾
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.textColor = YKRedColor;
-    NSArray *a ;
-    YKTag *tag ;
-    if (cRow!=0) {
-        a = _childCategoryArray[cRow];
-        tag  = [a yl_objectAtIndex:indexPath.row];
-    }
-   
-   //当前的二级分类id
-    _childId = tag.objId;
-    if (![[YKSearchManager sharedManager].childIds containsObject:@(_childId)]) {
-        [[YKSearchManager sharedManager].childIds addObject:@(_childId)];
-    }else {
-         [[YKSearchManager sharedManager].childIds removeObject:@(_childId)];
-    }
-   
+    NSLog(@"当前点击%d。。。。。子类ids======%@",_childId,[YKSearchManager sharedManager].childIds);
     [self.tableView reloadData];
 //    [YKSearchManager sharedManager].childId = _childId;
 }
@@ -555,6 +598,8 @@ static CGFloat const kYGap = 10.f;
                
             }
             
+//            NSLog(@"%@",_childCategoryArray);
+            
             if (indexPath.section==1) {//季节
                 if (tag.selected) {
                     if (![_seasons containsObject:tag]) {
@@ -590,13 +635,13 @@ static CGFloat const kYGap = 10.f;
                     }
                 }
             }
-            if (indexPath.section==5) {//元素
-                if (tag.selected) {
-                    if (![_elements containsObject:tag]) {
-                        [_elements addObject:tag];
-                    }
-                }
-            }
+//            if (indexPath.section==5) {//元素
+//                if (tag.selected) {
+//                    if (![_elements containsObject:tag]) {
+//                        [_elements addObject:tag];
+//                    }
+//                }
+//            }
             
             [cell refreshWithObject:tag];
             
@@ -747,11 +792,27 @@ static CGFloat const kYGap = 10.f;
             tag.selected = YES;
             [_types addObject:tag];
             
+            //点击的第几个负父类
             cRow = indexPath.row;
             _selIndex = nil;
 //            _childId = 0;
             [_selectIndePaths removeAllObjects];
              [[YKSearchManager sharedManager].childIds removeAllObjects];
+            
+            
+            NSArray *a = _childCategoryArray[cRow];
+            if (_types.count!=0) {//选了一类
+                //没选二类
+                //清空父类id
+                [_types removeAllObjects];
+                if ([YKSearchManager sharedManager].childIds.count == 0) {
+                    //传子类所有标签
+                    for (YKTag *tag in a) {
+                        [[YKSearchManager sharedManager].childIds addObject:@(tag.objId)];
+                    }
+                }
+            }
+            
             [UIView animateWithDuration:0.25 animations:^{
                 self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
                 [self.tableView reloadData];
@@ -762,6 +823,8 @@ static CGFloat const kYGap = 10.f;
                 
             }];
         }else{
+            [_selectIndePaths removeAllObjects];
+            [[YKSearchManager sharedManager].childIds removeAllObjects];
             [UIView animateWithDuration:0.25 animations:^{
                 self.tableView.frame = CGRectMake(WIDHT, TOPH + 20, kSuitLength_H(60), HEIGHT-kSuitLength_H(100));
             }];
@@ -783,7 +846,7 @@ static CGFloat const kYGap = 10.f;
         [YKSearchManager sharedManager].times = _openTimes;
         [YKSearchManager sharedManager].seasons = _seasons;
         [YKSearchManager sharedManager].elements = _elements;
-        [YKSearchManager sharedManager].styles = _types;
+        [YKSearchManager sharedManager].colors = _colors;
         return;
     }else {//点的不是品类的，回收列表
         [UIView animateWithDuration:0.25 animations:^{
@@ -857,7 +920,7 @@ static CGFloat const kYGap = 10.f;
         [YKSearchManager sharedManager].times = _openTimes;
         [YKSearchManager sharedManager].seasons = _seasons;
         [YKSearchManager sharedManager].elements = _elements;
-        [YKSearchManager sharedManager].styles = _types;
+        [YKSearchManager sharedManager].colors = _colors;
         return;
     }
     
@@ -980,70 +1043,70 @@ static CGFloat const kYGap = 10.f;
         [YKSearchManager sharedManager].times = _openTimes;
         [YKSearchManager sharedManager].seasons = _seasons;
         [YKSearchManager sharedManager].elements = _elements;
-        [YKSearchManager sharedManager].styles = _types;
+        [YKSearchManager sharedManager].colors = _colors;
         return;
     }
     
-    if (indexPath.section==5) {//元素
-        
-        if(![_selectedTags containsObject:tag]){
-            //取消之前的选中
-            NSMutableArray *a = _selectedTags.copy;
-            for (YKTag *ct in a) {//所有的选中
-                for (YKTag *ctt in _elements) {//面积的选中
-                    if ([ct.name isEqual:ctt.name]) {
-                        ct.selected = NO;
-                        [_selectedTags removeObject:ct];//去掉面积之前的选中
-                    }
-                }
-            }
-            
-            tag.selected = YES;
-            [_selectedTags addObject:tag];
-            
-        }else{
-            //取消选中
-            tag.selected = NO;
-            [_selectedTags removeObject:tag];
-        }
-        
-        
-        if(![_elements containsObject:tag]){
-            for (YKTag *t in _elements) {//当前section选中的tag
-                t.selected = NO;
-                [_elements removeObject:t];
-                for (YKTag *tt in tags) {
-                    if ([tt.name isEqual:t.name]) {
-                        tt.selected = t.selected;
-                    }
-                    
-                }
-            }
-            
-            tag.selected = YES;
-            [_elements addObject:tag];
-        }else{
-            tag.selected = NO;
-            [_elements removeObject:tag];
-        }
-        if (_selectedTags.count!=0) {
-            [_resetBtn setBackgroundColor:mainColor];
-            [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
-        }else {
-            _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
-            [_resetBtn.titleLabel setTextColor:blackTextColor];
-        }
-        [collectionView reloadData];
-        
-        //把选择的值赋给单例,供点空白的时候刷新商品用
-        [YKSearchManager sharedManager].styles = _styles;
-        [YKSearchManager sharedManager].categorys = _types;
-        [YKSearchManager sharedManager].times = _openTimes;
-        [YKSearchManager sharedManager].seasons = _seasons;
-        [YKSearchManager sharedManager].elements = _elements;
-        [YKSearchManager sharedManager].styles = _types;
-        return;
-    }
+//    if (indexPath.section==5) {//元素
+//
+//        if(![_selectedTags containsObject:tag]){
+//            //取消之前的选中
+//            NSMutableArray *a = _selectedTags.copy;
+//            for (YKTag *ct in a) {//所有的选中
+//                for (YKTag *ctt in _elements) {//面积的选中
+//                    if ([ct.name isEqual:ctt.name]) {
+//                        ct.selected = NO;
+//                        [_selectedTags removeObject:ct];//去掉面积之前的选中
+//                    }
+//                }
+//            }
+//
+//            tag.selected = YES;
+//            [_selectedTags addObject:tag];
+//
+//        }else{
+//            //取消选中
+//            tag.selected = NO;
+//            [_selectedTags removeObject:tag];
+//        }
+//
+//
+//        if(![_elements containsObject:tag]){
+//            for (YKTag *t in _elements) {//当前section选中的tag
+//                t.selected = NO;
+//                [_elements removeObject:t];
+//                for (YKTag *tt in tags) {
+//                    if ([tt.name isEqual:t.name]) {
+//                        tt.selected = t.selected;
+//                    }
+//
+//                }
+//            }
+//
+//            tag.selected = YES;
+//            [_elements addObject:tag];
+//        }else{
+//            tag.selected = NO;
+//            [_elements removeObject:tag];
+//        }
+//        if (_selectedTags.count!=0) {
+//            [_resetBtn setBackgroundColor:mainColor];
+//            [_resetBtn.titleLabel setTextColor:[UIColor whiteColor]];
+//        }else {
+//            _resetBtn.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+//            [_resetBtn.titleLabel setTextColor:blackTextColor];
+//        }
+//        [collectionView reloadData];
+//
+//        //把选择的值赋给单例,供点空白的时候刷新商品用
+//        [YKSearchManager sharedManager].styles = _styles;
+//        [YKSearchManager sharedManager].categorys = _types;
+//        [YKSearchManager sharedManager].times = _openTimes;
+//        [YKSearchManager sharedManager].seasons = _seasons;
+//        [YKSearchManager sharedManager].elements = _elements;
+//        [YKSearchManager sharedManager].styles = _types;
+//        return;
+//    }
     
     
     if(![_selectedTags containsObject:tag]){
@@ -1071,7 +1134,7 @@ static CGFloat const kYGap = 10.f;
     [YKSearchManager sharedManager].times = _openTimes;
     [YKSearchManager sharedManager].seasons = _seasons;
     [YKSearchManager sharedManager].elements = _elements;
-    [YKSearchManager sharedManager].styles = _types;
+    [YKSearchManager sharedManager].colors = _colors;
     
     [collectionView reloadData];
     
@@ -1225,7 +1288,7 @@ static CGFloat const kYGap = 10.f;
         [YKSearchManager sharedManager].times = _openTimes;
         [YKSearchManager sharedManager].seasons = _seasons;
         [YKSearchManager sharedManager].elements = _elements;
-        [YKSearchManager sharedManager].styles = _types;
+        [YKSearchManager sharedManager].colors = _colors;
 
         
         for (NSString *str in _tagTitleArr) {

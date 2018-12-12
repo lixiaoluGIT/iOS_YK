@@ -72,7 +72,7 @@
     self.scan.layer.masksToBounds = YES;
     self.scan.layer.cornerRadius = self.scan.frame.size.height/2;
     self.returnBtn.layer.masksToBounds = YES;
-    self.returnBtn.layer.cornerRadius = 18;
+    self.returnBtn.layer.cornerRadius = self.returnBtn.frame.size.height/2;
     
     _p1.text = @"12asdabdasdbaskjbdias";
     //布局写死了，todo：优化

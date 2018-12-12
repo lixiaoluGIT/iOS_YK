@@ -170,7 +170,7 @@
 //    }else {
 //        day = @"";
 //    }
-    if (page<=1) {
+    if (page<=0) {
         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     }
    
@@ -185,8 +185,10 @@
                               @"page":@(page),
                               @"size":@(size),
                               @"exist":exist,
-                              @"classify":@"0"
+                              @"classify":@"1"
                               };
+    
+    NSLog(@"%@",postDic);
     
     [YKHttpClient Method:@"POST" URLString:filter_Url paramers:postDic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
@@ -213,7 +215,7 @@
                       clothingIdList:(NSArray *)clothingIdList
                           OnResponse:(void (^)(NSDictionary *dic))onResponse;{
 
-    if (page<=1) {
+    if (page<=0) {
         [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
     }
   

@@ -44,13 +44,15 @@
 }
 
 - (void)setUpScrolView{
-    _scrolView = [[YKBaseScrollView alloc]initWithFrame:_headIma.frame];
+    _scrolView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0, 10, WIDHT, kSuitLength_H(60))];
     _scrolView.delegate = self;
     [self addSubview:_scrolView];
 }
 
 - (void)setClickUrlArray:(NSArray *)clickUrlArray{
-    _clickUrlArray = [NSArray arrayWithArray:clickUrlArray];
+//    if (WIDHT!=320) {
+        _clickUrlArray = [NSArray arrayWithArray:clickUrlArray];
+//    }
 }
 
 - (void)setImageArray:(NSMutableArray *)imageArray{

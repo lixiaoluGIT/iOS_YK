@@ -15,6 +15,7 @@
 #import "HW3DBannerView.h"
 #import "YKCouponListVC.h"
 #import "YKInputCodeView.h"
+#import "YKLinkWebVC.h"
 
 #define KScreenWidth self.view.frame.size.width
 #define KScreenHeight self.view.frame.size.height
@@ -100,17 +101,34 @@
 
 - (IBAction)yajinshuoming:(id)sender {
     
-    YKWebVC *web = [YKWebVC new];
-    web.titleStr = @"押金说明";
-    web.imageName = @"押金说明";
-
+    YKLinkWebVC *web =[YKLinkWebVC new];
+    //        web.needShare = YES;
+    web.url = @"http://img-cdn.xykoo.cn/appHtml/deposit.html";
+    if (web.url.length == 0) {
+        return;
+    }
+    web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];
+//    YKWebVC *web = [YKWebVC new];
+//    web.titleStr = @"押金说明";
+//    web.imageName = @"押金说明";
+//
+//    [self.navigationController pushViewController:web animated:YES];
 }
 - (IBAction)yonghuxieyi:(id)sender {
-    YKWebVC *web = [YKWebVC new];
-    web.titleStr = @"充值说明";
-    web.imageName = @"充值说明";
+    
+    YKLinkWebVC *web =[YKLinkWebVC new];
+    //        web.needShare = YES;
+    web.url = @" http://img-cdn.xykoo.cn/appHtml/recharge.html";
+    if (web.url.length == 0) {
+        return;
+    }
+    web.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:web animated:YES];
+//    YKWebVC *web = [YKWebVC new];
+//    web.titleStr = @"充值说明";
+//    web.imageName = @"充值说明";
+//    [self.navigationController pushViewController:web animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

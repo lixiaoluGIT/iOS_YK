@@ -44,8 +44,8 @@
     
     //单品推荐
     seLabel = [UIButton buttonWithType:UIButtonTypeCustom];
-    [seLabel setTitle:@"在架优先" forState:UIControlStateNormal];
-    [seLabel setTitle:@"全部单品" forState:UIControlStateSelected];
+    [seLabel setTitle:@"全部单品" forState:UIControlStateNormal];
+    [seLabel setTitle:@"在架优先" forState:UIControlStateSelected];
     [seLabel setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
     seLabel.titleLabel.font = PingFangSC_Medium(kSuitLength_H(12));
     [seLabel addTarget:self action:@selector(changeTypeAction:) forControlEvents:UIControlEventTouchUpInside];

@@ -179,6 +179,12 @@
         [self.delegate dxAlertView:self clickedButtonAtIndex:btn.tag];
     }
     [self dismissAlertView];
+    
+    if (btn.tag == 1) {//yes Btn
+        if (self.yesBlock) {
+            self.yesBlock();
+        }
+    }
 }
 #pragma  mark UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{

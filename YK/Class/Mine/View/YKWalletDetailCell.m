@@ -19,6 +19,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    _type.font = PingFangSC_Medium(14);
+    _price.font = PingFangSC_Medium(14);
+    _time.font = PingFangSC_Regular(12);
+    _payType.font = PingFangSC_Regular(12);
     // Initialization code;
 }
 

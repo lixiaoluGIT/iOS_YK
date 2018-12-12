@@ -250,7 +250,9 @@
     NSMutableArray *titles = [NSMutableArray array];
     for (NSDictionary *dic in array) {
         if (type==2) {
-            [titles addObject:dic[@"categoryName"]];
+            if ([dic[@"parentId"] intValue] !=0) {
+                [titles addObject:dic[@"categoryName"]];
+            }
         }
         if (type==3) {
             [titles addObject:dic[@"styleName"]];
@@ -268,7 +270,11 @@
     NSMutableArray *titles = [NSMutableArray array];
     for (NSDictionary *dic in array) {
         if (type==2) {
-            [titles addObject:dic[@"categoryId"]];
+            //只加二级类目
+            if ([dic[@"parentId"] intValue] != 0) {
+                [titles addObject:dic[@"categoryId"]];
+            }
+            
         }
         if (type==3) {
             [titles addObject:dic[@"styleId"]];

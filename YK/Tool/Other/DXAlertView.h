@@ -30,6 +30,7 @@
  */
 -(instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelBtnTitle:(NSString *)cancelTitle otherBtnTitle:(NSString *)otherBtnTitle;
 
+@property (nonatomic,copy)void (^yesBlock)(void);
 -(void)show;
 
 @end

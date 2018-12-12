@@ -23,7 +23,7 @@
     _imageArray = imageArray;
     
     CGFloat w = WIDHT-20;
-    CGFloat h = kSuitLength_H(187); 
+    CGFloat h = kSuitLength_H(210);
     NSMutableArray *a = [NSMutableArray array];
     if (imageArray.count!=0) {
         [a addObject:imageArray[0]];

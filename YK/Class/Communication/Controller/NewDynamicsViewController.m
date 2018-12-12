@@ -138,7 +138,7 @@
         publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(300), kSuitLength_H(138), kSuitLength_H(40));
     }else
     if (WIDHT==320) {
-          publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(300), kSuitLength_H(138), kSuitLength_H(40));
+          publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(230), kSuitLength_H(138), kSuitLength_H(40));
     }else
         if (WIDHT==414) {
            publicBtn.frame = CGRectMake(WIDHT/2-kSuitLength_H(138)/2, HEIGHT-kSuitLength_H(200), kSuitLength_H(138), kSuitLength_H(40));
@@ -275,14 +275,14 @@
         _dynamicsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
 
         UIView *headerView = [[UIView alloc]init];
-        headerView.frame = CGRectMake(0, 0, WIDHT, self.view.frame.size.width*0.58 + 120*WIDHT/375);
+        headerView.frame = CGRectMake(0, 0, WIDHT, self.view.frame.size.width*0.58 + kSuitLength_H(115));
         _cycleView = [[YKBaseScrollView alloc]initWithFrame:CGRectMake(0,0,WIDHT, self.view.frame.size.width*0.58)];
         _cycleView.imagesArr = _a;
         _cycleView.delegate = self;
         [headerView addSubview:_cycleView];
         
         _comHeader = [[NSBundle mainBundle]loadNibNamed:@"YKComheader" owner:nil options:nil][0];
-        _comHeader.frame = CGRectMake(0, _cycleView.frame.size.height + _cycleView.frame.origin.y, WIDHT, 112*WIDHT/375);
+        _comHeader.frame = CGRectMake(0, _cycleView.frame.size.height + _cycleView.frame.origin.y, WIDHT, kSuitLength_H(115));
         WeakSelf(weakSelf)
         _comHeader.changeCommunicationTypeBlock = ^(CommunicationType CommunicationType){
             [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];

@@ -44,6 +44,8 @@
 @property (nonatomic,strong)NSMutableArray *secondLevelCategoryList;
 @property (nonatomic,strong)NSMutableArray *productList;
 
+@property (nonatomic,strong)NSArray *clothingIdList;
+
 @end
 
 @implementation YKRecomentProductVC
@@ -71,6 +73,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    _clothingIdList = [NSArray array];
     self.title = @"";
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -113,7 +116,7 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT+20) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, HEIGHT) collectionViewLayout:layoutView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     self.collectionView.delegate = self;
@@ -128,7 +131,24 @@
     
     self.catrgoryId = @"";
     WeakSelf(weakSelf)
-    _pageNum = 1;
+    _pageNum = 0;
+    
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNum ++;
+        
+        [[YKSearchManager sharedManager]filterDataWithCategoryIdList:nil colourIdList:nil elementIdList:nil labelIdList:nil seasonIdList:nil styleIdList:nil updateDay:nil page:_pageNum size:20 exist:0 clothingIdList:_clothingIdList OnResponse:^(NSDictionary *dic) {
+            NSArray *list = [NSMutableArray arrayWithArray:dic[@"data"]];
+            if (list.count==0) {
+                [weakSelf.collectionView.mj_footer endRefreshing];
+            }else {
+                [weakSelf.collectionView.mj_footer endRefreshing];
+                [self.productList addObjectsFromArray:list];
+                [self.collectionView reloadData];
+            }
+        }];
+        
+    }];
+
 //    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
 //        _pageNum ++;
 //       //请求更多商品
@@ -156,14 +176,15 @@
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
     title.text = self.title;
     title.textAlignment = NSTextAlignmentCenter;
-    title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+    title.textColor = mainColor;
     title.font = PingFangSC_Medium(kSuitLength_H(14));
     
     self.navigationItem.titleView = title;
     
     //请求商品
     NSArray *clothingIdList = [NSArray arrayWithArray:dic[@"clothingIdList"]];
-    [[YKSearchManager sharedManager]filterDataWithCategoryIdList:nil colourIdList:nil elementIdList:nil labelIdList:nil seasonIdList:nil styleIdList:nil updateDay:nil page:0 size:20 exist:0 clothingIdList:clothingIdList OnResponse:^(NSDictionary *dic) {
+    self.clothingIdList = [NSArray arrayWithArray:clothingIdList];
+    [[YKSearchManager sharedManager]filterDataWithCategoryIdList:nil colourIdList:nil elementIdList:nil labelIdList:nil seasonIdList:nil styleIdList:nil updateDay:nil page:_pageNum size:20 exist:0 clothingIdList:clothingIdList OnResponse:^(NSDictionary *dic) {
         self.productList = [NSMutableArray arrayWithArray:dic[@"data"]];
         [self.collectionView reloadData];
     }];

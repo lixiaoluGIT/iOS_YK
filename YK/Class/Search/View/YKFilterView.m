@@ -108,7 +108,7 @@
     //品类
     NSMutableArray *postTypes = [NSMutableArray array];
     if ([YKSearchManager sharedManager].childIds.count==0) {
-        for (YKTag *tag in [YKSearchManager sharedManager].categorys) {
+        for (YKTag *tag in [YKSearchManager sharedManager].childIds) {
             [postTypes addObject:@(tag.objId)];
         }
     }else {
@@ -321,7 +321,7 @@
         
         NSArray *arrTemp;
         
-        arrTemp = @[@"品类", @"季节", @"上新时间",@"颜色",@"风格",@"元素"];
+        arrTemp = @[@"品类", @"季节", @"上新时间",@"颜色",@"风格"];
         
             NSLog(@"选中的biao qian%@",selectedTags);
         [_chooser refreshWithTags:orignDataMDic keyTitleArr:arrTemp selectedTags:selectedTags nTags:types nSaleStatus:seasons nBuildTypes:colors nRoomTypes:openTimes nDayToOpen:hotTags nYears:styles nAreas:elements];
@@ -436,13 +436,13 @@
     
     //品类
     NSMutableArray *postTypes = [NSMutableArray array];
-    if (childIds.count==0) {//没有子类，传父类
-        for (YKTag *tag in types) {
-            [postTypes addObject:@(tag.objId)];
-        }
-    }else{//有子类，传子类
-        [postTypes addObjectsFromArray:childIds];
-    }
+//    if (childIds.count==0) {//没有子类，传父类
+////        for (YKTag *tag in [YKSearchManager sharedManager].childIds) {
+////            [postTypes addObject:@(tag.objId)];
+////        }
+//    }else{//有子类，传子类
+        [postTypes addObjectsFromArray:[YKSearchManager sharedManager].childIds];
+//    }
     
     
     //季节

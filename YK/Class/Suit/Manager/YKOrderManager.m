@@ -406,10 +406,13 @@
         
         if ([dic[@"status"] integerValue] == 200) {//成功确认收货
         
+            [smartHUD alertText:kWindow alert:@"签收成功" delay:1.0];
             if (onResponse) {
                 onResponse(dic);
             }
             
+        }else {
+            [smartHUD alertText:kWindow alert:dic[@"msg"] delay:1.0];
         }
     }];
 }

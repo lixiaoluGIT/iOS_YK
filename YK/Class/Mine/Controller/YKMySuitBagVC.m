@@ -282,7 +282,7 @@
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndexz:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
         [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].ID OnResponse:^(NSDictionary *dic) {
-                [self searchOrders:101];
+                [self searchOrders:1];
             
         }];
     }
@@ -293,12 +293,18 @@
 - (void)btnClick{
     if (_bagStatus==toReceive) {
 
-        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].orderNo OnResponse:^(NSDictionary *dic) {
-            [self searchOrders:1];
-//            DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"您是否确认已收到衣袋？" cancelBtnTitle:@"还没收到" otherBtnTitle:@"已签收"];
-//            alertView.delegate = self;
-//            [alertView show];
-        }];
+//        [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].orderNo OnResponse:^(NSDictionary *dic) {
+//            [self searchOrders:1];
+            DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"您是否确认已收到衣袋？" cancelBtnTitle:@"还没收到" otherBtnTitle:@"已签收"];
+        alertView.yesBlock = ^(void){
+            [[YKOrderManager sharedManager]ensureReceiveWithOrderNo:[YKOrderManager sharedManager].orderNo OnResponse:^(NSDictionary *dic) {
+                [self searchOrders:1];
+                
+            }];
+        };
+            alertView.delegate = self;
+            [alertView show];
+//        }];
     }
     if (_bagStatus==toBack) {
         
@@ -352,7 +358,7 @@
             if ((_bagStatus==toReceive)&&self.orderList.count!=0) {
                 _buttom.hidden = NO;
                 self.tableView.frame = CGRectMake(10, BarH+50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375-50);
-                if (_bagStatus==toReceive) {//待归还
+                if (_bagStatus==toReceive) {//待签收
                     if ([YKOrderManager sharedManager].isOnRoad) {
                         [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
                         [_buttom setBackgroundColor:YKRedColor];
@@ -467,7 +473,7 @@
             [alertView show];
             
         };
-        //预约归还
+        //预约归还（未用）
         header.yuyue.text = @"等待取件";
         header.orderBackBlock = ^(void){//
             if (isHadOrderreceive) {

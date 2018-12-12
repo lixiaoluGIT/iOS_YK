@@ -136,7 +136,7 @@
     
 //    [self creatFilterView];
     
-    _pageNum = 1;
+    _pageNum = 0;
     WeakSelf(weakSelf)
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNum ++;
@@ -160,12 +160,12 @@
         [weakSelf showFilterView];
     };
     upView.changeTypeBlock = ^(BOOL isSelected){
-        _pageNum = 1;
+        _pageNum = 0;
         headerView.isSelected = isSelected;
         if (isSelected) {
-            self.exitStatus = @"0";
-        }else {
             self.exitStatus = @"1";
+        }else {
+            self.exitStatus = @"0";
         }
         [self filterClothes];
     
@@ -179,7 +179,7 @@
     [image setContentMode:UIViewContentModeScaleToFill];
     image.frame = [UIApplication sharedApplication].keyWindow.frame;
     
-    if (![UD boolForKey:@"hadap"]) {
+    if (![UD boolForKey:@"hadap"] && HEIGHT!=812) {
         [[UIApplication sharedApplication].keyWindow addSubview:image];
         [UD setBool:YES forKey:@"hadap"];
     }
@@ -425,7 +425,7 @@
             weakSelf.styleId = styleId;
             _hotTags = @[styleId];
             NSLog(@"传过来的Id==%@",styleId);
-            weakSelf.pageNum = 1;
+            weakSelf.pageNum = 0;
             isClickTag = YES;
             [weakSelf filterClothes];
 //            [weakSelf filterProductWithCategoryId:_categoryId sortId:_sortId styleId:styleId];
@@ -457,12 +457,12 @@
             };
             //切换商品类型（全部或在架）
             headerView.changeTypeBlock = ^(BOOL isSelected){
-                _pageNum = 1;
+                _pageNum = 0;
                 upView.isSelected = isSelected;
                 if (isSelected) {
-                    self.exitStatus = @"0";
-                }else {
                     self.exitStatus = @"1";
+                }else {
+                    self.exitStatus = @"0";
                 }
                 [self filterClothes];
             };
@@ -593,8 +593,11 @@
     //更多的回调
     filterView.moreSelectedCallback = ^(NSArray *types, NSArray *seasons, NSArray *opentimes, NSArray *colors, NSArray *hotTags, NSArray *styles, NSArray *elements) {
          weakSelf.backView.hidden = YES;
-        _pageNum = 1;
+        _pageNum = 0;
         _categoryIds = types;
+        
+        NSLog(@"=========%@",weakSelf.categoryIds);
+        
         _seasonIds = seasons;
         if (opentimes.count!=0) {
             _updateDay = opentimes[0];
@@ -639,7 +642,7 @@
         
          NSArray *list = [NSArray arrayWithArray:dic[@"data"]];
         
-        if (_pageNum==1) {
+        if (_pageNum==0) {
             [self.productList removeAllObjects];
             
         }
@@ -651,7 +654,7 @@
             [self.collectionView.mj_footer endRefreshing];
             [self.productList addObjectsFromArray:list];
         }
-        if (_pageNum!=1) {
+        if (_pageNum!=0) {
             [self.collectionView reloadData];
             return;
         }else {
@@ -662,7 +665,7 @@
         
         self.collectionView.hidden = NO;
         
-        if (list.count==0&&_pageNum==1) {
+        if (list.count==0&&_pageNum==0) {
             [self.collectionView reloadData];
 
             [self performSelector:@selector(scrollTo) withObject:nil afterDelay:0.5];

@@ -407,7 +407,7 @@
         _picContainerView.hidden = YES;
     }
  
-        _grayView.hidden = YES;
+    _grayView.hidden = YES;
     //分割线
     _dLine.left = 0;
     _dLine.height = 1;
@@ -748,7 +748,7 @@
 {
     if (!_nameLabel) {
         _nameLabel = [YYLabel new];
-        _nameLabel.font = PingFangSC_Semibold(16);
+        _nameLabel.font = PingFangSC_Regular(kSuitLength_H(14));
         _nameLabel.textColor = [UIColor colorWithHexString:@"133c66"];
         WS(weakSelf);
         UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
@@ -780,7 +780,7 @@
 //            }];
         };
         _detailLabel.textColor = mainColor;
-        _detailLabel.font = PingFangSC_Medium(14);
+        _detailLabel.font = PingFangSC_Regular(kSuitLength_H(12));
 //        _detailLabel.font = [UIFont fontWithName:@"Marion" size:17];
     }
     return _detailLabel;
@@ -789,7 +789,7 @@
 {
     if (!_moreLessDetailBtn) {
         _moreLessDetailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _moreLessDetailBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _moreLessDetailBtn.titleLabel.font = [UIFont systemFontOfSize:kSuitLength_H(14)];
         [_moreLessDetailBtn setTitleColor:[UIColor colorWithRed:74/255.0 green:90/255.0 blue:133/255.0 alpha:1] forState:UIControlStateNormal];
         _moreLessDetailBtn.hidden = YES;
         WS(weakSelf);
@@ -838,8 +838,8 @@
 {
     if (!_dateLabel) {
         _dateLabel = [UILabel new];
-        _dateLabel.textColor = [UIColor colorWithHexString:@"999998"];
-        _dateLabel.font = [UIFont systemFontOfSize:13];
+        _dateLabel.textColor = [UIColor colorWithHexString:@"999999"];
+        _dateLabel.font = PingFangSC_Regular(kSuitLength_H(12));
     }
     return _dateLabel;
 }
@@ -865,7 +865,7 @@
     if (!_plNum) {
         _plNum = [YYLabel new];
         _plNum.textColor = mainColor;
-        _plNum.font = PingFangSC_Semibold(14);
+        _plNum.font = PingFangSC_Regular(kSuitLength_H(12));
     }
     return _plNum;
 }
@@ -892,7 +892,7 @@
     if (!_dzNum) {
         _dzNum = [YYLabel new];
         _dzNum.textColor = mainColor;
-        _dzNum.font = PingFangSC_Semibold(14);
+        _dzNum.font = PingFangSC_Regular(kSuitLength_H(12));
     }
     return _dzNum;
 }
@@ -914,7 +914,7 @@
                 [_linkBtn setTitle:@"查看" forState:UIControlStateNormal];
 //        _linkBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         _linkBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        _linkBtn.titleLabel.font = PingFangSC_Semibold(14);
+        _linkBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
         [_linkBtn setTitleColor:mainColor forState:UIControlStateNormal];
 //        _linkBtn.backgroundColor = [UIColor redColor];
         WS(weakSelf);

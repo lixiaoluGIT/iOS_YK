@@ -259,7 +259,7 @@
     //TODO:需分屏幕
     
 
-    if (_categotyIds.count>5) {//数量太少不让滑动
+    if (_categotyIds.count>6) {//数量太少不让滑动
         CGFloat offsetX = btn.cb_CenterX - self.frame.size.width*0.5;
         if (offsetX<0) {
             offsetX = 0;

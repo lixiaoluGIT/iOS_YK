@@ -9,6 +9,7 @@
 #import "YKAboutUsVC.h"
 #import "YKAboutView.h"
 #import "YKWebVC.h"
+#import "YKLinkWebVC.h"
 
 @interface YKAboutUsVC ()
 
@@ -50,10 +51,19 @@
     _aboutUSView.frame = CGRectMake(0, 64, WIDHT, HEIGHT-64);
     WeakSelf(weakSelf)
     _aboutUSView.toXieYi = ^(void){
-        YKWebVC *web = [YKWebVC new];
-        web.titleStr = @"用户协议";
-        web.imageName = @"用户协议";
+        YKLinkWebVC *web =[YKLinkWebVC new];
+//        web.needShare = YES;
+        web.url = @"http://img-cdn.xykoo.cn/appHtml/userAgreement.html";
+        if (web.url.length == 0) {
+            return;
+        }
+        web.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:web animated:YES];
+       
+//        YKWebVC *web = [YKWebVC new];
+//        web.titleStr = @"用户协议";
+//        web.imageName = @"用户协议";
+//        [weakSelf.navigationController pushViewController:web animated:YES];
     };
     [self.view addSubview:_aboutUSView];
 }

@@ -53,14 +53,14 @@
     [self.view addSubview:_jumpBtn];
     _jumpBtn.frame = CGRectMake(WIDHT-84, HEIGHT-54, kSuitLength_H(60), kSuitLength_H(30));
     if (HEIGHT==812) {
-         _jumpBtn.frame = CGRectMake(WIDHT-84, HEIGHT-54-24, kSuitLength_H(60), kSuitLength_H(30));
+         _jumpBtn.frame = CGRectMake(WIDHT-kSuitLength_H(84), HEIGHT-kSuitLength_H(74), kSuitLength_H(60), kSuitLength_H(30));
     }
     [_jumpBtn setTitle:@"3 跳过" forState:UIControlStateNormal];
     [_jumpBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
     [_jumpBtn addTarget:self action:@selector(jump) forControlEvents:UIControlEventTouchUpInside];
     _jumpBtn.layer.masksToBounds = YES;
-    _jumpBtn.layer.cornerRadius = 4;
-    _jumpBtn.alpha = 1;
+    _jumpBtn.layer.cornerRadius = kSuitLength_H(30)/2;
+    _jumpBtn.alpha = 0.7;
     _jumpBtn.backgroundColor = mainColor;
     _jumpBtn.titleLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:kSuitLength_H(12)];
     _jumpBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));

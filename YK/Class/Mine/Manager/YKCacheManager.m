@@ -55,7 +55,7 @@
     //返回路径中的文件数组
     NSArray*files = [[NSFileManager defaultManager]subpathsAtPath:cachePath];
     
-    NSLog(@"文件数：%ld",[files count]);
+    NSLog(@"文件数：%lu",(unsigned long)[files count]);
     for(NSString *p in files){
         NSError*error;
         
