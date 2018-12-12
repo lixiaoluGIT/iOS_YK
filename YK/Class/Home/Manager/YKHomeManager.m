@@ -450,7 +450,7 @@
 
 - (void)showAleart{
 //    [self showPoint];
-    if ([[YKUserManager sharedManager].user.isNewUser intValue] == 1) {//已付费
+    if ([[YKUserManager sharedManager].user.isNewUser intValue] == 1 || WIDHT == 320) {//已付费
         return;
     }
     loginView = [[NSBundle mainBundle]loadNibNamed:@"YKHomeAleartView" owner:nil options:nil][0];

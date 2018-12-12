@@ -111,8 +111,8 @@
 
 - (void)setDic:(NSDictionary *)Dic{
     _Dic = Dic;
-   
-    [_girlImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",Dic[@"popupImg"]]] placeholderImage:[UIImage imageNamed:@"弹窗-2"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    
+    [_girlImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",Dic[@"popupImg"]]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         [self appear];
     }];
     [YKUserManager sharedManager].couponID = [Dic[@"couponId"] intValue];
