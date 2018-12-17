@@ -246,9 +246,6 @@
         return kSuitLength_H(97);
     }
    
-    if (indexPath.row==0) {
-        return kSuitLength_H(88) + kSuitLength_H(10)*2 ;
-    }
         return kSuitLength_H(50);
 }
 
@@ -259,7 +256,7 @@
         if (section==0) {
             return 1;
         }else {
-            return 4+1;
+            return 4;
         }
     }
 }
@@ -346,25 +343,15 @@
         }
     
             static NSString *ID = @"cell";
-    
-    if (indexPath.row==0) {//兑换会员卡
-        UITableViewCell *cell = [[UITableViewCell alloc]init];
-        cell.backgroundColor = [UIColor whiteColor];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundImage:[UIImage imageNamed:@"年卡-2"]  forState:UIControlStateNormal];
-        btn.frame = CGRectMake(kSuitLength_H(64), kSuitLength_H(10), WIDHT-kSuitLength_H(64)*2, kSuitLength_H(88));
-        [cell addSubview:btn];
-        
-        return cell;
-    }
             YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
             if (mycell == nil) {
                 mycell = [[NSBundle mainBundle] loadNibNamed:@"YKMineCell" owner:self options:nil][0];
-                mycell.title.text = [NSString stringWithFormat:@"%@",self.titles[indexPath.row-1]];
-                mycell.image.image = [UIImage imageNamed:self.images[indexPath.row-1]];
+                mycell.title.text = [NSString stringWithFormat:@"%@",self.titles[indexPath.row]];
+                mycell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
             }
                mycell.selectionStyle = UITableViewCellSelectionStyleNone;
         return mycell;
+    
     
 }
 
@@ -415,7 +402,7 @@
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
             }if (indexPath.row==2) {
-//                [self kefu];
+                [self kefu];
                 
                 DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
                 aleart.delegate = self;
@@ -451,18 +438,18 @@
             [self.navigationController pushViewController:share animated:YES];
         }
         if (indexPath.section==1) {
-            if (indexPath.row==1) {
+            if (indexPath.row==0) {
                 YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
             }
-            if (indexPath.row==2) {
+            if (indexPath.row==1) {
                 YKAddressVC *address = [YKAddressVC new];
                 address.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:address animated:YES];
             }
-            if (indexPath.row==3) {
-                DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"qq在线客服"];
+            if (indexPath.row==2) {
+                DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
                 aleart.delegate = self;
                 [aleart show];
 //                [self kefu];
@@ -472,7 +459,7 @@
 //                chatService.hidesBottomBarWhenPushed = YES;
 //                [self.navigationController pushViewController :chatService animated:YES];
             }
-            if (indexPath.row==4) {
+            if (indexPath.row==3) {
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
                 set.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:set animated:YES];
@@ -483,7 +470,7 @@
 }
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"755160804"];
+        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"qq号码"];
         NSURL *url = [NSURL URLWithString:qq];
         [[UIApplication sharedApplication] openURL:url];
 //        YKChatVC *chatService = [[YKChatVC alloc] init];

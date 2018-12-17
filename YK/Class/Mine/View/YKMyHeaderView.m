@@ -44,7 +44,7 @@
  
     //卡图片
     self.cardImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, cardView.frame.size.width, cardView.frame.size.height)];
-    self.cardImage.image = [UIImage imageNamed:@"季卡-1"];
+    self.cardImage.image = [UIImage imageNamed:@"个人中心000"];
     self.cardImage.backgroundColor = [UIColor clearColor];
     [cardView addSubview:self.cardImage];
     
@@ -248,17 +248,17 @@
         
         if ([user.cardType intValue] == 0) {
             [_vipBtn setTitle:@"成为会员" forState:UIControlStateNormal];
-            _cardImage.image = [UIImage imageNamed:@"年卡-1"];
+            _cardImage.image = [UIImage imageNamed:@"个人中心000"];
         }
         
         if ([user.cardType intValue] == 1) {
             [_vipBtn setTitle:@"月卡会员" forState:UIControlStateNormal];
-            _cardImage.image = [UIImage imageNamed:@"季卡-1"];
+            _cardImage.image = [UIImage imageNamed:@"月卡"];
         }
         
         if ([user.cardType intValue] == 2) {
             [_vipBtn setTitle:@"季卡会员" forState:UIControlStateNormal];
-            _cardImage.image = [UIImage imageNamed:@"月卡"];
+            _cardImage.image = [UIImage imageNamed:@"季卡-1"];
         }
         
         if ([user.cardType intValue] == 3) {
@@ -268,7 +268,7 @@
         
         if ([user.cardType intValue] == 4) {
             [_vipBtn setTitle:@"体验卡" forState:UIControlStateNormal];
-            _cardImage.image = [UIImage imageNamed:@"年卡-1"];
+            _cardImage.image = [UIImage imageNamed:@"个人中心000"];
         }
 
 }
