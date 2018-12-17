@@ -88,6 +88,18 @@
 -(UIImageView*)imageview{
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, kSuitLength_H(182))];
+//        if (WIDHT==320) {
+//            _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, kSuitLength_H(182))];
+//        }
+//        if (WIDHT==375) {
+//            _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, kSuitLength_H(182))];
+//        }
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 12) {
+             _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, kSuitLength_H(182))];
+        }
+        if (HEIGHT==812) {
+            _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -44, WIDHT, kSuitLength_H(182))];
+        }
         _headImageView.image = [UIImage imageNamed:@"Oval 6"];
 //        [_headImageView sizeToFit];
         _headImageView.backgroundColor = [UIColor whiteColor];
@@ -515,17 +527,18 @@
 
         _headImageView.frame = ({
             CGRect frame = self.origialFrame;
-//            frame.origin.y = self.origialFrame.origin.y - yoffset;
-            frame.size.height = self.origialFrame.size.height - yoffset;
+            frame.origin.y = self.origialFrame.origin.y - yoffset;
+//            frame.size.height = self.origialFrame.size.height - yoffset;
             frame;
         });
 
     }else {//往下滑动，放大处理
         _headImageView.frame = ({
             CGRect frame = self.origialFrame;
-            frame.size.height = self.origialFrame.size.height - yoffset;
+//            frame.size.height = self.origialFrame.size.height - yoffset;
 //            frame.size.width = frame.size.width-yoffset;
-            frame.origin.x = _origialFrame.origin.x - (frame.size.width-_origialFrame.size.width)/2;
+//            frame.origin.x = _origialFrame.origin.x - (frame.size.width-_origialFrame.size.width)/2;
+            frame.origin.y   = _origialFrame.origin.y-yoffset;
             frame;
         });
     }

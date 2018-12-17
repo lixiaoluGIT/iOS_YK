@@ -134,9 +134,9 @@
         negativeSpacer.width = -18;
     }
     
-    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
-    
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
+//    self.navigationItem.rightBarButtonItems=@[negativeSpacer2,item2];
+//
+//    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
 //    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
 //    title.text = self.title;
 //    title.textAlignment = NSTextAlignmentCenter;

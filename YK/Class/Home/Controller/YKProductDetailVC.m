@@ -96,7 +96,7 @@
     self.navigationController.navigationBar.alpha = 1;
     
 //    self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/280 ;
-    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = NO;
 //    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
 //    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
     
@@ -253,9 +253,9 @@
     layoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
      layoutView.itemSize = CGSizeMake((WIDHT-30)/2, (WIDHT-30)/2*240/140);
 //    -TOPH-20
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -TOPH-20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
     if (HEIGHT==812) {
-        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -TOPH-20, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDHT, MSH-kSuitLength_H(30)) collectionViewLayout:layoutView];
     }
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
@@ -294,7 +294,7 @@
     UIButton *btn11=[UIButton buttonWithType:UIButtonTypeCustom];
     btn11.frame = CGRectMake(3, BarH-44, 44, 44);
     if ([[UIDevice currentDevice].systemVersion floatValue]>= 12) {
-        btn11.frame = CGRectMake(8, BarH-44, 44, 44);
+        btn11.frame = CGRectMake(5, BarH-44, 44, 44);
     }
     btn11.adjustsImageWhenHighlighted = NO;
     [btn11 setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
@@ -568,15 +568,15 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
    
-    if (scrollView.contentOffset.y>kSuitLength_H(500)) {
-      
-        self.navigationController.navigationBar.alpha = 1;
-        self.navigationController.navigationBar.hidden = NO;
-    }else {
-      
-        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/kSuitLength_H(500) ;
-        self.navigationController.navigationBar.hidden = NO;
-    }
+//    if (scrollView.contentOffset.y>kSuitLength_H(500)) {
+//
+//        self.navigationController.navigationBar.alpha = 1;
+//        self.navigationController.navigationBar.hidden = NO;
+//    }else {
+//
+//        self.navigationController.navigationBar.alpha = scrollView.contentOffset.y/kSuitLength_H(500) ;
+//        self.navigationController.navigationBar.hidden = NO;
+//    }
 }
 
 
@@ -627,7 +627,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section==0) {
        
-            return CGSizeMake(WIDHT, WIDHT*1.25+230);
+            return CGSizeMake(WIDHT, WIDHT*1.1+230);
         
     }
     if (self.layoutsArr.count>0){
@@ -651,7 +651,7 @@
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
             //轮播图
-            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, WIDHT*1.25)];
+            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, WIDHT*1.1)];
             cycleView.imagesArr = self.imagesArr;
             cycleView.delegate  = self;
             self.origialFrame = cycleView.frame;
@@ -671,7 +671,7 @@
                 
                 [weakSelf.navigationController pushViewController:brand animated:YES];
             };
-            scroll.frame = CGRectMake(0, WIDHT*1.25,WIDHT, 330);
+            scroll.frame = CGRectMake(0, WIDHT*1.1,WIDHT, 330);
             scroll.clothingCreatedate = self.clothingCreatedate;
             if (!hadMakeHeader) {
                 [headerView addSubview:scroll];
@@ -776,10 +776,10 @@
                 UIView *a = [[UIView alloc]init];
                 if (WIDHT==320) {
 //
-                    
+
                     a.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT,150);
                     [headerView addSubview:a];
-                    
+
                 }else {
                     NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
                 }
@@ -799,7 +799,7 @@
                 }else {
                       lastView = NoDataView;
                 }
-//                totalHeight = 20+60+self.dataArray.count*40+170+150;
+                totalHeight = 20+60+self.dataArray.count*40+170+150;
             }
             
             

@@ -338,7 +338,7 @@
     _scrollView.imageRadius = kSuitLength_H(14); // 设置卡片圆角
     _scrollView.imageHeightPoor = kSuitLength_H(20); // 设置中间卡片与两边卡片的高度差
     // 设置要加载的图片
-    self.scrollView.data = @[@"月卡-1",@"季卡-2",@"nianka1"];
+    self.scrollView.data = @[@"月卡-1",@"季卡-2",@"年卡-2"];
     _scrollView.placeHolderImage = [UIImage imageNamed:@"商品图"]; // 设置占位图片
     [bigScrollView addSubview:self.scrollView];
     _scrollView.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调

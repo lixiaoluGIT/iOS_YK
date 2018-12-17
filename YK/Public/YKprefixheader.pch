@@ -342,7 +342,7 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #define ImgHeader @"http://static.soperson.com"
 
 ////状态栏
-//#define StatusBH [[UIApplication sharedApplication] statusBarFrame].size.height;
+#define StatusBH [[UIApplication sharedApplication] statusBarFrame].size.height;
 //
 ////标题栏
 //#define NBarH 44

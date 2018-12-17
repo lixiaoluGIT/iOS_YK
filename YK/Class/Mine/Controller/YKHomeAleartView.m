@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *girlImage;
 @property (weak, nonatomic) IBOutlet UIButton *getBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hhh;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *www;
 
 @end
 @implementation YKHomeAleartView
@@ -30,6 +32,9 @@
     if (WIDHT==320) {
         _gap.constant = 40;
     }
+    
+    _hhh.constant = kSuitLength_H(373);
+    _www.constant = kSuitLength_H(325);
    
     if ([Token length] == 0) {
         [self.getBtn setTitle:@"立即登录" forState:UIControlStateNormal];

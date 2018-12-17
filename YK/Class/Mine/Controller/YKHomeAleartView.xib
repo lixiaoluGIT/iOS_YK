@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kZ-yo-izY">
-                        <rect key="frame" x="0.0" y="0.0" width="358" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="358" height="673.5"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJS-dO-t3j">
@@ -36,9 +36,13 @@
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:dEH-rC-nc5:image" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-rC-nc5">
                         <rect key="frame" x="16.5" y="80" width="325" height="373"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="325" id="hZU-4R-Pf3"/>
+                            <constraint firstAttribute="height" constant="373" id="vCY-lX-Wkm"/>
+                        </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Fk-Zn-49q">
-                        <rect key="frame" x="119" y="363" width="121" height="40"/>
+                        <rect key="frame" x="118.5" y="363" width="121" height="40"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.62745098039215685" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="121" id="Q9f-08-w0T"/>
@@ -69,8 +73,10 @@
                 <outlet property="gap" destination="LtU-sW-xXb" id="mhP-Yo-hg4"/>
                 <outlet property="getBtn" destination="8Fk-Zn-49q" id="4bM-p8-lxO"/>
                 <outlet property="girlImage" destination="dEH-rC-nc5" id="H58-v0-VaF"/>
+                <outlet property="hhh" destination="vCY-lX-Wkm" id="DMa-nj-cHc"/>
+                <outlet property="www" destination="hZU-4R-Pf3" id="is0-ds-DDe"/>
             </connections>
-            <point key="canvasLocation" x="-80" y="237"/>
+            <point key="canvasLocation" x="-454" y="216"/>
         </tableViewCell>
     </objects>
     <resources>

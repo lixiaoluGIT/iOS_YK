@@ -45,11 +45,11 @@
     [paragraphStyle  setLineSpacing:4];
     self.recommentWords.text = @"正在请求数据...";
     
-    NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
-    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
+//    NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
+//    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
     // 设置Label要显示的text
-    [self.recommentWords  setAttributedText:setString];
-    
+//    [self.recommentWords  setAttributedText:setString];
+    self.recommentWords.font = PingFangSC_Regular(kSuitLength_H(12));
     _lineee.hidden = NO;
     
     _selectText.font = PingFangSC_Regular(kSuitLength_H(14));
@@ -121,15 +121,15 @@
     _recomment = [recomment isEqual:[NSNull null]]  ? @"暂无买手推荐语～" : recomment;
     _recommentWords.text = _recomment;
     
-    NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle  setLineSpacing:kSuitLength_H(4)];
+//    NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    [paragraphStyle  setLineSpacing:kSuitLength_H(4)];
     self.recommentWords.text = _recomment;
    
 
-    NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
-    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
-    // 设置Label要显示的text
-    [self.recommentWords  setAttributedText:setString];
+//    NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:self.recommentWords.text ];
+//    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.recommentWords.text  length])];
+//    // 设置Label要显示的text
+//    [self.recommentWords  setAttributedText:setString];
     
     
 }
