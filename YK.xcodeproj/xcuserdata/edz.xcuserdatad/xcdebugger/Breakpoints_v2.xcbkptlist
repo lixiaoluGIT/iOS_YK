@@ -637,7 +637,7 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "566384328.248819"
+                  timestampString = "566728070.107007"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
@@ -652,7 +652,7 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "566384328.2523381"
+                  timestampString = "566728070.109591"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
@@ -667,7 +667,7 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "566384328.25606"
+                  timestampString = "566728070.112201"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
@@ -700,7 +700,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMySuitBagVC.m"
-            timestampString = "566303234.642923"
+            timestampString = "566728069.755412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "415"
@@ -1048,7 +1048,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMySuitBagVC.m"
-            timestampString = "566303234.647287"
+            timestampString = "566728069.755741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "361"
@@ -1080,7 +1080,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMySuitBagVC.m"
-            timestampString = "566303234.6482249"
+            timestampString = "566728069.755814"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "294"
@@ -1096,7 +1096,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMySuitBagVC.m"
-            timestampString = "566303234.648856"
+            timestampString = "566728069.755867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "298"
@@ -1191,7 +1191,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMySuitBagVC.m"
-            timestampString = "566303234.6496381"
+            timestampString = "566728069.755949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "284"
@@ -1514,6 +1514,54 @@
             startingLineNumber = "141"
             endingLineNumber = "141"
             landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKMineVC.m"
+            timestampString = "566728069.7561589"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "486"
+            endingLineNumber = "486"
+            landmarkName = "-dxAlertView:clickedButtonAtIndex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKMineVC.m"
+            timestampString = "566728069.756567"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
+            landmarkName = "-dxAlertView:clickedButtonAtIndex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKMineVC.m"
+            timestampString = "566728069.756845"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
+            landmarkName = "-dxAlertView:clickedButtonAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
