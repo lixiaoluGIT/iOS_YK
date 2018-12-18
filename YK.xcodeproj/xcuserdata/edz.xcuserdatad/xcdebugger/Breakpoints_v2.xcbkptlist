@@ -637,12 +637,12 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "566734897.731208"
+                  timestampString = "566824198.1354949"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
                   endingLineNumber = "194"
-                  offsetFromSymbolStart = "556">
+                  offsetFromSymbolStart = "577">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -652,12 +652,12 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "566734897.73388"
+                  timestampString = "566824198.13875"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
                   endingLineNumber = "194"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -667,12 +667,12 @@
                   moduleName = "YK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/edz/iOS_YK/YK/Class/Suit/Manager/YKOrderManager.m"
-                  timestampString = "566734897.73637"
+                  timestampString = "566824198.141748"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "194"
                   endingLineNumber = "194"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1524,11 +1524,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMineVC.m"
-            timestampString = "566734897.228582"
+            timestampString = "566824197.419693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "-dxAlertView:clickedButtonAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1540,11 +1540,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMineVC.m"
-            timestampString = "566734897.228685"
+            timestampString = "566824197.419801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "473"
-            endingLineNumber = "473"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
             landmarkName = "-dxAlertView:clickedButtonAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1556,12 +1556,140 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YK/Class/Mine/Controller/YKMineVC.m"
-            timestampString = "566734897.2287509"
+            timestampString = "566824197.419907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "-dxAlertView:clickedButtonAtIndex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKMineVC.m"
+            timestampString = "566824197.419989"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "424"
+            endingLineNumber = "424"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKChangeCardVC.m"
+            timestampString = "566824197.420077"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "-setViewMovedUp:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKChangeCardVC.m"
+            timestampString = "566824197.420799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "-setViewMovedUp:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKChangeCardVC.m"
+            timestampString = "566824197.421333"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "-textFieldDidBeginEditing:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKChangeCardVC.m"
+            timestampString = "566824197.421815"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-textFieldDidBeginEditing:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKChangeCardVC.m"
+            timestampString = "566824197.422298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "-textFieldDidBeginEditing:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKChangeCardVC.m"
+            timestampString = "566824197.4227411"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "-setViewMovedUp:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YK/Class/Mine/Controller/YKChangeCardVC.m"
+            timestampString = "566824197.423225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "-setViewMovedUp:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -37,21 +37,27 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Page 1" translatesAutoresizingMaskIntoConstraints="NO" id="2Mf-n9-S77">
+                        <rect key="frame" x="89.5" y="20.5" width="24" height="12"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="s4k-O6-hFo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5Hv-KE-4hw"/>
                     <constraint firstItem="s4k-O6-hFo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="GSt-sF-NZ1"/>
                     <constraint firstAttribute="bottom" secondItem="v8k-SA-ETH" secondAttribute="bottom" constant="1" id="Nru-9E-v03"/>
                     <constraint firstItem="qhM-ZY-ucz" firstAttribute="centerY" secondItem="s4k-O6-hFo" secondAttribute="centerY" id="a00-YK-EPe"/>
+                    <constraint firstItem="s4k-O6-hFo" firstAttribute="top" secondItem="2Mf-n9-S77" secondAttribute="bottom" id="eoa-4d-Wo2"/>
                     <constraint firstAttribute="trailing" secondItem="v8k-SA-ETH" secondAttribute="trailing" id="oKS-ly-F3Z"/>
                     <constraint firstAttribute="trailing" secondItem="qhM-ZY-ucz" secondAttribute="trailing" constant="20" id="pdw-RP-H9L"/>
                     <constraint firstItem="v8k-SA-ETH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="sKw-lJ-uui"/>
+                    <constraint firstItem="2Mf-n9-S77" firstAttribute="leading" secondItem="s4k-O6-hFo" secondAttribute="trailing" id="xuZ-NU-3yB"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="headIma" destination="2Mf-n9-S77" id="bG5-gq-lK1"/>
                 <outlet property="title" destination="s4k-O6-hFo" id="Vej-F7-cH9"/>
             </connections>
-            <point key="canvasLocation" x="24" y="-142"/>
+            <point key="canvasLocation" x="-224" y="-146"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="187" id="piW-2t-gvZ" customClass="YKMineCell">
             <rect key="frame" x="0.0" y="0.0" width="380" height="187"/>
@@ -127,6 +133,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Page 1" width="24" height="12"/>
         <image name="right" width="10" height="14"/>
         <image name="立即邀请" width="328" height="61"/>
     </resources>

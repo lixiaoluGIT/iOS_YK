@@ -9,6 +9,7 @@
 #import "YKMineCell.h"
 @interface YKMineCell()
 
+@property (weak, nonatomic) IBOutlet UIImageView *headIma;
 
 @end
 
@@ -19,8 +20,12 @@
  
     // Initialization code
     _title.font = PingFangSC_Regular(kSuitLength_V(14));
+    _headIma.hidden = YES;
 }
 
-
+- (void)setImaHidden:(BOOL)imaHidden{
+    _imaHidden = imaHidden;
+    _headIma.hidden = imaHidden;
+}
 
 @end

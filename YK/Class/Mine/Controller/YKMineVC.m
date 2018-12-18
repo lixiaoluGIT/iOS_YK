@@ -29,6 +29,7 @@
 #import "YKSuitVC.h"
 #import "YKCouponListVC.h"
 #import "YKInvitVC.h"
+#import "YKChangeCardVC.h"
 
 
 @interface YKMineVC ()<UITableViewDelegate,UITableViewDataSource,DXAlertViewDelegate>
@@ -94,7 +95,7 @@
 //        if (WIDHT==375) {
 //            _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, kSuitLength_H(182))];
 //        }
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 12) {
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 11) {
              _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, WIDHT, kSuitLength_H(182))];
         }
         if (HEIGHT==812) {
@@ -209,9 +210,9 @@
 
     
     self.images = [NSArray array];
-    self.images = @[@"question",@"address",@"kefu-1",@"setting"];
+    self.images = @[@"question",@"question",@"address",@"kefu-1",@"setting"];
     self.titles = [NSArray array];
-    self.titles = @[@"常见问题",@"我的地址",@"联系客服",@"设置"];
+    self.titles = @[@"激活兑换卡",@"常见问题",@"我的地址",@"联系客服",@"设置"];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
 }
@@ -251,12 +252,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([Token length] == 0) {
-        return 4;
+        return 5;
     }else {
         if (section==0) {
             return 1;
         }else {
-            return 4;
+            return 5;
         }
     }
 }
@@ -284,53 +285,13 @@
             mycell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
         }
         mycell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (indexPath.row==0) {
+            mycell.imaHidden = NO;
+        }
         return mycell;
     }
-//        if (indexPath.section==0) {
-//            static NSString *ID = @"cell";
-//            YKVipCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
-//            if (mycell == nil) {
-//                mycell = [[NSBundle mainBundle] loadNibNamed:@"YKVipCell" owner:self options:nil][0];
-//            }
-//            mycell.user = [YKUserManager sharedManager].user;
-//            WeakSelf(weakSelf)
-//            mycell.btnClick = ^(void){
-//                if ([mycell.user.effective intValue]==1) {//使用中
-//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//
-//                    [weakSelf presentViewController:nav animated:YES completion:^{
-//
-//                    }];
-//                }
-//                if ([mycell.user.effective intValue]==2) {//已过期,充值会员
-//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//
-//                    [weakSelf presentViewController:nav animated:YES completion:^{
-//
-//                    }];
-//                }
-//                if ([mycell.user.effective intValue]==3) {//无押金,充押金
-//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//
-//                    [weakSelf presentViewController:nav animated:YES completion:^{
-//
-//                    }];
-//                }
-//                if ([mycell.user.effective intValue]==4) {//未开通
-//                    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-//                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-//
-//                    [weakSelf presentViewController:nav animated:YES completion:^{
-//
-//                    }];
-//                }
-//            };
-//            mycell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            return mycell;
-//        }
+
         if (indexPath.section==0) {
             static NSString *ID = @"cell";
             YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -339,6 +300,9 @@
                 mycell.title.text = [NSString stringWithFormat:@"%@",self.titles[indexPath.row]];
             }
             mycell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (indexPath.row==0) {
+                mycell.imaHidden = NO;
+            }
             return mycell;
         }
     
@@ -350,9 +314,12 @@
                 mycell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
             }
                mycell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+            if (indexPath.row==0) {
+                mycell.imaHidden = NO;
+            }
+
         return mycell;
-    
-    
 }
 
 - (void)kefu{
@@ -395,14 +362,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([Token length] == 0) {
-            if (indexPath.row==1) {//地址
+            if (indexPath.row==0) {//地址
                 [self Login];
-            }if (indexPath.row==0) {
+            }if (indexPath.row==1) {
                 YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
             }if (indexPath.row==2) {
-                [self kefu];
+//                [self kefu];
                 
                 DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
                 aleart.delegate = self;
@@ -439,16 +406,21 @@
         }
         if (indexPath.section==1) {
             if (indexPath.row==0) {
-                YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
+                YKChangeCardVC *normal = [YKChangeCardVC new];
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
             }
             if (indexPath.row==1) {
+                YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
+                normal.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:normal animated:YES];
+            }
+            if (indexPath.row==2) {
                 YKAddressVC *address = [YKAddressVC new];
                 address.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:address animated:YES];
             }
-            if (indexPath.row==2) {
+            if (indexPath.row==3) {
                 DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
                 aleart.delegate = self;
                 [aleart show];
@@ -459,7 +431,7 @@
 //                chatService.hidesBottomBarWhenPushed = YES;
 //                [self.navigationController pushViewController :chatService animated:YES];
             }
-            if (indexPath.row==3) {
+            if (indexPath.row==4) {
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
                 set.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:set animated:YES];
@@ -470,7 +442,7 @@
 }
 - (void)dxAlertView:(DXAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"qq号码"];
+        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",QQNum];
         NSURL *url = [NSURL URLWithString:qq];
         [[UIApplication sharedApplication] openURL:url];
 //        YKChatVC *chatService = [[YKChatVC alloc] init];

@@ -26,6 +26,7 @@
 		00179C7C2189B449000A0100 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 00179C702189B449000A0100 /* NSObject+MJProperty.m */; };
 		00179C7D2189B449000A0100 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 00179C722189B449000A0100 /* NSString+MJExtension.m */; };
 		001824952192B2A50038AD5D /* YKFashionRecView.m in Sources */ = {isa = PBXBuildFile; fileRef = 001824942192B2A50038AD5D /* YKFashionRecView.m */; };
+		0028E4D721C89EB700DEDE76 /* YKChangeCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0028E4D621C89EB600DEDE76 /* YKChangeCardVC.m */; };
 		002D6F4E20ECC64F00C70FFE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C534ECD51FEB92B1003BB993 /* AdSupport.framework */; };
 		002DF71720DBA6AA00560C60 /* tt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 002DF71620DBA6A900560C60 /* tt.jpg */; };
 		002FE59F20B5344300554AB3 /* YKProductCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 002FE59E20B5344300554AB3 /* YKProductCommentVC.m */; };
@@ -709,6 +710,8 @@
 		00179C722189B449000A0100 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		001824932192B2A50038AD5D /* YKFashionRecView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFashionRecView.h; sourceTree = "<group>"; };
 		001824942192B2A50038AD5D /* YKFashionRecView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFashionRecView.m; sourceTree = "<group>"; };
+		0028E4D521C89EB600DEDE76 /* YKChangeCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKChangeCardVC.h; sourceTree = "<group>"; };
+		0028E4D621C89EB600DEDE76 /* YKChangeCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKChangeCardVC.m; sourceTree = "<group>"; };
 		002DF71620DBA6A900560C60 /* tt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tt.jpg; sourceTree = "<group>"; };
 		002FE59D20B5344300554AB3 /* YKProductCommentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKProductCommentVC.h; sourceTree = "<group>"; };
 		002FE59E20B5344300554AB3 /* YKProductCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKProductCommentVC.m; sourceTree = "<group>"; };
@@ -2664,6 +2667,8 @@
 				0087C994211AC8470014E733 /* YKHomeAleartView.h */,
 				0087C995211AC8480014E733 /* YKHomeAleartView.m */,
 				0087C996211AC8480014E733 /* YKHomeAleartView.xib */,
+				0028E4D521C89EB600DEDE76 /* YKChangeCardVC.h */,
+				0028E4D621C89EB600DEDE76 /* YKChangeCardVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4499,6 +4504,7 @@
 				C525DDAF1FBAB2A9002802AE /* TZAssetModel.m in Sources */,
 				C525DE221FBAD659002802AE /* YKScrollBtnView.m in Sources */,
 				C525DE021FBABBD1002802AE /* YKSuitVC.m in Sources */,
+				0028E4D721C89EB700DEDE76 /* YKChangeCardVC.m in Sources */,
 				C525DDA31FBAB2A9002802AE /* NSAttributedString+MLLabel.m in Sources */,
 				00C392862068B2580068DFC0 /* RSAEncryptor.m in Sources */,
 				C52D047C1FE8F8A400633550 /* YKAleartView.m in Sources */,
@@ -5058,7 +5064,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5161,7 +5167,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = YKDevFile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
@@ -5176,7 +5182,7 @@
 				CODE_SIGN_ENTITLEMENTS = YK/Resource/YK.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22F9ZLB38V;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5287,7 +5293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lymykapp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a98be9ff-688d-4df1-a535-adc5de2c3991";
-				PROVISIONING_PROFILE_SPECIFIER = YKDisFile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/YK/Vender/JPush/Lib\"";
