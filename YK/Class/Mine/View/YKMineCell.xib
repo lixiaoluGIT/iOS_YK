@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Page 1" translatesAutoresizingMaskIntoConstraints="NO" id="2Mf-n9-S77">
-                        <rect key="frame" x="89.5" y="20.5" width="24" height="12"/>
+                        <rect key="frame" x="89.5" y="25.5" width="24" height="12"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -46,7 +46,7 @@
                     <constraint firstItem="s4k-O6-hFo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="GSt-sF-NZ1"/>
                     <constraint firstAttribute="bottom" secondItem="v8k-SA-ETH" secondAttribute="bottom" constant="1" id="Nru-9E-v03"/>
                     <constraint firstItem="qhM-ZY-ucz" firstAttribute="centerY" secondItem="s4k-O6-hFo" secondAttribute="centerY" id="a00-YK-EPe"/>
-                    <constraint firstItem="s4k-O6-hFo" firstAttribute="top" secondItem="2Mf-n9-S77" secondAttribute="bottom" id="eoa-4d-Wo2"/>
+                    <constraint firstItem="s4k-O6-hFo" firstAttribute="top" secondItem="2Mf-n9-S77" secondAttribute="bottom" constant="-5" id="eoa-4d-Wo2"/>
                     <constraint firstAttribute="trailing" secondItem="v8k-SA-ETH" secondAttribute="trailing" id="oKS-ly-F3Z"/>
                     <constraint firstAttribute="trailing" secondItem="qhM-ZY-ucz" secondAttribute="trailing" constant="20" id="pdw-RP-H9L"/>
                     <constraint firstItem="v8k-SA-ETH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="sKw-lJ-uui"/>

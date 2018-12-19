@@ -210,9 +210,9 @@
 
     
     self.images = [NSArray array];
-    self.images = @[@"question",@"question",@"address",@"kefu-1",@"setting"];
+    self.images = @[@"question",@"question",@"1",@"address",@"kefu-1",@"setting"];
     self.titles = [NSArray array];
-    self.titles = @[@"激活兑换卡",@"常见问题",@"我的地址",@"联系客服",@"设置"];
+    self.titles = @[@"激活兑换卡",@"我的地址",@"1",@"常见问题",@"联系客服",@"设置"];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
 }
@@ -223,7 +223,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 //    if (section==1) {
-        return 5;
+        return 10;
 //    }
 //    return CGFLOAT_MIN;
 }
@@ -239,25 +239,31 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([Token length] == 0) {
+        if (indexPath.row==2) {
+            return 10;
+        }
         return kSuitLength_H(50);
     }
     
-   
     if (indexPath.section==0) {
         return kSuitLength_H(97);
     }
-   
+    
+    if (indexPath.row==2) {
+        return 10;
+    }else {
         return kSuitLength_H(50);
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([Token length] == 0) {
-        return 5;
+        return 6;
     }else {
         if (section==0) {
             return 1;
         }else {
-            return 5;
+            return 6;
         }
     }
 }
@@ -276,6 +282,11 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([Token length] == 0) {
         static NSString *ID = @"cell";
+        if (indexPath.row==2) {
+            UITableViewCell *cell = [[UITableViewCell alloc]init];
+            cell.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+            return cell;
+        }
         YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (mycell == nil) {
             mycell = [[NSBundle mainBundle] loadNibNamed:@"YKMineCell" owner:self options:nil][0];
@@ -289,6 +300,7 @@
         if (indexPath.row==0) {
             mycell.imaHidden = NO;
         }
+        
         return mycell;
     }
 
@@ -305,6 +317,12 @@
             }
             return mycell;
         }
+    
+    if (indexPath.row==2) {
+        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        cell.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+        return cell;
+    }
     
             static NSString *ID = @"cell";
             YKMineCell *mycell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -362,18 +380,19 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([Token length] == 0) {
-            if (indexPath.row==0) {//地址
+            if (indexPath.row==0) {
                 [self Login];
             }if (indexPath.row==1) {
+                [self Login];
+            }if (indexPath.row==3) {
                 YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
-            }if (indexPath.row==2) {
 //                [self kefu];
                 
-                DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
-                aleart.delegate = self;
-                [aleart show];
+//                DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
+//                aleart.delegate = self;
+//                [aleart show];
                 
 //                NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",@"qq号码"];
 //                NSURL *url = [NSURL URLWithString:qq];
@@ -384,13 +403,21 @@
 //                chatService.targetId = RoundCloudServiceId;
 //                chatService.hidesBottomBarWhenPushed = YES;
 //                [self.navigationController pushViewController :chatService animated:YES];
-            }if (indexPath.row==3) {
+            }if (indexPath.row==5) {
               
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
                 set.hidesBottomBarWhenPushed = YES;
                                 [self.navigationController pushViewController:set animated:YES];
                 
             }
+        if (indexPath.row==4) {
+            
+            DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
+            aleart.delegate = self;
+            aleart.titleColor = YKRedColor;
+            [aleart show];
+            
+        }
             
         
     }else {
@@ -410,18 +437,19 @@
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
             }
-            if (indexPath.row==1) {
+            if (indexPath.row==3) {
                 YKNormalQuestionVC *normal = [YKNormalQuestionVC new];
                 normal.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:normal animated:YES];
             }
-            if (indexPath.row==2) {
+            if (indexPath.row==1) {
                 YKAddressVC *address = [YKAddressVC new];
                 address.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:address animated:YES];
             }
-            if (indexPath.row==3) {
+            if (indexPath.row==4) {
                 DXAlertView *aleart = [[DXAlertView alloc]initWithTitle:@"联系客服" message:@"客服服务时间10:00-19:00" cancelBtnTitle:@"拨打客服电话" otherBtnTitle:@"在线客服"];
+                aleart.titleColor = YKRedColor;
                 aleart.delegate = self;
                 [aleart show];
 //                [self kefu];
@@ -431,7 +459,7 @@
 //                chatService.hidesBottomBarWhenPushed = YES;
 //                [self.navigationController pushViewController :chatService animated:YES];
             }
-            if (indexPath.row==4) {
+            if (indexPath.row==5) {
                 YKSettingVC *set = [[YKSettingVC alloc]initWithNibName:@"YKSettingVC" bundle:[NSBundle mainBundle]];
                 set.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:set animated:YES];

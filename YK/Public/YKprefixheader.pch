@@ -263,7 +263,7 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 //客服电话
 //#define PHONE @"15512805315"//王阳手机号
 #define PHONE @"010-52894251"//座机号
-#define QQNum @""
+#define QQNum @"3051962441"
 
 #ifdef debug//开发环境
 #define kGtAppId @"IUK1udrw6Z5N2S7pOWfAv6"
@@ -400,6 +400,8 @@ attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #define getAccountDetail_Url @"/account/queryAccountDetail"
 //提现
 #define tiXian_Url @"/account/withdraw"
+//兑换月卡
+#define rechangeCard_Url @"/redeemCode/usingRedeemCode"
 
 /*----------------------------首页及详情模块--------------------------------*/
 //首页

@@ -134,5 +134,8 @@
 //分享获取分享图片
 - (void)getShareImageShareimageId:(NSString *)shareImageid OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//兑换月卡
+- (void)changeCardWithCardCode:(NSString *)cardCode OnResponse:(void (^)(NSDictionary *dic))onResponse;
+
 - (void)clear;
 @end

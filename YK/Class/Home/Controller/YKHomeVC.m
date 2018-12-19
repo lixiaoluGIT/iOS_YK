@@ -45,6 +45,7 @@
 @interface YKHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource,YKBaseScrollViewDelete,WMHCustomScrollViewDelegate,DCCycleScrollViewDelegate,NewDynamicsCellDelegate>
 {
     BOOL hadAppearCheckVersion;
+    BOOL hadPlayView;
     BOOL hadtitle1;
     BOOL hadtitle11;
     BOOL hadtitle3;
@@ -454,7 +455,7 @@
 //        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+10-14);
 //    }
     
-    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(88)*4 + kSuitLength_H(210+355) + kSuitLength_H(355)*self.weeknewArray.count+10);
+    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(88)*4 + kSuitLength_H(210+355) + kSuitLength_H(355)*self.weeknewArray.count+10 + kSuitLength_H(210));
 //    return kSuitLength_H(<#lengthGiven#>)
 }
 
@@ -477,10 +478,29 @@
         [headerView addSubview:cycleView];
         WeakSelf(weakSelf)
         
+        //新加衣库玩法图
+        YKHomeActivityView * _activity = [[NSBundle mainBundle]loadNibNamed:@"YKHomeActivityView" owner:nil options:nil][0];
+        _activity.frame = CGRectMake(0, cycleView.bottom,WIDHT, kSuitLength_H(210));
+        _activity.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
+        _activity.toDetailBlock = ^(NSString *activityID){
+            YKLinkWebVC *web =[YKLinkWebVC new];
+            web.needShare = YES;
+            web.url = activityID;
+            if (web.url.length == 0) {
+                return;
+            }
+            web.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:web animated:YES];
+        };
+//        if (!hadPlayView) {
+            [headerView addSubview:_activity];
+//            hadPlayView = YES;
+//        }
+        
         //文字miao s
         YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
-        desCell.frame = CGRectMake(0, cycleView.frame.size.height + cycleView.frame.origin.y, WIDHT, kSuitLength_H(93));
+        desCell.frame = CGRectMake(0, _activity.bottom, WIDHT, kSuitLength_H(93));
         [headerView addSubview:desCell];
 
         //人气美衣
@@ -655,8 +675,12 @@
             hadtitle5 = YES;
         }
         NSMutableArray *array = [NSMutableArray array];
-        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.hotWears[0]];
-        [array addObject:dic];
+        NSDictionary *dic;
+        if (self.hotWears.count!=0) {
+          dic = [NSDictionary dictionaryWithDictionary:self.hotWears[0]];
+            [array addObject:dic];
+        }
+        
         _banner2  = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(10,ti3.bottom,WIDHT-20,kSuitLength_H(355)) shouldInfiniteLoop:YES imageGroups:array];
         _banner2.autoScrollTimeInterval = 3;
         _banner2.autoScroll = NO;

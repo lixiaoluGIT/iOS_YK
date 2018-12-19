@@ -1111,4 +1111,30 @@
         
     }];
 }
+
+- (void)changeCardWithCardCode:(NSString *)cardCode OnResponse:(void (^)(NSDictionary *dic))onResponse{
+   
+    [LBProgressHUD showHUDto:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    NSMutableDictionary  *dic = [NSMutableDictionary dictionary];
+    
+    [dic setObject:cardCode forKey:@"code"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?code=%@",rechangeCard_Url,cardCode];
+    
+
+    [YKHttpClient Method:@"POST" URLString:url paramers:dic success:^(NSDictionary *dict) {
+        [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        if ([dict[@"status"] intValue] == 200) {
+            if (onResponse) {
+                onResponse(dict);
+            }
+        }else {
+            [smartHUD alertText:kWindow alert:dict[@"msg"] delay:1.2];
+        }
+
+    } failure:^(NSError *error) {
+
+    }];
+}
 @end

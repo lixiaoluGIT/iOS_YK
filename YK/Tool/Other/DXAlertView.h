@@ -30,6 +30,8 @@
  */
 -(instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelBtnTitle:(NSString *)cancelTitle otherBtnTitle:(NSString *)otherBtnTitle;
 
+@property (nonatomic,strong)UIColor *titleColor;
+
 @property (nonatomic,copy)void (^yesBlock)(void);
 -(void)show;
 

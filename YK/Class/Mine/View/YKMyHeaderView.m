@@ -270,6 +270,11 @@
             [_vipBtn setTitle:@"体验卡" forState:UIControlStateNormal];
             _cardImage.image = [UIImage imageNamed:@"个人中心000"];
         }
+        
+        if ([user.cardType intValue] == 7) {
+            [_vipBtn setTitle:@"兑换卡" forState:UIControlStateNormal];
+            _cardImage.image = [UIImage imageNamed:@"月卡"];
+        }
 
 }
 }

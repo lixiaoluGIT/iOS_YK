@@ -230,7 +230,10 @@
         if (cardType==3) {//年卡
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
              la.text = @"尊享会员年卡";
-        }else {
+        }if (cardType==7) {//兑换卡
+            image.image = [UIImage imageNamed:@"会员卡正在使用"];
+            la.text = @"尊享会员兑换卡";
+        } else {
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
              la.text = @"尊享会员体验卡";
         }

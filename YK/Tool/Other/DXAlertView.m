@@ -41,6 +41,11 @@
 
 @implementation DXAlertView
 
+- (void)setTitleColor:(UIColor *)titleColor{
+    _titleColor = titleColor;
+    self.titleLab.textColor = _titleColor;
+    self.otherBtn.backgroundColor = _titleColor;
+}
 -(instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelBtnTitle:(NSString *)cancelTitle otherBtnTitle:(NSString *)otherBtnTitle
 {
     self = [super init];
@@ -52,6 +57,9 @@
             self.titleLab.text=title;
             self.titleLab.textAlignment=NSTextAlignmentCenter;
             self.titleLab.textColor=mainColor;
+//            if (_titleColor) {
+//                 self.titleLab.textColor=_titleColor;
+//            }
             self.titleLab.font = PingFangSC_Semibold(17);
         }
         
@@ -60,7 +68,7 @@
         self.messageLab.backgroundColor=[UIColor whiteColor];
         self.messageLab.text=message;
         self.messageLab.textColor=mainColor;
-        self.messageLab.font=PingFangSC_Regular(15);
+        self.messageLab.font=PingFangSC_Regular(14);
         self.messageLab.numberOfLines=0;
         self.messageLab.textAlignment= NSTextAlignmentCenter;
         self.messageLab.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -74,7 +82,7 @@
             self.cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [self.cancelBtn setTitleColor:mainColor forState:UIControlStateNormal];
             [self.cancelBtn setTitle:cancelTitle forState:UIControlStateNormal];
-            self.cancelBtn.titleLabel.font=FONT_15;
+            self.cancelBtn.titleLabel.font=PingFangSC_Regular(kSuitLength_H(14));
             self.cancelBtn.layer.cornerRadius=3;
             self.cancelBtn.layer.masksToBounds=YES;
             self.cancelBtn.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
@@ -85,7 +93,7 @@
             self.otherBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [self.otherBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [self.otherBtn setTitle:otherBtnTitle forState:UIControlStateNormal];
-            self.otherBtn.titleLabel.font=FONT_15;
+            self.otherBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
             self.otherBtn.layer.cornerRadius=3;
             self.otherBtn.layer.masksToBounds=YES;
             self.otherBtn.backgroundColor = mainColor;
@@ -160,7 +168,7 @@
     self.alertview.transform = CGAffineTransformScale(CGAffineTransformIdentity,0.2,0.2);
     self.alertview.alpha = 0;
     [UIView animateWithDuration:0.3 delay:0.1 usingSpringWithDamping:0.5 initialSpringVelocity:10 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.4f];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.7f];
         self.alertview.transform = transform;
         self.alertview.alpha = 1;
     } completion:^(BOOL finished) {
@@ -194,4 +202,5 @@
     }
     return YES;
 }
+
 @end

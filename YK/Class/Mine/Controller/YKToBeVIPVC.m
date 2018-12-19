@@ -264,6 +264,8 @@
 //        _yj.hidden = YES;
          self.yaJin.text = @"已交押金";
     }
+    
+    NSLog(@"总额====%@",_total.text);
 }
 - (void)viewWillDisappear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
