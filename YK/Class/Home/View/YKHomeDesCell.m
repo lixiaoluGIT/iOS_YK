@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *mySize;
 @property (weak, nonatomic) IBOutlet UILabel *edit;
 @property (weak, nonatomic) IBOutlet UILabel *lll;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
 
 @end
 
@@ -33,6 +34,7 @@
 //    _image.size.width
 //    [_image setContentMode:UIViewContentModeScaleAspectFill];
     // Initialization code
+    _gap.constant = kSuitLength_H(20);
 }
 
 - (void)click{

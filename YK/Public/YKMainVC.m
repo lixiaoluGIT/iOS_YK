@@ -135,8 +135,8 @@
 //
 //    }
 //    
-//    //点击tabBarItem动画
-//    if (self.selectedIndex != _currentIndex)[self tabBarButtonClick:[self getTabBarButton]];
+    //点击tabBarItem动画
+    if (self.selectedIndex != _currentIndex)[self tabBarButtonClick:[self getTabBarButton]];
     
     
 }
@@ -171,8 +171,8 @@
             //需要实现的帧动画,这里根据需求自定义
             CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
             animation.keyPath = @"transform.scale";
-            animation.values = @[@1.0,@1.4,@0.6,@1.0];
-            animation.duration = 0.6;
+            animation.values = @[@1.0,@1.2,@0.8,@1.0];
+            animation.duration = 0.5;
             animation.calculationMode = kCAAnimationCubic;
             //把动画添加上去就OK了
             [imageView.layer addAnimation:animation forKey:nil];

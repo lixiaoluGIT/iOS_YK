@@ -32,15 +32,24 @@
     
     self.scanBtn.hidden = YES;
     UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
-    b.frame = CGRectMake(WIDHT-kSuitLength_H(100), kSuitLength_H(18), kSuitLength_H(80), kSuitLength_H(21));
+//    b.frame = CGRectMake(WIDHT-kSuitLength_H(100), kSuitLength_H(18), kSuitLength_H(80), kSuitLength_H(21));
     b.centerY = self.des.centerY;
     b.backgroundColor = YKRedColor;
     b.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
     b.layer.masksToBounds = YES;
-    b.layer.cornerRadius = kSuitLength_H(21)/2;
+    b.layer.cornerRadius = kSuitLength_H(24)/2;
     self.scanBtn = b;
     [b addTarget:self action:@selector(scan) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:b];
+    
+    [b mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kSuitLength_H(-20));
+        make.centerY.mas_equalTo(self.des.mas_centerY);
+        make.width.mas_equalTo(kSuitLength_H(80));
+        make.height.mas_equalTo(kSuitLength_H(24));
+    }];
+    
+    self.des.font = PingFangSC_Regular(kSuitLength_H(14));
 }
 
 - (IBAction)scanBtnClick:(id)sender {

@@ -202,7 +202,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"个人中心";
+    self.title = @"我的";
     [self.view addSubview:[self imageview]];
     [self.view addSubview:self.tableView];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

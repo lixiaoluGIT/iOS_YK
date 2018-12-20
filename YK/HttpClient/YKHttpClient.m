@@ -216,6 +216,7 @@
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+            [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
             
         }];
         

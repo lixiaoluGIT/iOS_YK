@@ -11,5 +11,6 @@
 @interface YKHomeActivityView : UITableViewCell
 
 @property (nonatomic,strong)NSArray *imageArray;
+@property (nonatomic,assign)BOOL isNewerPlay;
 @property (nonatomic,copy)void (^toDetailBlock)(NSString *linkUrl);
 @end

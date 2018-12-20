@@ -137,5 +137,7 @@
 //兑换月卡
 - (void)changeCardWithCardCode:(NSString *)cardCode OnResponse:(void (^)(NSDictionary *dic))onResponse;
 
+//清空用户信息
 - (void)clear;
+
 @end

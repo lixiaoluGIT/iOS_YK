@@ -71,7 +71,7 @@
             [self.SV setScrollEnabled:NO];
         }
     }
-    self.pageC = [[UIPageControl alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-SYRealValue(perWidth*self.imagesArr.count))/2, SYRealValue(SVHeight)+64-SYRealValue(pageCBottom)+14, SYRealValue(perWidth*self.imagesArr.count), SYRealValue(pageCH))];
+    self.pageC = [[UIPageControl alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-SYRealValue(perWidth*self.imagesArr.count))/2, SYRealValue(SVHeight)-SYRealValue(pageCBottom)+kSuitLength_H(78), SYRealValue(perWidth*self.imagesArr.count), SYRealValue(pageCH))];
     self.pageC.numberOfPages = self.imagesArr.count;
     self.pageC.currentPage = 0;
     self.pageC.pageIndicatorTintColor = [UIColor whiteColor];

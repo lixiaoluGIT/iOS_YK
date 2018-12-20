@@ -25,9 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+   
     self.title = @"激活兑换卡";
-//    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 20, 44);
     if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
@@ -51,6 +51,7 @@
     title.font = PingFangSC_Medium(kSuitLength_H(14));;
     self.navigationItem.titleView = title;
     
+     self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     [self setUpUI];
 }
 
@@ -156,7 +157,7 @@
     codeNum.textColor = mainColor;
     codeNum.font = PingFangSC_Regular(kSuitLength_H(12));
     codeNum.delegate = self;
-    codeNum.keyboardType = UIKeyboardTypeDefault;
+    codeNum.keyboardType = UIKeyboardTypeASCIICapable;
     [codeNum setValue:[UIColor colorWithHexString:@"cccccc"] forKeyPath:@"_placeholderLabel.textColor"];
     [codeNum setValue:[UIFont systemFontOfSize:kSuitLength_H(12)] forKeyPath:@"_placeholderLabel.font"];
    
@@ -213,13 +214,13 @@
     //押金状态
     buttom = [[NSBundle mainBundle] loadNibNamed:@"YKWalletButtom" owner:self options:nil][0];
     buttom.selectionStyle = UITableViewCellSelectionStyleNone;
-    buttom.frame = CGRectMake(0, xieyi.bottom+kSuitLength_H(60), WIDHT, kSuitLength_H(60));
-    buttom.backgroundColor = [UIColor redColor];
-    if (HEIGHT==812) {
-        buttom.frame = CGRectMake(0, HEIGHT-180, WIDHT, BarH);
-    }
+    buttom.frame = CGRectMake(0, xieyi.bottom+kSuitLength_H(55), WIDHT, kSuitLength_H(60));
+//    buttom.backgroundColor = [UIColor redColor];
+//    if (HEIGHT==812) {
+//        buttom.frame = CGRectMake(0, HEIGHT-180, WIDHT, BarH);
+//    }
     if (WIDHT==320) {
-        buttom.frame = CGRectMake(0, xieyi.bottom+kSuitLength_H(20), WIDHT, kSuitLength_H(80));
+        buttom.frame = CGRectMake(0, xieyi.bottom+kSuitLength_H(40), WIDHT, kSuitLength_H(55));
     }
     if ([[YKUserManager sharedManager].user.depositEffective intValue] ==0 || [[YKUserManager sharedManager].user.depositEffective intValue]==3) {//未交押金或押金无效
         [buttom setTit];
@@ -231,11 +232,19 @@
         deposit.validityStatus = [[YKUserManager sharedManager].user.depositEffective intValue];
         [weakSelf.navigationController pushViewController:deposit animated:YES];
     };
-    buttom.backgroundColor = [UIColor whiteColor];
+//    buttom.backgroundColor = [UIColor redColor];
     [bigScrollView addSubview:buttom];
 }
 
 - (void)reChangeAction{
+    if (self.t2.text.length==0) {
+        [smartHUD alertText:kWindow alert:@"请输入兑换码" delay:1.2];
+        return;
+    }
+    if (self.t2.text.length!=14) {
+        [smartHUD alertText:kWindow alert:@"兑换码格式错误" delay:1.2];
+        return;
+    }
     [[YKUserManager sharedManager]changeCardWithCardCode:_t2.text OnResponse:^(NSDictionary *dic) {
         
         //新用户
@@ -324,7 +333,7 @@
         off=60;
     }
     if (WIDHT==414) {
-        off=40;
+        off=20;
     }
     CGRect rect = self.view.frame;
     if (movedUp)
@@ -357,16 +366,16 @@
     [UIView commitAnimations];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-  
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//  
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    // unregister for keyboard notifications while not visible.
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+//}
 
 #pragma mark - -- 方法
 

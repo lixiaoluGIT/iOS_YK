@@ -35,7 +35,17 @@
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:imageArray[i]];
         UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, w, h)];
         [image setUserInteractionEnabled:YES];
-        [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"specialImg"]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
+        NSString *placeStr;
+        if (self.isNewerPlay) {
+            placeStr = @"新人玩转衣库";
+            image.image = [UIImage imageNamed:placeStr];
+            image.frame = CGRectMake(10, 0, w, kSuitLength_H(210));
+        }else {
+            
+             placeStr = @"商品详情头图";
+            [image sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:dic[@"specialImg"]]] placeholderImage:[UIImage imageNamed:placeStr]];
+        }
+        
         [self.scrollView addSubview:image];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             

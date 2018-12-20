@@ -455,7 +455,7 @@
 //        return CGSizeMake(WIDHT, WIDHT*0.6+60+320*2+60-40 + WIDHT-20 + WIDHT-20 +layout1.height+ layout2.height + 15 + 60+20+20-40+10-14);
 //    }
     
-    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(93) + kSuitLength_H(88)*4 + kSuitLength_H(210+355) + kSuitLength_H(355)*self.weeknewArray.count+10 + kSuitLength_H(210));
+    return CGSizeMake(WIDHT,WIDHT*0.58+kSuitLength_H(106) + kSuitLength_H(88)*4 + kSuitLength_H(210+355) + kSuitLength_H(355)*self.weeknewArray.count+10 + kSuitLength_H(210) + kSuitLength_H(16));
 //    return kSuitLength_H(<#lengthGiven#>)
 }
 
@@ -480,12 +480,14 @@
         
         //新加衣库玩法图
         YKHomeActivityView * _activity = [[NSBundle mainBundle]loadNibNamed:@"YKHomeActivityView" owner:nil options:nil][0];
-        _activity.frame = CGRectMake(0, cycleView.bottom,WIDHT, kSuitLength_H(210));
+        _activity.frame = CGRectMake(kSuitLength_H(0), cycleView.bottom+kSuitLength_H(18),WIDHT-kSuitLength_H(0)*2, kSuitLength_H(210));
+        //随便传个值过去，实际是本地图片
+        _activity.isNewerPlay = YES;
         _activity.imageArray = [NSMutableArray arrayWithArray:self.brandArray];
         _activity.toDetailBlock = ^(NSString *activityID){
             YKLinkWebVC *web =[YKLinkWebVC new];
             web.needShare = YES;
-            web.url = activityID;
+            web.url = @"http://img-cdn.xykoo.cn/appHtml/homePage/play.html";
             if (web.url.length == 0) {
                 return;
             }
@@ -494,14 +496,15 @@
         };
 //        if (!hadPlayView) {
             [headerView addSubview:_activity];
-//            hadPlayView = YES;
+//            hadPlayView = NO;
 //        }
-        
+    
         //文字miao s
         YKHomeDesCell *desCell = [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][0];
         desCell.selectionStyle = UITableViewCellEditingStyleNone;
-        desCell.frame = CGRectMake(0, _activity.bottom, WIDHT, kSuitLength_H(93));
+        desCell.frame = CGRectMake(0, _activity.bottom, WIDHT, kSuitLength_H(106));
         [headerView addSubview:desCell];
+//        desCell.backgroundColor = [UIColor yellowColor];
 
         //人气美衣
 //        _homeScrollView = [[NSBundle mainBundle] loadNibNamed:@"YKHomeCrollView" owner:self options:nil][0];
