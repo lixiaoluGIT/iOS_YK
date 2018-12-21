@@ -59,7 +59,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 105;
+    return 90;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -75,6 +75,16 @@
 
         YKWalletDetailCell *bagCell = [[NSBundle mainBundle] loadNibNamed:@"YKWalletDetailCell" owner:self options:nil][0];
         [bagCell initWithDictionary:self.dataArray[indexPath.row]];
+    UILabel *line = [[UILabel alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    [bagCell addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(bagCell.mas_centerX);
+        make.left.mas_equalTo(kSuitLength_H(20));
+        make.top.mas_equalTo(bagCell.mas_bottom).offset(-1);
+        make.height.mas_equalTo(1);
+    }];
+    
         bagCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return bagCell;
 }

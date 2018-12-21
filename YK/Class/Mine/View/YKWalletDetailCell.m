@@ -35,6 +35,11 @@
         _type.text = @"退款成功";
     }
     
+    if ([dic[@"classification"] intValue] == 5) {
+        _type.text = @"购买兑换卡";
+    }
+   
+    
     _price.text = [NSString stringWithFormat:@"¥%@",dic[@"transactionAmount"]];
     
     _time.text = [NSString stringWithFormat:@"%@",[self timeWithTimeIntervalString:dic[@"tradingTime"]]];
@@ -45,6 +50,9 @@
     }
     if ([dic[@"paymentMethod"] intValue] == 2) {
         _payType.text = @"微信支付";
+    }
+    if ([dic[@"paymentMethod"] intValue] == 3) {
+        _payType.text = @"线下支付";
     }
     
 }

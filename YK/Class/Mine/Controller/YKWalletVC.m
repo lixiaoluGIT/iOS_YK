@@ -220,22 +220,22 @@
         //判断卡类型
         if (cardType==2) {//季卡
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
-            la.text = @"尊享会员季卡";
+            la.text = @"尊享会员-季卡";
             
         }else
         if (cardType==1) {//月卡
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
-             la.text = @"尊享会员月卡";
+             la.text = @"尊享会员-月卡";
         }else
         if (cardType==3) {//年卡
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
-             la.text = @"尊享会员年卡";
+             la.text = @"尊享会员-年卡";
         }if (cardType==7) {//兑换卡
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
-            la.text = @"尊享会员兑换卡";
+            la.text = @"尊享会员-兑换卡";
         } else {
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
-             la.text = @"尊享会员体验卡";
+             la.text = @"尊享会员-体验卡";
         }
 //        if (cardType==3) {//季卡
 //            des.text = @"年卡剩余有效期";
@@ -258,19 +258,19 @@
         }
         if (cardType==2) {//季卡
             image.image = [UIImage imageNamed:@"会员卡正在使用"];
-            la.text = @"尊享会员季卡";
+            la.text = @"尊享会员-季卡";
             
         }else
             if (cardType==1) {//月卡
                 image.image = [UIImage imageNamed:@"会员卡正在使用"];
-                la.text = @"尊享会员月卡";
+                la.text = @"尊享会员-月卡";
             }else
                 if (cardType==3) {//年卡
                     image.image = [UIImage imageNamed:@"会员卡正在使用"];
-                    la.text = @"尊享会员年卡";
+                    la.text = @"尊享会员-年卡";
                 }else {
                     image.image = [UIImage imageNamed:@"会员卡正在使用"];
-                    la.text = @"尊享会员体验卡";
+                    la.text = @"尊享会员-体验卡";
                 }
 //        //判断卡类型
 //        if (cardType==3) {//季卡

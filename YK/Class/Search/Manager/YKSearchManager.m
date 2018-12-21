@@ -190,6 +190,7 @@
     
     NSLog(@"%@",postDic);
     
+        
     [YKHttpClient Method:@"POST" URLString:filter_Url paramers:postDic success:^(NSDictionary *dict) {
         [LBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
         

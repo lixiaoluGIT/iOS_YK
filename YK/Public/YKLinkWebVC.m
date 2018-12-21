@@ -116,6 +116,9 @@
 
 - (void)creatWeb{
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, WIDHT, HEIGHT-64)];
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 11) {
+        _webView.frame = CGRectMake(0, 0, WIDHT, HEIGHT);
+    }
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
     [self.view addSubview:_webView];

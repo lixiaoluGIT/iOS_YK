@@ -607,7 +607,7 @@
         _colors = colors;
 //        _hotTags = hotTags;
         _styles = styles;
-        _elements = elements;
+//        _elements = elements;
         
         [weakSelf filterClothes];
     };

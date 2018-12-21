@@ -487,7 +487,7 @@
         _activity.toDetailBlock = ^(NSString *activityID){
             YKLinkWebVC *web =[YKLinkWebVC new];
             web.needShare = YES;
-            web.url = @"http://img-cdn.xykoo.cn/appHtml/homePage/play.html";
+            web.url = @"http://activity.xykoo.cn/appHtml/paly/play.html";
             if (web.url.length == 0) {
                 return;
             }

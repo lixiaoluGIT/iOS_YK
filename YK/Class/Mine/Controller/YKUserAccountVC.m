@@ -66,6 +66,11 @@
     title.textColor = [UIColor colorWithHexString:@"1a1a1a"];
     title.font = PingFangSC_Medium(kSuitLength_H(14));
     self.navigationItem.titleView = title;
+//    
+//    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
+//    self.navigationItem.rightBarButtonItem = rightBarItem;
+//    self.navigationItem.rightBarButtonItem.tintColor = mainColor;
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setupUI];
     
@@ -159,13 +164,13 @@
     };
     [self.view addSubview:buttom];
     
-    if ([[YKUserManager sharedManager].user.effective intValue] == 4) {//未开通
-    
-    }else {
+//    if ([[YKUserManager sharedManager].user.effective intValue] == 4) {//未开通
+//
+//    }else {
         UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"明细" style:UIBarButtonItemStylePlain target:self action:@selector(detailClick)];
         self.navigationItem.rightBarButtonItem = rightBarItem;
         self.navigationItem.rightBarButtonItem.tintColor = mainColor;
-    }
+//    }
 }
 
 - (void)detailClick{
