@@ -42,12 +42,18 @@
     return encodedString;
 }
 
-- (void)setIsAddCart:(BOOL)isAddCart{
-    _isAddCart = isAddCart;
-    if (isAddCart) {
-        [self.addBtn setTitle:@"租这件" forState:UIControlStateNormal];
-    }else {
+- (void)setType:(NSInteger)type{
+    _type = type;
+    if (type==2) {
+        [self.addBtn setTitle:@"买这件" forState:UIControlStateNormal];
+    }
+        
+    if (type==1) {
         [self.addBtn setTitle:@"加入心愿单" forState:UIControlStateNormal];
+    }
+    
+    if (type==3) {
+        [self.addBtn setTitle:@"租这件" forState:UIControlStateNormal];
     }
 }
 - (void)setProduct:(NSDictionary *)product{
@@ -68,6 +74,17 @@
 //    self.sizeView.selectBlock = ^(NSString *clothingStockType) {
 //        weakSelf.clothingStockType = clothingStockType;
 //    };
+    self.sizeView.selectTypeBlock = ^(BOOL hadStock) {
+        if (hadStock) {
+            [UIView animateWithDuration:0.3 animations:^{
+                [weakSelf.addBtn setTitle:@"买这件" forState:UIControlStateNormal];
+            }];
+        }else {
+            [UIView animateWithDuration:0.3 animations:^{
+                [weakSelf.addBtn setTitle:@"预约购买" forState:UIControlStateNormal];
+            }];
+        }
+    };
     self.sizeView.selectBlock = self.selectBlock;
     
     [self addSubview:self.sizeView];
@@ -85,13 +102,21 @@
         [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"请选择尺码" delay:1.4];
         return;
     }
-    if (self.isAddCart) {
+    if (self.type==1) {
+        if (self.favouriteBlock) {
+            self.favouriteBlock(@"11");
+        }
+    }
+        
+    if (self.type==3) {
         if (self.addTOCartBlock) {
             self.addTOCartBlock(@"11");
         }
-    }else {
-        if (self.favouriteBlock) {
-            self.favouriteBlock(@"11");
+    }
+    
+    if (self.type==2) {
+        if (self.buyBlock) {
+            self.buyBlock(@"11");
         }
     }
 }
@@ -110,6 +135,7 @@
 
 @property (nonatomic,strong)UILabel *tishilabel;
 @property (nonatomic,strong)UIImageView *tishiImage;
+
 
 
 @end
@@ -215,15 +241,22 @@
             
             if (!product.isHadStock) {//当前选择没有库存
                 //                btn.frame = CGRectMake((44+20)*self.selectindex,4,48, 24);
-                btn.backgroundColor = YKRedColor;
-                btn.layer.borderWidth = 0;
-                _tishilabel.hidden = NO;
-                _tishiImage.hidden = NO;
+               
+//                [UIView animateWithDuration:0.5 animations:^{
+                    btn.backgroundColor = YKRedColor;
+                    btn.layer.borderWidth = 0;
+                    _tishilabel.hidden = NO;
+                    _tishiImage.hidden = NO;
+                    
+//                }];
             }else {
                 _tishilabel.hidden = YES;
                 _tishiImage.hidden = YES;
             }
             
+            if (self.selectTypeBlock) {
+                self.selectTypeBlock(_tishiImage.hidden);
+            }
             //            for (int i=0; i<self.typeBtnArray.count; i++) {//找到上一个选中的下标
             //                UIButton *b = self.typeBtnArray[i];
             //                if (self.Button1 == b) {
@@ -238,7 +271,7 @@
     self.Button1 = btn;
     
     if (self.selectBlock) {
-        self.selectBlock(self.stockArray[self.selectindex-1][@"clothingStockId"]);
+        self.selectBlock(self.stockArray[self.selectindex-1][@"clothingStockId"],self.stockArray[self.selectindex-1][@"clothingStockType"]);
     }
 }
 

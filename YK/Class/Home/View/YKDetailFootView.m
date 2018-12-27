@@ -9,6 +9,9 @@
 #import "YKDetailFootView.h"
 
 @interface YKDetailFootView()
+{
+    UIButton *buyBtn;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *likeImage;
@@ -38,6 +41,51 @@
     }
 }
 
+- (void)setCanBuy:(BOOL)canBuy{
+    _canBuy = canBuy;
+//    CGRect frame = _addBtn.frame;
+    if (canBuy) {
+        _addBtn.hidden = YES;
+        buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        buyBtn.backgroundColor = [UIColor colorWithHexString:@"333333"];
+        buyBtn.frame = CGRectMake(WIDHT-kSuitLength_H(243), 0, kSuitLength_H(243)/2,kSuitLength_H(50));
+        [buyBtn setTitle:@"买这件" forState:UIControlStateNormal];
+        [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        buyBtn.titleLabel.font = PingFangSC_Medium(kSuitLength_H(12));
+        [self addSubview:buyBtn];
+        
+        UIButton *zuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        zuBtn.backgroundColor = YKRedColor;
+        zuBtn.frame = CGRectMake(WIDHT-kSuitLength_H(243)/2, 0, kSuitLength_H(243)/2,kSuitLength_H(50));
+        [zuBtn setTitle:@"租这件" forState:UIControlStateNormal];
+        [zuBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        zuBtn.titleLabel.font = PingFangSC_Medium(kSuitLength_H(12));
+        [self addSubview:zuBtn];
+        
+        [buyBtn addTarget:self action:@selector(toBuy) forControlEvents:UIControlEventTouchUpInside];
+        [zuBtn addTarget:self action:@selector(addToCart:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (void)setHadStock:(BOOL)hadStock{
+    _hadStock = hadStock;
+    if (!hadStock) {
+        [UIView animateWithDuration:0.3 animations:^{
+             [buyBtn setTitle:@"预约购买" forState:UIControlStateNormal];
+        }];
+       
+    }else {
+        [UIView animateWithDuration:0.3 animations:^{
+            [buyBtn setTitle:@"买这件" forState:UIControlStateNormal];
+        }];
+    }
+}
+//购买
+- (void)toBuy{
+    if (self.buyBlock) {
+        self.buyBlock();
+    }
+}
 - (IBAction)selectLike:(id)sender {
 //    if (_likeBtn.selected) {
 //        [smartHUD alertText:[UIApplication sharedApplication].keyWindow alert:@"您已喜欢该商品" delay:1.2];

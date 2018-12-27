@@ -235,6 +235,13 @@
             public.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:public animated:YES];
         };
+        cell.buyBlock = ^(NSString *sizeNum){
+            YKProductDetailVC *detail = [YKProductDetailVC new];
+            detail.productId = cell.suitId;
+            detail.titleStr = cell.dic[@"clothingName"];
+            detail.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detail animated:YES];
+        };
         [cell resetUI];
         return cell;
 //    }
@@ -253,8 +260,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
   
-    return CGFLOAT_MIN;
+    return 10;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    return view;
+}
 
 @end

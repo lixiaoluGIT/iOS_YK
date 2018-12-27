@@ -43,6 +43,8 @@
 #import "YKProductAleartView.h"
 #import "YKSignalSuitVC.h"
 #import "YKSearchSegmentVC.h"
+#import "YKSizeTitleView.h"
+#import "YKBuyOrderVC.h"
 
 @interface YKProductDetailVC ()
 <UICollectionViewDelegate, UICollectionViewDataSource,ZYCollectionViewDelegate,DXAlertViewDelegate,UITableViewDelegate,UITableViewDataSource,NewDynamicsCellDelegate>{
@@ -55,10 +57,30 @@
     CGFloat totalHeight;
     BOOL hadUserTable;
     BOOL hadTabel;
+    BOOL hadl;
+    BOOL hadTi;
+    BOOL hadNoDataView;
+    BOOL hadll;
+    BOOL hadCom;
+    BOOL hadMoreBtn;
+    BOOL hadTi0;
+    BOOL hadShakeBtn;
+    BOOL hadCycleView;
+    BOOL hadArray;
     NewDynamicsTableViewCell * cell;
-    YKDetailFootView *buttom;
+   __block YKDetailFootView *buttom;
    __block YKProductAleartView *aleartView;
     UIView *backView;
+    BOOL isShake;//是否伸缩
+    UIView *collectionheaderView;
+    UILabel *line;
+    UILabel *line2;
+    YKRecommentTitleView  *ti;
+    YKRecommentTitleView  *ti3;
+    YKHomeDesCell  *ti0;
+    UIButton *moreBtn;
+    UIButton *shakeBtn;
+    YKSizeTitleView *sizeTitleView;
 }
 @property (nonatomic, strong) NSArray * imagesArr;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -66,6 +88,8 @@
 @property (nonatomic, strong) NSArray *images2;
 @property (nonatomic, assign) CGRect origialFrame;
 @property (nonatomic,assign)NSString *sizeNum;
+@property (nonatomic,strong)NSString *sizeType;
+@property (nonatomic,assign)BOOL hadStock;
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)UITableView *mySizeTable;
@@ -165,6 +189,12 @@
 //        [self performSelector:@selector(showButtom) withObject:nil afterDelay:0.1];
         [self showButtom];
         
+        if (!hadArray) {
+            cycleView.imagesArr = self.imagesArr;
+            cycleView.delegate  = self;
+            hadArray = YES;
+        }
+        
         
         [self.collectionView reloadData];
     }];
@@ -192,6 +222,7 @@
 
     [super viewDidLoad];
     _isSP = NO;
+    isShake = YES;//尺码表默认展开
     [self getPruductDetail];
             
     _sizeNum = 0;
@@ -309,6 +340,7 @@
       buttom.frame = CGRectMake(0,HEIGHT,WIDHT, kSuitLength_H(50));
     }
 //    buttom.product = self.product;
+    buttom.canBuy = YES;
     buttom.likeSelectBlock = ^(BOOL isLike){
         if (isLike) {
             [weakSelf deCollect];
@@ -317,50 +349,13 @@
         }
     };
     buttom.AddToCartBlock = ^(void){//添加到购物车
-        [weakSelf addTOCart];
+        [weakSelf addTOCart:3];
        
     };
-//    buttom.KeFuBlock = ^(void){//客服
-//        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.3) {
-//            NSString *callPhone = [NSString stringWithFormat:@"tel://%@",PHONE];
-//            NSComparisonResult compare = [[UIDevice currentDevice].systemVersion compare:@"10.0"];
-//            if (compare == NSOrderedDescending || compare == NSOrderedSame) {
-//                /// 大于等于10.0系统使用此openURL方法
-//                if (@available(iOS 10.0, *)) {
-//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
-//                } else {
-//                    // Fallback on earlier versions
-//                }
-//            } else {
-//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-//            }
-//            return;
-//        }
-//        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:PHONE message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
-//        alertview.delegate = self;
-//        [alertview show];
-//
-//
-////        if ([Token length] == 0) {
-////            YKLoginVC *login = [[YKLoginVC alloc]initWithNibName:@"YKLoginVC" bundle:[NSBundle mainBundle]];
-////            [self presentViewController:login animated:YES completion:^{
-////
-////            }];
-////            login.hidesBottomBarWhenPushed = YES;
-////            return;
-////        }
-////        YKChatVC *chatService = [[YKChatVC alloc] init];
-////        chatService.conversationType = ConversationType_CUSTOMERSERVICE;
-////        chatService.targetId = RoundCloudServiceId;
-////        chatService.hidesBottomBarWhenPushed = YES;
-////        [self.navigationController pushViewController :chatService animated:YES];
-////        DXAlertView *alertView = [[DXAlertView alloc] initWithTitle:@"温馨提示" message:@"客服服务时间:10:00-19:00" cancelBtnTitle:@"拨打电话" otherBtnTitle:@"在线客服"];
-////        alertView.delegate = self;
-////        [alertView show];
-    
-        
-//
-//    };
+    buttom.buyBlock = ^(void){
+        [weakSelf addTOCart:2];
+    };
+
     buttom.ToSuitBlock = ^(void){//去衣袋
         
         if ([Token length] == 0) {
@@ -393,20 +388,42 @@
     
     aleartView = [[NSBundle mainBundle]loadNibNamed:@"YKProductAleartView" owner:nil options:nil][0];
     aleartView.frame = CGRectMake(0, HEIGHT, WIDHT, kSuitLength_H(300));
-    aleartView.selectBlock = ^(NSString *type){
-        _sizeNum = type;
+    aleartView.selectBlock = ^(NSString *typeId, NSString *type) {
+        _sizeNum = typeId;
+        _sizeType = type;
     };
     aleartView.addTOCartBlock = ^(NSString *type){
-        [weakSelf addTOCart];
+        [weakSelf addTOCart:3];
     };
     aleartView.favouriteBlock = ^(NSString *type){
         [weakSelf collect];
+    };
+    aleartView.buyBlock = ^(NSString *type){
+        [weakSelf addTOCart:2];
     };
     aleartView.disBLock = ^(void){
         [weakSelf disMiss];
     };
     [[UIApplication sharedApplication].keyWindow addSubview:aleartView];
     
+    cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, WIDHT*1.1)];
+    sizeTitleView = [[YKSizeTitleView alloc]init];
+    scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailHeader" owner:self options:nil][0];
+    ti0 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][1];
+    shakeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, WIDHT, self.dataArray.count*40) style:UITableViewStylePlain];
+    line = [[UILabel alloc]init];
+    ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][4];
+    cell = [[NewDynamicsTableViewCell alloc]init];
+    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+    ti3 = [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][1];
+    line2 = [[UILabel alloc]init];
+    moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self creatHeaderView];
+}
+
+- (void)creatHeaderView{
+    collectionheaderView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
 - (void)disMiss{
@@ -504,7 +521,7 @@
         [UIView animateWithDuration:0.25 animations:^{
             backView.hidden = NO;
             aleartView.frame = CGRectMake(0, HEIGHT-kSuitLength_H(300), WIDHT, kSuitLength_H(300));
-            aleartView.isAddCart = NO;
+            aleartView.type = 1;
         }];
         return ;
     }
@@ -516,7 +533,7 @@
     }];
 }
 
-- (void)addTOCart{
+- (void)addTOCart:(NSInteger)actionStatus{
     //未登录
     
     if ([Token length] == 0) {
@@ -533,10 +550,25 @@
         [UIView animateWithDuration:0.25 animations:^{
             backView.hidden = NO;
             aleartView.frame = CGRectMake(0, HEIGHT-kSuitLength_H(300), WIDHT, kSuitLength_H(300));
-            aleartView.isAddCart = YES;
+            aleartView.type = actionStatus;
         }];
         
         return ;
+    }
+    
+    if (actionStatus==2) {//跳到购买确认订单页面
+        
+        YKBuyOrderVC *buyOrder = [[YKBuyOrderVC alloc]init];
+        //商品信息传过去
+        buyOrder.product = self.product.product;
+        //商品尺码id传过去
+        buyOrder.sizeId = self.sizeNum;
+        //尺码大小
+        buyOrder.sizeNum = self.sizeType;
+        [self.navigationController pushViewController:buyOrder animated:YES];
+        
+        [self disMiss];
+        return;
     }
     [[YKSuitManager sharedManager]addToShoppingCartwithclothingId:self.productId clothingStckType:_sizeNum OnResponse:^(NSDictionary *dic) {
         //添加购物车动画
@@ -630,13 +662,25 @@
             return CGSizeMake(WIDHT, WIDHT*1.1+230);
         
     }
-    if (self.layoutsArr.count>0){
-   
-        return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40+170+layout.height+75+80);
-    }
-    else {
-    
-        return CGSizeMake(WIDHT, 20+60+self.dataArray.count*40+170+150+80);
+
+    if (isShake) {
+        if (self.layoutsArr.count>0){
+            
+            return CGSizeMake(WIDHT, 20+self.dataArray.count*40+170+layout.height+75+80-30);
+        }
+        else {
+            
+            return CGSizeMake(WIDHT, 20+self.dataArray.count*40+170+150+80-30);
+        }
+    }else {
+        if (self.layoutsArr.count>0){
+            
+            return CGSizeMake(WIDHT, 20+170+layout.height+75+80-30);
+        }
+        else {
+            
+            return CGSizeMake(WIDHT, 20+170+150+80-30);
+        }
     }
 }
 
@@ -651,17 +695,27 @@
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
             //轮播图
-            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, WIDHT*1.1)];
-            cycleView.imagesArr = self.imagesArr;
-            cycleView.delegate  = self;
-            self.origialFrame = cycleView.frame;
+//            cycleView = [[ZYCollectionView alloc]initWithFrame:CGRectMake(0,0,WIDHT, WIDHT*1.1)];
+//            cycleView.imagesArr = self.imagesArr;
+//            cycleView.delegate  = self;
+//            self.origialFrame = cycleView.frame;
             
-            [headerView addSubview:cycleView];
+            if (!hadCycleView) {
+                [headerView addSubview:cycleView];
+                hadCycleView = YES;
+                cycleView.imagesArr = self.imagesArr;
+                cycleView.delegate  = self;
+                self.origialFrame = cycleView.frame;
+            }
+           
             
-            scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailHeader" owner:self options:nil][0];
-            
-            scroll.selectBlock = ^(NSString *type){
-                weakSelf.sizeNum = type;
+
+            scroll.selectBlock = ^(NSString *typeId,NSString *type,BOOL hadStock){
+                weakSelf.sizeNum = typeId;
+                weakSelf.sizeType = type;
+                weakSelf.hadStock = hadStock;
+                
+                buttom.hadStock = hadStock;
             };
             scroll.toDetailBlock = ^(NSInteger brandId,NSString *brandName){
                 YKBrandDetailVC *brand = [YKBrandDetailVC new];
@@ -684,32 +738,92 @@
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView2" forIndexPath:indexPath];
             headerView.backgroundColor =[UIColor whiteColor];
             
-            YKHomeDesCell  *ti0 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][1];
-            ti0.frame = CGRectMake(0, 0,WIDHT, 50);
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toEdit)];
-            [ti0 addGestureRecognizer:tap];
-
-            [headerView addSubview:ti0];
             
+            
+//            YKHomeDesCell  *ti0 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][1];
+            //尺码表标题
+            sizeTitleView.frame = CGRectMake(0,0,WIDHT, 50);
+            sizeTitleView.backgroundColor = [UIColor whiteColor];
+            if (!hadTi0) {
+                [headerView addSubview:sizeTitleView];
+                if ( self.userSizeArray.count==1) {//只有我的这个字段，说明没有添加尺码
+                    sizeTitleView.hasEditSize = NO;
+                }else {
+                    sizeTitleView.hasEditSize = YES;
+                }
+                //测试数据
+                sizeTitleView.recSize = @"均码";
+                sizeTitleView.toEditSizeBlock = ^(void){
+                    [weakSelf toEdit];
+                };
+                hadTi0 = YES;
+            }
+//            if ( self.userSizeArray.count==1) {//只有我的这个字段，说明没有添加尺码
+//                sizeTitleView.hasEditSize = NO;
+//            }else {
+//                 sizeTitleView.hasEditSize = YES;
+//            }
+//            //测试数据
+//            sizeTitleView.recSize = @"均码";
+//            sizeTitleView.toEditSizeBlock = ^(void){
+//                [weakSelf toEdit];
+//            };
+//            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toEdit)];
+//            [sizeTitleView addGestureRecognizer:tap];
+            
+
+//            if (!hadTi0) {
+//                [headerView addSubview:sizeTitleView];
+//                hadTi0 = YES;
+//            }
+//            [headerView addSubview:ti0];
+            
+            //收缩按钮
+//            UIButton *shakeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            [shakeBtn setImage:[UIImage imageNamed:@"箭头上"] forState:UIControlStateNormal];
+            if (!hadShakeBtn) {
+                 [sizeTitleView addSubview:shakeBtn];
+                hadShakeBtn = YES;
+            }
+            [shakeBtn addTarget:self action:@selector(shake:) forControlEvents:UIControlEventTouchUpInside];
+//            shakeBtn.frame = CGRectMake(WIDHT-32, 0, 40, 30);
+            [shakeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.mas_equalTo(sizeTitleView.mas_centerY);
+                make.right.mas_equalTo(sizeTitleView.mas_right).offset(0);
+                make.width.height.mas_offset(kSuitLength_H(60));
+            }];
             //tableView内存需优化
 //            self.mySizeTable.backgroundColor = [UIColor redColor];
-            self.mySizeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, WIDHT, 40*2) style:UITableViewStylePlain];
-            self.mySizeTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-            self.mySizeTable.delegate = self;
-            self.mySizeTable.dataSource = self;
-            if (!hadUserTable) {
-                [headerView addSubview:self.mySizeTable];
-                hadUserTable = YES;
+//            self.mySizeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, WIDHT, 40*2) style:UITableViewStylePlain];
+//            self.mySizeTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+//            self.mySizeTable.delegate = self;
+//            self.mySizeTable.dataSource = self;
+//            if (!hadUserTable) {
+//                [headerView addSubview:self.mySizeTable];
+//                hadUserTable = YES;
+//            }
+//
+//            [self.mySizeTable reloadData];
+            
+            
+//            YKHomeDesCell  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][2];
+//            ti2.frame = CGRectMake(0, 50,WIDHT, 50);
+//            [headerView addSubview:ti2];
+//            line = [[UILabel alloc]init];
+            if (isShake) {//展开
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.tableView.frame = CGRectMake(0, 50, WIDHT, self.dataArray.count*40);
+                    self.tableView.hidden = NO;
+                    line.frame = CGRectMake(0, self.tableView.bottom, WIDHT, 10);
+                }];
+            }else{//收起
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.tableView.frame = CGRectMake(0, 50, WIDHT, 0);
+                    self.tableView.hidden = YES;
+                     line.frame = CGRectMake(0, self.tableView.bottom, WIDHT, 10);
+                }];
             }
-           
-            [self.mySizeTable reloadData];
-            
-            
-            YKHomeDesCell  *ti2 =  [[NSBundle mainBundle] loadNibNamed:@"YKHomeDesCell" owner:self options:nil][2];
-            ti2.frame = CGRectMake(0, 120,WIDHT, 50);
-            [headerView addSubview:ti2];
- 
-            self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 170, WIDHT, self.dataArray.count*40) style:UITableViewStylePlain];
             self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             self.tableView.delegate = self;
             self.tableView.dataSource = self;
@@ -719,23 +833,52 @@
             }
             [self.tableView reloadData];
             
-            //灰线
-            UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height+self.tableView.frame.origin.y, WIDHT, 10)];
+//            灰线
+//            UILabel *line = [[UILabel alloc]init];
             line.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-            [headerView addSubview:line];
+            if (isShake) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    line.frame = CGRectMake(0, 50+self.dataArray.count*40, WIDHT, 10);
+                }];
+                
+            }else{
+                [UIView animateWithDuration:0.3 animations:^{
+                     line.frame = CGRectMake(0, 50, WIDHT, 10);
+                }];
+                
+            }
+            if (!hadl) {
+                [headerView addSubview:line];
+                hadl = YES;
+            }
+
             
+//            YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][4];
             
-            YKRecommentTitleView  *ti =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][4];
-            ti.frame = CGRectMake(0,self.dataArray.count*40+170+10,WIDHT, 64);
+            if (isShake) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    ti.frame = CGRectMake(0,self.dataArray.count*40+70+10,WIDHT, 64);
+                }];
+                
+            }else{
+                [UIView animateWithDuration:0.3 animations:^{
+                    ti.frame = CGRectMake(0,80,WIDHT, 64);
+                }];
+               
+            }
 //            ti.backgroundColor = [UIColor redColor];
          
-            [headerView addSubview:ti];
             
+            
+            if (!hadTi) {
+                [headerView addSubview:ti];
+                hadTi = YES;
+            }
             //评论Cell
             //TODO:优化
             
             UIView *lastView = [[UIView alloc]init];
-            cell = [[NewDynamicsTableViewCell alloc]init];
+//            cell = [[NewDynamicsTableViewCell alloc]init];
             cell.isShowInProductDetail = YES;
             cell.delegate = self;
 
@@ -744,32 +887,40 @@
                 cell.hidden = NO;
                 cell.layout = self.layoutsArr[0];
                 layout = self.layoutsArr[0];
-                cell.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT, layout.height);
+//                cell.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT, layout.height);
+                if (isShake) {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        cell.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT, layout.height);
+                    }];
+                    
+                }else{
+                    [UIView animateWithDuration:0.3 animations:^{
+                       cell.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT, layout.height);
+                    }];
+                    
+                }
                 [cell reSetUI];
                 
-//                cell.plNum.hidden = YES;
-//                cell.pl.hidden = YES;
-//                cell.linkImage.hidden = YES;
-//                cell.dateLabel.hidden = YES;
-//                cell.dividingLine.hidden = YES;
-//                cell.linkBtn.hidden = YES;
-//                cell.dz.hidden = YES;
-//                cell.dzNum.hidden = YES;
-//                cell.Line1.hidden = YES;
-//                cell.Line2.hidden = YES;
-//                cell.guanzhuImage.hidden = YES;
-//                cell.moreLessDetailBtn.hidden = YES;
-                
+
                 lastView = cell;
                 
                 //查看更多评论
-                UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+             
                 [moreBtn setBackgroundImage:[UIImage imageNamed:@"chakangengduo"] forState:UIControlStateNormal];
-                moreBtn.frame = CGRectMake(WIDHT/2-54, lastView.frame.size.height + lastView.frame.origin.y + 25, 108, 25);
-                [headerView addSubview:moreBtn];
+                moreBtn.frame = CGRectMake(WIDHT/2-54, cell.bottom + 25, 108, 25);
+                if (isShake) {
+                    moreBtn.frame = CGRectMake(WIDHT/2-54, cell.bottom + 25, 108, 25);
+                }else {
+                    moreBtn.frame = CGRectMake(WIDHT/2-54, cell.bottom + 25, 108, 25);
+                }
+                if (!hadMoreBtn) {
+                    [headerView addSubview:moreBtn];
+                    hadMoreBtn = YES;
+                }
+
                 [moreBtn addTarget:self action:@selector(toMore) forControlEvents:UIControlEventTouchUpInside];
                 lastView = moreBtn;
-//                totalHeight = 20+60+self.dataArray.count*40+170+layout.height;
+
             }else {
                 cell.hidden = YES;
                 //无评论图
@@ -781,16 +932,31 @@
                     [headerView addSubview:a];
 
                 }else {
-                    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
+//                    NoDataView = [[NSBundle mainBundle] loadNibNamed:@"YKNoDataView" owner:self options:nil][0];
                 }
                
               
                 [NoDataView noDataViewWithStatusImage:[UIImage imageNamed:@"pinglun"] statusDes:@"暂无评论" hiddenBtn:YES actionTitle:@"去逛逛" actionBlock:^{
                     
                 }];
-                NoDataView.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT,150);
+               
+                if (isShake) {
+                    [UIView animateWithDuration:0.3 animations:^{
+                         NoDataView.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT,150);
+                    }];
+                    
+                }else{
+                    [UIView animateWithDuration:0.3 animations:^{
+                        NoDataView.frame = CGRectMake(0, ti.frame.size.height + ti.frame.origin.y, WIDHT,150);
+                    }];
+                    
+                }
                 NoDataView.backgroundColor = [UIColor whiteColor];
-                [headerView addSubview:NoDataView];
+               
+                if (!hadNoDataView) {
+                     [headerView addSubview:NoDataView];
+                    hadNoDataView = YES;
+                }
                 NoDataView.hidden = NO;
 //                lastView = NoDataView;
                
@@ -808,28 +974,83 @@
                 hadLoadCommentCell = YES;
             }
 
-            UILabel *line2 = [[UILabel alloc]init];
            
-            if (self.layoutsArr.count>0) {
-                 line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y+25, WIDHT, 10);
-            }else {
-                 line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y, WIDHT, 10);
+
+            if (isShake) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    if (self.layoutsArr.count>0) {
+                        line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y+25, WIDHT, 10);
+                    }else {
+                        line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y, WIDHT, 10);
+                    }
+                }];
+                
+            }else{
+                [UIView animateWithDuration:0.3 animations:^{
+                    if (self.layoutsArr.count>0) {
+                        line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y+25, WIDHT, 10);
+                    }else {
+                        line2.frame = CGRectMake(0, lastView.frame.size.height + lastView.frame.origin.y, WIDHT, 10);
+                    }
+                }];
+                
             }
+            
+           
             line2.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-            [headerView addSubview:line2];
+//            [headerView addSubview:line2];
+            if (!hadll) {
+                [headerView addSubview:line2];
+                hadll = YES;
+            }
             lastView = line2;
             
-            YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][1];
-            ti3.frame = CGRectMake(0,lastView.frame.size.height + lastView.frame.origin.y,WIDHT, 70);
+//            YKRecommentTitleView  *ti3 =  [[NSBundle mainBundle] loadNibNamed:@"YKRecommentTitleView" owner:self options:nil][1];
+//            ti3.frame = CGRectMake(0,lastView.frame.size.height + lastView.frame.origin.y,WIDHT, 70);
+            if (isShake) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    ti3.frame = CGRectMake(0,lastView.frame.size.height + lastView.frame.origin.y,WIDHT, 70);
+                }];
+                
+            }else{
+                [UIView animateWithDuration:0.3 animations:^{
+                    ti3.frame = CGRectMake(0,lastView.frame.size.height + lastView.frame.origin.y,WIDHT, 70);
+                }];
+                
+            }
 //                        ti3.backgroundColor = [UIColor redColor];
-            [headerView addSubview:ti3];
-            
+           
+            if (!hadCom) {
+                 [headerView addSubview:ti3];
+                hadCom = YES;
+            }
             return headerView;
         }
         
     }
     
     return nil;
+}
+
+- (void)shake:(UIButton *)btn{
+    btn.selected = !btn.selected;
+    isShake = !isShake;
+    if (isShake) {
+        [UIView animateWithDuration:0.5 animations:^{
+            btn.transform = CGAffineTransformMakeRotation(0);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.5 animations:^{
+            btn.transform = CGAffineTransformMakeRotation(M_PI);
+        } completion:^(BOOL finished) {
+           
+        }];
+    }
+    
+    [self.collectionView reloadData];
 }
 
 -(void)DidClickMoreLessInDynamicsCell:(NewDynamicsTableViewCell *)cell
@@ -914,8 +1135,6 @@
         detail.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detail animated:YES];
     }
-    
-    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -988,13 +1207,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    
-    if (tableView == self.mySizeTable) {
-        return self.userSizeArray.count;
-    }else {
+//    if (tableView == self.mySizeTable) {
+//        return self.userSizeArray.count;
+//    }else {
         return self.dataArray.count;
-        
-    }
-    return 0;
+//
+//    }
+//    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -1007,13 +1226,17 @@
         if (!cell) {
             cell = [[dractLineTwoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"lineCell"];
         }
-    if (tableView==self.mySizeTable) {
-        cell.titleArr = self.userSizeArray[indexPath.row];
-        [cell setTitleRow:indexPath.row];
-    }else {
+//    if (tableView==self.mySizeTable) {
+//        cell.titleArr = self.userSizeArray[indexPath.row];
+//        [cell setTitleRow:indexPath.row];
+//    }else {
         cell.titleArr = self.dataArray[indexPath.row];
+    
+    //如果已编辑自己的尺码，拿到后台推荐的尺码
+    //假数据
+        cell.recSize = @"均码";
         [cell setTitleRow:indexPath.row];
-    }
+//    }
     
  
         cell.selectionStyle = UITableViewCellEditingStyleNone;

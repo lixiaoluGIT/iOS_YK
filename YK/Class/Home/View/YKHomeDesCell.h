@@ -11,5 +11,6 @@
 @interface YKHomeDesCell : UITableViewCell
 
 @property (nonatomic,copy)void (^toEditSizeBlock)(NSDictionary *dic);
-
+@property (nonatomic,assign)BOOL hasEditSize;//是否添加尺码
+@property (nonatomic,strong)NSString *recSize;//推荐的尺码
 @end

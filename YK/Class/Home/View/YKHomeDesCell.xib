@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,7 +32,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="edit" destination="OWA-Q3-acj" id="Wgf-l7-Df9"/>
+                <outlet property="editBtn" destination="6qq-IV-Zf8" id="nSh-gi-jYD"/>
                 <outlet property="gap" destination="kg2-I6-cwK" id="Yfp-Sb-vev"/>
                 <outlet property="image" destination="zow-rZ-Ixj" id="Zfg-d2-kh9"/>
                 <outlet property="lll" destination="E6Z-5e-SZq" id="vON-Wa-nw9"/>
@@ -47,29 +47,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="489" height="152.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的尺码表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6Z-5e-SZq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尺码表详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6Z-5e-SZq">
                         <rect key="frame" x="15" y="66.5" width="70" height="20"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="you" translatesAutoresizingMaskIntoConstraints="NO" id="6F8-O2-9S8">
-                        <rect key="frame" x="457" y="69.5" width="8" height="14"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编辑我的尺码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWA-Q3-acj">
-                        <rect key="frame" x="381" y="68" width="72" height="17"/>
-                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                        <color key="textColor" red="0.93333333333333335" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qq-IV-Zf8">
+                        <rect key="frame" x="103" y="69" width="78" height="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <state key="normal" title="编辑我的尺码" image="右-2编辑尺码">
+                            <color key="titleColor" red="0.93333333330000001" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="6F8-O2-9S8" secondAttribute="trailing" constant="24" id="A1n-Pj-iip"/>
+                    <constraint firstItem="6qq-IV-Zf8" firstAttribute="centerY" secondItem="E6Z-5e-SZq" secondAttribute="centerY" id="9IC-hn-1e6"/>
                     <constraint firstItem="E6Z-5e-SZq" firstAttribute="centerY" secondItem="3hJ-Mg-UHG" secondAttribute="centerY" id="Edh-pX-pFR"/>
-                    <constraint firstItem="6F8-O2-9S8" firstAttribute="centerY" secondItem="E6Z-5e-SZq" secondAttribute="centerY" id="Scf-kr-MSq"/>
-                    <constraint firstItem="OWA-Q3-acj" firstAttribute="centerY" secondItem="6F8-O2-9S8" secondAttribute="centerY" id="sYY-gK-2pF"/>
-                    <constraint firstItem="6F8-O2-9S8" firstAttribute="leading" secondItem="OWA-Q3-acj" secondAttribute="trailing" constant="4" id="sag-hW-XAX"/>
+                    <constraint firstItem="6qq-IV-Zf8" firstAttribute="leading" secondItem="E6Z-5e-SZq" secondAttribute="trailing" constant="18" id="Zlh-D2-H6k"/>
                     <constraint firstItem="E6Z-5e-SZq" firstAttribute="leading" secondItem="3hJ-Mg-UHG" secondAttribute="leading" constant="15" id="vQ0-d1-kRi"/>
                 </constraints>
             </tableViewCellContentView>
@@ -99,7 +95,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="you" width="8" height="14"/>
+        <image name="右-2编辑尺码" width="6" height="9"/>
         <image name="开启 2" width="375" height="86"/>
     </resources>
 </document>

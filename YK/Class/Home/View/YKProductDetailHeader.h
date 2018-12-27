@@ -13,7 +13,7 @@
 
 
 @property (nonatomic,copy)void (^toDetailBlock)(NSInteger brandId,NSString *brandName);
-@property (nonatomic,copy)void (^selectBlock)(NSString *type);
+@property (nonatomic,copy)void (^selectBlock)(NSString *typeId,NSString *type,BOOL hadStock);
 @property (nonatomic,strong)NSDictionary *product;
 
 @property (nonatomic,strong)NSDictionary *brand;
@@ -27,7 +27,7 @@
 @interface YKSizeView : UIView
 
 - (void)initViewWithArray:(NSArray *)array;
-@property (nonatomic,copy)void (^selectBlock)(NSString *clothingStockType);
+@property (nonatomic,copy)void (^selectBlock)(NSString *clothingStockId,NSString *clothingStockType,BOOL hadStock);
 
 
 

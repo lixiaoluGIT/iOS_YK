@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *edit;
 @property (weak, nonatomic) IBOutlet UILabel *lll;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gap;
+@property (weak, nonatomic) IBOutlet UIButton *editBtn;
 
 @end
 
@@ -35,8 +36,34 @@
 //    [_image setContentMode:UIViewContentModeScaleAspectFill];
     // Initialization code
     _gap.constant = kSuitLength_H(20);
+//    _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _editBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(12));
+//    [_editBtn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+//    _editBtn.backgroundColor = [UIColor colorWithHexString:@"f8f8f8"];
+//    _editBtn.layer.masksToBounds = YES;
+//    _editBtn.layer.cornerRadius = _editBtn.frame.size.height/2;
 }
 
+- (void)setRecSize:(NSString *)recSize{
+    _recSize = recSize;
+    if (_hasEditSize) {//已添加尺码
+        
+        if (recSize.length==0) {//没有推荐
+            [_editBtn setTitle:@"暂无推荐尺码" forState:UIControlStateNormal];
+            [_editBtn setImage:[UIImage imageNamed:@"右-2尺码详情"] forState:UIControlStateNormal];
+            [_editBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -60)];
+        }else {
+            [_editBtn setTitle:[NSString stringWithFormat:@"为我推荐%@",recSize] forState:UIControlStateNormal];
+            [_editBtn setImage:[UIImage imageNamed:@"右-2尺码详情"] forState:UIControlStateNormal];
+            [_editBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -60)];
+            _editBtn.backgroundColor = [UIColor redColor];
+        }
+    }else {
+        [_editBtn setTitle:@"编辑我的尺码" forState:UIControlStateNormal];
+        [_editBtn setImage:[UIImage imageNamed:@"右-2编辑尺码"] forState:UIControlStateNormal];
+        [_editBtn setImageEdgeInsets:UIEdgeInsetsMake(100, 60, 0, 0)];
+    }
+}
 - (void)click{
     if ([Token length] == 0) {
         [[YKUserManager sharedManager]showLoginViewOnResponse:^(NSDictionary *dic) {
@@ -50,12 +77,15 @@
 //        }];
         return;
     }
-    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
-    
-    [[self getCurrentVC] presentViewController:nav animated:YES completion:^{
-        
-    }];
+    if (self.toEditSizeBlock) {
+        self.toEditSizeBlock(nil);
+    }
+//    YKToBeVIPVC *vip = [[YKToBeVIPVC alloc]initWithNibName:@"YKToBeVIPVC" bundle:[NSBundle mainBundle]];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vip];
+//
+//    [[self getCurrentVC] presentViewController:nav animated:YES completion:^{
+//
+//    }];
 }
 - (UIViewController *)getCurrentVC
 {

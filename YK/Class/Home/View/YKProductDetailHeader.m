@@ -295,7 +295,7 @@
     self.Button1 = btn;
     
     if (self.selectBlock) {
-        self.selectBlock(self.stockArray[self.selectindex][@"clothingStockId"]);
+        self.selectBlock(self.stockArray[self.selectindex][@"clothingStockId"],self.stockArray[self.selectindex][@"clothingStockType"],_tishiImage.hidden);
     }
 }
 @end

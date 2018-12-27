@@ -26,10 +26,11 @@
     
     UILabel *ba = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, WIDHT-40, 30)];
    
+    ba.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     if (row==0) {
         ba.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
-        [self addSubview:ba];
     }
+    [self addSubview:ba];
     
     
     for (int i = 0; i < _titleArr.count; i++) {
@@ -43,8 +44,17 @@
         [self addSubview:label];
         
         if (row==0) {
-            label.textColor = [UIColor colorWithHexString:@"1a1a1a"];
-            label.font = PingFangSC_Medium(kSuitLength_H(12));
+            label.textColor = [UIColor colorWithHexString:@"333333"];
+            label.font = PingFangSC_Regular(kSuitLength_H(12));
+        }
+        
+        //找到推荐的尺码号
+        if ([_titleArr[0] isEqualToString:self.recSize]) {
+            
+                label.textColor = [UIColor colorWithHexString:@"1a1a1a"];
+                label.font = PingFangSC_Semibold(kSuitLength_H(12));
+                ba.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
+            
         }
         
         

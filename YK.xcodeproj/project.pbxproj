@@ -172,6 +172,14 @@
 		00D60D45207C8E140003A71A /* YKSelectTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D60D43207C8E140003A71A /* YKSelectTimeView.xib */; };
 		00E53F412111566500255E8A /* YKCouponCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E53F3F2111566500255E8A /* YKCouponCodeView.m */; };
 		00E53F422111566500255E8A /* YKCouponCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E53F402111566500255E8A /* YKCouponCodeView.xib */; };
+		8F0EF63B21D361920082A7DA /* YKSizeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0EF63A21D361920082A7DA /* YKSizeTitleView.m */; };
+		8F0EF63E21D376030082A7DA /* YKBuyOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0EF63D21D376030082A7DA /* YKBuyOrderVC.m */; };
+		8F0EF64221D38A480082A7DA /* YKBuyProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0EF64021D38A480082A7DA /* YKBuyProductCell.m */; };
+		8F0EF64321D38A480082A7DA /* YKBuyProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0EF64121D38A480082A7DA /* YKBuyProductCell.xib */; };
+		8F0EF64721D38A6E0082A7DA /* YKBuyTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0EF64521D38A6E0082A7DA /* YKBuyTypeCell.m */; };
+		8F0EF64821D38A6E0082A7DA /* YKBuyTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0EF64621D38A6E0082A7DA /* YKBuyTypeCell.xib */; };
+		8F0EF64C21D38A920082A7DA /* YKBuyCashCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0EF64A21D38A920082A7DA /* YKBuyCashCell.m */; };
+		8F0EF64D21D38A920082A7DA /* YKBuyCashCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0EF64B21D38A920082A7DA /* YKBuyCashCell.xib */; };
 		C500BCCC205918A60075B050 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCB205918A60075B050 /* WebKit.framework */; };
 		C500BCCE20591B210075B050 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C500BCCD20591B210075B050 /* WebP.framework */; };
 		C5016FF02022B77800E22301 /* YKMineCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5016FEE2022B77800E22301 /* YKMineCategoryCell.m */; };
@@ -955,6 +963,19 @@
 		00E53F3E2111566500255E8A /* YKCouponCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponCodeView.h; sourceTree = "<group>"; };
 		00E53F3F2111566500255E8A /* YKCouponCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponCodeView.m; sourceTree = "<group>"; };
 		00E53F402111566500255E8A /* YKCouponCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKCouponCodeView.xib; sourceTree = "<group>"; };
+		8F0EF63921D361920082A7DA /* YKSizeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSizeTitleView.h; sourceTree = "<group>"; };
+		8F0EF63A21D361920082A7DA /* YKSizeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSizeTitleView.m; sourceTree = "<group>"; };
+		8F0EF63C21D376030082A7DA /* YKBuyOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBuyOrderVC.h; sourceTree = "<group>"; };
+		8F0EF63D21D376030082A7DA /* YKBuyOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBuyOrderVC.m; sourceTree = "<group>"; };
+		8F0EF63F21D38A480082A7DA /* YKBuyProductCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBuyProductCell.h; sourceTree = "<group>"; };
+		8F0EF64021D38A480082A7DA /* YKBuyProductCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBuyProductCell.m; sourceTree = "<group>"; };
+		8F0EF64121D38A480082A7DA /* YKBuyProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKBuyProductCell.xib; sourceTree = "<group>"; };
+		8F0EF64421D38A6E0082A7DA /* YKBuyTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBuyTypeCell.h; sourceTree = "<group>"; };
+		8F0EF64521D38A6E0082A7DA /* YKBuyTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBuyTypeCell.m; sourceTree = "<group>"; };
+		8F0EF64621D38A6E0082A7DA /* YKBuyTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKBuyTypeCell.xib; sourceTree = "<group>"; };
+		8F0EF64921D38A910082A7DA /* YKBuyCashCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBuyCashCell.h; sourceTree = "<group>"; };
+		8F0EF64A21D38A920082A7DA /* YKBuyCashCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBuyCashCell.m; sourceTree = "<group>"; };
+		8F0EF64B21D38A920082A7DA /* YKBuyCashCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKBuyCashCell.xib; sourceTree = "<group>"; };
 		C500BCCB205918A60075B050 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		C500BCCD20591B210075B050 /* WebP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebP.framework; path = Vendor/WebP.framework; sourceTree = "<group>"; };
 		C5016FED2022B77800E22301 /* YKMineCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKMineCategoryCell.h; sourceTree = "<group>"; };
@@ -2398,6 +2419,8 @@
 				007EE299212E76DE0040B3D3 /* YKLiseVC.m */,
 				00A9B80421B7C25900FE186A /* YKRecomentProductVC.h */,
 				00A9B80521B7C25900FE186A /* YKRecomentProductVC.m */,
+				8F0EF63C21D376030082A7DA /* YKBuyOrderVC.h */,
+				8F0EF63D21D376030082A7DA /* YKBuyOrderVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2509,6 +2532,17 @@
 				001824942192B2A50038AD5D /* YKFashionRecView.m */,
 				00A9B80721B7CF0600FE186A /* YKRecProductHeaderView.h */,
 				00A9B80821B7CF0600FE186A /* YKRecProductHeaderView.m */,
+				8F0EF63921D361920082A7DA /* YKSizeTitleView.h */,
+				8F0EF63A21D361920082A7DA /* YKSizeTitleView.m */,
+				8F0EF63F21D38A480082A7DA /* YKBuyProductCell.h */,
+				8F0EF64021D38A480082A7DA /* YKBuyProductCell.m */,
+				8F0EF64121D38A480082A7DA /* YKBuyProductCell.xib */,
+				8F0EF64421D38A6E0082A7DA /* YKBuyTypeCell.h */,
+				8F0EF64521D38A6E0082A7DA /* YKBuyTypeCell.m */,
+				8F0EF64621D38A6E0082A7DA /* YKBuyTypeCell.xib */,
+				8F0EF64921D38A910082A7DA /* YKBuyCashCell.h */,
+				8F0EF64A21D38A920082A7DA /* YKBuyCashCell.m */,
+				8F0EF64B21D38A920082A7DA /* YKBuyCashCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4302,6 +4336,7 @@
 				0087C990211AA0F90014E733 /* YKLogInView.xib in Resources */,
 				C525DEA51FBD89F7002802AE /* YKSMSCell.xib in Resources */,
 				C5690F991FE770BD0027EFCE /* YKTotalSMSCell.xib in Resources */,
+				8F0EF64821D38A6E0082A7DA /* YKBuyTypeCell.xib in Resources */,
 				003AE782213790E8001D7D17 /* YKAddCCouponView.xib in Resources */,
 				005D2CEB2085E10B00AEBDA0 /* play2.png in Resources */,
 				C53347201FD0F232002A08D0 /* YKSMSStatusView.xib in Resources */,
@@ -4346,6 +4381,7 @@
 				002FE5A420B54CA200554AB3 /* YKEditSizeVC.xib in Resources */,
 				C525DC2C1FBAAFC1002802AE /* Main.storyboard in Resources */,
 				C5B723D8202C3BB700344339 /* YKUpdateVC.xib in Resources */,
+				8F0EF64321D38A480082A7DA /* YKBuyProductCell.xib in Resources */,
 				0032BDA120BFE7F200332855 /* YKRegisterVC.xib in Resources */,
 				C5327677205B94C20082EF2E /* add.png in Resources */,
 				C50E58D71FE1117F0063F377 /* YKSuitHeader.xib in Resources */,
@@ -4358,6 +4394,7 @@
 				C5E46EAE1FFE3FF2002453EB /* YKShareSuccessView.xib in Resources */,
 				C5E023151FD95DCD00C33629 /* YKSuitEnsureCell.xib in Resources */,
 				007EE276212AB6930040B3D3 /* YKHomeCrollView.xib in Resources */,
+				8F0EF64D21D38A920082A7DA /* YKBuyCashCell.xib in Resources */,
 				005D2CD62084576F00AEBDA0 /* Name.plist in Resources */,
 				C525DD9C1FBAB2A9002802AE /* MLEmoji_Expression.bundle in Resources */,
 				007EE297212E73FE0040B3D3 /* YKListCell.xib in Resources */,
@@ -4545,6 +4582,7 @@
 				C525DDAD1FBAB2A9002802AE /* TZAssetCell.m in Sources */,
 				00B9EF2B20A0535800A7422B /* DynamicsModel.m in Sources */,
 				007D57C420CFA63200C23F5E /* YKSearchSegmentVC.m in Sources */,
+				8F0EF63B21D361920082A7DA /* YKSizeTitleView.m in Sources */,
 				00B9EF3020A0535800A7422B /* NewDynamicsTableViewCell.m in Sources */,
 				00961FEF21A804D6003DD710 /* YKSignalSuitVC.m in Sources */,
 				C525DDA11FBAB2A9002802AE /* NSMutableAttributedString+MLLabel.m in Sources */,
@@ -4608,6 +4646,7 @@
 				C5E023051FD64A8B00C33629 /* YKAddress.m in Sources */,
 				C5FB7855205904780076DD6F /* UIGestureRecognizer+YYAdd.m in Sources */,
 				C52CA76B2000BFA800ECDC80 /* DDAdvertisementVC.m in Sources */,
+				8F0EF64221D38A480082A7DA /* YKBuyProductCell.m in Sources */,
 				C5FB7842205904780076DD6F /* YYTextRunDelegate.m in Sources */,
 				C5FB78DC205908F80076DD6F /* UIGestureRecognizer+BlocksKit.m in Sources */,
 				C5FB7856205904780076DD6F /* UIImage+YYAdd.m in Sources */,
@@ -4671,6 +4710,7 @@
 				004735A0219AB0DF00A24BF0 /* UIColor+Extend.m in Sources */,
 				C536298420089C9200CA1F8B /* YKCacheManager.m in Sources */,
 				C57505381FFB853500F7E07A /* DDAleartView.m in Sources */,
+				8F0EF63E21D376030082A7DA /* YKBuyOrderVC.m in Sources */,
 				003AE781213790E8001D7D17 /* YKAddCCouponView.m in Sources */,
 				C5FB7864205904780076DD6F /* NSNotificationCenter+YYAdd.m in Sources */,
 				C525DC341FBAAFC1002802AE /* main.m in Sources */,
@@ -4757,6 +4797,7 @@
 				C5B723D7202C3BB700344339 /* YKUpdateVC.m in Sources */,
 				C525DDCA1FBAB2A9002802AE /* UIButton+WebCache.m in Sources */,
 				C525DD971FBAB2A9002802AE /* MASConstraint.m in Sources */,
+				8F0EF64721D38A6E0082A7DA /* YKBuyTypeCell.m in Sources */,
 				C525DD661FBAB2A8002802AE /* UIRefreshControl+AFNetworking.m in Sources */,
 				002FE5A320B54CA200554AB3 /* YKEditSizeVC.m in Sources */,
 				C5FB7844205904780076DD6F /* NSParagraphStyle+YYText.m in Sources */,
@@ -4809,6 +4850,7 @@
 				C532A74B1FDF8AAB0068A31D /* RSADataVerifier.m in Sources */,
 				C533EF4B2057801B00A71DBE /* YKBaseScrollView.m in Sources */,
 				C5FB78DF205908F80076DD6F /* UIImagePickerController+BlocksKit.m in Sources */,
+				8F0EF64C21D38A920082A7DA /* YKBuyCashCell.m in Sources */,
 				C5FB7871205904780076DD6F /* YYFileHash.m in Sources */,
 				C525DDBC1FBAB2A9002802AE /* MKAnnotationView+WebCache.m in Sources */,
 				C525DD901FBAB2A9002802AE /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,

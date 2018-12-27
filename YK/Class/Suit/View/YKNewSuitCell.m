@@ -29,7 +29,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *Vline;
 @property (nonatomic,strong)NSString *suitStatus;
-@property (nonatomic,strong)UIButton *pubLicBtn;
+@property (nonatomic,strong)UIButton *pubLicBtn;//晒图按钮
+@property (nonatomic,strong)UIButton *leaveBtn;//留下来按钮
 //@property (nonatomic,strong)NSString *suitId;
 @end
 @implementation YKNewSuitCell
@@ -54,9 +55,9 @@
     [_pubLicBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
     [_pubLicBtn setTitle:@"晒图" forState:UIControlStateNormal];
     _pubLicBtn.titleLabel.font = PingFangSC_Medium(kSuitLength_H(10));
-    _pubLicBtn.frame = CGRectMake(WIDHT-kSuitLength_H(52)-kSuitLength_H(17), _name.centerY, kSuitLength_H(52), kSuitLength_H(15));
+    _pubLicBtn.frame = CGRectMake(WIDHT-kSuitLength_H(52)-kSuitLength_H(30)-kSuitLength_H(52), self.price.centerY, kSuitLength_H(52), kSuitLength_H(20));
     _pubLicBtn.layer.masksToBounds = YES;
-    _pubLicBtn.layer.cornerRadius = kSuitLength_H(15)/2;
+    _pubLicBtn.layer.cornerRadius = kSuitLength_H(20)/2;
     _pubLicBtn.backgroundColor = [UIColor colorWithHexString:@"f0f0f0"];
     _pubLicBtn.hidden = YES;
     [_pubLicBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
@@ -64,6 +65,21 @@
     [self addSubview:_pubLicBtn];
     [_pubLicBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -kSuitLength_H(5), 0, 0)];
     [_pubLicBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, kSuitLength_H(5), 0, 0)];
+    
+    _leaveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [_leaveBtn setTitle:@"买下它" forState:UIControlStateNormal];
+    _leaveBtn.titleLabel.font = PingFangSC_Medium(kSuitLength_H(12));
+    _leaveBtn.frame = CGRectMake(WIDHT-kSuitLength_H(52)-kSuitLength_H(20), self.price.centerY, kSuitLength_H(52), kSuitLength_H(20));
+    _leaveBtn.layer.masksToBounds = YES;
+    _leaveBtn.layer.cornerRadius = kSuitLength_H(20)/2;
+    _leaveBtn.backgroundColor = YKRedColor;
+    _leaveBtn.hidden = YES;
+    [_leaveBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+    [_leaveBtn addTarget:self action:@selector(toBuy) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_leaveBtn];
+    
+    
 }
 
 - (void)public{
@@ -71,6 +87,12 @@
     if (self.publicBlock) {
        
         self.publicBlock(self.suitId);
+    }
+}
+
+- (void)toBuy{
+    if (self.buyBlock) {
+        self.buyBlock(@"");
     }
 }
 
@@ -90,7 +112,7 @@
     self.name.text = suit.clothingName;
     self.barnd.text = suit.clothingBrandName;
     self.type.text = suit.clothingStockType;
-    self.price.text = [NSString stringWithFormat:@"¥%@",suit.clothingPrice];
+    self.price.text = [NSString stringWithFormat:@"¥ %@",suit.clothingPrice];
     
     //衣位
     _owendNum.text = [NSString stringWithFormat:@"占%@个衣位",suit.ownedNum];
@@ -128,6 +150,8 @@
     _pubLicBtn.hidden = NO;
     _owendNum.hidden = YES;
     _Vline.hidden = YES;
+    _leaveBtn.hidden = NO;
+    _type.hidden = YES;
 }
 
 - (void)setDic:(NSDictionary *)dic{
@@ -137,9 +161,9 @@
     [self.suitImage sd_setImageWithURL:[NSURL URLWithString:[self URLEncodedString:[NSString stringWithFormat:@"%@",dic[@"clothingImgUrl"]]]] placeholderImage:[UIImage imageNamed:@"商品图"]];
     [self.suitImage setContentMode:UIViewContentModeScaleAspectFill];
     self.name.text = [NSString stringWithFormat:@"%@",dic[@"clothingName"]];
-    self.barnd.text = [NSString stringWithFormat:@"%@",dic[@"clothingBrandName"]];
+    self.barnd.text = [NSString stringWithFormat:@"%@",dic[@"clothingStockType"]];
     self.type.text = [NSString stringWithFormat:@"%@",dic[@"clothingStockType"]];
-    self.price.text = [NSString stringWithFormat:@"%@",dic[@"clothingPrice"]];
+    self.price.text = [NSString stringWithFormat:@"¥ %@",dic[@"clothingPrice"]];
     
 //    //衣位
 //    _owendNum.text = [NSString stringWithFormat:@"占%@个衣位",suit.ownedNum];

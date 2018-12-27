@@ -537,9 +537,9 @@
             
             scroll=  [[NSBundle mainBundle] loadNibNamed:@"YKProductDetailHeader" owner:self options:nil][0];
             
-            scroll.selectBlock = ^(NSString *type){
-                weakSelf.sizeNum = type;
-            };
+//            scroll.selectBlock = ^(NSString *type){
+//                weakSelf.sizeNum = type;
+//            };
             scroll.toDetailBlock = ^(NSInteger brandId,NSString *brandName){
                 YKBrandDetailVC *brand = [YKBrandDetailVC new];
                 brand.hidesBottomBarWhenPushed = YES;

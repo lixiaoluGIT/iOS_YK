@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -180,7 +180,7 @@
                         <rect key="frame" x="393" y="51.5" width="10" height="14"/>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="ZVN-qc-6uO" firstAttribute="top" secondItem="OAo-lk-ei5" secondAttribute="top" constant="26" id="1Ds-Sp-cp2"/>
                     <constraint firstItem="qZ1-rS-vxD" firstAttribute="centerY" secondItem="OAo-lk-ei5" secondAttribute="centerY" id="3qu-bU-Xu5"/>
@@ -197,6 +197,7 @@
                     <constraint firstAttribute="trailing" secondItem="qZ1-rS-vxD" secondAttribute="trailing" constant="8" id="zH0-4e-6aV"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="detailAddress" destination="pEE-SS-R83" id="hYt-2P-J2g"/>
                 <outlet property="name" destination="ZVN-qc-6uO" id="EL9-iw-V3U"/>
@@ -209,7 +210,7 @@
         <image name="delete" width="14" height="14"/>
         <image name="edit" width="14" height="14"/>
         <image name="right" width="10" height="14"/>
-        <image name="weixuanzhong" width="20" height="20"/>
-        <image name="xuanzhong" width="20" height="20"/>
+        <image name="weixuanzhong" width="16" height="16"/>
+        <image name="xuanzhong" width="16" height="16"/>
     </resources>
 </document>

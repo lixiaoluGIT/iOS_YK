@@ -60,7 +60,7 @@
 //            if (_titleColor) {
 //                 self.titleLab.textColor=_titleColor;
 //            }
-            self.titleLab.font = PingFangSC_Semibold(17);
+            self.titleLab.font = PingFangSC_Semibold(18);
         }
         
         CGFloat messageLabSpace = 15;
@@ -96,7 +96,7 @@
             self.otherBtn.titleLabel.font = PingFangSC_Regular(kSuitLength_H(14));
             self.otherBtn.layer.cornerRadius=3;
             self.otherBtn.layer.masksToBounds=YES;
-            self.otherBtn.backgroundColor = mainColor;
+            self.otherBtn.backgroundColor = YKRedColor;
             [self.otherBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
             [self.alertview addSubview:self.otherBtn];
         }

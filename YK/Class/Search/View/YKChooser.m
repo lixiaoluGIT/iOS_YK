@@ -71,6 +71,7 @@ static CGFloat const kYGap = 10.f;
 @property (assign, nonatomic) NSIndexPath *selIndex;//类型单选，当前选中的行
 @property (nonatomic,assign) NSInteger childId;//二级分类id
 @property (nonatomic,strong) NSMutableArray *selectIndePaths;
+@property (nonatomic,strong)NSMutableArray *shakeArray;//存储折叠状态
 @end
 
 
@@ -106,6 +107,12 @@ static CGFloat const kYGap = 10.f;
         _childCategoryArray = [NSMutableArray array];
         
         _selectIndePaths = [NSMutableArray array];
+        
+        _shakeArray = [NSMutableArray array];
+        for (int i = 0; i<5; i++) {
+            //默认都不展开
+            [_shakeArray addObject:@"NO"];
+        }
         
         self.alpha = 0.f;
         //        self.backgroundColor = [[UIColor clearColor]colorWithAlphaComponent:0.5];
@@ -391,15 +398,7 @@ static CGFloat const kYGap = 10.f;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.textLabel.font = PingFangSC_Regular(kSuitLength_H(10));
-    
-//    if (_selIndex == indexPath) {
-//        cell.textLabel.textColor = YKRedColor;
-//        //            cell.contentView.backgroundColor = [UIColor colorWithHex:@"#F9F9F9"];
-//    } else {
-//        cell.textLabel.textColor = grayTextColor;
-//        //            cell.contentView.backgroundColor = NavBarColor;
-//    }
-    
+
     if ([_selectIndePaths containsObject:indexPath]) {
          cell.textLabel.textColor = YKRedColor;
     }else {
@@ -412,13 +411,6 @@ static CGFloat const kYGap = 10.f;
     
     [cell.contentView addSubview:view];
     
-    return cell;
-   
-//    UITableViewCell *cell = [[UITableViewCell alloc]init];
-//    cell.backgroundColor = kLineColor2;
-//    cell.textLabel.text = tag.name;
-//    cell.textLabel.font = PingFangSC_Regular(kSuitLength_H(12));
-//    cell.textLabel.textColor = [UIColor colorWithHexString:@"666666"];
     return cell;
 }
 
@@ -513,11 +505,11 @@ static CGFloat const kYGap = 10.f;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
  
-    for (NSInteger i = 0; i < _tagTitleArr.count; i ++) {
-            
-            if (section == i) {
-                
-                NSString *str = _tagTitleArr[i];
+//    for (NSInteger i = 0; i < _tagTitleArr.count; i ++) {
+//
+//            if (section == i) {
+    
+                NSString *str = _tagTitleArr[section];
                 
                 NSArray *tags = (NSArray *)[_orignalMDicTags objectForKey:str];
                 
@@ -529,9 +521,19 @@ static CGFloat const kYGap = 10.f;
                 }
                 NSInteger index = tags.count;
                 
+                //如果是折叠，返回两排
+                if (self.shakeArray.count!=0) {
+                    if ([self.shakeArray[section] isEqualToString:@"NO"]) {
+                        if (total<=6) {
+//                            return total;
+                        }
+//                        return 6;
+                    }
+//                }
+               
                return total;
             }
-        }
+//        }
     
     return 0;
 }
@@ -665,6 +667,19 @@ static CGFloat const kYGap = 10.f;
         if (self.tagTitleArr.count != 0) {
             [header setTitle:[NSString stringWithFormat:@"%@", [self.tagTitleArr objectAtIndex:indexPath.section]]];
         }
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.tag = indexPath.section;
+        [btn setTitle:@"展开" forState:UIControlStateNormal];
+        [btn setTitleColor:DarkLineColor forState:UIControlStateNormal];
+//        [header addSubview:btn];
+//        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerY.mas_equalTo(header.mas_centerY);
+//            make.right.mas_equalTo(header.mas_right).offset(-20);
+//        }];
+        [btn addTarget:self action:@selector(btnCkick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         header.backgroundColor = [UIColor clearColor];
         return header;
     }
@@ -675,6 +690,28 @@ static CGFloat const kYGap = 10.f;
     //        return footer;
     //    }
     return nil;
+}
+
+- (void)btnCkick:(UIButton *)button{
+    if ([self.shakeArray[button.tag] isEqualToString:@"NO"]) {
+        NSLog(@"点击了第%ld块,展开", button.tag);
+        [self.shakeArray replaceObjectAtIndex:button.tag withObject:@"YES"];
+    }else {
+        NSLog(@"点击了第%ld块,收缩", button.tag);
+        [self.shakeArray replaceObjectAtIndex:button.tag withObject:@"NO"];
+    }
+    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:button.tag];
+//    [self.myCollectionView reloadData];
+    [UIView performWithoutAnimation:^{
+        [self.myCollectionView reloadSections:[NSIndexSet indexSetWithIndex:button.tag]];
+    }];
+    
+    [UIView performWithoutAnimation:^{
+//        [self.myCollectionView reloadData];
+    }];
+
+//    [self.myCollectionView reloadSections:indexSet];
+//    [self.myCollectionView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark---YLWaterFlowLayoutDelegate
@@ -1161,16 +1198,16 @@ static CGFloat const kYGap = 10.f;
    
     self.myCollectionView.backgroundColor = [UIColor clearColor];
 //    self.bottomView.backgroundColor = [UIColor yellowColor];
-        if (self.myCollectionView.contentSize.height + kSuitLength_V(10) +  kBottomBtnHeight>= frame.size.height) {
+//        if (self.myCollectionView.contentSize.height + kSuitLength_V(10) +  kBottomBtnHeight>= frame.size.height) {
             self.myCollectionView.frame = CGRectMake(-10, frame.origin.y, frame.size.width, frame.size.height - (kSuitLength_V(10) +  kBottomBtnHeight));
             self.bottomView.frame = frame;
             self.bottomView.frame = CGRectMake(0, 0, WIDHT-kSuitLength_H(60), HEIGHT);
-        } else {
-            
-            self.myCollectionView.frame = CGRectMake(-10, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height);
-            self.bottomView.frame = CGRectMake(0, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height + kSuitLength_V(10) +  kBottomBtnHeight);
-            
-        }
+//        } else {
+//
+//            self.myCollectionView.frame = CGRectMake(-10, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height);
+//            self.bottomView.frame = CGRectMake(0, frame.origin.y, frame.size.width, self.myCollectionView.contentSize.height + kSuitLength_V(10) +  kBottomBtnHeight);
+//
+//        }
 //    self.myCollectionView.backgroundColor = [UIColor redColor];
 //        _ensureBtn.layer.cornerRadius = kBottomBtnHeight / 2;
         _ensureBtn.layer.masksToBounds = YES;

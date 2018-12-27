@@ -11,18 +11,20 @@
 
 @interface YKProductAleartView : UITableViewCell
 
-@property (nonatomic,copy)void (^selectBlock)(NSString *type);
+@property (nonatomic,copy)void (^selectBlock)(NSString *typeId,NSString *type);
 @property (nonatomic,copy)void (^disBLock)(void);
 @property (nonatomic,copy)void (^addTOCartBlock)(NSString *type);
 @property (nonatomic,copy)void (^favouriteBlock)(NSString *type);
+@property (nonatomic,copy)void (^buyBlock)(NSString *type);
 @property (nonatomic,strong)NSDictionary *product;
 
-@property (nonatomic,assign)BOOL isAddCart;
+@property (nonatomic,assign)NSInteger type;
 
 @end
 
 @interface YKNewSizeView : UIView
 @property (nonatomic,assign) NSInteger selectindex;
 - (void)initViewWithArray:(NSArray *)array;
-@property (nonatomic,copy)void (^selectBlock)(NSString *clothingStockType);
+@property (nonatomic,copy)void (^selectBlock)(NSString *clothingStockId,NSString *clothingStockType);
+@property (nonatomic,copy)void (^selectTypeBlock)(BOOL hadStock);
 @end
