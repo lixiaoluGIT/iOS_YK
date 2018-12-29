@@ -105,6 +105,13 @@
 		00753FB9210F1AB700550A66 /* YKAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00753FB7210F1AB700550A66 /* YKAccountCell.m */; };
 		00753FBA210F1AB700550A66 /* YKAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00753FB8210F1AB700550A66 /* YKAccountCell.xib */; };
 		00753FBD211009E900550A66 /* YKCouponSegementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00753FBC211009E900550A66 /* YKCouponSegementVC.m */; };
+		0079290521D5CF8900B943C4 /* YKOrderSegementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0079290421D5CF8900B943C4 /* YKOrderSegementVC.m */; };
+		0079290A21D5E8D200B943C4 /* CBNoHightlightedBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 0079290721D5E8D100B943C4 /* CBNoHightlightedBtn.m */; };
+		0079290B21D5E8D200B943C4 /* CBHeaderChooseViewScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0079290821D5E8D100B943C4 /* CBHeaderChooseViewScrollView.m */; };
+		0079290E21D5E99300B943C4 /* YKOrderBuyHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0079290D21D5E99300B943C4 /* YKOrderBuyHistoryVC.m */; };
+		0079291621D5F57500B943C4 /* YKBuyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0079291521D5F57500B943C4 /* YKBuyOrderCell.m */; };
+		0079291921D61A1000B943C4 /* YKOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0079291821D61A1000B943C4 /* YKOrderDetailVC.m */; };
+		0079291C21D6203700B943C4 /* YKOrderDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0079291B21D6203700B943C4 /* YKOrderDetailHeader.m */; };
 		007B703120C6626500096731 /* YKSelectColedgeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B702F20C6626500096731 /* YKSelectColedgeVC.m */; };
 		007B703220C6626500096731 /* YKSelectColedgeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007B703020C6626500096731 /* YKSelectColedgeVC.xib */; };
 		007B703620C6675500096731 /* YKSelectColedgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 007B703420C6675500096731 /* YKSelectColedgeCell.m */; };
@@ -845,6 +852,20 @@
 		00753FB8210F1AB700550A66 /* YKAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKAccountCell.xib; sourceTree = "<group>"; };
 		00753FBB211009E900550A66 /* YKCouponSegementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKCouponSegementVC.h; sourceTree = "<group>"; };
 		00753FBC211009E900550A66 /* YKCouponSegementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKCouponSegementVC.m; sourceTree = "<group>"; };
+		0079290321D5CF8900B943C4 /* YKOrderSegementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrderSegementVC.h; sourceTree = "<group>"; };
+		0079290421D5CF8900B943C4 /* YKOrderSegementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKOrderSegementVC.m; sourceTree = "<group>"; };
+		0079290621D5E8D100B943C4 /* CBNoHightlightedBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBNoHightlightedBtn.h; sourceTree = "<group>"; };
+		0079290721D5E8D100B943C4 /* CBNoHightlightedBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBNoHightlightedBtn.m; sourceTree = "<group>"; };
+		0079290821D5E8D100B943C4 /* CBHeaderChooseViewScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBHeaderChooseViewScrollView.m; sourceTree = "<group>"; };
+		0079290921D5E8D200B943C4 /* CBHeaderChooseViewScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBHeaderChooseViewScrollView.h; sourceTree = "<group>"; };
+		0079290C21D5E99300B943C4 /* YKOrderBuyHistoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrderBuyHistoryVC.h; sourceTree = "<group>"; };
+		0079290D21D5E99300B943C4 /* YKOrderBuyHistoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKOrderBuyHistoryVC.m; sourceTree = "<group>"; };
+		0079291421D5F57500B943C4 /* YKBuyOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKBuyOrderCell.h; sourceTree = "<group>"; };
+		0079291521D5F57500B943C4 /* YKBuyOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKBuyOrderCell.m; sourceTree = "<group>"; };
+		0079291721D61A1000B943C4 /* YKOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrderDetailVC.h; sourceTree = "<group>"; };
+		0079291821D61A1000B943C4 /* YKOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKOrderDetailVC.m; sourceTree = "<group>"; };
+		0079291A21D6203700B943C4 /* YKOrderDetailHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKOrderDetailHeader.h; sourceTree = "<group>"; };
+		0079291B21D6203700B943C4 /* YKOrderDetailHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKOrderDetailHeader.m; sourceTree = "<group>"; };
 		007B702E20C6626500096731 /* YKSelectColedgeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKSelectColedgeVC.h; sourceTree = "<group>"; };
 		007B702F20C6626500096731 /* YKSelectColedgeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKSelectColedgeVC.m; sourceTree = "<group>"; };
 		007B703020C6626500096731 /* YKSelectColedgeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YKSelectColedgeVC.xib; sourceTree = "<group>"; };
@@ -2451,6 +2472,10 @@
 			isa = PBXGroup;
 			children = (
 				C5343C941FC6A87800F5132A /* CBSegment */,
+				0079290921D5E8D200B943C4 /* CBHeaderChooseViewScrollView.h */,
+				0079290821D5E8D100B943C4 /* CBHeaderChooseViewScrollView.m */,
+				0079290621D5E8D100B943C4 /* CBNoHightlightedBtn.h */,
+				0079290721D5E8D100B943C4 /* CBNoHightlightedBtn.m */,
 				00C39297206C9B8D0068DFC0 /* DractLineCell.h */,
 				00C39295206C9B8C0068DFC0 /* DractLineCell.m */,
 				00C39298206C9B8D0068DFC0 /* dractLineTwoCell.h */,
@@ -2635,6 +2660,12 @@
 				C525DEB41FBDA023002802AE /* YKEditAddressVC.m */,
 				C55D49181FC2EAB6000D2056 /* YKMySuitBagVC.h */,
 				C55D49191FC2EAB6000D2056 /* YKMySuitBagVC.m */,
+				0079290C21D5E99300B943C4 /* YKOrderBuyHistoryVC.h */,
+				0079290D21D5E99300B943C4 /* YKOrderBuyHistoryVC.m */,
+				0079290321D5CF8900B943C4 /* YKOrderSegementVC.h */,
+				0079290421D5CF8900B943C4 /* YKOrderSegementVC.m */,
+				0079291721D61A1000B943C4 /* YKOrderDetailVC.h */,
+				0079291821D61A1000B943C4 /* YKOrderDetailVC.m */,
 				00A37FEC21B52ECF00303CC7 /* YKHistoryListVC.h */,
 				00A37FED21B52ED000303CC7 /* YKHistoryListVC.m */,
 				C5343C721FC526BF00F5132A /* YKNormalQuestionVC.h */,
@@ -2837,6 +2868,10 @@
 				00961FF821AD92C6003DD710 /* YKInputCodeView.m */,
 				00473594219AB01F00A24BF0 /* YKCodeView.h */,
 				00473595219AB01F00A24BF0 /* YKCodeView.m */,
+				0079291421D5F57500B943C4 /* YKBuyOrderCell.h */,
+				0079291521D5F57500B943C4 /* YKBuyOrderCell.m */,
+				0079291A21D6203700B943C4 /* YKOrderDetailHeader.h */,
+				0079291B21D6203700B943C4 /* YKOrderDetailHeader.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4460,6 +4495,7 @@
 				C5FB782F205904780076DD6F /* UIButton+YYWebImage.m in Sources */,
 				C5FB7840205904780076DD6F /* YYTextDebugOption.m in Sources */,
 				C525DE901FBD28D6002802AE /* SteyUtil.m in Sources */,
+				0079291621D5F57500B943C4 /* YKBuyOrderCell.m in Sources */,
 				00179C7A2189B449000A0100 /* NSObject+MJCoding.m in Sources */,
 				C5343C921FC69D2400F5132A /* YKBrandDetailHeader.m in Sources */,
 				00961FEC21A64C4B003DD710 /* YKLoveNoDataView.m in Sources */,
@@ -4470,6 +4506,7 @@
 				C53039DF1FCC26C100FB12CE /* WelcomeViewController.m in Sources */,
 				C532A74D1FDF8AAB0068A31D /* DataSigner.m in Sources */,
 				C53039E31FCC271800FB12CE /* CusPageControlWithView.m in Sources */,
+				0079290B21D5E8D200B943C4 /* CBHeaderChooseViewScrollView.m in Sources */,
 				00A9B80621B7C25900FE186A /* YKRecomentProductVC.m in Sources */,
 				C5690F9C1FE773550027EFCE /* YKTotalSMSVC.m in Sources */,
 				C525DDBD1FBAB2A9002802AE /* SDWebImageManager.m in Sources */,
@@ -4487,6 +4524,7 @@
 				005D2CF42085F9D600AEBDA0 /* DCCycleScrollViewCell.m in Sources */,
 				C5690F931FE768C70027EFCE /* YKTotalMsgView.m in Sources */,
 				C525DE051FBABBFB002802AE /* YKMineVC.m in Sources */,
+				0079291C21D6203700B943C4 /* YKOrderDetailHeader.m in Sources */,
 				C53039DB1FCC0A0A00FB12CE /* YKChangePhoneVC.m in Sources */,
 				C533471F1FD0F232002A08D0 /* YKSMSStatusView.m in Sources */,
 				C525DDBA1FBAB2A9002802AE /* TZGifPhotoPreviewController.m in Sources */,
@@ -4728,6 +4766,7 @@
 				C5FECDE41FC2860400D299AE /* YKSuccessVC.m in Sources */,
 				C525DD7B1FBAB2A9002802AE /* UIView+MJExtension.m in Sources */,
 				00B9EF3220A0535800A7422B /* YYPhotoGroupView.m in Sources */,
+				0079290521D5CF8900B943C4 /* YKOrderSegementVC.m in Sources */,
 				C53039CD1FCBF35500FB12CE /* DDStringHelper.m in Sources */,
 				C525DD951FBAB2A9002802AE /* NSArray+MASAdditions.m in Sources */,
 				00179C742189B449000A0100 /* MJExtensionConst.m in Sources */,
@@ -4785,6 +4824,7 @@
 				C55D491A1FC2EAB6000D2056 /* YKMySuitBagVC.m in Sources */,
 				C5FB786A205904780076DD6F /* YYAsyncLayer.m in Sources */,
 				C525DD6F1FBAB2A8002802AE /* AFURLSessionManager.m in Sources */,
+				0079290E21D5E99300B943C4 /* YKOrderBuyHistoryVC.m in Sources */,
 				C525DED61FC278C7002802AE /* MOFSToolbar.m in Sources */,
 				00B9EF3120A0535800A7422B /* SDWeiXinPhotoContainerView.m in Sources */,
 				C525DD891FBAB2A9002802AE /* MJRefreshComponent.m in Sources */,
@@ -4814,6 +4854,7 @@
 				C525DC261FBAAFC1002802AE /* AppDelegate.m in Sources */,
 				C5F929BB20206E53001D2139 /* FYTransitionAnimator.m in Sources */,
 				C525DDC31FBAB2A9002802AE /* SDWebImageCompat.m in Sources */,
+				0079290A21D5E8D200B943C4 /* CBNoHightlightedBtn.m in Sources */,
 				C5FB78CE205908F80076DD6F /* NSInvocation+BlocksKit.m in Sources */,
 				C525DDC81FBAB2A9002802AE /* UIImageView+WebCache.m in Sources */,
 				C525DD811FBAB2A9002802AE /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -4829,6 +4870,7 @@
 				007D57CA20CFCDA800C23F5E /* YKSPVC.m in Sources */,
 				C52D0FA41FC6D4E000B50258 /* YKWalletDetailVC.m in Sources */,
 				C5FB78CC205908F80076DD6F /* NSObject+BKBlockObservation.m in Sources */,
+				0079291921D61A1000B943C4 /* YKOrderDetailVC.m in Sources */,
 				C525DD6B1FBAB2A8002802AE /* UIWebView+AFNetworking.m in Sources */,
 				C525DEDA1FC278CD002802AE /* GDataXMLNode.m in Sources */,
 				C5FB78CA205908F80076DD6F /* NSMutableArray+BlocksKit.m in Sources */,

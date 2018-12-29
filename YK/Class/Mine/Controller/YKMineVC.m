@@ -11,6 +11,7 @@
 #import "YKMineCell.h"
 #import "YKMineBagCell.h"
 #import "YKMySuitBagVC.h"
+#import "YKOrderSegementVC.h"
 #import "YKNormalQuestionVC.h"
 #import "YKWalletVC.h"
 #import "YKAddressVC.h"
@@ -191,8 +192,9 @@
 //                }
                 
                 //历史订单
-                YKMySuitBagVC *suit = [YKMySuitBagVC new];
-                suit.selectedIndex = tag+1;
+//                YKMySuitBagVC *suit = [YKMySuitBagVC new];
+                YKOrderSegementVC *suit = [YKOrderSegementVC new];
+//                suit.selectedIndex = tag+1;
                 suit.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:suit animated:YES];
             }

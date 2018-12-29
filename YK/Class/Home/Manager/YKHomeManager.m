@@ -481,6 +481,9 @@
     }
     else {
         [self getHomeAleartImageOnResponse:^(NSDictionary *dic) {
+            if (dic[@"status"]) {
+                
+            }
             [UD setObject:dic[@"popupImg"] forKey:@"homeImage"];
             [UD setObject:dic[@"couponId"] forKey:@"couponId"];
             [UD setObject:dic[@"couponAmount"] forKey:@"couponAmount"];

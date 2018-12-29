@@ -94,7 +94,7 @@
     
     [self settingButtons];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(kSuitLength_H(10), BarH+kSuitLength_H(50), WIDHT-20, HEIGHT-BarH-kSuitLength_H(50)) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(kSuitLength_H(10), kSuitLength_H(50), WIDHT-20, HEIGHT-BarH-kSuitLength_H(50)) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 140;
@@ -130,7 +130,7 @@
 }
 
 -(void)settingButtons{
-    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, BarH, WIDHT, 50*WIDHT/375)];
+    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDHT, 50*WIDHT/375)];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     
@@ -187,7 +187,7 @@
     self.line = [[UILabel alloc]initWithFrame:CGRectMake(WIDHT/8-kSuitLength_H(30)/2, kSuitLength_H(50)-1, kSuitLength_H(30), 2)];
     _line.backgroundColor = YKRedColor;
     _line.frame = CGRectMake(WIDHT/8+WIDHT/4*index-kSuitLength_H(30)/2, kSuitLength_H(45), kSuitLength_H(30), 2);
-    [backView addSubview:_line];
+//    [backView addSubview:_line];
 }
 
 - (void)searchOrders:(NSInteger)orderStatus{
@@ -331,9 +331,9 @@
             _buttom.hidden = YES;
         }else {
             if ([YKOrderManager sharedManager].sectionArray.count==1&&([[YKOrderManager sharedManager].sectionArray containsObject:@"2"])) {
-                self.tableView.frame = CGRectMake(10, BarH  +50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(10, 50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
             }else {
-                self.tableView.frame = CGRectMake(10, BarH+50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(10, 50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
             }
             self.tableView.hidden = NO;
             _buttom.hidden = YES;
@@ -357,7 +357,7 @@
 
             if ((_bagStatus==toReceive)&&self.orderList.count!=0) {
                 _buttom.hidden = NO;
-                self.tableView.frame = CGRectMake(10, BarH+50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375-50);
+                self.tableView.frame = CGRectMake(10, 50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375-50);
                 if (_bagStatus==toReceive) {//待签收
                     if ([YKOrderManager sharedManager].isOnRoad) {
                         [_buttom setTitle:@"确认收货" forState:UIControlStateNormal];
@@ -383,7 +383,7 @@
                     
                 }
             }else {
-                self.tableView.frame = CGRectMake(10, BarH+50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
+                self.tableView.frame = CGRectMake(10, 50*WIDHT/375, WIDHT-20, HEIGHT-64-50*WIDHT/375);
                 _buttom.hidden = YES;
             }
     
